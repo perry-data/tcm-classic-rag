@@ -1,0 +1,263 @@
+[
+  {
+    "chapter_id": "ZJSHL-CH-001",
+    "chapter_name": "序注解伤寒论　成无己",
+    "role_breakdown_v2": {
+      "preface_paragraph": 2
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-002",
+    "chapter_name": "伤寒卒病论集",
+    "role_breakdown_v2": {
+      "preface_paragraph": 4
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-003",
+    "chapter_name": "辨脉法第一",
+    "role_breakdown_v2": {
+      "main_text": 66,
+      "commentary": 50
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-004",
+    "chapter_name": "平脉法第二",
+    "role_breakdown_v2": {
+      "main_text": 81,
+      "commentary": 76
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-005",
+    "chapter_name": "卷题/题记",
+    "role_breakdown_v2": {
+      "front_matter": 2
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-006",
+    "chapter_name": "伤寒例第三",
+    "role_breakdown_v2": {
+      "main_text": 82,
+      "commentary": 68
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-007",
+    "chapter_name": "辨痓湿暍脉证第四",
+    "role_breakdown_v2": {
+      "main_text": 25,
+      "commentary": 10
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-008",
+    "chapter_name": "辨太阳病脉证并治法上第五",
+    "role_breakdown_v2": {
+      "main_text": 44,
+      "commentary": 19,
+      "formula_heading": 6,
+      "formula_commentary": 3,
+      "formula_ingredients": 9
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-009",
+    "chapter_name": "辨太阳病脉证并治第六",
+    "role_breakdown_v2": {
+      "main_text": 179,
+      "formula_heading": 28,
+      "formula_commentary": 12,
+      "formula_ingredients": 8,
+      "commentary": 82,
+      "formula_method": 15
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-010",
+    "chapter_name": "辨太阳病脉证并治法第七",
+    "role_breakdown_v2": {
+      "main_text": 89,
+      "commentary": 37,
+      "formula_heading": 19,
+      "formula_commentary": 10,
+      "formula_method": 10,
+      "formula_ingredients": 9
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-011",
+    "chapter_name": "辨阳明病脉证并治法第八",
+    "role_breakdown_v2": {
+      "main_text": 134,
+      "commentary": 58,
+      "formula_heading": 8,
+      "formula_commentary": 4,
+      "formula_method": 3,
+      "formula_ingredients": 3
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-012",
+    "chapter_name": "辨少阳病脉证并治法第九",
+    "role_breakdown_v2": {
+      "main_text": 14,
+      "commentary": 6
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-013",
+    "chapter_name": "辨太阴病脉证并治法第十",
+    "role_breakdown_v2": {
+      "main_text": 13,
+      "commentary": 5
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-014",
+    "chapter_name": "辨少阴病脉证并治法第十一",
+    "role_breakdown_v2": {
+      "main_text": 89,
+      "commentary": 51,
+      "formula_heading": 15,
+      "formula_commentary": 5,
+      "formula_method": 5,
+      "formula_ingredients": 6
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-015",
+    "chapter_name": "辨厥阴病脉证并治法第十二",
+    "role_breakdown_v2": {
+      "main_text": 78,
+      "commentary": 46,
+      "formula_heading": 5,
+      "formula_ingredients": 5,
+      "formula_commentary": 2,
+      "formula_method": 3
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-016",
+    "chapter_name": "辨霍乱病脉证并治法第十三",
+    "role_breakdown_v2": {
+      "main_text": 21,
+      "commentary": 18,
+      "formula_heading": 1,
+      "formula_commentary": 1,
+      "formula_method": 1
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-017",
+    "chapter_name": "辨阴阳易瘥后劳复病脉证并治法第十四",
+    "role_breakdown_v2": {
+      "main_text": 11,
+      "commentary": 7,
+      "formula_heading": 4,
+      "formula_ingredients": 2,
+      "formula_commentary": 1,
+      "formula_method": 1
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-018",
+    "chapter_name": "辨不可发汗病脉证并治法第十五",
+    "role_breakdown_v2": {
+      "main_text": 18,
+      "commentary": 12
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-019",
+    "chapter_name": "辨可发汗病脉证并治法第十六",
+    "role_breakdown_v2": {
+      "main_text": 7,
+      "commentary": 5
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-020",
+    "chapter_name": "辨发汗后病脉证并治法第十七",
+    "role_breakdown_v2": {
+      "main_text": 2,
+      "commentary": 1
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-021",
+    "chapter_name": "辨不可吐第十八",
+    "role_breakdown_v2": {
+      "main_text": 1
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-022",
+    "chapter_name": "辨可吐第十九",
+    "role_breakdown_v2": {
+      "main_text": 8,
+      "commentary": 4
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-023",
+    "chapter_name": "辨不可下病脉证并治法第二十",
+    "role_breakdown_v2": {
+      "main_text": 31,
+      "commentary": 18
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-024",
+    "chapter_name": "辨可下病脉证并治法第二十一",
+    "role_breakdown_v2": {
+      "main_text": 15,
+      "commentary": 8
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-025",
+    "chapter_name": "《卷内音释，上卷已有。》",
+    "role_breakdown_v2": {
+      "appendix_intro": 1,
+      "appendix_formula_material": 2,
+      "appendix_formula_heading": 8,
+      "appendix_formula_method": 2
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-026",
+    "chapter_name": "《以上九方，病证并在第二卷内。》",
+    "role_breakdown_v2": {
+      "appendix_formula_heading": 6
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-027",
+    "chapter_name": "《以上六方，病证并在第三卷内。》",
+    "role_breakdown_v2": {
+      "appendix_formula_heading": 5,
+      "appendix_formula_material": 2,
+      "appendix_formula_method": 4
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-028",
+    "chapter_name": "《以上五方，病证并在第四卷内。》",
+    "role_breakdown_v2": {
+      "appendix_formula_heading": 3,
+      "appendix_formula_material": 2,
+      "appendix_formula_method": 2
+    }
+  },
+  {
+    "chapter_id": "ZJSHL-CH-029",
+    "chapter_name": "《以上三方，病证并在第六卷内。》",
+    "role_breakdown_v2": {
+      "appendix_formula_heading": 2,
+      "appendix_text": 1
+    }
+  }
+]

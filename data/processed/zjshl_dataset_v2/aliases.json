@@ -1,0 +1,324 @@
+[
+  {
+    "alias_id": "AL-0001",
+    "canonical_term": "恶寒",
+    "alias": "怕冷",
+    "alias_type": "modern_paraphrase",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0002",
+    "canonical_term": "汗出",
+    "alias": "出汗",
+    "alias_type": "modern_paraphrase",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0003",
+    "canonical_term": "脉浮",
+    "alias": "浮脉",
+    "alias_type": "modern_paraphrase",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0004",
+    "canonical_term": "脉沉",
+    "alias": "沉脉",
+    "alias_type": "modern_paraphrase",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0005",
+    "canonical_term": "脉微",
+    "alias": "脉很弱",
+    "alias_type": "modern_paraphrase",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0006",
+    "canonical_term": "烦躁",
+    "alias": "心烦躁动",
+    "alias_type": "work_term_variant",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0007",
+    "canonical_term": "谵语",
+    "alias": "胡言乱语",
+    "alias_type": "modern_paraphrase",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0008",
+    "canonical_term": "心下痞",
+    "alias": "胃脘痞塞",
+    "alias_type": "modern_paraphrase",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0009",
+    "canonical_term": "下利",
+    "alias": "腹泻",
+    "alias_type": "modern_paraphrase",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0010",
+    "canonical_term": "发热",
+    "alias": "发烧",
+    "alias_type": "modern_paraphrase",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0011",
+    "canonical_term": "身痛",
+    "alias": "身体疼痛",
+    "alias_type": "modern_paraphrase",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0012",
+    "canonical_term": "项强",
+    "alias": "脖子僵硬",
+    "alias_type": "modern_paraphrase",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0013",
+    "canonical_term": "自汗",
+    "alias": "自己出汗",
+    "alias_type": "modern_paraphrase",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0014",
+    "canonical_term": "无汗",
+    "alias": "不出汗",
+    "alias_type": "modern_paraphrase",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0015",
+    "canonical_term": "口渴",
+    "alias": "渴",
+    "alias_type": "modern_paraphrase",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0016",
+    "canonical_term": "小便不利",
+    "alias": "小便不畅",
+    "alias_type": "modern_paraphrase",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0017",
+    "canonical_term": "恶风",
+    "alias": "怕风",
+    "alias_type": "modern_paraphrase",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0018",
+    "canonical_term": "喘",
+    "alias": "气喘",
+    "alias_type": "work_term_variant",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0019",
+    "canonical_term": "胸满",
+    "alias": "胸闷",
+    "alias_type": "modern_paraphrase",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0020",
+    "canonical_term": "腹满",
+    "alias": "肚子胀",
+    "alias_type": "modern_paraphrase",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0021",
+    "canonical_term": "往来寒热",
+    "alias": "一阵冷一阵热",
+    "alias_type": "modern_paraphrase",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0022",
+    "canonical_term": "少腹急结",
+    "alias": "小腹拘急硬结",
+    "alias_type": "modern_paraphrase",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0023",
+    "canonical_term": "结胸",
+    "alias": "胸中结痛",
+    "alias_type": "modern_paraphrase",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0024",
+    "canonical_term": "痞",
+    "alias": "痞满",
+    "alias_type": "work_term_variant",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0025",
+    "canonical_term": "衄",
+    "alias": "鼻出血",
+    "alias_type": "modern_paraphrase",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0026",
+    "canonical_term": "亡阳",
+    "alias": "阳气欲脱",
+    "alias_type": "modern_paraphrase",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0027",
+    "canonical_term": "厥",
+    "alias": "四肢厥冷",
+    "alias_type": "work_term_variant",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0028",
+    "canonical_term": "霍乱",
+    "alias": "上吐下泻",
+    "alias_type": "modern_paraphrase",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0029",
+    "canonical_term": "劳复",
+    "alias": "病后复发",
+    "alias_type": "modern_paraphrase",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0030",
+    "canonical_term": "桂枝汤",
+    "alias": "桂枝汤方",
+    "alias_type": "work_term_variant",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0031",
+    "canonical_term": "麻黄汤",
+    "alias": "麻黄汤方",
+    "alias_type": "work_term_variant",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0032",
+    "canonical_term": "小柴胡汤",
+    "alias": "小柴胡汤方",
+    "alias_type": "work_term_variant",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0033",
+    "canonical_term": "白虎汤",
+    "alias": "白虎汤方",
+    "alias_type": "work_term_variant",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0034",
+    "canonical_term": "五苓散",
+    "alias": "五苓散方",
+    "alias_type": "work_term_variant",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0035",
+    "canonical_term": "四逆汤",
+    "alias": "四逆汤方",
+    "alias_type": "work_term_variant",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0036",
+    "canonical_term": "炙甘草汤",
+    "alias": "炙甘草汤方",
+    "alias_type": "work_term_variant",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0037",
+    "canonical_term": "葛根汤",
+    "alias": "葛根汤方",
+    "alias_type": "work_term_variant",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0038",
+    "canonical_term": "大承气汤",
+    "alias": "大承气汤方",
+    "alias_type": "work_term_variant",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0039",
+    "canonical_term": "小承气汤",
+    "alias": "小承气汤方",
+    "alias_type": "work_term_variant",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0040",
+    "canonical_term": "调胃承气汤",
+    "alias": "调胃承气汤方",
+    "alias_type": "work_term_variant",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0041",
+    "canonical_term": "瓜蒂散",
+    "alias": "瓜蒂散方",
+    "alias_type": "work_term_variant",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0042",
+    "canonical_term": "理中丸",
+    "alias": "理中丸方",
+    "alias_type": "work_term_variant",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0043",
+    "canonical_term": "真武汤",
+    "alias": "真武汤方",
+    "alias_type": "work_term_variant",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0044",
+    "canonical_term": "黄连汤",
+    "alias": "黄连汤方",
+    "alias_type": "work_term_variant",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0045",
+    "canonical_term": "桂枝加葛根汤",
+    "alias": "桂枝加葛根汤方",
+    "alias_type": "work_term_variant",
+    "note": "v2 基础别名表"
+  },
+  {
+    "alias_id": "AL-0046",
+    "canonical_term": "葛根黄芩黄连汤",
+    "alias": "葛根黄芩黄连汤方",
+    "alias_type": "work_term_variant",
+    "note": "v2 基础别名表"
+  }
+]

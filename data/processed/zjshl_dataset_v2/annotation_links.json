@@ -1,0 +1,4335 @@
+[
+  {
+    "link_id": "LINK-00001",
+    "from_passage_id": "ZJSHL-CH-003-P-0003",
+    "to_passage_id": "ZJSHL-CH-003-P-0002",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00002",
+    "from_passage_id": "ZJSHL-CH-003-P-0005",
+    "to_passage_id": "ZJSHL-CH-003-P-0004",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00003",
+    "from_passage_id": "ZJSHL-CH-003-P-0007",
+    "to_passage_id": "ZJSHL-CH-003-P-0006",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00004",
+    "from_passage_id": "ZJSHL-CH-003-P-0009",
+    "to_passage_id": "ZJSHL-CH-003-P-0008",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00005",
+    "from_passage_id": "ZJSHL-CH-003-P-0011",
+    "to_passage_id": "ZJSHL-CH-003-P-0010",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00006",
+    "from_passage_id": "ZJSHL-CH-003-P-0013",
+    "to_passage_id": "ZJSHL-CH-003-P-0012",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00007",
+    "from_passage_id": "ZJSHL-CH-003-P-0015",
+    "to_passage_id": "ZJSHL-CH-003-P-0014",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00008",
+    "from_passage_id": "ZJSHL-CH-003-P-0016",
+    "to_passage_id": "ZJSHL-CH-003-P-0014",
+    "relation": "annotates",
+    "confidence": "low"
+  },
+  {
+    "link_id": "LINK-00009",
+    "from_passage_id": "ZJSHL-CH-003-P-0018",
+    "to_passage_id": "ZJSHL-CH-003-P-0017",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00010",
+    "from_passage_id": "ZJSHL-CH-003-P-0020",
+    "to_passage_id": "ZJSHL-CH-003-P-0019",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00011",
+    "from_passage_id": "ZJSHL-CH-003-P-0022",
+    "to_passage_id": "ZJSHL-CH-003-P-0021",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00012",
+    "from_passage_id": "ZJSHL-CH-003-P-0024",
+    "to_passage_id": "ZJSHL-CH-003-P-0023",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00013",
+    "from_passage_id": "ZJSHL-CH-003-P-0025",
+    "to_passage_id": "ZJSHL-CH-003-P-0023",
+    "relation": "annotates",
+    "confidence": "low"
+  },
+  {
+    "link_id": "LINK-00014",
+    "from_passage_id": "ZJSHL-CH-003-P-0027",
+    "to_passage_id": "ZJSHL-CH-003-P-0026",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00015",
+    "from_passage_id": "ZJSHL-CH-003-P-0030",
+    "to_passage_id": "ZJSHL-CH-003-P-0029",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00016",
+    "from_passage_id": "ZJSHL-CH-003-P-0032",
+    "to_passage_id": "ZJSHL-CH-003-P-0031",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00017",
+    "from_passage_id": "ZJSHL-CH-003-P-0034",
+    "to_passage_id": "ZJSHL-CH-003-P-0033",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00018",
+    "from_passage_id": "ZJSHL-CH-003-P-0036",
+    "to_passage_id": "ZJSHL-CH-003-P-0035",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00019",
+    "from_passage_id": "ZJSHL-CH-003-P-0038",
+    "to_passage_id": "ZJSHL-CH-003-P-0037",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00020",
+    "from_passage_id": "ZJSHL-CH-003-P-0041",
+    "to_passage_id": "ZJSHL-CH-003-P-0040",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00021",
+    "from_passage_id": "ZJSHL-CH-003-P-0043",
+    "to_passage_id": "ZJSHL-CH-003-P-0042",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00022",
+    "from_passage_id": "ZJSHL-CH-003-P-0045",
+    "to_passage_id": "ZJSHL-CH-003-P-0044",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00023",
+    "from_passage_id": "ZJSHL-CH-003-P-0047",
+    "to_passage_id": "ZJSHL-CH-003-P-0046",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00024",
+    "from_passage_id": "ZJSHL-CH-003-P-0053",
+    "to_passage_id": "ZJSHL-CH-003-P-0052",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00025",
+    "from_passage_id": "ZJSHL-CH-003-P-0056",
+    "to_passage_id": "ZJSHL-CH-003-P-0055",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00026",
+    "from_passage_id": "ZJSHL-CH-003-P-0058",
+    "to_passage_id": "ZJSHL-CH-003-P-0057",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00027",
+    "from_passage_id": "ZJSHL-CH-003-P-0060",
+    "to_passage_id": "ZJSHL-CH-003-P-0059",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00028",
+    "from_passage_id": "ZJSHL-CH-003-P-0062",
+    "to_passage_id": "ZJSHL-CH-003-P-0061",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00029",
+    "from_passage_id": "ZJSHL-CH-003-P-0064",
+    "to_passage_id": "ZJSHL-CH-003-P-0063",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00030",
+    "from_passage_id": "ZJSHL-CH-003-P-0066",
+    "to_passage_id": "ZJSHL-CH-003-P-0065",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00031",
+    "from_passage_id": "ZJSHL-CH-003-P-0068",
+    "to_passage_id": "ZJSHL-CH-003-P-0067",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00032",
+    "from_passage_id": "ZJSHL-CH-003-P-0070",
+    "to_passage_id": "ZJSHL-CH-003-P-0069",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00033",
+    "from_passage_id": "ZJSHL-CH-003-P-0073",
+    "to_passage_id": "ZJSHL-CH-003-P-0072",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00034",
+    "from_passage_id": "ZJSHL-CH-003-P-0077",
+    "to_passage_id": "ZJSHL-CH-003-P-0076",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00035",
+    "from_passage_id": "ZJSHL-CH-003-P-0079",
+    "to_passage_id": "ZJSHL-CH-003-P-0078",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00036",
+    "from_passage_id": "ZJSHL-CH-003-P-0081",
+    "to_passage_id": "ZJSHL-CH-003-P-0080",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00037",
+    "from_passage_id": "ZJSHL-CH-003-P-0083",
+    "to_passage_id": "ZJSHL-CH-003-P-0082",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00038",
+    "from_passage_id": "ZJSHL-CH-003-P-0085",
+    "to_passage_id": "ZJSHL-CH-003-P-0084",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00039",
+    "from_passage_id": "ZJSHL-CH-003-P-0087",
+    "to_passage_id": "ZJSHL-CH-003-P-0086",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00040",
+    "from_passage_id": "ZJSHL-CH-003-P-0089",
+    "to_passage_id": "ZJSHL-CH-003-P-0088",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00041",
+    "from_passage_id": "ZJSHL-CH-003-P-0091",
+    "to_passage_id": "ZJSHL-CH-003-P-0090",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00042",
+    "from_passage_id": "ZJSHL-CH-003-P-0093",
+    "to_passage_id": "ZJSHL-CH-003-P-0092",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00043",
+    "from_passage_id": "ZJSHL-CH-003-P-0095",
+    "to_passage_id": "ZJSHL-CH-003-P-0094",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00044",
+    "from_passage_id": "ZJSHL-CH-003-P-0098",
+    "to_passage_id": "ZJSHL-CH-003-P-0097",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00045",
+    "from_passage_id": "ZJSHL-CH-003-P-0100",
+    "to_passage_id": "ZJSHL-CH-003-P-0099",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00046",
+    "from_passage_id": "ZJSHL-CH-003-P-0108",
+    "to_passage_id": "ZJSHL-CH-003-P-0107",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00047",
+    "from_passage_id": "ZJSHL-CH-003-P-0110",
+    "to_passage_id": "ZJSHL-CH-003-P-0109",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00048",
+    "from_passage_id": "ZJSHL-CH-003-P-0112",
+    "to_passage_id": "ZJSHL-CH-003-P-0111",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00049",
+    "from_passage_id": "ZJSHL-CH-003-P-0114",
+    "to_passage_id": "ZJSHL-CH-003-P-0113",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00050",
+    "from_passage_id": "ZJSHL-CH-003-P-0117",
+    "to_passage_id": "ZJSHL-CH-003-P-0116",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00051",
+    "from_passage_id": "ZJSHL-CH-004-P-0120",
+    "to_passage_id": "ZJSHL-CH-004-P-0119",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00052",
+    "from_passage_id": "ZJSHL-CH-004-P-0122",
+    "to_passage_id": "ZJSHL-CH-004-P-0121",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00053",
+    "from_passage_id": "ZJSHL-CH-004-P-0124",
+    "to_passage_id": "ZJSHL-CH-004-P-0123",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00054",
+    "from_passage_id": "ZJSHL-CH-004-P-0126",
+    "to_passage_id": "ZJSHL-CH-004-P-0125",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00055",
+    "from_passage_id": "ZJSHL-CH-004-P-0129",
+    "to_passage_id": "ZJSHL-CH-004-P-0128",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00056",
+    "from_passage_id": "ZJSHL-CH-004-P-0133",
+    "to_passage_id": "ZJSHL-CH-004-P-0132",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00057",
+    "from_passage_id": "ZJSHL-CH-004-P-0136",
+    "to_passage_id": "ZJSHL-CH-004-P-0135",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00058",
+    "from_passage_id": "ZJSHL-CH-004-P-0138",
+    "to_passage_id": "ZJSHL-CH-004-P-0137",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00059",
+    "from_passage_id": "ZJSHL-CH-004-P-0140",
+    "to_passage_id": "ZJSHL-CH-004-P-0139",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00060",
+    "from_passage_id": "ZJSHL-CH-004-P-0142",
+    "to_passage_id": "ZJSHL-CH-004-P-0141",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00061",
+    "from_passage_id": "ZJSHL-CH-004-P-0145",
+    "to_passage_id": "ZJSHL-CH-004-P-0144",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00062",
+    "from_passage_id": "ZJSHL-CH-004-P-0147",
+    "to_passage_id": "ZJSHL-CH-004-P-0146",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00063",
+    "from_passage_id": "ZJSHL-CH-004-P-0148",
+    "to_passage_id": "ZJSHL-CH-004-P-0146",
+    "relation": "annotates",
+    "confidence": "low"
+  },
+  {
+    "link_id": "LINK-00064",
+    "from_passage_id": "ZJSHL-CH-004-P-0150",
+    "to_passage_id": "ZJSHL-CH-004-P-0149",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00065",
+    "from_passage_id": "ZJSHL-CH-004-P-0152",
+    "to_passage_id": "ZJSHL-CH-004-P-0151",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00066",
+    "from_passage_id": "ZJSHL-CH-004-P-0154",
+    "to_passage_id": "ZJSHL-CH-004-P-0153",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00067",
+    "from_passage_id": "ZJSHL-CH-004-P-0156",
+    "to_passage_id": "ZJSHL-CH-004-P-0155",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00068",
+    "from_passage_id": "ZJSHL-CH-004-P-0158",
+    "to_passage_id": "ZJSHL-CH-004-P-0157",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00069",
+    "from_passage_id": "ZJSHL-CH-004-P-0160",
+    "to_passage_id": "ZJSHL-CH-004-P-0159",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00070",
+    "from_passage_id": "ZJSHL-CH-004-P-0162",
+    "to_passage_id": "ZJSHL-CH-004-P-0161",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00071",
+    "from_passage_id": "ZJSHL-CH-004-P-0164",
+    "to_passage_id": "ZJSHL-CH-004-P-0163",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00072",
+    "from_passage_id": "ZJSHL-CH-004-P-0167",
+    "to_passage_id": "ZJSHL-CH-004-P-0166",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00073",
+    "from_passage_id": "ZJSHL-CH-004-P-0169",
+    "to_passage_id": "ZJSHL-CH-004-P-0168",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00074",
+    "from_passage_id": "ZJSHL-CH-004-P-0171",
+    "to_passage_id": "ZJSHL-CH-004-P-0170",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00075",
+    "from_passage_id": "ZJSHL-CH-004-P-0173",
+    "to_passage_id": "ZJSHL-CH-004-P-0172",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00076",
+    "from_passage_id": "ZJSHL-CH-004-P-0175",
+    "to_passage_id": "ZJSHL-CH-004-P-0174",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00077",
+    "from_passage_id": "ZJSHL-CH-004-P-0177",
+    "to_passage_id": "ZJSHL-CH-004-P-0176",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00078",
+    "from_passage_id": "ZJSHL-CH-004-P-0179",
+    "to_passage_id": "ZJSHL-CH-004-P-0178",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00079",
+    "from_passage_id": "ZJSHL-CH-004-P-0181",
+    "to_passage_id": "ZJSHL-CH-004-P-0180",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00080",
+    "from_passage_id": "ZJSHL-CH-004-P-0183",
+    "to_passage_id": "ZJSHL-CH-004-P-0182",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00081",
+    "from_passage_id": "ZJSHL-CH-004-P-0185",
+    "to_passage_id": "ZJSHL-CH-004-P-0184",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00082",
+    "from_passage_id": "ZJSHL-CH-004-P-0187",
+    "to_passage_id": "ZJSHL-CH-004-P-0186",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00083",
+    "from_passage_id": "ZJSHL-CH-004-P-0189",
+    "to_passage_id": "ZJSHL-CH-004-P-0188",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00084",
+    "from_passage_id": "ZJSHL-CH-004-P-0190",
+    "to_passage_id": "ZJSHL-CH-004-P-0188",
+    "relation": "annotates",
+    "confidence": "low"
+  },
+  {
+    "link_id": "LINK-00085",
+    "from_passage_id": "ZJSHL-CH-004-P-0192",
+    "to_passage_id": "ZJSHL-CH-004-P-0191",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00086",
+    "from_passage_id": "ZJSHL-CH-004-P-0194",
+    "to_passage_id": "ZJSHL-CH-004-P-0193",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00087",
+    "from_passage_id": "ZJSHL-CH-004-P-0196",
+    "to_passage_id": "ZJSHL-CH-004-P-0195",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00088",
+    "from_passage_id": "ZJSHL-CH-004-P-0198",
+    "to_passage_id": "ZJSHL-CH-004-P-0197",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00089",
+    "from_passage_id": "ZJSHL-CH-004-P-0202",
+    "to_passage_id": "ZJSHL-CH-004-P-0201",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00090",
+    "from_passage_id": "ZJSHL-CH-004-P-0204",
+    "to_passage_id": "ZJSHL-CH-004-P-0203",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00091",
+    "from_passage_id": "ZJSHL-CH-004-P-0207",
+    "to_passage_id": "ZJSHL-CH-004-P-0206",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00092",
+    "from_passage_id": "ZJSHL-CH-004-P-0209",
+    "to_passage_id": "ZJSHL-CH-004-P-0208",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00093",
+    "from_passage_id": "ZJSHL-CH-004-P-0211",
+    "to_passage_id": "ZJSHL-CH-004-P-0210",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00094",
+    "from_passage_id": "ZJSHL-CH-004-P-0213",
+    "to_passage_id": "ZJSHL-CH-004-P-0212",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00095",
+    "from_passage_id": "ZJSHL-CH-004-P-0215",
+    "to_passage_id": "ZJSHL-CH-004-P-0214",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00096",
+    "from_passage_id": "ZJSHL-CH-004-P-0217",
+    "to_passage_id": "ZJSHL-CH-004-P-0216",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00097",
+    "from_passage_id": "ZJSHL-CH-004-P-0219",
+    "to_passage_id": "ZJSHL-CH-004-P-0218",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00098",
+    "from_passage_id": "ZJSHL-CH-004-P-0221",
+    "to_passage_id": "ZJSHL-CH-004-P-0220",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00099",
+    "from_passage_id": "ZJSHL-CH-004-P-0222",
+    "to_passage_id": "ZJSHL-CH-004-P-0220",
+    "relation": "annotates",
+    "confidence": "low"
+  },
+  {
+    "link_id": "LINK-00100",
+    "from_passage_id": "ZJSHL-CH-004-P-0224",
+    "to_passage_id": "ZJSHL-CH-004-P-0223",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00101",
+    "from_passage_id": "ZJSHL-CH-004-P-0226",
+    "to_passage_id": "ZJSHL-CH-004-P-0225",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00102",
+    "from_passage_id": "ZJSHL-CH-004-P-0228",
+    "to_passage_id": "ZJSHL-CH-004-P-0227",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00103",
+    "from_passage_id": "ZJSHL-CH-004-P-0230",
+    "to_passage_id": "ZJSHL-CH-004-P-0229",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00104",
+    "from_passage_id": "ZJSHL-CH-004-P-0232",
+    "to_passage_id": "ZJSHL-CH-004-P-0231",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00105",
+    "from_passage_id": "ZJSHL-CH-004-P-0234",
+    "to_passage_id": "ZJSHL-CH-004-P-0233",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00106",
+    "from_passage_id": "ZJSHL-CH-004-P-0236",
+    "to_passage_id": "ZJSHL-CH-004-P-0235",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00107",
+    "from_passage_id": "ZJSHL-CH-004-P-0238",
+    "to_passage_id": "ZJSHL-CH-004-P-0237",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00108",
+    "from_passage_id": "ZJSHL-CH-004-P-0240",
+    "to_passage_id": "ZJSHL-CH-004-P-0239",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00109",
+    "from_passage_id": "ZJSHL-CH-004-P-0242",
+    "to_passage_id": "ZJSHL-CH-004-P-0241",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00110",
+    "from_passage_id": "ZJSHL-CH-004-P-0244",
+    "to_passage_id": "ZJSHL-CH-004-P-0243",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00111",
+    "from_passage_id": "ZJSHL-CH-004-P-0246",
+    "to_passage_id": "ZJSHL-CH-004-P-0245",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00112",
+    "from_passage_id": "ZJSHL-CH-004-P-0248",
+    "to_passage_id": "ZJSHL-CH-004-P-0247",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00113",
+    "from_passage_id": "ZJSHL-CH-004-P-0250",
+    "to_passage_id": "ZJSHL-CH-004-P-0249",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00114",
+    "from_passage_id": "ZJSHL-CH-004-P-0252",
+    "to_passage_id": "ZJSHL-CH-004-P-0251",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00115",
+    "from_passage_id": "ZJSHL-CH-004-P-0254",
+    "to_passage_id": "ZJSHL-CH-004-P-0253",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00116",
+    "from_passage_id": "ZJSHL-CH-004-P-0256",
+    "to_passage_id": "ZJSHL-CH-004-P-0255",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00117",
+    "from_passage_id": "ZJSHL-CH-004-P-0258",
+    "to_passage_id": "ZJSHL-CH-004-P-0257",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00118",
+    "from_passage_id": "ZJSHL-CH-004-P-0259",
+    "to_passage_id": "ZJSHL-CH-004-P-0257",
+    "relation": "annotates",
+    "confidence": "low"
+  },
+  {
+    "link_id": "LINK-00119",
+    "from_passage_id": "ZJSHL-CH-004-P-0261",
+    "to_passage_id": "ZJSHL-CH-004-P-0260",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00120",
+    "from_passage_id": "ZJSHL-CH-004-P-0263",
+    "to_passage_id": "ZJSHL-CH-004-P-0262",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00121",
+    "from_passage_id": "ZJSHL-CH-004-P-0265",
+    "to_passage_id": "ZJSHL-CH-004-P-0264",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00122",
+    "from_passage_id": "ZJSHL-CH-004-P-0267",
+    "to_passage_id": "ZJSHL-CH-004-P-0266",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00123",
+    "from_passage_id": "ZJSHL-CH-004-P-0269",
+    "to_passage_id": "ZJSHL-CH-004-P-0268",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00124",
+    "from_passage_id": "ZJSHL-CH-004-P-0271",
+    "to_passage_id": "ZJSHL-CH-004-P-0270",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00125",
+    "from_passage_id": "ZJSHL-CH-004-P-0273",
+    "to_passage_id": "ZJSHL-CH-004-P-0272",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00126",
+    "from_passage_id": "ZJSHL-CH-004-P-0275",
+    "to_passage_id": "ZJSHL-CH-004-P-0274",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00127",
+    "from_passage_id": "ZJSHL-CH-006-P-0005",
+    "to_passage_id": "ZJSHL-CH-006-P-0004",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00128",
+    "from_passage_id": "ZJSHL-CH-006-P-0007",
+    "to_passage_id": "ZJSHL-CH-006-P-0006",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00129",
+    "from_passage_id": "ZJSHL-CH-006-P-0009",
+    "to_passage_id": "ZJSHL-CH-006-P-0008",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00130",
+    "from_passage_id": "ZJSHL-CH-006-P-0011",
+    "to_passage_id": "ZJSHL-CH-006-P-0010",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00131",
+    "from_passage_id": "ZJSHL-CH-006-P-0013",
+    "to_passage_id": "ZJSHL-CH-006-P-0012",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00132",
+    "from_passage_id": "ZJSHL-CH-006-P-0015",
+    "to_passage_id": "ZJSHL-CH-006-P-0014",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00133",
+    "from_passage_id": "ZJSHL-CH-006-P-0018",
+    "to_passage_id": "ZJSHL-CH-006-P-0017",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00134",
+    "from_passage_id": "ZJSHL-CH-006-P-0020",
+    "to_passage_id": "ZJSHL-CH-006-P-0019",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00135",
+    "from_passage_id": "ZJSHL-CH-006-P-0021",
+    "to_passage_id": "ZJSHL-CH-006-P-0019",
+    "relation": "annotates",
+    "confidence": "low"
+  },
+  {
+    "link_id": "LINK-00136",
+    "from_passage_id": "ZJSHL-CH-006-P-0023",
+    "to_passage_id": "ZJSHL-CH-006-P-0022",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00137",
+    "from_passage_id": "ZJSHL-CH-006-P-0025",
+    "to_passage_id": "ZJSHL-CH-006-P-0024",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00138",
+    "from_passage_id": "ZJSHL-CH-006-P-0027",
+    "to_passage_id": "ZJSHL-CH-006-P-0026",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00139",
+    "from_passage_id": "ZJSHL-CH-006-P-0029",
+    "to_passage_id": "ZJSHL-CH-006-P-0028",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00140",
+    "from_passage_id": "ZJSHL-CH-006-P-0031",
+    "to_passage_id": "ZJSHL-CH-006-P-0030",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00141",
+    "from_passage_id": "ZJSHL-CH-006-P-0033",
+    "to_passage_id": "ZJSHL-CH-006-P-0032",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00142",
+    "from_passage_id": "ZJSHL-CH-006-P-0035",
+    "to_passage_id": "ZJSHL-CH-006-P-0034",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00143",
+    "from_passage_id": "ZJSHL-CH-006-P-0037",
+    "to_passage_id": "ZJSHL-CH-006-P-0036",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00144",
+    "from_passage_id": "ZJSHL-CH-006-P-0039",
+    "to_passage_id": "ZJSHL-CH-006-P-0038",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00145",
+    "from_passage_id": "ZJSHL-CH-006-P-0040",
+    "to_passage_id": "ZJSHL-CH-006-P-0038",
+    "relation": "annotates",
+    "confidence": "low"
+  },
+  {
+    "link_id": "LINK-00146",
+    "from_passage_id": "ZJSHL-CH-006-P-0041",
+    "to_passage_id": "ZJSHL-CH-006-P-0038",
+    "relation": "annotates",
+    "confidence": "low"
+  },
+  {
+    "link_id": "LINK-00147",
+    "from_passage_id": "ZJSHL-CH-006-P-0043",
+    "to_passage_id": "ZJSHL-CH-006-P-0042",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00148",
+    "from_passage_id": "ZJSHL-CH-006-P-0045",
+    "to_passage_id": "ZJSHL-CH-006-P-0044",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00149",
+    "from_passage_id": "ZJSHL-CH-006-P-0047",
+    "to_passage_id": "ZJSHL-CH-006-P-0046",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00150",
+    "from_passage_id": "ZJSHL-CH-006-P-0049",
+    "to_passage_id": "ZJSHL-CH-006-P-0048",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00151",
+    "from_passage_id": "ZJSHL-CH-006-P-0051",
+    "to_passage_id": "ZJSHL-CH-006-P-0050",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00152",
+    "from_passage_id": "ZJSHL-CH-006-P-0055",
+    "to_passage_id": "ZJSHL-CH-006-P-0054",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00153",
+    "from_passage_id": "ZJSHL-CH-006-P-0057",
+    "to_passage_id": "ZJSHL-CH-006-P-0056",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00154",
+    "from_passage_id": "ZJSHL-CH-006-P-0060",
+    "to_passage_id": "ZJSHL-CH-006-P-0059",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00155",
+    "from_passage_id": "ZJSHL-CH-006-P-0062",
+    "to_passage_id": "ZJSHL-CH-006-P-0061",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00156",
+    "from_passage_id": "ZJSHL-CH-006-P-0063",
+    "to_passage_id": "ZJSHL-CH-006-P-0061",
+    "relation": "annotates",
+    "confidence": "low"
+  },
+  {
+    "link_id": "LINK-00157",
+    "from_passage_id": "ZJSHL-CH-006-P-0064",
+    "to_passage_id": "ZJSHL-CH-006-P-0061",
+    "relation": "annotates",
+    "confidence": "low"
+  },
+  {
+    "link_id": "LINK-00158",
+    "from_passage_id": "ZJSHL-CH-006-P-0066",
+    "to_passage_id": "ZJSHL-CH-006-P-0065",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00159",
+    "from_passage_id": "ZJSHL-CH-006-P-0068",
+    "to_passage_id": "ZJSHL-CH-006-P-0067",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00160",
+    "from_passage_id": "ZJSHL-CH-006-P-0070",
+    "to_passage_id": "ZJSHL-CH-006-P-0069",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00161",
+    "from_passage_id": "ZJSHL-CH-006-P-0072",
+    "to_passage_id": "ZJSHL-CH-006-P-0071",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00162",
+    "from_passage_id": "ZJSHL-CH-006-P-0075",
+    "to_passage_id": "ZJSHL-CH-006-P-0074",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00163",
+    "from_passage_id": "ZJSHL-CH-006-P-0077",
+    "to_passage_id": "ZJSHL-CH-006-P-0076",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00164",
+    "from_passage_id": "ZJSHL-CH-006-P-0079",
+    "to_passage_id": "ZJSHL-CH-006-P-0078",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00165",
+    "from_passage_id": "ZJSHL-CH-006-P-0081",
+    "to_passage_id": "ZJSHL-CH-006-P-0080",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00166",
+    "from_passage_id": "ZJSHL-CH-006-P-0083",
+    "to_passage_id": "ZJSHL-CH-006-P-0082",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00167",
+    "from_passage_id": "ZJSHL-CH-006-P-0085",
+    "to_passage_id": "ZJSHL-CH-006-P-0084",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00168",
+    "from_passage_id": "ZJSHL-CH-006-P-0087",
+    "to_passage_id": "ZJSHL-CH-006-P-0086",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00169",
+    "from_passage_id": "ZJSHL-CH-006-P-0090",
+    "to_passage_id": "ZJSHL-CH-006-P-0089",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00170",
+    "from_passage_id": "ZJSHL-CH-006-P-0092",
+    "to_passage_id": "ZJSHL-CH-006-P-0091",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00171",
+    "from_passage_id": "ZJSHL-CH-006-P-0094",
+    "to_passage_id": "ZJSHL-CH-006-P-0093",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00172",
+    "from_passage_id": "ZJSHL-CH-006-P-0097",
+    "to_passage_id": "ZJSHL-CH-006-P-0096",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00173",
+    "from_passage_id": "ZJSHL-CH-006-P-0099",
+    "to_passage_id": "ZJSHL-CH-006-P-0098",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00174",
+    "from_passage_id": "ZJSHL-CH-006-P-0101",
+    "to_passage_id": "ZJSHL-CH-006-P-0100",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00175",
+    "from_passage_id": "ZJSHL-CH-006-P-0104",
+    "to_passage_id": "ZJSHL-CH-006-P-0103",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00176",
+    "from_passage_id": "ZJSHL-CH-006-P-0106",
+    "to_passage_id": "ZJSHL-CH-006-P-0105",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00177",
+    "from_passage_id": "ZJSHL-CH-006-P-0108",
+    "to_passage_id": "ZJSHL-CH-006-P-0107",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00178",
+    "from_passage_id": "ZJSHL-CH-006-P-0111",
+    "to_passage_id": "ZJSHL-CH-006-P-0110",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00179",
+    "from_passage_id": "ZJSHL-CH-006-P-0113",
+    "to_passage_id": "ZJSHL-CH-006-P-0112",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00180",
+    "from_passage_id": "ZJSHL-CH-006-P-0116",
+    "to_passage_id": "ZJSHL-CH-006-P-0115",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00181",
+    "from_passage_id": "ZJSHL-CH-006-P-0118",
+    "to_passage_id": "ZJSHL-CH-006-P-0117",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00182",
+    "from_passage_id": "ZJSHL-CH-006-P-0121",
+    "to_passage_id": "ZJSHL-CH-006-P-0120",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00183",
+    "from_passage_id": "ZJSHL-CH-006-P-0123",
+    "to_passage_id": "ZJSHL-CH-006-P-0122",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00184",
+    "from_passage_id": "ZJSHL-CH-006-P-0129",
+    "to_passage_id": "ZJSHL-CH-006-P-0128",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00185",
+    "from_passage_id": "ZJSHL-CH-006-P-0132",
+    "to_passage_id": "ZJSHL-CH-006-P-0131",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00186",
+    "from_passage_id": "ZJSHL-CH-006-P-0134",
+    "to_passage_id": "ZJSHL-CH-006-P-0133",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00187",
+    "from_passage_id": "ZJSHL-CH-006-P-0136",
+    "to_passage_id": "ZJSHL-CH-006-P-0135",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00188",
+    "from_passage_id": "ZJSHL-CH-006-P-0138",
+    "to_passage_id": "ZJSHL-CH-006-P-0137",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00189",
+    "from_passage_id": "ZJSHL-CH-006-P-0140",
+    "to_passage_id": "ZJSHL-CH-006-P-0139",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00190",
+    "from_passage_id": "ZJSHL-CH-006-P-0142",
+    "to_passage_id": "ZJSHL-CH-006-P-0141",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00191",
+    "from_passage_id": "ZJSHL-CH-006-P-0148",
+    "to_passage_id": "ZJSHL-CH-006-P-0147",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00192",
+    "from_passage_id": "ZJSHL-CH-006-P-0150",
+    "to_passage_id": "ZJSHL-CH-006-P-0149",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00193",
+    "from_passage_id": "ZJSHL-CH-006-P-0152",
+    "to_passage_id": "ZJSHL-CH-006-P-0151",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00194",
+    "from_passage_id": "ZJSHL-CH-006-P-0153",
+    "to_passage_id": "ZJSHL-CH-006-P-0151",
+    "relation": "annotates",
+    "confidence": "low"
+  },
+  {
+    "link_id": "LINK-00195",
+    "from_passage_id": "ZJSHL-CH-007-P-0156",
+    "to_passage_id": "ZJSHL-CH-007-P-0155",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00196",
+    "from_passage_id": "ZJSHL-CH-007-P-0158",
+    "to_passage_id": "ZJSHL-CH-007-P-0157",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00197",
+    "from_passage_id": "ZJSHL-CH-007-P-0168",
+    "to_passage_id": "ZJSHL-CH-007-P-0167",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00198",
+    "from_passage_id": "ZJSHL-CH-007-P-0171",
+    "to_passage_id": "ZJSHL-CH-007-P-0170",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00199",
+    "from_passage_id": "ZJSHL-CH-007-P-0173",
+    "to_passage_id": "ZJSHL-CH-007-P-0172",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00200",
+    "from_passage_id": "ZJSHL-CH-007-P-0175",
+    "to_passage_id": "ZJSHL-CH-007-P-0174",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00201",
+    "from_passage_id": "ZJSHL-CH-007-P-0179",
+    "to_passage_id": "ZJSHL-CH-007-P-0178",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00202",
+    "from_passage_id": "ZJSHL-CH-007-P-0183",
+    "to_passage_id": "ZJSHL-CH-007-P-0182",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00203",
+    "from_passage_id": "ZJSHL-CH-007-P-0185",
+    "to_passage_id": "ZJSHL-CH-007-P-0184",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00204",
+    "from_passage_id": "ZJSHL-CH-007-P-0187",
+    "to_passage_id": "ZJSHL-CH-007-P-0186",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00205",
+    "from_passage_id": "ZJSHL-CH-008-P-0192",
+    "to_passage_id": "ZJSHL-CH-008-P-0191",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00206",
+    "from_passage_id": "ZJSHL-CH-008-P-0194",
+    "to_passage_id": "ZJSHL-CH-008-P-0193",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00207",
+    "from_passage_id": "ZJSHL-CH-008-P-0196",
+    "to_passage_id": "ZJSHL-CH-008-P-0195",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00208",
+    "from_passage_id": "ZJSHL-CH-008-P-0202",
+    "to_passage_id": "ZJSHL-CH-008-P-0201",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00209",
+    "from_passage_id": "ZJSHL-CH-008-P-0206",
+    "to_passage_id": "ZJSHL-CH-008-P-0205",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00210",
+    "from_passage_id": "ZJSHL-CH-008-P-0210",
+    "to_passage_id": "ZJSHL-CH-008-P-0209",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00211",
+    "from_passage_id": "ZJSHL-CH-008-P-0212",
+    "to_passage_id": "ZJSHL-CH-008-P-0211",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00212",
+    "from_passage_id": "ZJSHL-CH-008-P-0214",
+    "to_passage_id": "ZJSHL-CH-008-P-0213",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00213",
+    "from_passage_id": "ZJSHL-CH-008-P-0216",
+    "to_passage_id": "ZJSHL-CH-008-P-0215",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00214",
+    "from_passage_id": "ZJSHL-CH-008-P-0218",
+    "to_passage_id": "ZJSHL-CH-008-P-0217",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00215",
+    "from_passage_id": "ZJSHL-CH-008-P-0221",
+    "to_passage_id": "ZJSHL-CH-008-P-0220",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00216",
+    "from_passage_id": "ZJSHL-CH-008-P-0228",
+    "to_passage_id": "ZJSHL-CH-008-P-0227",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00217",
+    "from_passage_id": "ZJSHL-CH-008-P-0231",
+    "to_passage_id": "ZJSHL-CH-008-P-0230",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00218",
+    "from_passage_id": "ZJSHL-CH-008-P-0235",
+    "to_passage_id": "ZJSHL-CH-008-P-0234",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00219",
+    "from_passage_id": "ZJSHL-CH-008-P-0241",
+    "to_passage_id": "ZJSHL-CH-008-P-0240",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00220",
+    "from_passage_id": "ZJSHL-CH-008-P-0245",
+    "to_passage_id": "ZJSHL-CH-008-P-0244",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00221",
+    "from_passage_id": "ZJSHL-CH-008-P-0247",
+    "to_passage_id": "ZJSHL-CH-008-P-0246",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00222",
+    "from_passage_id": "ZJSHL-CH-008-P-0249",
+    "to_passage_id": "ZJSHL-CH-008-P-0248",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00223",
+    "from_passage_id": "ZJSHL-CH-008-P-0252",
+    "to_passage_id": "ZJSHL-CH-008-P-0251",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00224",
+    "from_passage_id": "ZJSHL-CH-008-P-0255",
+    "to_passage_id": "ZJSHL-CH-008-P-0254",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00225",
+    "from_passage_id": "ZJSHL-CH-008-P-0265",
+    "to_passage_id": "ZJSHL-CH-008-P-0264",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00226",
+    "from_passage_id": "ZJSHL-CH-008-P-0271",
+    "to_passage_id": "ZJSHL-CH-008-P-0270",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00227",
+    "from_passage_id": "ZJSHL-CH-009-P-0005",
+    "to_passage_id": "ZJSHL-CH-009-P-0004",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00228",
+    "from_passage_id": "ZJSHL-CH-009-P-0010",
+    "to_passage_id": "ZJSHL-CH-009-P-0009",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00229",
+    "from_passage_id": "ZJSHL-CH-009-P-0018",
+    "to_passage_id": "ZJSHL-CH-009-P-0016",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00230",
+    "from_passage_id": "ZJSHL-CH-009-P-0021",
+    "to_passage_id": "ZJSHL-CH-009-P-0020",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00231",
+    "from_passage_id": "ZJSHL-CH-009-P-0024",
+    "to_passage_id": "ZJSHL-CH-009-P-0022",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00232",
+    "from_passage_id": "ZJSHL-CH-009-P-0029",
+    "to_passage_id": "ZJSHL-CH-009-P-0028",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00233",
+    "from_passage_id": "ZJSHL-CH-009-P-0032",
+    "to_passage_id": "ZJSHL-CH-009-P-0031",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00234",
+    "from_passage_id": "ZJSHL-CH-009-P-0037",
+    "to_passage_id": "ZJSHL-CH-009-P-0036",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00235",
+    "from_passage_id": "ZJSHL-CH-009-P-0042",
+    "to_passage_id": "ZJSHL-CH-009-P-0040",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00236",
+    "from_passage_id": "ZJSHL-CH-009-P-0044",
+    "to_passage_id": "ZJSHL-CH-009-P-0040",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00237",
+    "from_passage_id": "ZJSHL-CH-009-P-0050",
+    "to_passage_id": "ZJSHL-CH-009-P-0049",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00238",
+    "from_passage_id": "ZJSHL-CH-009-P-0054",
+    "to_passage_id": "ZJSHL-CH-009-P-0053",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00239",
+    "from_passage_id": "ZJSHL-CH-009-P-0056",
+    "to_passage_id": "ZJSHL-CH-009-P-0055",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00240",
+    "from_passage_id": "ZJSHL-CH-009-P-0058",
+    "to_passage_id": "ZJSHL-CH-009-P-0057",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00241",
+    "from_passage_id": "ZJSHL-CH-009-P-0062",
+    "to_passage_id": "ZJSHL-CH-009-P-0061",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00242",
+    "from_passage_id": "ZJSHL-CH-009-P-0066",
+    "to_passage_id": "ZJSHL-CH-009-P-0065",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00243",
+    "from_passage_id": "ZJSHL-CH-009-P-0068",
+    "to_passage_id": "ZJSHL-CH-009-P-0067",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00244",
+    "from_passage_id": "ZJSHL-CH-009-P-0070",
+    "to_passage_id": "ZJSHL-CH-009-P-0069",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00245",
+    "from_passage_id": "ZJSHL-CH-009-P-0072",
+    "to_passage_id": "ZJSHL-CH-009-P-0071",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00246",
+    "from_passage_id": "ZJSHL-CH-009-P-0074",
+    "to_passage_id": "ZJSHL-CH-009-P-0073",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00247",
+    "from_passage_id": "ZJSHL-CH-009-P-0076",
+    "to_passage_id": "ZJSHL-CH-009-P-0075",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00248",
+    "from_passage_id": "ZJSHL-CH-009-P-0083",
+    "to_passage_id": "ZJSHL-CH-009-P-0082",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00249",
+    "from_passage_id": "ZJSHL-CH-009-P-0085",
+    "to_passage_id": "ZJSHL-CH-009-P-0084",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00250",
+    "from_passage_id": "ZJSHL-CH-009-P-0087",
+    "to_passage_id": "ZJSHL-CH-009-P-0086",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00251",
+    "from_passage_id": "ZJSHL-CH-009-P-0092",
+    "to_passage_id": "ZJSHL-CH-009-P-0091",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00252",
+    "from_passage_id": "ZJSHL-CH-009-P-0094",
+    "to_passage_id": "ZJSHL-CH-009-P-0093",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00253",
+    "from_passage_id": "ZJSHL-CH-009-P-0097",
+    "to_passage_id": "ZJSHL-CH-009-P-0096",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00254",
+    "from_passage_id": "ZJSHL-CH-009-P-0101",
+    "to_passage_id": "ZJSHL-CH-009-P-0100",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00255",
+    "from_passage_id": "ZJSHL-CH-009-P-0106",
+    "to_passage_id": "ZJSHL-CH-009-P-0105",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00256",
+    "from_passage_id": "ZJSHL-CH-009-P-0109",
+    "to_passage_id": "ZJSHL-CH-009-P-0108",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00257",
+    "from_passage_id": "ZJSHL-CH-009-P-0111",
+    "to_passage_id": "ZJSHL-CH-009-P-0110",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00258",
+    "from_passage_id": "ZJSHL-CH-009-P-0114",
+    "to_passage_id": "ZJSHL-CH-009-P-0113",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00259",
+    "from_passage_id": "ZJSHL-CH-009-P-0116",
+    "to_passage_id": "ZJSHL-CH-009-P-0115",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00260",
+    "from_passage_id": "ZJSHL-CH-009-P-0119",
+    "to_passage_id": "ZJSHL-CH-009-P-0118",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00261",
+    "from_passage_id": "ZJSHL-CH-009-P-0121",
+    "to_passage_id": "ZJSHL-CH-009-P-0120",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00262",
+    "from_passage_id": "ZJSHL-CH-009-P-0126",
+    "to_passage_id": "ZJSHL-CH-009-P-0125",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00263",
+    "from_passage_id": "ZJSHL-CH-009-P-0131",
+    "to_passage_id": "ZJSHL-CH-009-P-0130",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00264",
+    "from_passage_id": "ZJSHL-CH-009-P-0134",
+    "to_passage_id": "ZJSHL-CH-009-P-0133",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00265",
+    "from_passage_id": "ZJSHL-CH-009-P-0139",
+    "to_passage_id": "ZJSHL-CH-009-P-0138",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00266",
+    "from_passage_id": "ZJSHL-CH-009-P-0146",
+    "to_passage_id": "ZJSHL-CH-009-P-0145",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00267",
+    "from_passage_id": "ZJSHL-CH-009-P-0149",
+    "to_passage_id": "ZJSHL-CH-009-P-0148",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00268",
+    "from_passage_id": "ZJSHL-CH-009-P-0153",
+    "to_passage_id": "ZJSHL-CH-009-P-0152",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00269",
+    "from_passage_id": "ZJSHL-CH-009-P-0158",
+    "to_passage_id": "ZJSHL-CH-009-P-0157",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00270",
+    "from_passage_id": "ZJSHL-CH-009-P-0163",
+    "to_passage_id": "ZJSHL-CH-009-P-0162",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00271",
+    "from_passage_id": "ZJSHL-CH-009-P-0165",
+    "to_passage_id": "ZJSHL-CH-009-P-0164",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00272",
+    "from_passage_id": "ZJSHL-CH-009-P-0169",
+    "to_passage_id": "ZJSHL-CH-009-P-0168",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00273",
+    "from_passage_id": "ZJSHL-CH-009-P-0172",
+    "to_passage_id": "ZJSHL-CH-009-P-0171",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00274",
+    "from_passage_id": "ZJSHL-CH-009-P-0174",
+    "to_passage_id": "ZJSHL-CH-009-P-0173",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00275",
+    "from_passage_id": "ZJSHL-CH-009-P-0177",
+    "to_passage_id": "ZJSHL-CH-009-P-0176",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00276",
+    "from_passage_id": "ZJSHL-CH-009-P-0182",
+    "to_passage_id": "ZJSHL-CH-009-P-0181",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00277",
+    "from_passage_id": "ZJSHL-CH-009-P-0184",
+    "to_passage_id": "ZJSHL-CH-009-P-0183",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00278",
+    "from_passage_id": "ZJSHL-CH-009-P-0186",
+    "to_passage_id": "ZJSHL-CH-009-P-0185",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00279",
+    "from_passage_id": "ZJSHL-CH-009-P-0188",
+    "to_passage_id": "ZJSHL-CH-009-P-0187",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00280",
+    "from_passage_id": "ZJSHL-CH-009-P-0190",
+    "to_passage_id": "ZJSHL-CH-009-P-0189",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00281",
+    "from_passage_id": "ZJSHL-CH-009-P-0191",
+    "to_passage_id": "ZJSHL-CH-009-P-0189",
+    "relation": "annotates",
+    "confidence": "low"
+  },
+  {
+    "link_id": "LINK-00282",
+    "from_passage_id": "ZJSHL-CH-009-P-0193",
+    "to_passage_id": "ZJSHL-CH-009-P-0192",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00283",
+    "from_passage_id": "ZJSHL-CH-009-P-0196",
+    "to_passage_id": "ZJSHL-CH-009-P-0195",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00284",
+    "from_passage_id": "ZJSHL-CH-009-P-0201",
+    "to_passage_id": "ZJSHL-CH-009-P-0200",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00285",
+    "from_passage_id": "ZJSHL-CH-009-P-0203",
+    "to_passage_id": "ZJSHL-CH-009-P-0202",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00286",
+    "from_passage_id": "ZJSHL-CH-009-P-0212",
+    "to_passage_id": "ZJSHL-CH-009-P-0211",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00287",
+    "from_passage_id": "ZJSHL-CH-009-P-0214",
+    "to_passage_id": "ZJSHL-CH-009-P-0211",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00288",
+    "from_passage_id": "ZJSHL-CH-009-P-0220",
+    "to_passage_id": "ZJSHL-CH-009-P-0219",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00289",
+    "from_passage_id": "ZJSHL-CH-009-P-0222",
+    "to_passage_id": "ZJSHL-CH-009-P-0221",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00290",
+    "from_passage_id": "ZJSHL-CH-009-P-0224",
+    "to_passage_id": "ZJSHL-CH-009-P-0223",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00291",
+    "from_passage_id": "ZJSHL-CH-009-P-0226",
+    "to_passage_id": "ZJSHL-CH-009-P-0225",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00292",
+    "from_passage_id": "ZJSHL-CH-009-P-0228",
+    "to_passage_id": "ZJSHL-CH-009-P-0227",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00293",
+    "from_passage_id": "ZJSHL-CH-009-P-0230",
+    "to_passage_id": "ZJSHL-CH-009-P-0229",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00294",
+    "from_passage_id": "ZJSHL-CH-009-P-0232",
+    "to_passage_id": "ZJSHL-CH-009-P-0231",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00295",
+    "from_passage_id": "ZJSHL-CH-009-P-0236",
+    "to_passage_id": "ZJSHL-CH-009-P-0235",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00296",
+    "from_passage_id": "ZJSHL-CH-009-P-0240",
+    "to_passage_id": "ZJSHL-CH-009-P-0239",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00297",
+    "from_passage_id": "ZJSHL-CH-009-P-0245",
+    "to_passage_id": "ZJSHL-CH-009-P-0244",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00298",
+    "from_passage_id": "ZJSHL-CH-009-P-0249",
+    "to_passage_id": "ZJSHL-CH-009-P-0248",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00299",
+    "from_passage_id": "ZJSHL-CH-009-P-0252",
+    "to_passage_id": "ZJSHL-CH-009-P-0251",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00300",
+    "from_passage_id": "ZJSHL-CH-009-P-0262",
+    "to_passage_id": "ZJSHL-CH-009-P-0261",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00301",
+    "from_passage_id": "ZJSHL-CH-009-P-0269",
+    "to_passage_id": "ZJSHL-CH-009-P-0268",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00302",
+    "from_passage_id": "ZJSHL-CH-009-P-0274",
+    "to_passage_id": "ZJSHL-CH-009-P-0273",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00303",
+    "from_passage_id": "ZJSHL-CH-009-P-0276",
+    "to_passage_id": "ZJSHL-CH-009-P-0275",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00304",
+    "from_passage_id": "ZJSHL-CH-009-P-0277",
+    "to_passage_id": "ZJSHL-CH-009-P-0275",
+    "relation": "annotates",
+    "confidence": "low"
+  },
+  {
+    "link_id": "LINK-00305",
+    "from_passage_id": "ZJSHL-CH-009-P-0282",
+    "to_passage_id": "ZJSHL-CH-009-P-0280",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00306",
+    "from_passage_id": "ZJSHL-CH-009-P-0285",
+    "to_passage_id": "ZJSHL-CH-009-P-0284",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00307",
+    "from_passage_id": "ZJSHL-CH-009-P-0287",
+    "to_passage_id": "ZJSHL-CH-009-P-0286",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00308",
+    "from_passage_id": "ZJSHL-CH-009-P-0289",
+    "to_passage_id": "ZJSHL-CH-009-P-0288",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00309",
+    "from_passage_id": "ZJSHL-CH-009-P-0292",
+    "to_passage_id": "ZJSHL-CH-009-P-0291",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00310",
+    "from_passage_id": "ZJSHL-CH-009-P-0294",
+    "to_passage_id": "ZJSHL-CH-009-P-0293",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00311",
+    "from_passage_id": "ZJSHL-CH-009-P-0297",
+    "to_passage_id": "ZJSHL-CH-009-P-0296",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00312",
+    "from_passage_id": "ZJSHL-CH-009-P-0300",
+    "to_passage_id": "ZJSHL-CH-009-P-0299",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00313",
+    "from_passage_id": "ZJSHL-CH-009-P-0302",
+    "to_passage_id": "ZJSHL-CH-009-P-0301",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00314",
+    "from_passage_id": "ZJSHL-CH-009-P-0304",
+    "to_passage_id": "ZJSHL-CH-009-P-0303",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00315",
+    "from_passage_id": "ZJSHL-CH-009-P-0309",
+    "to_passage_id": "ZJSHL-CH-009-P-0308",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00316",
+    "from_passage_id": "ZJSHL-CH-009-P-0311",
+    "to_passage_id": "ZJSHL-CH-009-P-0310",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00317",
+    "from_passage_id": "ZJSHL-CH-009-P-0314",
+    "to_passage_id": "ZJSHL-CH-009-P-0313",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00318",
+    "from_passage_id": "ZJSHL-CH-009-P-0317",
+    "to_passage_id": "ZJSHL-CH-009-P-0316",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00319",
+    "from_passage_id": "ZJSHL-CH-009-P-0319",
+    "to_passage_id": "ZJSHL-CH-009-P-0318",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00320",
+    "from_passage_id": "ZJSHL-CH-009-P-0325",
+    "to_passage_id": "ZJSHL-CH-009-P-0324",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00321",
+    "from_passage_id": "ZJSHL-CH-010-P-0004",
+    "to_passage_id": "ZJSHL-CH-010-P-0003",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00322",
+    "from_passage_id": "ZJSHL-CH-010-P-0007",
+    "to_passage_id": "ZJSHL-CH-010-P-0006",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00323",
+    "from_passage_id": "ZJSHL-CH-010-P-0009",
+    "to_passage_id": "ZJSHL-CH-010-P-0008",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00324",
+    "from_passage_id": "ZJSHL-CH-010-P-0011",
+    "to_passage_id": "ZJSHL-CH-010-P-0010",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00325",
+    "from_passage_id": "ZJSHL-CH-010-P-0014",
+    "to_passage_id": "ZJSHL-CH-010-P-0013",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00326",
+    "from_passage_id": "ZJSHL-CH-010-P-0016",
+    "to_passage_id": "ZJSHL-CH-010-P-0015",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00327",
+    "from_passage_id": "ZJSHL-CH-010-P-0018",
+    "to_passage_id": "ZJSHL-CH-010-P-0017",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00328",
+    "from_passage_id": "ZJSHL-CH-010-P-0021",
+    "to_passage_id": "ZJSHL-CH-010-P-0020",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00329",
+    "from_passage_id": "ZJSHL-CH-010-P-0028",
+    "to_passage_id": "ZJSHL-CH-010-P-0027",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00330",
+    "from_passage_id": "ZJSHL-CH-010-P-0030",
+    "to_passage_id": "ZJSHL-CH-010-P-0029",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00331",
+    "from_passage_id": "ZJSHL-CH-010-P-0033",
+    "to_passage_id": "ZJSHL-CH-010-P-0032",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00332",
+    "from_passage_id": "ZJSHL-CH-010-P-0039",
+    "to_passage_id": "ZJSHL-CH-010-P-0038",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00333",
+    "from_passage_id": "ZJSHL-CH-010-P-0042",
+    "to_passage_id": "ZJSHL-CH-010-P-0041",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00334",
+    "from_passage_id": "ZJSHL-CH-010-P-0045",
+    "to_passage_id": "ZJSHL-CH-010-P-0044",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00335",
+    "from_passage_id": "ZJSHL-CH-010-P-0050",
+    "to_passage_id": "ZJSHL-CH-010-P-0049",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00336",
+    "from_passage_id": "ZJSHL-CH-010-P-0053",
+    "to_passage_id": "ZJSHL-CH-010-P-0052",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00337",
+    "from_passage_id": "ZJSHL-CH-010-P-0062",
+    "to_passage_id": "ZJSHL-CH-010-P-0060",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00338",
+    "from_passage_id": "ZJSHL-CH-010-P-0069",
+    "to_passage_id": "ZJSHL-CH-010-P-0068",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00339",
+    "from_passage_id": "ZJSHL-CH-010-P-0074",
+    "to_passage_id": "ZJSHL-CH-010-P-0073",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00340",
+    "from_passage_id": "ZJSHL-CH-010-P-0076",
+    "to_passage_id": "ZJSHL-CH-010-P-0075",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00341",
+    "from_passage_id": "ZJSHL-CH-010-P-0078",
+    "to_passage_id": "ZJSHL-CH-010-P-0077",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00342",
+    "from_passage_id": "ZJSHL-CH-010-P-0082",
+    "to_passage_id": "ZJSHL-CH-010-P-0081",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00343",
+    "from_passage_id": "ZJSHL-CH-010-P-0084",
+    "to_passage_id": "ZJSHL-CH-010-P-0083",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00344",
+    "from_passage_id": "ZJSHL-CH-010-P-0089",
+    "to_passage_id": "ZJSHL-CH-010-P-0088",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00345",
+    "from_passage_id": "ZJSHL-CH-010-P-0091",
+    "to_passage_id": "ZJSHL-CH-010-P-0090",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00346",
+    "from_passage_id": "ZJSHL-CH-010-P-0093",
+    "to_passage_id": "ZJSHL-CH-010-P-0092",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00347",
+    "from_passage_id": "ZJSHL-CH-010-P-0100",
+    "to_passage_id": "ZJSHL-CH-010-P-0099",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00348",
+    "from_passage_id": "ZJSHL-CH-010-P-0105",
+    "to_passage_id": "ZJSHL-CH-010-P-0104",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00349",
+    "from_passage_id": "ZJSHL-CH-010-P-0108",
+    "to_passage_id": "ZJSHL-CH-010-P-0107",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00350",
+    "from_passage_id": "ZJSHL-CH-010-P-0110",
+    "to_passage_id": "ZJSHL-CH-010-P-0109",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00351",
+    "from_passage_id": "ZJSHL-CH-010-P-0112",
+    "to_passage_id": "ZJSHL-CH-010-P-0111",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00352",
+    "from_passage_id": "ZJSHL-CH-010-P-0115",
+    "to_passage_id": "ZJSHL-CH-010-P-0113",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00353",
+    "from_passage_id": "ZJSHL-CH-010-P-0124",
+    "to_passage_id": "ZJSHL-CH-010-P-0123",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00354",
+    "from_passage_id": "ZJSHL-CH-010-P-0127",
+    "to_passage_id": "ZJSHL-CH-010-P-0126",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00355",
+    "from_passage_id": "ZJSHL-CH-010-P-0131",
+    "to_passage_id": "ZJSHL-CH-010-P-0130",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00356",
+    "from_passage_id": "ZJSHL-CH-010-P-0136",
+    "to_passage_id": "ZJSHL-CH-010-P-0135",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00357",
+    "from_passage_id": "ZJSHL-CH-010-P-0141",
+    "to_passage_id": "ZJSHL-CH-010-P-0140",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00358",
+    "from_passage_id": "ZJSHL-CH-010-P-0144",
+    "to_passage_id": "ZJSHL-CH-010-P-0143",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00359",
+    "from_passage_id": "ZJSHL-CH-010-P-0152",
+    "to_passage_id": "ZJSHL-CH-010-P-0151",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00360",
+    "from_passage_id": "ZJSHL-CH-010-P-0155",
+    "to_passage_id": "ZJSHL-CH-010-P-0153",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00361",
+    "from_passage_id": "ZJSHL-CH-010-P-0158",
+    "to_passage_id": "ZJSHL-CH-010-P-0157",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00362",
+    "from_passage_id": "ZJSHL-CH-010-P-0161",
+    "to_passage_id": "ZJSHL-CH-010-P-0160",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00363",
+    "from_passage_id": "ZJSHL-CH-010-P-0164",
+    "to_passage_id": "ZJSHL-CH-010-P-0163",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00364",
+    "from_passage_id": "ZJSHL-CH-010-P-0166",
+    "to_passage_id": "ZJSHL-CH-010-P-0165",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00365",
+    "from_passage_id": "ZJSHL-CH-010-P-0169",
+    "to_passage_id": "ZJSHL-CH-010-P-0168",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00366",
+    "from_passage_id": "ZJSHL-CH-010-P-0172",
+    "to_passage_id": "ZJSHL-CH-010-P-0170",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00367",
+    "from_passage_id": "ZJSHL-CH-010-P-0175",
+    "to_passage_id": "ZJSHL-CH-010-P-0174",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00368",
+    "from_passage_id": "ZJSHL-CH-011-P-0004",
+    "to_passage_id": "ZJSHL-CH-011-P-0003",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00369",
+    "from_passage_id": "ZJSHL-CH-011-P-0007",
+    "to_passage_id": "ZJSHL-CH-011-P-0006",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00370",
+    "from_passage_id": "ZJSHL-CH-011-P-0009",
+    "to_passage_id": "ZJSHL-CH-011-P-0008",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00371",
+    "from_passage_id": "ZJSHL-CH-011-P-0011",
+    "to_passage_id": "ZJSHL-CH-011-P-0010",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00372",
+    "from_passage_id": "ZJSHL-CH-011-P-0015",
+    "to_passage_id": "ZJSHL-CH-011-P-0014",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00373",
+    "from_passage_id": "ZJSHL-CH-011-P-0017",
+    "to_passage_id": "ZJSHL-CH-011-P-0016",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00374",
+    "from_passage_id": "ZJSHL-CH-011-P-0025",
+    "to_passage_id": "ZJSHL-CH-011-P-0024",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00375",
+    "from_passage_id": "ZJSHL-CH-011-P-0035",
+    "to_passage_id": "ZJSHL-CH-011-P-0034",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00376",
+    "from_passage_id": "ZJSHL-CH-011-P-0037",
+    "to_passage_id": "ZJSHL-CH-011-P-0036",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00377",
+    "from_passage_id": "ZJSHL-CH-011-P-0039",
+    "to_passage_id": "ZJSHL-CH-011-P-0038",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00378",
+    "from_passage_id": "ZJSHL-CH-011-P-0043",
+    "to_passage_id": "ZJSHL-CH-011-P-0042",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00379",
+    "from_passage_id": "ZJSHL-CH-011-P-0053",
+    "to_passage_id": "ZJSHL-CH-011-P-0052",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00380",
+    "from_passage_id": "ZJSHL-CH-011-P-0057",
+    "to_passage_id": "ZJSHL-CH-011-P-0056",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00381",
+    "from_passage_id": "ZJSHL-CH-011-P-0065",
+    "to_passage_id": "ZJSHL-CH-011-P-0064",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00382",
+    "from_passage_id": "ZJSHL-CH-011-P-0069",
+    "to_passage_id": "ZJSHL-CH-011-P-0068",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00383",
+    "from_passage_id": "ZJSHL-CH-011-P-0075",
+    "to_passage_id": "ZJSHL-CH-011-P-0074",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00384",
+    "from_passage_id": "ZJSHL-CH-011-P-0077",
+    "to_passage_id": "ZJSHL-CH-011-P-0076",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00385",
+    "from_passage_id": "ZJSHL-CH-011-P-0079",
+    "to_passage_id": "ZJSHL-CH-011-P-0078",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00386",
+    "from_passage_id": "ZJSHL-CH-011-P-0081",
+    "to_passage_id": "ZJSHL-CH-011-P-0080",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00387",
+    "from_passage_id": "ZJSHL-CH-011-P-0085",
+    "to_passage_id": "ZJSHL-CH-011-P-0084",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00388",
+    "from_passage_id": "ZJSHL-CH-011-P-0089",
+    "to_passage_id": "ZJSHL-CH-011-P-0088",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00389",
+    "from_passage_id": "ZJSHL-CH-011-P-0093",
+    "to_passage_id": "ZJSHL-CH-011-P-0092",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00390",
+    "from_passage_id": "ZJSHL-CH-011-P-0095",
+    "to_passage_id": "ZJSHL-CH-011-P-0094",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00391",
+    "from_passage_id": "ZJSHL-CH-011-P-0098",
+    "to_passage_id": "ZJSHL-CH-011-P-0097",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00392",
+    "from_passage_id": "ZJSHL-CH-011-P-0100",
+    "to_passage_id": "ZJSHL-CH-011-P-0099",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00393",
+    "from_passage_id": "ZJSHL-CH-011-P-0103",
+    "to_passage_id": "ZJSHL-CH-011-P-0102",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00394",
+    "from_passage_id": "ZJSHL-CH-011-P-0107",
+    "to_passage_id": "ZJSHL-CH-011-P-0106",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00395",
+    "from_passage_id": "ZJSHL-CH-011-P-0110",
+    "to_passage_id": "ZJSHL-CH-011-P-0109",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00396",
+    "from_passage_id": "ZJSHL-CH-011-P-0113",
+    "to_passage_id": "ZJSHL-CH-011-P-0112",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00397",
+    "from_passage_id": "ZJSHL-CH-011-P-0116",
+    "to_passage_id": "ZJSHL-CH-011-P-0115",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00398",
+    "from_passage_id": "ZJSHL-CH-011-P-0118",
+    "to_passage_id": "ZJSHL-CH-011-P-0117",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00399",
+    "from_passage_id": "ZJSHL-CH-011-P-0122",
+    "to_passage_id": "ZJSHL-CH-011-P-0121",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00400",
+    "from_passage_id": "ZJSHL-CH-011-P-0129",
+    "to_passage_id": "ZJSHL-CH-011-P-0128",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00401",
+    "from_passage_id": "ZJSHL-CH-011-P-0133",
+    "to_passage_id": "ZJSHL-CH-011-P-0132",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00402",
+    "from_passage_id": "ZJSHL-CH-011-P-0140",
+    "to_passage_id": "ZJSHL-CH-011-P-0139",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00403",
+    "from_passage_id": "ZJSHL-CH-011-P-0143",
+    "to_passage_id": "ZJSHL-CH-011-P-0142",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00404",
+    "from_passage_id": "ZJSHL-CH-011-P-0145",
+    "to_passage_id": "ZJSHL-CH-011-P-0144",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00405",
+    "from_passage_id": "ZJSHL-CH-011-P-0147",
+    "to_passage_id": "ZJSHL-CH-011-P-0146",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00406",
+    "from_passage_id": "ZJSHL-CH-011-P-0149",
+    "to_passage_id": "ZJSHL-CH-011-P-0148",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00407",
+    "from_passage_id": "ZJSHL-CH-011-P-0151",
+    "to_passage_id": "ZJSHL-CH-011-P-0150",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00408",
+    "from_passage_id": "ZJSHL-CH-011-P-0153",
+    "to_passage_id": "ZJSHL-CH-011-P-0152",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00409",
+    "from_passage_id": "ZJSHL-CH-011-P-0155",
+    "to_passage_id": "ZJSHL-CH-011-P-0154",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00410",
+    "from_passage_id": "ZJSHL-CH-011-P-0157",
+    "to_passage_id": "ZJSHL-CH-011-P-0156",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00411",
+    "from_passage_id": "ZJSHL-CH-011-P-0159",
+    "to_passage_id": "ZJSHL-CH-011-P-0158",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00412",
+    "from_passage_id": "ZJSHL-CH-011-P-0163",
+    "to_passage_id": "ZJSHL-CH-011-P-0162",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00413",
+    "from_passage_id": "ZJSHL-CH-011-P-0166",
+    "to_passage_id": "ZJSHL-CH-011-P-0165",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00414",
+    "from_passage_id": "ZJSHL-CH-011-P-0169",
+    "to_passage_id": "ZJSHL-CH-011-P-0168",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00415",
+    "from_passage_id": "ZJSHL-CH-011-P-0171",
+    "to_passage_id": "ZJSHL-CH-011-P-0170",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00416",
+    "from_passage_id": "ZJSHL-CH-011-P-0173",
+    "to_passage_id": "ZJSHL-CH-011-P-0172",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00417",
+    "from_passage_id": "ZJSHL-CH-011-P-0176",
+    "to_passage_id": "ZJSHL-CH-011-P-0175",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00418",
+    "from_passage_id": "ZJSHL-CH-011-P-0178",
+    "to_passage_id": "ZJSHL-CH-011-P-0177",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00419",
+    "from_passage_id": "ZJSHL-CH-011-P-0180",
+    "to_passage_id": "ZJSHL-CH-011-P-0179",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00420",
+    "from_passage_id": "ZJSHL-CH-011-P-0182",
+    "to_passage_id": "ZJSHL-CH-011-P-0181",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00421",
+    "from_passage_id": "ZJSHL-CH-011-P-0184",
+    "to_passage_id": "ZJSHL-CH-011-P-0183",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00422",
+    "from_passage_id": "ZJSHL-CH-011-P-0186",
+    "to_passage_id": "ZJSHL-CH-011-P-0185",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00423",
+    "from_passage_id": "ZJSHL-CH-011-P-0195",
+    "to_passage_id": "ZJSHL-CH-011-P-0194",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00424",
+    "from_passage_id": "ZJSHL-CH-011-P-0197",
+    "to_passage_id": "ZJSHL-CH-011-P-0196",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00425",
+    "from_passage_id": "ZJSHL-CH-011-P-0201",
+    "to_passage_id": "ZJSHL-CH-011-P-0200",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00426",
+    "from_passage_id": "ZJSHL-CH-011-P-0204",
+    "to_passage_id": "ZJSHL-CH-011-P-0203",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00427",
+    "from_passage_id": "ZJSHL-CH-011-P-0206",
+    "to_passage_id": "ZJSHL-CH-011-P-0205",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00428",
+    "from_passage_id": "ZJSHL-CH-011-P-0208",
+    "to_passage_id": "ZJSHL-CH-011-P-0207",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00429",
+    "from_passage_id": "ZJSHL-CH-011-P-0210",
+    "to_passage_id": "ZJSHL-CH-011-P-0209",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00430",
+    "from_passage_id": "ZJSHL-CH-012-P-0214",
+    "to_passage_id": "ZJSHL-CH-012-P-0213",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00431",
+    "from_passage_id": "ZJSHL-CH-012-P-0218",
+    "to_passage_id": "ZJSHL-CH-012-P-0217",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00432",
+    "from_passage_id": "ZJSHL-CH-012-P-0223",
+    "to_passage_id": "ZJSHL-CH-012-P-0222",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00433",
+    "from_passage_id": "ZJSHL-CH-012-P-0226",
+    "to_passage_id": "ZJSHL-CH-012-P-0225",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00434",
+    "from_passage_id": "ZJSHL-CH-012-P-0230",
+    "to_passage_id": "ZJSHL-CH-012-P-0229",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00435",
+    "from_passage_id": "ZJSHL-CH-012-P-0232",
+    "to_passage_id": "ZJSHL-CH-012-P-0231",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00436",
+    "from_passage_id": "ZJSHL-CH-013-P-0007",
+    "to_passage_id": "ZJSHL-CH-013-P-0006",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00437",
+    "from_passage_id": "ZJSHL-CH-013-P-0009",
+    "to_passage_id": "ZJSHL-CH-013-P-0008",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00438",
+    "from_passage_id": "ZJSHL-CH-013-P-0011",
+    "to_passage_id": "ZJSHL-CH-013-P-0010",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00439",
+    "from_passage_id": "ZJSHL-CH-013-P-0015",
+    "to_passage_id": "ZJSHL-CH-013-P-0014",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00440",
+    "from_passage_id": "ZJSHL-CH-013-P-0017",
+    "to_passage_id": "ZJSHL-CH-013-P-0016",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00441",
+    "from_passage_id": "ZJSHL-CH-014-P-0024",
+    "to_passage_id": "ZJSHL-CH-014-P-0023",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00442",
+    "from_passage_id": "ZJSHL-CH-014-P-0028",
+    "to_passage_id": "ZJSHL-CH-014-P-0027",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00443",
+    "from_passage_id": "ZJSHL-CH-014-P-0038",
+    "to_passage_id": "ZJSHL-CH-014-P-0037",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00444",
+    "from_passage_id": "ZJSHL-CH-014-P-0042",
+    "to_passage_id": "ZJSHL-CH-014-P-0041",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00445",
+    "from_passage_id": "ZJSHL-CH-014-P-0044",
+    "to_passage_id": "ZJSHL-CH-014-P-0043",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00446",
+    "from_passage_id": "ZJSHL-CH-014-P-0046",
+    "to_passage_id": "ZJSHL-CH-014-P-0045",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00447",
+    "from_passage_id": "ZJSHL-CH-014-P-0048",
+    "to_passage_id": "ZJSHL-CH-014-P-0047",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00448",
+    "from_passage_id": "ZJSHL-CH-014-P-0051",
+    "to_passage_id": "ZJSHL-CH-014-P-0050",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00449",
+    "from_passage_id": "ZJSHL-CH-014-P-0053",
+    "to_passage_id": "ZJSHL-CH-014-P-0052",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00450",
+    "from_passage_id": "ZJSHL-CH-014-P-0055",
+    "to_passage_id": "ZJSHL-CH-014-P-0054",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00451",
+    "from_passage_id": "ZJSHL-CH-014-P-0057",
+    "to_passage_id": "ZJSHL-CH-014-P-0056",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00452",
+    "from_passage_id": "ZJSHL-CH-014-P-0059",
+    "to_passage_id": "ZJSHL-CH-014-P-0058",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00453",
+    "from_passage_id": "ZJSHL-CH-014-P-0061",
+    "to_passage_id": "ZJSHL-CH-014-P-0060",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00454",
+    "from_passage_id": "ZJSHL-CH-014-P-0065",
+    "to_passage_id": "ZJSHL-CH-014-P-0064",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00455",
+    "from_passage_id": "ZJSHL-CH-014-P-0068",
+    "to_passage_id": "ZJSHL-CH-014-P-0067",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00456",
+    "from_passage_id": "ZJSHL-CH-014-P-0071",
+    "to_passage_id": "ZJSHL-CH-014-P-0070",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00457",
+    "from_passage_id": "ZJSHL-CH-014-P-0073",
+    "to_passage_id": "ZJSHL-CH-014-P-0072",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00458",
+    "from_passage_id": "ZJSHL-CH-014-P-0077",
+    "to_passage_id": "ZJSHL-CH-014-P-0076",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00459",
+    "from_passage_id": "ZJSHL-CH-014-P-0080",
+    "to_passage_id": "ZJSHL-CH-014-P-0079",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00460",
+    "from_passage_id": "ZJSHL-CH-014-P-0084",
+    "to_passage_id": "ZJSHL-CH-014-P-0083",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00461",
+    "from_passage_id": "ZJSHL-CH-014-P-0089",
+    "to_passage_id": "ZJSHL-CH-014-P-0088",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00462",
+    "from_passage_id": "ZJSHL-CH-014-P-0092",
+    "to_passage_id": "ZJSHL-CH-014-P-0091",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00463",
+    "from_passage_id": "ZJSHL-CH-014-P-0094",
+    "to_passage_id": "ZJSHL-CH-014-P-0093",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00464",
+    "from_passage_id": "ZJSHL-CH-014-P-0096",
+    "to_passage_id": "ZJSHL-CH-014-P-0095",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00465",
+    "from_passage_id": "ZJSHL-CH-014-P-0098",
+    "to_passage_id": "ZJSHL-CH-014-P-0097",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00466",
+    "from_passage_id": "ZJSHL-CH-014-P-0102",
+    "to_passage_id": "ZJSHL-CH-014-P-0101",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00467",
+    "from_passage_id": "ZJSHL-CH-014-P-0104",
+    "to_passage_id": "ZJSHL-CH-014-P-0103",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00468",
+    "from_passage_id": "ZJSHL-CH-014-P-0106",
+    "to_passage_id": "ZJSHL-CH-014-P-0105",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00469",
+    "from_passage_id": "ZJSHL-CH-014-P-0113",
+    "to_passage_id": "ZJSHL-CH-014-P-0112",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00470",
+    "from_passage_id": "ZJSHL-CH-014-P-0116",
+    "to_passage_id": "ZJSHL-CH-014-P-0115",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00471",
+    "from_passage_id": "ZJSHL-CH-014-P-0118",
+    "to_passage_id": "ZJSHL-CH-014-P-0117",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00472",
+    "from_passage_id": "ZJSHL-CH-014-P-0120",
+    "to_passage_id": "ZJSHL-CH-014-P-0119",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00473",
+    "from_passage_id": "ZJSHL-CH-014-P-0125",
+    "to_passage_id": "ZJSHL-CH-014-P-0124",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00474",
+    "from_passage_id": "ZJSHL-CH-014-P-0130",
+    "to_passage_id": "ZJSHL-CH-014-P-0129",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00475",
+    "from_passage_id": "ZJSHL-CH-014-P-0136",
+    "to_passage_id": "ZJSHL-CH-014-P-0134",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00476",
+    "from_passage_id": "ZJSHL-CH-014-P-0138",
+    "to_passage_id": "ZJSHL-CH-014-P-0137",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00477",
+    "from_passage_id": "ZJSHL-CH-014-P-0140",
+    "to_passage_id": "ZJSHL-CH-014-P-0139",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00478",
+    "from_passage_id": "ZJSHL-CH-014-P-0142",
+    "to_passage_id": "ZJSHL-CH-014-P-0141",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00479",
+    "from_passage_id": "ZJSHL-CH-014-P-0144",
+    "to_passage_id": "ZJSHL-CH-014-P-0143",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00480",
+    "from_passage_id": "ZJSHL-CH-014-P-0146",
+    "to_passage_id": "ZJSHL-CH-014-P-0145",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00481",
+    "from_passage_id": "ZJSHL-CH-014-P-0149",
+    "to_passage_id": "ZJSHL-CH-014-P-0148",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00482",
+    "from_passage_id": "ZJSHL-CH-014-P-0153",
+    "to_passage_id": "ZJSHL-CH-014-P-0152",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00483",
+    "from_passage_id": "ZJSHL-CH-014-P-0155",
+    "to_passage_id": "ZJSHL-CH-014-P-0154",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00484",
+    "from_passage_id": "ZJSHL-CH-014-P-0157",
+    "to_passage_id": "ZJSHL-CH-014-P-0156",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00485",
+    "from_passage_id": "ZJSHL-CH-014-P-0159",
+    "to_passage_id": "ZJSHL-CH-014-P-0158",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00486",
+    "from_passage_id": "ZJSHL-CH-014-P-0161",
+    "to_passage_id": "ZJSHL-CH-014-P-0160",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00487",
+    "from_passage_id": "ZJSHL-CH-014-P-0163",
+    "to_passage_id": "ZJSHL-CH-014-P-0162",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00488",
+    "from_passage_id": "ZJSHL-CH-014-P-0165",
+    "to_passage_id": "ZJSHL-CH-014-P-0164",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00489",
+    "from_passage_id": "ZJSHL-CH-014-P-0167",
+    "to_passage_id": "ZJSHL-CH-014-P-0166",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00490",
+    "from_passage_id": "ZJSHL-CH-014-P-0169",
+    "to_passage_id": "ZJSHL-CH-014-P-0168",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00491",
+    "from_passage_id": "ZJSHL-CH-014-P-0171",
+    "to_passage_id": "ZJSHL-CH-014-P-0170",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00492",
+    "from_passage_id": "ZJSHL-CH-014-P-0173",
+    "to_passage_id": "ZJSHL-CH-014-P-0172",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00493",
+    "from_passage_id": "ZJSHL-CH-014-P-0175",
+    "to_passage_id": "ZJSHL-CH-014-P-0174",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00494",
+    "from_passage_id": "ZJSHL-CH-014-P-0177",
+    "to_passage_id": "ZJSHL-CH-014-P-0176",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00495",
+    "from_passage_id": "ZJSHL-CH-014-P-0185",
+    "to_passage_id": "ZJSHL-CH-014-P-0184",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00496",
+    "from_passage_id": "ZJSHL-CH-014-P-0187",
+    "to_passage_id": "ZJSHL-CH-014-P-0186",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00497",
+    "from_passage_id": "ZJSHL-CH-015-P-0194",
+    "to_passage_id": "ZJSHL-CH-015-P-0193",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00498",
+    "from_passage_id": "ZJSHL-CH-015-P-0197",
+    "to_passage_id": "ZJSHL-CH-015-P-0196",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00499",
+    "from_passage_id": "ZJSHL-CH-015-P-0201",
+    "to_passage_id": "ZJSHL-CH-015-P-0200",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00500",
+    "from_passage_id": "ZJSHL-CH-015-P-0205",
+    "to_passage_id": "ZJSHL-CH-015-P-0204",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00501",
+    "from_passage_id": "ZJSHL-CH-015-P-0207",
+    "to_passage_id": "ZJSHL-CH-015-P-0206",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00502",
+    "from_passage_id": "ZJSHL-CH-015-P-0213",
+    "to_passage_id": "ZJSHL-CH-015-P-0212",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00503",
+    "from_passage_id": "ZJSHL-CH-015-P-0215",
+    "to_passage_id": "ZJSHL-CH-015-P-0214",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00504",
+    "from_passage_id": "ZJSHL-CH-015-P-0217",
+    "to_passage_id": "ZJSHL-CH-015-P-0216",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00505",
+    "from_passage_id": "ZJSHL-CH-015-P-0220",
+    "to_passage_id": "ZJSHL-CH-015-P-0219",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00506",
+    "from_passage_id": "ZJSHL-CH-015-P-0225",
+    "to_passage_id": "ZJSHL-CH-015-P-0224",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00507",
+    "from_passage_id": "ZJSHL-CH-015-P-0227",
+    "to_passage_id": "ZJSHL-CH-015-P-0226",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00508",
+    "from_passage_id": "ZJSHL-CH-015-P-0229",
+    "to_passage_id": "ZJSHL-CH-015-P-0228",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00509",
+    "from_passage_id": "ZJSHL-CH-015-P-0231",
+    "to_passage_id": "ZJSHL-CH-015-P-0230",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00510",
+    "from_passage_id": "ZJSHL-CH-015-P-0240",
+    "to_passage_id": "ZJSHL-CH-015-P-0239",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00511",
+    "from_passage_id": "ZJSHL-CH-015-P-0245",
+    "to_passage_id": "ZJSHL-CH-015-P-0244",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00512",
+    "from_passage_id": "ZJSHL-CH-015-P-0250",
+    "to_passage_id": "ZJSHL-CH-015-P-0249",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00513",
+    "from_passage_id": "ZJSHL-CH-015-P-0252",
+    "to_passage_id": "ZJSHL-CH-015-P-0251",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00514",
+    "from_passage_id": "ZJSHL-CH-015-P-0255",
+    "to_passage_id": "ZJSHL-CH-015-P-0253",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00515",
+    "from_passage_id": "ZJSHL-CH-015-P-0258",
+    "to_passage_id": "ZJSHL-CH-015-P-0257",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00516",
+    "from_passage_id": "ZJSHL-CH-015-P-0260",
+    "to_passage_id": "ZJSHL-CH-015-P-0259",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00517",
+    "from_passage_id": "ZJSHL-CH-015-P-0262",
+    "to_passage_id": "ZJSHL-CH-015-P-0261",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00518",
+    "from_passage_id": "ZJSHL-CH-015-P-0264",
+    "to_passage_id": "ZJSHL-CH-015-P-0263",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00519",
+    "from_passage_id": "ZJSHL-CH-015-P-0266",
+    "to_passage_id": "ZJSHL-CH-015-P-0265",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00520",
+    "from_passage_id": "ZJSHL-CH-015-P-0279",
+    "to_passage_id": "ZJSHL-CH-015-P-0278",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00521",
+    "from_passage_id": "ZJSHL-CH-015-P-0281",
+    "to_passage_id": "ZJSHL-CH-015-P-0280",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00522",
+    "from_passage_id": "ZJSHL-CH-015-P-0283",
+    "to_passage_id": "ZJSHL-CH-015-P-0282",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00523",
+    "from_passage_id": "ZJSHL-CH-015-P-0285",
+    "to_passage_id": "ZJSHL-CH-015-P-0284",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00524",
+    "from_passage_id": "ZJSHL-CH-015-P-0289",
+    "to_passage_id": "ZJSHL-CH-015-P-0288",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00525",
+    "from_passage_id": "ZJSHL-CH-015-P-0291",
+    "to_passage_id": "ZJSHL-CH-015-P-0290",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00526",
+    "from_passage_id": "ZJSHL-CH-015-P-0293",
+    "to_passage_id": "ZJSHL-CH-015-P-0292",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00527",
+    "from_passage_id": "ZJSHL-CH-015-P-0295",
+    "to_passage_id": "ZJSHL-CH-015-P-0294",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00528",
+    "from_passage_id": "ZJSHL-CH-015-P-0297",
+    "to_passage_id": "ZJSHL-CH-015-P-0296",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00529",
+    "from_passage_id": "ZJSHL-CH-015-P-0299",
+    "to_passage_id": "ZJSHL-CH-015-P-0298",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00530",
+    "from_passage_id": "ZJSHL-CH-015-P-0301",
+    "to_passage_id": "ZJSHL-CH-015-P-0300",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00531",
+    "from_passage_id": "ZJSHL-CH-015-P-0304",
+    "to_passage_id": "ZJSHL-CH-015-P-0303",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00532",
+    "from_passage_id": "ZJSHL-CH-015-P-0306",
+    "to_passage_id": "ZJSHL-CH-015-P-0305",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00533",
+    "from_passage_id": "ZJSHL-CH-015-P-0308",
+    "to_passage_id": "ZJSHL-CH-015-P-0307",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00534",
+    "from_passage_id": "ZJSHL-CH-015-P-0310",
+    "to_passage_id": "ZJSHL-CH-015-P-0309",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00535",
+    "from_passage_id": "ZJSHL-CH-015-P-0313",
+    "to_passage_id": "ZJSHL-CH-015-P-0312",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00536",
+    "from_passage_id": "ZJSHL-CH-015-P-0315",
+    "to_passage_id": "ZJSHL-CH-015-P-0314",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00537",
+    "from_passage_id": "ZJSHL-CH-015-P-0317",
+    "to_passage_id": "ZJSHL-CH-015-P-0316",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00538",
+    "from_passage_id": "ZJSHL-CH-015-P-0319",
+    "to_passage_id": "ZJSHL-CH-015-P-0318",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00539",
+    "from_passage_id": "ZJSHL-CH-015-P-0321",
+    "to_passage_id": "ZJSHL-CH-015-P-0320",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00540",
+    "from_passage_id": "ZJSHL-CH-015-P-0323",
+    "to_passage_id": "ZJSHL-CH-015-P-0322",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00541",
+    "from_passage_id": "ZJSHL-CH-015-P-0325",
+    "to_passage_id": "ZJSHL-CH-015-P-0324",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00542",
+    "from_passage_id": "ZJSHL-CH-015-P-0327",
+    "to_passage_id": "ZJSHL-CH-015-P-0326",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00543",
+    "from_passage_id": "ZJSHL-CH-015-P-0329",
+    "to_passage_id": "ZJSHL-CH-015-P-0328",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00544",
+    "from_passage_id": "ZJSHL-CH-015-P-0331",
+    "to_passage_id": "ZJSHL-CH-015-P-0330",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00545",
+    "from_passage_id": "ZJSHL-CH-016-P-0003",
+    "to_passage_id": "ZJSHL-CH-016-P-0002",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00546",
+    "from_passage_id": "ZJSHL-CH-016-P-0005",
+    "to_passage_id": "ZJSHL-CH-016-P-0004",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00547",
+    "from_passage_id": "ZJSHL-CH-016-P-0008",
+    "to_passage_id": "ZJSHL-CH-016-P-0007",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00548",
+    "from_passage_id": "ZJSHL-CH-016-P-0010",
+    "to_passage_id": "ZJSHL-CH-016-P-0009",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00549",
+    "from_passage_id": "ZJSHL-CH-016-P-0013",
+    "to_passage_id": "ZJSHL-CH-016-P-0012",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00550",
+    "from_passage_id": "ZJSHL-CH-016-P-0015",
+    "to_passage_id": "ZJSHL-CH-016-P-0014",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00551",
+    "from_passage_id": "ZJSHL-CH-016-P-0017",
+    "to_passage_id": "ZJSHL-CH-016-P-0016",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00552",
+    "from_passage_id": "ZJSHL-CH-016-P-0021",
+    "to_passage_id": "ZJSHL-CH-016-P-0020",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00553",
+    "from_passage_id": "ZJSHL-CH-016-P-0023",
+    "to_passage_id": "ZJSHL-CH-016-P-0022",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00554",
+    "from_passage_id": "ZJSHL-CH-016-P-0025",
+    "to_passage_id": "ZJSHL-CH-016-P-0024",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00555",
+    "from_passage_id": "ZJSHL-CH-016-P-0027",
+    "to_passage_id": "ZJSHL-CH-016-P-0026",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00556",
+    "from_passage_id": "ZJSHL-CH-016-P-0029",
+    "to_passage_id": "ZJSHL-CH-016-P-0028",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00557",
+    "from_passage_id": "ZJSHL-CH-016-P-0031",
+    "to_passage_id": "ZJSHL-CH-016-P-0030",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00558",
+    "from_passage_id": "ZJSHL-CH-016-P-0033",
+    "to_passage_id": "ZJSHL-CH-016-P-0032",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00559",
+    "from_passage_id": "ZJSHL-CH-016-P-0035",
+    "to_passage_id": "ZJSHL-CH-016-P-0034",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00560",
+    "from_passage_id": "ZJSHL-CH-016-P-0037",
+    "to_passage_id": "ZJSHL-CH-016-P-0036",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00561",
+    "from_passage_id": "ZJSHL-CH-016-P-0039",
+    "to_passage_id": "ZJSHL-CH-016-P-0038",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00562",
+    "from_passage_id": "ZJSHL-CH-016-P-0041",
+    "to_passage_id": "ZJSHL-CH-016-P-0040",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00563",
+    "from_passage_id": "ZJSHL-CH-016-P-0043",
+    "to_passage_id": "ZJSHL-CH-016-P-0042",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00564",
+    "from_passage_id": "ZJSHL-CH-017-P-0046",
+    "to_passage_id": "ZJSHL-CH-017-P-0045",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00565",
+    "from_passage_id": "ZJSHL-CH-017-P-0051",
+    "to_passage_id": "ZJSHL-CH-017-P-0050",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00566",
+    "from_passage_id": "ZJSHL-CH-017-P-0052",
+    "to_passage_id": "ZJSHL-CH-017-P-0050",
+    "relation": "annotates",
+    "confidence": "low"
+  },
+  {
+    "link_id": "LINK-00567",
+    "from_passage_id": "ZJSHL-CH-017-P-0055",
+    "to_passage_id": "ZJSHL-CH-017-P-0054",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00568",
+    "from_passage_id": "ZJSHL-CH-017-P-0057",
+    "to_passage_id": "ZJSHL-CH-017-P-0056",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00569",
+    "from_passage_id": "ZJSHL-CH-017-P-0059",
+    "to_passage_id": "ZJSHL-CH-017-P-0058",
+    "relation": "annotates",
+    "confidence": "high"
+  },
+  {
+    "link_id": "LINK-00570",
+    "from_passage_id": "ZJSHL-CH-017-P-0062",
+    "to_passage_id": "ZJSHL-CH-017-P-0061",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00571",
+    "from_passage_id": "ZJSHL-CH-017-P-0067",
+    "to_passage_id": "ZJSHL-CH-017-P-0065",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00572",
+    "from_passage_id": "ZJSHL-CH-018-P-0075",
+    "to_passage_id": "ZJSHL-CH-018-P-0074",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00573",
+    "from_passage_id": "ZJSHL-CH-018-P-0077",
+    "to_passage_id": "ZJSHL-CH-018-P-0076",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00574",
+    "from_passage_id": "ZJSHL-CH-018-P-0079",
+    "to_passage_id": "ZJSHL-CH-018-P-0078",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00575",
+    "from_passage_id": "ZJSHL-CH-018-P-0081",
+    "to_passage_id": "ZJSHL-CH-018-P-0080",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00576",
+    "from_passage_id": "ZJSHL-CH-018-P-0083",
+    "to_passage_id": "ZJSHL-CH-018-P-0082",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00577",
+    "from_passage_id": "ZJSHL-CH-018-P-0085",
+    "to_passage_id": "ZJSHL-CH-018-P-0084",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00578",
+    "from_passage_id": "ZJSHL-CH-018-P-0087",
+    "to_passage_id": "ZJSHL-CH-018-P-0086",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00579",
+    "from_passage_id": "ZJSHL-CH-018-P-0090",
+    "to_passage_id": "ZJSHL-CH-018-P-0089",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00580",
+    "from_passage_id": "ZJSHL-CH-018-P-0092",
+    "to_passage_id": "ZJSHL-CH-018-P-0091",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00581",
+    "from_passage_id": "ZJSHL-CH-018-P-0094",
+    "to_passage_id": "ZJSHL-CH-018-P-0093",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00582",
+    "from_passage_id": "ZJSHL-CH-018-P-0096",
+    "to_passage_id": "ZJSHL-CH-018-P-0095",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00583",
+    "from_passage_id": "ZJSHL-CH-018-P-0098",
+    "to_passage_id": "ZJSHL-CH-018-P-0097",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00584",
+    "from_passage_id": "ZJSHL-CH-019-P-0104",
+    "to_passage_id": "ZJSHL-CH-019-P-0103",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00585",
+    "from_passage_id": "ZJSHL-CH-019-P-0106",
+    "to_passage_id": "ZJSHL-CH-019-P-0105",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00586",
+    "from_passage_id": "ZJSHL-CH-019-P-0108",
+    "to_passage_id": "ZJSHL-CH-019-P-0107",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00587",
+    "from_passage_id": "ZJSHL-CH-019-P-0111",
+    "to_passage_id": "ZJSHL-CH-019-P-0110",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00588",
+    "from_passage_id": "ZJSHL-CH-019-P-0114",
+    "to_passage_id": "ZJSHL-CH-019-P-0113",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00589",
+    "from_passage_id": "ZJSHL-CH-020-P-0004",
+    "to_passage_id": "ZJSHL-CH-020-P-0003",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00590",
+    "from_passage_id": "ZJSHL-CH-022-P-0011",
+    "to_passage_id": "ZJSHL-CH-022-P-0010",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00591",
+    "from_passage_id": "ZJSHL-CH-022-P-0014",
+    "to_passage_id": "ZJSHL-CH-022-P-0013",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00592",
+    "from_passage_id": "ZJSHL-CH-022-P-0016",
+    "to_passage_id": "ZJSHL-CH-022-P-0015",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00593",
+    "from_passage_id": "ZJSHL-CH-022-P-0019",
+    "to_passage_id": "ZJSHL-CH-022-P-0018",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00594",
+    "from_passage_id": "ZJSHL-CH-023-P-0003",
+    "to_passage_id": "ZJSHL-CH-023-P-0002",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00595",
+    "from_passage_id": "ZJSHL-CH-023-P-0005",
+    "to_passage_id": "ZJSHL-CH-023-P-0004",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00596",
+    "from_passage_id": "ZJSHL-CH-023-P-0007",
+    "to_passage_id": "ZJSHL-CH-023-P-0006",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00597",
+    "from_passage_id": "ZJSHL-CH-023-P-0009",
+    "to_passage_id": "ZJSHL-CH-023-P-0008",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00598",
+    "from_passage_id": "ZJSHL-CH-023-P-0011",
+    "to_passage_id": "ZJSHL-CH-023-P-0010",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00599",
+    "from_passage_id": "ZJSHL-CH-023-P-0013",
+    "to_passage_id": "ZJSHL-CH-023-P-0012",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00600",
+    "from_passage_id": "ZJSHL-CH-023-P-0015",
+    "to_passage_id": "ZJSHL-CH-023-P-0014",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00601",
+    "from_passage_id": "ZJSHL-CH-023-P-0017",
+    "to_passage_id": "ZJSHL-CH-023-P-0016",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00602",
+    "from_passage_id": "ZJSHL-CH-023-P-0020",
+    "to_passage_id": "ZJSHL-CH-023-P-0019",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00603",
+    "from_passage_id": "ZJSHL-CH-023-P-0022",
+    "to_passage_id": "ZJSHL-CH-023-P-0021",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00604",
+    "from_passage_id": "ZJSHL-CH-023-P-0024",
+    "to_passage_id": "ZJSHL-CH-023-P-0023",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00605",
+    "from_passage_id": "ZJSHL-CH-023-P-0026",
+    "to_passage_id": "ZJSHL-CH-023-P-0025",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00606",
+    "from_passage_id": "ZJSHL-CH-023-P-0029",
+    "to_passage_id": "ZJSHL-CH-023-P-0028",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00607",
+    "from_passage_id": "ZJSHL-CH-023-P-0031",
+    "to_passage_id": "ZJSHL-CH-023-P-0030",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00608",
+    "from_passage_id": "ZJSHL-CH-023-P-0034",
+    "to_passage_id": "ZJSHL-CH-023-P-0033",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00609",
+    "from_passage_id": "ZJSHL-CH-023-P-0038",
+    "to_passage_id": "ZJSHL-CH-023-P-0037",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00610",
+    "from_passage_id": "ZJSHL-CH-023-P-0040",
+    "to_passage_id": "ZJSHL-CH-023-P-0039",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00611",
+    "from_passage_id": "ZJSHL-CH-023-P-0045",
+    "to_passage_id": "ZJSHL-CH-023-P-0044",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00612",
+    "from_passage_id": "ZJSHL-CH-024-P-0055",
+    "to_passage_id": "ZJSHL-CH-024-P-0054",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00613",
+    "from_passage_id": "ZJSHL-CH-024-P-0060",
+    "to_passage_id": "ZJSHL-CH-024-P-0059",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00614",
+    "from_passage_id": "ZJSHL-CH-024-P-0062",
+    "to_passage_id": "ZJSHL-CH-024-P-0061",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00615",
+    "from_passage_id": "ZJSHL-CH-024-P-0064",
+    "to_passage_id": "ZJSHL-CH-024-P-0063",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00616",
+    "from_passage_id": "ZJSHL-CH-024-P-0066",
+    "to_passage_id": "ZJSHL-CH-024-P-0065",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00617",
+    "from_passage_id": "ZJSHL-CH-024-P-0068",
+    "to_passage_id": "ZJSHL-CH-024-P-0067",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00618",
+    "from_passage_id": "ZJSHL-CH-024-P-0070",
+    "to_passage_id": "ZJSHL-CH-024-P-0069",
+    "relation": "annotates",
+    "confidence": "medium"
+  },
+  {
+    "link_id": "LINK-00619",
+    "from_passage_id": "ZJSHL-CH-024-P-0074",
+    "to_passage_id": "ZJSHL-CH-024-P-0073",
+    "relation": "annotates",
+    "confidence": "medium"
+  }
+]

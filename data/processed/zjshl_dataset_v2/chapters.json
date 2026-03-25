@@ -1,0 +1,482 @@
+[
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "序注解伤寒论　成无己",
+    "chapter_type": "preface",
+    "source_file": "0《序》.md",
+    "source_title_item_no": 1,
+    "source_item_start": 1,
+    "source_item_end": 3,
+    "source_notes": "",
+    "chapter_id": "ZJSHL-CH-001",
+    "chapter_order": 1,
+    "passage_count": 2,
+    "role_breakdown": {
+      "preface_paragraph": 2
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "伤寒卒病论集",
+    "chapter_type": "preface",
+    "source_file": "0《序》.md",
+    "source_title_item_no": 4,
+    "source_item_start": 4,
+    "source_item_end": 8,
+    "source_notes": "",
+    "chapter_id": "ZJSHL-CH-002",
+    "chapter_order": 2,
+    "passage_count": 4,
+    "role_breakdown": {
+      "preface_paragraph": 4
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "辨脉法第一",
+    "chapter_type": "canonical",
+    "source_file": "1《卷一》.md",
+    "source_title_item_no": 1,
+    "source_item_start": 1,
+    "source_item_end": 117,
+    "source_notes": "",
+    "chapter_id": "ZJSHL-CH-003",
+    "chapter_order": 3,
+    "passage_count": 116,
+    "role_breakdown": {
+      "chapter_paragraph": 113,
+      "formula_paragraph": 3
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "平脉法第二",
+    "chapter_type": "canonical",
+    "source_file": "1《卷一》.md",
+    "source_title_item_no": 118,
+    "source_item_start": 118,
+    "source_item_end": 275,
+    "source_notes": "",
+    "chapter_id": "ZJSHL-CH-004",
+    "chapter_order": 4,
+    "passage_count": 157,
+    "role_breakdown": {
+      "chapter_paragraph": 151,
+      "formula_paragraph": 6
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "卷题/题记",
+    "chapter_type": "front_matter",
+    "source_file": "2《卷二》.md",
+    "source_title_item_no": null,
+    "source_item_start": 1,
+    "source_item_end": 2,
+    "source_notes": "该段位于文件首部，处于正式章节标题之前。",
+    "chapter_id": "ZJSHL-CH-005",
+    "chapter_order": 5,
+    "passage_count": 2,
+    "role_breakdown": {
+      "front_matter_paragraph": 2
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "伤寒例第三",
+    "chapter_type": "canonical",
+    "source_file": "2《卷二》.md",
+    "source_title_item_no": 3,
+    "source_item_start": 3,
+    "source_item_end": 153,
+    "source_notes": "",
+    "chapter_id": "ZJSHL-CH-006",
+    "chapter_order": 6,
+    "passage_count": 150,
+    "role_breakdown": {
+      "chapter_paragraph": 139,
+      "formula_paragraph": 11
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "辨痓湿暍脉证第四",
+    "chapter_type": "canonical",
+    "source_file": "2《卷二》.md",
+    "source_title_item_no": 154,
+    "source_item_start": 154,
+    "source_item_end": 189,
+    "source_notes": "",
+    "chapter_id": "ZJSHL-CH-007",
+    "chapter_order": 7,
+    "passage_count": 35,
+    "role_breakdown": {
+      "chapter_paragraph": 35
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "辨太阳病脉证并治法上第五",
+    "chapter_type": "canonical",
+    "source_file": "2《卷二》.md",
+    "source_title_item_no": 190,
+    "source_item_start": 190,
+    "source_item_end": 271,
+    "source_notes": "",
+    "chapter_id": "ZJSHL-CH-008",
+    "chapter_order": 8,
+    "passage_count": 81,
+    "role_breakdown": {
+      "chapter_paragraph": 70,
+      "formula_paragraph": 11
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "辨太阳病脉证并治第六",
+    "chapter_type": "canonical",
+    "source_file": "3《卷三》.md",
+    "source_title_item_no": 1,
+    "source_item_start": 1,
+    "source_item_end": 325,
+    "source_notes": "",
+    "chapter_id": "ZJSHL-CH-009",
+    "chapter_order": 9,
+    "passage_count": 324,
+    "role_breakdown": {
+      "chapter_paragraph": 239,
+      "formula_paragraph": 85
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "辨太阳病脉证并治法第七",
+    "chapter_type": "canonical",
+    "source_file": "4《卷四》.md",
+    "source_title_item_no": 1,
+    "source_item_start": 1,
+    "source_item_end": 175,
+    "source_notes": "",
+    "chapter_id": "ZJSHL-CH-010",
+    "chapter_order": 10,
+    "passage_count": 174,
+    "role_breakdown": {
+      "chapter_paragraph": 123,
+      "formula_paragraph": 51
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "辨阳明病脉证并治法第八",
+    "chapter_type": "canonical",
+    "source_file": "5《卷五》.md",
+    "source_title_item_no": 1,
+    "source_item_start": 1,
+    "source_item_end": 211,
+    "source_notes": "",
+    "chapter_id": "ZJSHL-CH-011",
+    "chapter_order": 11,
+    "passage_count": 210,
+    "role_breakdown": {
+      "chapter_paragraph": 183,
+      "formula_paragraph": 27
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "辨少阳病脉证并治法第九",
+    "chapter_type": "canonical",
+    "source_file": "5《卷五》.md",
+    "source_title_item_no": 212,
+    "source_item_start": 212,
+    "source_item_end": 232,
+    "source_notes": "",
+    "chapter_id": "ZJSHL-CH-012",
+    "chapter_order": 12,
+    "passage_count": 20,
+    "role_breakdown": {
+      "chapter_paragraph": 17,
+      "formula_paragraph": 3
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "辨太阴病脉证并治法第十",
+    "chapter_type": "canonical",
+    "source_file": "6《卷六》.md",
+    "source_title_item_no": 1,
+    "source_item_start": 1,
+    "source_item_end": 19,
+    "source_notes": "",
+    "chapter_id": "ZJSHL-CH-013",
+    "chapter_order": 13,
+    "passage_count": 18,
+    "role_breakdown": {
+      "chapter_paragraph": 18
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "辨少阴病脉证并治法第十一",
+    "chapter_type": "canonical",
+    "source_file": "6《卷六》.md",
+    "source_title_item_no": 20,
+    "source_item_start": 20,
+    "source_item_end": 191,
+    "source_notes": "",
+    "chapter_id": "ZJSHL-CH-014",
+    "chapter_order": 14,
+    "passage_count": 171,
+    "role_breakdown": {
+      "chapter_paragraph": 128,
+      "formula_paragraph": 43
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "辨厥阴病脉证并治法第十二",
+    "chapter_type": "canonical",
+    "source_file": "6《卷六》.md",
+    "source_title_item_no": 192,
+    "source_item_start": 192,
+    "source_item_end": 331,
+    "source_notes": "",
+    "chapter_id": "ZJSHL-CH-015",
+    "chapter_order": 15,
+    "passage_count": 139,
+    "role_breakdown": {
+      "chapter_paragraph": 123,
+      "formula_paragraph": 16
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "辨霍乱病脉证并治法第十三",
+    "chapter_type": "canonical",
+    "source_file": "7《卷七》.md",
+    "source_title_item_no": 1,
+    "source_item_start": 1,
+    "source_item_end": 43,
+    "source_notes": "",
+    "chapter_id": "ZJSHL-CH-016",
+    "chapter_order": 16,
+    "passage_count": 42,
+    "role_breakdown": {
+      "chapter_paragraph": 33,
+      "formula_paragraph": 9
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "辨阴阳易瘥后劳复病脉证并治法第十四",
+    "chapter_type": "canonical",
+    "source_file": "7《卷七》.md",
+    "source_title_item_no": 44,
+    "source_item_start": 44,
+    "source_item_end": 70,
+    "source_notes": "",
+    "chapter_id": "ZJSHL-CH-017",
+    "chapter_order": 17,
+    "passage_count": 26,
+    "role_breakdown": {
+      "chapter_paragraph": 16,
+      "formula_paragraph": 10
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "辨不可发汗病脉证并治法第十五",
+    "chapter_type": "canonical",
+    "source_file": "7《卷七》.md",
+    "source_title_item_no": 71,
+    "source_item_start": 71,
+    "source_item_end": 101,
+    "source_notes": "",
+    "chapter_id": "ZJSHL-CH-018",
+    "chapter_order": 18,
+    "passage_count": 30,
+    "role_breakdown": {
+      "chapter_paragraph": 30
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "辨可发汗病脉证并治法第十六",
+    "chapter_type": "canonical",
+    "source_file": "7《卷七》.md",
+    "source_title_item_no": 102,
+    "source_item_start": 102,
+    "source_item_end": 114,
+    "source_notes": "",
+    "chapter_id": "ZJSHL-CH-019",
+    "chapter_order": 19,
+    "passage_count": 12,
+    "role_breakdown": {
+      "chapter_paragraph": 12
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "辨发汗后病脉证并治法第十七",
+    "chapter_type": "canonical",
+    "source_file": "8《卷八》.md",
+    "source_title_item_no": 1,
+    "source_item_start": 1,
+    "source_item_end": 4,
+    "source_notes": "",
+    "chapter_id": "ZJSHL-CH-020",
+    "chapter_order": 20,
+    "passage_count": 3,
+    "role_breakdown": {
+      "chapter_paragraph": 2,
+      "meta_note": 1
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "辨不可吐第十八",
+    "chapter_type": "canonical",
+    "source_file": "8《卷八》.md",
+    "source_title_item_no": 5,
+    "source_item_start": 5,
+    "source_item_end": 6,
+    "source_notes": "",
+    "chapter_id": "ZJSHL-CH-021",
+    "chapter_order": 21,
+    "passage_count": 1,
+    "role_breakdown": {
+      "formula_paragraph": 1
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "辨可吐第十九",
+    "chapter_type": "canonical",
+    "source_file": "8《卷八》.md",
+    "source_title_item_no": 7,
+    "source_item_start": 7,
+    "source_item_end": 19,
+    "source_notes": "",
+    "chapter_id": "ZJSHL-CH-022",
+    "chapter_order": 22,
+    "passage_count": 12,
+    "role_breakdown": {
+      "chapter_paragraph": 10,
+      "meta_note": 2
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "辨不可下病脉证并治法第二十",
+    "chapter_type": "canonical",
+    "source_file": "9《卷九》.md",
+    "source_title_item_no": 1,
+    "source_item_start": 1,
+    "source_item_end": 50,
+    "source_notes": "",
+    "chapter_id": "ZJSHL-CH-023",
+    "chapter_order": 23,
+    "passage_count": 49,
+    "role_breakdown": {
+      "chapter_paragraph": 48,
+      "formula_paragraph": 1
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "辨可下病脉证并治法第二十一",
+    "chapter_type": "canonical",
+    "source_file": "9《卷九》.md",
+    "source_title_item_no": 51,
+    "source_item_start": 51,
+    "source_item_end": 74,
+    "source_notes": "",
+    "chapter_id": "ZJSHL-CH-024",
+    "chapter_order": 24,
+    "passage_count": 23,
+    "role_breakdown": {
+      "chapter_paragraph": 23
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "《卷内音释，上卷已有。》",
+    "chapter_type": "appendix",
+    "source_file": "10《卷内音释，上卷已有。》.md",
+    "source_title_item_no": null,
+    "source_item_start": 1,
+    "source_item_end": 13,
+    "source_notes": "由文件名作为章节标题；正文中未见明确独立章题。",
+    "chapter_id": "ZJSHL-CH-025",
+    "chapter_order": 25,
+    "passage_count": 13,
+    "role_breakdown": {
+      "appendix_formula_paragraph": 13
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "《以上九方，病证并在第二卷内。》",
+    "chapter_type": "appendix",
+    "source_file": "11《以上九方，病证并在第二卷内。》.md",
+    "source_title_item_no": null,
+    "source_item_start": 1,
+    "source_item_end": 6,
+    "source_notes": "由文件名作为章节标题；正文中未见明确独立章题。",
+    "chapter_id": "ZJSHL-CH-026",
+    "chapter_order": 26,
+    "passage_count": 6,
+    "role_breakdown": {
+      "appendix_formula_paragraph": 6
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "《以上六方，病证并在第三卷内。》",
+    "chapter_type": "appendix",
+    "source_file": "12《以上六方，病证并在第三卷内。》.md",
+    "source_title_item_no": null,
+    "source_item_start": 1,
+    "source_item_end": 11,
+    "source_notes": "由文件名作为章节标题；正文中未见明确独立章题。",
+    "chapter_id": "ZJSHL-CH-027",
+    "chapter_order": 27,
+    "passage_count": 11,
+    "role_breakdown": {
+      "appendix_formula_paragraph": 11
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "《以上五方，病证并在第四卷内。》",
+    "chapter_type": "appendix",
+    "source_file": "13《以上五方，病证并在第四卷内。》.md",
+    "source_title_item_no": null,
+    "source_item_start": 1,
+    "source_item_end": 7,
+    "source_notes": "由文件名作为章节标题；正文中未见明确独立章题。",
+    "chapter_id": "ZJSHL-CH-028",
+    "chapter_order": 28,
+    "passage_count": 7,
+    "role_breakdown": {
+      "appendix_formula_paragraph": 7
+    }
+  },
+  {
+    "book_id": "ZJSHL",
+    "chapter_name": "《以上三方，病证并在第六卷内。》",
+    "chapter_type": "appendix",
+    "source_file": "14《以上三方，病证并在第六卷内。》.md",
+    "source_title_item_no": null,
+    "source_item_start": 1,
+    "source_item_end": 3,
+    "source_notes": "由文件名作为章节标题；正文中未见明确独立章题。",
+    "chapter_id": "ZJSHL-CH-029",
+    "chapter_order": 29,
+    "passage_count": 3,
+    "role_breakdown": {
+      "appendix_formula_paragraph": 2,
+      "appendix_note": 1
+    }
+  }
+]

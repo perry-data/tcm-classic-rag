@@ -1,0 +1,13 @@
+[
+  {
+    "book_id": "ZJSHL",
+    "book_name": "注解伤寒论",
+    "canonical_work": "伤寒论",
+    "commentator": "成无己",
+    "source_edition": "四部丛刊初编本",
+    "source_format": "Markdown",
+    "source_file_count": 15,
+    "scope_note": "v2 仅处理《注解伤寒论》；依据用户整理的 15 个 Markdown 文件生成。",
+    "v2_note": "v2 将 passage 区分为正文主条、注解、方剂标题/组成/煎服法、附录与前言，并建立注解锚点关系。"
+  }
+]

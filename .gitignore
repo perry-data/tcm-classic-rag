@@ -1,0 +1,35 @@
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Env
+.env
+.env.*
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Runtime outputs
+outputs/
+logs/
+*.log
+
+# Databases / indexes
+data/sqlite/*.sqlite
+data/sqlite/*.db
+data/indexes/
+*.faiss
+*.index
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Frontend build
+frontend/node_modules/
+frontend/dist/
+frontend/.next/
