@@ -1,0 +1,12 @@
+issue_id,file_name,issue_type,severity,record_id_or_key,description,suggested_action
+DA-001,chapters.json,stale_role_breakdown,中等,27 chapters,role_breakdown 字段仍是旧口径（如 chapter_paragraph/formula_paragraph），与 v2 passages 的 text_role 实际分布不一致。,重新生成或覆盖 chapters.json.role_breakdown，使其与 chapter_stats.json.role_breakdown_v2 和 passages.json 保持一致。
+DA-002,annotation_links.json,wrong_annotation_attachment,严重,LINK-00033,条 73 的注解内容应解释条 74，而当前链接指向条 72。,修正该 link 的 to_passage_id，并复核相邻同型记录。
+DA-003,annotation_links.json,wrong_annotation_attachment,严重,LINK-00034,条 77 的“肺先绝也”摘要语应引向条 78，不应挂到条 76。,修正该 link 的 to_passage_id，并对该段连续病机解释链做人工复核。
+DA-004,annotation_links.json,wrong_annotation_attachment,严重,LINK-00036,条 81 的“肝绝也”摘要语应引向条 82，不应挂到条 80。,修正该 link 的 to_passage_id，并复核同段后续注解链接。
+DA-005,annotation_links.json,wrong_annotation_attachment,严重,LINK-00037,条 83 的“脾绝也”摘要语应引向条 84，不应挂到条 82。,修正该 link 的 to_passage_id，并复核同段后续注解链接。
+DA-006,annotation_links.json,wrong_annotation_attachment,严重,LINK-00038,条 85 的“肾绝也”摘要语应引向条 86，不应挂到条 84。,修正该 link 的 to_passage_id，并复核同段后续注解链接。
+DA-007,annotation_links.json,wrong_annotation_attachment,严重,LINK-00039,条 87 的阴阳先绝摘要语应引向条 88，不应挂到条 86。,修正该 link 的 to_passage_id，并复核同段后续注解链接。
+DA-008,annotation_links.json,suspected_bulk_attachment_risk,中等,105 heuristic flags,基于相邻主条相似度的 sanity check 标出了 105 条疑似错挂记录，说明链接策略可能存在批量偏移或“挂到前一条”倾向。,以 LINK-00033/34/36/37/38/39 为样本，扩展复核整批疑似记录，再决定是否重跑 annotation link 生成逻辑。
+DA-009,ambiguous_passages.json,high_ambiguity_in_retrieval_layer,中等,450 passages / 435 main passages,低置信度条目占全部 passages 的 24.44%，其中 435 条直接进入 main_passages，并影响 435 个 chunks。,第一版开发默认剔除或显式标记低置信度 main_passages/chunks，不直接作为主检索证据。
+DA-010,main_passages.json;chunks.json,short_retrieval_units,轻微,142 main / 132 chunks,存在较多小于 20 字的主条与 chunk，容易降低 BM25/向量检索的判别力。,建立最短长度阈值或做邻近合并策略，避免过短片段直接入检索主库。
+DA-011,annotations.json;annotation_links.json,unlinked_annotation_records,轻微,10 passages,10 条前言/卷首/附录类 annotation 记录未挂接主条，通常可接受，但当前数据包未明确标注其为“无需挂接”的例外。,在 README 或字段约定中声明这些记录的处理策略，避免下游误判为漏挂。

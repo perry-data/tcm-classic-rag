@@ -1,0 +1,51 @@
+{
+  "build_timestamp_utc": "2026-04-03T12:31:52.195341+00:00",
+  "policy_version": "2026-04-02",
+  "input_sources": {
+    "safe": {
+      "path": "/Users/man_ray/Projects/Python/tcm-classic-rag/dist/zjshl_dataset_v2_mvp_safe.zip",
+      "kind": "zip"
+    },
+    "full": {
+      "path": "/Users/man_ray/Projects/Python/tcm-classic-rag/data/processed/zjshl_dataset_v2",
+      "kind": "directory"
+    }
+  },
+  "table_counts": {
+    "records_main_passages": 777,
+    "records_chunks": 583,
+    "records_annotations": 629,
+    "records_passages": 1841,
+    "risk_registry_ambiguous": 450,
+    "record_chunk_passage_links": 676,
+    "vw_retrieval_records_unified": 4280
+  },
+  "derived_stats": {
+    "main_passages_by_level": {
+      "A": 666,
+      "B": 111
+    },
+    "unified_by_source_object": {
+      "ambiguous_passages": 450,
+      "annotations": 629,
+      "chunks": 583,
+      "main_passages": 777,
+      "passages": 1841
+    },
+    "unified_by_weight_tier": {
+      "high": 666,
+      "highest": 583,
+      "low": 1841,
+      "lowest": 450,
+      "medium": 111,
+      "medium_low": 629
+    },
+    "multi_passage_chunks": 67,
+    "link_rows": 676,
+    "annotation_links_in_unified_view": 0,
+    "chunk_primary_violations": 0,
+    "annotation_secondary_violations": 0,
+    "passage_risk_violations": 0,
+    "ambiguous_risk_violations": 0
+  }
+}

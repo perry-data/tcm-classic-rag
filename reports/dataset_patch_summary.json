@@ -1,0 +1,46 @@
+{
+  "source_label": "data/processed/zjshl_dataset_v2",
+  "safe_output_name": "zjshl_dataset_v2_mvp_safe.zip",
+  "annotation_links_policy": {
+    "mode": "disabled",
+    "annotation_links_kept": 0,
+    "anchor_passage_id_cleared": true,
+    "reason": "验收阶段已确认错挂，且存在批量疑似风险；MVP 默认不启用 annotation 证据链。"
+  },
+  "ambiguous_passages_policy": {
+    "mode": "retain_for_review_but_exclude_from_primary_retrieval",
+    "ambiguous_passages_retained": 450,
+    "ambiguous_main_removed_from_main_passages": 435,
+    "ambiguous_chunks_removed_from_chunks": 435,
+    "passages_retrieval_primary_downgraded": 435
+  },
+  "short_main_passage_policy": {
+    "threshold": 20,
+    "mode": "retain_but_demote",
+    "short_main_total": 142,
+    "short_main_demoted_in_main_passages": 111,
+    "safe_main_primary_count": 666
+  },
+  "short_chunk_policy": {
+    "threshold": 20,
+    "mode": "filter_out",
+    "short_chunk_total": 132,
+    "short_chunks_removed_from_safe_chunks": 101,
+    "safe_chunk_count": 583
+  },
+  "chapters_role_breakdown_fixed": true,
+  "safe_counts": {
+    "books": 1,
+    "chapters": 29,
+    "passages": 1841,
+    "main_passages": 777,
+    "main_passages_primary": 666,
+    "annotations": 629,
+    "annotation_links": 0,
+    "chunks": 583,
+    "aliases": 46,
+    "ambiguous_passages": 450
+  },
+  "overall_ready_for_mvp": true,
+  "ready_for_database_stage": true
+}

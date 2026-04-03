@@ -1,0 +1,32 @@
+{
+  "dataset_zip": "/Users/man_ray/大四毕业论文/数据/zjshl_dataset_v2.zip",
+  "raw_zip": "/Users/man_ray/Projects/Python/tcm-classic-rag/data/raw/《注解伤寒论》.zip",
+  "schema_ok": false,
+  "referential_integrity_ok": false,
+  "content_sampling_ok": false,
+  "retrieval_readiness_ok": false,
+  "overall_status": "需局部修复后再开发",
+  "counts": {
+    "books": 1,
+    "chapters": 29,
+    "passages": 1841,
+    "main_passages": 1212,
+    "annotations": 629,
+    "annotation_links": 619,
+    "chunks": 1119,
+    "aliases": 46,
+    "ambiguous_passages": 450
+  },
+  "key_metrics": {
+    "passages_exact_raw_match": 1841,
+    "chunks_exact_join_match": 1119,
+    "chapters_role_breakdown_mismatch": 27,
+    "confirmed_mislinks": 6,
+    "heuristic_suspicious_links": 105,
+    "annotations_without_links": 10,
+    "ambiguous_main_passages": 435,
+    "chunks_touching_ambiguous": 435,
+    "short_main_passages_lt20": 142,
+    "short_chunks_lt20": 132
+  }
+}
