@@ -221,6 +221,14 @@ def evaluate_topic_consistency(query_theme: dict[str, Any], candidate_text: str 
             "primary_allowed": False,
         }
 
+    if candidate_anchor_normalized and any(candidate_anchor.endswith(suffix) for suffix in FORMULA_QUERY_SUFFIXES):
+        return {
+            "topic_anchor": candidate_anchor,
+            "topic_consistency": "different_formula_anchor",
+            "precision_adjustment": -28.0,
+            "primary_allowed": False,
+        }
+
     candidate_compact = compact_text(candidate_text)
     if query_anchor and query_anchor in candidate_compact:
         return {
@@ -232,9 +240,9 @@ def evaluate_topic_consistency(query_theme: dict[str, Any], candidate_text: str 
 
     return {
         "topic_anchor": candidate_anchor,
-        "topic_consistency": "neutral",
-        "precision_adjustment": 0.0,
-        "primary_allowed": True,
+        "topic_consistency": "formula_query_off_topic",
+        "precision_adjustment": -14.0,
+        "primary_allowed": False,
     }
 
 

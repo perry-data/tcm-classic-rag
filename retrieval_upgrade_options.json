@@ -1,0 +1,30 @@
+{
+  "recommended_local_stack": {
+    "embedding_model": "BAAI/bge-small-zh-v1.5",
+    "rerank_model": "BAAI/bge-reranker-base",
+    "vector_index": "faiss-cpu",
+    "index_targets": [
+      "records_chunks",
+      "records_main_passages"
+    ],
+    "sparse_top_k": 20,
+    "dense_chunk_top_k": 20,
+    "dense_main_top_k": 12,
+    "fusion_top_k": 24,
+    "rrf_k": 60,
+    "rerank_top_n": 18
+  },
+  "fallback_api_stack": {
+    "embedding_model": "api_embedding_model",
+    "rerank_model": "BAAI/bge-reranker-base",
+    "vector_index": "faiss-cpu"
+  },
+  "gating_guards": {
+    "annotation_links_disabled": true,
+    "chunks_never_primary_directly": true,
+    "annotations_never_primary": true,
+    "passages_never_primary": true,
+    "ambiguous_passages_never_primary": true,
+    "query_theme_gate_required_for_primary": true
+  }
+}

@@ -23,6 +23,7 @@ logs/
 data/sqlite/*.sqlite
 data/sqlite/*.db
 data/indexes/
+artifacts/hf_cache/
 *.faiss
 *.index
 

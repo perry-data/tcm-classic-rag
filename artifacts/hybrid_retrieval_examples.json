@@ -1,0 +1,2170 @@
+{
+  "generated_at_utc": "2026-04-04T09:59:51.843865+00:00",
+  "examples": [
+    {
+      "query_request": {
+        "query_text": "黄连汤方的条文是什么？",
+        "query_text_normalized": "黄连汤方",
+        "query_theme": {
+          "type": "formula_name",
+          "anchor": "黄连汤方",
+          "normalized_anchor": "黄连汤"
+        },
+        "target_mode": "strong_first",
+        "precision_profile": "tight_primary",
+        "allow_levels": [
+          "A",
+          "B",
+          "C"
+        ],
+        "blocked_sources": [
+          "annotation_links"
+        ],
+        "source_priority": [
+          "safe_chunks",
+          "safe_main_passages_primary",
+          "safe_main_passages_secondary",
+          "full_annotations_raw",
+          "full_passages_ledger",
+          "ambiguous_related_material"
+        ],
+        "candidate_budget": {
+          "total_limit": 24,
+          "per_source_soft_limit": {
+            "safe_chunks": 8,
+            "safe_main_passages_primary": 6,
+            "safe_main_passages_secondary": 4,
+            "full_annotations_raw": 3,
+            "full_passages_ledger": 2,
+            "ambiguous_related_material": 1
+          }
+        },
+        "scope_filters": {
+          "book_id": "ZJSHL",
+          "chapter_id": null
+        },
+        "retrieval_strategy": {
+          "type": "hybrid_rrf_rerank",
+          "sparse_top_k": 20,
+          "dense_chunk_top_k": 20,
+          "dense_main_top_k": 12,
+          "fusion_top_k": 24,
+          "rerank_top_n": 18,
+          "rrf_k": 60,
+          "embed_model": "BAAI/bge-small-zh-v1.5",
+          "rerank_model": "BAAI/bge-reranker-base",
+          "rerank_device": "cpu"
+        }
+      },
+      "raw_candidates": [
+        {
+          "retrieval_entry_id": "safe:main_passages:ZJSHL-CH-009-P-0016",
+          "record_table": "records_main_passages",
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0016",
+          "source_record_id": "ZJSHL-CH-009-P-0016",
+          "dataset_variant": "safe",
+          "source_object": "main_passages",
+          "source_type": "main_text",
+          "retrieval_text": "葛根黄芩黄连汤方：赵本芩、连互易",
+          "normalized_text": "葛根黄芩黄连汤方：赵本芩、连互易",
+          "book_id": "ZJSHL",
+          "chapter_id": "ZJSHL-CH-009",
+          "chapter_name": "辨太阳病脉证并治第六",
+          "evidence_level": "B",
+          "display_allowed": "secondary",
+          "risk_flag": "[\"short_text_demoted\"]",
+          "requires_disclaimer": 0,
+          "default_weight_tier": "medium",
+          "policy_source_id": "safe_main_passages_secondary",
+          "backref_target_type": "none",
+          "backref_target_ids_json": "[]",
+          "text_match_score": 128.5,
+          "weight_bonus": 4.0,
+          "precision_adjustment": -18.0,
+          "matched_terms": [
+            "黄连汤方",
+            "连汤方",
+            "黄连汤",
+            "汤方",
+            "连汤",
+            "黄连"
+          ],
+          "topic_anchor": "葛根黄芩黄连汤方",
+          "topic_consistency": "expanded_formula_anchor",
+          "primary_allowed": false,
+          "primary_block_reason": "expanded_formula_anchor",
+          "sparse_score": 114.5,
+          "dense_score": 0.632304,
+          "dense_rank_score": 0.452304,
+          "rrf_score": 0.0315136476426799,
+          "rerank_raw_score": 0.984679,
+          "rerank_score": 0.728036,
+          "combined_score": 854.210405,
+          "stage_sources": [
+            "sparse",
+            "dense_main_passages"
+          ],
+          "stage_ranks": {
+            "sparse": 5,
+            "dense_main_passages": 2
+          }
+        },
+        {
+          "retrieval_entry_id": "full:passages:ZJSHL-CH-009-P-0016",
+          "record_table": "records_passages",
+          "record_id": "full:passages:ZJSHL-CH-009-P-0016",
+          "source_record_id": "ZJSHL-CH-009-P-0016",
+          "dataset_variant": "full",
+          "source_object": "passages",
+          "source_type": "ledger_text",
+          "retrieval_text": "葛根黄芩黄连汤方：赵本芩、连互易",
+          "normalized_text": "葛根黄芩黄连汤方：赵本芩、连互易",
+          "book_id": "ZJSHL",
+          "chapter_id": "ZJSHL-CH-009",
+          "chapter_name": "辨太阳病脉证并治第六",
+          "evidence_level": "C",
+          "display_allowed": "risk_only",
+          "risk_flag": "[\"ledger_mixed_roles\"]",
+          "requires_disclaimer": 1,
+          "default_weight_tier": "low",
+          "policy_source_id": "full_passages_ledger",
+          "backref_target_type": "none",
+          "backref_target_ids_json": "[]",
+          "text_match_score": 128.5,
+          "weight_bonus": 2.0,
+          "precision_adjustment": -18.0,
+          "matched_terms": [
+            "黄连汤方",
+            "连汤方",
+            "黄连汤",
+            "汤方",
+            "连汤",
+            "黄连"
+          ],
+          "topic_anchor": "葛根黄芩黄连汤方",
+          "topic_consistency": "expanded_formula_anchor",
+          "primary_allowed": false,
+          "primary_block_reason": "expanded_formula_anchor",
+          "sparse_score": 112.5,
+          "dense_score": 0.0,
+          "dense_rank_score": 0.0,
+          "rrf_score": 0.015151515151515152,
+          "rerank_raw_score": 0.984679,
+          "rerank_score": 0.728036,
+          "combined_score": 844.051152,
+          "stage_sources": [
+            "sparse"
+          ],
+          "stage_ranks": {
+            "sparse": 6
+          }
+        },
+        {
+          "retrieval_entry_id": "safe:chunks:ZJSHL-CK-F-0009",
+          "record_table": "records_chunks",
+          "record_id": "safe:chunks:ZJSHL-CK-F-0009",
+          "source_record_id": "ZJSHL-CK-F-0009",
+          "dataset_variant": "safe",
+          "source_object": "chunks",
+          "source_type": "chunk",
+          "retrieval_text": "葛根黄芩黄连汤方：赵本芩、连互易\n葛根半斤 甘草二两，炙。味甘平 黄芩二，赵本作「三」两。味苦寒 黄连三两。味苦寒\n上四味，以水八升，先煮葛根，减二升，内诸药，煮取二升，去滓，分温再服。",
+          "normalized_text": "葛根黄芩黄连汤方：赵本芩、连互易 葛根半斤 甘草二两，炙。味甘平 黄芩二，赵本作「三」两。味苦寒 黄连三两。味苦寒 上四味，以水八升，先煮葛根，减二升，内诸药，煮取二升，去滓，分温再服。",
+          "book_id": "ZJSHL",
+          "chapter_id": "ZJSHL-CH-009",
+          "chapter_name": "辨太阳病脉证并治第六",
+          "evidence_level": "C",
+          "display_allowed": "preview_only",
+          "risk_flag": "[]",
+          "requires_disclaimer": 0,
+          "default_weight_tier": "highest",
+          "policy_source_id": "safe_chunks",
+          "backref_target_type": "main_passages",
+          "backref_target_ids_json": "[\"ZJSHL-CH-009-P-0016\",\"ZJSHL-CH-009-P-0017\",\"ZJSHL-CH-009-P-0019\"]",
+          "text_match_score": 128.5,
+          "weight_bonus": 6.0,
+          "precision_adjustment": -18.0,
+          "matched_terms": [
+            "黄连汤方",
+            "连汤方",
+            "黄连汤",
+            "汤方",
+            "连汤",
+            "黄连"
+          ],
+          "topic_anchor": "葛根黄芩黄连汤方",
+          "topic_consistency": "expanded_formula_anchor",
+          "primary_allowed": false,
+          "primary_block_reason": "expanded_formula_anchor",
+          "sparse_score": 116.5,
+          "dense_score": 0.610976,
+          "dense_rank_score": 0.430976,
+          "rrf_score": 0.031754032258064516,
+          "rerank_raw_score": 0.979011,
+          "rerank_score": 0.726912,
+          "combined_score": 856.897163,
+          "stage_sources": [
+            "sparse",
+            "dense_chunks"
+          ],
+          "stage_ranks": {
+            "sparse": 4,
+            "dense_chunks": 2
+          }
+        },
+        {
+          "retrieval_entry_id": "safe:chunks:ZJSHL-CK-F-0049",
+          "record_table": "records_chunks",
+          "record_id": "safe:chunks:ZJSHL-CK-F-0049",
+          "source_record_id": "ZJSHL-CK-F-0049",
+          "dataset_variant": "safe",
+          "source_object": "chunks",
+          "source_type": "chunk",
+          "retrieval_text": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。\n味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温\n上热者，泄之以苦，黄连之苦以降阳；下寒者，散之以辛，桂、姜、半夏之辛以升阴；脾欲缓，急食甘以缓之，人参、甘草、大枣之甘以益胃。\n上七味，以水一斗，煮取六升，去滓，温服一升，日三服，夜二服。",
+          "normalized_text": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。 味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温 上热者，泄之以苦，黄连之苦以降阳；下寒者，散之以辛，桂、姜、半夏之辛以升阴；脾欲缓，急食甘以缓之，人参、甘草、大枣之甘以益胃。 上七味，以水一斗，煮取六升，去滓，温服一升，日三服，夜二服。",
+          "book_id": "ZJSHL",
+          "chapter_id": "ZJSHL-CH-010",
+          "chapter_name": "辨太阳病脉证并治法第七",
+          "evidence_level": "C",
+          "display_allowed": "preview_only",
+          "risk_flag": "[]",
+          "requires_disclaimer": 0,
+          "default_weight_tier": "highest",
+          "policy_source_id": "safe_chunks",
+          "backref_target_type": "main_passages",
+          "backref_target_ids_json": "[\"ZJSHL-CH-010-P-0145\",\"ZJSHL-CH-010-P-0146\",\"ZJSHL-CH-010-P-0147\",\"ZJSHL-CH-010-P-0148\"]",
+          "text_match_score": 128.5,
+          "weight_bonus": 6.0,
+          "precision_adjustment": 24.0,
+          "matched_terms": [
+            "黄连汤方",
+            "连汤方",
+            "黄连汤",
+            "汤方",
+            "连汤",
+            "黄连"
+          ],
+          "topic_anchor": "黄连汤方",
+          "topic_consistency": "exact_formula_anchor",
+          "primary_allowed": true,
+          "primary_block_reason": null,
+          "sparse_score": 158.5,
+          "dense_score": 0.686211,
+          "dense_rank_score": 0.926211,
+          "rrf_score": 0.03278688524590164,
+          "rerank_raw_score": 0.967126,
+          "rerank_score": 0.724546,
+          "combined_score": 901.586799,
+          "stage_sources": [
+            "sparse",
+            "dense_chunks"
+          ],
+          "stage_ranks": {
+            "sparse": 1,
+            "dense_chunks": 1
+          }
+        },
+        {
+          "retrieval_entry_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
+          "record_table": "records_main_passages",
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
+          "source_record_id": "ZJSHL-CH-010-P-0145",
+          "dataset_variant": "safe",
+          "source_object": "main_passages",
+          "source_type": "main_text",
+          "retrieval_text": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。",
+          "normalized_text": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。",
+          "book_id": "ZJSHL",
+          "chapter_id": "ZJSHL-CH-010",
+          "chapter_name": "辨太阳病脉证并治法第七",
+          "evidence_level": "A",
+          "display_allowed": "primary",
+          "risk_flag": "[]",
+          "requires_disclaimer": 0,
+          "default_weight_tier": "high",
+          "policy_source_id": "safe_main_passages_primary",
+          "backref_target_type": "none",
+          "backref_target_ids_json": "[]",
+          "text_match_score": 128.5,
+          "weight_bonus": 5.0,
+          "precision_adjustment": 24.0,
+          "matched_terms": [
+            "黄连汤方",
+            "连汤方",
+            "黄连汤",
+            "汤方",
+            "连汤",
+            "黄连"
+          ],
+          "topic_anchor": "黄连汤方",
+          "topic_consistency": "exact_formula_anchor",
+          "primary_allowed": true,
+          "primary_block_reason": null,
+          "sparse_score": 157.5,
+          "dense_score": 0.701662,
+          "dense_rank_score": 0.941662,
+          "rrf_score": 0.03252247488101534,
+          "rerank_raw_score": 0.965526,
+          "rerank_score": 0.724227,
+          "combined_score": 899.395867,
+          "stage_sources": [
+            "sparse",
+            "dense_main_passages"
+          ],
+          "stage_ranks": {
+            "sparse": 2,
+            "dense_main_passages": 1
+          }
+        },
+        {
+          "retrieval_entry_id": "full:passages:ZJSHL-CH-010-P-0145",
+          "record_table": "records_passages",
+          "record_id": "full:passages:ZJSHL-CH-010-P-0145",
+          "source_record_id": "ZJSHL-CH-010-P-0145",
+          "dataset_variant": "full",
+          "source_object": "passages",
+          "source_type": "ledger_text",
+          "retrieval_text": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。",
+          "normalized_text": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。",
+          "book_id": "ZJSHL",
+          "chapter_id": "ZJSHL-CH-010",
+          "chapter_name": "辨太阳病脉证并治法第七",
+          "evidence_level": "C",
+          "display_allowed": "risk_only",
+          "risk_flag": "[\"ledger_mixed_roles\"]",
+          "requires_disclaimer": 1,
+          "default_weight_tier": "low",
+          "policy_source_id": "full_passages_ledger",
+          "backref_target_type": "none",
+          "backref_target_ids_json": "[]",
+          "text_match_score": 128.5,
+          "weight_bonus": 2.0,
+          "precision_adjustment": 24.0,
+          "matched_terms": [
+            "黄连汤方",
+            "连汤方",
+            "黄连汤",
+            "汤方",
+            "连汤",
+            "黄连"
+          ],
+          "topic_anchor": "黄连汤方",
+          "topic_consistency": "exact_formula_anchor",
+          "primary_allowed": true,
+          "primary_block_reason": null,
+          "sparse_score": 154.5,
+          "dense_score": 0.0,
+          "dense_rank_score": 0.0,
+          "rrf_score": 0.015873015873015872,
+          "rerank_raw_score": 0.965526,
+          "rerank_score": 0.724227,
+          "combined_score": 882.314302,
+          "stage_sources": [
+            "sparse"
+          ],
+          "stage_ranks": {
+            "sparse": 3
+          }
+        }
+      ],
+      "primary_evidence": [
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
+          "source_object": "main_passages",
+          "evidence_level": "A",
+          "display_allowed": "primary",
+          "risk_flag": [],
+          "default_weight_tier": "high",
+          "combined_score": 902.087,
+          "text_match_score": 128.5,
+          "matched_terms": [
+            "黄连汤方",
+            "连汤方",
+            "黄连汤",
+            "汤方",
+            "连汤",
+            "黄连"
+          ],
+          "text_preview": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。",
+          "chapter_id": "ZJSHL-CH-010",
+          "chapter_name": "辨太阳病脉证并治法第七",
+          "requires_disclaimer": false,
+          "policy_source_id": "safe_main_passages_primary",
+          "topic_anchor": "黄连汤方",
+          "topic_consistency": "exact_formula_anchor",
+          "retrieval_paths": [
+            {
+              "type": "chunk_backref",
+              "chunk_record_id": "safe:chunks:ZJSHL-CK-F-0049",
+              "chunk_score": 901.586799
+            },
+            {
+              "type": "direct"
+            }
+          ]
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0146",
+          "source_object": "main_passages",
+          "evidence_level": "A",
+          "display_allowed": "primary",
+          "risk_flag": [],
+          "default_weight_tier": "high",
+          "combined_score": 902.087,
+          "text_match_score": 128.5,
+          "matched_terms": [
+            "黄连汤方",
+            "连汤方",
+            "黄连汤",
+            "汤方",
+            "连汤",
+            "黄连"
+          ],
+          "text_preview": "味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温",
+          "chapter_id": "ZJSHL-CH-010",
+          "chapter_name": "辨太阳病脉证并治法第七",
+          "requires_disclaimer": false,
+          "policy_source_id": "safe_main_passages_primary",
+          "topic_anchor": "黄连汤方",
+          "topic_consistency": "exact_formula_anchor",
+          "retrieval_paths": [
+            {
+              "type": "chunk_backref",
+              "chunk_record_id": "safe:chunks:ZJSHL-CK-F-0049",
+              "chunk_score": 901.586799
+            }
+          ]
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0147",
+          "source_object": "main_passages",
+          "evidence_level": "A",
+          "display_allowed": "primary",
+          "risk_flag": [],
+          "default_weight_tier": "high",
+          "combined_score": 902.087,
+          "text_match_score": 128.5,
+          "matched_terms": [
+            "黄连汤方",
+            "连汤方",
+            "黄连汤",
+            "汤方",
+            "连汤",
+            "黄连"
+          ],
+          "text_preview": "上热者，泄之以苦，黄连之苦以降阳；下寒者，散之以辛，桂、姜、半夏之辛以升阴；脾欲缓，急食甘以缓之，人参、甘草、大枣之甘以益胃。",
+          "chapter_id": "ZJSHL-CH-010",
+          "chapter_name": "辨太阳病脉证并治法第七",
+          "requires_disclaimer": false,
+          "policy_source_id": "safe_main_passages_primary",
+          "topic_anchor": "黄连汤方",
+          "topic_consistency": "exact_formula_anchor",
+          "retrieval_paths": [
+            {
+              "type": "chunk_backref",
+              "chunk_record_id": "safe:chunks:ZJSHL-CK-F-0049",
+              "chunk_score": 901.586799
+            }
+          ]
+        }
+      ],
+      "secondary_evidence": [
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0017",
+          "source_object": "main_passages",
+          "evidence_level": "A",
+          "display_allowed": "primary",
+          "risk_flag": [
+            "topic_mismatch_demoted"
+          ],
+          "default_weight_tier": "high",
+          "combined_score": 857.397,
+          "text_match_score": 128.5,
+          "matched_terms": [
+            "黄连汤方",
+            "连汤方",
+            "黄连汤",
+            "汤方",
+            "连汤",
+            "黄连"
+          ],
+          "text_preview": "葛根半斤 甘草二两，炙。味甘平 黄芩二，赵本作「三」两。味苦寒 黄连三两。味苦寒",
+          "chapter_id": "ZJSHL-CH-009",
+          "chapter_name": "辨太阳病脉证并治第六",
+          "requires_disclaimer": false,
+          "policy_source_id": "safe_main_passages_primary",
+          "topic_anchor": "葛根黄芩黄连汤方",
+          "topic_consistency": "expanded_formula_anchor",
+          "retrieval_paths": [
+            {
+              "type": "chunk_backref",
+              "chunk_record_id": "safe:chunks:ZJSHL-CK-F-0009",
+              "chunk_score": 856.897163
+            }
+          ]
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0019",
+          "source_object": "main_passages",
+          "evidence_level": "A",
+          "display_allowed": "primary",
+          "risk_flag": [
+            "topic_mismatch_demoted"
+          ],
+          "default_weight_tier": "high",
+          "combined_score": 857.397,
+          "text_match_score": 128.5,
+          "matched_terms": [
+            "黄连汤方",
+            "连汤方",
+            "黄连汤",
+            "汤方",
+            "连汤",
+            "黄连"
+          ],
+          "text_preview": "上四味，以水八升，先煮葛根，减二升，内诸药，煮取二升，去滓，分温再服。",
+          "chapter_id": "ZJSHL-CH-009",
+          "chapter_name": "辨太阳病脉证并治第六",
+          "requires_disclaimer": false,
+          "policy_source_id": "safe_main_passages_primary",
+          "topic_anchor": "葛根黄芩黄连汤方",
+          "topic_consistency": "expanded_formula_anchor",
+          "retrieval_paths": [
+            {
+              "type": "chunk_backref",
+              "chunk_record_id": "safe:chunks:ZJSHL-CK-F-0009",
+              "chunk_score": 856.897163
+            }
+          ]
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0016",
+          "source_object": "main_passages",
+          "evidence_level": "B",
+          "display_allowed": "secondary",
+          "risk_flag": [
+            "short_text_demoted"
+          ],
+          "default_weight_tier": "medium",
+          "combined_score": 857.397,
+          "text_match_score": 128.5,
+          "matched_terms": [
+            "黄连汤方",
+            "连汤方",
+            "黄连汤",
+            "汤方",
+            "连汤",
+            "黄连"
+          ],
+          "text_preview": "葛根黄芩黄连汤方：赵本芩、连互易",
+          "chapter_id": "ZJSHL-CH-009",
+          "chapter_name": "辨太阳病脉证并治第六",
+          "requires_disclaimer": false,
+          "policy_source_id": "safe_main_passages_secondary",
+          "topic_anchor": "葛根黄芩黄连汤方",
+          "topic_consistency": "expanded_formula_anchor",
+          "retrieval_paths": [
+            {
+              "type": "direct"
+            },
+            {
+              "type": "chunk_backref",
+              "chunk_record_id": "safe:chunks:ZJSHL-CK-F-0009",
+              "chunk_score": 856.897163
+            }
+          ]
+        }
+      ],
+      "risk_materials": [
+        {
+          "record_id": "full:passages:ZJSHL-CH-010-P-0145",
+          "source_object": "passages",
+          "evidence_level": "C",
+          "display_allowed": "risk_only",
+          "risk_flag": [
+            "ledger_mixed_roles"
+          ],
+          "default_weight_tier": "low",
+          "combined_score": 882.314302,
+          "text_match_score": 128.5,
+          "matched_terms": [
+            "黄连汤方",
+            "连汤方",
+            "黄连汤",
+            "汤方",
+            "连汤",
+            "黄连"
+          ],
+          "text_preview": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。",
+          "chapter_id": "ZJSHL-CH-010",
+          "chapter_name": "辨太阳病脉证并治法第七",
+          "requires_disclaimer": true,
+          "policy_source_id": "full_passages_ledger",
+          "topic_anchor": "黄连汤方",
+          "topic_consistency": "exact_formula_anchor",
+          "retrieval_paths": [
+            {
+              "type": "direct"
+            }
+          ]
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-009-P-0016",
+          "source_object": "passages",
+          "evidence_level": "C",
+          "display_allowed": "risk_only",
+          "risk_flag": [
+            "ledger_mixed_roles"
+          ],
+          "default_weight_tier": "low",
+          "combined_score": 844.051152,
+          "text_match_score": 128.5,
+          "matched_terms": [
+            "黄连汤方",
+            "连汤方",
+            "黄连汤",
+            "汤方",
+            "连汤",
+            "黄连"
+          ],
+          "text_preview": "葛根黄芩黄连汤方：赵本芩、连互易",
+          "chapter_id": "ZJSHL-CH-009",
+          "chapter_name": "辨太阳病脉证并治第六",
+          "requires_disclaimer": true,
+          "policy_source_id": "full_passages_ledger",
+          "topic_anchor": "葛根黄芩黄连汤方",
+          "topic_consistency": "expanded_formula_anchor",
+          "retrieval_paths": [
+            {
+              "type": "direct"
+            }
+          ]
+        }
+      ],
+      "retrieval_trace": {
+        "chunk_hits": [
+          {
+            "chunk_record_id": "safe:chunks:ZJSHL-CK-F-0009",
+            "chunk_score": 856.897163,
+            "matched_terms": [
+              "黄连汤方",
+              "连汤方",
+              "黄连汤",
+              "汤方",
+              "连汤",
+              "黄连"
+            ],
+            "topic_consistency": "expanded_formula_anchor",
+            "topic_anchor": "葛根黄芩黄连汤方",
+            "linked_main_passages": [
+              {
+                "main_passage_record_id": "safe:main_passages:ZJSHL-CH-009-P-0016",
+                "passage_id": "ZJSHL-CH-009-P-0016",
+                "evidence_level": "B",
+                "display_allowed": "secondary"
+              },
+              {
+                "main_passage_record_id": "safe:main_passages:ZJSHL-CH-009-P-0017",
+                "passage_id": "ZJSHL-CH-009-P-0017",
+                "evidence_level": "A",
+                "display_allowed": "primary"
+              },
+              {
+                "main_passage_record_id": "safe:main_passages:ZJSHL-CH-009-P-0019",
+                "passage_id": "ZJSHL-CH-009-P-0019",
+                "evidence_level": "A",
+                "display_allowed": "primary"
+              }
+            ]
+          },
+          {
+            "chunk_record_id": "safe:chunks:ZJSHL-CK-F-0049",
+            "chunk_score": 901.586799,
+            "matched_terms": [
+              "黄连汤方",
+              "连汤方",
+              "黄连汤",
+              "汤方",
+              "连汤",
+              "黄连"
+            ],
+            "topic_consistency": "exact_formula_anchor",
+            "topic_anchor": "黄连汤方",
+            "linked_main_passages": [
+              {
+                "main_passage_record_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
+                "passage_id": "ZJSHL-CH-010-P-0145",
+                "evidence_level": "A",
+                "display_allowed": "primary"
+              },
+              {
+                "main_passage_record_id": "safe:main_passages:ZJSHL-CH-010-P-0146",
+                "passage_id": "ZJSHL-CH-010-P-0146",
+                "evidence_level": "A",
+                "display_allowed": "primary"
+              },
+              {
+                "main_passage_record_id": "safe:main_passages:ZJSHL-CH-010-P-0147",
+                "passage_id": "ZJSHL-CH-010-P-0147",
+                "evidence_level": "A",
+                "display_allowed": "primary"
+              },
+              {
+                "main_passage_record_id": "safe:main_passages:ZJSHL-CH-010-P-0148",
+                "passage_id": "ZJSHL-CH-010-P-0148",
+                "evidence_level": "A",
+                "display_allowed": "primary"
+              }
+            ]
+          }
+        ],
+        "blocked_sources": [
+          "annotation_links"
+        ],
+        "used_sources": [
+          "records_main_passages",
+          "records_passages",
+          "records_chunks"
+        ],
+        "raw_candidate_count": 6,
+        "precision_profile": "tight_primary",
+        "query_theme": {
+          "type": "formula_name",
+          "anchor": "黄连汤方",
+          "normalized_anchor": "黄连汤"
+        },
+        "annotation_links_disabled": true,
+        "dense_models": {
+          "embed_model": "BAAI/bge-small-zh-v1.5",
+          "rerank_model": "BAAI/bge-reranker-base",
+          "rerank_device": "cpu"
+        },
+        "sparse_top_candidates": [
+          {
+            "record_id": "safe:chunks:ZJSHL-CK-F-0049",
+            "source_object": "chunks",
+            "chapter_id": "ZJSHL-CH-010",
+            "topic_consistency": "exact_formula_anchor",
+            "sparse_score": 158.5,
+            "text_preview": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。 味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温 上热..."
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
+            "source_object": "main_passages",
+            "chapter_id": "ZJSHL-CH-010",
+            "topic_consistency": "exact_formula_anchor",
+            "sparse_score": 157.5,
+            "text_preview": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。"
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-010-P-0145",
+            "source_object": "passages",
+            "chapter_id": "ZJSHL-CH-010",
+            "topic_consistency": "exact_formula_anchor",
+            "sparse_score": 154.5,
+            "text_preview": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。"
+          },
+          {
+            "record_id": "safe:chunks:ZJSHL-CK-F-0009",
+            "source_object": "chunks",
+            "chapter_id": "ZJSHL-CH-009",
+            "topic_consistency": "expanded_formula_anchor",
+            "sparse_score": 116.5,
+            "text_preview": "葛根黄芩黄连汤方：赵本芩、连互易 葛根半斤 甘草二两，炙。味甘平 黄芩二，赵本作「三」两。味苦寒 黄连三两。味苦寒 上四味，以水八升，先煮葛根，减二升，内诸药，..."
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0016",
+            "source_object": "main_passages",
+            "chapter_id": "ZJSHL-CH-009",
+            "topic_consistency": "expanded_formula_anchor",
+            "sparse_score": 114.5,
+            "text_preview": "葛根黄芩黄连汤方：赵本芩、连互易"
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-009-P-0016",
+            "source_object": "passages",
+            "chapter_id": "ZJSHL-CH-009",
+            "topic_consistency": "expanded_formula_anchor",
+            "sparse_score": 112.5,
+            "text_preview": "葛根黄芩黄连汤方：赵本芩、连互易"
+          }
+        ],
+        "dense_top_candidates": {
+          "dense_chunks": [
+            {
+              "record_id": "safe:chunks:ZJSHL-CK-F-0049",
+              "source_object": "chunks",
+              "chapter_id": "ZJSHL-CH-010",
+              "topic_consistency": "exact_formula_anchor",
+              "dense_score": 0.686211,
+              "text_preview": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。 味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温 上热..."
+            },
+            {
+              "record_id": "safe:chunks:ZJSHL-CK-F-0009",
+              "source_object": "chunks",
+              "chapter_id": "ZJSHL-CH-009",
+              "topic_consistency": "expanded_formula_anchor",
+              "dense_score": 0.610976,
+              "text_preview": "葛根黄芩黄连汤方：赵本芩、连互易 葛根半斤 甘草二两，炙。味甘平 黄芩二，赵本作「三」两。味苦寒 黄连三两。味苦寒 上四味，以水八升，先煮葛根，减二升，内诸药，..."
+            },
+            {
+              "record_id": "safe:chunks:ZJSHL-CK-M-0493",
+              "source_object": "chunks",
+              "chapter_id": "ZJSHL-CH-010",
+              "topic_consistency": "formula_query_off_topic",
+              "dense_score": 0.564709,
+              "text_preview": "苦以泄之，辛以散之；黄连栝蒌实医统本有「之」字苦寒以泄热，半夏之辛以散结。"
+            },
+            {
+              "record_id": "safe:chunks:ZJSHL-CK-F-0064",
+              "source_object": "chunks",
+              "chapter_id": "ZJSHL-CH-014",
+              "topic_consistency": "different_formula_anchor",
+              "dense_score": 0.643123,
+              "text_preview": "黄连阿胶汤方：黄连四两。苦寒 黄芩一。赵本作二，两。苦寒 芍药二两。酸平 鸡子黄二枚。甘温 阿胶三两。赵本注：一云三挺。甘温"
+            },
+            {
+              "record_id": "safe:chunks:ZJSHL-CK-F-0080",
+              "source_object": "chunks",
+              "chapter_id": "ZJSHL-CH-015",
+              "topic_consistency": "different_formula_anchor",
+              "dense_score": 0.636104,
+              "text_preview": "乾姜黄连黄芩赵本作「黄芩黄连」人参汤方：乾姜辛热 黄连苦寒 黄芩苦寒 人参各三两。甘温"
+            },
+            {
+              "record_id": "safe:chunks:ZJSHL-CK-F-0043",
+              "source_object": "chunks",
+              "chapter_id": "ZJSHL-CH-010",
+              "topic_consistency": "different_formula_anchor",
+              "dense_score": 0.625284,
+              "text_preview": "大黄黄连泻心汤方：大黄二两。味苦寒 黄连一两。味苦寒 《内经》曰：火热受邪，心病生焉。苦入心，寒除热。大黄、黄连之苦寒，以导泻心下之虚热。但以麻沸汤渍服者，取其..."
+            }
+          ],
+          "dense_main_passages": [
+            {
+              "record_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
+              "source_object": "main_passages",
+              "chapter_id": "ZJSHL-CH-010",
+              "topic_consistency": "exact_formula_anchor",
+              "dense_score": 0.701662,
+              "text_preview": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。"
+            },
+            {
+              "record_id": "safe:main_passages:ZJSHL-CH-009-P-0016",
+              "source_object": "main_passages",
+              "chapter_id": "ZJSHL-CH-009",
+              "topic_consistency": "expanded_formula_anchor",
+              "dense_score": 0.632304,
+              "text_preview": "葛根黄芩黄连汤方：赵本芩、连互易"
+            },
+            {
+              "record_id": "safe:main_passages:ZJSHL-CH-014-P-0074",
+              "source_object": "main_passages",
+              "chapter_id": "ZJSHL-CH-014",
+              "topic_consistency": "different_formula_anchor",
+              "dense_score": 0.655395,
+              "text_preview": "黄连阿胶汤方：黄连四两。苦寒 黄芩一。赵本作二，两。苦寒 芍药二两。酸平 鸡子黄二枚。甘温"
+            },
+            {
+              "record_id": "safe:main_passages:ZJSHL-CH-010-P-0085",
+              "source_object": "main_passages",
+              "chapter_id": "ZJSHL-CH-010",
+              "topic_consistency": "different_formula_anchor",
+              "dense_score": 0.646392,
+              "text_preview": "大黄黄连泻心汤方：大黄二两。味苦寒 黄连一两。味苦寒"
+            },
+            {
+              "record_id": "safe:main_passages:ZJSHL-CH-015-P-0278",
+              "source_object": "main_passages",
+              "chapter_id": "ZJSHL-CH-015",
+              "topic_consistency": "different_formula_anchor",
+              "dense_score": 0.636104,
+              "text_preview": "乾姜黄连黄芩赵本作「黄芩黄连」人参汤方：乾姜辛热 黄连苦寒 黄芩苦寒 人参各三两。甘温"
+            },
+            {
+              "record_id": "safe:main_passages:ZJSHL-CH-009-P-0022",
+              "source_object": "main_passages",
+              "chapter_id": "ZJSHL-CH-009",
+              "topic_consistency": "different_formula_anchor",
+              "dense_score": 0.626937,
+              "text_preview": "麻黄汤方：麻黄三两，去节。味甘温 桂枝二，医统本作三两，去皮。味辛热 甘草一两，炙。味甘平"
+            }
+          ]
+        },
+        "fusion_top_candidates": [
+          {
+            "record_id": "safe:chunks:ZJSHL-CK-F-0049",
+            "source_object": "chunks",
+            "topic_consistency": "exact_formula_anchor",
+            "rrf_score": 0.032787,
+            "stage_sources": [
+              "sparse",
+              "dense_chunks"
+            ]
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
+            "source_object": "main_passages",
+            "topic_consistency": "exact_formula_anchor",
+            "rrf_score": 0.032522,
+            "stage_sources": [
+              "sparse",
+              "dense_main_passages"
+            ]
+          },
+          {
+            "record_id": "safe:chunks:ZJSHL-CK-F-0009",
+            "source_object": "chunks",
+            "topic_consistency": "expanded_formula_anchor",
+            "rrf_score": 0.031754,
+            "stage_sources": [
+              "sparse",
+              "dense_chunks"
+            ]
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0016",
+            "source_object": "main_passages",
+            "topic_consistency": "expanded_formula_anchor",
+            "rrf_score": 0.031514,
+            "stage_sources": [
+              "sparse",
+              "dense_main_passages"
+            ]
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-010-P-0145",
+            "source_object": "passages",
+            "topic_consistency": "exact_formula_anchor",
+            "rrf_score": 0.015873,
+            "stage_sources": [
+              "sparse"
+            ]
+          },
+          {
+            "record_id": "safe:chunks:ZJSHL-CK-M-0493",
+            "source_object": "chunks",
+            "topic_consistency": "formula_query_off_topic",
+            "rrf_score": 0.015873,
+            "stage_sources": [
+              "dense_chunks"
+            ]
+          }
+        ],
+        "rerank_top_candidates": [
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0085",
+            "source_object": "main_passages",
+            "topic_consistency": "different_formula_anchor",
+            "rerank_score": 0.729054,
+            "combined_score": 739.28042
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-014-P-0074",
+            "source_object": "main_passages",
+            "topic_consistency": "different_formula_anchor",
+            "rerank_score": 0.728709,
+            "combined_score": 739.050252
+          },
+          {
+            "record_id": "safe:chunks:ZJSHL-CK-F-0064",
+            "source_object": "chunks",
+            "topic_consistency": "different_formula_anchor",
+            "rerank_score": 0.728164,
+            "combined_score": 739.35773
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0016",
+            "source_object": "main_passages",
+            "topic_consistency": "expanded_formula_anchor",
+            "rerank_score": 0.728036,
+            "combined_score": 854.210405
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-009-P-0016",
+            "source_object": "passages",
+            "topic_consistency": "expanded_formula_anchor",
+            "rerank_score": 0.728036,
+            "combined_score": 844.051152
+          },
+          {
+            "record_id": "safe:chunks:ZJSHL-CK-F-0037",
+            "source_object": "chunks",
+            "topic_consistency": "different_formula_anchor",
+            "rerank_score": 0.728004,
+            "combined_score": 738.804748
+          }
+        ]
+      },
+      "mode": "strong",
+      "mode_reason": "基于主证据回答，并附带辅助说明",
+      "runtime_risk_flags": [],
+      "annotation_links_enabled": false,
+      "example_id": "strong_chunk_backref",
+      "expected_mode": "strong"
+    },
+    {
+      "query_request": {
+        "query_text": "烧针益阳而损阴是什么意思？",
+        "query_text_normalized": "烧针益阳而损阴",
+        "query_theme": {
+          "type": "generic",
+          "anchor": "烧针益阳而损阴",
+          "normalized_anchor": "烧针益阳而损阴"
+        },
+        "target_mode": "strong_first",
+        "precision_profile": "tight_primary",
+        "allow_levels": [
+          "A",
+          "B",
+          "C"
+        ],
+        "blocked_sources": [
+          "annotation_links"
+        ],
+        "source_priority": [
+          "safe_chunks",
+          "safe_main_passages_primary",
+          "safe_main_passages_secondary",
+          "full_annotations_raw",
+          "full_passages_ledger",
+          "ambiguous_related_material"
+        ],
+        "candidate_budget": {
+          "total_limit": 24,
+          "per_source_soft_limit": {
+            "safe_chunks": 8,
+            "safe_main_passages_primary": 6,
+            "safe_main_passages_secondary": 4,
+            "full_annotations_raw": 3,
+            "full_passages_ledger": 2,
+            "ambiguous_related_material": 1
+          }
+        },
+        "scope_filters": {
+          "book_id": "ZJSHL",
+          "chapter_id": null
+        },
+        "retrieval_strategy": {
+          "type": "hybrid_rrf_rerank",
+          "sparse_top_k": 20,
+          "dense_chunk_top_k": 20,
+          "dense_main_top_k": 12,
+          "fusion_top_k": 24,
+          "rerank_top_n": 18,
+          "rrf_k": 60,
+          "embed_model": "BAAI/bge-small-zh-v1.5",
+          "rerank_model": "BAAI/bge-reranker-base",
+          "rerank_device": "cpu"
+        }
+      },
+      "raw_candidates": [
+        {
+          "retrieval_entry_id": "full:annotations:ZJSHL-CH-003-P-0016",
+          "record_table": "records_annotations",
+          "record_id": "full:annotations:ZJSHL-CH-003-P-0016",
+          "source_record_id": "ZJSHL-CH-003-P-0016",
+          "dataset_variant": "full",
+          "source_object": "annotations",
+          "source_type": "annotation",
+          "retrieval_text": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+          "normalized_text": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+          "book_id": "ZJSHL",
+          "chapter_id": "ZJSHL-CH-003",
+          "chapter_name": "辨脉法第一",
+          "evidence_level": "B",
+          "display_allowed": "secondary",
+          "risk_flag": "[\"annotation_unlinked\"]",
+          "requires_disclaimer": 1,
+          "default_weight_tier": "medium_low",
+          "policy_source_id": "full_annotations_raw",
+          "backref_target_type": "none",
+          "backref_target_ids_json": "[]",
+          "text_match_score": 189.0,
+          "weight_bonus": 3.0,
+          "precision_adjustment": 0.0,
+          "matched_terms": [
+            "烧针益阳而损阴",
+            "烧针益阳",
+            "益阳而损",
+            "针益阳而",
+            "阳而损阴",
+            "烧针益",
+            "益阳而",
+            "而损阴",
+            "针益阳",
+            "阳而损",
+            "损阴",
+            "烧针"
+          ],
+          "topic_anchor": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+          "topic_consistency": "neutral",
+          "primary_allowed": true,
+          "primary_block_reason": null,
+          "sparse_score": 192.0,
+          "dense_score": 0.0,
+          "dense_rank_score": 0.0,
+          "rrf_score": 0.01639344262295082,
+          "rerank_raw_score": 0.998352,
+          "rerank_score": 0.730734,
+          "combined_score": 927.373344,
+          "stage_sources": [
+            "sparse"
+          ],
+          "stage_ranks": {
+            "sparse": 1
+          }
+        },
+        {
+          "retrieval_entry_id": "full:passages:ZJSHL-CH-003-P-0016",
+          "record_table": "records_passages",
+          "record_id": "full:passages:ZJSHL-CH-003-P-0016",
+          "source_record_id": "ZJSHL-CH-003-P-0016",
+          "dataset_variant": "full",
+          "source_object": "passages",
+          "source_type": "ledger_text",
+          "retrieval_text": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+          "normalized_text": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+          "book_id": "ZJSHL",
+          "chapter_id": "ZJSHL-CH-003",
+          "chapter_name": "辨脉法第一",
+          "evidence_level": "C",
+          "display_allowed": "risk_only",
+          "risk_flag": "[\"ledger_mixed_roles\",\"ambiguous_source\"]",
+          "requires_disclaimer": 1,
+          "default_weight_tier": "low",
+          "policy_source_id": "full_passages_ledger",
+          "backref_target_type": "none",
+          "backref_target_ids_json": "[]",
+          "text_match_score": 189.0,
+          "weight_bonus": 2.0,
+          "precision_adjustment": 0.0,
+          "matched_terms": [
+            "烧针益阳而损阴",
+            "烧针益阳",
+            "益阳而损",
+            "针益阳而",
+            "阳而损阴",
+            "烧针益",
+            "益阳而",
+            "而损阴",
+            "针益阳",
+            "阳而损",
+            "损阴",
+            "烧针"
+          ],
+          "topic_anchor": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+          "topic_consistency": "neutral",
+          "primary_allowed": true,
+          "primary_block_reason": null,
+          "sparse_score": 191.0,
+          "dense_score": 0.0,
+          "dense_rank_score": 0.0,
+          "rrf_score": 0.016129032258064516,
+          "rerank_raw_score": 0.998352,
+          "rerank_score": 0.730734,
+          "combined_score": 925.346903,
+          "stage_sources": [
+            "sparse"
+          ],
+          "stage_ranks": {
+            "sparse": 2
+          }
+        },
+        {
+          "retrieval_entry_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0016",
+          "record_table": "risk_registry_ambiguous",
+          "record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0016",
+          "source_record_id": "ZJSHL-CH-003-P-0016",
+          "dataset_variant": "full",
+          "source_object": "ambiguous_passages",
+          "source_type": "risk_registry",
+          "retrieval_text": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+          "normalized_text": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+          "book_id": "ZJSHL",
+          "chapter_id": "ZJSHL-CH-003",
+          "chapter_name": "辨脉法第一",
+          "evidence_level": "C",
+          "display_allowed": "risk_only",
+          "risk_flag": "[\"ambiguous_source\"]",
+          "requires_disclaimer": 1,
+          "default_weight_tier": "lowest",
+          "policy_source_id": "ambiguous_related_material",
+          "backref_target_type": "passages",
+          "backref_target_ids_json": "[\"ZJSHL-CH-003-P-0016\"]",
+          "text_match_score": 189.0,
+          "weight_bonus": 1.0,
+          "precision_adjustment": 0.0,
+          "matched_terms": [
+            "烧针益阳而损阴",
+            "烧针益阳",
+            "益阳而损",
+            "针益阳而",
+            "阳而损阴",
+            "烧针益",
+            "益阳而",
+            "而损阴",
+            "针益阳",
+            "阳而损",
+            "损阴",
+            "烧针"
+          ],
+          "topic_anchor": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+          "topic_consistency": "neutral",
+          "primary_allowed": true,
+          "primary_block_reason": null,
+          "sparse_score": 190.0,
+          "dense_score": 0.0,
+          "dense_rank_score": 0.0,
+          "rrf_score": 0.015873015873015872,
+          "rerank_raw_score": 0.998352,
+          "rerank_score": 0.730734,
+          "combined_score": 923.321302,
+          "stage_sources": [
+            "sparse"
+          ],
+          "stage_ranks": {
+            "sparse": 3
+          }
+        },
+        {
+          "retrieval_entry_id": "safe:chunks:ZJSHL-CK-M-0461",
+          "record_table": "records_chunks",
+          "record_id": "safe:chunks:ZJSHL-CK-M-0461",
+          "source_record_id": "ZJSHL-CK-M-0461",
+          "dataset_variant": "safe",
+          "source_object": "chunks",
+          "source_type": "chunk",
+          "retrieval_text": "烧针发汗，则损阴血，而惊动心气。针处被寒，气聚而成核。心气因惊而虚，肾气乘寒气而动，发为奔豚。《金匮要略》曰：病有奔豚，从惊发得之。肾气欲上乘心，故其气从少腹上冲心也。先灸核上，以散其寒，与桂枝加桂汤，以泄奔豚之气。",
+          "normalized_text": "烧针发汗，则损阴血，而惊动心气。针处被寒，气聚而成核。心气因惊而虚，肾气乘寒气而动，发为奔豚。《金匮要略》曰：病有奔豚，从惊发得之。肾气欲上乘心，故其气从少腹上冲心也。先灸核上，以散其寒，与桂枝加桂汤，以泄奔豚之气。",
+          "book_id": "ZJSHL",
+          "chapter_id": "ZJSHL-CH-009",
+          "chapter_name": "辨太阳病脉证并治第六",
+          "evidence_level": "C",
+          "display_allowed": "preview_only",
+          "risk_flag": "[]",
+          "requires_disclaimer": 0,
+          "default_weight_tier": "highest",
+          "policy_source_id": "safe_chunks",
+          "backref_target_type": "main_passages",
+          "backref_target_ids_json": "[\"ZJSHL-CH-009-P-0295\"]",
+          "text_match_score": 0.0,
+          "weight_bonus": 6.0,
+          "precision_adjustment": 0.0,
+          "matched_terms": [],
+          "topic_anchor": "烧针发汗则损阴血而惊动心气针处被寒气聚而成核心气因惊而虚肾气乘寒气而动发为奔豚金匮要略曰",
+          "topic_consistency": "neutral",
+          "primary_allowed": false,
+          "primary_block_reason": "dense_only_primary_blocked",
+          "sparse_score": 0.0,
+          "dense_score": 0.615967,
+          "dense_rank_score": 0.615967,
+          "rrf_score": 0.01639344262295082,
+          "rerank_raw_score": 0.981945,
+          "rerank_score": 0.727494,
+          "combined_score": 741.293014,
+          "stage_sources": [
+            "dense_chunks"
+          ],
+          "stage_ranks": {
+            "dense_chunks": 1
+          }
+        },
+        {
+          "retrieval_entry_id": "safe:main_passages:ZJSHL-CH-009-P-0295",
+          "record_table": "records_main_passages",
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0295",
+          "source_record_id": "ZJSHL-CH-009-P-0295",
+          "dataset_variant": "safe",
+          "source_object": "main_passages",
+          "source_type": "main_text",
+          "retrieval_text": "烧针发汗，则损阴血，而惊动心气。针处被寒，气聚而成核。心气因惊而虚，肾气乘寒气而动，发为奔豚。《金匮要略》曰：病有奔豚，从惊发得之。肾气欲上乘心，故其气从少腹上冲心也。先灸核上，以散其寒，与桂枝加桂汤，以泄奔豚之气。",
+          "normalized_text": "烧针发汗，则损阴血，而惊动心气。针处被寒，气聚而成核。心气因惊而虚，肾气乘寒气而动，发为奔豚。《金匮要略》曰：病有奔豚，从惊发得之。肾气欲上乘心，故其气从少腹上冲心也。先灸核上，以散其寒，与桂枝加桂汤，以泄奔豚之气。",
+          "book_id": "ZJSHL",
+          "chapter_id": "ZJSHL-CH-009",
+          "chapter_name": "辨太阳病脉证并治第六",
+          "evidence_level": "A",
+          "display_allowed": "primary",
+          "risk_flag": "[]",
+          "requires_disclaimer": 0,
+          "default_weight_tier": "high",
+          "policy_source_id": "safe_main_passages_primary",
+          "backref_target_type": "none",
+          "backref_target_ids_json": "[]",
+          "text_match_score": 0.0,
+          "weight_bonus": 5.0,
+          "precision_adjustment": 0.0,
+          "matched_terms": [],
+          "topic_anchor": "烧针发汗则损阴血而惊动心气针处被寒气聚而成核心气因惊而虚肾气乘寒气而动发为奔豚金匮要略曰",
+          "topic_consistency": "neutral",
+          "primary_allowed": false,
+          "primary_block_reason": "dense_only_primary_blocked",
+          "sparse_score": 0.0,
+          "dense_score": 0.615967,
+          "dense_rank_score": 0.615967,
+          "rrf_score": 0.016129032258064516,
+          "rerank_raw_score": 0.981945,
+          "rerank_score": 0.727494,
+          "combined_score": 740.266573,
+          "stage_sources": [
+            "dense_main_passages"
+          ],
+          "stage_ranks": {
+            "dense_main_passages": 2
+          }
+        },
+        {
+          "retrieval_entry_id": "safe:chunks:ZJSHL-CK-M-0522",
+          "record_table": "records_chunks",
+          "record_id": "safe:chunks:ZJSHL-CK-M-0522",
+          "source_record_id": "ZJSHL-CK-M-0522",
+          "dataset_variant": "safe",
+          "source_object": "chunks",
+          "source_type": "chunk",
+          "retrieval_text": "太阳病，医发汗，遂发热恶寒，因复下之，心下痞，表里俱虚，阴阳气并竭，无阳则阴独，复加烧针，因胸烦，面色青黄，肤 者，难治；今色微黄，手足温者，易愈。",
+          "normalized_text": "太阳病，医发汗，遂发热恶寒，因复下之，心下痞，表里俱虚，阴阳气并竭，无阳则阴独，复加烧针，因胸烦，面色青黄，肤 者，难治；今色微黄，手足温者，易愈。",
+          "book_id": "ZJSHL",
+          "chapter_id": "ZJSHL-CH-010",
+          "chapter_name": "辨太阳病脉证并治法第七",
+          "evidence_level": "C",
+          "display_allowed": "preview_only",
+          "risk_flag": "[]",
+          "requires_disclaimer": 0,
+          "default_weight_tier": "highest",
+          "policy_source_id": "safe_chunks",
+          "backref_target_type": "main_passages",
+          "backref_target_ids_json": "[\"ZJSHL-CH-010-P-0080\"]",
+          "text_match_score": 0.0,
+          "weight_bonus": 6.0,
+          "precision_adjustment": 0.0,
+          "matched_terms": [],
+          "topic_anchor": "太阳病医发汗遂发热恶寒因复下之心下痞表里俱虚阴阳气并竭无阳则阴独复加烧针因胸烦面色青黄肤者难治今色微黄手足温者易愈",
+          "topic_consistency": "neutral",
+          "primary_allowed": false,
+          "primary_block_reason": "dense_only_primary_blocked",
+          "sparse_score": 0.0,
+          "dense_score": 0.588892,
+          "dense_rank_score": 0.588892,
+          "rrf_score": 0.015384615384615385,
+          "rerank_raw_score": 0.507345,
+          "rerank_score": 0.624184,
+          "combined_score": 637.611382,
+          "stage_sources": [
+            "dense_chunks"
+          ],
+          "stage_ranks": {
+            "dense_chunks": 5
+          }
+        },
+        {
+          "retrieval_entry_id": "safe:main_passages:ZJSHL-CH-010-P-0080",
+          "record_table": "records_main_passages",
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0080",
+          "source_record_id": "ZJSHL-CH-010-P-0080",
+          "dataset_variant": "safe",
+          "source_object": "main_passages",
+          "source_type": "main_text",
+          "retrieval_text": "太阳病，医发汗，遂发热恶寒，因复下之，心下痞，表里俱虚，阴阳气并竭，无阳则阴独，复加烧针，因胸烦，面色青黄，肤 者，难治；今色微黄，手足温者，易愈。",
+          "normalized_text": "太阳病，医发汗，遂发热恶寒，因复下之，心下痞，表里俱虚，阴阳气并竭，无阳则阴独，复加烧针，因胸烦，面色青黄，肤 者，难治；今色微黄，手足温者，易愈。",
+          "book_id": "ZJSHL",
+          "chapter_id": "ZJSHL-CH-010",
+          "chapter_name": "辨太阳病脉证并治法第七",
+          "evidence_level": "A",
+          "display_allowed": "primary",
+          "risk_flag": "[]",
+          "requires_disclaimer": 0,
+          "default_weight_tier": "high",
+          "policy_source_id": "safe_main_passages_primary",
+          "backref_target_type": "none",
+          "backref_target_ids_json": "[]",
+          "text_match_score": 0.0,
+          "weight_bonus": 5.0,
+          "precision_adjustment": 0.0,
+          "matched_terms": [],
+          "topic_anchor": "太阳病医发汗遂发热恶寒因复下之心下痞表里俱虚阴阳气并竭无阳则阴独复加烧针因胸烦面色青黄肤者难治今色微黄手足温者易愈",
+          "topic_consistency": "neutral",
+          "primary_allowed": false,
+          "primary_block_reason": "dense_only_primary_blocked",
+          "sparse_score": 0.0,
+          "dense_score": 0.588892,
+          "dense_rank_score": 0.588892,
+          "rrf_score": 0.015151515151515152,
+          "rerank_raw_score": 0.507345,
+          "rerank_score": 0.624184,
+          "combined_score": 636.588072,
+          "stage_sources": [
+            "dense_main_passages"
+          ],
+          "stage_ranks": {
+            "dense_main_passages": 6
+          }
+        }
+      ],
+      "primary_evidence": [],
+      "secondary_evidence": [
+        {
+          "record_id": "full:annotations:ZJSHL-CH-003-P-0016",
+          "source_object": "annotations",
+          "evidence_level": "B",
+          "display_allowed": "secondary",
+          "risk_flag": [
+            "annotation_unlinked"
+          ],
+          "default_weight_tier": "medium_low",
+          "combined_score": 927.373344,
+          "text_match_score": 189.0,
+          "matched_terms": [
+            "烧针益阳而损阴",
+            "烧针益阳",
+            "益阳而损",
+            "针益阳而",
+            "阳而损阴",
+            "烧针益",
+            "益阳而",
+            "而损阴",
+            "针益阳",
+            "阳而损",
+            "损阴",
+            "烧针"
+          ],
+          "text_preview": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也...",
+          "chapter_id": "ZJSHL-CH-003",
+          "chapter_name": "辨脉法第一",
+          "requires_disclaimer": true,
+          "policy_source_id": "full_annotations_raw",
+          "topic_anchor": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+          "topic_consistency": "neutral",
+          "retrieval_paths": [
+            {
+              "type": "direct"
+            }
+          ]
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0295",
+          "source_object": "main_passages",
+          "evidence_level": "A",
+          "display_allowed": "primary",
+          "risk_flag": [
+            "topic_mismatch_demoted"
+          ],
+          "default_weight_tier": "high",
+          "combined_score": 741.793,
+          "text_match_score": 0.0,
+          "matched_terms": [],
+          "text_preview": "烧针发汗，则损阴血，而惊动心气。针处被寒，气聚而成核。心气因惊而虚，肾气乘寒气而动，发为奔豚。《金匮要略》曰：病有奔豚，从惊发得之。肾气欲上乘心，故其气从少腹上...",
+          "chapter_id": "ZJSHL-CH-009",
+          "chapter_name": "辨太阳病脉证并治第六",
+          "requires_disclaimer": false,
+          "policy_source_id": "safe_main_passages_primary",
+          "topic_anchor": "烧针发汗则损阴血而惊动心气针处被寒气聚而成核心气因惊而虚肾气乘寒气而动发为奔豚金匮要略曰",
+          "topic_consistency": "neutral",
+          "retrieval_paths": [
+            {
+              "type": "chunk_backref",
+              "chunk_record_id": "safe:chunks:ZJSHL-CK-M-0461",
+              "chunk_score": 741.293014
+            },
+            {
+              "type": "direct"
+            }
+          ]
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0080",
+          "source_object": "main_passages",
+          "evidence_level": "A",
+          "display_allowed": "primary",
+          "risk_flag": [
+            "topic_mismatch_demoted"
+          ],
+          "default_weight_tier": "high",
+          "combined_score": 638.111,
+          "text_match_score": 0.0,
+          "matched_terms": [],
+          "text_preview": "太阳病，医发汗，遂发热恶寒，因复下之，心下痞，表里俱虚，阴阳气并竭，无阳则阴独，复加烧针，因胸烦，面色青黄，肤 者，难治；今色微黄，手足温者，易愈。",
+          "chapter_id": "ZJSHL-CH-010",
+          "chapter_name": "辨太阳病脉证并治法第七",
+          "requires_disclaimer": false,
+          "policy_source_id": "safe_main_passages_primary",
+          "topic_anchor": "太阳病医发汗遂发热恶寒因复下之心下痞表里俱虚阴阳气并竭无阳则阴独复加烧针因胸烦面色青黄肤者难治今色微黄手足温者易愈",
+          "topic_consistency": "neutral",
+          "retrieval_paths": [
+            {
+              "type": "chunk_backref",
+              "chunk_record_id": "safe:chunks:ZJSHL-CK-M-0522",
+              "chunk_score": 637.611382
+            },
+            {
+              "type": "direct"
+            }
+          ]
+        }
+      ],
+      "risk_materials": [
+        {
+          "record_id": "full:passages:ZJSHL-CH-003-P-0016",
+          "source_object": "passages",
+          "evidence_level": "C",
+          "display_allowed": "risk_only",
+          "risk_flag": [
+            "ledger_mixed_roles",
+            "ambiguous_source"
+          ],
+          "default_weight_tier": "low",
+          "combined_score": 925.346903,
+          "text_match_score": 189.0,
+          "matched_terms": [
+            "烧针益阳而损阴",
+            "烧针益阳",
+            "益阳而损",
+            "针益阳而",
+            "阳而损阴",
+            "烧针益",
+            "益阳而",
+            "而损阴",
+            "针益阳",
+            "阳而损",
+            "损阴",
+            "烧针"
+          ],
+          "text_preview": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也...",
+          "chapter_id": "ZJSHL-CH-003",
+          "chapter_name": "辨脉法第一",
+          "requires_disclaimer": true,
+          "policy_source_id": "full_passages_ledger",
+          "topic_anchor": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+          "topic_consistency": "neutral",
+          "retrieval_paths": [
+            {
+              "type": "direct"
+            }
+          ]
+        },
+        {
+          "record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0016",
+          "source_object": "ambiguous_passages",
+          "evidence_level": "C",
+          "display_allowed": "risk_only",
+          "risk_flag": [
+            "ambiguous_source"
+          ],
+          "default_weight_tier": "lowest",
+          "combined_score": 923.321302,
+          "text_match_score": 189.0,
+          "matched_terms": [
+            "烧针益阳而损阴",
+            "烧针益阳",
+            "益阳而损",
+            "针益阳而",
+            "阳而损阴",
+            "烧针益",
+            "益阳而",
+            "而损阴",
+            "针益阳",
+            "阳而损",
+            "损阴",
+            "烧针"
+          ],
+          "text_preview": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也...",
+          "chapter_id": "ZJSHL-CH-003",
+          "chapter_name": "辨脉法第一",
+          "requires_disclaimer": true,
+          "policy_source_id": "ambiguous_related_material",
+          "topic_anchor": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+          "topic_consistency": "neutral",
+          "retrieval_paths": [
+            {
+              "type": "direct"
+            }
+          ]
+        }
+      ],
+      "retrieval_trace": {
+        "chunk_hits": [
+          {
+            "chunk_record_id": "safe:chunks:ZJSHL-CK-M-0461",
+            "chunk_score": 741.293014,
+            "matched_terms": [],
+            "topic_consistency": "neutral",
+            "topic_anchor": "烧针发汗则损阴血而惊动心气针处被寒气聚而成核心气因惊而虚肾气乘寒气而动发为奔豚金匮要略曰",
+            "linked_main_passages": [
+              {
+                "main_passage_record_id": "safe:main_passages:ZJSHL-CH-009-P-0295",
+                "passage_id": "ZJSHL-CH-009-P-0295",
+                "evidence_level": "A",
+                "display_allowed": "primary"
+              }
+            ]
+          },
+          {
+            "chunk_record_id": "safe:chunks:ZJSHL-CK-M-0522",
+            "chunk_score": 637.611382,
+            "matched_terms": [],
+            "topic_consistency": "neutral",
+            "topic_anchor": "太阳病医发汗遂发热恶寒因复下之心下痞表里俱虚阴阳气并竭无阳则阴独复加烧针因胸烦面色青黄肤者难治今色微黄手足温者易愈",
+            "linked_main_passages": [
+              {
+                "main_passage_record_id": "safe:main_passages:ZJSHL-CH-010-P-0080",
+                "passage_id": "ZJSHL-CH-010-P-0080",
+                "evidence_level": "A",
+                "display_allowed": "primary"
+              }
+            ]
+          }
+        ],
+        "blocked_sources": [
+          "annotation_links"
+        ],
+        "used_sources": [
+          "records_annotations",
+          "records_passages",
+          "risk_registry_ambiguous",
+          "records_chunks",
+          "records_main_passages"
+        ],
+        "raw_candidate_count": 7,
+        "precision_profile": "tight_primary",
+        "query_theme": {
+          "type": "generic",
+          "anchor": "烧针益阳而损阴",
+          "normalized_anchor": "烧针益阳而损阴"
+        },
+        "annotation_links_disabled": true,
+        "dense_models": {
+          "embed_model": "BAAI/bge-small-zh-v1.5",
+          "rerank_model": "BAAI/bge-reranker-base",
+          "rerank_device": "cpu"
+        },
+        "sparse_top_candidates": [
+          {
+            "record_id": "full:annotations:ZJSHL-CH-003-P-0016",
+            "source_object": "annotations",
+            "chapter_id": "ZJSHL-CH-003",
+            "topic_consistency": "neutral",
+            "sparse_score": 192.0,
+            "text_preview": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也..."
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-003-P-0016",
+            "source_object": "passages",
+            "chapter_id": "ZJSHL-CH-003",
+            "topic_consistency": "neutral",
+            "sparse_score": 191.0,
+            "text_preview": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也..."
+          },
+          {
+            "record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0016",
+            "source_object": "ambiguous_passages",
+            "chapter_id": "ZJSHL-CH-003",
+            "topic_consistency": "neutral",
+            "sparse_score": 190.0,
+            "text_preview": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也..."
+          }
+        ],
+        "dense_top_candidates": {
+          "dense_chunks": [
+            {
+              "record_id": "safe:chunks:ZJSHL-CK-M-0461",
+              "source_object": "chunks",
+              "chapter_id": "ZJSHL-CH-009",
+              "topic_consistency": "neutral",
+              "dense_score": 0.615967,
+              "text_preview": "烧针发汗，则损阴血，而惊动心气。针处被寒，气聚而成核。心气因惊而虚，肾气乘寒气而动，发为奔豚。《金匮要略》曰：病有奔豚，从惊发得之。肾气欲上乘心，故其气从少腹上..."
+            },
+            {
+              "record_id": "safe:chunks:ZJSHL-CK-M-0761",
+              "source_object": "chunks",
+              "chapter_id": "ZJSHL-CH-014",
+              "topic_consistency": "neutral",
+              "dense_score": 0.61335,
+              "text_preview": "阳有馀，以苦除之，黄芩、黄连之苦，以除热；阴不足，以甘补之，鸡黄、阿胶之甘，以补血；酸，收也，泄也，芍药之酸，收阴气而泄邪热。"
+            },
+            {
+              "record_id": "safe:chunks:ZJSHL-CK-M-0916",
+              "source_object": "chunks",
+              "chapter_id": "ZJSHL-CH-017",
+              "topic_consistency": "neutral",
+              "dense_score": 0.606447,
+              "text_preview": "伤寒，阴阳易之为病，其人身体重，少气，少腹里急，或引阴中拘挛，热上冲胸，头重不欲举，眼中生花，赵本注：「一作眵」膝胫拘急者，烧 散主之。"
+            },
+            {
+              "record_id": "safe:chunks:ZJSHL-CK-M-0048",
+              "source_object": "chunks",
+              "chapter_id": "ZJSHL-CH-003",
+              "topic_consistency": "neutral",
+              "dense_score": 0.590702,
+              "text_preview": "阳主热而色赤，阴主寒而色青。其人死也，身色青，则阴未离乎体，故曰阴气后竭。身色赤，腋下温，心下热，则阳未离乎体，故曰阳气后竭。《针经》云：医统本作「曰」人有两死..."
+            },
+            {
+              "record_id": "safe:chunks:ZJSHL-CK-M-0522",
+              "source_object": "chunks",
+              "chapter_id": "ZJSHL-CH-010",
+              "topic_consistency": "neutral",
+              "dense_score": 0.588892,
+              "text_preview": "太阳病，医发汗，遂发热恶寒，因复下之，心下痞，表里俱虚，阴阳气并竭，无阳则阴独，复加烧针，因胸烦，面色青黄，肤 者，难治；今色微黄，手足温者，易愈。"
+            },
+            {
+              "record_id": "safe:chunks:ZJSHL-CK-M-0015",
+              "source_object": "chunks",
+              "chapter_id": "ZJSHL-CH-003",
+              "topic_consistency": "neutral",
+              "dense_score": 0.583675,
+              "text_preview": "阴阳相搏，名曰动。阳动则汗出，阴动则发热。形冷、恶寒者，此三焦伤也。"
+            }
+          ],
+          "dense_main_passages": [
+            {
+              "record_id": "safe:main_passages:ZJSHL-CH-009-P-0301",
+              "source_object": "main_passages",
+              "chapter_id": "ZJSHL-CH-009",
+              "topic_consistency": "neutral",
+              "dense_score": 0.629719,
+              "text_preview": "太阳伤寒者，加温针，必惊也。"
+            },
+            {
+              "record_id": "safe:main_passages:ZJSHL-CH-009-P-0295",
+              "source_object": "main_passages",
+              "chapter_id": "ZJSHL-CH-009",
+              "topic_consistency": "neutral",
+              "dense_score": 0.615967,
+              "text_preview": "烧针发汗，则损阴血，而惊动心气。针处被寒，气聚而成核。心气因惊而虚，肾气乘寒气而动，发为奔豚。《金匮要略》曰：病有奔豚，从惊发得之。肾气欲上乘心，故其气从少腹上..."
+            },
+            {
+              "record_id": "safe:main_passages:ZJSHL-CH-014-P-0076",
+              "source_object": "main_passages",
+              "chapter_id": "ZJSHL-CH-014",
+              "topic_consistency": "neutral",
+              "dense_score": 0.61335,
+              "text_preview": "阳有馀，以苦除之，黄芩、黄连之苦，以除热；阴不足，以甘补之，鸡黄、阿胶之甘，以补血；酸，收也，泄也，芍药之酸，收阴气而泄邪热。"
+            },
+            {
+              "record_id": "safe:main_passages:ZJSHL-CH-017-P-0045",
+              "source_object": "main_passages",
+              "chapter_id": "ZJSHL-CH-017",
+              "topic_consistency": "neutral",
+              "dense_score": 0.606447,
+              "text_preview": "伤寒，阴阳易之为病，其人身体重，少气，少腹里急，或引阴中拘挛，热上冲胸，头重不欲举，眼中生花，赵本注：「一作眵」膝胫拘急者，烧 散主之。"
+            },
+            {
+              "record_id": "safe:main_passages:ZJSHL-CH-003-P-0088",
+              "source_object": "main_passages",
+              "chapter_id": "ZJSHL-CH-003",
+              "topic_consistency": "neutral",
+              "dense_score": 0.590702,
+              "text_preview": "阳主热而色赤，阴主寒而色青。其人死也，身色青，则阴未离乎体，故曰阴气后竭。身色赤，腋下温，心下热，则阳未离乎体，故曰阳气后竭。《针经》云：医统本作「曰」人有两死..."
+            },
+            {
+              "record_id": "safe:main_passages:ZJSHL-CH-010-P-0080",
+              "source_object": "main_passages",
+              "chapter_id": "ZJSHL-CH-010",
+              "topic_consistency": "neutral",
+              "dense_score": 0.588892,
+              "text_preview": "太阳病，医发汗，遂发热恶寒，因复下之，心下痞，表里俱虚，阴阳气并竭，无阳则阴独，复加烧针，因胸烦，面色青黄，肤 者，难治；今色微黄，手足温者，易愈。"
+            }
+          ]
+        },
+        "fusion_top_candidates": [
+          {
+            "record_id": "full:annotations:ZJSHL-CH-003-P-0016",
+            "source_object": "annotations",
+            "topic_consistency": "neutral",
+            "rrf_score": 0.016393,
+            "stage_sources": [
+              "sparse"
+            ]
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0301",
+            "source_object": "main_passages",
+            "topic_consistency": "neutral",
+            "rrf_score": 0.016393,
+            "stage_sources": [
+              "dense_main_passages"
+            ]
+          },
+          {
+            "record_id": "safe:chunks:ZJSHL-CK-M-0461",
+            "source_object": "chunks",
+            "topic_consistency": "neutral",
+            "rrf_score": 0.016393,
+            "stage_sources": [
+              "dense_chunks"
+            ]
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-003-P-0016",
+            "source_object": "passages",
+            "topic_consistency": "neutral",
+            "rrf_score": 0.016129,
+            "stage_sources": [
+              "sparse"
+            ]
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0295",
+            "source_object": "main_passages",
+            "topic_consistency": "neutral",
+            "rrf_score": 0.016129,
+            "stage_sources": [
+              "dense_main_passages"
+            ]
+          },
+          {
+            "record_id": "safe:chunks:ZJSHL-CK-M-0761",
+            "source_object": "chunks",
+            "topic_consistency": "neutral",
+            "rrf_score": 0.016129,
+            "stage_sources": [
+              "dense_chunks"
+            ]
+          }
+        ],
+        "rerank_top_candidates": [
+          {
+            "record_id": "full:annotations:ZJSHL-CH-003-P-0016",
+            "source_object": "annotations",
+            "topic_consistency": "neutral",
+            "rerank_score": 0.730734,
+            "combined_score": 927.373344
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-003-P-0016",
+            "source_object": "passages",
+            "topic_consistency": "neutral",
+            "rerank_score": 0.730734,
+            "combined_score": 925.346903
+          },
+          {
+            "record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0016",
+            "source_object": "ambiguous_passages",
+            "topic_consistency": "neutral",
+            "rerank_score": 0.730734,
+            "combined_score": 923.321302
+          },
+          {
+            "record_id": "safe:chunks:ZJSHL-CK-M-0461",
+            "source_object": "chunks",
+            "topic_consistency": "neutral",
+            "rerank_score": 0.727494,
+            "combined_score": 741.293014
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0295",
+            "source_object": "main_passages",
+            "topic_consistency": "neutral",
+            "rerank_score": 0.727494,
+            "combined_score": 740.266573
+          },
+          {
+            "record_id": "safe:chunks:ZJSHL-CK-M-0522",
+            "source_object": "chunks",
+            "topic_consistency": "neutral",
+            "rerank_score": 0.624184,
+            "combined_score": 637.611382
+          }
+        ]
+      },
+      "mode": "weak_with_review_notice",
+      "mode_reason": "仅命中辅助或风险材料，以下内容需核对",
+      "runtime_risk_flags": [
+        "strong_evidence_insufficient",
+        "annotation_unlinked",
+        "topic_mismatch_demoted",
+        "ledger_mixed_roles",
+        "ambiguous_source"
+      ],
+      "annotation_links_enabled": false,
+      "example_id": "weak_with_review_notice",
+      "expected_mode": "weak_with_review_notice"
+    },
+    {
+      "query_request": {
+        "query_text": "书中有没有提到量子纠缠？",
+        "query_text_normalized": "量子纠缠",
+        "query_theme": {
+          "type": "generic",
+          "anchor": "量子纠缠",
+          "normalized_anchor": "量子纠缠"
+        },
+        "target_mode": "strong_first",
+        "precision_profile": "tight_primary",
+        "allow_levels": [
+          "A",
+          "B",
+          "C"
+        ],
+        "blocked_sources": [
+          "annotation_links"
+        ],
+        "source_priority": [
+          "safe_chunks",
+          "safe_main_passages_primary",
+          "safe_main_passages_secondary",
+          "full_annotations_raw",
+          "full_passages_ledger",
+          "ambiguous_related_material"
+        ],
+        "candidate_budget": {
+          "total_limit": 24,
+          "per_source_soft_limit": {
+            "safe_chunks": 8,
+            "safe_main_passages_primary": 6,
+            "safe_main_passages_secondary": 4,
+            "full_annotations_raw": 3,
+            "full_passages_ledger": 2,
+            "ambiguous_related_material": 1
+          }
+        },
+        "scope_filters": {
+          "book_id": "ZJSHL",
+          "chapter_id": null
+        },
+        "retrieval_strategy": {
+          "type": "hybrid_rrf_rerank",
+          "sparse_top_k": 20,
+          "dense_chunk_top_k": 20,
+          "dense_main_top_k": 12,
+          "fusion_top_k": 24,
+          "rerank_top_n": 18,
+          "rrf_k": 60,
+          "embed_model": "BAAI/bge-small-zh-v1.5",
+          "rerank_model": "BAAI/bge-reranker-base",
+          "rerank_device": "cpu"
+        }
+      },
+      "raw_candidates": [],
+      "primary_evidence": [],
+      "secondary_evidence": [],
+      "risk_materials": [],
+      "retrieval_trace": {
+        "chunk_hits": [],
+        "blocked_sources": [
+          "annotation_links"
+        ],
+        "used_sources": [],
+        "raw_candidate_count": 0,
+        "precision_profile": "tight_primary",
+        "query_theme": {
+          "type": "generic",
+          "anchor": "量子纠缠",
+          "normalized_anchor": "量子纠缠"
+        },
+        "annotation_links_disabled": true,
+        "dense_models": {
+          "embed_model": "BAAI/bge-small-zh-v1.5",
+          "rerank_model": "BAAI/bge-reranker-base",
+          "rerank_device": "cpu"
+        },
+        "sparse_top_candidates": [],
+        "dense_top_candidates": {
+          "dense_chunks": [
+            {
+              "record_id": "safe:chunks:ZJSHL-CK-M-0193",
+              "source_object": "chunks",
+              "chapter_id": "ZJSHL-CH-006",
+              "topic_consistency": "neutral",
+              "dense_score": 0.462217,
+              "text_preview": "腠理者，津液腠泄之所，文理缝会之中也。《金匮要略》曰：腠者，是三焦通会元真之处，为血气所注；理者，是皮肤脏腑之文理也。邪客于皮肤，则邪气浮浅，易为散发，若以时治..."
+            },
+            {
+              "record_id": "safe:chunks:ZJSHL-CK-M-0566",
+              "source_object": "chunks",
+              "chapter_id": "ZJSHL-CH-010",
+              "topic_consistency": "neutral",
+              "dense_score": 0.459727,
+              "text_preview": "脉按之来缓，而赵本无「而」字时一止复来者，名曰结。又脉来动而中止，更来小数，中有还者反动，名曰结阴也；脉来动而中止，不能自还，因而复动，赵本有「者」字 名曰代阴..."
+            },
+            {
+              "record_id": "safe:chunks:ZJSHL-CK-M-0927",
+              "source_object": "chunks",
+              "chapter_id": "ZJSHL-CH-018",
+              "topic_consistency": "neutral",
+              "dense_score": 0.450991,
+              "text_preview": "夫以为疾病至急，仓卒寻按，要者难得，故重集诸可与不可方治，比之三阴三阳篇中，此易见也。又时有不止是三阴三阳，出在诸可与不可中也。"
+            },
+            {
+              "record_id": "safe:chunks:ZJSHL-CK-M-0284",
+              "source_object": "chunks",
+              "chapter_id": "ZJSHL-CH-008",
+              "topic_consistency": "neutral",
+              "dense_score": 0.449266,
+              "text_preview": "太阳病，发汗，遂漏不止，其人恶风，小便难，四支微急，难以屈伸者，桂枝加附子汤主之。赵本有「桂枝加附子汤方」详见本书卷十"
+            },
+            {
+              "record_id": "safe:chunks:ZJSHL-CK-M-0563",
+              "source_object": "chunks",
+              "chapter_id": "ZJSHL-CH-010",
+              "topic_consistency": "neutral",
+              "dense_score": 0.446959,
+              "text_preview": "复烦者，赵本有「将」字服五合，恐一升多者，宜服六七合为妙。赵本医统本并作「始」"
+            },
+            {
+              "record_id": "safe:chunks:ZJSHL-CK-M-0019",
+              "source_object": "chunks",
+              "chapter_id": "ZJSHL-CH-003",
+              "topic_consistency": "neutral",
+              "dense_score": 0.445682,
+              "text_preview": "经曰：弦则为减，以紧为实，是切之如转索无常而不散。《金匮要略》曰：脉紧如转索无常者，有宿食也。"
+            }
+          ],
+          "dense_main_passages": [
+            {
+              "record_id": "safe:main_passages:ZJSHL-CH-006-P-0093",
+              "source_object": "main_passages",
+              "chapter_id": "ZJSHL-CH-006",
+              "topic_consistency": "neutral",
+              "dense_score": 0.462217,
+              "text_preview": "腠理者，津液腠泄之所，文理缝会之中也。《金匮要略》曰：腠者，是三焦通会元真之处，为血气所注；理者，是皮肤脏腑之文理也。邪客于皮肤，则邪气浮浅，易为散发，若以时治..."
+            },
+            {
+              "record_id": "safe:main_passages:ZJSHL-CH-010-P-0174",
+              "source_object": "main_passages",
+              "chapter_id": "ZJSHL-CH-010",
+              "topic_consistency": "neutral",
+              "dense_score": 0.459727,
+              "text_preview": "脉按之来缓，而赵本无「而」字时一止复来者，名曰结。又脉来动而中止，更来小数，中有还者反动，名曰结阴也；脉来动而中止，不能自还，因而复动，赵本有「者」字 名曰代阴..."
+            },
+            {
+              "record_id": "safe:main_passages:ZJSHL-CH-021-P-0006",
+              "source_object": "main_passages",
+              "chapter_id": "ZJSHL-CH-021",
+              "topic_consistency": "neutral",
+              "dense_score": 0.457425,
+              "text_preview": "合四证，已具太阳篇中。"
+            },
+            {
+              "record_id": "safe:main_passages:ZJSHL-CH-018-P-0072",
+              "source_object": "main_passages",
+              "chapter_id": "ZJSHL-CH-018",
+              "topic_consistency": "neutral",
+              "dense_score": 0.450991,
+              "text_preview": "夫以为疾病至急，仓卒寻按，要者难得，故重集诸可与不可方治，比之三阴三阳篇中，此易见也。又时有不止是三阴三阳，出在诸可与不可中也。"
+            },
+            {
+              "record_id": "safe:main_passages:ZJSHL-CH-008-P-0236",
+              "source_object": "main_passages",
+              "chapter_id": "ZJSHL-CH-008",
+              "topic_consistency": "neutral",
+              "dense_score": 0.449266,
+              "text_preview": "太阳病，发汗，遂漏不止，其人恶风，小便难，四支微急，难以屈伸者，桂枝加附子汤主之。赵本有「桂枝加附子汤方」详见本书卷十"
+            },
+            {
+              "record_id": "safe:main_passages:ZJSHL-CH-010-P-0162",
+              "source_object": "main_passages",
+              "chapter_id": "ZJSHL-CH-010",
+              "topic_consistency": "neutral",
+              "dense_score": 0.446959,
+              "text_preview": "复烦者，赵本有「将」字服五合，恐一升多者，宜服六七合为妙。赵本医统本并作「始」"
+            }
+          ]
+        },
+        "fusion_top_candidates": [
+          {
+            "record_id": "safe:chunks:ZJSHL-CK-M-0193",
+            "source_object": "chunks",
+            "topic_consistency": "neutral",
+            "rrf_score": 0.016393,
+            "stage_sources": [
+              "dense_chunks"
+            ]
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-006-P-0093",
+            "source_object": "main_passages",
+            "topic_consistency": "neutral",
+            "rrf_score": 0.016393,
+            "stage_sources": [
+              "dense_main_passages"
+            ]
+          },
+          {
+            "record_id": "safe:chunks:ZJSHL-CK-M-0566",
+            "source_object": "chunks",
+            "topic_consistency": "neutral",
+            "rrf_score": 0.016129,
+            "stage_sources": [
+              "dense_chunks"
+            ]
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0174",
+            "source_object": "main_passages",
+            "topic_consistency": "neutral",
+            "rrf_score": 0.016129,
+            "stage_sources": [
+              "dense_main_passages"
+            ]
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-021-P-0006",
+            "source_object": "main_passages",
+            "topic_consistency": "neutral",
+            "rrf_score": 0.015873,
+            "stage_sources": [
+              "dense_main_passages"
+            ]
+          },
+          {
+            "record_id": "safe:chunks:ZJSHL-CK-M-0927",
+            "source_object": "chunks",
+            "topic_consistency": "neutral",
+            "rrf_score": 0.015873,
+            "stage_sources": [
+              "dense_chunks"
+            ]
+          }
+        ],
+        "rerank_top_candidates": [
+          {
+            "record_id": "safe:chunks:ZJSHL-CK-M-0284",
+            "source_object": "chunks",
+            "topic_consistency": "neutral",
+            "rerank_score": 0.52187,
+            "combined_score": 533.92516
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-008-P-0236",
+            "source_object": "main_passages",
+            "topic_consistency": "neutral",
+            "rerank_score": 0.52187,
+            "combined_score": 532.901122
+          },
+          {
+            "record_id": "safe:chunks:ZJSHL-CK-M-0563",
+            "source_object": "chunks",
+            "topic_consistency": "neutral",
+            "rerank_score": 0.510657,
+            "combined_score": 522.665052
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0162",
+            "source_object": "main_passages",
+            "topic_consistency": "neutral",
+            "rerank_score": 0.510657,
+            "combined_score": 521.641742
+          },
+          {
+            "record_id": "safe:chunks:ZJSHL-CK-M-0324",
+            "source_object": "chunks",
+            "topic_consistency": "neutral",
+            "rerank_score": 0.506412,
+            "combined_score": 518.322658
+          },
+          {
+            "record_id": "safe:chunks:ZJSHL-CK-M-0019",
+            "source_object": "chunks",
+            "topic_consistency": "neutral",
+            "rerank_score": 0.505037,
+            "combined_score": 517.008972
+          }
+        ]
+      },
+      "mode": "refuse",
+      "mode_reason": "未找到足以支撑回答的依据，建议缩小问题范围或改问具体条文",
+      "runtime_risk_flags": [],
+      "annotation_links_enabled": false,
+      "example_id": "refuse_no_match",
+      "expected_mode": "refuse"
+    }
+  ]
+}
