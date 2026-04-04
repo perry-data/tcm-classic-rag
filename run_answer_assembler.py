@@ -8,18 +8,25 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from run_minimal_retrieval import (
+from run_hybrid_retrieval import (
+    DEFAULT_CACHE_DIR,
     DEFAULT_DB_PATH,
+    DEFAULT_DENSE_CHUNKS_INDEX,
+    DEFAULT_DENSE_CHUNKS_META,
+    DEFAULT_DENSE_MAIN_INDEX,
+    DEFAULT_DENSE_MAIN_META,
+    DEFAULT_EMBED_MODEL,
     DEFAULT_EXAMPLES,
     DEFAULT_POLICY_PATH,
-    RetrievalEngine,
+    DEFAULT_RERANK_MODEL,
+    HybridRetrievalEngine,
     json_dumps,
     log,
 )
 
 
-DEFAULT_ANSWER_EXAMPLES_OUT = "artifacts/answer_examples.json"
-DEFAULT_ANSWER_SMOKE_OUT = "artifacts/answer_smoke_checks.md"
+DEFAULT_ANSWER_EXAMPLES_OUT = "artifacts/hybrid_answer_examples.json"
+DEFAULT_ANSWER_SMOKE_OUT = "artifacts/hybrid_answer_smoke_checks.md"
 SNIPPET_LIMIT = 120
 
 REFUSE_GUIDANCE_TEMPLATES = [
@@ -30,13 +37,20 @@ REFUSE_GUIDANCE_TEMPLATES = [
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Assemble stable answer payloads from minimal retrieval results.")
+    parser = argparse.ArgumentParser(description="Assemble stable answer payloads from hybrid retrieval results.")
     parser.add_argument("--db-path", default=DEFAULT_DB_PATH, help="Path to the MVP sqlite database.")
     parser.add_argument(
         "--policy-json",
         default=DEFAULT_POLICY_PATH,
         help="Path to layered enablement policy JSON.",
     )
+    parser.add_argument("--embed-model", default=DEFAULT_EMBED_MODEL, help="SentenceTransformer embedding model.")
+    parser.add_argument("--rerank-model", default=DEFAULT_RERANK_MODEL, help="CrossEncoder rerank model.")
+    parser.add_argument("--cache-dir", default=DEFAULT_CACHE_DIR, help="Local model cache directory.")
+    parser.add_argument("--dense-chunks-index", default=DEFAULT_DENSE_CHUNKS_INDEX, help="Path to dense chunks FAISS.")
+    parser.add_argument("--dense-chunks-meta", default=DEFAULT_DENSE_CHUNKS_META, help="Path to dense chunks meta.")
+    parser.add_argument("--dense-main-index", default=DEFAULT_DENSE_MAIN_INDEX, help="Path to dense main FAISS.")
+    parser.add_argument("--dense-main-meta", default=DEFAULT_DENSE_MAIN_META, help="Path to dense main meta.")
     parser.add_argument("--query", help="Run a single query and print the assembled answer payload.")
     parser.add_argument(
         "--examples-out",
@@ -85,9 +99,26 @@ def build_examples_payload(results: list[dict[str, Any]]) -> dict[str, Any]:
 class AnswerAssembler:
     db_path: Path
     policy_path: Path
+    embed_model: str
+    rerank_model: str
+    cache_dir: Path
+    dense_chunks_index: Path
+    dense_chunks_meta: Path
+    dense_main_index: Path
+    dense_main_meta: Path
 
     def __post_init__(self) -> None:
-        self.engine = RetrievalEngine(db_path=self.db_path, policy_path=self.policy_path)
+        self.engine = HybridRetrievalEngine(
+            db_path=self.db_path,
+            policy_path=self.policy_path,
+            embed_model=self.embed_model,
+            rerank_model=self.rerank_model,
+            cache_dir=self.cache_dir,
+            dense_chunks_index=self.dense_chunks_index,
+            dense_chunks_meta=self.dense_chunks_meta,
+            dense_main_index=self.dense_main_index,
+            dense_main_meta=self.dense_main_meta,
+        )
         self._record_cache: dict[str, dict[str, Any]] = {}
 
     def close(self) -> None:
@@ -362,13 +393,15 @@ def build_smoke_markdown(command: str, results: list[dict[str, Any]]) -> str:
 
     strong_primary_ids = [row["record_id"] for row in strong_result["primary_evidence"]]
     lines = [
-        "# Answer Smoke Checks",
+        "# Hybrid Answer Smoke Checks",
         "",
         "## 运行命令",
         "",
         f"`{command}`",
         "",
         "## 结论",
+        "",
+        "- retrieval_backend: `hybrid_rrf_rerank`",
         "",
     ]
 
@@ -495,21 +528,36 @@ def main() -> int:
     repo_root = Path.cwd()
     db_path = (repo_root / args.db_path).resolve()
     policy_path = (repo_root / args.policy_json).resolve()
+    cache_dir = (repo_root / args.cache_dir).resolve()
+    dense_chunks_index = (repo_root / args.dense_chunks_index).resolve()
+    dense_chunks_meta = (repo_root / args.dense_chunks_meta).resolve()
+    dense_main_index = (repo_root / args.dense_main_index).resolve()
+    dense_main_meta = (repo_root / args.dense_main_meta).resolve()
     examples_out = (repo_root / args.examples_out).resolve()
     smoke_out = (repo_root / args.smoke_checks_out).resolve()
 
     examples_out.parent.mkdir(parents=True, exist_ok=True)
     smoke_out.parent.mkdir(parents=True, exist_ok=True)
 
-    assembler = AnswerAssembler(db_path=db_path, policy_path=policy_path)
+    assembler = AnswerAssembler(
+        db_path=db_path,
+        policy_path=policy_path,
+        embed_model=args.embed_model,
+        rerank_model=args.rerank_model,
+        cache_dir=cache_dir,
+        dense_chunks_index=dense_chunks_index,
+        dense_chunks_meta=dense_chunks_meta,
+        dense_main_index=dense_main_index,
+        dense_main_meta=dense_main_meta,
+    )
     try:
         log(f"[1/4] Loaded policy from {policy_path}")
-        log(f"[2/4] Loaded retrieval database from {db_path}")
+        log(f"[2/4] Loaded hybrid retrieval database and dense assets from {db_path}")
 
         if args.query:
             payload = assembler.assemble(args.query)
             print(json_dumps(payload))
-            log("[3/4] Ran single-query answer assembly")
+            log("[3/4] Ran single-query hybrid answer assembly")
             log("[4/4] No artifact files updated in single-query mode")
             return 0
 

@@ -1,0 +1,487 @@
+{
+  "generated_at_utc": "2026-04-04T11:04:58.917671+00:00",
+  "examples": [
+    {
+      "query": "黄连汤方的条文是什么？",
+      "answer_mode": "strong",
+      "answer_text": "根据主依据，与“黄连汤方”直接对应的条文主要有：\n1. 黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。\n2. 味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温\n3. 上热者，泄之以苦，黄连之苦以降阳；下寒者，散之以辛，桂、姜、半夏之辛以升阴；脾欲缓，急食甘以缓之，人参、甘草、大枣之甘以益胃。",
+      "primary_evidence": [
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
+          "record_type": "main_passages",
+          "display_role": "primary",
+          "title": "黄连汤方",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-010",
+          "chapter_title": "辨太阳病脉证并治法第七",
+          "snippet": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。",
+          "risk_flags": []
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0146",
+          "record_type": "main_passages",
+          "display_role": "primary",
+          "title": "黄连汤方",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-010",
+          "chapter_title": "辨太阳病脉证并治法第七",
+          "snippet": "味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温",
+          "risk_flags": []
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0147",
+          "record_type": "main_passages",
+          "display_role": "primary",
+          "title": "黄连汤方",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-010",
+          "chapter_title": "辨太阳病脉证并治法第七",
+          "snippet": "上热者，泄之以苦，黄连之苦以降阳；下寒者，散之以辛，桂、姜、半夏之辛以升阴；脾欲缓，急食甘以缓之，人参、甘草、大枣之甘以益胃。",
+          "risk_flags": []
+        }
+      ],
+      "secondary_evidence": [
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0017",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "title": "葛根黄芩黄连汤方",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-009",
+          "chapter_title": "辨太阳病脉证并治第六",
+          "snippet": "葛根半斤 甘草二两，炙。味甘平 黄芩二，赵本作「三」两。味苦寒 黄连三两。味苦寒",
+          "risk_flags": [
+            "topic_mismatch_demoted"
+          ]
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0019",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "title": "葛根黄芩黄连汤方",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-009",
+          "chapter_title": "辨太阳病脉证并治第六",
+          "snippet": "上四味，以水八升，先煮葛根，减二升，内诸药，煮取二升，去滓，分温再服。",
+          "risk_flags": [
+            "topic_mismatch_demoted"
+          ]
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0016",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "title": "葛根黄芩黄连汤方",
+          "evidence_level": "B",
+          "chapter_id": "ZJSHL-CH-009",
+          "chapter_title": "辨太阳病脉证并治第六",
+          "snippet": "葛根黄芩黄连汤方：赵本芩、连互易",
+          "risk_flags": [
+            "short_text_demoted"
+          ]
+        }
+      ],
+      "review_materials": [
+        {
+          "record_id": "full:passages:ZJSHL-CH-010-P-0145",
+          "record_type": "passages",
+          "display_role": "review",
+          "title": "黄连汤方",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-010",
+          "chapter_title": "辨太阳病脉证并治法第七",
+          "snippet": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。",
+          "risk_flags": [
+            "ledger_mixed_roles"
+          ]
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-009-P-0016",
+          "record_type": "passages",
+          "display_role": "review",
+          "title": "葛根黄芩黄连汤方",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-009",
+          "chapter_title": "辨太阳病脉证并治第六",
+          "snippet": "葛根黄芩黄连汤方：赵本芩、连互易",
+          "risk_flags": [
+            "ledger_mixed_roles"
+          ]
+        }
+      ],
+      "disclaimer": "主证据优先；补充依据与核对材料不参与主结论判定。",
+      "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
+      "refuse_reason": null,
+      "suggested_followup_questions": [],
+      "citations": [
+        {
+          "citation_id": "c1",
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
+          "record_type": "main_passages",
+          "title": "黄连汤方",
+          "evidence_level": "A",
+          "snippet": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。",
+          "chapter_id": "ZJSHL-CH-010",
+          "chapter_title": "辨太阳病脉证并治法第七",
+          "citation_role": "primary"
+        },
+        {
+          "citation_id": "c2",
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0146",
+          "record_type": "main_passages",
+          "title": "黄连汤方",
+          "evidence_level": "A",
+          "snippet": "味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温",
+          "chapter_id": "ZJSHL-CH-010",
+          "chapter_title": "辨太阳病脉证并治法第七",
+          "citation_role": "primary"
+        },
+        {
+          "citation_id": "c3",
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0147",
+          "record_type": "main_passages",
+          "title": "黄连汤方",
+          "evidence_level": "A",
+          "snippet": "上热者，泄之以苦，黄连之苦以降阳；下寒者，散之以辛，桂、姜、半夏之辛以升阴；脾欲缓，急食甘以缓之，人参、甘草、大枣之甘以益胃。",
+          "chapter_id": "ZJSHL-CH-010",
+          "chapter_title": "辨太阳病脉证并治法第七",
+          "citation_role": "primary"
+        }
+      ],
+      "display_sections": [
+        {
+          "section_id": "answer",
+          "title": "回答",
+          "section_type": "text",
+          "visible": true,
+          "field": "answer_text",
+          "summary": "根据主依据，与“黄连汤方”直接对应的条文主要有： 1. 黄连汤方：黄连味苦寒 甘草炙。味甘平 乾..."
+        },
+        {
+          "section_id": "review_notice",
+          "title": "核对提示",
+          "section_type": "notice",
+          "visible": true,
+          "field": "review_notice",
+          "summary": "以下补充依据与核对材料仅作说明，不作为主依据。"
+        },
+        {
+          "section_id": "primary_evidence",
+          "title": "主依据",
+          "section_type": "slot_ref",
+          "visible": true,
+          "field": "primary_evidence",
+          "item_count": 3
+        },
+        {
+          "section_id": "secondary_evidence",
+          "title": "补充依据",
+          "section_type": "slot_ref",
+          "visible": true,
+          "field": "secondary_evidence",
+          "item_count": 3
+        },
+        {
+          "section_id": "review_materials",
+          "title": "核对材料",
+          "section_type": "slot_ref",
+          "visible": true,
+          "field": "review_materials",
+          "item_count": 2
+        },
+        {
+          "section_id": "citations",
+          "title": "引用",
+          "section_type": "slot_ref",
+          "visible": true,
+          "field": "citations",
+          "item_count": 3
+        },
+        {
+          "section_id": "refusal_guidance",
+          "title": "改问建议",
+          "section_type": "list",
+          "visible": false,
+          "field": "suggested_followup_questions",
+          "item_count": 0
+        }
+      ],
+      "example_id": "strong_chunk_backref",
+      "expected_mode": "strong"
+    },
+    {
+      "query": "烧针益阳而损阴是什么意思？",
+      "answer_mode": "weak_with_review_notice",
+      "answer_text": "正文强证据不足，以下内容需核对，暂不能视为确定答案。 当前可先参考辅助材料：卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+      "primary_evidence": [],
+      "secondary_evidence": [
+        {
+          "record_id": "full:annotations:ZJSHL-CH-003-P-0016",
+          "record_type": "annotations",
+          "display_role": "secondary",
+          "title": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+          "evidence_level": "B",
+          "chapter_id": "ZJSHL-CH-003",
+          "chapter_title": "辨脉法第一",
+          "snippet": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+          "risk_flags": [
+            "annotation_unlinked"
+          ]
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0295",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "title": "烧针发汗则损阴血而惊动心气针处被寒气聚而成核心气因惊而虚肾气乘寒气而动发为奔豚金匮要略曰",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-009",
+          "chapter_title": "辨太阳病脉证并治第六",
+          "snippet": "烧针发汗，则损阴血，而惊动心气。针处被寒，气聚而成核。心气因惊而虚，肾气乘寒气而动，发为奔豚。《金匮要略》曰：病有奔豚，从惊发得之。肾气欲上乘心，故其气从少腹上冲心也。先灸核上，以散其寒，与桂枝加桂汤，以泄奔豚之气。",
+          "risk_flags": [
+            "topic_mismatch_demoted"
+          ]
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0080",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "title": "太阳病医发汗遂发热恶寒因复下之心下痞表里俱虚阴阳气并竭无阳则阴独复加烧针因胸烦面色青黄肤者难治今色微黄手足温者易愈",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-010",
+          "chapter_title": "辨太阳病脉证并治法第七",
+          "snippet": "太阳病，医发汗，遂发热恶寒，因复下之，心下痞，表里俱虚，阴阳气并竭，无阳则阴独，复加烧针，因胸烦，面色青黄，肤 者，难治；今色微黄，手足温者，易愈。",
+          "risk_flags": [
+            "topic_mismatch_demoted"
+          ]
+        }
+      ],
+      "review_materials": [
+        {
+          "record_id": "full:passages:ZJSHL-CH-003-P-0016",
+          "record_type": "passages",
+          "display_role": "review",
+          "title": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-003",
+          "chapter_title": "辨脉法第一",
+          "snippet": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "ambiguous_source"
+          ]
+        },
+        {
+          "record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0016",
+          "record_type": "ambiguous_passages",
+          "display_role": "review",
+          "title": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-003",
+          "chapter_title": "辨脉法第一",
+          "snippet": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+          "risk_flags": [
+            "ambiguous_source"
+          ]
+        }
+      ],
+      "disclaimer": "当前只输出弱表述与核对材料，不输出确定性答案。",
+      "review_notice": "正文强证据不足，以下内容需核对，不应视为确定答案。",
+      "refuse_reason": null,
+      "suggested_followup_questions": [],
+      "citations": [
+        {
+          "citation_id": "c1",
+          "record_id": "full:annotations:ZJSHL-CH-003-P-0016",
+          "record_type": "annotations",
+          "title": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+          "evidence_level": "B",
+          "snippet": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+          "chapter_id": "ZJSHL-CH-003",
+          "chapter_title": "辨脉法第一",
+          "citation_role": "secondary"
+        },
+        {
+          "citation_id": "c2",
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0295",
+          "record_type": "main_passages",
+          "title": "烧针发汗则损阴血而惊动心气针处被寒气聚而成核心气因惊而虚肾气乘寒气而动发为奔豚金匮要略曰",
+          "evidence_level": "A",
+          "snippet": "烧针发汗，则损阴血，而惊动心气。针处被寒，气聚而成核。心气因惊而虚，肾气乘寒气而动，发为奔豚。《金匮要略》曰：病有奔豚，从惊发得之。肾气欲上乘心，故其气从少腹上冲心也。先灸核上，以散其寒，与桂枝加桂汤，以泄奔豚之气。",
+          "chapter_id": "ZJSHL-CH-009",
+          "chapter_title": "辨太阳病脉证并治第六",
+          "citation_role": "secondary"
+        },
+        {
+          "citation_id": "c3",
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0080",
+          "record_type": "main_passages",
+          "title": "太阳病医发汗遂发热恶寒因复下之心下痞表里俱虚阴阳气并竭无阳则阴独复加烧针因胸烦面色青黄肤者难治今色微黄手足温者易愈",
+          "evidence_level": "A",
+          "snippet": "太阳病，医发汗，遂发热恶寒，因复下之，心下痞，表里俱虚，阴阳气并竭，无阳则阴独，复加烧针，因胸烦，面色青黄，肤 者，难治；今色微黄，手足温者，易愈。",
+          "chapter_id": "ZJSHL-CH-010",
+          "chapter_title": "辨太阳病脉证并治法第七",
+          "citation_role": "secondary"
+        },
+        {
+          "citation_id": "c4",
+          "record_id": "full:passages:ZJSHL-CH-003-P-0016",
+          "record_type": "passages",
+          "title": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+          "evidence_level": "C",
+          "snippet": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+          "chapter_id": "ZJSHL-CH-003",
+          "chapter_title": "辨脉法第一",
+          "citation_role": "review"
+        },
+        {
+          "citation_id": "c5",
+          "record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0016",
+          "record_type": "ambiguous_passages",
+          "title": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+          "evidence_level": "C",
+          "snippet": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+          "chapter_id": "ZJSHL-CH-003",
+          "chapter_title": "辨脉法第一",
+          "citation_role": "review"
+        }
+      ],
+      "display_sections": [
+        {
+          "section_id": "answer",
+          "title": "回答",
+          "section_type": "text",
+          "visible": true,
+          "field": "answer_text",
+          "summary": "正文强证据不足，以下内容需核对，暂不能视为确定答案。 当前可先参考辅助材料：卫阳也，荣阴也。烧针..."
+        },
+        {
+          "section_id": "review_notice",
+          "title": "核对提示",
+          "section_type": "notice",
+          "visible": true,
+          "field": "review_notice",
+          "summary": "正文强证据不足，以下内容需核对，不应视为确定答案。"
+        },
+        {
+          "section_id": "primary_evidence",
+          "title": "主依据",
+          "section_type": "slot_ref",
+          "visible": false,
+          "field": "primary_evidence",
+          "item_count": 0
+        },
+        {
+          "section_id": "secondary_evidence",
+          "title": "补充依据",
+          "section_type": "slot_ref",
+          "visible": true,
+          "field": "secondary_evidence",
+          "item_count": 3
+        },
+        {
+          "section_id": "review_materials",
+          "title": "核对材料",
+          "section_type": "slot_ref",
+          "visible": true,
+          "field": "review_materials",
+          "item_count": 2
+        },
+        {
+          "section_id": "citations",
+          "title": "引用",
+          "section_type": "slot_ref",
+          "visible": true,
+          "field": "citations",
+          "item_count": 5
+        },
+        {
+          "section_id": "refusal_guidance",
+          "title": "改问建议",
+          "section_type": "list",
+          "visible": false,
+          "field": "suggested_followup_questions",
+          "item_count": 0
+        }
+      ],
+      "example_id": "weak_with_review_notice",
+      "expected_mode": "weak_with_review_notice"
+    },
+    {
+      "query": "书中有没有提到量子纠缠？",
+      "answer_mode": "refuse",
+      "answer_text": "当前未检索到足以支撑回答的依据，暂不提供答案。",
+      "primary_evidence": [],
+      "secondary_evidence": [],
+      "review_materials": [],
+      "disclaimer": "当前为统一拒答结构，不输出推测性答案。",
+      "review_notice": null,
+      "refuse_reason": "未检索到足以支撑回答的主证据、辅助证据或可供核对的风险材料。",
+      "suggested_followup_questions": [
+        "请改问具体条文，例如：某一条文的原文或含义是什么？",
+        "请改问具体方名，例如：黄连汤方的组成或条文是什么？",
+        "请改问书中某个明确术语或概念，例如：某句话出自哪一条？"
+      ],
+      "citations": [],
+      "display_sections": [
+        {
+          "section_id": "answer",
+          "title": "回答",
+          "section_type": "text",
+          "visible": true,
+          "field": "answer_text",
+          "summary": "当前未检索到足以支撑回答的依据，暂不提供答案。"
+        },
+        {
+          "section_id": "review_notice",
+          "title": "核对提示",
+          "section_type": "notice",
+          "visible": false,
+          "field": "review_notice",
+          "summary": ""
+        },
+        {
+          "section_id": "primary_evidence",
+          "title": "主依据",
+          "section_type": "slot_ref",
+          "visible": false,
+          "field": "primary_evidence",
+          "item_count": 0
+        },
+        {
+          "section_id": "secondary_evidence",
+          "title": "补充依据",
+          "section_type": "slot_ref",
+          "visible": false,
+          "field": "secondary_evidence",
+          "item_count": 0
+        },
+        {
+          "section_id": "review_materials",
+          "title": "核对材料",
+          "section_type": "slot_ref",
+          "visible": false,
+          "field": "review_materials",
+          "item_count": 0
+        },
+        {
+          "section_id": "citations",
+          "title": "引用",
+          "section_type": "slot_ref",
+          "visible": false,
+          "field": "citations",
+          "item_count": 0
+        },
+        {
+          "section_id": "refusal_guidance",
+          "title": "改问建议",
+          "section_type": "list",
+          "visible": true,
+          "field": "suggested_followup_questions",
+          "item_count": 3
+        }
+      ],
+      "example_id": "refuse_no_match",
+      "expected_mode": "refuse"
+    }
+  ]
+}
