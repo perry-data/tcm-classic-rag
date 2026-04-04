@@ -86,6 +86,18 @@ QUESTION_NOISE_PHRASES = [
     "么",
 ]
 
+FORMULA_QUERY_SUFFIXES = (
+    "汤方",
+    "散方",
+    "丸方",
+    "饮方",
+    "方",
+    "汤",
+    "散",
+    "丸",
+    "饮",
+)
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run minimal retrieval on zjshl_mvp.db.")
@@ -144,6 +156,95 @@ def build_query_terms(focus_text: str) -> list[str]:
             for idx in range(0, len(focus_text) - n + 1):
                 terms.add(focus_text[idx : idx + n])
     return sorted(terms, key=lambda item: (-len(item), item))
+
+
+def extract_title_anchor(text: str | None) -> str:
+    if not text:
+        return ""
+    first_line = next((line.strip() for line in str(text).splitlines() if line.strip()), "")
+    if not first_line:
+        return ""
+    first_segment = re.split(r"[：:]", first_line, maxsplit=1)[0].strip()
+    return compact_text(first_segment)
+
+
+def normalize_formula_anchor(text: str | None) -> str:
+    anchor = compact_text(text)
+    if anchor.endswith("方") and len(anchor) > 1:
+        return anchor[:-1]
+    return anchor
+
+
+def infer_query_theme(query_focus: str) -> dict[str, Any]:
+    anchor = extract_title_anchor(query_focus) or compact_text(query_focus)
+    normalized_anchor = normalize_formula_anchor(anchor)
+    if anchor and any(anchor.endswith(suffix) for suffix in FORMULA_QUERY_SUFFIXES) and len(normalized_anchor) >= 2:
+        return {
+            "type": "formula_name",
+            "anchor": anchor,
+            "normalized_anchor": normalized_anchor,
+        }
+    return {
+        "type": "generic",
+        "anchor": anchor or compact_text(query_focus),
+        "normalized_anchor": compact_text(query_focus),
+    }
+
+
+def evaluate_topic_consistency(query_theme: dict[str, Any], candidate_text: str | None) -> dict[str, Any]:
+    candidate_anchor = extract_title_anchor(candidate_text)
+    candidate_anchor_normalized = normalize_formula_anchor(candidate_anchor)
+    query_anchor = query_theme.get("anchor", "")
+    query_anchor_normalized = query_theme.get("normalized_anchor", "")
+
+    if query_theme.get("type") != "formula_name":
+        return {
+            "topic_anchor": candidate_anchor,
+            "topic_consistency": "neutral",
+            "precision_adjustment": 0.0,
+            "primary_allowed": True,
+        }
+
+    if candidate_anchor_normalized and candidate_anchor_normalized == query_anchor_normalized:
+        return {
+            "topic_anchor": candidate_anchor,
+            "topic_consistency": "exact_formula_anchor",
+            "precision_adjustment": 24.0,
+            "primary_allowed": True,
+        }
+
+    if candidate_anchor_normalized and query_anchor_normalized and query_anchor_normalized in candidate_anchor_normalized:
+        return {
+            "topic_anchor": candidate_anchor,
+            "topic_consistency": "expanded_formula_anchor",
+            "precision_adjustment": -18.0,
+            "primary_allowed": False,
+        }
+
+    candidate_compact = compact_text(candidate_text)
+    if query_anchor and query_anchor in candidate_compact:
+        return {
+            "topic_anchor": candidate_anchor,
+            "topic_consistency": "phrase_only_match",
+            "precision_adjustment": -8.0,
+            "primary_allowed": False,
+        }
+
+    return {
+        "topic_anchor": candidate_anchor,
+        "topic_consistency": "neutral",
+        "precision_adjustment": 0.0,
+        "primary_allowed": True,
+    }
+
+
+def baseline_topic_consistency(candidate_text: str | None) -> dict[str, Any]:
+    return {
+        "topic_anchor": extract_title_anchor(candidate_text),
+        "topic_consistency": "baseline_unchecked",
+        "precision_adjustment": 0.0,
+        "primary_allowed": True,
+    }
 
 
 def compute_text_match_score(query_focus: str, query_terms: list[str], candidate_text: str) -> tuple[float, list[str]]:
@@ -218,12 +319,15 @@ class RetrievalEngine:
         if annotation_link_count != 0:
             raise ValueError("annotation_links leaked into vw_retrieval_records_unified")
 
-    def build_request(self, query_text: str) -> dict[str, Any]:
+    def build_request(self, query_text: str, tight_primary_precision: bool = True) -> dict[str, Any]:
         query_focus = extract_focus_text(query_text)
+        query_theme = infer_query_theme(query_focus)
         return {
             "query_text": query_text,
             "query_text_normalized": query_focus,
+            "query_theme": query_theme,
             "target_mode": "strong_first",
+            "precision_profile": "tight_primary" if tight_primary_precision else "baseline",
             "allow_levels": ["A", "B", "C"],
             "blocked_sources": ["annotation_links"],
             "source_priority": self.policy["stage_policy"]["retrieval_stage"]["priority_order"],
@@ -234,10 +338,10 @@ class RetrievalEngine:
             "scope_filters": {"book_id": "ZJSHL", "chapter_id": None},
         }
 
-    def retrieve(self, query_text: str) -> dict[str, Any]:
-        request = self.build_request(query_text)
+    def retrieve(self, query_text: str, tight_primary_precision: bool = True) -> dict[str, Any]:
+        request = self.build_request(query_text, tight_primary_precision=tight_primary_precision)
         raw_candidates = self._collect_raw_candidates(request)
-        resolved = self._resolve_candidates(raw_candidates)
+        resolved = self._resolve_candidates(raw_candidates, request)
         slots = self._assemble_slots(resolved)
         mode_info = self._determine_mode(slots)
         return {
@@ -255,8 +359,10 @@ class RetrievalEngine:
 
     def _collect_raw_candidates(self, request: dict[str, Any]) -> list[dict[str, Any]]:
         query_focus = request["query_text_normalized"]
+        query_theme = request["query_theme"]
         query_terms = build_query_terms(query_focus)
         scored: list[dict[str, Any]] = []
+        tight_primary_precision = request["precision_profile"] == "tight_primary"
 
         for row in self.unified_rows:
             if row["source_object"] == "annotation_links":
@@ -264,15 +370,23 @@ class RetrievalEngine:
             text_score, matched_terms = compute_text_match_score(query_focus, query_terms, row["normalized_text"])
             if text_score <= 0:
                 continue
+            if tight_primary_precision:
+                topic_meta = evaluate_topic_consistency(query_theme, row["retrieval_text"])
+            else:
+                topic_meta = baseline_topic_consistency(row["retrieval_text"])
             weight_bonus = WEIGHT_BONUS.get(row["default_weight_tier"], 0.0)
-            combined_score = text_score + weight_bonus
+            combined_score = text_score + weight_bonus + topic_meta["precision_adjustment"]
             candidate = dict(row)
             candidate.update(
                 {
                     "text_match_score": round(text_score, 3),
                     "weight_bonus": weight_bonus,
+                    "precision_adjustment": topic_meta["precision_adjustment"],
                     "combined_score": round(combined_score, 3),
                     "matched_terms": matched_terms,
+                    "topic_anchor": topic_meta["topic_anchor"],
+                    "topic_consistency": topic_meta["topic_consistency"],
+                    "primary_allowed": topic_meta["primary_allowed"],
                 }
             )
             scored.append(candidate)
@@ -333,7 +447,7 @@ class RetrievalEngine:
         """
         return [dict(row) for row in self.conn.execute(query, (chunk_record_id,))]
 
-    def _resolve_candidates(self, raw_candidates: list[dict[str, Any]]) -> dict[str, Any]:
+    def _resolve_candidates(self, raw_candidates: list[dict[str, Any]], request: dict[str, Any]) -> dict[str, Any]:
         primary_pool: dict[str, dict[str, Any]] = {}
         secondary_pool: dict[str, dict[str, Any]] = {}
         risk_pool: dict[str, dict[str, Any]] = {}
@@ -348,6 +462,8 @@ class RetrievalEngine:
                     "chunk_record_id": candidate["record_id"],
                     "chunk_score": candidate["combined_score"],
                     "matched_terms": candidate["matched_terms"],
+                    "topic_consistency": candidate["topic_consistency"],
+                    "topic_anchor": candidate["topic_anchor"],
                     "linked_main_passages": [],
                 }
                 for backref in backrefs:
@@ -360,18 +476,24 @@ class RetrievalEngine:
                             "display_allowed": backref["display_allowed"],
                         }
                     )
-                    if backref["evidence_level"] == "A":
+                    if backref["evidence_level"] == "A" and candidate["primary_allowed"]:
                         self._merge_evidence_entry(primary_pool, main_entry)
                     else:
+                        if backref["evidence_level"] == "A" and not candidate["primary_allowed"]:
+                            main_entry["risk_flag"] = unique_preserve_order(
+                                main_entry["risk_flag"] + ["topic_mismatch_demoted"]
+                            )
                         self._merge_evidence_entry(secondary_pool, main_entry)
                 chunk_hits.append(chunk_hit)
                 continue
 
             if candidate["record_table"] == "records_main_passages":
                 entry = self._build_direct_entry(candidate, retrieval_path="direct")
-                if candidate["evidence_level"] == "A":
+                if candidate["evidence_level"] == "A" and candidate["primary_allowed"]:
                     self._merge_evidence_entry(primary_pool, entry)
                 else:
+                    if candidate["evidence_level"] == "A" and not candidate["primary_allowed"]:
+                        entry["risk_flag"] = unique_preserve_order(entry["risk_flag"] + ["topic_mismatch_demoted"])
                     self._merge_evidence_entry(secondary_pool, entry)
                 continue
 
@@ -394,6 +516,8 @@ class RetrievalEngine:
                 "blocked_sources": ["annotation_links"],
                 "used_sources": unique_preserve_order(used_sources),
                 "raw_candidate_count": len(raw_candidates),
+                "precision_profile": request["precision_profile"],
+                "query_theme": request["query_theme"],
             },
         }
 
@@ -413,6 +537,8 @@ class RetrievalEngine:
             "chapter_name": main_row["chapter_name"],
             "requires_disclaimer": bool(main_row["requires_disclaimer"]),
             "policy_source_id": main_row["policy_source_id"],
+            "topic_anchor": chunk_candidate["topic_anchor"],
+            "topic_consistency": chunk_candidate["topic_consistency"],
             "retrieval_paths": [
                 {
                     "type": "chunk_backref",
@@ -438,6 +564,8 @@ class RetrievalEngine:
             "chapter_name": candidate["chapter_name"],
             "requires_disclaimer": bool(candidate["requires_disclaimer"]),
             "policy_source_id": candidate["policy_source_id"],
+            "topic_anchor": candidate["topic_anchor"],
+            "topic_consistency": candidate["topic_consistency"],
             "retrieval_paths": [{"type": retrieval_path}],
         }
 
@@ -536,7 +664,60 @@ def build_examples_payload(results: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
-def build_smoke_markdown(command: str, results: list[dict[str, Any]]) -> str:
+def build_precision_patch_section(before_result: dict[str, Any], after_result: dict[str, Any]) -> list[str]:
+    before_primary_ids = [row["record_id"] for row in before_result["primary_evidence"]]
+    after_primary_ids = [row["record_id"] for row in after_result["primary_evidence"]]
+    removed_ids = [record_id for record_id in before_primary_ids if record_id not in after_primary_ids]
+    added_ids = [record_id for record_id in after_primary_ids if record_id not in before_primary_ids]
+
+    lines = [
+        "## Strong Precision Patch",
+        "",
+        f"- query: `{after_result['query_request']['query_text']}`",
+        f"- before_profile: `{before_result['query_request']['precision_profile']}`",
+        f"- after_profile: `{after_result['query_request']['precision_profile']}`",
+        "",
+        "### Primary Evidence Before Tight Filter",
+        "",
+        markdown_table(
+            [
+                {
+                    "record_id": row["record_id"],
+                    "chapter_id": row["chapter_id"],
+                    "topic_consistency": row["topic_consistency"],
+                    "text_preview": row["text_preview"],
+                }
+                for row in before_result["primary_evidence"]
+            ]
+        ),
+        "",
+        "### Primary Evidence After Tight Filter",
+        "",
+        markdown_table(
+            [
+                {
+                    "record_id": row["record_id"],
+                    "chapter_id": row["chapter_id"],
+                    "topic_consistency": row["topic_consistency"],
+                    "text_preview": row["text_preview"],
+                }
+                for row in after_result["primary_evidence"]
+            ]
+        ),
+        "",
+        "### Primary Evidence Diff",
+        "",
+        f"- removed_from_primary: `{json.dumps(removed_ids, ensure_ascii=False)}`",
+        f"- added_to_primary: `{json.dumps(added_ids, ensure_ascii=False)}`",
+    ]
+    return lines
+
+
+def build_smoke_markdown(
+    command: str,
+    results: list[dict[str, Any]],
+    precision_patch: dict[str, dict[str, Any]] | None = None,
+) -> str:
     lines = [
         "# Retrieval Smoke Checks",
         "",
@@ -555,6 +736,17 @@ def build_smoke_markdown(command: str, results: list[dict[str, Any]]) -> str:
             f"secondary={len(result['secondary_evidence'])}, "
             f"risk={len(result['risk_materials'])}, "
             f"chunk_hits={len(result['retrieval_trace']['chunk_hits'])}"
+        )
+
+    if precision_patch:
+        lines.extend(
+            [
+                "",
+                *build_precision_patch_section(
+                    precision_patch["before_strong_result"],
+                    precision_patch["after_strong_result"],
+                ),
+            ]
         )
 
     for result in results:
@@ -578,6 +770,7 @@ def build_smoke_markdown(command: str, results: list[dict[str, Any]]) -> str:
                             "evidence_level": row["evidence_level"],
                             "combined_score": row["combined_score"],
                             "matched_terms": json.dumps(row["matched_terms"], ensure_ascii=False),
+                            "topic_consistency": row["topic_consistency"],
                             "backref_target_type": row["backref_target_type"],
                         }
                         for row in result["raw_candidates"][:6]
@@ -592,6 +785,7 @@ def build_smoke_markdown(command: str, results: list[dict[str, Any]]) -> str:
                             "record_id": row["record_id"],
                             "source_object": row["source_object"],
                             "combined_score": row["combined_score"],
+                            "topic_consistency": row["topic_consistency"],
                             "retrieval_paths": json.dumps(row["retrieval_paths"], ensure_ascii=False),
                         }
                         for row in result["primary_evidence"]
@@ -606,6 +800,7 @@ def build_smoke_markdown(command: str, results: list[dict[str, Any]]) -> str:
                             "record_id": row["record_id"],
                             "source_object": row["source_object"],
                             "combined_score": row["combined_score"],
+                            "topic_consistency": row["topic_consistency"],
                             "risk_flag": json.dumps(row["risk_flag"], ensure_ascii=False),
                         }
                         for row in result["secondary_evidence"]
@@ -633,6 +828,7 @@ def build_smoke_markdown(command: str, results: list[dict[str, Any]]) -> str:
                         {
                             "chunk_record_id": row["chunk_record_id"],
                             "chunk_score": row["chunk_score"],
+                            "topic_consistency": row["topic_consistency"],
                             "linked_main_passages": json.dumps(row["linked_main_passages"], ensure_ascii=False),
                         }
                         for row in result["retrieval_trace"]["chunk_hits"]
@@ -675,6 +871,20 @@ def assert_smoke_expectations(results: list[dict[str, Any]]) -> None:
         if result["mode"] == "weak_with_review_notice" and result["primary_evidence"]:
             raise AssertionError("weak_with_review_notice must not include primary_evidence")
 
+    strong_result = next((result for result in results if result["example_id"] == "strong_chunk_backref"), None)
+    if not strong_result:
+        raise AssertionError("missing strong_chunk_backref example")
+    if any("葛根黄芩黄连汤方" in row["text_preview"] or "ZJSHL-CH-009" in row["chapter_id"] for row in strong_result["primary_evidence"]):
+        raise AssertionError("strong_chunk_backref primary_evidence still contains expanded formula matches")
+
+    weak_result = next((result for result in results if result["example_id"] == "weak_with_review_notice"), None)
+    if not weak_result or weak_result["mode"] != "weak_with_review_notice":
+        raise AssertionError("weak_with_review_notice example regressed")
+
+    refuse_result = next((result for result in results if result["example_id"] == "refuse_no_match"), None)
+    if not refuse_result or refuse_result["mode"] != "refuse":
+        raise AssertionError("refuse example regressed")
+
 
 def main() -> int:
     args = parse_args()
@@ -701,11 +911,16 @@ def main() -> int:
 
         results = run_examples(engine)
         assert_smoke_expectations(results)
+        strong_example = next(example for example in DEFAULT_EXAMPLES if example["example_id"] == "strong_chunk_backref")
+        precision_patch = {
+            "before_strong_result": engine.retrieve(strong_example["query_text"], tight_primary_precision=False),
+            "after_strong_result": next(result for result in results if result["example_id"] == "strong_chunk_backref"),
+        }
         examples_payload = build_examples_payload(results)
         examples_out.write_text(json_dumps(examples_payload) + "\n", encoding="utf-8")
 
         command = f"{Path(sys.executable).name} " + " ".join(sys.argv)
-        smoke_out.write_text(build_smoke_markdown(command, results), encoding="utf-8")
+        smoke_out.write_text(build_smoke_markdown(command, results, precision_patch=precision_patch), encoding="utf-8")
         log("[3/4] Ran default retrieval examples and validated strong / weak_with_review_notice / refuse")
         log(f"[4/4] Wrote {examples_out} and {smoke_out}")
         return 0

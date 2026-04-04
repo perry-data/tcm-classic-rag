@@ -1,11 +1,17 @@
 {
-  "generated_at_utc": "2026-04-03T12:49:10.350318+00:00",
+  "generated_at_utc": "2026-04-04T07:02:21.497481+00:00",
   "examples": [
     {
       "query_request": {
         "query_text": "黄连汤方的条文是什么？",
         "query_text_normalized": "黄连汤方",
+        "query_theme": {
+          "type": "formula_name",
+          "anchor": "黄连汤方",
+          "normalized_anchor": "黄连汤"
+        },
         "target_mode": "strong_first",
+        "precision_profile": "tight_primary",
         "allow_levels": [
           "A",
           "B",
@@ -40,39 +46,6 @@
       },
       "raw_candidates": [
         {
-          "retrieval_entry_id": "safe:chunks:ZJSHL-CK-F-0009",
-          "record_table": "records_chunks",
-          "record_id": "safe:chunks:ZJSHL-CK-F-0009",
-          "source_record_id": "ZJSHL-CK-F-0009",
-          "dataset_variant": "safe",
-          "source_object": "chunks",
-          "source_type": "chunk",
-          "retrieval_text": "葛根黄芩黄连汤方：赵本芩、连互易\n葛根半斤 甘草二两，炙。味甘平 黄芩二，赵本作「三」两。味苦寒 黄连三两。味苦寒\n上四味，以水八升，先煮葛根，减二升，内诸药，煮取二升，去滓，分温再服。",
-          "normalized_text": "葛根黄芩黄连汤方：赵本芩、连互易 葛根半斤 甘草二两，炙。味甘平 黄芩二，赵本作「三」两。味苦寒 黄连三两。味苦寒 上四味，以水八升，先煮葛根，减二升，内诸药，煮取二升，去滓，分温再服。",
-          "book_id": "ZJSHL",
-          "chapter_id": "ZJSHL-CH-009",
-          "chapter_name": "辨太阳病脉证并治第六",
-          "evidence_level": "C",
-          "display_allowed": "preview_only",
-          "risk_flag": "[]",
-          "requires_disclaimer": 0,
-          "default_weight_tier": "highest",
-          "policy_source_id": "safe_chunks",
-          "backref_target_type": "main_passages",
-          "backref_target_ids_json": "[\"ZJSHL-CH-009-P-0016\",\"ZJSHL-CH-009-P-0017\",\"ZJSHL-CH-009-P-0019\"]",
-          "text_match_score": 128.5,
-          "weight_bonus": 6.0,
-          "combined_score": 134.5,
-          "matched_terms": [
-            "黄连汤方",
-            "连汤方",
-            "黄连汤",
-            "汤方",
-            "连汤",
-            "黄连"
-          ]
-        },
-        {
           "retrieval_entry_id": "safe:chunks:ZJSHL-CK-F-0049",
           "record_table": "records_chunks",
           "record_id": "safe:chunks:ZJSHL-CK-F-0049",
@@ -95,7 +68,8 @@
           "backref_target_ids_json": "[\"ZJSHL-CH-010-P-0145\",\"ZJSHL-CH-010-P-0146\",\"ZJSHL-CH-010-P-0147\",\"ZJSHL-CH-010-P-0148\"]",
           "text_match_score": 128.5,
           "weight_bonus": 6.0,
-          "combined_score": 134.5,
+          "precision_adjustment": 24.0,
+          "combined_score": 158.5,
           "matched_terms": [
             "黄连汤方",
             "连汤方",
@@ -103,7 +77,10 @@
             "汤方",
             "连汤",
             "黄连"
-          ]
+          ],
+          "topic_anchor": "黄连汤方",
+          "topic_consistency": "exact_formula_anchor",
+          "primary_allowed": true
         },
         {
           "retrieval_entry_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
@@ -128,7 +105,8 @@
           "backref_target_ids_json": "[]",
           "text_match_score": 128.5,
           "weight_bonus": 5.0,
-          "combined_score": 133.5,
+          "precision_adjustment": 24.0,
+          "combined_score": 157.5,
           "matched_terms": [
             "黄连汤方",
             "连汤方",
@@ -136,73 +114,10 @@
             "汤方",
             "连汤",
             "黄连"
-          ]
-        },
-        {
-          "retrieval_entry_id": "safe:main_passages:ZJSHL-CH-009-P-0016",
-          "record_table": "records_main_passages",
-          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0016",
-          "source_record_id": "ZJSHL-CH-009-P-0016",
-          "dataset_variant": "safe",
-          "source_object": "main_passages",
-          "source_type": "main_text",
-          "retrieval_text": "葛根黄芩黄连汤方：赵本芩、连互易",
-          "normalized_text": "葛根黄芩黄连汤方：赵本芩、连互易",
-          "book_id": "ZJSHL",
-          "chapter_id": "ZJSHL-CH-009",
-          "chapter_name": "辨太阳病脉证并治第六",
-          "evidence_level": "B",
-          "display_allowed": "secondary",
-          "risk_flag": "[\"short_text_demoted\"]",
-          "requires_disclaimer": 0,
-          "default_weight_tier": "medium",
-          "policy_source_id": "safe_main_passages_secondary",
-          "backref_target_type": "none",
-          "backref_target_ids_json": "[]",
-          "text_match_score": 128.5,
-          "weight_bonus": 4.0,
-          "combined_score": 132.5,
-          "matched_terms": [
-            "黄连汤方",
-            "连汤方",
-            "黄连汤",
-            "汤方",
-            "连汤",
-            "黄连"
-          ]
-        },
-        {
-          "retrieval_entry_id": "full:passages:ZJSHL-CH-009-P-0016",
-          "record_table": "records_passages",
-          "record_id": "full:passages:ZJSHL-CH-009-P-0016",
-          "source_record_id": "ZJSHL-CH-009-P-0016",
-          "dataset_variant": "full",
-          "source_object": "passages",
-          "source_type": "ledger_text",
-          "retrieval_text": "葛根黄芩黄连汤方：赵本芩、连互易",
-          "normalized_text": "葛根黄芩黄连汤方：赵本芩、连互易",
-          "book_id": "ZJSHL",
-          "chapter_id": "ZJSHL-CH-009",
-          "chapter_name": "辨太阳病脉证并治第六",
-          "evidence_level": "C",
-          "display_allowed": "risk_only",
-          "risk_flag": "[\"ledger_mixed_roles\"]",
-          "requires_disclaimer": 1,
-          "default_weight_tier": "low",
-          "policy_source_id": "full_passages_ledger",
-          "backref_target_type": "none",
-          "backref_target_ids_json": "[]",
-          "text_match_score": 128.5,
-          "weight_bonus": 2.0,
-          "combined_score": 130.5,
-          "matched_terms": [
-            "黄连汤方",
-            "连汤方",
-            "黄连汤",
-            "汤方",
-            "连汤",
-            "黄连"
-          ]
+          ],
+          "topic_anchor": "黄连汤方",
+          "topic_consistency": "exact_formula_anchor",
+          "primary_allowed": true
         },
         {
           "retrieval_entry_id": "full:passages:ZJSHL-CH-010-P-0145",
@@ -227,7 +142,8 @@
           "backref_target_ids_json": "[]",
           "text_match_score": 128.5,
           "weight_bonus": 2.0,
-          "combined_score": 130.5,
+          "precision_adjustment": 24.0,
+          "combined_score": 154.5,
           "matched_terms": [
             "黄连汤方",
             "连汤方",
@@ -235,18 +151,235 @@
             "汤方",
             "连汤",
             "黄连"
-          ]
+          ],
+          "topic_anchor": "黄连汤方",
+          "topic_consistency": "exact_formula_anchor",
+          "primary_allowed": true
+        },
+        {
+          "retrieval_entry_id": "safe:chunks:ZJSHL-CK-F-0009",
+          "record_table": "records_chunks",
+          "record_id": "safe:chunks:ZJSHL-CK-F-0009",
+          "source_record_id": "ZJSHL-CK-F-0009",
+          "dataset_variant": "safe",
+          "source_object": "chunks",
+          "source_type": "chunk",
+          "retrieval_text": "葛根黄芩黄连汤方：赵本芩、连互易\n葛根半斤 甘草二两，炙。味甘平 黄芩二，赵本作「三」两。味苦寒 黄连三两。味苦寒\n上四味，以水八升，先煮葛根，减二升，内诸药，煮取二升，去滓，分温再服。",
+          "normalized_text": "葛根黄芩黄连汤方：赵本芩、连互易 葛根半斤 甘草二两，炙。味甘平 黄芩二，赵本作「三」两。味苦寒 黄连三两。味苦寒 上四味，以水八升，先煮葛根，减二升，内诸药，煮取二升，去滓，分温再服。",
+          "book_id": "ZJSHL",
+          "chapter_id": "ZJSHL-CH-009",
+          "chapter_name": "辨太阳病脉证并治第六",
+          "evidence_level": "C",
+          "display_allowed": "preview_only",
+          "risk_flag": "[]",
+          "requires_disclaimer": 0,
+          "default_weight_tier": "highest",
+          "policy_source_id": "safe_chunks",
+          "backref_target_type": "main_passages",
+          "backref_target_ids_json": "[\"ZJSHL-CH-009-P-0016\",\"ZJSHL-CH-009-P-0017\",\"ZJSHL-CH-009-P-0019\"]",
+          "text_match_score": 128.5,
+          "weight_bonus": 6.0,
+          "precision_adjustment": -18.0,
+          "combined_score": 116.5,
+          "matched_terms": [
+            "黄连汤方",
+            "连汤方",
+            "黄连汤",
+            "汤方",
+            "连汤",
+            "黄连"
+          ],
+          "topic_anchor": "葛根黄芩黄连汤方",
+          "topic_consistency": "expanded_formula_anchor",
+          "primary_allowed": false
+        },
+        {
+          "retrieval_entry_id": "safe:main_passages:ZJSHL-CH-009-P-0016",
+          "record_table": "records_main_passages",
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0016",
+          "source_record_id": "ZJSHL-CH-009-P-0016",
+          "dataset_variant": "safe",
+          "source_object": "main_passages",
+          "source_type": "main_text",
+          "retrieval_text": "葛根黄芩黄连汤方：赵本芩、连互易",
+          "normalized_text": "葛根黄芩黄连汤方：赵本芩、连互易",
+          "book_id": "ZJSHL",
+          "chapter_id": "ZJSHL-CH-009",
+          "chapter_name": "辨太阳病脉证并治第六",
+          "evidence_level": "B",
+          "display_allowed": "secondary",
+          "risk_flag": "[\"short_text_demoted\"]",
+          "requires_disclaimer": 0,
+          "default_weight_tier": "medium",
+          "policy_source_id": "safe_main_passages_secondary",
+          "backref_target_type": "none",
+          "backref_target_ids_json": "[]",
+          "text_match_score": 128.5,
+          "weight_bonus": 4.0,
+          "precision_adjustment": -18.0,
+          "combined_score": 114.5,
+          "matched_terms": [
+            "黄连汤方",
+            "连汤方",
+            "黄连汤",
+            "汤方",
+            "连汤",
+            "黄连"
+          ],
+          "topic_anchor": "葛根黄芩黄连汤方",
+          "topic_consistency": "expanded_formula_anchor",
+          "primary_allowed": false
+        },
+        {
+          "retrieval_entry_id": "full:passages:ZJSHL-CH-009-P-0016",
+          "record_table": "records_passages",
+          "record_id": "full:passages:ZJSHL-CH-009-P-0016",
+          "source_record_id": "ZJSHL-CH-009-P-0016",
+          "dataset_variant": "full",
+          "source_object": "passages",
+          "source_type": "ledger_text",
+          "retrieval_text": "葛根黄芩黄连汤方：赵本芩、连互易",
+          "normalized_text": "葛根黄芩黄连汤方：赵本芩、连互易",
+          "book_id": "ZJSHL",
+          "chapter_id": "ZJSHL-CH-009",
+          "chapter_name": "辨太阳病脉证并治第六",
+          "evidence_level": "C",
+          "display_allowed": "risk_only",
+          "risk_flag": "[\"ledger_mixed_roles\"]",
+          "requires_disclaimer": 1,
+          "default_weight_tier": "low",
+          "policy_source_id": "full_passages_ledger",
+          "backref_target_type": "none",
+          "backref_target_ids_json": "[]",
+          "text_match_score": 128.5,
+          "weight_bonus": 2.0,
+          "precision_adjustment": -18.0,
+          "combined_score": 112.5,
+          "matched_terms": [
+            "黄连汤方",
+            "连汤方",
+            "黄连汤",
+            "汤方",
+            "连汤",
+            "黄连"
+          ],
+          "topic_anchor": "葛根黄芩黄连汤方",
+          "topic_consistency": "expanded_formula_anchor",
+          "primary_allowed": false
         }
       ],
       "primary_evidence": [
         {
-          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0017",
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
           "source_object": "main_passages",
           "evidence_level": "A",
           "display_allowed": "primary",
           "risk_flag": [],
           "default_weight_tier": "high",
-          "combined_score": 135.0,
+          "combined_score": 159.0,
+          "text_match_score": 128.5,
+          "matched_terms": [
+            "黄连汤方",
+            "连汤方",
+            "黄连汤",
+            "汤方",
+            "连汤",
+            "黄连"
+          ],
+          "text_preview": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。",
+          "chapter_id": "ZJSHL-CH-010",
+          "chapter_name": "辨太阳病脉证并治法第七",
+          "requires_disclaimer": false,
+          "policy_source_id": "safe_main_passages_primary",
+          "topic_anchor": "黄连汤方",
+          "topic_consistency": "exact_formula_anchor",
+          "retrieval_paths": [
+            {
+              "type": "chunk_backref",
+              "chunk_record_id": "safe:chunks:ZJSHL-CK-F-0049",
+              "chunk_score": 158.5
+            },
+            {
+              "type": "direct"
+            }
+          ]
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0146",
+          "source_object": "main_passages",
+          "evidence_level": "A",
+          "display_allowed": "primary",
+          "risk_flag": [],
+          "default_weight_tier": "high",
+          "combined_score": 159.0,
+          "text_match_score": 128.5,
+          "matched_terms": [
+            "黄连汤方",
+            "连汤方",
+            "黄连汤",
+            "汤方",
+            "连汤",
+            "黄连"
+          ],
+          "text_preview": "味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温",
+          "chapter_id": "ZJSHL-CH-010",
+          "chapter_name": "辨太阳病脉证并治法第七",
+          "requires_disclaimer": false,
+          "policy_source_id": "safe_main_passages_primary",
+          "topic_anchor": "黄连汤方",
+          "topic_consistency": "exact_formula_anchor",
+          "retrieval_paths": [
+            {
+              "type": "chunk_backref",
+              "chunk_record_id": "safe:chunks:ZJSHL-CK-F-0049",
+              "chunk_score": 158.5
+            }
+          ]
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0147",
+          "source_object": "main_passages",
+          "evidence_level": "A",
+          "display_allowed": "primary",
+          "risk_flag": [],
+          "default_weight_tier": "high",
+          "combined_score": 159.0,
+          "text_match_score": 128.5,
+          "matched_terms": [
+            "黄连汤方",
+            "连汤方",
+            "黄连汤",
+            "汤方",
+            "连汤",
+            "黄连"
+          ],
+          "text_preview": "上热者，泄之以苦，黄连之苦以降阳；下寒者，散之以辛，桂、姜、半夏之辛以升阴；脾欲缓，急食甘以缓之，人参、甘草、大枣之甘以益胃。",
+          "chapter_id": "ZJSHL-CH-010",
+          "chapter_name": "辨太阳病脉证并治法第七",
+          "requires_disclaimer": false,
+          "policy_source_id": "safe_main_passages_primary",
+          "topic_anchor": "黄连汤方",
+          "topic_consistency": "exact_formula_anchor",
+          "retrieval_paths": [
+            {
+              "type": "chunk_backref",
+              "chunk_record_id": "safe:chunks:ZJSHL-CK-F-0049",
+              "chunk_score": 158.5
+            }
+          ]
+        }
+      ],
+      "secondary_evidence": [
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0017",
+          "source_object": "main_passages",
+          "evidence_level": "A",
+          "display_allowed": "primary",
+          "risk_flag": [
+            "topic_mismatch_demoted"
+          ],
+          "default_weight_tier": "high",
+          "combined_score": 117.0,
           "text_match_score": 128.5,
           "matched_terms": [
             "黄连汤方",
@@ -261,11 +394,13 @@
           "chapter_name": "辨太阳病脉证并治第六",
           "requires_disclaimer": false,
           "policy_source_id": "safe_main_passages_primary",
+          "topic_anchor": "葛根黄芩黄连汤方",
+          "topic_consistency": "expanded_formula_anchor",
           "retrieval_paths": [
             {
               "type": "chunk_backref",
               "chunk_record_id": "safe:chunks:ZJSHL-CK-F-0009",
-              "chunk_score": 134.5
+              "chunk_score": 116.5
             }
           ]
         },
@@ -274,9 +409,11 @@
           "source_object": "main_passages",
           "evidence_level": "A",
           "display_allowed": "primary",
-          "risk_flag": [],
+          "risk_flag": [
+            "topic_mismatch_demoted"
+          ],
           "default_weight_tier": "high",
-          "combined_score": 135.0,
+          "combined_score": 117.0,
           "text_match_score": 128.5,
           "matched_terms": [
             "黄连汤方",
@@ -291,49 +428,16 @@
           "chapter_name": "辨太阳病脉证并治第六",
           "requires_disclaimer": false,
           "policy_source_id": "safe_main_passages_primary",
+          "topic_anchor": "葛根黄芩黄连汤方",
+          "topic_consistency": "expanded_formula_anchor",
           "retrieval_paths": [
             {
               "type": "chunk_backref",
               "chunk_record_id": "safe:chunks:ZJSHL-CK-F-0009",
-              "chunk_score": 134.5
+              "chunk_score": 116.5
             }
           ]
         },
-        {
-          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
-          "source_object": "main_passages",
-          "evidence_level": "A",
-          "display_allowed": "primary",
-          "risk_flag": [],
-          "default_weight_tier": "high",
-          "combined_score": 135.0,
-          "text_match_score": 128.5,
-          "matched_terms": [
-            "黄连汤方",
-            "连汤方",
-            "黄连汤",
-            "汤方",
-            "连汤",
-            "黄连"
-          ],
-          "text_preview": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。",
-          "chapter_id": "ZJSHL-CH-010",
-          "chapter_name": "辨太阳病脉证并治法第七",
-          "requires_disclaimer": false,
-          "policy_source_id": "safe_main_passages_primary",
-          "retrieval_paths": [
-            {
-              "type": "chunk_backref",
-              "chunk_record_id": "safe:chunks:ZJSHL-CK-F-0049",
-              "chunk_score": 134.5
-            },
-            {
-              "type": "direct"
-            }
-          ]
-        }
-      ],
-      "secondary_evidence": [
         {
           "record_id": "safe:main_passages:ZJSHL-CH-009-P-0016",
           "source_object": "main_passages",
@@ -343,7 +447,7 @@
             "short_text_demoted"
           ],
           "default_weight_tier": "medium",
-          "combined_score": 135.0,
+          "combined_score": 117.0,
           "text_match_score": 128.5,
           "matched_terms": [
             "黄连汤方",
@@ -358,11 +462,13 @@
           "chapter_name": "辨太阳病脉证并治第六",
           "requires_disclaimer": false,
           "policy_source_id": "safe_main_passages_secondary",
+          "topic_anchor": "葛根黄芩黄连汤方",
+          "topic_consistency": "expanded_formula_anchor",
           "retrieval_paths": [
             {
               "type": "chunk_backref",
               "chunk_record_id": "safe:chunks:ZJSHL-CK-F-0009",
-              "chunk_score": 134.5
+              "chunk_score": 116.5
             },
             {
               "type": "direct"
@@ -372,36 +478,6 @@
       ],
       "risk_materials": [
         {
-          "record_id": "full:passages:ZJSHL-CH-009-P-0016",
-          "source_object": "passages",
-          "evidence_level": "C",
-          "display_allowed": "risk_only",
-          "risk_flag": [
-            "ledger_mixed_roles"
-          ],
-          "default_weight_tier": "low",
-          "combined_score": 130.5,
-          "text_match_score": 128.5,
-          "matched_terms": [
-            "黄连汤方",
-            "连汤方",
-            "黄连汤",
-            "汤方",
-            "连汤",
-            "黄连"
-          ],
-          "text_preview": "葛根黄芩黄连汤方：赵本芩、连互易",
-          "chapter_id": "ZJSHL-CH-009",
-          "chapter_name": "辨太阳病脉证并治第六",
-          "requires_disclaimer": true,
-          "policy_source_id": "full_passages_ledger",
-          "retrieval_paths": [
-            {
-              "type": "direct"
-            }
-          ]
-        },
-        {
           "record_id": "full:passages:ZJSHL-CH-010-P-0145",
           "source_object": "passages",
           "evidence_level": "C",
@@ -410,7 +486,7 @@
             "ledger_mixed_roles"
           ],
           "default_weight_tier": "low",
-          "combined_score": 130.5,
+          "combined_score": 154.5,
           "text_match_score": 128.5,
           "matched_terms": [
             "黄连汤方",
@@ -425,6 +501,40 @@
           "chapter_name": "辨太阳病脉证并治法第七",
           "requires_disclaimer": true,
           "policy_source_id": "full_passages_ledger",
+          "topic_anchor": "黄连汤方",
+          "topic_consistency": "exact_formula_anchor",
+          "retrieval_paths": [
+            {
+              "type": "direct"
+            }
+          ]
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-009-P-0016",
+          "source_object": "passages",
+          "evidence_level": "C",
+          "display_allowed": "risk_only",
+          "risk_flag": [
+            "ledger_mixed_roles"
+          ],
+          "default_weight_tier": "low",
+          "combined_score": 112.5,
+          "text_match_score": 128.5,
+          "matched_terms": [
+            "黄连汤方",
+            "连汤方",
+            "黄连汤",
+            "汤方",
+            "连汤",
+            "黄连"
+          ],
+          "text_preview": "葛根黄芩黄连汤方：赵本芩、连互易",
+          "chapter_id": "ZJSHL-CH-009",
+          "chapter_name": "辨太阳病脉证并治第六",
+          "requires_disclaimer": true,
+          "policy_source_id": "full_passages_ledger",
+          "topic_anchor": "葛根黄芩黄连汤方",
+          "topic_consistency": "expanded_formula_anchor",
           "retrieval_paths": [
             {
               "type": "direct"
@@ -435,40 +545,8 @@
       "retrieval_trace": {
         "chunk_hits": [
           {
-            "chunk_record_id": "safe:chunks:ZJSHL-CK-F-0009",
-            "chunk_score": 134.5,
-            "matched_terms": [
-              "黄连汤方",
-              "连汤方",
-              "黄连汤",
-              "汤方",
-              "连汤",
-              "黄连"
-            ],
-            "linked_main_passages": [
-              {
-                "main_passage_record_id": "safe:main_passages:ZJSHL-CH-009-P-0016",
-                "passage_id": "ZJSHL-CH-009-P-0016",
-                "evidence_level": "B",
-                "display_allowed": "secondary"
-              },
-              {
-                "main_passage_record_id": "safe:main_passages:ZJSHL-CH-009-P-0017",
-                "passage_id": "ZJSHL-CH-009-P-0017",
-                "evidence_level": "A",
-                "display_allowed": "primary"
-              },
-              {
-                "main_passage_record_id": "safe:main_passages:ZJSHL-CH-009-P-0019",
-                "passage_id": "ZJSHL-CH-009-P-0019",
-                "evidence_level": "A",
-                "display_allowed": "primary"
-              }
-            ]
-          },
-          {
             "chunk_record_id": "safe:chunks:ZJSHL-CK-F-0049",
-            "chunk_score": 134.5,
+            "chunk_score": 158.5,
             "matched_terms": [
               "黄连汤方",
               "连汤方",
@@ -477,6 +555,8 @@
               "连汤",
               "黄连"
             ],
+            "topic_consistency": "exact_formula_anchor",
+            "topic_anchor": "黄连汤方",
             "linked_main_passages": [
               {
                 "main_passage_record_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
@@ -503,6 +583,40 @@
                 "display_allowed": "primary"
               }
             ]
+          },
+          {
+            "chunk_record_id": "safe:chunks:ZJSHL-CK-F-0009",
+            "chunk_score": 116.5,
+            "matched_terms": [
+              "黄连汤方",
+              "连汤方",
+              "黄连汤",
+              "汤方",
+              "连汤",
+              "黄连"
+            ],
+            "topic_consistency": "expanded_formula_anchor",
+            "topic_anchor": "葛根黄芩黄连汤方",
+            "linked_main_passages": [
+              {
+                "main_passage_record_id": "safe:main_passages:ZJSHL-CH-009-P-0016",
+                "passage_id": "ZJSHL-CH-009-P-0016",
+                "evidence_level": "B",
+                "display_allowed": "secondary"
+              },
+              {
+                "main_passage_record_id": "safe:main_passages:ZJSHL-CH-009-P-0017",
+                "passage_id": "ZJSHL-CH-009-P-0017",
+                "evidence_level": "A",
+                "display_allowed": "primary"
+              },
+              {
+                "main_passage_record_id": "safe:main_passages:ZJSHL-CH-009-P-0019",
+                "passage_id": "ZJSHL-CH-009-P-0019",
+                "evidence_level": "A",
+                "display_allowed": "primary"
+              }
+            ]
           }
         ],
         "blocked_sources": [
@@ -513,7 +627,13 @@
           "records_main_passages",
           "records_passages"
         ],
-        "raw_candidate_count": 6
+        "raw_candidate_count": 6,
+        "precision_profile": "tight_primary",
+        "query_theme": {
+          "type": "formula_name",
+          "anchor": "黄连汤方",
+          "normalized_anchor": "黄连汤"
+        }
       },
       "mode": "strong",
       "mode_reason": "基于主证据回答，并附带辅助说明",
@@ -526,7 +646,13 @@
       "query_request": {
         "query_text": "烧针益阳而损阴是什么意思？",
         "query_text_normalized": "烧针益阳而损阴",
+        "query_theme": {
+          "type": "generic",
+          "anchor": "烧针益阳而损阴",
+          "normalized_anchor": "烧针益阳而损阴"
+        },
         "target_mode": "strong_first",
+        "precision_profile": "tight_primary",
         "allow_levels": [
           "A",
           "B",
@@ -583,6 +709,7 @@
           "backref_target_ids_json": "[]",
           "text_match_score": 189.0,
           "weight_bonus": 3.0,
+          "precision_adjustment": 0.0,
           "combined_score": 192.0,
           "matched_terms": [
             "烧针益阳而损阴",
@@ -597,7 +724,10 @@
             "阳而损",
             "损阴",
             "烧针"
-          ]
+          ],
+          "topic_anchor": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+          "topic_consistency": "neutral",
+          "primary_allowed": true
         },
         {
           "retrieval_entry_id": "full:passages:ZJSHL-CH-003-P-0016",
@@ -622,6 +752,7 @@
           "backref_target_ids_json": "[]",
           "text_match_score": 189.0,
           "weight_bonus": 2.0,
+          "precision_adjustment": 0.0,
           "combined_score": 191.0,
           "matched_terms": [
             "烧针益阳而损阴",
@@ -636,7 +767,10 @@
             "阳而损",
             "损阴",
             "烧针"
-          ]
+          ],
+          "topic_anchor": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+          "topic_consistency": "neutral",
+          "primary_allowed": true
         },
         {
           "retrieval_entry_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0016",
@@ -661,6 +795,7 @@
           "backref_target_ids_json": "[\"ZJSHL-CH-003-P-0016\"]",
           "text_match_score": 189.0,
           "weight_bonus": 1.0,
+          "precision_adjustment": 0.0,
           "combined_score": 190.0,
           "matched_terms": [
             "烧针益阳而损阴",
@@ -675,7 +810,10 @@
             "阳而损",
             "损阴",
             "烧针"
-          ]
+          ],
+          "topic_anchor": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+          "topic_consistency": "neutral",
+          "primary_allowed": true
         }
       ],
       "primary_evidence": [],
@@ -710,6 +848,8 @@
           "chapter_name": "辨脉法第一",
           "requires_disclaimer": true,
           "policy_source_id": "full_annotations_raw",
+          "topic_anchor": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+          "topic_consistency": "neutral",
           "retrieval_paths": [
             {
               "type": "direct"
@@ -749,6 +889,8 @@
           "chapter_name": "辨脉法第一",
           "requires_disclaimer": true,
           "policy_source_id": "full_passages_ledger",
+          "topic_anchor": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+          "topic_consistency": "neutral",
           "retrieval_paths": [
             {
               "type": "direct"
@@ -785,6 +927,8 @@
           "chapter_name": "辨脉法第一",
           "requires_disclaimer": true,
           "policy_source_id": "ambiguous_related_material",
+          "topic_anchor": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+          "topic_consistency": "neutral",
           "retrieval_paths": [
             {
               "type": "direct"
@@ -802,7 +946,13 @@
           "records_passages",
           "risk_registry_ambiguous"
         ],
-        "raw_candidate_count": 3
+        "raw_candidate_count": 3,
+        "precision_profile": "tight_primary",
+        "query_theme": {
+          "type": "generic",
+          "anchor": "烧针益阳而损阴",
+          "normalized_anchor": "烧针益阳而损阴"
+        }
       },
       "mode": "weak_with_review_notice",
       "mode_reason": "仅命中辅助或风险材料，以下内容需核对",
@@ -820,7 +970,13 @@
       "query_request": {
         "query_text": "书中有没有提到量子纠缠？",
         "query_text_normalized": "量子纠缠",
+        "query_theme": {
+          "type": "generic",
+          "anchor": "量子纠缠",
+          "normalized_anchor": "量子纠缠"
+        },
         "target_mode": "strong_first",
+        "precision_profile": "tight_primary",
         "allow_levels": [
           "A",
           "B",
@@ -863,7 +1019,13 @@
           "annotation_links"
         ],
         "used_sources": [],
-        "raw_candidate_count": 0
+        "raw_candidate_count": 0,
+        "precision_profile": "tight_primary",
+        "query_theme": {
+          "type": "generic",
+          "anchor": "量子纠缠",
+          "normalized_anchor": "量子纠缠"
+        }
       },
       "mode": "refuse",
       "mode_reason": "未找到足以支撑回答的依据，建议缩小问题范围或改问具体条文",
