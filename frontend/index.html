@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>《伤寒论》RAG MVP</title>
+    <link rel="stylesheet" href="/frontend/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">TCM Classic RAG MVP</p>
+          <h1>《伤寒论》问答演示页</h1>
+          <p class="hero-text">
+            页面只消费已冻结的
+            <code>POST /api/v1/answers</code>
+            ，展示 answer payload 的稳定结果，不依赖任何检索内部细节。
+          </p>
+        </div>
+        <div class="hero-meta">
+          <p class="meta-label">最小闭环</p>
+          <p class="meta-value">query → API → answer payload</p>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="panel query-panel">
+          <div class="panel-head">
+            <h2>输入问题</h2>
+            <p>输入一个问题，页面会直接请求后端最小接口。</p>
+          </div>
+
+          <form id="query-form" class="query-form">
+            <label class="field-label" for="query-input">问题</label>
+            <textarea
+              id="query-input"
+              name="query"
+              rows="4"
+              placeholder="例如：黄连汤方的条文是什么？"
+            ></textarea>
+
+            <div class="form-actions">
+              <button id="submit-button" type="submit">提交查询</button>
+              <span id="status-text" class="status-text" aria-live="polite">尚未发起查询</span>
+            </div>
+          </form>
+
+          <div class="sample-queries">
+            <p class="sample-title">冻结样例</p>
+            <div class="sample-list">
+              <button class="sample-chip" type="button" data-query="黄连汤方的条文是什么？">黄连汤方</button>
+              <button class="sample-chip" type="button" data-query="烧针益阳而损阴是什么意思？">烧针益阳而损阴</button>
+              <button class="sample-chip" type="button" data-query="书中有没有提到量子纠缠？">量子纠缠</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel summary-panel">
+          <div class="summary-row">
+            <span class="summary-label">当前模式</span>
+            <span id="mode-badge" class="mode-badge mode-idle">idle</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">最近问题</span>
+            <p id="query-echo" class="summary-value">尚未查询</p>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">状态</span>
+            <p id="error-text" class="error-text" aria-live="polite"></p>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">接口</span>
+            <p class="summary-value"><code>POST /api/v1/answers</code></p>
+          </div>
+        </section>
+
+        <section id="answer-section" class="panel answer-panel">
+          <div class="panel-head">
+            <h2>回答</h2>
+            <p id="answer-caption">提交问题后，这里会显示 answer_text。</p>
+          </div>
+          <p id="answer-text" class="answer-text empty-copy">等待查询结果。</p>
+          <p id="disclaimer-text" class="disclaimer-text"></p>
+        </section>
+
+        <section id="review-notice-section" class="panel callout callout-review" hidden>
+          <div class="panel-head">
+            <h2>核对提示</h2>
+          </div>
+          <p id="review-notice-text"></p>
+        </section>
+
+        <section id="refuse-section" class="panel callout callout-refuse" hidden>
+          <div class="panel-head">
+            <h2>拒答原因</h2>
+          </div>
+          <p id="refuse-reason-text"></p>
+        </section>
+
+        <section id="empty-evidence-section" class="panel empty-state-panel" hidden>
+          <p>当前结果没有可展示证据。若为拒答模式，这是预期行为。</p>
+        </section>
+
+        <section id="primary-section" class="panel evidence-panel primary-panel" hidden>
+          <div class="panel-head">
+            <h2>主依据</h2>
+            <p>strong 模式下优先展示，只允许主证据语义。</p>
+          </div>
+          <div id="primary-list" class="evidence-list"></div>
+        </section>
+
+        <section id="secondary-section" class="panel evidence-panel" hidden>
+          <div class="panel-head">
+            <h2>补充依据</h2>
+            <p>作为补充说明使用，不替代主证据。</p>
+          </div>
+          <div id="secondary-list" class="evidence-list"></div>
+        </section>
+
+        <section id="review-section" class="panel evidence-panel" hidden>
+          <div class="panel-head">
+            <h2>核对材料</h2>
+            <p>风险层或待核对材料，单独分区展示。</p>
+          </div>
+          <div id="review-list" class="evidence-list"></div>
+        </section>
+
+        <section id="citations-section" class="panel citations-panel" hidden>
+          <div class="panel-head">
+            <h2>引用</h2>
+            <p>与当前 payload 中的 citations 保持一致。</p>
+          </div>
+          <ol id="citations-list" class="citation-list"></ol>
+        </section>
+
+        <section id="followups-section" class="panel followups-panel" hidden>
+          <div class="panel-head">
+            <h2>改问建议</h2>
+          </div>
+          <ul id="followups-list" class="followups-list"></ul>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/frontend/app.js"></script>
+  </body>
+</html>

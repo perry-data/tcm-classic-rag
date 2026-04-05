@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import mimetypes
 import sys
 import threading
 from dataclasses import dataclass
@@ -35,6 +36,7 @@ DEFAULT_HOST = "127.0.0.1"
 DEFAULT_PORT = 8000
 DEFAULT_API_EXAMPLES_OUT = "artifacts/api_examples.json"
 DEFAULT_API_SMOKE_OUT = "artifacts/api_smoke_checks.md"
+DEFAULT_FRONTEND_DIR = "frontend"
 EXPECTED_PAYLOAD_FIELDS = [
     "query",
     "answer_mode",
@@ -133,7 +135,7 @@ class MinimalApiHTTPServer(HTTPServer):
     allow_reuse_address = True
 
 
-def make_handler(service: MinimalApiService) -> type[BaseHTTPRequestHandler]:
+def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHTTPRequestHandler]:
     class MinimalApiHandler(BaseHTTPRequestHandler):
         server_version = "TCMClassicRAGMinimalAPI/0.1"
         protocol_version = "HTTP/1.1"
@@ -160,6 +162,22 @@ def make_handler(service: MinimalApiService) -> type[BaseHTTPRequestHandler]:
             self._send_json(200, response_payload)
 
         def do_GET(self) -> None:  # noqa: N802
+            request_path = urlsplit(self.path).path
+            if request_path in {"/", "/index.html", "/frontend", "/frontend/"}:
+                self._send_file(frontend_root / "index.html")
+                return
+
+            if request_path.startswith("/frontend/"):
+                relative_path = request_path.removeprefix("/frontend/")
+                target_path = (frontend_root / relative_path).resolve()
+                try:
+                    target_path.relative_to(frontend_root.resolve())
+                except ValueError:
+                    self._send_json(404, {"error": {"code": "not_found", "message": "Route not found."}})
+                    return
+                self._send_file(target_path)
+                return
+
             self._send_json(404, {"error": {"code": "not_found", "message": "Route not found."}})
 
         def log_message(self, format: str, *args: Any) -> None:
@@ -188,6 +206,22 @@ def make_handler(service: MinimalApiService) -> type[BaseHTTPRequestHandler]:
             body = (json.dumps(payload, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
             self.send_response(status_code)
             self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+
+        def _send_file(self, file_path: Path) -> None:
+            if not file_path.exists() or not file_path.is_file():
+                self._send_json(404, {"error": {"code": "not_found", "message": "Route not found."}})
+                return
+
+            content_type, _ = mimetypes.guess_type(str(file_path))
+            if not content_type:
+                content_type = "application/octet-stream"
+
+            body = file_path.read_bytes()
+            self.send_response(200)
+            self.send_header("Content-Type", f"{content_type}; charset=utf-8" if content_type.startswith("text/") else content_type)
             self.send_header("Content-Length", str(len(body)))
             self.end_headers()
             self.wfile.write(body)
@@ -366,6 +400,7 @@ def resolve_runtime_paths(args: argparse.Namespace) -> dict[str, Path]:
         "dense_chunks_meta": (repo_root / args.dense_chunks_meta).resolve(),
         "dense_main_index": (repo_root / args.dense_main_index).resolve(),
         "dense_main_meta": (repo_root / args.dense_main_meta).resolve(),
+        "frontend_root": (repo_root / DEFAULT_FRONTEND_DIR).resolve(),
         "examples_out": (repo_root / args.examples_out).resolve(),
         "smoke_out": (repo_root / args.smoke_checks_out).resolve(),
     }
@@ -390,7 +425,7 @@ def run_smoke_mode(args: argparse.Namespace, paths: dict[str, Path]) -> int:
     paths["smoke_out"].parent.mkdir(parents=True, exist_ok=True)
 
     service = create_service(args, paths)
-    server = MinimalApiHTTPServer((args.host, 0), make_handler(service))
+    server = MinimalApiHTTPServer((args.host, 0), make_handler(service, paths["frontend_root"]))
     try:
         log(f"[1/4] Loaded minimal API service from {paths['db_path']}")
         log(f"[2/4] Bound temporary HTTP server on http://{args.host}:{server.server_address[1]}{API_PATH}")
@@ -412,10 +447,10 @@ def run_smoke_mode(args: argparse.Namespace, paths: dict[str, Path]) -> int:
 
 def run_server_mode(args: argparse.Namespace, paths: dict[str, Path]) -> int:
     service = create_service(args, paths)
-    server = MinimalApiHTTPServer((args.host, args.port), make_handler(service))
+    server = MinimalApiHTTPServer((args.host, args.port), make_handler(service, paths["frontend_root"]))
     try:
         log(f"[1/3] Loaded minimal API service from {paths['db_path']}")
-        log(f"[2/3] Serving POST {API_PATH} on http://{args.host}:{args.port}")
+        log(f"[2/3] Serving frontend on http://{args.host}:{args.port}/ and POST {API_PATH}")
         log("[3/3] Press Ctrl+C to stop")
         server.serve_forever()
         return 0
