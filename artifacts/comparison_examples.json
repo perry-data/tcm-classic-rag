@@ -1,0 +1,956 @@
+{
+  "generated_at_utc": "2026-04-06T08:41:51.385028+00:00",
+  "comparison_examples": [
+    {
+      "example_id": "comparison_formula_delta_strong",
+      "description": "比较成功且证据充分，直接回答显式加减差异。",
+      "query": "桂枝加附子汤方比桂枝加厚朴杏子汤方少了什么？",
+      "expected_mode": "strong",
+      "payload": {
+        "query": "桂枝加附子汤方比桂枝加厚朴杏子汤方少了什么？",
+        "answer_mode": "strong",
+        "answer_text": "从现有方文与相关条文看，桂枝加附子汤方与桂枝加浓朴杏子汤方都从桂枝汤方加减而来，但显式加味和对应语境不同。\n1. 显式加减关系：桂枝加附子汤方明写加附子；桂枝加浓朴杏子汤方明写加浓朴、杏仁。\n2. 条文语境：桂枝加附子汤方相关条文可见“太阳病，发汗，遂漏不止，其人恶风，小便难，四支微急，难以屈伸者”；桂枝加浓朴杏子汤方核对材料可见“太阳病，下之微喘者，表未解故也”。\n3. 出处线索：桂枝加附子汤方的方文见“卷十附方位置”；桂枝加浓朴杏子汤方的方文见“卷十附方位置”；桂枝加附子汤方相关条文位于“辨太阳病脉证并治法上第五”；桂枝加浓朴杏子汤方相关条文位于“辨太阳病脉证并治第六”。\n以上差异仅按当前可见条文与方文整理；若要逐字核对，请继续查看引用。",
+        "primary_evidence": [
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-025-P-0004",
+            "record_type": "main_passages",
+            "display_role": "primary",
+            "title": "A · 桂枝加附子汤方",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "snippet": "桂枝加附子汤方：于桂枝汤方内，加附子一枚，炮，去皮，破八片，馀根据前法。术附汤方，附于此方内，去桂枝，加白术四两，根据前法。",
+            "risk_flags": []
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-025-P-0003",
+            "record_type": "main_passages",
+            "display_role": "primary",
+            "title": "B · 桂枝加浓朴杏子汤方",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "snippet": "桂枝加浓朴杏子汤方：于桂枝汤方内，加浓朴二两，杏仁五十个，去皮尖，馀根据前法。",
+            "risk_flags": []
+          }
+        ],
+        "secondary_evidence": [
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-008-P-0236",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "A · 桂枝加附子汤方",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-008",
+            "chapter_title": "辨太阳病脉证并治法上第五",
+            "snippet": "太阳病，发汗，遂漏不止，其人恶风，小便难，四支微急，难以屈伸者，桂枝加附子汤主之。赵本有「桂枝加附子汤方」详见本书卷十",
+            "risk_flags": [
+              "topic_mismatch_demoted"
+            ]
+          }
+        ],
+        "review_materials": [
+          {
+            "record_id": "full:passages:ZJSHL-CH-025-P-0004",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "A · 桂枝加附子汤方",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "snippet": "桂枝加附子汤方：于桂枝汤方内，加附子一枚，炮，去皮，破八片，馀根据前法。术附汤方，附于此方内，去桂枝，加白术四两，根据前法。",
+            "risk_flags": [
+              "ledger_mixed_roles"
+            ]
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-008-P-0236",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "A · 桂枝加附子汤方",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-008",
+            "chapter_title": "辨太阳病脉证并治法上第五",
+            "snippet": "太阳病，发汗，遂漏不止，其人恶风，小便难，四支微急，难以屈伸者，桂枝加附子汤主之。赵本有「桂枝加附子汤方」详见本书卷十",
+            "risk_flags": [
+              "ledger_mixed_roles"
+            ]
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-025-P-0003",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "B · 桂枝加浓朴杏子汤方",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "snippet": "桂枝加浓朴杏子汤方：于桂枝汤方内，加浓朴二两，杏仁五十个，去皮尖，馀根据前法。",
+            "risk_flags": [
+              "ledger_mixed_roles"
+            ]
+          },
+          {
+            "record_id": "full:ambiguous_passages:ZJSHL-CH-009-P-0053",
+            "record_type": "ambiguous_passages",
+            "display_role": "review",
+            "title": "B · 桂枝加浓朴杏子汤方",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "snippet": "太阳病，下之微喘者，表未解故也。桂枝加浓朴杏人汤主之。赵本有「桂枝加浓朴杏子汤方」详见本书卷十",
+            "risk_flags": [
+              "ambiguous_source"
+            ]
+          }
+        ],
+        "disclaimer": "比较结论优先依据两侧方文；补充依据与核对材料仅作佐证。",
+        "review_notice": "以下补充依据与核对材料仅用于比较佐证，不作为主结论。",
+        "refuse_reason": null,
+        "suggested_followup_questions": [],
+        "citations": [
+          {
+            "citation_id": "c1",
+            "record_id": "safe:main_passages:ZJSHL-CH-025-P-0004",
+            "record_type": "main_passages",
+            "title": "A · 桂枝加附子汤方",
+            "evidence_level": "A",
+            "snippet": "桂枝加附子汤方：于桂枝汤方内，加附子一枚，炮，去皮，破八片，馀根据前法。术附汤方，附于此方内，去桂枝，加白术四两，根据前法。",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "citation_role": "primary"
+          },
+          {
+            "citation_id": "c2",
+            "record_id": "safe:main_passages:ZJSHL-CH-025-P-0003",
+            "record_type": "main_passages",
+            "title": "B · 桂枝加浓朴杏子汤方",
+            "evidence_level": "A",
+            "snippet": "桂枝加浓朴杏子汤方：于桂枝汤方内，加浓朴二两，杏仁五十个，去皮尖，馀根据前法。",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "citation_role": "primary"
+          },
+          {
+            "citation_id": "c3",
+            "record_id": "safe:main_passages:ZJSHL-CH-008-P-0236",
+            "record_type": "main_passages",
+            "title": "A · 桂枝加附子汤方",
+            "evidence_level": "A",
+            "snippet": "太阳病，发汗，遂漏不止，其人恶风，小便难，四支微急，难以屈伸者，桂枝加附子汤主之。赵本有「桂枝加附子汤方」详见本书卷十",
+            "chapter_id": "ZJSHL-CH-008",
+            "chapter_title": "辨太阳病脉证并治法上第五",
+            "citation_role": "secondary"
+          },
+          {
+            "citation_id": "c4",
+            "record_id": "full:passages:ZJSHL-CH-025-P-0003",
+            "record_type": "passages",
+            "title": "B · 桂枝加浓朴杏子汤方",
+            "evidence_level": "C",
+            "snippet": "桂枝加浓朴杏子汤方：于桂枝汤方内，加浓朴二两，杏仁五十个，去皮尖，馀根据前法。",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "citation_role": "review"
+          },
+          {
+            "citation_id": "c5",
+            "record_id": "full:ambiguous_passages:ZJSHL-CH-009-P-0053",
+            "record_type": "ambiguous_passages",
+            "title": "B · 桂枝加浓朴杏子汤方",
+            "evidence_level": "C",
+            "snippet": "太阳病，下之微喘者，表未解故也。桂枝加浓朴杏人汤主之。赵本有「桂枝加浓朴杏子汤方」详见本书卷十",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "citation_role": "review"
+          }
+        ],
+        "display_sections": [
+          {
+            "section_id": "answer",
+            "title": "回答",
+            "section_type": "text",
+            "visible": true,
+            "field": "answer_text",
+            "summary": "从现有方文与相关条文看，桂枝加附子汤方与桂枝加浓朴杏子汤方都从桂枝汤方加减而来，但显式加味和对应..."
+          },
+          {
+            "section_id": "review_notice",
+            "title": "核对提示",
+            "section_type": "notice",
+            "visible": true,
+            "field": "review_notice",
+            "summary": "以下补充依据与核对材料仅用于比较佐证，不作为主结论。"
+          },
+          {
+            "section_id": "primary_evidence",
+            "title": "主依据",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "primary_evidence",
+            "item_count": 2
+          },
+          {
+            "section_id": "secondary_evidence",
+            "title": "补充依据",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "secondary_evidence",
+            "item_count": 1
+          },
+          {
+            "section_id": "review_materials",
+            "title": "核对材料",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "review_materials",
+            "item_count": 4
+          },
+          {
+            "section_id": "citations",
+            "title": "引用",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "citations",
+            "item_count": 5
+          },
+          {
+            "section_id": "refusal_guidance",
+            "title": "改问建议",
+            "section_type": "list",
+            "visible": false,
+            "field": "suggested_followup_questions",
+            "item_count": 0
+          }
+        ]
+      },
+      "comparison_debug": {
+        "query": "桂枝加附子汤方比桂枝加厚朴杏子汤方少了什么？",
+        "comparison_detected": true,
+        "comparison_valid": true,
+        "query_kind": "delta",
+        "requested_context": false,
+        "answer_mode": "strong",
+        "recognized_entities": [
+          {
+            "group_label": "A",
+            "canonical_name": "桂枝加附子汤方",
+            "formula_row_found": true,
+            "support_row_found": true,
+            "context_supported_by_main_passage": true
+          },
+          {
+            "group_label": "B",
+            "canonical_name": "桂枝加浓朴杏子汤方",
+            "formula_row_found": true,
+            "support_row_found": false,
+            "context_supported_by_main_passage": false
+          }
+        ],
+        "structured_difference_count": 4
+      }
+    },
+    {
+      "example_id": "comparison_context_weak",
+      "description": "比较成功，但用户追问条文语境时只能 weak。",
+      "query": "桂枝去芍药汤方和桂枝去芍药加附子汤方的条文语境有什么不同？",
+      "expected_mode": "weak_with_review_notice",
+      "payload": {
+        "query": "桂枝去芍药汤方和桂枝去芍药加附子汤方的条文语境有什么不同？",
+        "answer_mode": "weak_with_review_notice",
+        "answer_text": "两方都已识别，但当前比较仍有证据缺口，以下只按现有方文做弱整理：桂枝去芍药汤方 与 桂枝去芍药加附子汤方 的差异需要继续核对。\n1. 显式加减与药味差异：桂枝去芍药加附子汤方明写加附子。\n2. 语境证据缺口：当前未稳定找到 桂枝去芍药汤方和桂枝去芍药加附子汤方 的直接相关条文，因此语境差异只能暂缓判断。\n3. 出处线索：桂枝去芍药汤方的方文见“卷十附方位置”；桂枝去芍药加附子汤方的方文见“卷十附方位置”；桂枝去芍药汤方相关条文位于“辨太阳病脉证并治法上第五”；桂枝去芍药加附子汤方相关条文位于“辨太阳病脉证并治法上第五”。\n以上差异仅按当前可见条文与方文整理；若要逐字核对，请继续查看引用。",
+        "primary_evidence": [],
+        "secondary_evidence": [
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-025-P-0005",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "A · 桂枝去芍药汤方",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "snippet": "桂枝去芍药汤方：于桂枝汤方内，去芍药，馀根据前法。",
+            "risk_flags": [
+              "comparison_mode_demoted"
+            ]
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-025-P-0006",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "B · 桂枝去芍药加附子汤方",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "snippet": "桂枝去芍药加附子汤方：于桂枝汤方内，去芍药，加附子一枚，炮，去皮，破八片，馀根据前法。",
+            "risk_flags": [
+              "comparison_mode_demoted"
+            ]
+          }
+        ],
+        "review_materials": [
+          {
+            "record_id": "full:passages:ZJSHL-CH-025-P-0005",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "A · 桂枝去芍药汤方",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "snippet": "桂枝去芍药汤方：于桂枝汤方内，去芍药，馀根据前法。",
+            "risk_flags": [
+              "ledger_mixed_roles"
+            ]
+          },
+          {
+            "record_id": "full:ambiguous_passages:ZJSHL-CH-008-P-0238",
+            "record_type": "ambiguous_passages",
+            "display_role": "review",
+            "title": "A · 桂枝去芍药汤方",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-008",
+            "chapter_title": "辨太阳病脉证并治法上第五",
+            "snippet": "太阳病，下之后，脉促赵本注：「一作纵」胸满者，桂枝去芍药汤主之。赵本有「桂枝去芍药汤方」详见本书卷十若微恶赵本无「恶」字寒者，赵本有「桂枝」二字去芍药方中，赵本无方中「二」字加附子汤主之。赵本有「桂枝去芍药加附子汤方」详见本书卷十",
+            "risk_flags": [
+              "ambiguous_source"
+            ]
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-025-P-0006",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "B · 桂枝去芍药加附子汤方",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "snippet": "桂枝去芍药加附子汤方：于桂枝汤方内，去芍药，加附子一枚，炮，去皮，破八片，馀根据前法。",
+            "risk_flags": [
+              "ledger_mixed_roles"
+            ]
+          },
+          {
+            "record_id": "full:ambiguous_passages:ZJSHL-CH-008-P-0238",
+            "record_type": "ambiguous_passages",
+            "display_role": "review",
+            "title": "B · 桂枝去芍药加附子汤方",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-008",
+            "chapter_title": "辨太阳病脉证并治法上第五",
+            "snippet": "太阳病，下之后，脉促赵本注：「一作纵」胸满者，桂枝去芍药汤主之。赵本有「桂枝去芍药汤方」详见本书卷十若微恶赵本无「恶」字寒者，赵本有「桂枝」二字去芍药方中，赵本无方中「二」字加附子汤主之。赵本有「桂枝去芍药加附子汤方」详见本书卷十",
+            "risk_flags": [
+              "ambiguous_source"
+            ]
+          }
+        ],
+        "disclaimer": "当前只输出弱整理，不把证据不足的差异包装成确定结论。",
+        "review_notice": "当前比较仍有证据缺口，以下内容只可视为待核对的弱整理，不应视为确定结论。",
+        "refuse_reason": null,
+        "suggested_followup_questions": [],
+        "citations": [
+          {
+            "citation_id": "c1",
+            "record_id": "safe:main_passages:ZJSHL-CH-025-P-0005",
+            "record_type": "main_passages",
+            "title": "A · 桂枝去芍药汤方",
+            "evidence_level": "A",
+            "snippet": "桂枝去芍药汤方：于桂枝汤方内，去芍药，馀根据前法。",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "citation_role": "secondary"
+          },
+          {
+            "citation_id": "c2",
+            "record_id": "safe:main_passages:ZJSHL-CH-025-P-0006",
+            "record_type": "main_passages",
+            "title": "B · 桂枝去芍药加附子汤方",
+            "evidence_level": "A",
+            "snippet": "桂枝去芍药加附子汤方：于桂枝汤方内，去芍药，加附子一枚，炮，去皮，破八片，馀根据前法。",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "citation_role": "secondary"
+          },
+          {
+            "citation_id": "c3",
+            "record_id": "full:passages:ZJSHL-CH-025-P-0005",
+            "record_type": "passages",
+            "title": "A · 桂枝去芍药汤方",
+            "evidence_level": "C",
+            "snippet": "桂枝去芍药汤方：于桂枝汤方内，去芍药，馀根据前法。",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "citation_role": "review"
+          },
+          {
+            "citation_id": "c4",
+            "record_id": "full:ambiguous_passages:ZJSHL-CH-008-P-0238",
+            "record_type": "ambiguous_passages",
+            "title": "A · 桂枝去芍药汤方",
+            "evidence_level": "C",
+            "snippet": "太阳病，下之后，脉促赵本注：「一作纵」胸满者，桂枝去芍药汤主之。赵本有「桂枝去芍药汤方」详见本书卷十若微恶赵本无「恶」字寒者，赵本有「桂枝」二字去芍药方中，赵本无方中「二」字加附子汤主之。赵本有「桂枝去芍药加附子汤方」详见本书卷十",
+            "chapter_id": "ZJSHL-CH-008",
+            "chapter_title": "辨太阳病脉证并治法上第五",
+            "citation_role": "review"
+          },
+          {
+            "citation_id": "c5",
+            "record_id": "full:passages:ZJSHL-CH-025-P-0006",
+            "record_type": "passages",
+            "title": "B · 桂枝去芍药加附子汤方",
+            "evidence_level": "C",
+            "snippet": "桂枝去芍药加附子汤方：于桂枝汤方内，去芍药，加附子一枚，炮，去皮，破八片，馀根据前法。",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "citation_role": "review"
+          },
+          {
+            "citation_id": "c6",
+            "record_id": "full:ambiguous_passages:ZJSHL-CH-008-P-0238",
+            "record_type": "ambiguous_passages",
+            "title": "B · 桂枝去芍药加附子汤方",
+            "evidence_level": "C",
+            "snippet": "太阳病，下之后，脉促赵本注：「一作纵」胸满者，桂枝去芍药汤主之。赵本有「桂枝去芍药汤方」详见本书卷十若微恶赵本无「恶」字寒者，赵本有「桂枝」二字去芍药方中，赵本无方中「二」字加附子汤主之。赵本有「桂枝去芍药加附子汤方」详见本书卷十",
+            "chapter_id": "ZJSHL-CH-008",
+            "chapter_title": "辨太阳病脉证并治法上第五",
+            "citation_role": "review"
+          }
+        ],
+        "display_sections": [
+          {
+            "section_id": "answer",
+            "title": "回答",
+            "section_type": "text",
+            "visible": true,
+            "field": "answer_text",
+            "summary": "两方都已识别，但当前比较仍有证据缺口，以下只按现有方文做弱整理：桂枝去芍药汤方 与 桂枝去芍药加..."
+          },
+          {
+            "section_id": "review_notice",
+            "title": "核对提示",
+            "section_type": "notice",
+            "visible": true,
+            "field": "review_notice",
+            "summary": "当前比较仍有证据缺口，以下内容只可视为待核对的弱整理，不应视为确定结论。"
+          },
+          {
+            "section_id": "primary_evidence",
+            "title": "主依据",
+            "section_type": "slot_ref",
+            "visible": false,
+            "field": "primary_evidence",
+            "item_count": 0
+          },
+          {
+            "section_id": "secondary_evidence",
+            "title": "补充依据",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "secondary_evidence",
+            "item_count": 2
+          },
+          {
+            "section_id": "review_materials",
+            "title": "核对材料",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "review_materials",
+            "item_count": 4
+          },
+          {
+            "section_id": "citations",
+            "title": "引用",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "citations",
+            "item_count": 6
+          },
+          {
+            "section_id": "refusal_guidance",
+            "title": "改问建议",
+            "section_type": "list",
+            "visible": false,
+            "field": "suggested_followup_questions",
+            "item_count": 0
+          }
+        ]
+      },
+      "comparison_debug": {
+        "query": "桂枝去芍药汤方和桂枝去芍药加附子汤方的条文语境有什么不同？",
+        "comparison_detected": true,
+        "comparison_valid": true,
+        "query_kind": "difference",
+        "requested_context": true,
+        "answer_mode": "weak_with_review_notice",
+        "recognized_entities": [
+          {
+            "group_label": "A",
+            "canonical_name": "桂枝去芍药汤方",
+            "formula_row_found": true,
+            "support_row_found": false,
+            "context_supported_by_main_passage": false
+          },
+          {
+            "group_label": "B",
+            "canonical_name": "桂枝去芍药加附子汤方",
+            "formula_row_found": true,
+            "support_row_found": false,
+            "context_supported_by_main_passage": false
+          }
+        ],
+        "structured_difference_count": 4
+      }
+    },
+    {
+      "example_id": "comparison_entity_unstable",
+      "description": "比较意图存在，但第二个方名识别不充分。",
+      "query": "桂枝加附子汤方和桂枝加厚朴那个方的区别是什么？",
+      "expected_mode": "refuse",
+      "payload": {
+        "query": "桂枝加附子汤方和桂枝加厚朴那个方的区别是什么？",
+        "answer_mode": "refuse",
+        "answer_text": "当前无法基于稳定的双实体识别来组织比较答案，暂不直接作答。",
+        "primary_evidence": [],
+        "secondary_evidence": [],
+        "review_materials": [],
+        "disclaimer": "当前为统一拒答结构，不输出推测性答案。",
+        "review_notice": null,
+        "refuse_reason": "当前无法稳定识别两个待比较的方名，因此不能可靠组织比较答案。",
+        "suggested_followup_questions": [
+          "请明确写出两个方名，例如：A 和 B 的区别是什么？",
+          "若想比较证候或语境，请直接说明，例如：A 和 B 的条文语境有什么不同？",
+          "若当前只确定一个方名，可先单独追问该方条文，再继续比较。"
+        ],
+        "citations": [],
+        "display_sections": [
+          {
+            "section_id": "answer",
+            "title": "回答",
+            "section_type": "text",
+            "visible": true,
+            "field": "answer_text",
+            "summary": "当前无法基于稳定的双实体识别来组织比较答案，暂不直接作答。"
+          },
+          {
+            "section_id": "review_notice",
+            "title": "核对提示",
+            "section_type": "notice",
+            "visible": false,
+            "field": "review_notice",
+            "summary": ""
+          },
+          {
+            "section_id": "primary_evidence",
+            "title": "主依据",
+            "section_type": "slot_ref",
+            "visible": false,
+            "field": "primary_evidence",
+            "item_count": 0
+          },
+          {
+            "section_id": "secondary_evidence",
+            "title": "补充依据",
+            "section_type": "slot_ref",
+            "visible": false,
+            "field": "secondary_evidence",
+            "item_count": 0
+          },
+          {
+            "section_id": "review_materials",
+            "title": "核对材料",
+            "section_type": "slot_ref",
+            "visible": false,
+            "field": "review_materials",
+            "item_count": 0
+          },
+          {
+            "section_id": "citations",
+            "title": "引用",
+            "section_type": "slot_ref",
+            "visible": false,
+            "field": "citations",
+            "item_count": 0
+          },
+          {
+            "section_id": "refusal_guidance",
+            "title": "改问建议",
+            "section_type": "list",
+            "visible": true,
+            "field": "suggested_followup_questions",
+            "item_count": 3
+          }
+        ]
+      },
+      "comparison_debug": {
+        "query": "桂枝加附子汤方和桂枝加厚朴那个方的区别是什么？",
+        "comparison_detected": true,
+        "comparison_valid": false,
+        "reason": "entity_resolution_failed",
+        "recognized_entities": [
+          "桂枝加附子汤方"
+        ],
+        "structured_difference_count": 0
+      }
+    },
+    {
+      "example_id": "comparison_invalid_question",
+      "description": "无效比较问题，超出本轮支持的优劣判断。",
+      "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方哪个好？",
+      "expected_mode": "refuse",
+      "payload": {
+        "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方哪个好？",
+        "answer_mode": "refuse",
+        "answer_text": "当前无法基于稳定的双实体识别来组织比较答案，暂不直接作答。",
+        "primary_evidence": [],
+        "secondary_evidence": [],
+        "review_materials": [],
+        "disclaimer": "当前为统一拒答结构，不输出推测性答案。",
+        "review_notice": null,
+        "refuse_reason": "当前只支持基于条文证据整理“区别 / 不同 / 异同 / 多了什么 / 少了什么”这类比较，不支持优劣判断。",
+        "suggested_followup_questions": [
+          "请明确写出两个方名，例如：A 和 B 的区别是什么？",
+          "若想比较证候或语境，请直接说明，例如：A 和 B 的条文语境有什么不同？",
+          "若当前只确定一个方名，可先单独追问该方条文，再继续比较。"
+        ],
+        "citations": [],
+        "display_sections": [
+          {
+            "section_id": "answer",
+            "title": "回答",
+            "section_type": "text",
+            "visible": true,
+            "field": "answer_text",
+            "summary": "当前无法基于稳定的双实体识别来组织比较答案，暂不直接作答。"
+          },
+          {
+            "section_id": "review_notice",
+            "title": "核对提示",
+            "section_type": "notice",
+            "visible": false,
+            "field": "review_notice",
+            "summary": ""
+          },
+          {
+            "section_id": "primary_evidence",
+            "title": "主依据",
+            "section_type": "slot_ref",
+            "visible": false,
+            "field": "primary_evidence",
+            "item_count": 0
+          },
+          {
+            "section_id": "secondary_evidence",
+            "title": "补充依据",
+            "section_type": "slot_ref",
+            "visible": false,
+            "field": "secondary_evidence",
+            "item_count": 0
+          },
+          {
+            "section_id": "review_materials",
+            "title": "核对材料",
+            "section_type": "slot_ref",
+            "visible": false,
+            "field": "review_materials",
+            "item_count": 0
+          },
+          {
+            "section_id": "citations",
+            "title": "引用",
+            "section_type": "slot_ref",
+            "visible": false,
+            "field": "citations",
+            "item_count": 0
+          },
+          {
+            "section_id": "refusal_guidance",
+            "title": "改问建议",
+            "section_type": "list",
+            "visible": true,
+            "field": "suggested_followup_questions",
+            "item_count": 3
+          }
+        ]
+      },
+      "comparison_debug": {
+        "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方哪个好？",
+        "comparison_detected": true,
+        "comparison_valid": false,
+        "reason": "unsupported_comparison",
+        "recognized_entities": [
+          "桂枝加附子汤方",
+          "桂枝加浓朴杏子汤方"
+        ],
+        "structured_difference_count": 0
+      }
+    },
+    {
+      "example_id": "comparison_demo_scene",
+      "description": "最接近答辩演示场景的方剂辨析问题。",
+      "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+      "expected_mode": "strong",
+      "payload": {
+        "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+        "answer_mode": "strong",
+        "answer_text": "从现有方文与相关条文看，桂枝加附子汤方与桂枝加浓朴杏子汤方都从桂枝汤方加减而来，但显式加味和对应语境不同。\n1. 显式加减与药味差异：桂枝加附子汤方明写加附子；桂枝加浓朴杏子汤方明写加浓朴、杏仁。\n2. 条文语境：桂枝加附子汤方相关条文可见“太阳病，发汗，遂漏不止，其人恶风，小便难，四支微急，难以屈伸者”；桂枝加浓朴杏子汤方核对材料可见“太阳病，下之微喘者，表未解故也”。\n3. 出处线索：桂枝加附子汤方的方文见“卷十附方位置”；桂枝加浓朴杏子汤方的方文见“卷十附方位置”；桂枝加附子汤方相关条文位于“辨太阳病脉证并治法上第五”；桂枝加浓朴杏子汤方相关条文位于“辨太阳病脉证并治第六”。\n以上差异仅按当前可见条文与方文整理；若要逐字核对，请继续查看引用。",
+        "primary_evidence": [
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-025-P-0004",
+            "record_type": "main_passages",
+            "display_role": "primary",
+            "title": "A · 桂枝加附子汤方",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "snippet": "桂枝加附子汤方：于桂枝汤方内，加附子一枚，炮，去皮，破八片，馀根据前法。术附汤方，附于此方内，去桂枝，加白术四两，根据前法。",
+            "risk_flags": []
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-025-P-0003",
+            "record_type": "main_passages",
+            "display_role": "primary",
+            "title": "B · 桂枝加浓朴杏子汤方",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "snippet": "桂枝加浓朴杏子汤方：于桂枝汤方内，加浓朴二两，杏仁五十个，去皮尖，馀根据前法。",
+            "risk_flags": []
+          }
+        ],
+        "secondary_evidence": [
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-008-P-0236",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "A · 桂枝加附子汤方",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-008",
+            "chapter_title": "辨太阳病脉证并治法上第五",
+            "snippet": "太阳病，发汗，遂漏不止，其人恶风，小便难，四支微急，难以屈伸者，桂枝加附子汤主之。赵本有「桂枝加附子汤方」详见本书卷十",
+            "risk_flags": [
+              "topic_mismatch_demoted"
+            ]
+          }
+        ],
+        "review_materials": [
+          {
+            "record_id": "full:passages:ZJSHL-CH-025-P-0004",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "A · 桂枝加附子汤方",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "snippet": "桂枝加附子汤方：于桂枝汤方内，加附子一枚，炮，去皮，破八片，馀根据前法。术附汤方，附于此方内，去桂枝，加白术四两，根据前法。",
+            "risk_flags": [
+              "ledger_mixed_roles"
+            ]
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-008-P-0236",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "A · 桂枝加附子汤方",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-008",
+            "chapter_title": "辨太阳病脉证并治法上第五",
+            "snippet": "太阳病，发汗，遂漏不止，其人恶风，小便难，四支微急，难以屈伸者，桂枝加附子汤主之。赵本有「桂枝加附子汤方」详见本书卷十",
+            "risk_flags": [
+              "ledger_mixed_roles"
+            ]
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-025-P-0003",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "B · 桂枝加浓朴杏子汤方",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "snippet": "桂枝加浓朴杏子汤方：于桂枝汤方内，加浓朴二两，杏仁五十个，去皮尖，馀根据前法。",
+            "risk_flags": [
+              "ledger_mixed_roles"
+            ]
+          },
+          {
+            "record_id": "full:ambiguous_passages:ZJSHL-CH-009-P-0053",
+            "record_type": "ambiguous_passages",
+            "display_role": "review",
+            "title": "B · 桂枝加浓朴杏子汤方",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "snippet": "太阳病，下之微喘者，表未解故也。桂枝加浓朴杏人汤主之。赵本有「桂枝加浓朴杏子汤方」详见本书卷十",
+            "risk_flags": [
+              "ambiguous_source"
+            ]
+          }
+        ],
+        "disclaimer": "比较结论优先依据两侧方文；补充依据与核对材料仅作佐证。",
+        "review_notice": "以下补充依据与核对材料仅用于比较佐证，不作为主结论。",
+        "refuse_reason": null,
+        "suggested_followup_questions": [],
+        "citations": [
+          {
+            "citation_id": "c1",
+            "record_id": "safe:main_passages:ZJSHL-CH-025-P-0004",
+            "record_type": "main_passages",
+            "title": "A · 桂枝加附子汤方",
+            "evidence_level": "A",
+            "snippet": "桂枝加附子汤方：于桂枝汤方内，加附子一枚，炮，去皮，破八片，馀根据前法。术附汤方，附于此方内，去桂枝，加白术四两，根据前法。",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "citation_role": "primary"
+          },
+          {
+            "citation_id": "c2",
+            "record_id": "safe:main_passages:ZJSHL-CH-025-P-0003",
+            "record_type": "main_passages",
+            "title": "B · 桂枝加浓朴杏子汤方",
+            "evidence_level": "A",
+            "snippet": "桂枝加浓朴杏子汤方：于桂枝汤方内，加浓朴二两，杏仁五十个，去皮尖，馀根据前法。",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "citation_role": "primary"
+          },
+          {
+            "citation_id": "c3",
+            "record_id": "safe:main_passages:ZJSHL-CH-008-P-0236",
+            "record_type": "main_passages",
+            "title": "A · 桂枝加附子汤方",
+            "evidence_level": "A",
+            "snippet": "太阳病，发汗，遂漏不止，其人恶风，小便难，四支微急，难以屈伸者，桂枝加附子汤主之。赵本有「桂枝加附子汤方」详见本书卷十",
+            "chapter_id": "ZJSHL-CH-008",
+            "chapter_title": "辨太阳病脉证并治法上第五",
+            "citation_role": "secondary"
+          },
+          {
+            "citation_id": "c4",
+            "record_id": "full:passages:ZJSHL-CH-025-P-0003",
+            "record_type": "passages",
+            "title": "B · 桂枝加浓朴杏子汤方",
+            "evidence_level": "C",
+            "snippet": "桂枝加浓朴杏子汤方：于桂枝汤方内，加浓朴二两，杏仁五十个，去皮尖，馀根据前法。",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "citation_role": "review"
+          },
+          {
+            "citation_id": "c5",
+            "record_id": "full:ambiguous_passages:ZJSHL-CH-009-P-0053",
+            "record_type": "ambiguous_passages",
+            "title": "B · 桂枝加浓朴杏子汤方",
+            "evidence_level": "C",
+            "snippet": "太阳病，下之微喘者，表未解故也。桂枝加浓朴杏人汤主之。赵本有「桂枝加浓朴杏子汤方」详见本书卷十",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "citation_role": "review"
+          }
+        ],
+        "display_sections": [
+          {
+            "section_id": "answer",
+            "title": "回答",
+            "section_type": "text",
+            "visible": true,
+            "field": "answer_text",
+            "summary": "从现有方文与相关条文看，桂枝加附子汤方与桂枝加浓朴杏子汤方都从桂枝汤方加减而来，但显式加味和对应..."
+          },
+          {
+            "section_id": "review_notice",
+            "title": "核对提示",
+            "section_type": "notice",
+            "visible": true,
+            "field": "review_notice",
+            "summary": "以下补充依据与核对材料仅用于比较佐证，不作为主结论。"
+          },
+          {
+            "section_id": "primary_evidence",
+            "title": "主依据",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "primary_evidence",
+            "item_count": 2
+          },
+          {
+            "section_id": "secondary_evidence",
+            "title": "补充依据",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "secondary_evidence",
+            "item_count": 1
+          },
+          {
+            "section_id": "review_materials",
+            "title": "核对材料",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "review_materials",
+            "item_count": 4
+          },
+          {
+            "section_id": "citations",
+            "title": "引用",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "citations",
+            "item_count": 5
+          },
+          {
+            "section_id": "refusal_guidance",
+            "title": "改问建议",
+            "section_type": "list",
+            "visible": false,
+            "field": "suggested_followup_questions",
+            "item_count": 0
+          }
+        ]
+      },
+      "comparison_debug": {
+        "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+        "comparison_detected": true,
+        "comparison_valid": true,
+        "query_kind": "difference",
+        "requested_context": false,
+        "answer_mode": "strong",
+        "recognized_entities": [
+          {
+            "group_label": "A",
+            "canonical_name": "桂枝加附子汤方",
+            "formula_row_found": true,
+            "support_row_found": true,
+            "context_supported_by_main_passage": true
+          },
+          {
+            "group_label": "B",
+            "canonical_name": "桂枝加浓朴杏子汤方",
+            "formula_row_found": true,
+            "support_row_found": false,
+            "context_supported_by_main_passage": false
+          }
+        ],
+        "structured_difference_count": 4
+      }
+    }
+  ],
+  "frozen_examples_validation": [
+    {
+      "example_id": "strong_chunk_backref",
+      "query": "黄连汤方的条文是什么？",
+      "expected_mode": "strong",
+      "answer_mode": "strong",
+      "pass": true
+    },
+    {
+      "example_id": "weak_with_review_notice",
+      "query": "烧针益阳而损阴是什么意思？",
+      "expected_mode": "weak_with_review_notice",
+      "answer_mode": "weak_with_review_notice",
+      "pass": true
+    },
+    {
+      "example_id": "refuse_no_match",
+      "query": "书中有没有提到量子纠缠？",
+      "expected_mode": "refuse",
+      "answer_mode": "refuse",
+      "pass": true
+    }
+  ]
+}
