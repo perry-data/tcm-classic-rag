@@ -2,7 +2,7 @@
 
 ## 运行命令
 
-`python run_hybrid_retrieval.py`
+`python -m backend.retrieval.hybrid`
 
 ## 结论
 
@@ -15,6 +15,7 @@
 - strong_precision_patch_preserved: `True`
 - evidence_gating_preserved: `True`
 - annotation_links_disabled: `True`
+- sparse_backend_fts5_enabled: `True`
 
 ## Query: 黄连汤方的条文是什么？
 
@@ -22,23 +23,41 @@
 - mode_reason: 基于主证据回答，并附带辅助说明
 - runtime_risk_flags: `[]`
 
+### Sparse Backend
+
+{
+  "type": "sqlite_fts5_bm25",
+  "fts_table": "retrieval_sparse_fts",
+  "tokenizer": "trigram",
+  "query_focus": "黄连汤方",
+  "match_terms": [
+    "黄连汤方",
+    "连汤方",
+    "黄连汤"
+  ],
+  "match_expression": "\"黄连汤方\" OR \"连汤方\" OR \"黄连汤\""
+}
+
 ### Sparse Top Candidates
 
 [
-  {
-    "record_id": "safe:chunks:ZJSHL-CK-F-0049",
-    "source_object": "chunks",
-    "chapter_id": "ZJSHL-CH-010",
-    "topic_consistency": "exact_formula_anchor",
-    "sparse_score": 158.5,
-    "text_preview": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。 味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温 上热..."
-  },
   {
     "record_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
     "source_object": "main_passages",
     "chapter_id": "ZJSHL-CH-010",
     "topic_consistency": "exact_formula_anchor",
-    "sparse_score": 157.5,
+    "text_match_score": 128.5,
+    "sparse_score": 176.792991,
+    "sparse_bm25_raw": -21.520433,
+    "sparse_bm25_score": 21.520433,
+    "matched_terms": [
+      "黄连汤方",
+      "连汤方",
+      "黄连汤",
+      "汤方",
+      "连汤",
+      "黄连"
+    ],
     "text_preview": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。"
   },
   {
@@ -46,23 +65,56 @@
     "source_object": "passages",
     "chapter_id": "ZJSHL-CH-010",
     "topic_consistency": "exact_formula_anchor",
-    "sparse_score": 154.5,
+    "text_match_score": 128.5,
+    "sparse_score": 173.792991,
+    "sparse_bm25_raw": -21.520433,
+    "sparse_bm25_score": 21.520433,
+    "matched_terms": [
+      "黄连汤方",
+      "连汤方",
+      "黄连汤",
+      "汤方",
+      "连汤",
+      "黄连"
+    ],
     "text_preview": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。"
   },
   {
-    "record_id": "safe:chunks:ZJSHL-CK-F-0009",
+    "record_id": "safe:chunks:ZJSHL-CK-F-0049",
     "source_object": "chunks",
-    "chapter_id": "ZJSHL-CH-009",
-    "topic_consistency": "expanded_formula_anchor",
-    "sparse_score": 116.5,
-    "text_preview": "葛根黄芩黄连汤方：赵本芩、连互易 葛根半斤 甘草二两，炙。味甘平 黄芩二，赵本作「三」两。味苦寒 黄连三两。味苦寒 上四味，以水八升，先煮葛根，减二升，内诸药，..."
+    "chapter_id": "ZJSHL-CH-010",
+    "topic_consistency": "exact_formula_anchor",
+    "text_match_score": 128.5,
+    "sparse_score": 168.33827,
+    "sparse_bm25_raw": -10.974132,
+    "sparse_bm25_score": 10.974132,
+    "matched_terms": [
+      "黄连汤方",
+      "连汤方",
+      "黄连汤",
+      "汤方",
+      "连汤",
+      "黄连"
+    ],
+    "text_preview": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。 味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温 上热..."
   },
   {
     "record_id": "safe:main_passages:ZJSHL-CH-009-P-0016",
     "source_object": "main_passages",
     "chapter_id": "ZJSHL-CH-009",
     "topic_consistency": "expanded_formula_anchor",
-    "sparse_score": 114.5,
+    "text_match_score": 128.5,
+    "sparse_score": 138.5,
+    "sparse_bm25_raw": -26.770883,
+    "sparse_bm25_score": 26.770883,
+    "matched_terms": [
+      "黄连汤方",
+      "连汤方",
+      "黄连汤",
+      "汤方",
+      "连汤",
+      "黄连"
+    ],
     "text_preview": "葛根黄芩黄连汤方：赵本芩、连互易"
   },
   {
@@ -70,8 +122,38 @@
     "source_object": "passages",
     "chapter_id": "ZJSHL-CH-009",
     "topic_consistency": "expanded_formula_anchor",
-    "sparse_score": 112.5,
+    "text_match_score": 128.5,
+    "sparse_score": 136.5,
+    "sparse_bm25_raw": -26.770883,
+    "sparse_bm25_score": 26.770883,
+    "matched_terms": [
+      "黄连汤方",
+      "连汤方",
+      "黄连汤",
+      "汤方",
+      "连汤",
+      "黄连"
+    ],
     "text_preview": "葛根黄芩黄连汤方：赵本芩、连互易"
+  },
+  {
+    "record_id": "safe:chunks:ZJSHL-CK-F-0009",
+    "source_object": "chunks",
+    "chapter_id": "ZJSHL-CH-009",
+    "topic_consistency": "expanded_formula_anchor",
+    "text_match_score": 128.5,
+    "sparse_score": 130.656543,
+    "sparse_bm25_raw": -15.790965,
+    "sparse_bm25_score": 15.790965,
+    "matched_terms": [
+      "黄连汤方",
+      "连汤方",
+      "黄连汤",
+      "汤方",
+      "连汤",
+      "黄连"
+    ],
+    "text_preview": "葛根黄芩黄连汤方：赵本芩、连互易 葛根半斤 甘草二两，炙。味甘平 黄芩二，赵本作「三」两。味苦寒 黄连三两。味苦寒 上四味，以水八升，先煮葛根，减二升，内诸药，..."
   }
 ]
 
@@ -184,30 +266,20 @@
 
 [
   {
-    "record_id": "safe:chunks:ZJSHL-CK-F-0049",
-    "source_object": "chunks",
-    "topic_consistency": "exact_formula_anchor",
-    "rrf_score": 0.032787,
-    "stage_sources": [
-      "sparse",
-      "dense_chunks"
-    ]
-  },
-  {
     "record_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
     "source_object": "main_passages",
     "topic_consistency": "exact_formula_anchor",
-    "rrf_score": 0.032522,
+    "rrf_score": 0.032787,
     "stage_sources": [
       "sparse",
       "dense_main_passages"
     ]
   },
   {
-    "record_id": "safe:chunks:ZJSHL-CK-F-0009",
+    "record_id": "safe:chunks:ZJSHL-CK-F-0049",
     "source_object": "chunks",
-    "topic_consistency": "expanded_formula_anchor",
-    "rrf_score": 0.031754,
+    "topic_consistency": "exact_formula_anchor",
+    "rrf_score": 0.032266,
     "stage_sources": [
       "sparse",
       "dense_chunks"
@@ -217,17 +289,27 @@
     "record_id": "safe:main_passages:ZJSHL-CH-009-P-0016",
     "source_object": "main_passages",
     "topic_consistency": "expanded_formula_anchor",
-    "rrf_score": 0.031514,
+    "rrf_score": 0.031754,
     "stage_sources": [
       "sparse",
       "dense_main_passages"
     ]
   },
   {
+    "record_id": "safe:chunks:ZJSHL-CK-F-0009",
+    "source_object": "chunks",
+    "topic_consistency": "expanded_formula_anchor",
+    "rrf_score": 0.031281,
+    "stage_sources": [
+      "sparse",
+      "dense_chunks"
+    ]
+  },
+  {
     "record_id": "full:passages:ZJSHL-CH-010-P-0145",
     "source_object": "passages",
     "topic_consistency": "exact_formula_anchor",
-    "rrf_score": 0.015873,
+    "rrf_score": 0.016129,
     "stage_sources": [
       "sparse"
     ]
@@ -272,14 +354,14 @@
     "source_object": "main_passages",
     "topic_consistency": "expanded_formula_anchor",
     "rerank_score": 0.728036,
-    "combined_score": 854.210405
+    "combined_score": 878.234443
   },
   {
     "record_id": "full:passages:ZJSHL-CH-009-P-0016",
     "source_object": "passages",
     "topic_consistency": "expanded_formula_anchor",
     "rerank_score": 0.728036,
-    "combined_score": 844.051152
+    "combined_score": 868.074462
   },
   {
     "record_id": "safe:chunks:ZJSHL-CK-F-0037",
@@ -299,9 +381,9 @@
     "safe:main_passages:ZJSHL-CH-010-P-0147"
   ],
   "secondary_evidence": [
+    "safe:main_passages:ZJSHL-CH-009-P-0016",
     "safe:main_passages:ZJSHL-CH-009-P-0017",
-    "safe:main_passages:ZJSHL-CH-009-P-0019",
-    "safe:main_passages:ZJSHL-CH-009-P-0016"
+    "safe:main_passages:ZJSHL-CH-009-P-0019"
   ],
   "review_materials": [
     "full:passages:ZJSHL-CH-010-P-0145",
@@ -315,6 +397,28 @@
 - mode_reason: 仅命中辅助或风险材料，以下内容需核对
 - runtime_risk_flags: `["strong_evidence_insufficient", "annotation_unlinked", "topic_mismatch_demoted", "ledger_mixed_roles", "ambiguous_source"]`
 
+### Sparse Backend
+
+{
+  "type": "sqlite_fts5_bm25",
+  "fts_table": "retrieval_sparse_fts",
+  "tokenizer": "trigram",
+  "query_focus": "烧针益阳而损阴",
+  "match_terms": [
+    "烧针益阳而损阴",
+    "烧针益阳",
+    "益阳而损",
+    "针益阳而",
+    "阳而损阴",
+    "烧针益",
+    "益阳而",
+    "而损阴",
+    "针益阳",
+    "阳而损"
+  ],
+  "match_expression": "\"烧针益阳而损阴\" OR \"烧针益阳\" OR \"益阳而损\" OR \"针益阳而\" OR \"阳而损阴\" OR \"烧针益\" OR \"益阳而\" OR \"而损阴\" OR \"针益阳\" OR \"阳而损\""
+}
+
 ### Sparse Top Candidates
 
 [
@@ -323,7 +427,24 @@
     "source_object": "annotations",
     "chapter_id": "ZJSHL-CH-003",
     "topic_consistency": "neutral",
-    "sparse_score": 192.0,
+    "text_match_score": 189.0,
+    "sparse_score": 216.0,
+    "sparse_bm25_raw": -62.430453,
+    "sparse_bm25_score": 62.430453,
+    "matched_terms": [
+      "烧针益阳而损阴",
+      "烧针益阳",
+      "益阳而损",
+      "针益阳而",
+      "阳而损阴",
+      "烧针益",
+      "益阳而",
+      "而损阴",
+      "针益阳",
+      "阳而损",
+      "损阴",
+      "烧针"
+    ],
     "text_preview": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也..."
   },
   {
@@ -331,7 +452,24 @@
     "source_object": "passages",
     "chapter_id": "ZJSHL-CH-003",
     "topic_consistency": "neutral",
-    "sparse_score": 191.0,
+    "text_match_score": 189.0,
+    "sparse_score": 215.0,
+    "sparse_bm25_raw": -62.430453,
+    "sparse_bm25_score": 62.430453,
+    "matched_terms": [
+      "烧针益阳而损阴",
+      "烧针益阳",
+      "益阳而损",
+      "针益阳而",
+      "阳而损阴",
+      "烧针益",
+      "益阳而",
+      "而损阴",
+      "针益阳",
+      "阳而损",
+      "损阴",
+      "烧针"
+    ],
     "text_preview": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也..."
   },
   {
@@ -339,7 +477,24 @@
     "source_object": "ambiguous_passages",
     "chapter_id": "ZJSHL-CH-003",
     "topic_consistency": "neutral",
-    "sparse_score": 190.0,
+    "text_match_score": 189.0,
+    "sparse_score": 214.0,
+    "sparse_bm25_raw": -62.430453,
+    "sparse_bm25_score": 62.430453,
+    "matched_terms": [
+      "烧针益阳而损阴",
+      "烧针益阳",
+      "益阳而损",
+      "针益阳而",
+      "阳而损阴",
+      "烧针益",
+      "益阳而",
+      "而损阴",
+      "针益阳",
+      "阳而损",
+      "损阴",
+      "烧针"
+    ],
     "text_preview": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也..."
   }
 ]
@@ -516,21 +671,21 @@
     "source_object": "annotations",
     "topic_consistency": "neutral",
     "rerank_score": 0.730734,
-    "combined_score": 927.373344
+    "combined_score": 951.373344
   },
   {
     "record_id": "full:passages:ZJSHL-CH-003-P-0016",
     "source_object": "passages",
     "topic_consistency": "neutral",
     "rerank_score": 0.730734,
-    "combined_score": 925.346903
+    "combined_score": 949.346903
   },
   {
     "record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0016",
     "source_object": "ambiguous_passages",
     "topic_consistency": "neutral",
     "rerank_score": 0.730734,
-    "combined_score": 923.321302
+    "combined_score": 947.321302
   },
   {
     "record_id": "safe:chunks:ZJSHL-CK-M-0461",
@@ -575,6 +730,21 @@
 - mode: `refuse`
 - mode_reason: 未找到足以支撑回答的依据，建议缩小问题范围或改问具体条文
 - runtime_risk_flags: `[]`
+
+### Sparse Backend
+
+{
+  "type": "sqlite_fts5_bm25",
+  "fts_table": "retrieval_sparse_fts",
+  "tokenizer": "trigram",
+  "query_focus": "量子纠缠",
+  "match_terms": [
+    "量子纠缠",
+    "子纠缠",
+    "量子纠"
+  ],
+  "match_expression": "\"量子纠缠\" OR \"子纠缠\" OR \"量子纠\""
+}
 
 ### Sparse Top Candidates
 

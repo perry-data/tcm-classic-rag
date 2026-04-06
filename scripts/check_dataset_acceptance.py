@@ -312,7 +312,7 @@ def main() -> None:
     args = parser.parse_args()
 
     repo_root = Path(__file__).resolve().parents[1]
-    docs_dir = repo_root / "docs"
+    docs_dir = repo_root / "docs" / "data"
     reports_dir = repo_root / "reports"
     docs_dir.mkdir(parents=True, exist_ok=True)
     reports_dir.mkdir(parents=True, exist_ok=True)

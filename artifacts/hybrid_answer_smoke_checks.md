@@ -2,7 +2,7 @@
 
 ## 运行命令
 
-`python run_answer_assembler.py`
+`python -m backend.answers.assembler`
 
 ## 结论
 
@@ -114,6 +114,19 @@
 
 [
   {
+    "record_id": "safe:main_passages:ZJSHL-CH-009-P-0016",
+    "record_type": "main_passages",
+    "display_role": "secondary",
+    "title": "葛根黄芩黄连汤方",
+    "evidence_level": "B",
+    "chapter_id": "ZJSHL-CH-009",
+    "chapter_title": "辨太阳病脉证并治第六",
+    "snippet": "葛根黄芩黄连汤方：赵本芩、连互易",
+    "risk_flags": [
+      "short_text_demoted"
+    ]
+  },
+  {
     "record_id": "safe:main_passages:ZJSHL-CH-009-P-0017",
     "record_type": "main_passages",
     "display_role": "secondary",
@@ -137,19 +150,6 @@
     "snippet": "上四味，以水八升，先煮葛根，减二升，内诸药，煮取二升，去滓，分温再服。",
     "risk_flags": [
       "topic_mismatch_demoted"
-    ]
-  },
-  {
-    "record_id": "safe:main_passages:ZJSHL-CH-009-P-0016",
-    "record_type": "main_passages",
-    "display_role": "secondary",
-    "title": "葛根黄芩黄连汤方",
-    "evidence_level": "B",
-    "chapter_id": "ZJSHL-CH-009",
-    "chapter_title": "辨太阳病脉证并治第六",
-    "snippet": "葛根黄芩黄连汤方：赵本芩、连互易",
-    "risk_flags": [
-      "short_text_demoted"
     ]
   }
 ]

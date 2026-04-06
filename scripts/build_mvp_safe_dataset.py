@@ -361,7 +361,7 @@ def main() -> None:
 
     write_safe_zip(output_zip, safe_dataset, readme_text)
 
-    docs_dir = repo_root / "docs"
+    docs_dir = repo_root / "docs" / "data"
     reports_dir = repo_root / "reports"
     docs_dir.mkdir(parents=True, exist_ok=True)
     reports_dir.mkdir(parents=True, exist_ok=True)
