@@ -1,30 +1,3 @@
-const form = document.getElementById("query-form");
-const queryInput = document.getElementById("query-input");
-const submitButton = document.getElementById("submit-button");
-const statusText = document.getElementById("status-text");
-const errorText = document.getElementById("error-text");
-const modeBadge = document.getElementById("mode-badge");
-const queryEcho = document.getElementById("query-echo");
-const answerCaption = document.getElementById("answer-caption");
-const answerText = document.getElementById("answer-text");
-const disclaimerText = document.getElementById("disclaimer-text");
-const reviewNoticeSection = document.getElementById("review-notice-section");
-const reviewNoticeText = document.getElementById("review-notice-text");
-const refuseSection = document.getElementById("refuse-section");
-const refuseReasonText = document.getElementById("refuse-reason-text");
-const emptyEvidenceSection = document.getElementById("empty-evidence-section");
-const primarySection = document.getElementById("primary-section");
-const primaryList = document.getElementById("primary-list");
-const secondarySection = document.getElementById("secondary-section");
-const secondaryList = document.getElementById("secondary-list");
-const reviewSection = document.getElementById("review-section");
-const reviewList = document.getElementById("review-list");
-const citationsSection = document.getElementById("citations-section");
-const citationsList = document.getElementById("citations-list");
-const followupsSection = document.getElementById("followups-section");
-const followupsList = document.getElementById("followups-list");
-const sampleButtons = Array.from(document.querySelectorAll(".sample-chip"));
-
 const REQUIRED_TOP_FIELDS = [
   "query",
   "answer_mode",
@@ -40,24 +13,34 @@ const REQUIRED_TOP_FIELDS = [
   "display_sections",
 ];
 
+function requireElement(id) {
+  const element = document.getElementById(id);
+  if (!element) {
+    throw new Error(`页面缺少必要节点: #${id}`);
+  }
+  return element;
+}
+
+const refs = {};
+
 function setLoading(isLoading) {
-  submitButton.disabled = isLoading;
-  submitButton.textContent = isLoading ? "查询中…" : "提交查询";
+  refs.submitButton.disabled = isLoading;
+  refs.submitButton.textContent = isLoading ? "查询中…" : "提交查询";
   if (isLoading) {
-    statusText.textContent = "正在请求 /api/v1/answers";
+    refs.statusText.textContent = "正在请求 /api/v1/answers";
   }
 }
 
 function setError(message) {
-  errorText.textContent = message || "";
+  refs.errorText.textContent = message || "";
   if (message) {
-    statusText.textContent = "请求失败";
+    refs.statusText.textContent = "请求失败";
   }
 }
 
 function setModeBadge(mode) {
-  modeBadge.className = `mode-badge mode-${mode || "idle"}`;
-  modeBadge.textContent = mode || "idle";
+  refs.modeBadge.className = `mode-badge mode-${mode || "idle"}`;
+  refs.modeBadge.textContent = mode || "idle";
 }
 
 function showSection(element, visible) {
@@ -116,7 +99,7 @@ function renderEvidenceList(target, items) {
 }
 
 function renderCitations(items) {
-  clearList(citationsList);
+  clearList(refs.citationsList);
   const fragment = document.createDocumentFragment();
 
   items.forEach((citation) => {
@@ -136,16 +119,16 @@ function renderCitations(items) {
     fragment.append(item);
   });
 
-  citationsList.append(fragment);
+  refs.citationsList.append(fragment);
 }
 
 function renderFollowups(items) {
-  clearList(followupsList);
+  clearList(refs.followupsList);
   const fragment = document.createDocumentFragment();
   items.forEach((text) => {
     fragment.append(createTag("li", "", text));
   });
-  followupsList.append(fragment);
+  refs.followupsList.append(fragment);
 }
 
 function validatePayload(payload) {
@@ -157,23 +140,24 @@ function validatePayload(payload) {
 
 function renderPayload(payload) {
   validatePayload(payload);
+  window.__lastAnswerPayload = payload;
   setModeBadge(payload.answer_mode);
-  queryEcho.textContent = payload.query || "未返回 query";
-  answerText.textContent = payload.answer_text || "";
-  disclaimerText.textContent = payload.disclaimer || "";
+  refs.queryEcho.textContent = payload.query || "未返回 query";
+  refs.answerText.textContent = payload.answer_text || "";
+  refs.disclaimerText.textContent = payload.disclaimer || "";
 
   if (payload.answer_mode === "strong") {
-    answerCaption.textContent = "当前结果为 strong，优先展示主依据。";
+    refs.answerCaption.textContent = "当前结果为 strong，优先展示主依据。";
   } else if (payload.answer_mode === "weak_with_review_notice") {
-    answerCaption.textContent = "当前结果为 weak_with_review_notice，以下内容需核对。";
+    refs.answerCaption.textContent = "当前结果为 weak_with_review_notice，以下内容需核对。";
   } else if (payload.answer_mode === "refuse") {
-    answerCaption.textContent = "当前结果为 refuse，不输出确定性答案。";
+    refs.answerCaption.textContent = "当前结果为 refuse，不输出确定性答案。";
   } else {
-    answerCaption.textContent = "返回了未识别模式。";
+    refs.answerCaption.textContent = "返回了未识别模式。";
   }
 
-  reviewNoticeText.textContent = payload.review_notice || "";
-  refuseReasonText.textContent = payload.refuse_reason || "";
+  refs.reviewNoticeText.textContent = payload.review_notice || "";
+  refs.refuseReasonText.textContent = payload.refuse_reason || "";
 
   const primary = Array.isArray(payload.primary_evidence) ? payload.primary_evidence : [];
   const secondary = Array.isArray(payload.secondary_evidence) ? payload.secondary_evidence : [];
@@ -183,18 +167,18 @@ function renderPayload(payload) {
     ? payload.suggested_followup_questions
     : [];
 
-  showSection(reviewNoticeSection, Boolean(payload.review_notice));
-  showSection(refuseSection, Boolean(payload.refuse_reason));
-  showSection(primarySection, primary.length > 0);
-  showSection(secondarySection, secondary.length > 0);
-  showSection(reviewSection, review.length > 0);
-  showSection(citationsSection, citations.length > 0);
-  showSection(followupsSection, followups.length > 0);
-  showSection(emptyEvidenceSection, primary.length + secondary.length + review.length === 0);
+  showSection(refs.reviewNoticeSection, Boolean(payload.review_notice));
+  showSection(refs.refuseSection, Boolean(payload.refuse_reason));
+  showSection(refs.primarySection, primary.length > 0);
+  showSection(refs.secondarySection, secondary.length > 0);
+  showSection(refs.reviewSection, review.length > 0);
+  showSection(refs.citationsSection, citations.length > 0);
+  showSection(refs.followupsSection, followups.length > 0);
+  showSection(refs.emptyEvidenceSection, primary.length + secondary.length + review.length === 0);
 
-  renderEvidenceList(primaryList, primary);
-  renderEvidenceList(secondaryList, secondary);
-  renderEvidenceList(reviewList, review);
+  renderEvidenceList(refs.primaryList, primary);
+  renderEvidenceList(refs.secondaryList, secondary);
+  renderEvidenceList(refs.reviewList, review);
   renderCitations(citations);
   renderFollowups(followups);
 }
@@ -202,6 +186,7 @@ function renderPayload(payload) {
 async function submitQuery(query) {
   setError("");
   setLoading(true);
+  window.__lastSubmitQuery = query;
 
   try {
     const response = await fetch("/api/v1/answers", {
@@ -218,30 +203,79 @@ async function submitQuery(query) {
     }
 
     renderPayload(payload);
-    statusText.textContent = "请求已完成";
+    refs.statusText.textContent = "请求已完成";
   } catch (error) {
     setError(error instanceof Error ? error.message : "请求失败");
+    console.error(error);
   } finally {
     setLoading(false);
   }
 }
 
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  const query = queryInput.value.trim();
+function boot() {
+  refs.form = requireElement("query-form");
+  refs.queryInput = requireElement("query-input");
+  refs.submitButton = requireElement("submit-button");
+  refs.statusText = requireElement("status-text");
+  refs.errorText = requireElement("error-text");
+  refs.modeBadge = requireElement("mode-badge");
+  refs.queryEcho = requireElement("query-echo");
+  refs.answerCaption = requireElement("answer-caption");
+  refs.answerText = requireElement("answer-text");
+  refs.disclaimerText = requireElement("disclaimer-text");
+  refs.reviewNoticeSection = requireElement("review-notice-section");
+  refs.reviewNoticeText = requireElement("review-notice-text");
+  refs.refuseSection = requireElement("refuse-section");
+  refs.refuseReasonText = requireElement("refuse-reason-text");
+  refs.emptyEvidenceSection = requireElement("empty-evidence-section");
+  refs.primarySection = requireElement("primary-section");
+  refs.primaryList = requireElement("primary-list");
+  refs.secondarySection = requireElement("secondary-section");
+  refs.secondaryList = requireElement("secondary-list");
+  refs.reviewSection = requireElement("review-section");
+  refs.reviewList = requireElement("review-list");
+  refs.citationsSection = requireElement("citations-section");
+  refs.citationsList = requireElement("citations-list");
+  refs.followupsSection = requireElement("followups-section");
+  refs.followupsList = requireElement("followups-list");
+  refs.sampleButtons = Array.from(document.querySelectorAll(".sample-chip"));
 
-  if (!query) {
-    setError("请输入问题后再提交。");
-    return;
-  }
+  refs.form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const query = refs.queryInput.value.trim();
 
-  await submitQuery(query);
-});
+    if (!query) {
+      setError("请输入问题后再提交。");
+      return;
+    }
 
-sampleButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const query = button.dataset.query || "";
-    queryInput.value = query;
-    queryInput.focus();
+    await submitQuery(query);
   });
-});
+
+  refs.sampleButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const query = button.dataset.query || "";
+      refs.queryInput.value = query;
+      refs.queryInput.focus();
+      refs.statusText.textContent = "样例已填充，请点击“提交查询”发起请求";
+    });
+  });
+
+  refs.statusText.textContent = "前端脚本已加载，等待提交";
+  window.__frontendBooted = true;
+}
+
+try {
+  boot();
+} catch (error) {
+  window.__frontendBooted = false;
+  console.error(error);
+  const statusElement = document.getElementById("status-text");
+  const errorElement = document.getElementById("error-text");
+  if (statusElement) {
+    statusElement.textContent = "前端初始化失败";
+  }
+  if (errorElement) {
+    errorElement.textContent = error instanceof Error ? error.message : "前端初始化失败";
+  }
+}

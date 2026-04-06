@@ -180,6 +180,33 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
 
             self._send_json(404, {"error": {"code": "not_found", "message": "Route not found."}})
 
+        def do_HEAD(self) -> None:  # noqa: N802
+            request_path = urlsplit(self.path).path
+            if request_path in {"/", "/index.html", "/frontend", "/frontend/"}:
+                self._send_file(frontend_root / "index.html", include_body=False)
+                return
+
+            if request_path.startswith("/frontend/"):
+                relative_path = request_path.removeprefix("/frontend/")
+                target_path = (frontend_root / relative_path).resolve()
+                try:
+                    target_path.relative_to(frontend_root.resolve())
+                except ValueError:
+                    self._send_json(404, {"error": {"code": "not_found", "message": "Route not found."}})
+                    return
+                self._send_file(target_path, include_body=False)
+                return
+
+            if request_path == API_PATH:
+                self.send_response(405)
+                self._send_cache_headers()
+                self.send_header("Allow", "POST")
+                self.send_header("Content-Length", "0")
+                self.end_headers()
+                return
+
+            self._send_json(404, {"error": {"code": "not_found", "message": "Route not found."}})
+
         def log_message(self, format: str, *args: Any) -> None:
             return
 
@@ -205,12 +232,13 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
         def _send_json(self, status_code: int, payload: dict[str, Any]) -> None:
             body = (json.dumps(payload, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
             self.send_response(status_code)
+            self._send_cache_headers()
             self.send_header("Content-Type", "application/json; charset=utf-8")
             self.send_header("Content-Length", str(len(body)))
             self.end_headers()
             self.wfile.write(body)
 
-        def _send_file(self, file_path: Path) -> None:
+        def _send_file(self, file_path: Path, include_body: bool = True) -> None:
             if not file_path.exists() or not file_path.is_file():
                 self._send_json(404, {"error": {"code": "not_found", "message": "Route not found."}})
                 return
@@ -221,10 +249,17 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
 
             body = file_path.read_bytes()
             self.send_response(200)
+            self._send_cache_headers()
             self.send_header("Content-Type", f"{content_type}; charset=utf-8" if content_type.startswith("text/") else content_type)
             self.send_header("Content-Length", str(len(body)))
             self.end_headers()
-            self.wfile.write(body)
+            if include_body:
+                self.wfile.write(body)
+
+        def _send_cache_headers(self) -> None:
+            self.send_header("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0")
+            self.send_header("Pragma", "no-cache")
+            self.send_header("Expires", "0")
 
     return MinimalApiHandler
 
