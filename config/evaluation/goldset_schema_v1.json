@@ -1,0 +1,344 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "config/evaluation/goldset_schema_v1.json",
+  "title": "Evaluation Goldset Schema v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_name",
+    "dataset_stage",
+    "dataset_scope",
+    "items"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "goldset_schema_v1"
+    },
+    "dataset_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dataset_stage": {
+      "type": "string",
+      "enum": [
+        "seed",
+        "full"
+      ]
+    },
+    "dataset_scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "book_scope",
+        "formal_system_boundary",
+        "supported_question_types",
+        "evaluation_dimensions"
+      ],
+      "properties": {
+        "book_scope": {
+          "type": "string",
+          "minLength": 1
+        },
+        "formal_system_boundary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "supported_question_types": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/questionType"
+          }
+        },
+        "evaluation_dimensions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/evaluationDimension"
+          }
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/goldItem"
+      }
+    }
+  },
+  "$defs": {
+    "questionType": {
+      "type": "string",
+      "enum": [
+        "source_lookup",
+        "meaning_explanation",
+        "general_overview",
+        "comparison",
+        "refusal"
+      ]
+    },
+    "questionTypeLabel": {
+      "type": "string",
+      "enum": [
+        "条文/出处类",
+        "含义解释类",
+        "泛问/总括类",
+        "比较类",
+        "无证据拒答类"
+      ]
+    },
+    "answerMode": {
+      "type": "string",
+      "enum": [
+        "strong",
+        "weak_with_review_notice",
+        "refuse"
+      ]
+    },
+    "evaluationDimension": {
+      "type": "string",
+      "enum": [
+        "retrieval_hit",
+        "citation_correctness",
+        "answer_mode",
+        "unsupported_assertion",
+        "evidence_layering"
+      ]
+    },
+    "matchStrategy": {
+      "type": "string",
+      "enum": [
+        "canonical_passage_id",
+        "exact_record_id",
+        "either"
+      ]
+    },
+    "sourceRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_path",
+        "example_id"
+      ],
+      "properties": {
+        "artifact_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "example_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "goldEvidenceSpan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "passage_id",
+        "record_id",
+        "evidence_role",
+        "quote",
+        "rationale"
+      ],
+      "properties": {
+        "passage_id": {
+          "type": "string",
+          "pattern": "^ZJSHL-CH-[0-9]{3}-P-[0-9]{4}$"
+        },
+        "record_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_role": {
+          "type": "string",
+          "enum": [
+            "primary",
+            "secondary",
+            "review"
+          ]
+        },
+        "quote": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "chapter_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "chapter_title": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "retrievalAssertions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "top_k_targets",
+        "minimum_gold_hits",
+        "match_strategy"
+      ],
+      "properties": {
+        "top_k_targets": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "minimum_gold_hits": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "match_strategy": {
+          "$ref": "#/$defs/matchStrategy"
+        }
+      }
+    },
+    "answerAssertions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode_match_required",
+        "must_include_gold_citation",
+        "must_keep_primary_empty",
+        "must_have_zero_evidence",
+        "must_have_zero_citations",
+        "must_refuse",
+        "must_avoid_unsupported_assertion"
+      ],
+      "properties": {
+        "mode_match_required": {
+          "type": "boolean"
+        },
+        "must_include_gold_citation": {
+          "type": "boolean"
+        },
+        "must_keep_primary_empty": {
+          "type": "boolean"
+        },
+        "must_have_zero_evidence": {
+          "type": "boolean"
+        },
+        "must_have_zero_citations": {
+          "type": "boolean"
+        },
+        "must_refuse": {
+          "type": "boolean"
+        },
+        "must_avoid_unsupported_assertion": {
+          "type": "boolean"
+        }
+      }
+    },
+    "goldItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "question_id",
+        "query",
+        "question_type",
+        "question_type_label",
+        "expected_mode",
+        "gold_record_ids",
+        "gold_passage_ids",
+        "gold_evidence_spans",
+        "annotation_notes",
+        "citation_check_required",
+        "evaluation_targets",
+        "retrieval_assertions",
+        "answer_assertions",
+        "source_refs"
+      ],
+      "properties": {
+        "question_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9_\\-]+$"
+        },
+        "query": {
+          "type": "string",
+          "minLength": 1
+        },
+        "question_type": {
+          "$ref": "#/$defs/questionType"
+        },
+        "question_type_label": {
+          "$ref": "#/$defs/questionTypeLabel"
+        },
+        "expected_mode": {
+          "$ref": "#/$defs/answerMode"
+        },
+        "gold_record_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "gold_passage_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^ZJSHL-CH-[0-9]{3}-P-[0-9]{4}$"
+          }
+        },
+        "gold_evidence_spans": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/goldEvidenceSpan"
+          }
+        },
+        "annotation_notes": {
+          "type": "string",
+          "minLength": 1
+        },
+        "citation_check_required": {
+          "type": "boolean"
+        },
+        "evaluation_targets": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/evaluationDimension"
+          }
+        },
+        "retrieval_assertions": {
+          "$ref": "#/$defs/retrievalAssertions"
+        },
+        "answer_assertions": {
+          "$ref": "#/$defs/answerAssertions"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/sourceRef"
+          }
+        }
+      }
+    }
+  }
+}
