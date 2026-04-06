@@ -10,6 +10,12 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from general_question_strategy import (
+    GeneralBranchMeta,
+    GeneralQuestionPlan,
+    analyze_general_branch,
+    detect_general_question,
+)
 from run_hybrid_retrieval import (
     DEFAULT_CACHE_DIR,
     DEFAULT_DB_PATH,
@@ -35,6 +41,11 @@ COMPARISON_ENTITY_LIMIT = 2
 COMPARISON_FORMULA_TITLE_LIMIT = 1
 COMPARISON_SUPPORT_LIMIT = 1
 COMPARISON_REVIEW_LIMIT = 2
+GENERAL_BRANCH_LIMIT = 4
+GENERAL_MANAGEMENT_BRANCH_LIMIT = 3
+GENERAL_WEAK_BRANCH_LIMIT = 3
+GENERAL_SECONDARY_LIMIT = 5
+GENERAL_REVIEW_LIMIT = 3
 
 FORMULA_VARIANT_REPLACEMENTS = (
     ("厚朴", "浓朴"),
@@ -210,15 +221,20 @@ class AnswerAssembler:
             self._formula_alias_lookup,
         ) = self._load_formula_catalog()
         self._last_comparison_debug: dict[str, Any] | None = None
+        self._last_general_debug: dict[str, Any] | None = None
 
     def close(self) -> None:
         self.engine.close()
 
     def assemble(self, query_text: str) -> dict[str, Any]:
         self._last_comparison_debug = None
+        self._last_general_debug = None
         comparison_plan = self._detect_comparison_query(query_text)
         if comparison_plan is not None:
             return self._assemble_comparison(query_text, comparison_plan)
+        general_plan = detect_general_question(query_text)
+        if general_plan is not None:
+            return self._assemble_general_question(query_text, general_plan)
         return self._assemble_standard(query_text)
 
     def get_last_comparison_debug(self) -> dict[str, Any] | None:
@@ -261,6 +277,398 @@ class AnswerAssembler:
             "citations": citations,
             "display_sections": display_sections,
         }
+
+    def _assemble_general_question(self, query_text: str, general_plan: GeneralQuestionPlan) -> dict[str, Any]:
+        query_retrieval = self.engine.retrieve(query_text)
+        topic_retrieval = (
+            query_retrieval
+            if compact_text(query_text) == general_plan.normalized_topic
+            else self.engine.retrieve(general_plan.topic_text)
+        )
+        retrievals = [query_retrieval] if topic_retrieval is query_retrieval else [query_retrieval, topic_retrieval]
+
+        seed_scores = self._build_general_seed_scores(retrievals)
+        candidates = self._collect_general_branch_candidates(general_plan, seed_scores)
+        strong_candidates = self._select_general_branches(candidates, general_plan, strong_only=True)
+        fallback_secondary_rows = self._collect_general_slot_rows(retrievals, slot_name="secondary_evidence")
+        fallback_review_rows = self._collect_general_slot_rows(retrievals, slot_name="risk_materials")
+
+        self._last_general_debug = {
+            "query": query_text,
+            "general_question_detected": True,
+            "general_kind": general_plan.general_kind,
+            "topic_text": general_plan.topic_text,
+            "candidate_count": len(candidates),
+            "strong_candidate_count": sum(1 for candidate in candidates if candidate["strong_eligible"]),
+            "selected_branch_count": len(strong_candidates),
+        }
+
+        if len(strong_candidates) >= 2:
+            primary = [
+                self._build_evidence_item(
+                    candidate["row"],
+                    display_role="primary",
+                    title_override=candidate["branch_meta"].branch_label,
+                )
+                for candidate in strong_candidates
+            ]
+            selected_ids = {item["record_id"] for item in primary}
+            secondary: list[dict[str, Any]] = []
+            for candidate in candidates:
+                record_id = candidate["row"]["record_id"]
+                if record_id in selected_ids:
+                    continue
+                secondary.append(
+                    self._build_evidence_item(
+                        candidate["row"],
+                        display_role="secondary",
+                        title_override=candidate["branch_meta"].branch_label,
+                    )
+                )
+                selected_ids.add(record_id)
+                if len(secondary) >= GENERAL_SECONDARY_LIMIT:
+                    break
+            for row in fallback_secondary_rows:
+                if row["record_id"] in selected_ids:
+                    continue
+                secondary.append(self._build_evidence_item(row, display_role="secondary"))
+                selected_ids.add(row["record_id"])
+                if len(secondary) >= GENERAL_SECONDARY_LIMIT:
+                    break
+
+            review: list[dict[str, Any]] = []
+            for row in fallback_review_rows[:GENERAL_REVIEW_LIMIT]:
+                review.append(self._build_evidence_item(row, display_role="review"))
+
+            answer_text = self._build_general_answer_text(
+                general_plan,
+                strong_candidates,
+                answer_mode="strong",
+            )
+            review_notice = self._build_review_notice("strong") if secondary or review else None
+            disclaimer = self._build_disclaimer("strong", bool(secondary), bool(review))
+            citations = self._build_citations("strong", primary, secondary, review)
+            return self._compose_payload(
+                query_text=query_text,
+                answer_mode="strong",
+                answer_text=answer_text,
+                primary=primary,
+                secondary=secondary,
+                review=review,
+                review_notice=review_notice,
+                disclaimer=disclaimer,
+                refuse_reason=None,
+                suggested_followup_questions=[],
+                citations=citations,
+            )
+
+        weak_candidates = self._select_general_branches(candidates, general_plan, strong_only=False)
+        if weak_candidates or fallback_secondary_rows or fallback_review_rows:
+            display_candidates = list(weak_candidates[:GENERAL_WEAK_BRANCH_LIMIT])
+            if not display_candidates:
+                display_candidates = self._build_general_fallback_display_candidates(
+                    fallback_secondary_rows[:GENERAL_WEAK_BRANCH_LIMIT],
+                    general_plan,
+                )
+
+            secondary: list[dict[str, Any]] = []
+            seen_ids: set[str] = set()
+            for candidate in weak_candidates[:GENERAL_WEAK_BRANCH_LIMIT]:
+                risk_flags = dedupe_strings(candidate["row"]["risk_flag"] + ["general_branch_incomplete"])
+                secondary.append(
+                    self._build_evidence_item(
+                        candidate["row"],
+                        display_role="secondary",
+                        title_override=candidate["branch_meta"].branch_label,
+                        risk_flags_override=risk_flags,
+                    )
+                )
+                seen_ids.add(candidate["row"]["record_id"])
+
+            for row in fallback_secondary_rows:
+                if row["record_id"] in seen_ids:
+                    continue
+                risk_flags = dedupe_strings(self._extract_risk_flags(row) + ["general_branch_incomplete"])
+                secondary.append(
+                    self._build_evidence_item(
+                        row,
+                        display_role="secondary",
+                        risk_flags_override=risk_flags,
+                    )
+                )
+                seen_ids.add(row["record_id"])
+                if len(secondary) >= GENERAL_SECONDARY_LIMIT:
+                    break
+
+            review: list[dict[str, Any]] = []
+            review_seen = set(seen_ids)
+            for row in fallback_review_rows:
+                if row["record_id"] in review_seen:
+                    continue
+                review.append(self._build_evidence_item(row, display_role="review"))
+                review_seen.add(row["record_id"])
+                if len(review) >= GENERAL_REVIEW_LIMIT:
+                    break
+
+            answer_text = self._build_general_answer_text(
+                general_plan,
+                display_candidates,
+                answer_mode="weak_with_review_notice",
+            )
+            review_notice = "这是总括性问题，但当前只能整理出部分分支线索，以下内容需核对，不应视为完整答案。"
+            disclaimer = "当前只输出部分分支整理与核对材料，不输出完整定案。"
+            followups = self._build_general_followups(general_plan, display_candidates)
+            citations = self._build_citations("weak_with_review_notice", [], secondary, review)
+            return self._compose_payload(
+                query_text=query_text,
+                answer_mode="weak_with_review_notice",
+                answer_text=answer_text,
+                primary=[],
+                secondary=secondary,
+                review=review,
+                review_notice=review_notice,
+                disclaimer=disclaimer,
+                refuse_reason=None,
+                suggested_followup_questions=followups,
+                citations=citations,
+            )
+
+        answer_text = (
+            f"这是一个总括性问题，但当前无法把“{general_plan.topic_text}”稳定整理成分情况回答，"
+            "因此暂不输出概括性结论。"
+        )
+        followups = self._build_general_followups(general_plan, [])
+        return self._compose_payload(
+            query_text=query_text,
+            answer_mode="refuse",
+            answer_text=answer_text,
+            primary=[],
+            secondary=[],
+            review=[],
+            review_notice=None,
+            disclaimer="当前为总括类问题的拒答降级，不输出推测性概括。",
+            refuse_reason=f"未能为“{general_plan.topic_text}”组织出至少两条可核对的可靠分支。",
+            suggested_followup_questions=followups,
+            citations=[],
+        )
+
+    def _build_general_seed_scores(self, retrievals: list[dict[str, Any]]) -> dict[str, float]:
+        scores: dict[str, float] = {}
+        for retrieval in retrievals:
+            for row in retrieval.get("raw_candidates", []):
+                raw_score = min(float(row.get("combined_score", 0.0)) / 35.0, 28.0)
+                if row.get("record_table") == "records_main_passages":
+                    scores[row["record_id"]] = max(scores.get(row["record_id"], 0.0), raw_score)
+                    continue
+                if row.get("record_table") != "records_chunks":
+                    continue
+                for backref in self.engine._fetch_chunk_backrefs(row["record_id"]):
+                    if backref["evidence_level"] not in {"A", "B"}:
+                        continue
+                    scores[backref["record_id"]] = max(scores.get(backref["record_id"], 0.0), raw_score)
+
+            for slot_name in ("primary_evidence", "secondary_evidence"):
+                for row in retrieval.get(slot_name, []):
+                    slot_score = min(float(row.get("combined_score", 0.0)) / 40.0, 22.0)
+                    scores[row["record_id"]] = max(scores.get(row["record_id"], 0.0), slot_score)
+        return scores
+
+    def _collect_general_branch_candidates(
+        self,
+        general_plan: GeneralQuestionPlan,
+        seed_scores: dict[str, float],
+    ) -> list[dict[str, Any]]:
+        deduped: dict[str, dict[str, Any]] = {}
+        for row in self.engine.unified_rows:
+            if row["source_object"] != "main_passages":
+                continue
+            if row["evidence_level"] not in {"A", "B"}:
+                continue
+            if general_plan.normalized_topic not in compact_text(row["retrieval_text"]):
+                continue
+
+            branch_meta = analyze_general_branch(
+                row["retrieval_text"],
+                general_plan.topic_text,
+                general_kind=general_plan.general_kind,
+                chapter_matches_topic=general_plan.normalized_topic in compact_text(row["chapter_name"]),
+            )
+            if branch_meta is None:
+                continue
+
+            selection_score = branch_meta.heuristic_score + seed_scores.get(row["record_id"], 0.0)
+            selection_score += 8.0 if row["evidence_level"] == "A" else -4.0
+            if selection_score < 18.0:
+                continue
+
+            candidate = {
+                "row": self._normalize_record_row(row),
+                "branch_meta": branch_meta,
+                "selection_score": selection_score,
+                "strong_eligible": row["evidence_level"] == "A",
+            }
+            existing = deduped.get(branch_meta.branch_key)
+            if existing is None or candidate["selection_score"] > existing["selection_score"]:
+                deduped[branch_meta.branch_key] = candidate
+
+        return sorted(
+            deduped.values(),
+            key=lambda item: (
+                -item["selection_score"],
+                item["row"]["chapter_id"],
+                item["row"]["record_id"],
+            ),
+        )
+
+    def _select_general_branches(
+        self,
+        candidates: list[dict[str, Any]],
+        general_plan: GeneralQuestionPlan,
+        *,
+        strong_only: bool,
+    ) -> list[dict[str, Any]]:
+        eligible = [candidate for candidate in candidates if candidate["strong_eligible"] or not strong_only]
+        if not eligible:
+            return []
+        branch_limit = GENERAL_MANAGEMENT_BRANCH_LIMIT if general_plan.general_kind == "management" else GENERAL_BRANCH_LIMIT
+
+        classifications = [
+            candidate for candidate in eligible if candidate["branch_meta"].branch_type == "classification"
+        ]
+        cautions = [candidate for candidate in eligible if candidate["branch_meta"].branch_type == "caution"]
+        formulas = [candidate for candidate in eligible if candidate["branch_meta"].branch_type == "formula"]
+        courses = [candidate for candidate in eligible if candidate["branch_meta"].branch_type == "course"]
+        remainder = [candidate for candidate in eligible if candidate["branch_meta"].branch_type not in {"classification", "caution", "formula", "course"}]
+
+        buckets = [sorted(bucket, key=lambda item: (-item["selection_score"], item["row"]["record_id"])) for bucket in [classifications, cautions, formulas, courses, remainder]]
+        selected: list[dict[str, Any]] = []
+
+        def add_from_bucket(bucket: list[dict[str, Any]], limit: int) -> None:
+            for candidate in bucket:
+                if candidate in selected:
+                    continue
+                selected.append(candidate)
+                if len(selected) >= limit:
+                    break
+
+        if general_plan.general_kind == "overview":
+            add_from_bucket(buckets[0], min(2, branch_limit))
+            add_from_bucket(buckets[2], branch_limit)
+            add_from_bucket(buckets[1], branch_limit)
+            add_from_bucket(buckets[3], branch_limit)
+        else:
+            add_from_bucket(buckets[0], 1)
+            add_from_bucket(buckets[2], branch_limit)
+            add_from_bucket(buckets[1], branch_limit)
+            add_from_bucket(buckets[3], branch_limit)
+
+        if len(selected) < branch_limit:
+            combined_remainder = sorted(
+                [candidate for bucket in buckets for candidate in bucket if candidate not in selected],
+                key=lambda item: (-item["selection_score"], item["row"]["record_id"]),
+            )
+            add_from_bucket(combined_remainder, branch_limit)
+
+        return selected[:branch_limit]
+
+    def _collect_general_slot_rows(
+        self,
+        retrievals: list[dict[str, Any]],
+        *,
+        slot_name: str,
+    ) -> list[dict[str, Any]]:
+        rows: list[dict[str, Any]] = []
+        seen_ids: set[str] = set()
+        for retrieval in retrievals:
+            for row in retrieval.get(slot_name, []):
+                if row["record_id"] in seen_ids:
+                    continue
+                rows.append(row)
+                seen_ids.add(row["record_id"])
+        return rows
+
+    def _build_general_fallback_display_candidates(
+        self,
+        rows: list[dict[str, Any]],
+        general_plan: GeneralQuestionPlan,
+    ) -> list[dict[str, Any]]:
+        candidates: list[dict[str, Any]] = []
+        for index, row in enumerate(rows, start=1):
+            full_text = self._fetch_record_meta(row["record_id"])["retrieval_text"]
+            branch_label = f"待核对线索 {index}"
+            candidates.append(
+                {
+                    "row": self._normalize_record_row(
+                        {
+                            "record_id": row["record_id"],
+                            "source_object": row["source_object"],
+                            "evidence_level": row["evidence_level"],
+                            "chapter_id": row["chapter_id"],
+                            "chapter_name": row["chapter_name"],
+                            "retrieval_text": full_text or row.get("text_preview", ""),
+                            "risk_flag": json_dumps(self._extract_risk_flags(row)),
+                        }
+                    ),
+                    "branch_meta": GeneralBranchMeta(
+                        branch_key=row["record_id"],
+                        branch_type="fallback",
+                        branch_label=branch_label,
+                        branch_summary=f"当前只检索到与“{general_plan.topic_text}”相关的一条待核对线索，尚不足以独立成支。",
+                        heuristic_score=0.0,
+                    ),
+                    "selection_score": 0.0,
+                    "strong_eligible": False,
+                }
+            )
+        return candidates
+
+    def _build_general_answer_text(
+        self,
+        general_plan: GeneralQuestionPlan,
+        selected_candidates: list[dict[str, Any]],
+        *,
+        answer_mode: str,
+    ) -> str:
+        if general_plan.general_kind == "management":
+            lead = f"这是一个总括性问题，书中谈“{general_plan.topic_text}”并非只有一个固定治法，需要分情况看。"
+        else:
+            lead = f"这是一个总括性问题，书中谈“{general_plan.topic_text}”并非只有一条统一描述，需要分情况整理。"
+
+        if answer_mode == "strong":
+            lines = [lead, "以下先按当前能稳定抓到的典型分支整理："]
+            for idx, candidate in enumerate(selected_candidates, start=1):
+                branch_meta: GeneralBranchMeta = candidate["branch_meta"]
+                lines.append(
+                    f"{idx}. {branch_meta.branch_label}：{branch_meta.branch_summary} 依据：{candidate['row']['text_preview']}"
+                )
+            lines.append(f"当前回答只列若干典型分支，不等于穷尽全部“{general_plan.topic_text}”处理。")
+            return "\n".join(lines)
+
+        lines = [lead, "当前只能先整理出部分可核对的分支线索："]
+        for idx, candidate in enumerate(selected_candidates, start=1):
+            branch_meta = candidate["branch_meta"]
+            lines.append(
+                f"{idx}. {branch_meta.branch_label}：{branch_meta.branch_summary} 依据：{candidate['row']['text_preview']}"
+            )
+        lines.append("分支组织仍不完整，建议继续收窄到某一支再问。")
+        return "\n".join(lines)
+
+    def _build_general_followups(
+        self,
+        general_plan: GeneralQuestionPlan,
+        selected_candidates: list[dict[str, Any]],
+    ) -> list[str]:
+        followups = [
+            f"请改问更窄的一支，例如：{general_plan.topic_text}中某一支具体对应哪条？",
+            f"请改问更窄的处理线索，例如：{general_plan.topic_text}里某种表现为什么用某方？",
+        ]
+        for candidate in selected_candidates[:2]:
+            if candidate["branch_meta"].branch_label.startswith("待核对线索"):
+                continue
+            followups.append(
+                f"可以继续追问：{general_plan.topic_text}里“{candidate['branch_meta'].branch_label}”具体怎么理解？"
+            )
+        return dedupe_strings(followups)[:3]
 
     def _build_comparison_refuse_reason(self, reason: str) -> str:
         if reason == "unsupported_comparison":
