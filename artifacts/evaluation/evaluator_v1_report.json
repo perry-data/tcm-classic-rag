@@ -1,9 +1,9 @@
 {
   "runner_version": "evaluator_runner_v1",
-  "generated_at_utc": "2026-04-07T07:35:45.840470+00:00",
-  "started_at_utc": "2026-04-07T07:35:32.325896+00:00",
-  "finished_at_utc": "2026-04-07T07:35:45.840470+00:00",
-  "command": "python scripts/run_evaluator_v1.py",
+  "generated_at_utc": "2026-04-07T08:02:15.655198+00:00",
+  "started_at_utc": "2026-04-07T08:02:05.249205+00:00",
+  "finished_at_utc": "2026-04-07T08:02:15.655198+00:00",
+  "command": "python scripts/run_evaluator_v1.py --fail-on-evaluation-failure",
   "goldset": {
     "path": "/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/evaluation/goldset_v1_seed.json",
     "schema_version": "goldset_schema_v1",
@@ -48,8 +48,8 @@
         "total": 3,
         "mode_match_count": 3,
         "citation_check_required_count": 3,
-        "citation_basic_pass_count": 2,
-        "failure_count": 1
+        "citation_basic_pass_count": 3,
+        "failure_count": 0
       },
       "meaning_explanation": {
         "total": 1,
@@ -75,30 +75,13 @@
     },
     "citation_check_required": {
       "total": 7,
-      "basic_pass_count": 6,
-      "basic_pass_rate": 0.8571,
-      "failed_question_ids": [
-        "eval_seed_q004"
-      ]
+      "basic_pass_count": 7,
+      "basic_pass_rate": 1.0,
+      "failed_question_ids": []
     },
-    "failure_count": 1,
-    "failure_samples": [
-      {
-        "question_id": "eval_seed_q004",
-        "query": "少阴病应该怎么办？",
-        "question_type": "general_overview",
-        "expected_mode": "strong",
-        "actual_mode": "strong",
-        "failed_checks": [
-          "gold_citation_check",
-          "unsupported_assertion_check"
-        ],
-        "unsupported_assertion_failure_reasons": [
-          "strong_without_gold_citation"
-        ]
-      }
-    ],
-    "all_checks_passed": false
+    "failure_count": 0,
+    "failure_samples": [],
+    "all_checks_passed": true
   },
   "items": [
     {
@@ -450,17 +433,46 @@
       },
       "gold_citation_check": {
         "required": true,
-        "passed": false,
-        "matched_count": 0,
-        "matched_citations": []
+        "passed": true,
+        "matched_count": 3,
+        "matched_citations": [
+          {
+            "citation_id": "c1",
+            "record_id": "safe:main_passages:ZJSHL-CH-014-P-0078",
+            "passage_id": "ZJSHL-CH-014-P-0078",
+            "matched_by": [
+              "record_id",
+              "passage_id"
+            ],
+            "citation_role": "primary"
+          },
+          {
+            "citation_id": "c2",
+            "record_id": "safe:main_passages:ZJSHL-CH-014-P-0112",
+            "passage_id": "ZJSHL-CH-014-P-0112",
+            "matched_by": [
+              "record_id",
+              "passage_id"
+            ],
+            "citation_role": "primary"
+          },
+          {
+            "citation_id": "c3",
+            "record_id": "safe:main_passages:ZJSHL-CH-014-P-0062",
+            "passage_id": "ZJSHL-CH-014-P-0062",
+            "matched_by": [
+              "record_id",
+              "passage_id"
+            ],
+            "citation_role": "primary"
+          }
+        ]
       },
       "unsupported_assertion_check": {
         "required": true,
-        "passed": false,
+        "passed": true,
         "rule_version": "minimal_v1",
-        "failure_reasons": [
-          "strong_without_gold_citation"
-        ]
+        "failure_reasons": []
       },
       "actual_counts": {
         "primary_evidence": 3,
@@ -493,10 +505,7 @@
       "answer_text_excerpt": "这是一个总括性问题，书中谈“少阴病”并非只有一个固定治法，需要分情况看。 以下先按当前能稳定抓到的典型分支整理： 1. 附子汤这一支：若见得之一二日，口中和，其背恶寒者，条文多归到“附子汤”这一支。 依据：少阴病，得之一二日，口中和，其背恶寒者，当灸之，附子汤主之。 2. 苦酒汤这一支：若见咽中伤生疮，不能语言，声不出...",
       "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
-      "failed_checks": [
-        "gold_citation_check",
-        "unsupported_assertion_check"
-      ]
+      "failed_checks": []
     },
     {
       "question_id": "eval_seed_q005",

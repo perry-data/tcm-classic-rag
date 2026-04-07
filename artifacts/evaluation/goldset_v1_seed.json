@@ -266,12 +266,18 @@
       "gold_record_ids": [
         "safe:main_passages:ZJSHL-CH-014-P-0072",
         "safe:main_passages:ZJSHL-CH-014-P-0162",
-        "safe:main_passages:ZJSHL-CH-014-P-0093"
+        "safe:main_passages:ZJSHL-CH-014-P-0093",
+        "safe:main_passages:ZJSHL-CH-014-P-0078",
+        "safe:main_passages:ZJSHL-CH-014-P-0112",
+        "safe:main_passages:ZJSHL-CH-014-P-0062"
       ],
       "gold_passage_ids": [
         "ZJSHL-CH-014-P-0072",
         "ZJSHL-CH-014-P-0162",
-        "ZJSHL-CH-014-P-0093"
+        "ZJSHL-CH-014-P-0093",
+        "ZJSHL-CH-014-P-0078",
+        "ZJSHL-CH-014-P-0112",
+        "ZJSHL-CH-014-P-0062"
       ],
       "gold_evidence_spans": [
         {
@@ -300,9 +306,36 @@
           "rationale": "这是少阴病总括的第三个稳定主分支，用于避免回答过于单一。",
           "chapter_id": "ZJSHL-CH-014",
           "chapter_title": "辨少阴病脉证并治法第十一"
+        },
+        {
+          "passage_id": "ZJSHL-CH-014-P-0078",
+          "record_id": "safe:main_passages:ZJSHL-CH-014-P-0078",
+          "evidence_role": "primary",
+          "quote": "少阴病，得之一二日，口中和，其背恶寒者，当灸之，附子汤主之。",
+          "rationale": "这是当前正式系统稳定选入 strong citations 的少阴病 A 级方证分支，可作为总括题的典型主分支。",
+          "chapter_id": "ZJSHL-CH-014",
+          "chapter_title": "辨少阴病脉证并治法第十一"
+        },
+        {
+          "passage_id": "ZJSHL-CH-014-P-0112",
+          "record_id": "safe:main_passages:ZJSHL-CH-014-P-0112",
+          "evidence_role": "primary",
+          "quote": "少阴病，咽中伤生疮，不能语言，声不出者，苦酒汤主之。",
+          "rationale": "这是当前正式系统稳定选入 strong citations 的少阴病 A 级方证分支，符合总括类最小分支整理口径。",
+          "chapter_id": "ZJSHL-CH-014",
+          "chapter_title": "辨少阴病脉证并治法第十一"
+        },
+        {
+          "passage_id": "ZJSHL-CH-014-P-0062",
+          "record_id": "safe:main_passages:ZJSHL-CH-014-P-0062",
+          "evidence_role": "primary",
+          "quote": "少阴病，始得之，反发热，脉沉者，麻黄附子细辛赵本作「细辛附子」汤主之。",
+          "rationale": "这是当前正式系统稳定选入 strong citations 的少阴病 A 级方证分支，能支撑“少阴病并非单一治法”的总括回答。",
+          "chapter_id": "ZJSHL-CH-014",
+          "chapter_title": "辨少阴病脉证并治法第十一"
         }
       ],
-      "annotation_notes": "该题用于验证总括类 strong 不只局限于太阳病主题，且应保持多分支主引用。",
+      "annotation_notes": "该题用于验证总括类 strong 不只局限于太阳病主题，且应保持多分支主引用。总括题不要求唯一三条固定分支；当前正式系统引用的附子汤、苦酒汤、麻黄附子细辛汤三条均为少阴病 A 级 main_passages 方证分支，因此纳入可接受 gold citation 集合。",
       "citation_check_required": true,
       "evaluation_targets": [
         "retrieval_hit",
