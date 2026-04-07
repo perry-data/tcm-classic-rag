@@ -105,6 +105,12 @@ def resolve_project_path(path_value: str) -> Path:
     return (PROJECT_ROOT / path).resolve()
 
 
+def ensure_runtime_file(path: Path, description: str, recovery_hint: str) -> None:
+    if path.exists():
+        return
+    raise SystemExit(f"Missing {description}: {path}\n{recovery_hint}")
+
+
 def prepare_hf_cache(cache_dir: Path) -> None:
     cache_dir.mkdir(parents=True, exist_ok=True)
     os.environ.setdefault("HF_HOME", str(cache_dir))
@@ -269,6 +275,27 @@ class HybridRetrievalEngine(RetrievalEngine):
         super().__init__(*args, **kwargs)
 
     def __post_init__(self) -> None:
+        ensure_runtime_file(self.db_path, "SQLite runtime database", "Run `python scripts/build_mvp_database.py`.")
+        ensure_runtime_file(
+            self.dense_chunks_index_path,
+            "dense chunks FAISS index",
+            "Run `python scripts/build_dense_index.py` before starting the API on a fresh clone.",
+        )
+        ensure_runtime_file(
+            self.dense_main_index_path,
+            "dense main passages FAISS index",
+            "Run `python scripts/build_dense_index.py` before starting the API on a fresh clone.",
+        )
+        ensure_runtime_file(
+            self.dense_chunks_meta_path,
+            "dense chunks meta JSON",
+            "Run `python scripts/build_dense_index.py` before starting the API on a fresh clone.",
+        )
+        ensure_runtime_file(
+            self.dense_main_meta_path,
+            "dense main passages meta JSON",
+            "Run `python scripts/build_dense_index.py` before starting the API on a fresh clone.",
+        )
         prepare_hf_cache(self.cache_dir)
         try:
             import faiss
@@ -277,8 +304,9 @@ class HybridRetrievalEngine(RetrievalEngine):
             from sentence_transformers import CrossEncoder, SentenceTransformer
         except Exception as exc:  # pragma: no cover - dependency guard
             raise SystemExit(
-                "Missing hybrid retrieval dependencies. Run with project venv: "
-                "./.venv/bin/python -m backend.retrieval.hybrid"
+                "Missing hybrid retrieval dependencies. Install them first with "
+                "`python -m pip install -r requirements.txt`, then run "
+                "`python -m backend.retrieval.hybrid`."
             ) from exc
 
         self.faiss = faiss
@@ -291,7 +319,8 @@ class HybridRetrievalEngine(RetrievalEngine):
         self.record_by_id = {row["record_id"]: row for row in self.unified_rows}
         self._ensure_sparse_fts_index()
         self.embedder = load_sentence_transformer_model(self.SentenceTransformer, self.embed_model_name, self.cache_dir)
-        rerank_device = "mps" if self.torch.backends.mps.is_available() else "cpu"
+        mps_backend = getattr(self.torch.backends, "mps", None)
+        rerank_device = "mps" if mps_backend is not None and mps_backend.is_available() else "cpu"
         self.reranker = load_cross_encoder_model(
             self.CrossEncoder,
             self.rerank_model_name,

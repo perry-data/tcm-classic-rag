@@ -1,0 +1,8 @@
+# Runtime dependencies for the current single-book MVP.
+# Tested with Python 3.12. On a fresh Windows 11 clone, install with:
+#   py -3.12 -m pip install -r requirements.txt
+faiss-cpu==1.13.2
+numpy==2.4.4
+protobuf==7.34.1
+sentence-transformers==5.3.0
+torch==2.11.0

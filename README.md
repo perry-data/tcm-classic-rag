@@ -55,6 +55,32 @@
 
 ## 常用命令
 
+### Windows 11 fresh clone
+
+新 Windows 11 机器请优先看：
+
+- [windows_11_quickstart.md](docs/setup/windows_11_quickstart.md)
+
+最小流程：
+
+```powershell
+py -3.12 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install --upgrade pip
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe scripts\build_dense_index.py
+.\.venv\Scripts\python.exe -m backend.api.minimal_api --host 127.0.0.1 --port 8000
+```
+
+然后打开：
+
+```text
+http://127.0.0.1:8000/
+```
+
+说明：仓库包含 `artifacts/zjshl_mvp.db`，但 `.faiss` 二进制索引默认不入库，所以 fresh clone 后需要先运行一次 `scripts/build_dense_index.py`。
+
+### macOS / Linux
+
 构建数据库：
 
 ```bash
@@ -87,9 +113,9 @@
 
 ## 当前正式文档
 
-- [PRD_v1.md](/Users/man_ray/Projects/Python/tcm-classic-rag/docs/final/PRD_v1.md)
-- [technical_design_v1.md](/Users/man_ray/Projects/Python/tcm-classic-rag/docs/final/technical_design_v1.md)
-- [system_spec_v1.md](/Users/man_ray/Projects/Python/tcm-classic-rag/docs/final/system_spec_v1.md)
+- [PRD_v1.md](docs/final/PRD_v1.md)
+- [technical_design_v1.md](docs/final/technical_design_v1.md)
+- [system_spec_v1.md](docs/final/system_spec_v1.md)
 
 ## 说明
 

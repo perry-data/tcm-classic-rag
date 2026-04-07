@@ -219,8 +219,9 @@ def main() -> int:
         from sentence_transformers import SentenceTransformer
     except Exception as exc:  # pragma: no cover - dependency guard
         raise SystemExit(
-            "Missing dense retrieval dependencies. Run this script with the project venv: "
-            "./.venv/bin/python scripts/build_dense_index.py"
+            "Missing dense retrieval dependencies. Install them first with "
+            "`python -m pip install -r requirements.txt`, then run "
+            "`python scripts/build_dense_index.py`."
         ) from exc
 
     model = load_embedding_model(SentenceTransformer, args.embed_model, cache_dir)
