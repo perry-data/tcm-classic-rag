@@ -99,7 +99,8 @@
           "artifact_path": "artifacts/hybrid_answer_examples.json",
           "example_id": "strong_chunk_backref"
         }
-      ]
+      ],
+      "gold_source_type": "manual_with_system_reference"
     },
     {
       "question_id": "eval_seed_q002",
@@ -177,7 +178,8 @@
           "artifact_path": "artifacts/hybrid_answer_examples.json",
           "example_id": "weak_with_review_notice"
         }
-      ]
+      ],
+      "gold_source_type": "manual_with_system_reference"
     },
     {
       "question_id": "eval_seed_q003",
@@ -255,7 +257,8 @@
           "artifact_path": "artifacts/general_question_examples.json",
           "example_id": "taiyang_management_strong"
         }
-      ]
+      ],
+      "gold_source_type": "manual_with_system_reference"
     },
     {
       "question_id": "eval_seed_q004",
@@ -366,7 +369,8 @@
           "artifact_path": "artifacts/general_question_examples.json",
           "example_id": "shaoyin_management_strong"
         }
-      ]
+      ],
+      "gold_source_type": "needs_reannotation"
     },
     {
       "question_id": "eval_seed_q005",
@@ -455,7 +459,8 @@
           "artifact_path": "artifacts/general_question_examples.json",
           "example_id": "liujing_management_weak"
         }
-      ]
+      ],
+      "gold_source_type": "manual_with_system_reference"
     },
     {
       "question_id": "eval_seed_q006",
@@ -533,7 +538,8 @@
           "artifact_path": "artifacts/comparison_examples.json",
           "example_id": "comparison_demo_scene"
         }
-      ]
+      ],
+      "gold_source_type": "manual_with_system_reference"
     },
     {
       "question_id": "eval_seed_q007",
@@ -611,7 +617,8 @@
           "artifact_path": "artifacts/comparison_examples.json",
           "example_id": "comparison_context_weak"
         }
-      ]
+      ],
+      "gold_source_type": "manual_with_system_reference"
     },
     {
       "question_id": "eval_seed_q008",
@@ -650,7 +657,8 @@
           "artifact_path": "artifacts/hybrid_answer_examples.json",
           "example_id": "refuse_no_match"
         }
-      ]
+      ],
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q009",
@@ -689,7 +697,8 @@
           "artifact_path": "artifacts/comparison_examples.json",
           "example_id": "comparison_invalid_question"
         }
-      ]
+      ],
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q010",
@@ -756,7 +765,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q010"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q011",
@@ -823,7 +833,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q011"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q012",
@@ -901,7 +912,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q012"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q013",
@@ -979,7 +991,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q013"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q014",
@@ -1046,7 +1059,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q014"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q015",
@@ -1113,7 +1127,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q015"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q016",
@@ -1169,7 +1184,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q016"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q017",
@@ -1225,7 +1241,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q017"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q018",
@@ -1292,7 +1309,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q018"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q019",
@@ -1359,7 +1377,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q019"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q020",
@@ -1437,7 +1456,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q020"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q021",
@@ -1493,7 +1513,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q021"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q022",
@@ -1549,7 +1570,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q022"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q023",
@@ -1627,7 +1649,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q023"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q024",
@@ -1705,7 +1728,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q024"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q025",
@@ -1783,7 +1807,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q025"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q026",
@@ -1850,7 +1875,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q026"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q027",
@@ -1906,7 +1932,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q027"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q028",
@@ -1962,7 +1989,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q028"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q029",
@@ -2039,7 +2067,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q029"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q030",
@@ -2122,7 +2151,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q030"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q031",
@@ -2205,7 +2235,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q031"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q032",
@@ -2283,7 +2314,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q032"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q033",
@@ -2365,7 +2397,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q033"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q034",
@@ -2421,7 +2454,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q034"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q035",
@@ -2477,7 +2511,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q035"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q036",
@@ -2533,7 +2568,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q036"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q037",
@@ -2599,7 +2635,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q037"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q038",
@@ -2666,7 +2703,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q038"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q039",
@@ -2747,7 +2785,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q039"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q040",
@@ -2830,7 +2869,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q040"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q041",
@@ -2911,7 +2951,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q041"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q042",
@@ -2989,7 +3030,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q042"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q043",
@@ -3075,7 +3117,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q043"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q044",
@@ -3162,7 +3205,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q044"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q045",
@@ -3240,7 +3284,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q045"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q046",
@@ -3318,7 +3363,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q046"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q047",
@@ -3398,7 +3444,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q047"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q048",
@@ -3478,7 +3525,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q048"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q049",
@@ -3558,7 +3606,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q049"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q050",
@@ -3625,7 +3674,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q050"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q051",
@@ -3705,7 +3755,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q051"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q052",
@@ -3785,7 +3836,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q052"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q053",
@@ -3865,7 +3917,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q053"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q054",
@@ -3945,7 +3998,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q054"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q055",
@@ -4025,7 +4079,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q055"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q056",
@@ -4106,7 +4161,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q056"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q057",
@@ -4184,7 +4240,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q057"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q058",
@@ -4264,7 +4321,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q058"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q059",
@@ -4346,7 +4404,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q059"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q060",
@@ -4424,7 +4483,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q060"
         }
-      ]
+      ],
+      "gold_source_type": "system_bootstrapped"
     },
     {
       "question_id": "eval_seed_q061",
@@ -4463,7 +4523,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q061"
         }
-      ]
+      ],
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q062",
@@ -4502,7 +4563,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q062"
         }
-      ]
+      ],
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q063",
@@ -4541,7 +4603,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q063"
         }
-      ]
+      ],
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q064",
@@ -4580,7 +4643,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q064"
         }
-      ]
+      ],
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q065",
@@ -4619,7 +4683,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q065"
         }
-      ]
+      ],
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q066",
@@ -4658,7 +4723,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q066"
         }
-      ]
+      ],
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q067",
@@ -4697,7 +4763,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q067"
         }
-      ]
+      ],
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q068",
@@ -4736,7 +4803,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q068"
         }
-      ]
+      ],
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q069",
@@ -4775,7 +4843,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q069"
         }
-      ]
+      ],
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q070",
@@ -4814,7 +4883,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q070"
         }
-      ]
+      ],
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q071",
@@ -4853,7 +4923,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q071"
         }
-      ]
+      ],
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q072",
@@ -4892,7 +4963,8 @@
           "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
           "example_id": "eval_seed_q072"
         }
-      ]
+      ],
+      "gold_source_type": "manual_independent"
     }
   ]
 }

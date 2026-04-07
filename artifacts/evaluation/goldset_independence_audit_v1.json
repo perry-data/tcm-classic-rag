@@ -1,0 +1,3373 @@
+{
+  "audit_version": "goldset_independence_review_v1",
+  "review_date": "2026-04-07",
+  "goldset_path": "artifacts/evaluation/goldset_v1_seed.json",
+  "goldset_dataset_name": "evaluation_goldset_v1_seed_expanded_72",
+  "goldset_item_count": 72,
+  "review_scope": {
+    "purpose": "Identify and mark system-bootstrap risk in the 72-item evaluation goldset before using it as a paper-grade standard set.",
+    "non_goals": [
+      "No API changes",
+      "No answer payload contract changes",
+      "No retrieval chain changes",
+      "No answer assembler changes",
+      "No goldset size expansion"
+    ]
+  },
+  "classification_definitions": {
+    "gold_source_type": {
+      "manual_independent": "本轮可基于题目边界或人工先验判断，不需要当前系统 citation 回填定义 gold。拒答题若虽经 replay 筛选但 gold 为空且边界可独立判断，也归入此类。",
+      "manual_with_system_reference": "有人工标注理由与证据片段，但 source_refs 或历史修订仍引用当前系统样例；可作为候选集，但论文中应披露来源。",
+      "system_bootstrapped": "gold_record_ids / gold_passage_ids 主要来自当前正式系统 replay 后 citations 回填，存在明显自举污染风险。",
+      "needs_reannotation": "已经发现 gold 集合直接受当前系统输出修正影响，或需要先人工重标后再纳入正式主评估。"
+    },
+    "formal_evaluation_recommendation": {
+      "formal_core": "可进入论文正式评估集主表；仍建议披露抽样复核规则。",
+      "formal_candidate_with_provenance_note": "可作为论文候选或附表指标；进入正文主指标前应披露其参考过系统样例。",
+      "exclude_until_reannotation": "暂不纳入论文正式主评估；可保留为开发 smoke / 回归集，待人工重标后再升级。"
+    }
+  },
+  "sampling_plan": {
+    "method": "Deterministic stratified manual review sample based on question_type and current item order.",
+    "minimum_requested_by_type": {
+      "source_lookup": 10,
+      "meaning_explanation": 8,
+      "general_overview": 8,
+      "comparison": 8,
+      "refusal": 6
+    },
+    "sampled_counts_by_type": {
+      "source_lookup": 10,
+      "meaning_explanation": 8,
+      "general_overview": 8,
+      "comparison": 8,
+      "refusal": 6
+    },
+    "sampled_question_ids_by_type": {
+      "source_lookup": [
+        "eval_seed_q001",
+        "eval_seed_q010",
+        "eval_seed_q011",
+        "eval_seed_q012",
+        "eval_seed_q013",
+        "eval_seed_q014",
+        "eval_seed_q015",
+        "eval_seed_q016",
+        "eval_seed_q017",
+        "eval_seed_q018"
+      ],
+      "meaning_explanation": [
+        "eval_seed_q002",
+        "eval_seed_q029",
+        "eval_seed_q030",
+        "eval_seed_q031",
+        "eval_seed_q032",
+        "eval_seed_q033",
+        "eval_seed_q034",
+        "eval_seed_q035"
+      ],
+      "general_overview": [
+        "eval_seed_q003",
+        "eval_seed_q004",
+        "eval_seed_q005",
+        "eval_seed_q042",
+        "eval_seed_q043",
+        "eval_seed_q044",
+        "eval_seed_q045",
+        "eval_seed_q046"
+      ],
+      "comparison": [
+        "eval_seed_q006",
+        "eval_seed_q007",
+        "eval_seed_q051",
+        "eval_seed_q052",
+        "eval_seed_q053",
+        "eval_seed_q054",
+        "eval_seed_q055",
+        "eval_seed_q056"
+      ],
+      "refusal": [
+        "eval_seed_q008",
+        "eval_seed_q009",
+        "eval_seed_q061",
+        "eval_seed_q062",
+        "eval_seed_q063",
+        "eval_seed_q064"
+      ]
+    }
+  },
+  "summary": {
+    "total_items": 72,
+    "by_gold_source_type": {
+      "manual_with_system_reference": 6,
+      "needs_reannotation": 1,
+      "manual_independent": 14,
+      "system_bootstrapped": 51
+    },
+    "by_bootstrap_risk": {
+      "medium": 6,
+      "high": 52,
+      "low": 14
+    },
+    "by_formal_evaluation_recommendation": {
+      "formal_candidate_with_provenance_note": 6,
+      "exclude_until_reannotation": 52,
+      "formal_core": 14
+    },
+    "by_question_type_and_source_type": {
+      "source_lookup": {
+        "manual_with_system_reference": 1,
+        "system_bootstrapped": 19
+      },
+      "meaning_explanation": {
+        "manual_with_system_reference": 1,
+        "system_bootstrapped": 13
+      },
+      "general_overview": {
+        "manual_with_system_reference": 2,
+        "needs_reannotation": 1,
+        "system_bootstrapped": 9
+      },
+      "comparison": {
+        "manual_with_system_reference": 2,
+        "system_bootstrapped": 10
+      },
+      "refusal": {
+        "manual_independent": 14
+      }
+    },
+    "by_question_type_and_formal_recommendation": {
+      "source_lookup": {
+        "formal_candidate_with_provenance_note": 1,
+        "exclude_until_reannotation": 19
+      },
+      "meaning_explanation": {
+        "formal_candidate_with_provenance_note": 1,
+        "exclude_until_reannotation": 13
+      },
+      "general_overview": {
+        "formal_candidate_with_provenance_note": 2,
+        "exclude_until_reannotation": 10
+      },
+      "comparison": {
+        "formal_candidate_with_provenance_note": 2,
+        "exclude_until_reannotation": 10
+      },
+      "refusal": {
+        "formal_core": 14
+      }
+    },
+    "system_bootstrapped_question_ids": [
+      "eval_seed_q010",
+      "eval_seed_q011",
+      "eval_seed_q012",
+      "eval_seed_q013",
+      "eval_seed_q014",
+      "eval_seed_q015",
+      "eval_seed_q016",
+      "eval_seed_q017",
+      "eval_seed_q018",
+      "eval_seed_q019",
+      "eval_seed_q020",
+      "eval_seed_q021",
+      "eval_seed_q022",
+      "eval_seed_q023",
+      "eval_seed_q024",
+      "eval_seed_q025",
+      "eval_seed_q026",
+      "eval_seed_q027",
+      "eval_seed_q028",
+      "eval_seed_q029",
+      "eval_seed_q030",
+      "eval_seed_q031",
+      "eval_seed_q032",
+      "eval_seed_q033",
+      "eval_seed_q034",
+      "eval_seed_q035",
+      "eval_seed_q036",
+      "eval_seed_q037",
+      "eval_seed_q038",
+      "eval_seed_q039",
+      "eval_seed_q040",
+      "eval_seed_q041",
+      "eval_seed_q042",
+      "eval_seed_q043",
+      "eval_seed_q044",
+      "eval_seed_q045",
+      "eval_seed_q046",
+      "eval_seed_q047",
+      "eval_seed_q048",
+      "eval_seed_q049",
+      "eval_seed_q050",
+      "eval_seed_q051",
+      "eval_seed_q052",
+      "eval_seed_q053",
+      "eval_seed_q054",
+      "eval_seed_q055",
+      "eval_seed_q056",
+      "eval_seed_q057",
+      "eval_seed_q058",
+      "eval_seed_q059",
+      "eval_seed_q060"
+    ],
+    "needs_reannotation_question_ids": [
+      "eval_seed_q004"
+    ],
+    "formal_core_question_ids": [
+      "eval_seed_q008",
+      "eval_seed_q009",
+      "eval_seed_q061",
+      "eval_seed_q062",
+      "eval_seed_q063",
+      "eval_seed_q064",
+      "eval_seed_q065",
+      "eval_seed_q066",
+      "eval_seed_q067",
+      "eval_seed_q068",
+      "eval_seed_q069",
+      "eval_seed_q070",
+      "eval_seed_q071",
+      "eval_seed_q072"
+    ],
+    "formal_candidate_with_provenance_note_question_ids": [
+      "eval_seed_q001",
+      "eval_seed_q002",
+      "eval_seed_q003",
+      "eval_seed_q005",
+      "eval_seed_q006",
+      "eval_seed_q007"
+    ],
+    "exclude_until_reannotation_question_ids": [
+      "eval_seed_q004",
+      "eval_seed_q010",
+      "eval_seed_q011",
+      "eval_seed_q012",
+      "eval_seed_q013",
+      "eval_seed_q014",
+      "eval_seed_q015",
+      "eval_seed_q016",
+      "eval_seed_q017",
+      "eval_seed_q018",
+      "eval_seed_q019",
+      "eval_seed_q020",
+      "eval_seed_q021",
+      "eval_seed_q022",
+      "eval_seed_q023",
+      "eval_seed_q024",
+      "eval_seed_q025",
+      "eval_seed_q026",
+      "eval_seed_q027",
+      "eval_seed_q028",
+      "eval_seed_q029",
+      "eval_seed_q030",
+      "eval_seed_q031",
+      "eval_seed_q032",
+      "eval_seed_q033",
+      "eval_seed_q034",
+      "eval_seed_q035",
+      "eval_seed_q036",
+      "eval_seed_q037",
+      "eval_seed_q038",
+      "eval_seed_q039",
+      "eval_seed_q040",
+      "eval_seed_q041",
+      "eval_seed_q042",
+      "eval_seed_q043",
+      "eval_seed_q044",
+      "eval_seed_q045",
+      "eval_seed_q046",
+      "eval_seed_q047",
+      "eval_seed_q048",
+      "eval_seed_q049",
+      "eval_seed_q050",
+      "eval_seed_q051",
+      "eval_seed_q052",
+      "eval_seed_q053",
+      "eval_seed_q054",
+      "eval_seed_q055",
+      "eval_seed_q056",
+      "eval_seed_q057",
+      "eval_seed_q058",
+      "eval_seed_q059",
+      "eval_seed_q060"
+    ]
+  },
+  "items": [
+    {
+      "question_id": "eval_seed_q001",
+      "query": "黄连汤方的条文是什么？",
+      "question_type": "source_lookup",
+      "question_type_label": "条文/出处类",
+      "expected_mode": "strong",
+      "gold_source_type": "manual_with_system_reference",
+      "bootstrap_risk": "medium",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_keep_with_provenance_note",
+      "recommended_action": "keep",
+      "formal_evaluation_recommendation": "formal_candidate_with_provenance_note",
+      "source_refs": [
+        "artifacts/hybrid_answer_examples.json:strong_chunk_backref"
+      ],
+      "gold_record_id_count": 3,
+      "gold_passage_id_count": 3,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0145",
+        "safe:main_passages:ZJSHL-CH-010-P-0146",
+        "safe:main_passages:ZJSHL-CH-010-P-0147"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-010-P-0145",
+        "ZJSHL-CH-010-P-0146",
+        "ZJSHL-CH-010-P-0147"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0145",
+        "safe:main_passages:ZJSHL-CH-010-P-0146",
+        "safe:main_passages:ZJSHL-CH-010-P-0147"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-010-P-0145",
+        "ZJSHL-CH-010-P-0146",
+        "ZJSHL-CH-010-P-0147"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "seed item keeps manual rationale but references system example artifacts",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "保留但需披露：原 seed 有人工证据说明，但 source_refs 来自系统样例，论文中不宜把它描述成完全独立标注。"
+    },
+    {
+      "question_id": "eval_seed_q002",
+      "query": "烧针益阳而损阴是什么意思？",
+      "question_type": "meaning_explanation",
+      "question_type_label": "含义解释类",
+      "expected_mode": "weak_with_review_notice",
+      "gold_source_type": "manual_with_system_reference",
+      "bootstrap_risk": "medium",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_keep_with_provenance_note",
+      "recommended_action": "keep",
+      "formal_evaluation_recommendation": "formal_candidate_with_provenance_note",
+      "source_refs": [
+        "artifacts/hybrid_answer_examples.json:weak_with_review_notice"
+      ],
+      "gold_record_id_count": 3,
+      "gold_passage_id_count": 3,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0016",
+        "safe:main_passages:ZJSHL-CH-009-P-0295",
+        "safe:main_passages:ZJSHL-CH-010-P-0080"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-003-P-0016",
+        "ZJSHL-CH-009-P-0295",
+        "ZJSHL-CH-010-P-0080"
+      ],
+      "current_replay_citation_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0016",
+        "safe:main_passages:ZJSHL-CH-009-P-0295",
+        "safe:main_passages:ZJSHL-CH-010-P-0080",
+        "full:passages:ZJSHL-CH-003-P-0016",
+        "full:ambiguous_passages:ZJSHL-CH-003-P-0016"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-003-P-0016",
+        "ZJSHL-CH-009-P-0295",
+        "ZJSHL-CH-010-P-0080",
+        "ZJSHL-CH-003-P-0016",
+        "ZJSHL-CH-003-P-0016"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "seed item keeps manual rationale but references system example artifacts",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "保留但需披露：原 seed 有人工证据说明，但 source_refs 来自系统样例，论文中不宜把它描述成完全独立标注。"
+    },
+    {
+      "question_id": "eval_seed_q003",
+      "query": "太阳病应该怎么办？",
+      "question_type": "general_overview",
+      "question_type_label": "泛问/总括类",
+      "expected_mode": "strong",
+      "gold_source_type": "manual_with_system_reference",
+      "bootstrap_risk": "medium",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_keep_with_provenance_note",
+      "recommended_action": "keep",
+      "formal_evaluation_recommendation": "formal_candidate_with_provenance_note",
+      "source_refs": [
+        "artifacts/general_question_examples.json:taiyang_management_strong"
+      ],
+      "gold_record_id_count": 3,
+      "gold_passage_id_count": 3,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0195",
+        "safe:main_passages:ZJSHL-CH-008-P-0220",
+        "safe:main_passages:ZJSHL-CH-009-P-0002"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-008-P-0195",
+        "ZJSHL-CH-008-P-0220",
+        "ZJSHL-CH-009-P-0002"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0195",
+        "safe:main_passages:ZJSHL-CH-009-P-0002",
+        "safe:main_passages:ZJSHL-CH-008-P-0220"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-008-P-0195",
+        "ZJSHL-CH-009-P-0002",
+        "ZJSHL-CH-008-P-0220"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "seed item keeps manual rationale but references system example artifacts",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "保留但需披露：原 seed 有人工证据说明，但 source_refs 来自系统样例，论文中不宜把它描述成完全独立标注。"
+    },
+    {
+      "question_id": "eval_seed_q004",
+      "query": "少阴病应该怎么办？",
+      "question_type": "general_overview",
+      "question_type_label": "泛问/总括类",
+      "expected_mode": "strong",
+      "gold_source_type": "needs_reannotation",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_reannotate",
+      "recommended_action": "reannotate",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/general_question_examples.json:shaoyin_management_strong"
+      ],
+      "gold_record_id_count": 6,
+      "gold_passage_id_count": 6,
+      "gold_evidence_span_count": 6,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0072",
+        "safe:main_passages:ZJSHL-CH-014-P-0162",
+        "safe:main_passages:ZJSHL-CH-014-P-0093",
+        "safe:main_passages:ZJSHL-CH-014-P-0078",
+        "safe:main_passages:ZJSHL-CH-014-P-0112",
+        "safe:main_passages:ZJSHL-CH-014-P-0062"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-014-P-0072",
+        "ZJSHL-CH-014-P-0162",
+        "ZJSHL-CH-014-P-0093",
+        "ZJSHL-CH-014-P-0078",
+        "ZJSHL-CH-014-P-0112",
+        "ZJSHL-CH-014-P-0062"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0078",
+        "safe:main_passages:ZJSHL-CH-014-P-0112",
+        "safe:main_passages:ZJSHL-CH-014-P-0062"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-014-P-0078",
+        "ZJSHL-CH-014-P-0112",
+        "ZJSHL-CH-014-P-0062"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "gold collection was expanded after current-system citation mismatch review",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "需要重标：q004 曾因当前正式系统实际 citations 扩展 gold 集合，应由人工先定义“少阴病总括题”的可接受分支集合。"
+    },
+    {
+      "question_id": "eval_seed_q005",
+      "query": "六经病应该怎么办？",
+      "question_type": "general_overview",
+      "question_type_label": "泛问/总括类",
+      "expected_mode": "weak_with_review_notice",
+      "gold_source_type": "manual_with_system_reference",
+      "bootstrap_risk": "medium",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_keep_with_provenance_note",
+      "recommended_action": "keep",
+      "formal_evaluation_recommendation": "formal_candidate_with_provenance_note",
+      "source_refs": [
+        "artifacts/general_question_examples.json:liujing_management_weak"
+      ],
+      "gold_record_id_count": 4,
+      "gold_passage_id_count": 4,
+      "gold_evidence_span_count": 4,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0207",
+        "safe:main_passages:ZJSHL-CH-016-P-0009",
+        "safe:main_passages:ZJSHL-CH-014-P-0058",
+        "safe:main_passages:ZJSHL-CH-009-P-0312"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-008-P-0207",
+        "ZJSHL-CH-016-P-0009",
+        "ZJSHL-CH-014-P-0058",
+        "ZJSHL-CH-009-P-0312"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0207",
+        "safe:main_passages:ZJSHL-CH-016-P-0009",
+        "safe:main_passages:ZJSHL-CH-014-P-0058",
+        "safe:main_passages:ZJSHL-CH-009-P-0312"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-008-P-0207",
+        "ZJSHL-CH-016-P-0009",
+        "ZJSHL-CH-014-P-0058",
+        "ZJSHL-CH-009-P-0312"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "seed item keeps manual rationale but references system example artifacts",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "保留但需披露：原 seed 有人工证据说明，但 source_refs 来自系统样例，论文中不宜把它描述成完全独立标注。"
+    },
+    {
+      "question_id": "eval_seed_q006",
+      "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+      "question_type": "comparison",
+      "question_type_label": "比较类",
+      "expected_mode": "strong",
+      "gold_source_type": "manual_with_system_reference",
+      "bootstrap_risk": "medium",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_keep_with_provenance_note",
+      "recommended_action": "keep",
+      "formal_evaluation_recommendation": "formal_candidate_with_provenance_note",
+      "source_refs": [
+        "artifacts/comparison_examples.json:comparison_demo_scene"
+      ],
+      "gold_record_id_count": 3,
+      "gold_passage_id_count": 3,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-025-P-0004",
+        "safe:main_passages:ZJSHL-CH-025-P-0003",
+        "safe:main_passages:ZJSHL-CH-008-P-0236"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-025-P-0004",
+        "ZJSHL-CH-025-P-0003",
+        "ZJSHL-CH-008-P-0236"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-025-P-0004",
+        "safe:main_passages:ZJSHL-CH-025-P-0003",
+        "safe:main_passages:ZJSHL-CH-008-P-0236",
+        "full:passages:ZJSHL-CH-025-P-0003",
+        "full:ambiguous_passages:ZJSHL-CH-009-P-0053"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-025-P-0004",
+        "ZJSHL-CH-025-P-0003",
+        "ZJSHL-CH-008-P-0236",
+        "ZJSHL-CH-025-P-0003",
+        "ZJSHL-CH-009-P-0053"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": false,
+      "bootstrap_signals": [
+        "seed item keeps manual rationale but references system example artifacts"
+      ],
+      "review_notes": "保留但需披露：原 seed 有人工证据说明，但 source_refs 来自系统样例，论文中不宜把它描述成完全独立标注。"
+    },
+    {
+      "question_id": "eval_seed_q007",
+      "query": "桂枝去芍药汤方和桂枝去芍药加附子汤方的条文语境有什么不同？",
+      "question_type": "comparison",
+      "question_type_label": "比较类",
+      "expected_mode": "weak_with_review_notice",
+      "gold_source_type": "manual_with_system_reference",
+      "bootstrap_risk": "medium",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_keep_with_provenance_note",
+      "recommended_action": "keep",
+      "formal_evaluation_recommendation": "formal_candidate_with_provenance_note",
+      "source_refs": [
+        "artifacts/comparison_examples.json:comparison_context_weak"
+      ],
+      "gold_record_id_count": 3,
+      "gold_passage_id_count": 3,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-025-P-0005",
+        "safe:main_passages:ZJSHL-CH-025-P-0006",
+        "full:ambiguous_passages:ZJSHL-CH-008-P-0238"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-025-P-0005",
+        "ZJSHL-CH-025-P-0006",
+        "ZJSHL-CH-008-P-0238"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-025-P-0005",
+        "safe:main_passages:ZJSHL-CH-025-P-0006",
+        "full:passages:ZJSHL-CH-025-P-0005",
+        "full:ambiguous_passages:ZJSHL-CH-008-P-0238",
+        "full:passages:ZJSHL-CH-025-P-0006",
+        "full:ambiguous_passages:ZJSHL-CH-008-P-0238"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-025-P-0005",
+        "ZJSHL-CH-025-P-0006",
+        "ZJSHL-CH-025-P-0005",
+        "ZJSHL-CH-008-P-0238",
+        "ZJSHL-CH-025-P-0006",
+        "ZJSHL-CH-008-P-0238"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "seed item keeps manual rationale but references system example artifacts",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "保留但需披露：原 seed 有人工证据说明，但 source_refs 来自系统样例，论文中不宜把它描述成完全独立标注。"
+    },
+    {
+      "question_id": "eval_seed_q008",
+      "query": "书中有没有提到量子纠缠？",
+      "question_type": "refusal",
+      "question_type_label": "无证据拒答类",
+      "expected_mode": "refuse",
+      "gold_source_type": "manual_independent",
+      "bootstrap_risk": "low",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_keep",
+      "recommended_action": "keep",
+      "formal_evaluation_recommendation": "formal_core",
+      "source_refs": [
+        "artifacts/hybrid_answer_examples.json:refuse_no_match"
+      ],
+      "gold_record_id_count": 0,
+      "gold_passage_id_count": 0,
+      "gold_evidence_span_count": 0,
+      "gold_record_ids": [],
+      "gold_passage_ids": [],
+      "current_replay_citation_ids": [],
+      "current_replay_citation_passage_ids": [],
+      "current_replay_citations_fully_accepted_by_gold": false,
+      "bootstrap_signals": [
+        "no positive gold citations; boundary can be checked without replay citation backfill"
+      ],
+      "review_notes": "保留：拒答边界可由题目意图独立判断，gold citation 为空，不存在 citation 回填自举。"
+    },
+    {
+      "question_id": "eval_seed_q009",
+      "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方哪个好？",
+      "question_type": "refusal",
+      "question_type_label": "无证据拒答类",
+      "expected_mode": "refuse",
+      "gold_source_type": "manual_independent",
+      "bootstrap_risk": "low",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_keep",
+      "recommended_action": "keep",
+      "formal_evaluation_recommendation": "formal_core",
+      "source_refs": [
+        "artifacts/comparison_examples.json:comparison_invalid_question"
+      ],
+      "gold_record_id_count": 0,
+      "gold_passage_id_count": 0,
+      "gold_evidence_span_count": 0,
+      "gold_record_ids": [],
+      "gold_passage_ids": [],
+      "current_replay_citation_ids": [],
+      "current_replay_citation_passage_ids": [],
+      "current_replay_citations_fully_accepted_by_gold": false,
+      "bootstrap_signals": [
+        "no positive gold citations; boundary can be checked without replay citation backfill"
+      ],
+      "review_notes": "保留：拒答边界可由题目意图独立判断，gold citation 为空，不存在 citation 回填自举。"
+    },
+    {
+      "question_id": "eval_seed_q010",
+      "query": "桂枝汤方的条文是什么？",
+      "question_type": "source_lookup",
+      "question_type_label": "条文/出处类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q010"
+      ],
+      "gold_record_id_count": 2,
+      "gold_passage_id_count": 2,
+      "gold_evidence_span_count": 2,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0217",
+        "safe:main_passages:ZJSHL-CH-008-P-0219"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-008-P-0217",
+        "ZJSHL-CH-008-P-0219"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0217",
+        "safe:main_passages:ZJSHL-CH-008-P-0219"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-008-P-0217",
+        "ZJSHL-CH-008-P-0219"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "抽样可见题面方名与 evidence span 的方文直连，但 record/passages 仍由 replay citations 回填；建议人工从原文先验重标后再进正式评估。"
+    },
+    {
+      "question_id": "eval_seed_q011",
+      "query": "葛根汤方的条文是什么？",
+      "question_type": "source_lookup",
+      "question_type_label": "条文/出处类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q011"
+      ],
+      "gold_record_id_count": 2,
+      "gold_passage_id_count": 2,
+      "gold_evidence_span_count": 2,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0004",
+        "safe:main_passages:ZJSHL-CH-009-P-0006"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-009-P-0004",
+        "ZJSHL-CH-009-P-0006"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0004",
+        "safe:main_passages:ZJSHL-CH-009-P-0006"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-009-P-0004",
+        "ZJSHL-CH-009-P-0006"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "抽样可见题面方名与 evidence span 的方文直连，但 record/passages 仍由 replay citations 回填；建议人工从原文先验重标后再进正式评估。"
+    },
+    {
+      "question_id": "eval_seed_q012",
+      "query": "麻黄汤方的条文是什么？",
+      "question_type": "source_lookup",
+      "question_type_label": "条文/出处类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q012"
+      ],
+      "gold_record_id_count": 3,
+      "gold_passage_id_count": 3,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0022",
+        "safe:main_passages:ZJSHL-CH-009-P-0023",
+        "safe:main_passages:ZJSHL-CH-009-P-0025"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-009-P-0022",
+        "ZJSHL-CH-009-P-0023",
+        "ZJSHL-CH-009-P-0025"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0022",
+        "safe:main_passages:ZJSHL-CH-009-P-0023",
+        "safe:main_passages:ZJSHL-CH-009-P-0025"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-009-P-0022",
+        "ZJSHL-CH-009-P-0023",
+        "ZJSHL-CH-009-P-0025"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "抽样可见题面方名与 evidence span 的方文直连，但 record/passages 仍由 replay citations 回填；建议人工从原文先验重标后再进正式评估。"
+    },
+    {
+      "question_id": "eval_seed_q013",
+      "query": "大青龙汤方的条文是什么？",
+      "question_type": "source_lookup",
+      "question_type_label": "条文/出处类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q013"
+      ],
+      "gold_record_id_count": 3,
+      "gold_passage_id_count": 3,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0033",
+        "safe:main_passages:ZJSHL-CH-009-P-0034",
+        "safe:main_passages:ZJSHL-CH-009-P-0035"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-009-P-0033",
+        "ZJSHL-CH-009-P-0034",
+        "ZJSHL-CH-009-P-0035"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0033",
+        "safe:main_passages:ZJSHL-CH-009-P-0034",
+        "safe:main_passages:ZJSHL-CH-009-P-0035"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-009-P-0033",
+        "ZJSHL-CH-009-P-0034",
+        "ZJSHL-CH-009-P-0035"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "抽样可见题面方名与 evidence span 的方文直连，但 record/passages 仍由 replay citations 回填；建议人工从原文先验重标后再进正式评估。"
+    },
+    {
+      "question_id": "eval_seed_q014",
+      "query": "小青龙汤方的条文是什么？",
+      "question_type": "source_lookup",
+      "question_type_label": "条文/出处类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q014"
+      ],
+      "gold_record_id_count": 2,
+      "gold_passage_id_count": 2,
+      "gold_evidence_span_count": 2,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0040",
+        "safe:main_passages:ZJSHL-CH-009-P-0043"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-009-P-0040",
+        "ZJSHL-CH-009-P-0043"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0040",
+        "safe:main_passages:ZJSHL-CH-009-P-0043"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-009-P-0040",
+        "ZJSHL-CH-009-P-0043"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "抽样可见题面方名与 evidence span 的方文直连，但 record/passages 仍由 replay citations 回填；建议人工从原文先验重标后再进正式评估。"
+    },
+    {
+      "question_id": "eval_seed_q015",
+      "query": "小柴胡汤方的条文是什么？",
+      "question_type": "source_lookup",
+      "question_type_label": "条文/出处类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q015"
+      ],
+      "gold_record_id_count": 2,
+      "gold_passage_id_count": 2,
+      "gold_evidence_span_count": 2,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0211",
+        "safe:main_passages:ZJSHL-CH-009-P-0213"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-009-P-0211",
+        "ZJSHL-CH-009-P-0213"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0211",
+        "safe:main_passages:ZJSHL-CH-009-P-0213"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-009-P-0211",
+        "ZJSHL-CH-009-P-0213"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "抽样可见题面方名与 evidence span 的方文直连，但 record/passages 仍由 replay citations 回填；建议人工从原文先验重标后再进正式评估。"
+    },
+    {
+      "question_id": "eval_seed_q016",
+      "query": "大柴胡汤方的条文是什么？",
+      "question_type": "source_lookup",
+      "question_type_label": "条文/出处类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q016"
+      ],
+      "gold_record_id_count": 1,
+      "gold_passage_id_count": 1,
+      "gold_evidence_span_count": 1,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0250"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-009-P-0250"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0250"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-009-P-0250"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "抽样可见题面方名与 evidence span 的方文直连，但 record/passages 仍由 replay citations 回填；建议人工从原文先验重标后再进正式评估。"
+    },
+    {
+      "question_id": "eval_seed_q017",
+      "query": "五苓散方的条文是什么？",
+      "question_type": "source_lookup",
+      "question_type_label": "条文/出处类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q017"
+      ],
+      "gold_record_id_count": 1,
+      "gold_passage_id_count": 1,
+      "gold_evidence_span_count": 1,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0138"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-009-P-0138"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0138"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-009-P-0138"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "抽样可见题面方名与 evidence span 的方文直连，但 record/passages 仍由 replay citations 回填；建议人工从原文先验重标后再进正式评估。"
+    },
+    {
+      "question_id": "eval_seed_q018",
+      "query": "白虎汤方的条文是什么？",
+      "question_type": "source_lookup",
+      "question_type_label": "条文/出处类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q018"
+      ],
+      "gold_record_id_count": 2,
+      "gold_passage_id_count": 2,
+      "gold_evidence_span_count": 2,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0165",
+        "safe:main_passages:ZJSHL-CH-010-P-0167"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-010-P-0165",
+        "ZJSHL-CH-010-P-0167"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0165",
+        "safe:main_passages:ZJSHL-CH-010-P-0167"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-010-P-0165",
+        "ZJSHL-CH-010-P-0167"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "抽样可见题面方名与 evidence span 的方文直连，但 record/passages 仍由 replay citations 回填；建议人工从原文先验重标后再进正式评估。"
+    },
+    {
+      "question_id": "eval_seed_q019",
+      "query": "大承气汤方的条文是什么？",
+      "question_type": "source_lookup",
+      "question_type_label": "条文/出处类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q019"
+      ],
+      "gold_record_id_count": 2,
+      "gold_passage_id_count": 2,
+      "gold_evidence_span_count": 2,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0068",
+        "safe:main_passages:ZJSHL-CH-011-P-0070"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-011-P-0068",
+        "ZJSHL-CH-011-P-0070"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0068",
+        "safe:main_passages:ZJSHL-CH-011-P-0070"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-011-P-0068",
+        "ZJSHL-CH-011-P-0070"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "抽样可见题面方名与 evidence span 的方文直连，但 record/passages 仍由 replay citations 回填；建议人工从原文先验重标后再进正式评估。"
+    },
+    {
+      "question_id": "eval_seed_q020",
+      "query": "小承气汤方的条文是什么？",
+      "question_type": "source_lookup",
+      "question_type_label": "条文/出处类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q020"
+      ],
+      "gold_record_id_count": 3,
+      "gold_passage_id_count": 3,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0071",
+        "safe:main_passages:ZJSHL-CH-011-P-0072",
+        "safe:main_passages:ZJSHL-CH-011-P-0073"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-011-P-0071",
+        "ZJSHL-CH-011-P-0072",
+        "ZJSHL-CH-011-P-0073"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0071",
+        "safe:main_passages:ZJSHL-CH-011-P-0072",
+        "safe:main_passages:ZJSHL-CH-011-P-0073"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-011-P-0071",
+        "ZJSHL-CH-011-P-0072",
+        "ZJSHL-CH-011-P-0073"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "抽样可见题面方名与 evidence span 的方文直连，但 record/passages 仍由 replay citations 回填；建议人工从原文先验重标后再进正式评估。"
+    },
+    {
+      "question_id": "eval_seed_q021",
+      "query": "猪苓汤方的条文是什么？",
+      "question_type": "source_lookup",
+      "question_type_label": "条文/出处类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q021"
+      ],
+      "gold_record_id_count": 1,
+      "gold_passage_id_count": 1,
+      "gold_evidence_span_count": 1,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0109"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-011-P-0109"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0109"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-011-P-0109"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "抽样可见题面方名与 evidence span 的方文直连，但 record/passages 仍由 replay citations 回填；建议人工从原文先验重标后再进正式评估。"
+    },
+    {
+      "question_id": "eval_seed_q022",
+      "query": "茵陈蒿汤方的条文是什么？",
+      "question_type": "source_lookup",
+      "question_type_label": "条文/出处类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q022"
+      ],
+      "gold_record_id_count": 1,
+      "gold_passage_id_count": 1,
+      "gold_evidence_span_count": 1,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0141"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-011-P-0141"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0141"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-011-P-0141"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "抽样可见题面方名与 evidence span 的方文直连，但 record/passages 仍由 replay citations 回填；建议人工从原文先验重标后再进正式评估。"
+    },
+    {
+      "question_id": "eval_seed_q023",
+      "query": "四逆汤方的条文是什么？",
+      "question_type": "source_lookup",
+      "question_type_label": "条文/出处类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q023"
+      ],
+      "gold_record_id_count": 3,
+      "gold_passage_id_count": 3,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0267",
+        "safe:main_passages:ZJSHL-CH-008-P-0268",
+        "safe:main_passages:ZJSHL-CH-008-P-0269"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-008-P-0267",
+        "ZJSHL-CH-008-P-0268",
+        "ZJSHL-CH-008-P-0269"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0267",
+        "safe:main_passages:ZJSHL-CH-008-P-0268",
+        "safe:main_passages:ZJSHL-CH-008-P-0269"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-008-P-0267",
+        "ZJSHL-CH-008-P-0268",
+        "ZJSHL-CH-008-P-0269"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "抽样可见题面方名与 evidence span 的方文直连，但 record/passages 仍由 replay citations 回填；建议人工从原文先验重标后再进正式评估。"
+    },
+    {
+      "question_id": "eval_seed_q024",
+      "query": "甘草乾姜汤方的条文是什么？",
+      "question_type": "source_lookup",
+      "question_type_label": "条文/出处类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q024"
+      ],
+      "gold_record_id_count": 3,
+      "gold_passage_id_count": 3,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0258",
+        "safe:main_passages:ZJSHL-CH-008-P-0259",
+        "safe:main_passages:ZJSHL-CH-008-P-0260"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-008-P-0258",
+        "ZJSHL-CH-008-P-0259",
+        "ZJSHL-CH-008-P-0260"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0258",
+        "safe:main_passages:ZJSHL-CH-008-P-0259",
+        "safe:main_passages:ZJSHL-CH-008-P-0260"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-008-P-0258",
+        "ZJSHL-CH-008-P-0259",
+        "ZJSHL-CH-008-P-0260"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "抽样可见题面方名与 evidence span 的方文直连，但 record/passages 仍由 replay citations 回填；建议人工从原文先验重标后再进正式评估。"
+    },
+    {
+      "question_id": "eval_seed_q025",
+      "query": "芍药甘草汤方的条文是什么？",
+      "question_type": "source_lookup",
+      "question_type_label": "条文/出处类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q025"
+      ],
+      "gold_record_id_count": 3,
+      "gold_passage_id_count": 3,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0261",
+        "safe:main_passages:ZJSHL-CH-008-P-0262",
+        "safe:main_passages:ZJSHL-CH-008-P-0263"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-008-P-0261",
+        "ZJSHL-CH-008-P-0262",
+        "ZJSHL-CH-008-P-0263"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0261",
+        "safe:main_passages:ZJSHL-CH-008-P-0262",
+        "safe:main_passages:ZJSHL-CH-008-P-0263"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-008-P-0261",
+        "ZJSHL-CH-008-P-0262",
+        "ZJSHL-CH-008-P-0263"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "抽样可见题面方名与 evidence span 的方文直连，但 record/passages 仍由 replay citations 回填；建议人工从原文先验重标后再进正式评估。"
+    },
+    {
+      "question_id": "eval_seed_q026",
+      "query": "调胃承气汤方的条文是什么？",
+      "question_type": "source_lookup",
+      "question_type_label": "条文/出处类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q026"
+      ],
+      "gold_record_id_count": 2,
+      "gold_passage_id_count": 2,
+      "gold_evidence_span_count": 2,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0264",
+        "safe:main_passages:ZJSHL-CH-008-P-0266"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-008-P-0264",
+        "ZJSHL-CH-008-P-0266"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0264",
+        "safe:main_passages:ZJSHL-CH-008-P-0266"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-008-P-0264",
+        "ZJSHL-CH-008-P-0266"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "抽样可见题面方名与 evidence span 的方文直连，但 record/passages 仍由 replay citations 回填；建议人工从原文先验重标后再进正式评估。"
+    },
+    {
+      "question_id": "eval_seed_q027",
+      "query": "桂枝甘草汤方的条文是什么？",
+      "question_type": "source_lookup",
+      "question_type_label": "条文/出处类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q027"
+      ],
+      "gold_record_id_count": 1,
+      "gold_passage_id_count": 1,
+      "gold_evidence_span_count": 1,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0105"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-009-P-0105"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0105"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-009-P-0105"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "抽样可见题面方名与 evidence span 的方文直连，但 record/passages 仍由 replay citations 回填；建议人工从原文先验重标后再进正式评估。"
+    },
+    {
+      "question_id": "eval_seed_q028",
+      "query": "半夏泻心汤方的条文是什么？",
+      "question_type": "source_lookup",
+      "question_type_label": "条文/出处类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q028"
+      ],
+      "gold_record_id_count": 1,
+      "gold_passage_id_count": 1,
+      "gold_evidence_span_count": 1,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0068"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-010-P-0068"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0068"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-010-P-0068"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "抽样可见题面方名与 evidence span 的方文直连，但 record/passages 仍由 replay citations 回填；建议人工从原文先验重标后再进正式评估。"
+    },
+    {
+      "question_id": "eval_seed_q029",
+      "query": "一阴一阳谓之道是什么意思？",
+      "question_type": "meaning_explanation",
+      "question_type_label": "含义解释类",
+      "expected_mode": "weak_with_review_notice",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "reannotate",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q029"
+      ],
+      "gold_record_id_count": 3,
+      "gold_passage_id_count": 2,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0007",
+        "safe:main_passages:ZJSHL-CH-006-P-0034",
+        "full:passages:ZJSHL-CH-003-P-0007"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-003-P-0007",
+        "ZJSHL-CH-006-P-0034"
+      ],
+      "current_replay_citation_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0007",
+        "safe:main_passages:ZJSHL-CH-006-P-0034",
+        "full:passages:ZJSHL-CH-003-P-0007"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-003-P-0007",
+        "ZJSHL-CH-006-P-0034",
+        "ZJSHL-CH-003-P-0007"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "解释题常依赖注解、正文补充与 weak 模式判定；当前 gold 主要来自 replay，需人工先选核心注解与正文证据。"
+    },
+    {
+      "question_id": "eval_seed_q030",
+      "query": "阳为气，阴为血是什么意思？",
+      "question_type": "meaning_explanation",
+      "question_type_label": "含义解释类",
+      "expected_mode": "weak_with_review_notice",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "reannotate",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q030"
+      ],
+      "gold_record_id_count": 6,
+      "gold_passage_id_count": 5,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0009",
+        "safe:main_passages:ZJSHL-CH-003-P-0080",
+        "safe:main_passages:ZJSHL-CH-016-P-0009",
+        "safe:main_passages:ZJSHL-CH-006-P-0067",
+        "safe:main_passages:ZJSHL-CH-003-P-0088",
+        "full:passages:ZJSHL-CH-003-P-0009"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-003-P-0009",
+        "ZJSHL-CH-003-P-0080",
+        "ZJSHL-CH-016-P-0009",
+        "ZJSHL-CH-006-P-0067",
+        "ZJSHL-CH-003-P-0088"
+      ],
+      "current_replay_citation_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0009",
+        "safe:main_passages:ZJSHL-CH-003-P-0080",
+        "safe:main_passages:ZJSHL-CH-016-P-0009",
+        "safe:main_passages:ZJSHL-CH-006-P-0067",
+        "safe:main_passages:ZJSHL-CH-003-P-0088",
+        "full:passages:ZJSHL-CH-003-P-0009"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-003-P-0009",
+        "ZJSHL-CH-003-P-0080",
+        "ZJSHL-CH-016-P-0009",
+        "ZJSHL-CH-006-P-0067",
+        "ZJSHL-CH-003-P-0088",
+        "ZJSHL-CH-003-P-0009"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "解释题常依赖注解、正文补充与 weak 模式判定；当前 gold 主要来自 replay，需人工先选核心注解与正文证据。"
+    },
+    {
+      "question_id": "eval_seed_q031",
+      "query": "脉沉者知荣血内微是什么意思？",
+      "question_type": "meaning_explanation",
+      "question_type_label": "含义解释类",
+      "expected_mode": "weak_with_review_notice",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "reannotate",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q031"
+      ],
+      "gold_record_id_count": 6,
+      "gold_passage_id_count": 5,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0011",
+        "safe:main_passages:ZJSHL-CH-003-P-0010",
+        "safe:main_passages:ZJSHL-CH-003-P-0067",
+        "safe:main_passages:ZJSHL-CH-015-P-0294",
+        "safe:main_passages:ZJSHL-CH-004-P-0257",
+        "full:passages:ZJSHL-CH-003-P-0011"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-003-P-0011",
+        "ZJSHL-CH-003-P-0010",
+        "ZJSHL-CH-003-P-0067",
+        "ZJSHL-CH-015-P-0294",
+        "ZJSHL-CH-004-P-0257"
+      ],
+      "current_replay_citation_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0011",
+        "safe:main_passages:ZJSHL-CH-003-P-0010",
+        "safe:main_passages:ZJSHL-CH-003-P-0067",
+        "safe:main_passages:ZJSHL-CH-015-P-0294",
+        "safe:main_passages:ZJSHL-CH-004-P-0257",
+        "full:passages:ZJSHL-CH-003-P-0011"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-003-P-0011",
+        "ZJSHL-CH-003-P-0010",
+        "ZJSHL-CH-003-P-0067",
+        "ZJSHL-CH-015-P-0294",
+        "ZJSHL-CH-004-P-0257",
+        "ZJSHL-CH-003-P-0011"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "解释题常依赖注解、正文补充与 weak 模式判定；当前 gold 主要来自 replay，需人工先选核心注解与正文证据。"
+    },
+    {
+      "question_id": "eval_seed_q032",
+      "query": "卫气者所以温分肉是什么意思？",
+      "question_type": "meaning_explanation",
+      "question_type_label": "含义解释类",
+      "expected_mode": "weak_with_review_notice",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "reannotate",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q032"
+      ],
+      "gold_record_id_count": 4,
+      "gold_passage_id_count": 2,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0013",
+        "full:annotations:ZJSHL-CH-004-P-0209",
+        "full:passages:ZJSHL-CH-003-P-0013",
+        "full:passages:ZJSHL-CH-004-P-0209"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-003-P-0013",
+        "ZJSHL-CH-004-P-0209"
+      ],
+      "current_replay_citation_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0013",
+        "full:annotations:ZJSHL-CH-004-P-0209",
+        "full:passages:ZJSHL-CH-003-P-0013",
+        "full:passages:ZJSHL-CH-004-P-0209"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-003-P-0013",
+        "ZJSHL-CH-004-P-0209",
+        "ZJSHL-CH-003-P-0013",
+        "ZJSHL-CH-004-P-0209"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "解释题常依赖注解、正文补充与 weak 模式判定；当前 gold 主要来自 replay，需人工先选核心注解与正文证据。"
+    },
+    {
+      "question_id": "eval_seed_q033",
+      "query": "荣气微者加烧针是什么意思？",
+      "question_type": "meaning_explanation",
+      "question_type_label": "含义解释类",
+      "expected_mode": "weak_with_review_notice",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "reannotate",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q033"
+      ],
+      "gold_record_id_count": 6,
+      "gold_passage_id_count": 4,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0015",
+        "full:annotations:ZJSHL-CH-009-P-0302",
+        "full:annotations:ZJSHL-CH-011-P-0103",
+        "full:passages:ZJSHL-CH-003-P-0015",
+        "full:passages:ZJSHL-CH-009-P-0302",
+        "full:ambiguous_passages:ZJSHL-CH-008-P-0257"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-003-P-0015",
+        "ZJSHL-CH-009-P-0302",
+        "ZJSHL-CH-011-P-0103",
+        "ZJSHL-CH-008-P-0257"
+      ],
+      "current_replay_citation_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0015",
+        "full:annotations:ZJSHL-CH-009-P-0302",
+        "full:annotations:ZJSHL-CH-011-P-0103",
+        "full:passages:ZJSHL-CH-003-P-0015",
+        "full:passages:ZJSHL-CH-009-P-0302",
+        "full:ambiguous_passages:ZJSHL-CH-008-P-0257"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-003-P-0015",
+        "ZJSHL-CH-009-P-0302",
+        "ZJSHL-CH-011-P-0103",
+        "ZJSHL-CH-003-P-0015",
+        "ZJSHL-CH-009-P-0302",
+        "ZJSHL-CH-008-P-0257"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "解释题常依赖注解、正文补充与 weak 模式判定；当前 gold 主要来自 replay，需人工先选核心注解与正文证据。"
+    },
+    {
+      "question_id": "eval_seed_q034",
+      "query": "蔼蔼如车盖是什么意思？",
+      "question_type": "meaning_explanation",
+      "question_type_label": "含义解释类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "reannotate",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q034"
+      ],
+      "gold_record_id_count": 1,
+      "gold_passage_id_count": 1,
+      "gold_evidence_span_count": 1,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0017"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-003-P-0017"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0017"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-003-P-0017"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "解释题常依赖注解、正文补充与 weak 模式判定；当前 gold 主要来自 replay，需人工先选核心注解与正文证据。"
+    },
+    {
+      "question_id": "eval_seed_q035",
+      "query": "累累如循长竿是什么意思？",
+      "question_type": "meaning_explanation",
+      "question_type_label": "含义解释类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "reannotate",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q035"
+      ],
+      "gold_record_id_count": 1,
+      "gold_passage_id_count": 1,
+      "gold_evidence_span_count": 1,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0019"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-003-P-0019"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0019"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-003-P-0019"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "解释题常依赖注解、正文补充与 weak 模式判定；当前 gold 主要来自 replay，需人工先选核心注解与正文证据。"
+    },
+    {
+      "question_id": "eval_seed_q036",
+      "query": "如蜘蛛丝是什么意思？",
+      "question_type": "meaning_explanation",
+      "question_type_label": "含义解释类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "reannotate",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q036"
+      ],
+      "gold_record_id_count": 1,
+      "gold_passage_id_count": 1,
+      "gold_evidence_span_count": 1,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0023"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-003-P-0023"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0023"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-003-P-0023"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "解释题常依赖注解、正文补充与 weak 模式判定；当前 gold 主要来自 replay，需人工先选核心注解与正文证据。"
+    },
+    {
+      "question_id": "eval_seed_q037",
+      "query": "绵绵者连绵而软是什么意思？",
+      "question_type": "meaning_explanation",
+      "question_type_label": "含义解释类",
+      "expected_mode": "weak_with_review_notice",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "reannotate",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q037"
+      ],
+      "gold_record_id_count": 2,
+      "gold_passage_id_count": 1,
+      "gold_evidence_span_count": 2,
+      "gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0027",
+        "full:passages:ZJSHL-CH-003-P-0027"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-003-P-0027"
+      ],
+      "current_replay_citation_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0027",
+        "full:passages:ZJSHL-CH-003-P-0027"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-003-P-0027",
+        "ZJSHL-CH-003-P-0027"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "解释题常依赖注解、正文补充与 weak 模式判定；当前 gold 主要来自 replay，需人工先选核心注解与正文证据。"
+    },
+    {
+      "question_id": "eval_seed_q038",
+      "query": "阴阳相搏是什么意思？",
+      "question_type": "meaning_explanation",
+      "question_type_label": "含义解释类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "reannotate",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q038"
+      ],
+      "gold_record_id_count": 2,
+      "gold_passage_id_count": 2,
+      "gold_evidence_span_count": 2,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0031",
+        "safe:main_passages:ZJSHL-CH-004-P-0130"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-003-P-0031",
+        "ZJSHL-CH-004-P-0130"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0031",
+        "safe:main_passages:ZJSHL-CH-004-P-0130"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-003-P-0031",
+        "ZJSHL-CH-004-P-0130"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "解释题常依赖注解、正文补充与 weak 模式判定；当前 gold 主要来自 replay，需人工先选核心注解与正文证据。"
+    },
+    {
+      "question_id": "eval_seed_q039",
+      "query": "弦则为减减则为寒是什么意思？",
+      "question_type": "meaning_explanation",
+      "question_type_label": "含义解释类",
+      "expected_mode": "weak_with_review_notice",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "reannotate",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q039"
+      ],
+      "gold_record_id_count": 5,
+      "gold_passage_id_count": 4,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0041",
+        "safe:main_passages:ZJSHL-CH-003-P-0039",
+        "safe:main_passages:ZJSHL-CH-023-P-0018",
+        "safe:main_passages:ZJSHL-CH-004-P-0260",
+        "full:passages:ZJSHL-CH-003-P-0041"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-003-P-0041",
+        "ZJSHL-CH-003-P-0039",
+        "ZJSHL-CH-023-P-0018",
+        "ZJSHL-CH-004-P-0260"
+      ],
+      "current_replay_citation_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0041",
+        "safe:main_passages:ZJSHL-CH-003-P-0039",
+        "safe:main_passages:ZJSHL-CH-023-P-0018",
+        "safe:main_passages:ZJSHL-CH-004-P-0260",
+        "full:passages:ZJSHL-CH-003-P-0041"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-003-P-0041",
+        "ZJSHL-CH-003-P-0039",
+        "ZJSHL-CH-023-P-0018",
+        "ZJSHL-CH-004-P-0260",
+        "ZJSHL-CH-003-P-0041"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "解释题常依赖注解、正文补充与 weak 模式判定；当前 gold 主要来自 replay，需人工先选核心注解与正文证据。"
+    },
+    {
+      "question_id": "eval_seed_q040",
+      "query": "浮为阳紧为阴是什么意思？",
+      "question_type": "meaning_explanation",
+      "question_type_label": "含义解释类",
+      "expected_mode": "weak_with_review_notice",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "reannotate",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q040"
+      ],
+      "gold_record_id_count": 6,
+      "gold_passage_id_count": 5,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0043",
+        "safe:main_passages:ZJSHL-CH-003-P-0099",
+        "safe:main_passages:ZJSHL-CH-003-P-0037",
+        "safe:main_passages:ZJSHL-CH-003-P-0035",
+        "safe:main_passages:ZJSHL-CH-004-P-0274",
+        "full:passages:ZJSHL-CH-003-P-0043"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-003-P-0043",
+        "ZJSHL-CH-003-P-0099",
+        "ZJSHL-CH-003-P-0037",
+        "ZJSHL-CH-003-P-0035",
+        "ZJSHL-CH-004-P-0274"
+      ],
+      "current_replay_citation_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0043",
+        "safe:main_passages:ZJSHL-CH-003-P-0099",
+        "safe:main_passages:ZJSHL-CH-003-P-0037",
+        "safe:main_passages:ZJSHL-CH-003-P-0035",
+        "safe:main_passages:ZJSHL-CH-004-P-0274",
+        "full:passages:ZJSHL-CH-003-P-0043"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-003-P-0043",
+        "ZJSHL-CH-003-P-0099",
+        "ZJSHL-CH-003-P-0037",
+        "ZJSHL-CH-003-P-0035",
+        "ZJSHL-CH-004-P-0274",
+        "ZJSHL-CH-003-P-0043"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "解释题常依赖注解、正文补充与 weak 模式判定；当前 gold 主要来自 replay，需人工先选核心注解与正文证据。"
+    },
+    {
+      "question_id": "eval_seed_q041",
+      "query": "阳胜则热阴胜则寒是什么意思？",
+      "question_type": "meaning_explanation",
+      "question_type_label": "含义解释类",
+      "expected_mode": "weak_with_review_notice",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "reannotate",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q041"
+      ],
+      "gold_record_id_count": 5,
+      "gold_passage_id_count": 4,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0047",
+        "safe:main_passages:ZJSHL-CH-003-P-0031",
+        "safe:main_passages:ZJSHL-CH-003-P-0088",
+        "safe:main_passages:ZJSHL-CH-023-P-0039",
+        "full:passages:ZJSHL-CH-003-P-0047"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-003-P-0047",
+        "ZJSHL-CH-003-P-0031",
+        "ZJSHL-CH-003-P-0088",
+        "ZJSHL-CH-023-P-0039"
+      ],
+      "current_replay_citation_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0047",
+        "safe:main_passages:ZJSHL-CH-003-P-0031",
+        "safe:main_passages:ZJSHL-CH-003-P-0088",
+        "safe:main_passages:ZJSHL-CH-023-P-0039",
+        "full:passages:ZJSHL-CH-003-P-0047"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-003-P-0047",
+        "ZJSHL-CH-003-P-0031",
+        "ZJSHL-CH-003-P-0088",
+        "ZJSHL-CH-023-P-0039",
+        "ZJSHL-CH-003-P-0047"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "解释题常依赖注解、正文补充与 weak 模式判定；当前 gold 主要来自 replay，需人工先选核心注解与正文证据。"
+    },
+    {
+      "question_id": "eval_seed_q042",
+      "query": "阳明病应该怎么办？",
+      "question_type": "general_overview",
+      "question_type_label": "泛问/总括类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "reannotate",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q042"
+      ],
+      "gold_record_id_count": 3,
+      "gold_passage_id_count": 3,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0123",
+        "safe:main_passages:ZJSHL-CH-011-P-0146",
+        "safe:main_passages:ZJSHL-CH-011-P-0086"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-011-P-0123",
+        "ZJSHL-CH-011-P-0146",
+        "ZJSHL-CH-011-P-0086"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0123",
+        "safe:main_passages:ZJSHL-CH-011-P-0146",
+        "safe:main_passages:ZJSHL-CH-011-P-0086"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-011-P-0123",
+        "ZJSHL-CH-011-P-0146",
+        "ZJSHL-CH-011-P-0086"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "总括题的“最小分支”由当前系统选择，容易把系统偏好写成 gold；需人工定义覆盖口径和可接受分支。"
+    },
+    {
+      "question_id": "eval_seed_q043",
+      "query": "太阴病应该怎么办？",
+      "question_type": "general_overview",
+      "question_type_label": "泛问/总括类",
+      "expected_mode": "weak_with_review_notice",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "reannotate",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q043"
+      ],
+      "gold_record_id_count": 8,
+      "gold_passage_id_count": 6,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-013-P-0008",
+        "safe:main_passages:ZJSHL-CH-013-P-0018",
+        "safe:main_passages:ZJSHL-CH-014-P-0078",
+        "safe:main_passages:ZJSHL-CH-013-P-0002",
+        "safe:main_passages:ZJSHL-CH-014-P-0072",
+        "full:passages:ZJSHL-CH-013-P-0008",
+        "full:passages:ZJSHL-CH-013-P-0006",
+        "full:ambiguous_passages:ZJSHL-CH-013-P-0006"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-013-P-0008",
+        "ZJSHL-CH-013-P-0018",
+        "ZJSHL-CH-014-P-0078",
+        "ZJSHL-CH-013-P-0002",
+        "ZJSHL-CH-014-P-0072",
+        "ZJSHL-CH-013-P-0006"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-013-P-0008",
+        "safe:main_passages:ZJSHL-CH-013-P-0018",
+        "safe:main_passages:ZJSHL-CH-014-P-0078",
+        "safe:main_passages:ZJSHL-CH-013-P-0002",
+        "safe:main_passages:ZJSHL-CH-014-P-0072",
+        "full:passages:ZJSHL-CH-013-P-0008",
+        "full:passages:ZJSHL-CH-013-P-0006",
+        "full:ambiguous_passages:ZJSHL-CH-013-P-0006"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-013-P-0008",
+        "ZJSHL-CH-013-P-0018",
+        "ZJSHL-CH-014-P-0078",
+        "ZJSHL-CH-013-P-0002",
+        "ZJSHL-CH-014-P-0072",
+        "ZJSHL-CH-013-P-0008",
+        "ZJSHL-CH-013-P-0006",
+        "ZJSHL-CH-013-P-0006"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "总括题的“最小分支”由当前系统选择，容易把系统偏好写成 gold；需人工定义覆盖口径和可接受分支。"
+    },
+    {
+      "question_id": "eval_seed_q044",
+      "query": "厥阴病应该怎么办？",
+      "question_type": "general_overview",
+      "question_type_label": "泛问/总括类",
+      "expected_mode": "weak_with_review_notice",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "reannotate",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q044"
+      ],
+      "gold_record_id_count": 8,
+      "gold_passage_id_count": 7,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-015-P-0193",
+        "safe:main_passages:ZJSHL-CH-015-P-0232",
+        "safe:main_passages:ZJSHL-CH-006-P-0071",
+        "safe:main_passages:ZJSHL-CH-014-P-0097",
+        "safe:main_passages:ZJSHL-CH-014-P-0047",
+        "full:passages:ZJSHL-CH-015-P-0200",
+        "full:ambiguous_passages:ZJSHL-CH-015-P-0200",
+        "full:passages:ZJSHL-CH-015-P-0198"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-015-P-0193",
+        "ZJSHL-CH-015-P-0232",
+        "ZJSHL-CH-006-P-0071",
+        "ZJSHL-CH-014-P-0097",
+        "ZJSHL-CH-014-P-0047",
+        "ZJSHL-CH-015-P-0200",
+        "ZJSHL-CH-015-P-0198"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-015-P-0193",
+        "safe:main_passages:ZJSHL-CH-015-P-0232",
+        "safe:main_passages:ZJSHL-CH-006-P-0071",
+        "safe:main_passages:ZJSHL-CH-014-P-0097",
+        "safe:main_passages:ZJSHL-CH-014-P-0047",
+        "full:passages:ZJSHL-CH-015-P-0200",
+        "full:ambiguous_passages:ZJSHL-CH-015-P-0200",
+        "full:passages:ZJSHL-CH-015-P-0198"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-015-P-0193",
+        "ZJSHL-CH-015-P-0232",
+        "ZJSHL-CH-006-P-0071",
+        "ZJSHL-CH-014-P-0097",
+        "ZJSHL-CH-014-P-0047",
+        "ZJSHL-CH-015-P-0200",
+        "ZJSHL-CH-015-P-0200",
+        "ZJSHL-CH-015-P-0198"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "总括题的“最小分支”由当前系统选择，容易把系统偏好写成 gold；需人工定义覆盖口径和可接受分支。"
+    },
+    {
+      "question_id": "eval_seed_q045",
+      "query": "伤寒应该怎么办？",
+      "question_type": "general_overview",
+      "question_type_label": "泛问/总括类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "reannotate",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q045"
+      ],
+      "gold_record_id_count": 3,
+      "gold_passage_id_count": 3,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-006-P-0012",
+        "safe:main_passages:ZJSHL-CH-009-P-0173",
+        "safe:main_passages:ZJSHL-CH-009-P-0320"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-006-P-0012",
+        "ZJSHL-CH-009-P-0173",
+        "ZJSHL-CH-009-P-0320"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-006-P-0012",
+        "safe:main_passages:ZJSHL-CH-009-P-0173",
+        "safe:main_passages:ZJSHL-CH-009-P-0320"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-006-P-0012",
+        "ZJSHL-CH-009-P-0173",
+        "ZJSHL-CH-009-P-0320"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "总括题的“最小分支”由当前系统选择，容易把系统偏好写成 gold；需人工定义覆盖口径和可接受分支。"
+    },
+    {
+      "question_id": "eval_seed_q046",
+      "query": "中风应该怎么办？",
+      "question_type": "general_overview",
+      "question_type_label": "泛问/总括类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "reannotate",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q046"
+      ],
+      "gold_record_id_count": 3,
+      "gold_passage_id_count": 3,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0193",
+        "safe:main_passages:ZJSHL-CH-008-P-0215",
+        "safe:main_passages:ZJSHL-CH-010-P-0075"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-008-P-0193",
+        "ZJSHL-CH-008-P-0215",
+        "ZJSHL-CH-010-P-0075"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0193",
+        "safe:main_passages:ZJSHL-CH-008-P-0215",
+        "safe:main_passages:ZJSHL-CH-010-P-0075"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-008-P-0193",
+        "ZJSHL-CH-008-P-0215",
+        "ZJSHL-CH-010-P-0075"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "总括题的“最小分支”由当前系统选择，容易把系统偏好写成 gold；需人工定义覆盖口径和可接受分支。"
+    },
+    {
+      "question_id": "eval_seed_q047",
+      "query": "太阳病有哪些分支？",
+      "question_type": "general_overview",
+      "question_type_label": "泛问/总括类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "reannotate",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q047"
+      ],
+      "gold_record_id_count": 4,
+      "gold_passage_id_count": 4,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0195",
+        "safe:main_passages:ZJSHL-CH-008-P-0193",
+        "safe:main_passages:ZJSHL-CH-009-P-0002",
+        "safe:main_passages:ZJSHL-CH-008-P-0220"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-008-P-0195",
+        "ZJSHL-CH-008-P-0193",
+        "ZJSHL-CH-009-P-0002",
+        "ZJSHL-CH-008-P-0220"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0195",
+        "safe:main_passages:ZJSHL-CH-008-P-0193",
+        "safe:main_passages:ZJSHL-CH-009-P-0002",
+        "safe:main_passages:ZJSHL-CH-008-P-0220"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-008-P-0195",
+        "ZJSHL-CH-008-P-0193",
+        "ZJSHL-CH-009-P-0002",
+        "ZJSHL-CH-008-P-0220"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "总括题的“最小分支”由当前系统选择，容易把系统偏好写成 gold；需人工定义覆盖口径和可接受分支。"
+    },
+    {
+      "question_id": "eval_seed_q048",
+      "query": "阳明病有哪些情况？",
+      "question_type": "general_overview",
+      "question_type_label": "泛问/总括类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "reannotate",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q048"
+      ],
+      "gold_record_id_count": 4,
+      "gold_passage_id_count": 4,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0123",
+        "safe:main_passages:ZJSHL-CH-011-P-0146",
+        "safe:main_passages:ZJSHL-CH-011-P-0086",
+        "safe:main_passages:ZJSHL-CH-011-P-0101"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-011-P-0123",
+        "ZJSHL-CH-011-P-0146",
+        "ZJSHL-CH-011-P-0086",
+        "ZJSHL-CH-011-P-0101"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0123",
+        "safe:main_passages:ZJSHL-CH-011-P-0146",
+        "safe:main_passages:ZJSHL-CH-011-P-0086",
+        "safe:main_passages:ZJSHL-CH-011-P-0101"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-011-P-0123",
+        "ZJSHL-CH-011-P-0146",
+        "ZJSHL-CH-011-P-0086",
+        "ZJSHL-CH-011-P-0101"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "总括题的“最小分支”由当前系统选择，容易把系统偏好写成 gold；需人工定义覆盖口径和可接受分支。"
+    },
+    {
+      "question_id": "eval_seed_q049",
+      "query": "少阴病有哪些分支？",
+      "question_type": "general_overview",
+      "question_type_label": "泛问/总括类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "reannotate",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q049"
+      ],
+      "gold_record_id_count": 4,
+      "gold_passage_id_count": 4,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0078",
+        "safe:main_passages:ZJSHL-CH-014-P-0112",
+        "safe:main_passages:ZJSHL-CH-014-P-0062",
+        "safe:main_passages:ZJSHL-CH-014-P-0072"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-014-P-0078",
+        "ZJSHL-CH-014-P-0112",
+        "ZJSHL-CH-014-P-0062",
+        "ZJSHL-CH-014-P-0072"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0078",
+        "safe:main_passages:ZJSHL-CH-014-P-0112",
+        "safe:main_passages:ZJSHL-CH-014-P-0062",
+        "safe:main_passages:ZJSHL-CH-014-P-0072"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-014-P-0078",
+        "ZJSHL-CH-014-P-0112",
+        "ZJSHL-CH-014-P-0062",
+        "ZJSHL-CH-014-P-0072"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "总括题的“最小分支”由当前系统选择，容易把系统偏好写成 gold；需人工定义覆盖口径和可接受分支。"
+    },
+    {
+      "question_id": "eval_seed_q050",
+      "query": "霍乱病应该怎么办？",
+      "question_type": "general_overview",
+      "question_type_label": "泛问/总括类",
+      "expected_mode": "weak_with_review_notice",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "reannotate",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q050"
+      ],
+      "gold_record_id_count": 2,
+      "gold_passage_id_count": 2,
+      "gold_evidence_span_count": 2,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-016-P-0002",
+        "safe:main_passages:ZJSHL-CH-016-P-0004"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-016-P-0002",
+        "ZJSHL-CH-016-P-0004"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-016-P-0002",
+        "safe:main_passages:ZJSHL-CH-016-P-0004"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-016-P-0002",
+        "ZJSHL-CH-016-P-0004"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "总括题的“最小分支”由当前系统选择，容易把系统偏好写成 gold；需人工定义覆盖口径和可接受分支。"
+    },
+    {
+      "question_id": "eval_seed_q051",
+      "query": "桂枝汤方和葛根汤方的区别是什么？",
+      "question_type": "comparison",
+      "question_type_label": "比较类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q051"
+      ],
+      "gold_record_id_count": 4,
+      "gold_passage_id_count": 4,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0217",
+        "safe:main_passages:ZJSHL-CH-009-P-0004",
+        "safe:main_passages:ZJSHL-CH-009-P-0098",
+        "safe:main_passages:ZJSHL-CH-008-P-0222"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-008-P-0217",
+        "ZJSHL-CH-009-P-0004",
+        "ZJSHL-CH-009-P-0098",
+        "ZJSHL-CH-008-P-0222"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0217",
+        "safe:main_passages:ZJSHL-CH-009-P-0004",
+        "safe:main_passages:ZJSHL-CH-009-P-0098",
+        "safe:main_passages:ZJSHL-CH-008-P-0222"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-008-P-0217",
+        "ZJSHL-CH-009-P-0004",
+        "ZJSHL-CH-009-P-0098",
+        "ZJSHL-CH-008-P-0222"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "比较题应人工确认双方方文与语境证据是否都被覆盖；当前 gold 主要来自 replay，宜收紧到人工可解释的最小集合。"
+    },
+    {
+      "question_id": "eval_seed_q052",
+      "query": "麻黄汤方和大青龙汤方的区别是什么？",
+      "question_type": "comparison",
+      "question_type_label": "比较类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q052"
+      ],
+      "gold_record_id_count": 4,
+      "gold_passage_id_count": 4,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0022",
+        "safe:main_passages:ZJSHL-CH-009-P-0033",
+        "safe:main_passages:ZJSHL-CH-009-P-0077",
+        "safe:main_passages:ZJSHL-CH-009-P-0036"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-009-P-0022",
+        "ZJSHL-CH-009-P-0033",
+        "ZJSHL-CH-009-P-0077",
+        "ZJSHL-CH-009-P-0036"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0022",
+        "safe:main_passages:ZJSHL-CH-009-P-0033",
+        "safe:main_passages:ZJSHL-CH-009-P-0077",
+        "safe:main_passages:ZJSHL-CH-009-P-0036"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-009-P-0022",
+        "ZJSHL-CH-009-P-0033",
+        "ZJSHL-CH-009-P-0077",
+        "ZJSHL-CH-009-P-0036"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "比较题应人工确认双方方文与语境证据是否都被覆盖；当前 gold 主要来自 replay，宜收紧到人工可解释的最小集合。"
+    },
+    {
+      "question_id": "eval_seed_q053",
+      "query": "大承气汤方和小承气汤方的区别是什么？",
+      "question_type": "comparison",
+      "question_type_label": "比较类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q053"
+      ],
+      "gold_record_id_count": 4,
+      "gold_passage_id_count": 4,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0068",
+        "safe:main_passages:ZJSHL-CH-011-P-0071",
+        "safe:main_passages:ZJSHL-CH-011-P-0005",
+        "safe:main_passages:ZJSHL-CH-015-P-0316"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-011-P-0068",
+        "ZJSHL-CH-011-P-0071",
+        "ZJSHL-CH-011-P-0005",
+        "ZJSHL-CH-015-P-0316"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0068",
+        "safe:main_passages:ZJSHL-CH-011-P-0071",
+        "safe:main_passages:ZJSHL-CH-011-P-0005",
+        "safe:main_passages:ZJSHL-CH-015-P-0316"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-011-P-0068",
+        "ZJSHL-CH-011-P-0071",
+        "ZJSHL-CH-011-P-0005",
+        "ZJSHL-CH-015-P-0316"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "比较题应人工确认双方方文与语境证据是否都被覆盖；当前 gold 主要来自 replay，宜收紧到人工可解释的最小集合。"
+    },
+    {
+      "question_id": "eval_seed_q054",
+      "query": "小柴胡汤方和大柴胡汤方有什么异同？",
+      "question_type": "comparison",
+      "question_type_label": "比较类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q054"
+      ],
+      "gold_record_id_count": 4,
+      "gold_passage_id_count": 4,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0211",
+        "safe:main_passages:ZJSHL-CH-009-P-0250",
+        "safe:main_passages:ZJSHL-CH-015-P-0326",
+        "safe:main_passages:ZJSHL-CH-024-P-0071"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-009-P-0211",
+        "ZJSHL-CH-009-P-0250",
+        "ZJSHL-CH-015-P-0326",
+        "ZJSHL-CH-024-P-0071"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0211",
+        "safe:main_passages:ZJSHL-CH-009-P-0250",
+        "safe:main_passages:ZJSHL-CH-015-P-0326",
+        "safe:main_passages:ZJSHL-CH-024-P-0071"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-009-P-0211",
+        "ZJSHL-CH-009-P-0250",
+        "ZJSHL-CH-015-P-0326",
+        "ZJSHL-CH-024-P-0071"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "比较题应人工确认双方方文与语境证据是否都被覆盖；当前 gold 主要来自 replay，宜收紧到人工可解释的最小集合。"
+    },
+    {
+      "question_id": "eval_seed_q055",
+      "query": "五苓散方和猪苓汤方的区别是什么？",
+      "question_type": "comparison",
+      "question_type_label": "比较类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q055"
+      ],
+      "gold_record_id_count": 4,
+      "gold_passage_id_count": 4,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0138",
+        "safe:main_passages:ZJSHL-CH-011-P-0109",
+        "safe:main_passages:ZJSHL-CH-016-P-0014",
+        "safe:main_passages:ZJSHL-CH-011-P-0108"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-009-P-0138",
+        "ZJSHL-CH-011-P-0109",
+        "ZJSHL-CH-016-P-0014",
+        "ZJSHL-CH-011-P-0108"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0138",
+        "safe:main_passages:ZJSHL-CH-011-P-0109",
+        "safe:main_passages:ZJSHL-CH-016-P-0014",
+        "safe:main_passages:ZJSHL-CH-011-P-0108"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-009-P-0138",
+        "ZJSHL-CH-011-P-0109",
+        "ZJSHL-CH-016-P-0014",
+        "ZJSHL-CH-011-P-0108"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "比较题应人工确认双方方文与语境证据是否都被覆盖；当前 gold 主要来自 replay，宜收紧到人工可解释的最小集合。"
+    },
+    {
+      "question_id": "eval_seed_q056",
+      "query": "四逆汤方和茯苓四逆汤方的区别是什么？",
+      "question_type": "comparison",
+      "question_type_label": "比较类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_bootstrap_risk_confirmed",
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q056"
+      ],
+      "gold_record_id_count": 5,
+      "gold_passage_id_count": 4,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0267",
+        "safe:main_passages:ZJSHL-CH-009-P-0130",
+        "safe:main_passages:ZJSHL-CH-015-P-0305",
+        "full:passages:ZJSHL-CH-009-P-0130",
+        "full:ambiguous_passages:ZJSHL-CH-009-P-0128"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-008-P-0267",
+        "ZJSHL-CH-009-P-0130",
+        "ZJSHL-CH-015-P-0305",
+        "ZJSHL-CH-009-P-0128"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0267",
+        "safe:main_passages:ZJSHL-CH-009-P-0130",
+        "safe:main_passages:ZJSHL-CH-015-P-0305",
+        "full:passages:ZJSHL-CH-009-P-0130",
+        "full:ambiguous_passages:ZJSHL-CH-009-P-0128"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-008-P-0267",
+        "ZJSHL-CH-009-P-0130",
+        "ZJSHL-CH-015-P-0305",
+        "ZJSHL-CH-009-P-0130",
+        "ZJSHL-CH-009-P-0128"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "比较题应人工确认双方方文与语境证据是否都被覆盖；当前 gold 主要来自 replay，宜收紧到人工可解释的最小集合。"
+    },
+    {
+      "question_id": "eval_seed_q057",
+      "query": "甘草乾姜汤方和芍药甘草汤方的区别是什么？",
+      "question_type": "comparison",
+      "question_type_label": "比较类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q057"
+      ],
+      "gold_record_id_count": 3,
+      "gold_passage_id_count": 3,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0258",
+        "safe:main_passages:ZJSHL-CH-008-P-0261",
+        "safe:main_passages:ZJSHL-CH-008-P-0256"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-008-P-0258",
+        "ZJSHL-CH-008-P-0261",
+        "ZJSHL-CH-008-P-0256"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0258",
+        "safe:main_passages:ZJSHL-CH-008-P-0261",
+        "safe:main_passages:ZJSHL-CH-008-P-0256",
+        "safe:main_passages:ZJSHL-CH-008-P-0256"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-008-P-0258",
+        "ZJSHL-CH-008-P-0261",
+        "ZJSHL-CH-008-P-0256",
+        "ZJSHL-CH-008-P-0256"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "比较题应人工确认双方方文与语境证据是否都被覆盖；当前 gold 主要来自 replay，宜收紧到人工可解释的最小集合。"
+    },
+    {
+      "question_id": "eval_seed_q058",
+      "query": "栀子豉汤方和栀子乾姜汤方有什么不同？",
+      "question_type": "comparison",
+      "question_type_label": "比较类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q058"
+      ],
+      "gold_record_id_count": 4,
+      "gold_passage_id_count": 4,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-009-P-0175",
+        "safe:main_passages:ZJSHL-CH-011-P-0101",
+        "safe:main_passages:ZJSHL-CH-009-P-0173"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-009-P-0159",
+        "ZJSHL-CH-009-P-0175",
+        "ZJSHL-CH-011-P-0101",
+        "ZJSHL-CH-009-P-0173"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-009-P-0175",
+        "safe:main_passages:ZJSHL-CH-011-P-0101",
+        "safe:main_passages:ZJSHL-CH-009-P-0173"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-009-P-0159",
+        "ZJSHL-CH-009-P-0175",
+        "ZJSHL-CH-011-P-0101",
+        "ZJSHL-CH-009-P-0173"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "比较题应人工确认双方方文与语境证据是否都被覆盖；当前 gold 主要来自 replay，宜收紧到人工可解释的最小集合。"
+    },
+    {
+      "question_id": "eval_seed_q059",
+      "query": "半夏泻心汤方和甘草泻心汤方的区别是什么？",
+      "question_type": "comparison",
+      "question_type_label": "比较类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q059"
+      ],
+      "gold_record_id_count": 6,
+      "gold_passage_id_count": 4,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0068",
+        "safe:main_passages:ZJSHL-CH-027-P-0009",
+        "full:passages:ZJSHL-CH-010-P-0068",
+        "full:ambiguous_passages:ZJSHL-CH-010-P-0066",
+        "full:passages:ZJSHL-CH-027-P-0009",
+        "full:ambiguous_passages:ZJSHL-CH-010-P-0095"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-010-P-0068",
+        "ZJSHL-CH-027-P-0009",
+        "ZJSHL-CH-010-P-0066",
+        "ZJSHL-CH-010-P-0095"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0068",
+        "safe:main_passages:ZJSHL-CH-027-P-0009",
+        "full:passages:ZJSHL-CH-010-P-0068",
+        "full:ambiguous_passages:ZJSHL-CH-010-P-0066",
+        "full:passages:ZJSHL-CH-027-P-0009",
+        "full:ambiguous_passages:ZJSHL-CH-010-P-0095"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-010-P-0068",
+        "ZJSHL-CH-027-P-0009",
+        "ZJSHL-CH-010-P-0068",
+        "ZJSHL-CH-010-P-0066",
+        "ZJSHL-CH-027-P-0009",
+        "ZJSHL-CH-010-P-0095"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "比较题应人工确认双方方文与语境证据是否都被覆盖；当前 gold 主要来自 replay，宜收紧到人工可解释的最小集合。"
+    },
+    {
+      "question_id": "eval_seed_q060",
+      "query": "白虎汤方和白虎加人参汤方的区别是什么？",
+      "question_type": "comparison",
+      "question_type_label": "比较类",
+      "expected_mode": "strong",
+      "gold_source_type": "system_bootstrapped",
+      "bootstrap_risk": "high",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "tighten_gold",
+      "formal_evaluation_recommendation": "exclude_until_reannotation",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q060"
+      ],
+      "gold_record_id_count": 3,
+      "gold_passage_id_count": 3,
+      "gold_evidence_span_count": 3,
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0165",
+        "safe:main_passages:ZJSHL-CH-025-P-0012",
+        "safe:main_passages:ZJSHL-CH-011-P-0104"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-010-P-0165",
+        "ZJSHL-CH-025-P-0012",
+        "ZJSHL-CH-011-P-0104"
+      ],
+      "current_replay_citation_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0165",
+        "safe:main_passages:ZJSHL-CH-025-P-0012",
+        "safe:main_passages:ZJSHL-CH-025-P-0012",
+        "safe:main_passages:ZJSHL-CH-011-P-0104"
+      ],
+      "current_replay_citation_passage_ids": [
+        "ZJSHL-CH-010-P-0165",
+        "ZJSHL-CH-025-P-0012",
+        "ZJSHL-CH-025-P-0012",
+        "ZJSHL-CH-011-P-0104"
+      ],
+      "current_replay_citations_fully_accepted_by_gold": true,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "current replay citations are fully accepted by gold ids"
+      ],
+      "review_notes": "比较题应人工确认双方方文与语境证据是否都被覆盖；当前 gold 主要来自 replay，宜收紧到人工可解释的最小集合。"
+    },
+    {
+      "question_id": "eval_seed_q061",
+      "query": "书中有没有提到人工智能？",
+      "question_type": "refusal",
+      "question_type_label": "无证据拒答类",
+      "expected_mode": "refuse",
+      "gold_source_type": "manual_independent",
+      "bootstrap_risk": "low",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_keep",
+      "recommended_action": "keep",
+      "formal_evaluation_recommendation": "formal_core",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q061"
+      ],
+      "gold_record_id_count": 0,
+      "gold_passage_id_count": 0,
+      "gold_evidence_span_count": 0,
+      "gold_record_ids": [],
+      "gold_passage_ids": [],
+      "current_replay_citation_ids": [],
+      "current_replay_citation_passage_ids": [],
+      "current_replay_citations_fully_accepted_by_gold": false,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "no positive gold citations; boundary can be checked without replay citation backfill"
+      ],
+      "review_notes": "保留：拒答边界可由题目意图独立判断，gold citation 为空，不存在 citation 回填自举。"
+    },
+    {
+      "question_id": "eval_seed_q062",
+      "query": "书中有没有提到区块链？",
+      "question_type": "refusal",
+      "question_type_label": "无证据拒答类",
+      "expected_mode": "refuse",
+      "gold_source_type": "manual_independent",
+      "bootstrap_risk": "low",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_keep",
+      "recommended_action": "keep",
+      "formal_evaluation_recommendation": "formal_core",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q062"
+      ],
+      "gold_record_id_count": 0,
+      "gold_passage_id_count": 0,
+      "gold_evidence_span_count": 0,
+      "gold_record_ids": [],
+      "gold_passage_ids": [],
+      "current_replay_citation_ids": [],
+      "current_replay_citation_passage_ids": [],
+      "current_replay_citations_fully_accepted_by_gold": false,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "no positive gold citations; boundary can be checked without replay citation backfill"
+      ],
+      "review_notes": "保留：拒答边界可由题目意图独立判断，gold citation 为空，不存在 citation 回填自举。"
+    },
+    {
+      "question_id": "eval_seed_q063",
+      "query": "书中有没有提到新冠疫苗？",
+      "question_type": "refusal",
+      "question_type_label": "无证据拒答类",
+      "expected_mode": "refuse",
+      "gold_source_type": "manual_independent",
+      "bootstrap_risk": "low",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_keep",
+      "recommended_action": "keep",
+      "formal_evaluation_recommendation": "formal_core",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q063"
+      ],
+      "gold_record_id_count": 0,
+      "gold_passage_id_count": 0,
+      "gold_evidence_span_count": 0,
+      "gold_record_ids": [],
+      "gold_passage_ids": [],
+      "current_replay_citation_ids": [],
+      "current_replay_citation_passage_ids": [],
+      "current_replay_citations_fully_accepted_by_gold": false,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "no positive gold citations; boundary can be checked without replay citation backfill"
+      ],
+      "review_notes": "保留：拒答边界可由题目意图独立判断，gold citation 为空，不存在 citation 回填自举。"
+    },
+    {
+      "question_id": "eval_seed_q064",
+      "query": "书中有没有提到股票投资？",
+      "question_type": "refusal",
+      "question_type_label": "无证据拒答类",
+      "expected_mode": "refuse",
+      "gold_source_type": "manual_independent",
+      "bootstrap_risk": "low",
+      "reviewed_in_sample": true,
+      "sample_review_result": "sample_checked_keep",
+      "recommended_action": "keep",
+      "formal_evaluation_recommendation": "formal_core",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q064"
+      ],
+      "gold_record_id_count": 0,
+      "gold_passage_id_count": 0,
+      "gold_evidence_span_count": 0,
+      "gold_record_ids": [],
+      "gold_passage_ids": [],
+      "current_replay_citation_ids": [],
+      "current_replay_citation_passage_ids": [],
+      "current_replay_citations_fully_accepted_by_gold": false,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "no positive gold citations; boundary can be checked without replay citation backfill"
+      ],
+      "review_notes": "保留：拒答边界可由题目意图独立判断，gold citation 为空，不存在 citation 回填自举。"
+    },
+    {
+      "question_id": "eval_seed_q065",
+      "query": "书中有没有提到微积分？",
+      "question_type": "refusal",
+      "question_type_label": "无证据拒答类",
+      "expected_mode": "refuse",
+      "gold_source_type": "manual_independent",
+      "bootstrap_risk": "low",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "keep",
+      "formal_evaluation_recommendation": "formal_core",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q065"
+      ],
+      "gold_record_id_count": 0,
+      "gold_passage_id_count": 0,
+      "gold_evidence_span_count": 0,
+      "gold_record_ids": [],
+      "gold_passage_ids": [],
+      "current_replay_citation_ids": [],
+      "current_replay_citation_passage_ids": [],
+      "current_replay_citations_fully_accepted_by_gold": false,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "no positive gold citations; boundary can be checked without replay citation backfill"
+      ],
+      "review_notes": "拒答边界可独立判断，保留为低风险样本。"
+    },
+    {
+      "question_id": "eval_seed_q066",
+      "query": "桂枝汤方和麻黄汤方哪个好？",
+      "question_type": "refusal",
+      "question_type_label": "无证据拒答类",
+      "expected_mode": "refuse",
+      "gold_source_type": "manual_independent",
+      "bootstrap_risk": "low",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "keep",
+      "formal_evaluation_recommendation": "formal_core",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q066"
+      ],
+      "gold_record_id_count": 0,
+      "gold_passage_id_count": 0,
+      "gold_evidence_span_count": 0,
+      "gold_record_ids": [],
+      "gold_passage_ids": [],
+      "current_replay_citation_ids": [],
+      "current_replay_citation_passage_ids": [],
+      "current_replay_citations_fully_accepted_by_gold": false,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "no positive gold citations; boundary can be checked without replay citation backfill"
+      ],
+      "review_notes": "拒答边界可独立判断，保留为低风险样本。"
+    },
+    {
+      "question_id": "eval_seed_q067",
+      "query": "大承气汤方和小承气汤方哪个更好？",
+      "question_type": "refusal",
+      "question_type_label": "无证据拒答类",
+      "expected_mode": "refuse",
+      "gold_source_type": "manual_independent",
+      "bootstrap_risk": "low",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "keep",
+      "formal_evaluation_recommendation": "formal_core",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q067"
+      ],
+      "gold_record_id_count": 0,
+      "gold_passage_id_count": 0,
+      "gold_evidence_span_count": 0,
+      "gold_record_ids": [],
+      "gold_passage_ids": [],
+      "current_replay_citation_ids": [],
+      "current_replay_citation_passage_ids": [],
+      "current_replay_citations_fully_accepted_by_gold": false,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "no positive gold citations; boundary can be checked without replay citation backfill"
+      ],
+      "review_notes": "拒答边界可独立判断，保留为低风险样本。"
+    },
+    {
+      "question_id": "eval_seed_q068",
+      "query": "小柴胡汤方和大柴胡汤方谁更强？",
+      "question_type": "refusal",
+      "question_type_label": "无证据拒答类",
+      "expected_mode": "refuse",
+      "gold_source_type": "manual_independent",
+      "bootstrap_risk": "low",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "keep",
+      "formal_evaluation_recommendation": "formal_core",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q068"
+      ],
+      "gold_record_id_count": 0,
+      "gold_passage_id_count": 0,
+      "gold_evidence_span_count": 0,
+      "gold_record_ids": [],
+      "gold_passage_ids": [],
+      "current_replay_citation_ids": [],
+      "current_replay_citation_passage_ids": [],
+      "current_replay_citations_fully_accepted_by_gold": false,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "no positive gold citations; boundary can be checked without replay citation backfill"
+      ],
+      "review_notes": "拒答边界可独立判断，保留为低风险样本。"
+    },
+    {
+      "question_id": "eval_seed_q069",
+      "query": "桂枝汤方和葛根汤方哪个更适合？",
+      "question_type": "refusal",
+      "question_type_label": "无证据拒答类",
+      "expected_mode": "refuse",
+      "gold_source_type": "manual_independent",
+      "bootstrap_risk": "low",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "keep",
+      "formal_evaluation_recommendation": "formal_core",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q069"
+      ],
+      "gold_record_id_count": 0,
+      "gold_passage_id_count": 0,
+      "gold_evidence_span_count": 0,
+      "gold_record_ids": [],
+      "gold_passage_ids": [],
+      "current_replay_citation_ids": [],
+      "current_replay_citation_passage_ids": [],
+      "current_replay_citations_fully_accepted_by_gold": false,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "no positive gold citations; boundary can be checked without replay citation backfill"
+      ],
+      "review_notes": "拒答边界可独立判断，保留为低风险样本。"
+    },
+    {
+      "question_id": "eval_seed_q070",
+      "query": "请根据我的症状开处方。",
+      "question_type": "refusal",
+      "question_type_label": "无证据拒答类",
+      "expected_mode": "refuse",
+      "gold_source_type": "manual_independent",
+      "bootstrap_risk": "low",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "keep",
+      "formal_evaluation_recommendation": "formal_core",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q070"
+      ],
+      "gold_record_id_count": 0,
+      "gold_passage_id_count": 0,
+      "gold_evidence_span_count": 0,
+      "gold_record_ids": [],
+      "gold_passage_ids": [],
+      "current_replay_citation_ids": [],
+      "current_replay_citation_passage_ids": [],
+      "current_replay_citations_fully_accepted_by_gold": false,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "no positive gold citations; boundary can be checked without replay citation backfill"
+      ],
+      "review_notes": "拒答边界可独立判断，保留为低风险样本。"
+    },
+    {
+      "question_id": "eval_seed_q071",
+      "query": "我发烧咳嗽应该用哪个方？",
+      "question_type": "refusal",
+      "question_type_label": "无证据拒答类",
+      "expected_mode": "refuse",
+      "gold_source_type": "manual_independent",
+      "bootstrap_risk": "low",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "keep",
+      "formal_evaluation_recommendation": "formal_core",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q071"
+      ],
+      "gold_record_id_count": 0,
+      "gold_passage_id_count": 0,
+      "gold_evidence_span_count": 0,
+      "gold_record_ids": [],
+      "gold_passage_ids": [],
+      "current_replay_citation_ids": [],
+      "current_replay_citation_passage_ids": [],
+      "current_replay_citations_fully_accepted_by_gold": false,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "no positive gold citations; boundary can be checked without replay citation backfill"
+      ],
+      "review_notes": "拒答边界可独立判断，保留为低风险样本。"
+    },
+    {
+      "question_id": "eval_seed_q072",
+      "query": "桂枝汤方和麻黄汤方的优劣是什么？",
+      "question_type": "refusal",
+      "question_type_label": "无证据拒答类",
+      "expected_mode": "refuse",
+      "gold_source_type": "manual_independent",
+      "bootstrap_risk": "low",
+      "reviewed_in_sample": false,
+      "sample_review_result": null,
+      "recommended_action": "keep",
+      "formal_evaluation_recommendation": "formal_core",
+      "source_refs": [
+        "artifacts/evaluation/evaluator_v1_report.json:eval_seed_q072"
+      ],
+      "gold_record_id_count": 0,
+      "gold_passage_id_count": 0,
+      "gold_evidence_span_count": 0,
+      "gold_record_ids": [],
+      "gold_passage_ids": [],
+      "current_replay_citation_ids": [],
+      "current_replay_citation_passage_ids": [],
+      "current_replay_citations_fully_accepted_by_gold": false,
+      "bootstrap_signals": [
+        "source_refs points to evaluator_v1_report replay output",
+        "no positive gold citations; boundary can be checked without replay citation backfill"
+      ],
+      "review_notes": "拒答边界可独立判断，保留为低风险样本。"
+    }
+  ]
+}

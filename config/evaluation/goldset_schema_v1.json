@@ -269,7 +269,8 @@
         "evaluation_targets",
         "retrieval_assertions",
         "answer_assertions",
-        "source_refs"
+        "source_refs",
+        "gold_source_type"
       ],
       "properties": {
         "question_id": {
@@ -337,8 +338,20 @@
           "items": {
             "$ref": "#/$defs/sourceRef"
           }
+        },
+        "gold_source_type": {
+          "$ref": "#/$defs/goldSourceType"
         }
       }
+    },
+    "goldSourceType": {
+      "type": "string",
+      "enum": [
+        "manual_independent",
+        "manual_with_system_reference",
+        "system_bootstrapped",
+        "needs_reannotation"
+      ]
     }
   }
 }
