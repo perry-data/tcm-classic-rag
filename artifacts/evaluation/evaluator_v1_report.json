@@ -1,0 +1,958 @@
+{
+  "runner_version": "evaluator_runner_v1",
+  "generated_at_utc": "2026-04-07T07:35:45.840470+00:00",
+  "started_at_utc": "2026-04-07T07:35:32.325896+00:00",
+  "finished_at_utc": "2026-04-07T07:35:45.840470+00:00",
+  "command": "python scripts/run_evaluator_v1.py",
+  "goldset": {
+    "path": "/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/evaluation/goldset_v1_seed.json",
+    "schema_version": "goldset_schema_v1",
+    "dataset_name": "evaluation_goldset_v1_seed",
+    "dataset_stage": "seed"
+  },
+  "runner_backend": {
+    "name": "local_assembler",
+    "entrypoint": "backend.answers.assembler.AnswerAssembler",
+    "note": "Default v1 path uses the local AnswerAssembler to run query -> hybrid retrieval -> evidence gating -> answer assembler without starting the HTTP transport adapter."
+  },
+  "summary": {
+    "total_questions": 9,
+    "mode_match_count": 9,
+    "mode_match_rate": 1.0,
+    "type_counts": {
+      "comparison": 2,
+      "general_overview": 3,
+      "meaning_explanation": 1,
+      "refusal": 2,
+      "source_lookup": 1
+    },
+    "expected_mode_counts": {
+      "refuse": 2,
+      "strong": 4,
+      "weak_with_review_notice": 3
+    },
+    "actual_mode_counts": {
+      "refuse": 2,
+      "strong": 4,
+      "weak_with_review_notice": 3
+    },
+    "by_question_type": {
+      "comparison": {
+        "total": 2,
+        "mode_match_count": 2,
+        "citation_check_required_count": 2,
+        "citation_basic_pass_count": 2,
+        "failure_count": 0
+      },
+      "general_overview": {
+        "total": 3,
+        "mode_match_count": 3,
+        "citation_check_required_count": 3,
+        "citation_basic_pass_count": 2,
+        "failure_count": 1
+      },
+      "meaning_explanation": {
+        "total": 1,
+        "mode_match_count": 1,
+        "citation_check_required_count": 1,
+        "citation_basic_pass_count": 1,
+        "failure_count": 0
+      },
+      "refusal": {
+        "total": 2,
+        "mode_match_count": 2,
+        "citation_check_required_count": 0,
+        "citation_basic_pass_count": 0,
+        "failure_count": 0
+      },
+      "source_lookup": {
+        "total": 1,
+        "mode_match_count": 1,
+        "citation_check_required_count": 1,
+        "citation_basic_pass_count": 1,
+        "failure_count": 0
+      }
+    },
+    "citation_check_required": {
+      "total": 7,
+      "basic_pass_count": 6,
+      "basic_pass_rate": 0.8571,
+      "failed_question_ids": [
+        "eval_seed_q004"
+      ]
+    },
+    "failure_count": 1,
+    "failure_samples": [
+      {
+        "question_id": "eval_seed_q004",
+        "query": "少阴病应该怎么办？",
+        "question_type": "general_overview",
+        "expected_mode": "strong",
+        "actual_mode": "strong",
+        "failed_checks": [
+          "gold_citation_check",
+          "unsupported_assertion_check"
+        ],
+        "unsupported_assertion_failure_reasons": [
+          "strong_without_gold_citation"
+        ]
+      }
+    ],
+    "all_checks_passed": false
+  },
+  "items": [
+    {
+      "question_id": "eval_seed_q001",
+      "query": "黄连汤方的条文是什么？",
+      "question_type": "source_lookup",
+      "question_type_label": "条文/出处类",
+      "expected_mode": "strong",
+      "actual_mode": "strong",
+      "mode_match": true,
+      "citation_check_required": true,
+      "citations_present": true,
+      "primary_empty_check": {
+        "required": false,
+        "observed_count": 3,
+        "passed": true
+      },
+      "zero_evidence_check": {
+        "required": false,
+        "observed_count": 8,
+        "passed": true
+      },
+      "zero_citations_check": {
+        "required": false,
+        "observed_count": 3,
+        "passed": true
+      },
+      "gold_citation_check": {
+        "required": true,
+        "passed": true,
+        "matched_count": 3,
+        "matched_citations": [
+          {
+            "citation_id": "c1",
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
+            "passage_id": "ZJSHL-CH-010-P-0145",
+            "matched_by": [
+              "record_id",
+              "passage_id"
+            ],
+            "citation_role": "primary"
+          },
+          {
+            "citation_id": "c2",
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0146",
+            "passage_id": "ZJSHL-CH-010-P-0146",
+            "matched_by": [
+              "record_id",
+              "passage_id"
+            ],
+            "citation_role": "primary"
+          },
+          {
+            "citation_id": "c3",
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0147",
+            "passage_id": "ZJSHL-CH-010-P-0147",
+            "matched_by": [
+              "record_id",
+              "passage_id"
+            ],
+            "citation_role": "primary"
+          }
+        ]
+      },
+      "unsupported_assertion_check": {
+        "required": true,
+        "passed": true,
+        "rule_version": "minimal_v1",
+        "failure_reasons": []
+      },
+      "actual_counts": {
+        "primary_evidence": 3,
+        "secondary_evidence": 3,
+        "review_materials": 2,
+        "total_evidence": 8,
+        "citations": 3
+      },
+      "actual_record_ids": {
+        "primary_evidence": [
+          "safe:main_passages:ZJSHL-CH-010-P-0145",
+          "safe:main_passages:ZJSHL-CH-010-P-0146",
+          "safe:main_passages:ZJSHL-CH-010-P-0147"
+        ],
+        "secondary_evidence": [
+          "safe:main_passages:ZJSHL-CH-009-P-0016",
+          "safe:main_passages:ZJSHL-CH-009-P-0017",
+          "safe:main_passages:ZJSHL-CH-009-P-0019"
+        ],
+        "review_materials": [
+          "full:passages:ZJSHL-CH-010-P-0145",
+          "full:passages:ZJSHL-CH-009-P-0016"
+        ],
+        "citations": [
+          "safe:main_passages:ZJSHL-CH-010-P-0145",
+          "safe:main_passages:ZJSHL-CH-010-P-0146",
+          "safe:main_passages:ZJSHL-CH-010-P-0147"
+        ]
+      },
+      "answer_text_excerpt": "根据主依据，与“黄连汤方”直接对应的条文主要有： 1. 黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。 2. 味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温 3. 上热者，泄之以苦，黄连之苦以降阳；下寒者，散之以辛，桂、姜、半夏之辛以升阴；脾欲缓，急食甘以缓之...",
+      "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
+      "refuse_reason": null,
+      "failed_checks": []
+    },
+    {
+      "question_id": "eval_seed_q002",
+      "query": "烧针益阳而损阴是什么意思？",
+      "question_type": "meaning_explanation",
+      "question_type_label": "含义解释类",
+      "expected_mode": "weak_with_review_notice",
+      "actual_mode": "weak_with_review_notice",
+      "mode_match": true,
+      "citation_check_required": true,
+      "citations_present": true,
+      "primary_empty_check": {
+        "required": true,
+        "observed_count": 0,
+        "passed": true
+      },
+      "zero_evidence_check": {
+        "required": false,
+        "observed_count": 5,
+        "passed": true
+      },
+      "zero_citations_check": {
+        "required": false,
+        "observed_count": 5,
+        "passed": true
+      },
+      "gold_citation_check": {
+        "required": true,
+        "passed": true,
+        "matched_count": 5,
+        "matched_citations": [
+          {
+            "citation_id": "c1",
+            "record_id": "full:annotations:ZJSHL-CH-003-P-0016",
+            "passage_id": "ZJSHL-CH-003-P-0016",
+            "matched_by": [
+              "record_id",
+              "passage_id"
+            ],
+            "citation_role": "secondary"
+          },
+          {
+            "citation_id": "c2",
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0295",
+            "passage_id": "ZJSHL-CH-009-P-0295",
+            "matched_by": [
+              "record_id",
+              "passage_id"
+            ],
+            "citation_role": "secondary"
+          },
+          {
+            "citation_id": "c3",
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0080",
+            "passage_id": "ZJSHL-CH-010-P-0080",
+            "matched_by": [
+              "record_id",
+              "passage_id"
+            ],
+            "citation_role": "secondary"
+          },
+          {
+            "citation_id": "c4",
+            "record_id": "full:passages:ZJSHL-CH-003-P-0016",
+            "passage_id": "ZJSHL-CH-003-P-0016",
+            "matched_by": [
+              "passage_id"
+            ],
+            "citation_role": "review"
+          },
+          {
+            "citation_id": "c5",
+            "record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0016",
+            "passage_id": "ZJSHL-CH-003-P-0016",
+            "matched_by": [
+              "passage_id"
+            ],
+            "citation_role": "review"
+          }
+        ]
+      },
+      "unsupported_assertion_check": {
+        "required": true,
+        "passed": true,
+        "rule_version": "minimal_v1",
+        "failure_reasons": []
+      },
+      "actual_counts": {
+        "primary_evidence": 0,
+        "secondary_evidence": 3,
+        "review_materials": 2,
+        "total_evidence": 5,
+        "citations": 5
+      },
+      "actual_record_ids": {
+        "primary_evidence": [],
+        "secondary_evidence": [
+          "full:annotations:ZJSHL-CH-003-P-0016",
+          "safe:main_passages:ZJSHL-CH-009-P-0295",
+          "safe:main_passages:ZJSHL-CH-010-P-0080"
+        ],
+        "review_materials": [
+          "full:passages:ZJSHL-CH-003-P-0016",
+          "full:ambiguous_passages:ZJSHL-CH-003-P-0016"
+        ],
+        "citations": [
+          "full:annotations:ZJSHL-CH-003-P-0016",
+          "safe:main_passages:ZJSHL-CH-009-P-0295",
+          "safe:main_passages:ZJSHL-CH-010-P-0080",
+          "full:passages:ZJSHL-CH-003-P-0016",
+          "full:ambiguous_passages:ZJSHL-CH-003-P-0016"
+        ]
+      },
+      "answer_text_excerpt": "正文强证据不足，以下内容需核对，暂不能视为确定答案。 当前可先参考辅助材料：卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+      "review_notice": "正文强证据不足，以下内容需核对，不应视为确定答案。",
+      "refuse_reason": null,
+      "failed_checks": []
+    },
+    {
+      "question_id": "eval_seed_q003",
+      "query": "太阳病应该怎么办？",
+      "question_type": "general_overview",
+      "question_type_label": "泛问/总括类",
+      "expected_mode": "strong",
+      "actual_mode": "strong",
+      "mode_match": true,
+      "citation_check_required": true,
+      "citations_present": true,
+      "primary_empty_check": {
+        "required": false,
+        "observed_count": 3,
+        "passed": true
+      },
+      "zero_evidence_check": {
+        "required": false,
+        "observed_count": 11,
+        "passed": true
+      },
+      "zero_citations_check": {
+        "required": false,
+        "observed_count": 3,
+        "passed": true
+      },
+      "gold_citation_check": {
+        "required": true,
+        "passed": true,
+        "matched_count": 3,
+        "matched_citations": [
+          {
+            "citation_id": "c1",
+            "record_id": "safe:main_passages:ZJSHL-CH-008-P-0195",
+            "passage_id": "ZJSHL-CH-008-P-0195",
+            "matched_by": [
+              "record_id",
+              "passage_id"
+            ],
+            "citation_role": "primary"
+          },
+          {
+            "citation_id": "c2",
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0002",
+            "passage_id": "ZJSHL-CH-009-P-0002",
+            "matched_by": [
+              "record_id",
+              "passage_id"
+            ],
+            "citation_role": "primary"
+          },
+          {
+            "citation_id": "c3",
+            "record_id": "safe:main_passages:ZJSHL-CH-008-P-0220",
+            "passage_id": "ZJSHL-CH-008-P-0220",
+            "matched_by": [
+              "record_id",
+              "passage_id"
+            ],
+            "citation_role": "primary"
+          }
+        ]
+      },
+      "unsupported_assertion_check": {
+        "required": true,
+        "passed": true,
+        "rule_version": "minimal_v1",
+        "failure_reasons": []
+      },
+      "actual_counts": {
+        "primary_evidence": 3,
+        "secondary_evidence": 6,
+        "review_materials": 2,
+        "total_evidence": 11,
+        "citations": 3
+      },
+      "actual_record_ids": {
+        "primary_evidence": [
+          "safe:main_passages:ZJSHL-CH-008-P-0195",
+          "safe:main_passages:ZJSHL-CH-009-P-0002",
+          "safe:main_passages:ZJSHL-CH-008-P-0220"
+        ],
+        "secondary_evidence": [
+          "safe:main_passages:ZJSHL-CH-009-P-0318",
+          "safe:main_passages:ZJSHL-CH-011-P-0175",
+          "safe:main_passages:ZJSHL-CH-008-P-0193",
+          "safe:main_passages:ZJSHL-CH-011-P-0161",
+          "safe:main_passages:ZJSHL-CH-008-P-0222",
+          "safe:main_passages:ZJSHL-CH-009-P-0275"
+        ],
+        "review_materials": [
+          "full:passages:ZJSHL-CH-009-P-0306",
+          "full:passages:ZJSHL-CH-007-P-0164"
+        ],
+        "citations": [
+          "safe:main_passages:ZJSHL-CH-008-P-0195",
+          "safe:main_passages:ZJSHL-CH-009-P-0002",
+          "safe:main_passages:ZJSHL-CH-008-P-0220"
+        ]
+      },
+      "answer_text_excerpt": "这是一个总括性问题，书中谈“太阳病”并非只有一个固定治法，需要分情况看。 以下先按当前能稳定抓到的典型分支整理： 1. 先辨伤寒：先看或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，书中把它单列成一个分支，提示“太阳病”并非只有一种证候。 依据：太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名曰赵...",
+      "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
+      "refuse_reason": null,
+      "failed_checks": []
+    },
+    {
+      "question_id": "eval_seed_q004",
+      "query": "少阴病应该怎么办？",
+      "question_type": "general_overview",
+      "question_type_label": "泛问/总括类",
+      "expected_mode": "strong",
+      "actual_mode": "strong",
+      "mode_match": true,
+      "citation_check_required": true,
+      "citations_present": true,
+      "primary_empty_check": {
+        "required": false,
+        "observed_count": 3,
+        "passed": true
+      },
+      "zero_evidence_check": {
+        "required": false,
+        "observed_count": 9,
+        "passed": true
+      },
+      "zero_citations_check": {
+        "required": false,
+        "observed_count": 3,
+        "passed": true
+      },
+      "gold_citation_check": {
+        "required": true,
+        "passed": false,
+        "matched_count": 0,
+        "matched_citations": []
+      },
+      "unsupported_assertion_check": {
+        "required": true,
+        "passed": false,
+        "rule_version": "minimal_v1",
+        "failure_reasons": [
+          "strong_without_gold_citation"
+        ]
+      },
+      "actual_counts": {
+        "primary_evidence": 3,
+        "secondary_evidence": 6,
+        "review_materials": 0,
+        "total_evidence": 9,
+        "citations": 3
+      },
+      "actual_record_ids": {
+        "primary_evidence": [
+          "safe:main_passages:ZJSHL-CH-014-P-0078",
+          "safe:main_passages:ZJSHL-CH-014-P-0112",
+          "safe:main_passages:ZJSHL-CH-014-P-0062"
+        ],
+        "secondary_evidence": [
+          "safe:main_passages:ZJSHL-CH-014-P-0072",
+          "safe:main_passages:ZJSHL-CH-014-P-0162",
+          "safe:main_passages:ZJSHL-CH-014-P-0093",
+          "safe:main_passages:ZJSHL-CH-014-P-0122",
+          "safe:main_passages:ZJSHL-CH-014-P-0117",
+          "safe:main_passages:ZJSHL-CH-014-P-0054"
+        ],
+        "review_materials": [],
+        "citations": [
+          "safe:main_passages:ZJSHL-CH-014-P-0078",
+          "safe:main_passages:ZJSHL-CH-014-P-0112",
+          "safe:main_passages:ZJSHL-CH-014-P-0062"
+        ]
+      },
+      "answer_text_excerpt": "这是一个总括性问题，书中谈“少阴病”并非只有一个固定治法，需要分情况看。 以下先按当前能稳定抓到的典型分支整理： 1. 附子汤这一支：若见得之一二日，口中和，其背恶寒者，条文多归到“附子汤”这一支。 依据：少阴病，得之一二日，口中和，其背恶寒者，当灸之，附子汤主之。 2. 苦酒汤这一支：若见咽中伤生疮，不能语言，声不出...",
+      "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
+      "refuse_reason": null,
+      "failed_checks": [
+        "gold_citation_check",
+        "unsupported_assertion_check"
+      ]
+    },
+    {
+      "question_id": "eval_seed_q005",
+      "query": "六经病应该怎么办？",
+      "question_type": "general_overview",
+      "question_type_label": "泛问/总括类",
+      "expected_mode": "weak_with_review_notice",
+      "actual_mode": "weak_with_review_notice",
+      "mode_match": true,
+      "citation_check_required": true,
+      "citations_present": true,
+      "primary_empty_check": {
+        "required": true,
+        "observed_count": 0,
+        "passed": true
+      },
+      "zero_evidence_check": {
+        "required": false,
+        "observed_count": 4,
+        "passed": true
+      },
+      "zero_citations_check": {
+        "required": false,
+        "observed_count": 4,
+        "passed": true
+      },
+      "gold_citation_check": {
+        "required": true,
+        "passed": true,
+        "matched_count": 4,
+        "matched_citations": [
+          {
+            "citation_id": "c1",
+            "record_id": "safe:main_passages:ZJSHL-CH-008-P-0207",
+            "passage_id": "ZJSHL-CH-008-P-0207",
+            "matched_by": [
+              "record_id",
+              "passage_id"
+            ],
+            "citation_role": "secondary"
+          },
+          {
+            "citation_id": "c2",
+            "record_id": "safe:main_passages:ZJSHL-CH-016-P-0009",
+            "passage_id": "ZJSHL-CH-016-P-0009",
+            "matched_by": [
+              "record_id",
+              "passage_id"
+            ],
+            "citation_role": "secondary"
+          },
+          {
+            "citation_id": "c3",
+            "record_id": "safe:main_passages:ZJSHL-CH-014-P-0058",
+            "passage_id": "ZJSHL-CH-014-P-0058",
+            "matched_by": [
+              "record_id",
+              "passage_id"
+            ],
+            "citation_role": "secondary"
+          },
+          {
+            "citation_id": "c4",
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0312",
+            "passage_id": "ZJSHL-CH-009-P-0312",
+            "matched_by": [
+              "record_id",
+              "passage_id"
+            ],
+            "citation_role": "secondary"
+          }
+        ]
+      },
+      "unsupported_assertion_check": {
+        "required": true,
+        "passed": true,
+        "rule_version": "minimal_v1",
+        "failure_reasons": []
+      },
+      "actual_counts": {
+        "primary_evidence": 0,
+        "secondary_evidence": 4,
+        "review_materials": 0,
+        "total_evidence": 4,
+        "citations": 4
+      },
+      "actual_record_ids": {
+        "primary_evidence": [],
+        "secondary_evidence": [
+          "safe:main_passages:ZJSHL-CH-008-P-0207",
+          "safe:main_passages:ZJSHL-CH-016-P-0009",
+          "safe:main_passages:ZJSHL-CH-014-P-0058",
+          "safe:main_passages:ZJSHL-CH-009-P-0312"
+        ],
+        "review_materials": [],
+        "citations": [
+          "safe:main_passages:ZJSHL-CH-008-P-0207",
+          "safe:main_passages:ZJSHL-CH-016-P-0009",
+          "safe:main_passages:ZJSHL-CH-014-P-0058",
+          "safe:main_passages:ZJSHL-CH-009-P-0312"
+        ]
+      },
+      "answer_text_excerpt": "这是一个总括性问题，书中谈“六经病”并非只有一个固定治法，需要分情况看。 当前只能先整理出部分可核对的分支线索： 1. 待核对线索 1：当前只检索到与“六经病”相关的一条待核对线索，尚不足以独立成支。 依据：太阳病，头痛至七日已赵本作「以」上自愈者，以行其经尽故也。若欲作再经者，针足阳明，使经不传则愈。 2. 待核对线...",
+      "review_notice": "这是总括性问题，但当前只能整理出部分分支线索，以下内容需核对，不应视为完整答案。",
+      "refuse_reason": null,
+      "failed_checks": []
+    },
+    {
+      "question_id": "eval_seed_q006",
+      "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+      "question_type": "comparison",
+      "question_type_label": "比较类",
+      "expected_mode": "strong",
+      "actual_mode": "strong",
+      "mode_match": true,
+      "citation_check_required": true,
+      "citations_present": true,
+      "primary_empty_check": {
+        "required": false,
+        "observed_count": 2,
+        "passed": true
+      },
+      "zero_evidence_check": {
+        "required": false,
+        "observed_count": 7,
+        "passed": true
+      },
+      "zero_citations_check": {
+        "required": false,
+        "observed_count": 5,
+        "passed": true
+      },
+      "gold_citation_check": {
+        "required": true,
+        "passed": true,
+        "matched_count": 4,
+        "matched_citations": [
+          {
+            "citation_id": "c1",
+            "record_id": "safe:main_passages:ZJSHL-CH-025-P-0004",
+            "passage_id": "ZJSHL-CH-025-P-0004",
+            "matched_by": [
+              "record_id",
+              "passage_id"
+            ],
+            "citation_role": "primary"
+          },
+          {
+            "citation_id": "c2",
+            "record_id": "safe:main_passages:ZJSHL-CH-025-P-0003",
+            "passage_id": "ZJSHL-CH-025-P-0003",
+            "matched_by": [
+              "record_id",
+              "passage_id"
+            ],
+            "citation_role": "primary"
+          },
+          {
+            "citation_id": "c3",
+            "record_id": "safe:main_passages:ZJSHL-CH-008-P-0236",
+            "passage_id": "ZJSHL-CH-008-P-0236",
+            "matched_by": [
+              "record_id",
+              "passage_id"
+            ],
+            "citation_role": "secondary"
+          },
+          {
+            "citation_id": "c4",
+            "record_id": "full:passages:ZJSHL-CH-025-P-0003",
+            "passage_id": "ZJSHL-CH-025-P-0003",
+            "matched_by": [
+              "passage_id"
+            ],
+            "citation_role": "review"
+          }
+        ]
+      },
+      "unsupported_assertion_check": {
+        "required": true,
+        "passed": true,
+        "rule_version": "minimal_v1",
+        "failure_reasons": []
+      },
+      "actual_counts": {
+        "primary_evidence": 2,
+        "secondary_evidence": 1,
+        "review_materials": 4,
+        "total_evidence": 7,
+        "citations": 5
+      },
+      "actual_record_ids": {
+        "primary_evidence": [
+          "safe:main_passages:ZJSHL-CH-025-P-0004",
+          "safe:main_passages:ZJSHL-CH-025-P-0003"
+        ],
+        "secondary_evidence": [
+          "safe:main_passages:ZJSHL-CH-008-P-0236"
+        ],
+        "review_materials": [
+          "full:passages:ZJSHL-CH-025-P-0004",
+          "full:passages:ZJSHL-CH-008-P-0236",
+          "full:passages:ZJSHL-CH-025-P-0003",
+          "full:ambiguous_passages:ZJSHL-CH-009-P-0053"
+        ],
+        "citations": [
+          "safe:main_passages:ZJSHL-CH-025-P-0004",
+          "safe:main_passages:ZJSHL-CH-025-P-0003",
+          "safe:main_passages:ZJSHL-CH-008-P-0236",
+          "full:passages:ZJSHL-CH-025-P-0003",
+          "full:ambiguous_passages:ZJSHL-CH-009-P-0053"
+        ]
+      },
+      "answer_text_excerpt": "从现有方文与相关条文看，桂枝加附子汤方与桂枝加浓朴杏子汤方都从桂枝汤方加减而来，但显式加味和对应语境不同。 1. 显式加减与药味差异：桂枝加附子汤方明写加附子；桂枝加浓朴杏子汤方明写加浓朴、杏仁。 2. 条文语境：桂枝加附子汤方相关条文可见“太阳病，发汗，遂漏不止，其人恶风，小便难，四支微急，难以屈伸者”；桂枝加浓朴杏...",
+      "review_notice": "以下补充依据与核对材料仅用于比较佐证，不作为主结论。",
+      "refuse_reason": null,
+      "failed_checks": []
+    },
+    {
+      "question_id": "eval_seed_q007",
+      "query": "桂枝去芍药汤方和桂枝去芍药加附子汤方的条文语境有什么不同？",
+      "question_type": "comparison",
+      "question_type_label": "比较类",
+      "expected_mode": "weak_with_review_notice",
+      "actual_mode": "weak_with_review_notice",
+      "mode_match": true,
+      "citation_check_required": true,
+      "citations_present": true,
+      "primary_empty_check": {
+        "required": true,
+        "observed_count": 0,
+        "passed": true
+      },
+      "zero_evidence_check": {
+        "required": false,
+        "observed_count": 6,
+        "passed": true
+      },
+      "zero_citations_check": {
+        "required": false,
+        "observed_count": 6,
+        "passed": true
+      },
+      "gold_citation_check": {
+        "required": true,
+        "passed": true,
+        "matched_count": 6,
+        "matched_citations": [
+          {
+            "citation_id": "c1",
+            "record_id": "safe:main_passages:ZJSHL-CH-025-P-0005",
+            "passage_id": "ZJSHL-CH-025-P-0005",
+            "matched_by": [
+              "record_id",
+              "passage_id"
+            ],
+            "citation_role": "secondary"
+          },
+          {
+            "citation_id": "c2",
+            "record_id": "safe:main_passages:ZJSHL-CH-025-P-0006",
+            "passage_id": "ZJSHL-CH-025-P-0006",
+            "matched_by": [
+              "record_id",
+              "passage_id"
+            ],
+            "citation_role": "secondary"
+          },
+          {
+            "citation_id": "c3",
+            "record_id": "full:passages:ZJSHL-CH-025-P-0005",
+            "passage_id": "ZJSHL-CH-025-P-0005",
+            "matched_by": [
+              "passage_id"
+            ],
+            "citation_role": "review"
+          },
+          {
+            "citation_id": "c4",
+            "record_id": "full:ambiguous_passages:ZJSHL-CH-008-P-0238",
+            "passage_id": "ZJSHL-CH-008-P-0238",
+            "matched_by": [
+              "record_id",
+              "passage_id"
+            ],
+            "citation_role": "review"
+          },
+          {
+            "citation_id": "c5",
+            "record_id": "full:passages:ZJSHL-CH-025-P-0006",
+            "passage_id": "ZJSHL-CH-025-P-0006",
+            "matched_by": [
+              "passage_id"
+            ],
+            "citation_role": "review"
+          },
+          {
+            "citation_id": "c6",
+            "record_id": "full:ambiguous_passages:ZJSHL-CH-008-P-0238",
+            "passage_id": "ZJSHL-CH-008-P-0238",
+            "matched_by": [
+              "record_id",
+              "passage_id"
+            ],
+            "citation_role": "review"
+          }
+        ]
+      },
+      "unsupported_assertion_check": {
+        "required": true,
+        "passed": true,
+        "rule_version": "minimal_v1",
+        "failure_reasons": []
+      },
+      "actual_counts": {
+        "primary_evidence": 0,
+        "secondary_evidence": 2,
+        "review_materials": 4,
+        "total_evidence": 6,
+        "citations": 6
+      },
+      "actual_record_ids": {
+        "primary_evidence": [],
+        "secondary_evidence": [
+          "safe:main_passages:ZJSHL-CH-025-P-0005",
+          "safe:main_passages:ZJSHL-CH-025-P-0006"
+        ],
+        "review_materials": [
+          "full:passages:ZJSHL-CH-025-P-0005",
+          "full:ambiguous_passages:ZJSHL-CH-008-P-0238",
+          "full:passages:ZJSHL-CH-025-P-0006",
+          "full:ambiguous_passages:ZJSHL-CH-008-P-0238"
+        ],
+        "citations": [
+          "safe:main_passages:ZJSHL-CH-025-P-0005",
+          "safe:main_passages:ZJSHL-CH-025-P-0006",
+          "full:passages:ZJSHL-CH-025-P-0005",
+          "full:ambiguous_passages:ZJSHL-CH-008-P-0238",
+          "full:passages:ZJSHL-CH-025-P-0006",
+          "full:ambiguous_passages:ZJSHL-CH-008-P-0238"
+        ]
+      },
+      "answer_text_excerpt": "两方都已识别，但当前比较仍有证据缺口，以下只按现有方文做弱整理：桂枝去芍药汤方 与 桂枝去芍药加附子汤方 的差异需要继续核对。 1. 显式加减与药味差异：桂枝去芍药加附子汤方明写加附子。 2. 语境证据缺口：当前未稳定找到 桂枝去芍药汤方和桂枝去芍药加附子汤方 的直接相关条文，因此语境差异只能暂缓判断。 3. 出处线索...",
+      "review_notice": "当前比较仍有证据缺口，以下内容只可视为待核对的弱整理，不应视为确定结论。",
+      "refuse_reason": null,
+      "failed_checks": []
+    },
+    {
+      "question_id": "eval_seed_q008",
+      "query": "书中有没有提到量子纠缠？",
+      "question_type": "refusal",
+      "question_type_label": "无证据拒答类",
+      "expected_mode": "refuse",
+      "actual_mode": "refuse",
+      "mode_match": true,
+      "citation_check_required": false,
+      "citations_present": false,
+      "primary_empty_check": {
+        "required": true,
+        "observed_count": 0,
+        "passed": true
+      },
+      "zero_evidence_check": {
+        "required": true,
+        "observed_count": 0,
+        "passed": true
+      },
+      "zero_citations_check": {
+        "required": true,
+        "observed_count": 0,
+        "passed": true
+      },
+      "gold_citation_check": {
+        "required": false,
+        "passed": true,
+        "matched_count": 0,
+        "matched_citations": []
+      },
+      "unsupported_assertion_check": {
+        "required": true,
+        "passed": true,
+        "rule_version": "minimal_v1",
+        "failure_reasons": []
+      },
+      "actual_counts": {
+        "primary_evidence": 0,
+        "secondary_evidence": 0,
+        "review_materials": 0,
+        "total_evidence": 0,
+        "citations": 0
+      },
+      "actual_record_ids": {
+        "primary_evidence": [],
+        "secondary_evidence": [],
+        "review_materials": [],
+        "citations": []
+      },
+      "answer_text_excerpt": "当前未检索到足以支撑回答的依据，暂不提供答案。",
+      "review_notice": null,
+      "refuse_reason": "未检索到足以支撑回答的主证据、辅助证据或可供核对的风险材料。",
+      "failed_checks": []
+    },
+    {
+      "question_id": "eval_seed_q009",
+      "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方哪个好？",
+      "question_type": "refusal",
+      "question_type_label": "无证据拒答类",
+      "expected_mode": "refuse",
+      "actual_mode": "refuse",
+      "mode_match": true,
+      "citation_check_required": false,
+      "citations_present": false,
+      "primary_empty_check": {
+        "required": true,
+        "observed_count": 0,
+        "passed": true
+      },
+      "zero_evidence_check": {
+        "required": true,
+        "observed_count": 0,
+        "passed": true
+      },
+      "zero_citations_check": {
+        "required": true,
+        "observed_count": 0,
+        "passed": true
+      },
+      "gold_citation_check": {
+        "required": false,
+        "passed": true,
+        "matched_count": 0,
+        "matched_citations": []
+      },
+      "unsupported_assertion_check": {
+        "required": true,
+        "passed": true,
+        "rule_version": "minimal_v1",
+        "failure_reasons": []
+      },
+      "actual_counts": {
+        "primary_evidence": 0,
+        "secondary_evidence": 0,
+        "review_materials": 0,
+        "total_evidence": 0,
+        "citations": 0
+      },
+      "actual_record_ids": {
+        "primary_evidence": [],
+        "secondary_evidence": [],
+        "review_materials": [],
+        "citations": []
+      },
+      "answer_text_excerpt": "当前无法基于稳定的双实体识别来组织比较答案，暂不直接作答。",
+      "review_notice": null,
+      "refuse_reason": "当前只支持基于条文证据整理“区别 / 不同 / 异同 / 多了什么 / 少了什么”这类比较，不支持优劣判断。",
+      "failed_checks": []
+    }
+  ]
+}
