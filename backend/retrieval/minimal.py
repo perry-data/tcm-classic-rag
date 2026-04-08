@@ -99,6 +99,12 @@ FORMULA_QUERY_SUFFIXES = (
     "饮",
 )
 
+FORMULA_ANCHOR_VARIANT_REPLACEMENTS = (
+    ("厚朴", "浓朴"),
+    ("杏仁", "杏子"),
+    ("杏人", "杏子"),
+)
+
 
 def resolve_project_path(path_value: str) -> Path:
     path = Path(path_value).expanduser()
@@ -176,8 +182,31 @@ def extract_title_anchor(text: str | None) -> str:
     return compact_text(first_segment)
 
 
+def extract_raw_title_anchor(text: str | None) -> str:
+    if not text:
+        return ""
+    first_line = next((line.strip() for line in str(text).splitlines() if line.strip()), "")
+    if not first_line:
+        return ""
+    return re.split(r"[：:]", first_line, maxsplit=1)[0].strip()
+
+
+def clean_formula_title_anchor(text: str | None) -> str:
+    raw_title = " ".join(str(text).split()) if text else ""
+    if not raw_title:
+        return ""
+    cleaned = re.sub(r"(?:赵本|医统本)+有「([^」]+)」字", r"\1", raw_title)
+    cleaned = re.sub(r"(?:赵本|医统本)+并有「([^」]+)」字", r"\1", cleaned)
+    cleaned = re.sub(r"(?:赵本|医统本)+(?:作|无)「[^」]+」字?", "", cleaned)
+    return compact_text(cleaned)
+
+
 def normalize_formula_anchor(text: str | None) -> str:
-    anchor = compact_text(text)
+    anchor = clean_formula_title_anchor(text)
+    if not anchor:
+        anchor = compact_text(text)
+    for source, target in FORMULA_ANCHOR_VARIANT_REPLACEMENTS:
+        anchor = anchor.replace(compact_text(source), compact_text(target))
     if anchor.endswith("方") and len(anchor) > 1:
         return anchor[:-1]
     return anchor
@@ -200,7 +229,7 @@ def infer_query_theme(query_focus: str) -> dict[str, Any]:
 
 
 def evaluate_topic_consistency(query_theme: dict[str, Any], candidate_text: str | None) -> dict[str, Any]:
-    candidate_anchor = extract_title_anchor(candidate_text)
+    candidate_anchor = clean_formula_title_anchor(extract_raw_title_anchor(candidate_text))
     candidate_anchor_normalized = normalize_formula_anchor(candidate_anchor)
     query_anchor = query_theme.get("anchor", "")
     query_anchor_normalized = query_theme.get("normalized_anchor", "")
