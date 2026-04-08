@@ -321,46 +321,37 @@
       "question_type_label": "泛问/总括类",
       "expected_mode": "strong",
       "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0062",
         "safe:main_passages:ZJSHL-CH-014-P-0072",
-        "safe:main_passages:ZJSHL-CH-014-P-0162",
-        "safe:main_passages:ZJSHL-CH-014-P-0093",
         "safe:main_passages:ZJSHL-CH-014-P-0078",
+        "safe:main_passages:ZJSHL-CH-014-P-0093",
         "safe:main_passages:ZJSHL-CH-014-P-0112",
-        "safe:main_passages:ZJSHL-CH-014-P-0062"
+        "safe:main_passages:ZJSHL-CH-014-P-0162"
       ],
       "gold_passage_ids": [
+        "ZJSHL-CH-014-P-0062",
         "ZJSHL-CH-014-P-0072",
-        "ZJSHL-CH-014-P-0162",
-        "ZJSHL-CH-014-P-0093",
         "ZJSHL-CH-014-P-0078",
+        "ZJSHL-CH-014-P-0093",
         "ZJSHL-CH-014-P-0112",
-        "ZJSHL-CH-014-P-0062"
+        "ZJSHL-CH-014-P-0162"
       ],
       "gold_evidence_spans": [
+        {
+          "passage_id": "ZJSHL-CH-014-P-0062",
+          "record_id": "safe:main_passages:ZJSHL-CH-014-P-0062",
+          "evidence_role": "primary",
+          "quote": "少阴病，始得之，反发热，脉沉者，麻黄附子细辛赵本作「细辛附子」汤主之。",
+          "rationale": "q004 专项重标 v1：少阴病始得兼表、反发热而脉沉的治法分支，麻黄附子细辛汤主之。 本条来自少阴病章 main_passages，可独立支撑“少阴病应分情况处理”的 strong 总括口径。",
+          "chapter_id": "ZJSHL-CH-014",
+          "chapter_title": "辨少阴病脉证并治法第十一"
+        },
         {
           "passage_id": "ZJSHL-CH-014-P-0072",
           "record_id": "safe:main_passages:ZJSHL-CH-014-P-0072",
           "evidence_role": "primary",
           "quote": "少阴病，得之二三日以上，心中烦，不得卧，黄连阿胶汤主之。",
-          "rationale": "这是少阴病总括回答中的稳定分支之一。",
-          "chapter_id": "ZJSHL-CH-014",
-          "chapter_title": "辨少阴病脉证并治法第十一"
-        },
-        {
-          "passage_id": "ZJSHL-CH-014-P-0162",
-          "record_id": "safe:main_passages:ZJSHL-CH-014-P-0162",
-          "evidence_role": "primary",
-          "quote": "少阴病，四逆，其人或咳，或悸，或小便不利，或腹中痛，或泄利下重者，四逆散主之。",
-          "rationale": "这是少阴病多分支处理的另一条核心证据。",
-          "chapter_id": "ZJSHL-CH-014",
-          "chapter_title": "辨少阴病脉证并治法第十一"
-        },
-        {
-          "passage_id": "ZJSHL-CH-014-P-0093",
-          "record_id": "safe:main_passages:ZJSHL-CH-014-P-0093",
-          "evidence_role": "primary",
-          "quote": "少阴病，二三日至四五日，腹痛，小便不利，下利不止便脓血者，桃花汤主之。",
-          "rationale": "这是少阴病总括的第三个稳定主分支，用于避免回答过于单一。",
+          "rationale": "q004 专项重标 v1：少阴病二三日以上、心中烦不得卧的治法分支，黄连阿胶汤主之。 本条来自少阴病章 main_passages，可独立支撑“少阴病应分情况处理”的 strong 总括口径。",
           "chapter_id": "ZJSHL-CH-014",
           "chapter_title": "辨少阴病脉证并治法第十一"
         },
@@ -369,7 +360,16 @@
           "record_id": "safe:main_passages:ZJSHL-CH-014-P-0078",
           "evidence_role": "primary",
           "quote": "少阴病，得之一二日，口中和，其背恶寒者，当灸之，附子汤主之。",
-          "rationale": "这是当前正式系统稳定选入 strong citations 的少阴病 A 级方证分支，可作为总括题的典型主分支。",
+          "rationale": "q004 专项重标 v1：少阴病一二日、口中和而背恶寒的治法分支，先标出当灸之并以附子汤主之。 本条来自少阴病章 main_passages，可独立支撑“少阴病应分情况处理”的 strong 总括口径。",
+          "chapter_id": "ZJSHL-CH-014",
+          "chapter_title": "辨少阴病脉证并治法第十一"
+        },
+        {
+          "passage_id": "ZJSHL-CH-014-P-0093",
+          "record_id": "safe:main_passages:ZJSHL-CH-014-P-0093",
+          "evidence_role": "primary",
+          "quote": "少阴病，二三日至四五日，腹痛，小便不利，下利不止便脓血者，桃花汤主之。",
+          "rationale": "q004 专项重标 v1：少阴病腹痛、小便不利、下利不止便脓血的治法分支，桃花汤主之。 本条来自少阴病章 main_passages，可独立支撑“少阴病应分情况处理”的 strong 总括口径。",
           "chapter_id": "ZJSHL-CH-014",
           "chapter_title": "辨少阴病脉证并治法第十一"
         },
@@ -378,21 +378,21 @@
           "record_id": "safe:main_passages:ZJSHL-CH-014-P-0112",
           "evidence_role": "primary",
           "quote": "少阴病，咽中伤生疮，不能语言，声不出者，苦酒汤主之。",
-          "rationale": "这是当前正式系统稳定选入 strong citations 的少阴病 A 级方证分支，符合总括类最小分支整理口径。",
+          "rationale": "q004 专项重标 v1：少阴病咽中伤生疮、不能语言、声不出的治法分支，苦酒汤主之。 本条来自少阴病章 main_passages，可独立支撑“少阴病应分情况处理”的 strong 总括口径。",
           "chapter_id": "ZJSHL-CH-014",
           "chapter_title": "辨少阴病脉证并治法第十一"
         },
         {
-          "passage_id": "ZJSHL-CH-014-P-0062",
-          "record_id": "safe:main_passages:ZJSHL-CH-014-P-0062",
+          "passage_id": "ZJSHL-CH-014-P-0162",
+          "record_id": "safe:main_passages:ZJSHL-CH-014-P-0162",
           "evidence_role": "primary",
-          "quote": "少阴病，始得之，反发热，脉沉者，麻黄附子细辛赵本作「细辛附子」汤主之。",
-          "rationale": "这是当前正式系统稳定选入 strong citations 的少阴病 A 级方证分支，能支撑“少阴病并非单一治法”的总括回答。",
+          "quote": "少阴病，四逆，其人或咳，或悸，或小便不利，或腹中痛，或泄利下重者，四逆散主之。",
+          "rationale": "q004 专项重标 v1：少阴病四逆并兼咳、悸、小便不利、腹中痛、泄利下重等的治法分支，四逆散主之。 本条来自少阴病章 main_passages，可独立支撑“少阴病应分情况处理”的 strong 总括口径。",
           "chapter_id": "ZJSHL-CH-014",
           "chapter_title": "辨少阴病脉证并治法第十一"
         }
       ],
-      "annotation_notes": "该题用于验证总括类 strong 不只局限于太阳病主题，且应保持多分支主引用。总括题不要求唯一三条固定分支；当前正式系统引用的附子汤、苦酒汤、麻黄附子细辛汤三条均为少阴病 A 级 main_passages 方证分支，因此纳入可接受 gold citation 集合。",
+      "annotation_notes": "q004 专项重标 v1。题面“少阴病应该怎么办？”本轮定义为“少阴病的最小稳定治法分支整理”，而不是“当前系统常见 strong 响应可接受 citation 集”。人工从 data/processed/zjshl_dataset_v2/main_passages.json 核对少阴病章内直接方证分支，保留麻黄附子细辛汤、黄连阿胶汤、附子汤、桃花汤、苦酒汤、四逆散六个 primary 分支。这些分支覆盖始得兼表、阴虚烦热、阳虚背恶寒、下利便脓血、咽喉证、四逆兼证等稳定代表场景；不再以系统样例或 evaluator replay citations 作为 gold 定义来源。",
       "citation_check_required": true,
       "evaluation_targets": [
         "retrieval_hit",
@@ -420,11 +420,31 @@
       },
       "source_refs": [
         {
-          "artifact_path": "artifacts/general_question_examples.json",
-          "example_id": "shaoyin_management_strong"
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-014-P-0062"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-014-P-0072"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-014-P-0078"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-014-P-0093"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-014-P-0112"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-014-P-0162"
         }
       ],
-      "gold_source_type": "needs_reannotation"
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q005",
