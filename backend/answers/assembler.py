@@ -75,6 +75,16 @@ UNSUPPORTED_COMPARISON_HINTS = (
     "更强",
 )
 
+MEANING_EXPLANATION_QUERY_HINTS = (
+    "是什么意思",
+    "什么意思",
+)
+
+STRONG_MEANING_EXPLANATION_MARKERS = (
+    "名曰",
+    "谓之",
+)
+
 COMPARISON_CONTEXT_HINTS = (
     "证候",
     "主治",
@@ -426,7 +436,16 @@ class AnswerAssembler:
         review = [self._build_evidence_item(row, display_role="review") for row in retrieval["risk_materials"]]
 
         answer_mode = retrieval["mode"]
-        answer_text = self._build_answer_text(retrieval, primary, secondary, review)
+        answer_retrieval = retrieval
+        if self._should_demote_meaning_explanation(query_text, answer_mode, primary):
+            secondary = self._merge_evidence_items(
+                secondary,
+                [self._demote_primary_to_secondary(item) for item in primary],
+            )
+            primary = []
+            answer_mode = "weak_with_review_notice"
+            answer_retrieval = {**retrieval, "mode": answer_mode}
+        answer_text = self._build_answer_text(answer_retrieval, primary, secondary, review)
         review_notice = self._build_review_notice(answer_mode)
         disclaimer = self._build_disclaimer(answer_mode, bool(secondary), bool(review))
         refuse_reason = self._build_refuse_reason(answer_mode)
@@ -456,6 +475,46 @@ class AnswerAssembler:
             "citations": citations,
             "display_sections": display_sections,
         }
+
+    def _should_demote_meaning_explanation(
+        self,
+        query_text: str,
+        answer_mode: str,
+        primary: list[dict[str, Any]],
+    ) -> bool:
+        if answer_mode != "strong" or not primary:
+            return False
+        if not any(hint in query_text for hint in MEANING_EXPLANATION_QUERY_HINTS):
+            return False
+        return not any(self._evidence_supports_strong_meaning_explanation(item) for item in primary)
+
+    def _evidence_supports_strong_meaning_explanation(self, item: dict[str, Any]) -> bool:
+        snippet = item.get("snippet", "")
+        if any(marker in snippet for marker in STRONG_MEANING_EXPLANATION_MARKERS):
+            return True
+        return bool(re.search(r"者[^。；]*也", snippet))
+
+    def _demote_primary_to_secondary(self, item: dict[str, Any]) -> dict[str, Any]:
+        demoted = dict(item)
+        demoted["display_role"] = "secondary"
+        demoted["risk_flags"] = dedupe_strings(list(demoted.get("risk_flags") or []) + ["meaning_explanation_demoted"])
+        return demoted
+
+    def _merge_evidence_items(
+        self,
+        first: list[dict[str, Any]],
+        second: list[dict[str, Any]],
+    ) -> list[dict[str, Any]]:
+        merged: list[dict[str, Any]] = []
+        seen: set[str] = set()
+        for item in first + second:
+            record_id = item.get("record_id")
+            if record_id in seen:
+                continue
+            if record_id:
+                seen.add(record_id)
+            merged.append(item)
+        return merged
 
     def _assemble_general_question(self, query_text: str, general_plan: GeneralQuestionPlan) -> dict[str, Any]:
         query_retrieval = self.engine.retrieve(query_text)
