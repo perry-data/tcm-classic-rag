@@ -1,0 +1,1924 @@
+[
+  {
+    "question_id": "eval_seed_q103",
+    "query": "茯苓甘草汤方的条文是什么？",
+    "question_type": "source_lookup",
+    "question_type_label": "条文/出处类",
+    "expected_mode": "strong",
+    "gold_record_ids": [
+      "safe:main_passages:ZJSHL-CH-009-P-0145",
+      "safe:main_passages:ZJSHL-CH-009-P-0147"
+    ],
+    "gold_passage_ids": [
+      "ZJSHL-CH-009-P-0145",
+      "ZJSHL-CH-009-P-0147"
+    ],
+    "gold_evidence_spans": [
+      {
+        "passage_id": "ZJSHL-CH-009-P-0145",
+        "record_id": "safe:main_passages:ZJSHL-CH-009-P-0145",
+        "evidence_role": "primary",
+        "quote": "茯苓甘草汤方：茯苓二两。味甘平 桂枝二两，去皮。味辛热 生姜三两，切。味辛温 甘草一两，炙。味甘平",
+        "rationale": "Batch B 人工独立标注：该段为题面方名对应的方文起始、连续组成或紧邻煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-009",
+        "chapter_title": "辨太阳病脉证并治第六"
+      },
+      {
+        "passage_id": "ZJSHL-CH-009-P-0147",
+        "record_id": "safe:main_passages:ZJSHL-CH-009-P-0147",
+        "evidence_role": "primary",
+        "quote": "上四味，以水四升，煮取二升，去滓，分温三服。",
+        "rationale": "Batch B 人工独立标注：该段为题面方名对应的方文起始、连续组成或紧邻煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-009",
+        "chapter_title": "辨太阳病脉证并治第六"
+      }
+    ],
+    "annotation_notes": "Batch B 新增 source_lookup 样本。人工从 main_passages.json 按题面方名核对，gold 覆盖明确方文与紧邻煎服法；不依赖 evaluator report、系统 replay 或旧示例答案。",
+    "citation_check_required": true,
+    "evaluation_targets": [
+      "retrieval_hit",
+      "citation_correctness",
+      "answer_mode",
+      "unsupported_assertion",
+      "evidence_layering"
+    ],
+    "retrieval_assertions": {
+      "top_k_targets": [
+        1,
+        3,
+        5
+      ],
+      "minimum_gold_hits": 1,
+      "match_strategy": "canonical_passage_id"
+    },
+    "answer_assertions": {
+      "mode_match_required": true,
+      "must_include_gold_citation": true,
+      "must_keep_primary_empty": false,
+      "must_have_zero_evidence": false,
+      "must_have_zero_citations": false,
+      "must_refuse": false,
+      "must_avoid_unsupported_assertion": true
+    },
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-009-P-0145"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-009-P-0147"
+      }
+    ],
+    "gold_source_type": "manual_independent"
+  },
+  {
+    "question_id": "eval_seed_q104",
+    "query": "芍药甘草附子汤方的条文是什么？",
+    "question_type": "source_lookup",
+    "question_type_label": "条文/出处类",
+    "expected_mode": "strong",
+    "gold_record_ids": [
+      "safe:main_passages:ZJSHL-CH-009-P-0125",
+      "safe:main_passages:ZJSHL-CH-009-P-0127"
+    ],
+    "gold_passage_ids": [
+      "ZJSHL-CH-009-P-0125",
+      "ZJSHL-CH-009-P-0127"
+    ],
+    "gold_evidence_spans": [
+      {
+        "passage_id": "ZJSHL-CH-009-P-0125",
+        "record_id": "safe:main_passages:ZJSHL-CH-009-P-0125",
+        "evidence_role": "primary",
+        "quote": "芍药甘草附子汤方：芍药三两。味酸，微寒 甘草三两，炙。味甘平 附子一枚，炮，去皮，破八片。味辛热",
+        "rationale": "Batch B 人工独立标注：该段为题面方名对应的方文起始、连续组成或紧邻煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-009",
+        "chapter_title": "辨太阳病脉证并治第六"
+      },
+      {
+        "passage_id": "ZJSHL-CH-009-P-0127",
+        "record_id": "safe:main_passages:ZJSHL-CH-009-P-0127",
+        "evidence_role": "primary",
+        "quote": "以上赵本作「右」三味，以水五升，煮取一升五合，去滓，分温赵本有「三」字服，疑非仲景意。赵本作「方」",
+        "rationale": "Batch B 人工独立标注：该段为题面方名对应的方文起始、连续组成或紧邻煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-009",
+        "chapter_title": "辨太阳病脉证并治第六"
+      }
+    ],
+    "annotation_notes": "Batch B 新增 source_lookup 样本。人工从 main_passages.json 按题面方名核对，gold 覆盖明确方文与紧邻煎服法；不依赖 evaluator report、系统 replay 或旧示例答案。",
+    "citation_check_required": true,
+    "evaluation_targets": [
+      "retrieval_hit",
+      "citation_correctness",
+      "answer_mode",
+      "unsupported_assertion",
+      "evidence_layering"
+    ],
+    "retrieval_assertions": {
+      "top_k_targets": [
+        1,
+        3,
+        5
+      ],
+      "minimum_gold_hits": 1,
+      "match_strategy": "canonical_passage_id"
+    },
+    "answer_assertions": {
+      "mode_match_required": true,
+      "must_include_gold_citation": true,
+      "must_keep_primary_empty": false,
+      "must_have_zero_evidence": false,
+      "must_have_zero_citations": false,
+      "must_refuse": false,
+      "must_avoid_unsupported_assertion": true
+    },
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-009-P-0125"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-009-P-0127"
+      }
+    ],
+    "gold_source_type": "manual_independent"
+  },
+  {
+    "question_id": "eval_seed_q105",
+    "query": "黄芩汤方的条文是什么？",
+    "question_type": "source_lookup",
+    "question_type_label": "条文/出处类",
+    "expected_mode": "strong",
+    "gold_record_ids": [
+      "safe:main_passages:ZJSHL-CH-010-P-0140",
+      "safe:main_passages:ZJSHL-CH-010-P-0142"
+    ],
+    "gold_passage_ids": [
+      "ZJSHL-CH-010-P-0140",
+      "ZJSHL-CH-010-P-0142"
+    ],
+    "gold_evidence_spans": [
+      {
+        "passage_id": "ZJSHL-CH-010-P-0140",
+        "record_id": "safe:main_passages:ZJSHL-CH-010-P-0140",
+        "evidence_role": "primary",
+        "quote": "黄芩汤方：黄芩三两。味苦寒 甘草二两，炙。味甘平 芍药二两。味酸平 大枣十二枚，擘。味甘温",
+        "rationale": "Batch B 人工独立标注：该段为题面方名对应的方文起始、连续组成或紧邻煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-010",
+        "chapter_title": "辨太阳病脉证并治法第七"
+      },
+      {
+        "passage_id": "ZJSHL-CH-010-P-0142",
+        "record_id": "safe:main_passages:ZJSHL-CH-010-P-0142",
+        "evidence_role": "primary",
+        "quote": "上四味，以水一斗，煮取三升，去滓，温服一升，日再夜一服。若呕者，加半夏半升，生姜三两。赵本无若呕者以下十二字，有「黄芩加半夏生姜汤方」详见卷十",
+        "rationale": "Batch B 人工独立标注：该段为题面方名对应的方文起始、连续组成或紧邻煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-010",
+        "chapter_title": "辨太阳病脉证并治法第七"
+      }
+    ],
+    "annotation_notes": "Batch B 新增 source_lookup 样本。人工从 main_passages.json 按题面方名核对，gold 覆盖明确方文与紧邻煎服法；不依赖 evaluator report、系统 replay 或旧示例答案。",
+    "citation_check_required": true,
+    "evaluation_targets": [
+      "retrieval_hit",
+      "citation_correctness",
+      "answer_mode",
+      "unsupported_assertion",
+      "evidence_layering"
+    ],
+    "retrieval_assertions": {
+      "top_k_targets": [
+        1,
+        3,
+        5
+      ],
+      "minimum_gold_hits": 1,
+      "match_strategy": "canonical_passage_id"
+    },
+    "answer_assertions": {
+      "mode_match_required": true,
+      "must_include_gold_citation": true,
+      "must_keep_primary_empty": false,
+      "must_have_zero_evidence": false,
+      "must_have_zero_citations": false,
+      "must_refuse": false,
+      "must_avoid_unsupported_assertion": true
+    },
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0140"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0142"
+      }
+    ],
+    "gold_source_type": "manual_independent"
+  },
+  {
+    "question_id": "eval_seed_q106",
+    "query": "桂枝附子汤方的条文是什么？",
+    "question_type": "source_lookup",
+    "question_type_label": "条文/出处类",
+    "expected_mode": "strong",
+    "gold_record_ids": [
+      "safe:main_passages:ZJSHL-CH-010-P-0153",
+      "safe:main_passages:ZJSHL-CH-010-P-0154",
+      "safe:main_passages:ZJSHL-CH-010-P-0156"
+    ],
+    "gold_passage_ids": [
+      "ZJSHL-CH-010-P-0153",
+      "ZJSHL-CH-010-P-0154",
+      "ZJSHL-CH-010-P-0156"
+    ],
+    "gold_evidence_spans": [
+      {
+        "passage_id": "ZJSHL-CH-010-P-0153",
+        "record_id": "safe:main_passages:ZJSHL-CH-010-P-0153",
+        "evidence_role": "primary",
+        "quote": "桂枝附子汤方：桂枝四两，去皮。味辛热 附子三枚，炮，去皮，破八片，赵本无「八片」二字。辛热",
+        "rationale": "Batch B 人工独立标注：该段为题面方名对应的方文起始、连续组成或紧邻煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-010",
+        "chapter_title": "辨太阳病脉证并治法第七"
+      },
+      {
+        "passage_id": "ZJSHL-CH-010-P-0154",
+        "record_id": "safe:main_passages:ZJSHL-CH-010-P-0154",
+        "evidence_role": "primary",
+        "quote": "生姜三两，切。味辛温 甘草二两，炙。味甘温 大枣十二枚，擘。味甘温",
+        "rationale": "Batch B 人工独立标注：该段为题面方名对应的方文起始、连续组成或紧邻煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-010",
+        "chapter_title": "辨太阳病脉证并治法第七"
+      },
+      {
+        "passage_id": "ZJSHL-CH-010-P-0156",
+        "record_id": "safe:main_passages:ZJSHL-CH-010-P-0156",
+        "evidence_role": "primary",
+        "quote": "上五味，以水六升，煮取二升，去滓，分温三服。赵本有去桂加白术汤方云：附子三枚，炮，去皮破 白术四两 生姜三两，切 甘草二两，炙 大枣十二枚，擘",
+        "rationale": "Batch B 人工独立标注：该段为题面方名对应的方文起始、连续组成或紧邻煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-010",
+        "chapter_title": "辨太阳病脉证并治法第七"
+      }
+    ],
+    "annotation_notes": "Batch B 新增 source_lookup 样本。人工从 main_passages.json 按题面方名核对，gold 覆盖明确方文、连续组成与紧邻煎服法；不依赖 evaluator report、系统 replay 或旧示例答案。",
+    "citation_check_required": true,
+    "evaluation_targets": [
+      "retrieval_hit",
+      "citation_correctness",
+      "answer_mode",
+      "unsupported_assertion",
+      "evidence_layering"
+    ],
+    "retrieval_assertions": {
+      "top_k_targets": [
+        1,
+        3,
+        5
+      ],
+      "minimum_gold_hits": 1,
+      "match_strategy": "canonical_passage_id"
+    },
+    "answer_assertions": {
+      "mode_match_required": true,
+      "must_include_gold_citation": true,
+      "must_keep_primary_empty": false,
+      "must_have_zero_evidence": false,
+      "must_have_zero_citations": false,
+      "must_refuse": false,
+      "must_avoid_unsupported_assertion": true
+    },
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0153"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0154"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0156"
+      }
+    ],
+    "gold_source_type": "manual_independent"
+  },
+  {
+    "question_id": "eval_seed_q107",
+    "query": "真武汤方的条文是什么？",
+    "question_type": "source_lookup",
+    "question_type_label": "条文/出处类",
+    "expected_mode": "strong",
+    "gold_record_ids": [
+      "safe:main_passages:ZJSHL-CH-014-P-0134",
+      "safe:main_passages:ZJSHL-CH-014-P-0135",
+      "safe:main_passages:ZJSHL-CH-014-P-0137"
+    ],
+    "gold_passage_ids": [
+      "ZJSHL-CH-014-P-0134",
+      "ZJSHL-CH-014-P-0135",
+      "ZJSHL-CH-014-P-0137"
+    ],
+    "gold_evidence_spans": [
+      {
+        "passage_id": "ZJSHL-CH-014-P-0134",
+        "record_id": "safe:main_passages:ZJSHL-CH-014-P-0134",
+        "evidence_role": "primary",
+        "quote": "真武汤方：茯苓三两。甘平 芍药三两。酸平 生姜三两，切。辛温 白术二两。甘温",
+        "rationale": "Batch B 人工独立标注：该段为题面方名对应的方文起始、连续组成或紧邻煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-014",
+        "chapter_title": "辨少阴病脉证并治法第十一"
+      },
+      {
+        "passage_id": "ZJSHL-CH-014-P-0135",
+        "record_id": "safe:main_passages:ZJSHL-CH-014-P-0135",
+        "evidence_role": "primary",
+        "quote": "附子一枚，炮，去皮，破八片。辛热",
+        "rationale": "Batch B 人工独立标注：该段为题面方名对应的方文起始、连续组成或紧邻煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-014",
+        "chapter_title": "辨少阴病脉证并治法第十一"
+      },
+      {
+        "passage_id": "ZJSHL-CH-014-P-0137",
+        "record_id": "safe:main_passages:ZJSHL-CH-014-P-0137",
+        "evidence_role": "primary",
+        "quote": "上五味，以水八升，煮取三升，去滓，温服七合，日三服。",
+        "rationale": "Batch B 人工独立标注：该段为题面方名对应的方文起始、连续组成或紧邻煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-014",
+        "chapter_title": "辨少阴病脉证并治法第十一"
+      }
+    ],
+    "annotation_notes": "Batch B 新增 source_lookup 样本。人工从 main_passages.json 按题面方名核对，gold 覆盖明确方文、连续组成与紧邻煎服法；不依赖 evaluator report、系统 replay 或旧示例答案。",
+    "citation_check_required": true,
+    "evaluation_targets": [
+      "retrieval_hit",
+      "citation_correctness",
+      "answer_mode",
+      "unsupported_assertion",
+      "evidence_layering"
+    ],
+    "retrieval_assertions": {
+      "top_k_targets": [
+        1,
+        3,
+        5
+      ],
+      "minimum_gold_hits": 1,
+      "match_strategy": "canonical_passage_id"
+    },
+    "answer_assertions": {
+      "mode_match_required": true,
+      "must_include_gold_citation": true,
+      "must_keep_primary_empty": false,
+      "must_have_zero_evidence": false,
+      "must_have_zero_citations": false,
+      "must_refuse": false,
+      "must_avoid_unsupported_assertion": true
+    },
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0134"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0135"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0137"
+      }
+    ],
+    "gold_source_type": "manual_independent"
+  },
+  {
+    "question_id": "eval_seed_q108",
+    "query": "黄芩汤方和黄芩加半夏生姜汤方的区别是什么？",
+    "question_type": "comparison",
+    "question_type_label": "比较类",
+    "expected_mode": "strong",
+    "gold_record_ids": [
+      "safe:main_passages:ZJSHL-CH-010-P-0140",
+      "safe:main_passages:ZJSHL-CH-010-P-0142",
+      "safe:main_passages:ZJSHL-CH-027-P-0011"
+    ],
+    "gold_passage_ids": [
+      "ZJSHL-CH-010-P-0140",
+      "ZJSHL-CH-010-P-0142",
+      "ZJSHL-CH-027-P-0011"
+    ],
+    "gold_evidence_spans": [
+      {
+        "passage_id": "ZJSHL-CH-010-P-0140",
+        "record_id": "safe:main_passages:ZJSHL-CH-010-P-0140",
+        "evidence_role": "primary",
+        "quote": "黄芩汤方：黄芩三两。味苦寒 甘草二两，炙。味甘平 芍药二两。味酸平 大枣十二枚，擘。味甘温",
+        "rationale": "Batch B 人工独立标注：该段定义比较题一端的核心方文、连续组成或煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-010",
+        "chapter_title": "辨太阳病脉证并治法第七"
+      },
+      {
+        "passage_id": "ZJSHL-CH-010-P-0142",
+        "record_id": "safe:main_passages:ZJSHL-CH-010-P-0142",
+        "evidence_role": "secondary",
+        "quote": "上四味，以水一斗，煮取三升，去滓，温服一升，日再夜一服。若呕者，加半夏半升，生姜三两。赵本无若呕者以下十二字，有「黄芩加半夏生姜汤方」详见卷十",
+        "rationale": "Batch B 人工独立标注：该段说明比较题一端的直接条文语境或加减语境，作为差异说明的辅助证据。",
+        "chapter_id": "ZJSHL-CH-010",
+        "chapter_title": "辨太阳病脉证并治法第七"
+      },
+      {
+        "passage_id": "ZJSHL-CH-027-P-0011",
+        "record_id": "safe:main_passages:ZJSHL-CH-027-P-0011",
+        "evidence_role": "primary",
+        "quote": "黄芩加半夏生姜汤方：于黄芩汤方内，加半夏半升，生姜一两半，馀根据黄芩汤法服。",
+        "rationale": "Batch B 人工独立标注：该段定义比较题一端的核心方文、连续组成或煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-027",
+        "chapter_title": "《以上六方，病证并在第三卷内。》"
+      }
+    ],
+    "annotation_notes": "Batch B 新增 comparison 样本。人工先拆出题面两端对象，再用 main_passages.json 核对双方核心方文与加减语境；不依赖 evaluator report、系统 replay 或旧示例答案。",
+    "citation_check_required": true,
+    "evaluation_targets": [
+      "retrieval_hit",
+      "citation_correctness",
+      "answer_mode",
+      "unsupported_assertion",
+      "evidence_layering"
+    ],
+    "retrieval_assertions": {
+      "top_k_targets": [
+        1,
+        3,
+        5
+      ],
+      "minimum_gold_hits": 1,
+      "match_strategy": "canonical_passage_id"
+    },
+    "answer_assertions": {
+      "mode_match_required": true,
+      "must_include_gold_citation": true,
+      "must_keep_primary_empty": false,
+      "must_have_zero_evidence": false,
+      "must_have_zero_citations": false,
+      "must_refuse": false,
+      "must_avoid_unsupported_assertion": true
+    },
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0140"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0142"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-027-P-0011"
+      }
+    ],
+    "gold_source_type": "manual_independent"
+  },
+  {
+    "question_id": "eval_seed_q109",
+    "query": "桂枝附子汤方和甘草附子汤方的区别是什么？",
+    "question_type": "comparison",
+    "question_type_label": "比较类",
+    "expected_mode": "strong",
+    "gold_record_ids": [
+      "safe:main_passages:ZJSHL-CH-010-P-0153",
+      "safe:main_passages:ZJSHL-CH-010-P-0154",
+      "safe:main_passages:ZJSHL-CH-010-P-0156",
+      "safe:main_passages:ZJSHL-CH-010-P-0159",
+      "safe:main_passages:ZJSHL-CH-010-P-0149",
+      "safe:main_passages:ZJSHL-CH-010-P-0157"
+    ],
+    "gold_passage_ids": [
+      "ZJSHL-CH-010-P-0153",
+      "ZJSHL-CH-010-P-0154",
+      "ZJSHL-CH-010-P-0156",
+      "ZJSHL-CH-010-P-0159",
+      "ZJSHL-CH-010-P-0149",
+      "ZJSHL-CH-010-P-0157"
+    ],
+    "gold_evidence_spans": [
+      {
+        "passage_id": "ZJSHL-CH-010-P-0153",
+        "record_id": "safe:main_passages:ZJSHL-CH-010-P-0153",
+        "evidence_role": "primary",
+        "quote": "桂枝附子汤方：桂枝四两，去皮。味辛热 附子三枚，炮，去皮，破八片，赵本无「八片」二字。辛热",
+        "rationale": "Batch B 人工独立标注：该段定义比较题一端的核心方文、连续组成或煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-010",
+        "chapter_title": "辨太阳病脉证并治法第七"
+      },
+      {
+        "passage_id": "ZJSHL-CH-010-P-0154",
+        "record_id": "safe:main_passages:ZJSHL-CH-010-P-0154",
+        "evidence_role": "primary",
+        "quote": "生姜三两，切。味辛温 甘草二两，炙。味甘温 大枣十二枚，擘。味甘温",
+        "rationale": "Batch B 人工独立标注：该段定义比较题一端的核心方文、连续组成或煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-010",
+        "chapter_title": "辨太阳病脉证并治法第七"
+      },
+      {
+        "passage_id": "ZJSHL-CH-010-P-0156",
+        "record_id": "safe:main_passages:ZJSHL-CH-010-P-0156",
+        "evidence_role": "primary",
+        "quote": "上五味，以水六升，煮取二升，去滓，分温三服。赵本有去桂加白术汤方云：附子三枚，炮，去皮破 白术四两 生姜三两，切 甘草二两，炙 大枣十二枚，擘",
+        "rationale": "Batch B 人工独立标注：该段定义比较题一端的核心方文、连续组成或煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-010",
+        "chapter_title": "辨太阳病脉证并治法第七"
+      },
+      {
+        "passage_id": "ZJSHL-CH-010-P-0159",
+        "record_id": "safe:main_passages:ZJSHL-CH-010-P-0159",
+        "evidence_role": "primary",
+        "quote": "甘草附子汤方：甘草二两，炙。味甘平 附子二枚，炮，去皮破。味辛热 白术二两。味甘温 桂枝四两，去皮。味辛热",
+        "rationale": "Batch B 人工独立标注：该段定义比较题一端的核心方文、连续组成或煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-010",
+        "chapter_title": "辨太阳病脉证并治法第七"
+      },
+      {
+        "passage_id": "ZJSHL-CH-010-P-0149",
+        "record_id": "safe:main_passages:ZJSHL-CH-010-P-0149",
+        "evidence_role": "secondary",
+        "quote": "伤寒八九日，风湿相搏，身体疼烦，不能自转侧，不呕不渴，脉浮虚而涩者，桂枝附子汤主之。",
+        "rationale": "Batch B 人工独立标注：该段说明比较题一端的直接条文语境或加减语境，作为差异说明的辅助证据。",
+        "chapter_id": "ZJSHL-CH-010",
+        "chapter_title": "辨太阳病脉证并治法第七"
+      },
+      {
+        "passage_id": "ZJSHL-CH-010-P-0157",
+        "record_id": "safe:main_passages:ZJSHL-CH-010-P-0157",
+        "evidence_role": "secondary",
+        "quote": "风湿相搏，骨节烦疼，赵本作「疼烦」掣痛，不得屈伸，近之则痛剧，汗出短气，小便不利，恶风不欲去衣，或身微肿者，甘草附子汤主之。",
+        "rationale": "Batch B 人工独立标注：该段说明比较题一端的直接条文语境或加减语境，作为差异说明的辅助证据。",
+        "chapter_id": "ZJSHL-CH-010",
+        "chapter_title": "辨太阳病脉证并治法第七"
+      }
+    ],
+    "annotation_notes": "Batch B 新增 comparison 样本。人工先拆出题面两端对象，再用 main_passages.json 核对双方核心方文、煎服法与直接条文语境；不依赖 evaluator report、系统 replay 或旧示例答案。",
+    "citation_check_required": true,
+    "evaluation_targets": [
+      "retrieval_hit",
+      "citation_correctness",
+      "answer_mode",
+      "unsupported_assertion",
+      "evidence_layering"
+    ],
+    "retrieval_assertions": {
+      "top_k_targets": [
+        1,
+        3,
+        5
+      ],
+      "minimum_gold_hits": 1,
+      "match_strategy": "canonical_passage_id"
+    },
+    "answer_assertions": {
+      "mode_match_required": true,
+      "must_include_gold_citation": true,
+      "must_keep_primary_empty": false,
+      "must_have_zero_evidence": false,
+      "must_have_zero_citations": false,
+      "must_refuse": false,
+      "must_avoid_unsupported_assertion": true
+    },
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0153"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0154"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0156"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0159"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0149"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0157"
+      }
+    ],
+    "gold_source_type": "manual_independent"
+  },
+  {
+    "question_id": "eval_seed_q110",
+    "query": "麻黄附子细辛汤方和麻黄附子甘草汤方的区别是什么？",
+    "question_type": "comparison",
+    "question_type_label": "比较类",
+    "expected_mode": "strong",
+    "gold_record_ids": [
+      "safe:main_passages:ZJSHL-CH-014-P-0064",
+      "safe:main_passages:ZJSHL-CH-014-P-0066",
+      "safe:main_passages:ZJSHL-CH-014-P-0069",
+      "safe:main_passages:ZJSHL-CH-014-P-0062"
+    ],
+    "gold_passage_ids": [
+      "ZJSHL-CH-014-P-0064",
+      "ZJSHL-CH-014-P-0066",
+      "ZJSHL-CH-014-P-0069",
+      "ZJSHL-CH-014-P-0062"
+    ],
+    "gold_evidence_spans": [
+      {
+        "passage_id": "ZJSHL-CH-014-P-0064",
+        "record_id": "safe:main_passages:ZJSHL-CH-014-P-0064",
+        "evidence_role": "primary",
+        "quote": "麻黄附子细辛赵本作「细辛附子」汤方：麻黄二两，去节。甘热 细辛二两。辛热 附子一枚，炮，去皮，破八片。辛热",
+        "rationale": "Batch B 人工独立标注：该段定义比较题一端的核心方文、连续组成或煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-014",
+        "chapter_title": "辨少阴病脉证并治法第十一"
+      },
+      {
+        "passage_id": "ZJSHL-CH-014-P-0066",
+        "record_id": "safe:main_passages:ZJSHL-CH-014-P-0066",
+        "evidence_role": "primary",
+        "quote": "上三味，以水一斗，先煮麻黄，减二升，去上沫，内赵本医统本并有「诸」字药，煮取三升，去滓，温服一升，日三服。",
+        "rationale": "Batch B 人工独立标注：该段定义比较题一端的核心方文、连续组成或煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-014",
+        "chapter_title": "辨少阴病脉证并治法第十一"
+      },
+      {
+        "passage_id": "ZJSHL-CH-014-P-0069",
+        "record_id": "safe:main_passages:ZJSHL-CH-014-P-0069",
+        "evidence_role": "primary",
+        "quote": "麻黄附子甘草汤方：麻黄二两，去节 甘草二两，炙 附子一枚，炮，去皮。赵本有「破八片」三字",
+        "rationale": "Batch B 人工独立标注：该段定义比较题一端的核心方文、连续组成或煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-014",
+        "chapter_title": "辨少阴病脉证并治法第十一"
+      },
+      {
+        "passage_id": "ZJSHL-CH-014-P-0062",
+        "record_id": "safe:main_passages:ZJSHL-CH-014-P-0062",
+        "evidence_role": "secondary",
+        "quote": "少阴病，始得之，反发热，脉沉者，麻黄附子细辛赵本作「细辛附子」汤主之。",
+        "rationale": "Batch B 人工独立标注：该段说明比较题一端的直接条文语境或加减语境，作为差异说明的辅助证据。",
+        "chapter_id": "ZJSHL-CH-014",
+        "chapter_title": "辨少阴病脉证并治法第十一"
+      }
+    ],
+    "annotation_notes": "Batch B 新增 comparison 样本。人工先拆出题面两端对象，再用 main_passages.json 核对双方核心方文和直接条文语境；不依赖 evaluator report、系统 replay 或旧示例答案。",
+    "citation_check_required": true,
+    "evaluation_targets": [
+      "retrieval_hit",
+      "citation_correctness",
+      "answer_mode",
+      "unsupported_assertion",
+      "evidence_layering"
+    ],
+    "retrieval_assertions": {
+      "top_k_targets": [
+        1,
+        3,
+        5
+      ],
+      "minimum_gold_hits": 1,
+      "match_strategy": "canonical_passage_id"
+    },
+    "answer_assertions": {
+      "mode_match_required": true,
+      "must_include_gold_citation": true,
+      "must_keep_primary_empty": false,
+      "must_have_zero_evidence": false,
+      "must_have_zero_citations": false,
+      "must_refuse": false,
+      "must_avoid_unsupported_assertion": true
+    },
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0064"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0066"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0069"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0062"
+      }
+    ],
+    "gold_source_type": "manual_independent"
+  },
+  {
+    "question_id": "eval_seed_q111",
+    "query": "真武汤方和附子汤方的区别是什么？",
+    "question_type": "comparison",
+    "question_type_label": "比较类",
+    "expected_mode": "strong",
+    "gold_record_ids": [
+      "safe:main_passages:ZJSHL-CH-014-P-0134",
+      "safe:main_passages:ZJSHL-CH-014-P-0135",
+      "safe:main_passages:ZJSHL-CH-014-P-0137",
+      "safe:main_passages:ZJSHL-CH-014-P-0081",
+      "safe:main_passages:ZJSHL-CH-014-P-0082",
+      "safe:main_passages:ZJSHL-CH-014-P-0085",
+      "safe:main_passages:ZJSHL-CH-014-P-0078",
+      "safe:main_passages:ZJSHL-CH-014-P-0086"
+    ],
+    "gold_passage_ids": [
+      "ZJSHL-CH-014-P-0134",
+      "ZJSHL-CH-014-P-0135",
+      "ZJSHL-CH-014-P-0137",
+      "ZJSHL-CH-014-P-0081",
+      "ZJSHL-CH-014-P-0082",
+      "ZJSHL-CH-014-P-0085",
+      "ZJSHL-CH-014-P-0078",
+      "ZJSHL-CH-014-P-0086"
+    ],
+    "gold_evidence_spans": [
+      {
+        "passage_id": "ZJSHL-CH-014-P-0134",
+        "record_id": "safe:main_passages:ZJSHL-CH-014-P-0134",
+        "evidence_role": "primary",
+        "quote": "真武汤方：茯苓三两。甘平 芍药三两。酸平 生姜三两，切。辛温 白术二两。甘温",
+        "rationale": "Batch B 人工独立标注：该段定义比较题一端的核心方文、连续组成或煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-014",
+        "chapter_title": "辨少阴病脉证并治法第十一"
+      },
+      {
+        "passage_id": "ZJSHL-CH-014-P-0135",
+        "record_id": "safe:main_passages:ZJSHL-CH-014-P-0135",
+        "evidence_role": "primary",
+        "quote": "附子一枚，炮，去皮，破八片。辛热",
+        "rationale": "Batch B 人工独立标注：该段定义比较题一端的核心方文、连续组成或煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-014",
+        "chapter_title": "辨少阴病脉证并治法第十一"
+      },
+      {
+        "passage_id": "ZJSHL-CH-014-P-0137",
+        "record_id": "safe:main_passages:ZJSHL-CH-014-P-0137",
+        "evidence_role": "primary",
+        "quote": "上五味，以水八升，煮取三升，去滓，温服七合，日三服。",
+        "rationale": "Batch B 人工独立标注：该段定义比较题一端的核心方文、连续组成或煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-014",
+        "chapter_title": "辨少阴病脉证并治法第十一"
+      },
+      {
+        "passage_id": "ZJSHL-CH-014-P-0081",
+        "record_id": "safe:main_passages:ZJSHL-CH-014-P-0081",
+        "evidence_role": "primary",
+        "quote": "附子汤方：附子二枚。赵本有「炮」字。破八片，去皮。辛热 茯苓三两。甘平 人参二两。甘温",
+        "rationale": "Batch B 人工独立标注：该段定义比较题一端的核心方文、连续组成或煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-014",
+        "chapter_title": "辨少阴病脉证并治法第十一"
+      },
+      {
+        "passage_id": "ZJSHL-CH-014-P-0082",
+        "record_id": "safe:main_passages:ZJSHL-CH-014-P-0082",
+        "evidence_role": "primary",
+        "quote": "白术四两。甘温 芍药三两。酸平",
+        "rationale": "Batch B 人工独立标注：该段定义比较题一端的核心方文、连续组成或煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-014",
+        "chapter_title": "辨少阴病脉证并治法第十一"
+      },
+      {
+        "passage_id": "ZJSHL-CH-014-P-0085",
+        "record_id": "safe:main_passages:ZJSHL-CH-014-P-0085",
+        "evidence_role": "primary",
+        "quote": "上五味，以水八升，煮取三升，去滓，温服一升，日三服。",
+        "rationale": "Batch B 人工独立标注：该段定义比较题一端的核心方文、连续组成或煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-014",
+        "chapter_title": "辨少阴病脉证并治法第十一"
+      },
+      {
+        "passage_id": "ZJSHL-CH-014-P-0078",
+        "record_id": "safe:main_passages:ZJSHL-CH-014-P-0078",
+        "evidence_role": "secondary",
+        "quote": "少阴病，得之一二日，口中和，其背恶寒者，当灸之，附子汤主之。",
+        "rationale": "Batch B 人工独立标注：该段说明比较题一端的直接条文语境或加减语境，作为差异说明的辅助证据。",
+        "chapter_id": "ZJSHL-CH-014",
+        "chapter_title": "辨少阴病脉证并治法第十一"
+      },
+      {
+        "passage_id": "ZJSHL-CH-014-P-0086",
+        "record_id": "safe:main_passages:ZJSHL-CH-014-P-0086",
+        "evidence_role": "secondary",
+        "quote": "少阴病，身体痛，手足寒，骨节痛，脉沉者，附子汤主之。",
+        "rationale": "Batch B 人工独立标注：该段说明比较题一端的直接条文语境或加减语境，作为差异说明的辅助证据。",
+        "chapter_id": "ZJSHL-CH-014",
+        "chapter_title": "辨少阴病脉证并治法第十一"
+      }
+    ],
+    "annotation_notes": "Batch B 新增 comparison 样本。人工先拆出题面两端对象，再用 main_passages.json 核对双方核心方文、煎服法和直接条文语境；不依赖 evaluator report、系统 replay 或旧示例答案。",
+    "citation_check_required": true,
+    "evaluation_targets": [
+      "retrieval_hit",
+      "citation_correctness",
+      "answer_mode",
+      "unsupported_assertion",
+      "evidence_layering"
+    ],
+    "retrieval_assertions": {
+      "top_k_targets": [
+        1,
+        3,
+        5
+      ],
+      "minimum_gold_hits": 1,
+      "match_strategy": "canonical_passage_id"
+    },
+    "answer_assertions": {
+      "mode_match_required": true,
+      "must_include_gold_citation": true,
+      "must_keep_primary_empty": false,
+      "must_have_zero_evidence": false,
+      "must_have_zero_citations": false,
+      "must_refuse": false,
+      "must_avoid_unsupported_assertion": true
+    },
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0134"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0135"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0137"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0081"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0082"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0085"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0078"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0086"
+      }
+    ],
+    "gold_source_type": "manual_independent"
+  },
+  {
+    "question_id": "eval_seed_q112",
+    "query": "抵当汤方和抵当丸方的区别是什么？",
+    "question_type": "comparison",
+    "question_type_label": "比较类",
+    "expected_mode": "strong",
+    "gold_record_ids": [
+      "safe:main_passages:ZJSHL-CH-009-P-0315",
+      "safe:main_passages:ZJSHL-CH-009-P-0322",
+      "safe:main_passages:ZJSHL-CH-009-P-0323",
+      "safe:main_passages:ZJSHL-CH-009-P-0318",
+      "safe:main_passages:ZJSHL-CH-009-P-0320",
+      "safe:main_passages:ZJSHL-CH-009-P-0321"
+    ],
+    "gold_passage_ids": [
+      "ZJSHL-CH-009-P-0315",
+      "ZJSHL-CH-009-P-0322",
+      "ZJSHL-CH-009-P-0323",
+      "ZJSHL-CH-009-P-0318",
+      "ZJSHL-CH-009-P-0320",
+      "ZJSHL-CH-009-P-0321"
+    ],
+    "gold_evidence_spans": [
+      {
+        "passage_id": "ZJSHL-CH-009-P-0315",
+        "record_id": "safe:main_passages:ZJSHL-CH-009-P-0315",
+        "evidence_role": "primary",
+        "quote": "抵当汤方：水蛭三十个，熬。味咸，苦寒 虻虫三十个，熬，去翅足。味苦，微寒 桃人赵本作仁，二十个，去皮尖。味苦甘，平 大黄三两，酒浸，赵本作洗。味苦寒",
+        "rationale": "Batch B 人工独立标注：该段定义比较题一端的核心方文、连续组成或煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-009",
+        "chapter_title": "辨太阳病脉证并治第六"
+      },
+      {
+        "passage_id": "ZJSHL-CH-009-P-0322",
+        "record_id": "safe:main_passages:ZJSHL-CH-009-P-0322",
+        "evidence_role": "primary",
+        "quote": "抵当丸方：水蛭二十个，赵本有「熬」字。味苦寒 虻虫二十五个，赵本作二十个，去翅足，熬。味苦，微寒 桃人人赵本作仁，二十个，赵本有「五」字，去皮尖 大黄三两",
+        "rationale": "Batch B 人工独立标注：该段定义比较题一端的核心方文、连续组成或煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-009",
+        "chapter_title": "辨太阳病脉证并治第六"
+      },
+      {
+        "passage_id": "ZJSHL-CH-009-P-0323",
+        "record_id": "safe:main_passages:ZJSHL-CH-009-P-0323",
+        "evidence_role": "primary",
+        "quote": "上四味，杵赵本作「捣」分为赵本无「为」字四丸，以水一升，煮一丸，取七合服之， 时，当下血；若不下者，更服。",
+        "rationale": "Batch B 人工独立标注：该段定义比较题一端的核心方文、连续组成或煎服法，来自 main_passages.json。",
+        "chapter_id": "ZJSHL-CH-009",
+        "chapter_title": "辨太阳病脉证并治第六"
+      },
+      {
+        "passage_id": "ZJSHL-CH-009-P-0318",
+        "record_id": "safe:main_passages:ZJSHL-CH-009-P-0318",
+        "evidence_role": "secondary",
+        "quote": "太阳病，身黄脉沉结，少腹硬，小便不利者，为无血也；小便自利，其人如狂者，血证谛也，抵当汤主之。",
+        "rationale": "Batch B 人工独立标注：该段说明比较题一端的直接条文语境或加减语境，作为差异说明的辅助证据。",
+        "chapter_id": "ZJSHL-CH-009",
+        "chapter_title": "辨太阳病脉证并治第六"
+      },
+      {
+        "passage_id": "ZJSHL-CH-009-P-0320",
+        "record_id": "safe:main_passages:ZJSHL-CH-009-P-0320",
+        "evidence_role": "secondary",
+        "quote": "伤寒有热，少腹满，应小便不利；今反利者，为有血也，当下之，不可馀药，宜抵当丸。",
+        "rationale": "Batch B 人工独立标注：该段说明比较题一端的直接条文语境或加减语境，作为差异说明的辅助证据。",
+        "chapter_id": "ZJSHL-CH-009",
+        "chapter_title": "辨太阳病脉证并治第六"
+      },
+      {
+        "passage_id": "ZJSHL-CH-009-P-0321",
+        "record_id": "safe:main_passages:ZJSHL-CH-009-P-0321",
+        "evidence_role": "secondary",
+        "quote": "伤寒有热，少腹满，是蓄血于下焦；若热蓄津液不通，则小便不利，其热不蓄津液而蓄血不行，小便自利者，乃为蓄血，当与桃人承气汤、抵当汤下之。然此无身黄屎黑，又无喜忘发狂，是未至于甚，故不可馀快峻之药也，可与抵当丸，小可下之也。",
+        "rationale": "Batch B 人工独立标注：该段说明比较题一端的直接条文语境或加减语境，作为差异说明的辅助证据。",
+        "chapter_id": "ZJSHL-CH-009",
+        "chapter_title": "辨太阳病脉证并治第六"
+      }
+    ],
+    "annotation_notes": "Batch B 新增 comparison 样本。人工先拆出题面两端对象，再用 main_passages.json 核对双方核心方文、煎服法和直接条文语境；不依赖 evaluator report、系统 replay 或旧示例答案。",
+    "citation_check_required": true,
+    "evaluation_targets": [
+      "retrieval_hit",
+      "citation_correctness",
+      "answer_mode",
+      "unsupported_assertion",
+      "evidence_layering"
+    ],
+    "retrieval_assertions": {
+      "top_k_targets": [
+        1,
+        3,
+        5
+      ],
+      "minimum_gold_hits": 1,
+      "match_strategy": "canonical_passage_id"
+    },
+    "answer_assertions": {
+      "mode_match_required": true,
+      "must_include_gold_citation": true,
+      "must_keep_primary_empty": false,
+      "must_have_zero_evidence": false,
+      "must_have_zero_citations": false,
+      "must_refuse": false,
+      "must_avoid_unsupported_assertion": true
+    },
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-009-P-0315"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-009-P-0322"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-009-P-0323"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-009-P-0318"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-009-P-0320"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-009-P-0321"
+      }
+    ],
+    "gold_source_type": "manual_independent"
+  },
+  {
+    "question_id": "eval_seed_q113",
+    "query": "阳结是什么意思？",
+    "question_type": "meaning_explanation",
+    "question_type_label": "含义解释类",
+    "expected_mode": "strong",
+    "gold_record_ids": [
+      "safe:main_passages:ZJSHL-CH-003-P-0004",
+      "full:annotations:ZJSHL-CH-003-P-0005"
+    ],
+    "gold_passage_ids": [
+      "ZJSHL-CH-003-P-0004",
+      "ZJSHL-CH-003-P-0005"
+    ],
+    "gold_evidence_spans": [
+      {
+        "passage_id": "ZJSHL-CH-003-P-0004",
+        "record_id": "safe:main_passages:ZJSHL-CH-003-P-0004",
+        "evidence_role": "primary",
+        "quote": "问曰：脉有阳结阴结者，何以别之。答曰：其脉浮而数，能食，不大便者，此为实，名曰阳结也。期十七日当剧。其脉沉而迟，不能食，身体重，大便反硬，名曰阴结也。期十四日当剧。",
+        "rationale": "Batch B 人工独立标注：正文直接给出题面概念的定义句式，可作为 strong 主证据。",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_title": "辨脉法第一"
+      },
+      {
+        "passage_id": "ZJSHL-CH-003-P-0005",
+        "record_id": "full:annotations:ZJSHL-CH-003-P-0005",
+        "evidence_role": "secondary",
+        "quote": "结者，气偏结固，阴阳之气不得而杂之。阴中有阳，阳中有阴，阴阳相杂以为和，不相杂以为结。浮数，阳脉也；能食而不大便，里实也。为阳气结固，阴不得而杂之，是名阳结。沉迟，阴脉也；不能食，身体重，阴病也；阴病见阴脉，则当下利，今大便硬者，为阴气结固，阳不得而杂之，是名阴结。论其数者，伤寒之病，一日太阳，二日阳明，三日少阳，四日太阴，五日少阴，六日厥阴。至六日为传经尽，七日当愈。七日不愈者，谓之再传医统本无「传」字经。言再传医统本无「传」字经者，再自太阳而传，至十二日再至厥阴为传经尽，十三日当愈。十三日不愈者，谓之过经，言再传医统本无「传」字过太阳之经，亦以次而传之也。阳结为火，至十七日传少阴水，水能制火，火邪解散，则愈；阴结属水，至十四日传阳明土，土能制水，水邪解散，则愈。彼邪气结甚，水又不能制火，土又不能制水，故当剧。《内经》曰：一候后则病，二候后则病甚，三候后则病危也。",
+        "rationale": "Batch B 人工独立标注：该注解直接解释题面概念，可作为 strong 解释题的补充证据。",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_title": "辨脉法第一"
+      }
+    ],
+    "annotation_notes": "Batch B 新增 meaning_explanation strong 样本。正文包含“名曰阳结也”的定义句式，注解补充解释；不依赖 evaluator report、系统 replay 或旧示例答案。",
+    "citation_check_required": true,
+    "evaluation_targets": [
+      "retrieval_hit",
+      "citation_correctness",
+      "answer_mode",
+      "unsupported_assertion",
+      "evidence_layering"
+    ],
+    "retrieval_assertions": {
+      "top_k_targets": [
+        1,
+        3,
+        5
+      ],
+      "minimum_gold_hits": 1,
+      "match_strategy": "canonical_passage_id"
+    },
+    "answer_assertions": {
+      "mode_match_required": true,
+      "must_include_gold_citation": true,
+      "must_keep_primary_empty": false,
+      "must_have_zero_evidence": false,
+      "must_have_zero_citations": false,
+      "must_refuse": false,
+      "must_avoid_unsupported_assertion": true
+    },
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-003-P-0004"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+        "example_id": "ZJSHL-CH-003-P-0005"
+      }
+    ],
+    "gold_source_type": "manual_independent"
+  },
+  {
+    "question_id": "eval_seed_q114",
+    "query": "阴不足是什么意思？",
+    "question_type": "meaning_explanation",
+    "question_type_label": "含义解释类",
+    "expected_mode": "strong",
+    "gold_record_ids": [
+      "safe:main_passages:ZJSHL-CH-003-P-0006",
+      "full:annotations:ZJSHL-CH-003-P-0007"
+    ],
+    "gold_passage_ids": [
+      "ZJSHL-CH-003-P-0006",
+      "ZJSHL-CH-003-P-0007"
+    ],
+    "gold_evidence_spans": [
+      {
+        "passage_id": "ZJSHL-CH-003-P-0006",
+        "record_id": "safe:main_passages:ZJSHL-CH-003-P-0006",
+        "evidence_role": "primary",
+        "quote": "问曰：病有洒淅恶寒而复发热者，何？答曰：阴脉不足，阳往从之；阳脉不足，阴往乘之。曰：何谓阳不足。答曰：假令寸口脉微，名曰阳不足，阴气上入阳中，则洒淅恶寒也。曰：何谓阴不足。答曰：假令赵本无「假令」二字尺脉弱，名曰阴不足，阳气下陷入阴中，则发热也。",
+        "rationale": "Batch B 人工独立标注：正文直接给出题面概念的定义句式，可作为 strong 主证据。",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_title": "辨脉法第一"
+      },
+      {
+        "passage_id": "ZJSHL-CH-003-P-0007",
+        "record_id": "full:annotations:ZJSHL-CH-003-P-0007",
+        "evidence_role": "secondary",
+        "quote": "一阴一阳谓之道，偏阴偏阳谓之疾。阴偏不足，则阳得而从之；阳偏不足，则阴得而乘之。阳不足，则阴气上入阳中，为恶寒者，阴胜则寒矣；阴不足，阳气下陷入阴中，为发热者，阳胜则热矣。",
+        "rationale": "Batch B 人工独立标注：该注解直接解释题面概念，可作为 strong 解释题的补充证据。",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_title": "辨脉法第一"
+      }
+    ],
+    "annotation_notes": "Batch B 新增 meaning_explanation strong 样本。正文包含“何谓阴不足”“名曰阴不足”的定义句式，注解补充解释；不依赖 evaluator report、系统 replay 或旧示例答案。",
+    "citation_check_required": true,
+    "evaluation_targets": [
+      "retrieval_hit",
+      "citation_correctness",
+      "answer_mode",
+      "unsupported_assertion",
+      "evidence_layering"
+    ],
+    "retrieval_assertions": {
+      "top_k_targets": [
+        1,
+        3,
+        5
+      ],
+      "minimum_gold_hits": 1,
+      "match_strategy": "canonical_passage_id"
+    },
+    "answer_assertions": {
+      "mode_match_required": true,
+      "must_include_gold_citation": true,
+      "must_keep_primary_empty": false,
+      "must_have_zero_evidence": false,
+      "must_have_zero_citations": false,
+      "must_refuse": false,
+      "must_avoid_unsupported_assertion": true
+    },
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-003-P-0006"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+        "example_id": "ZJSHL-CH-003-P-0007"
+      }
+    ],
+    "gold_source_type": "manual_independent"
+  },
+  {
+    "question_id": "eval_seed_q115",
+    "query": "劳复是什么意思？",
+    "question_type": "meaning_explanation",
+    "question_type_label": "含义解释类",
+    "expected_mode": "strong",
+    "gold_record_ids": [
+      "safe:main_passages:ZJSHL-CH-017-P-0049"
+    ],
+    "gold_passage_ids": [
+      "ZJSHL-CH-017-P-0049"
+    ],
+    "gold_evidence_spans": [
+      {
+        "passage_id": "ZJSHL-CH-017-P-0049",
+        "record_id": "safe:main_passages:ZJSHL-CH-017-P-0049",
+        "evidence_role": "primary",
+        "quote": "病有劳复，有食复。伤寒新瘥，血气未平，馀热未尽，早作劳动病者，名曰劳复。病热少愈而强食之，热有所藏，因其谷气留搏，两阳相合而病者，名曰食复。劳复，则热气浮越，与枳实栀子豉汤以解之；食复，则胃有宿积，加大黄以下之。",
+        "rationale": "Batch B 人工独立标注：正文直接给出题面概念的定义句式，可作为 strong 主证据。",
+        "chapter_id": "ZJSHL-CH-017",
+        "chapter_title": "辨阴阳易瘥后劳复病脉证并治法第十四"
+      }
+    ],
+    "annotation_notes": "Batch B 新增 meaning_explanation strong 样本。正文直接写明“早作劳动病者，名曰劳复”，可作为 strong 主证据；不依赖 evaluator report、系统 replay 或旧示例答案。",
+    "citation_check_required": true,
+    "evaluation_targets": [
+      "retrieval_hit",
+      "citation_correctness",
+      "answer_mode",
+      "unsupported_assertion",
+      "evidence_layering"
+    ],
+    "retrieval_assertions": {
+      "top_k_targets": [
+        1,
+        3,
+        5
+      ],
+      "minimum_gold_hits": 1,
+      "match_strategy": "canonical_passage_id"
+    },
+    "answer_assertions": {
+      "mode_match_required": true,
+      "must_include_gold_citation": true,
+      "must_keep_primary_empty": false,
+      "must_have_zero_evidence": false,
+      "must_have_zero_citations": false,
+      "must_refuse": false,
+      "must_avoid_unsupported_assertion": true
+    },
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-017-P-0049"
+      }
+    ],
+    "gold_source_type": "manual_independent"
+  },
+  {
+    "question_id": "eval_seed_q116",
+    "query": "半表半里证是什么意思？",
+    "question_type": "meaning_explanation",
+    "question_type_label": "含义解释类",
+    "expected_mode": "weak_with_review_notice",
+    "gold_record_ids": [
+      "full:annotations:ZJSHL-CH-010-P-0136",
+      "safe:main_passages:ZJSHL-CH-009-P-0210"
+    ],
+    "gold_passage_ids": [
+      "ZJSHL-CH-010-P-0136",
+      "ZJSHL-CH-009-P-0210"
+    ],
+    "gold_evidence_spans": [
+      {
+        "passage_id": "ZJSHL-CH-010-P-0136",
+        "record_id": "full:annotations:ZJSHL-CH-010-P-0136",
+        "evidence_role": "secondary",
+        "quote": "心下痞硬而眩者，少阳也；颈项强者，太阳也。刺大椎、肺俞，以泻太阳之邪，以太阳脉下项挟脊故尔；肝俞以泻少阳之邪，以胆为肝之腑故尔。太阳为在表，少阳为在里，即是半表半里证。前第五医统本作「八」",
+        "rationale": "Batch B 人工独立标注：该段直接解释题面概念或给出其正文语境；本题保持 weak 边界，不设 primary 证据。",
+        "chapter_id": "ZJSHL-CH-010",
+        "chapter_title": "辨太阳病脉证并治法第七"
+      },
+      {
+        "passage_id": "ZJSHL-CH-009-P-0210",
+        "record_id": "safe:main_passages:ZJSHL-CH-009-P-0210",
+        "evidence_role": "secondary",
+        "quote": "病有在表者，有在里者，有在表里之间者。此邪气在表里之间，谓之半表半里证。五六日，邪气自表传里之时。中风者，或伤寒至五六日也。《玉函》曰：中风五六日，伤寒，往来寒热，即是。或中风，或伤寒，非是伤寒再中风，中风复伤寒也。经曰：伤寒中风，有柴胡证，但见一证，便是，不必悉具者正是。谓或中风、或伤寒也。邪在表则寒，邪在里则热。今邪在半表半里之间，未有定处，是以寒热往来也。邪在表，则心腹不满，邪在里，则心腹胀满。今止言胸胁苦满，知邪气在表里之间，未至于心腹满，言胸胁苦满，知邪气在表里也。默默，静也。邪在表，则呻吟不安，邪在里，则烦闷乱。《内经》曰：阳入之阴则静。默默者，邪方自表之里，在表里之间也。邪在表则能食，邪在里则不能食，不欲食者，邪在表里之间，未至于必不能食也。邪在表，则不烦不呕，邪在里，则烦满而呕，医统本有「心」字烦喜呕者，邪在表方传里也。邪初入里，未有定处，则所传不一，故有或为之证。有柴胡证，但见一证便是，即是此或为之证。",
+        "rationale": "Batch B 人工独立标注：该段直接解释题面概念或给出其正文语境；本题保持 weak 边界，不设 primary 证据。",
+        "chapter_id": "ZJSHL-CH-009",
+        "chapter_title": "辨太阳病脉证并治第六"
+      }
+    ],
+    "annotation_notes": "Batch B 新增 meaning_explanation weak 样本。题面概念由 annotations.json 的直接解释与 main_passages.json 的相关语境共同核对；保留 weak_with_review_notice，不设置 primary 证据。",
+    "citation_check_required": true,
+    "evaluation_targets": [
+      "retrieval_hit",
+      "citation_correctness",
+      "answer_mode",
+      "unsupported_assertion",
+      "evidence_layering"
+    ],
+    "retrieval_assertions": {
+      "top_k_targets": [
+        1,
+        3,
+        5
+      ],
+      "minimum_gold_hits": 1,
+      "match_strategy": "canonical_passage_id"
+    },
+    "answer_assertions": {
+      "mode_match_required": true,
+      "must_include_gold_citation": true,
+      "must_keep_primary_empty": true,
+      "must_have_zero_evidence": false,
+      "must_have_zero_citations": false,
+      "must_refuse": false,
+      "must_avoid_unsupported_assertion": true
+    },
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+        "example_id": "ZJSHL-CH-010-P-0136"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-009-P-0210"
+      }
+    ],
+    "gold_source_type": "manual_independent"
+  },
+  {
+    "question_id": "eval_seed_q117",
+    "query": "水结胸是什么意思？",
+    "question_type": "meaning_explanation",
+    "question_type_label": "含义解释类",
+    "expected_mode": "weak_with_review_notice",
+    "gold_record_ids": [
+      "safe:main_passages:ZJSHL-CH-010-P-0026",
+      "safe:main_passages:ZJSHL-CH-010-P-0027"
+    ],
+    "gold_passage_ids": [
+      "ZJSHL-CH-010-P-0026",
+      "ZJSHL-CH-010-P-0027"
+    ],
+    "gold_evidence_spans": [
+      {
+        "passage_id": "ZJSHL-CH-010-P-0026",
+        "record_id": "safe:main_passages:ZJSHL-CH-010-P-0026",
+        "evidence_role": "secondary",
+        "quote": "伤寒十馀日，热结在里，是可下之证，复往来寒热，为正邪分争，未全敛结，与大柴胡汤下之。但结胸无大热者，非热结也，是水饮结于胸胁，谓之水结胸。周身汗出者，是水饮外散，则愈；若但头微汗出，馀处无汗，是水饮不得外泄，停蓄而不行也，与大陷胸汤以逐其水。",
+        "rationale": "Batch B 人工独立标注：该段直接解释题面概念或给出其正文语境；本题保持 weak 边界，不设 primary 证据。",
+        "chapter_id": "ZJSHL-CH-010",
+        "chapter_title": "辨太阳病脉证并治法第七"
+      },
+      {
+        "passage_id": "ZJSHL-CH-010-P-0027",
+        "record_id": "safe:main_passages:ZJSHL-CH-010-P-0027",
+        "evidence_role": "secondary",
+        "quote": "太阳病，重发汗，而复下之，不大便五六日，舌上燥而渴，日晡所小有潮热，赵本注：「一云：日晡所发心胸大烦」从心下至少腹，硬满而痛，不可近者，大陷胸汤主之。",
+        "rationale": "Batch B 人工独立标注：该段直接解释题面概念或给出其正文语境；本题保持 weak 边界，不设 primary 证据。",
+        "chapter_id": "ZJSHL-CH-010",
+        "chapter_title": "辨太阳病脉证并治法第七"
+      }
+    ],
+    "annotation_notes": "Batch B 新增 meaning_explanation weak 样本。题面概念主要由正文解释与相关语境共同核对；保留 weak_with_review_notice，不设置 primary 证据。",
+    "citation_check_required": true,
+    "evaluation_targets": [
+      "retrieval_hit",
+      "citation_correctness",
+      "answer_mode",
+      "unsupported_assertion",
+      "evidence_layering"
+    ],
+    "retrieval_assertions": {
+      "top_k_targets": [
+        1,
+        3,
+        5
+      ],
+      "minimum_gold_hits": 1,
+      "match_strategy": "canonical_passage_id"
+    },
+    "answer_assertions": {
+      "mode_match_required": true,
+      "must_include_gold_citation": true,
+      "must_keep_primary_empty": true,
+      "must_have_zero_evidence": false,
+      "must_have_zero_citations": false,
+      "must_refuse": false,
+      "must_avoid_unsupported_assertion": true
+    },
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0026"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0027"
+      }
+    ],
+    "gold_source_type": "manual_independent"
+  },
+  {
+    "question_id": "eval_seed_q118",
+    "query": "寒格是什么意思？",
+    "question_type": "meaning_explanation",
+    "question_type_label": "含义解释类",
+    "expected_mode": "weak_with_review_notice",
+    "gold_record_ids": [
+      "safe:main_passages:ZJSHL-CH-015-P-0277",
+      "full:annotations:ZJSHL-CH-015-P-0279"
+    ],
+    "gold_passage_ids": [
+      "ZJSHL-CH-015-P-0277",
+      "ZJSHL-CH-015-P-0279"
+    ],
+    "gold_evidence_spans": [
+      {
+        "passage_id": "ZJSHL-CH-015-P-0277",
+        "record_id": "safe:main_passages:ZJSHL-CH-015-P-0277",
+        "evidence_role": "secondary",
+        "quote": "伤寒邪自传表，为本自寒下，医反吐下，损伤正气，寒气内为格拒。经曰：格则吐逆。食入口即吐，谓之寒格，更复吐下，则重虚而死，是更逆吐下，与乾姜黄连黄芩人参汤以通寒格。",
+        "rationale": "Batch B 人工独立标注：该段直接解释题面概念或给出其正文语境；本题保持 weak 边界，不设 primary 证据。",
+        "chapter_id": "ZJSHL-CH-015",
+        "chapter_title": "辨厥阴病脉证并治法第十二"
+      },
+      {
+        "passage_id": "ZJSHL-CH-015-P-0279",
+        "record_id": "full:annotations:ZJSHL-CH-015-P-0279",
+        "evidence_role": "secondary",
+        "quote": "辛以散之，甘以缓之，乾姜、人参之甘辛，以补正气；苦以泄之，黄连、黄芩之苦，以通寒格。",
+        "rationale": "Batch B 人工独立标注：该段直接解释题面概念或给出其正文语境；本题保持 weak 边界，不设 primary 证据。",
+        "chapter_id": "ZJSHL-CH-015",
+        "chapter_title": "辨厥阴病脉证并治法第十二"
+      }
+    ],
+    "annotation_notes": "Batch B 新增 meaning_explanation weak 样本。题面概念由正文语境和注解解释共同核对；保留 weak_with_review_notice，不设置 primary 证据。",
+    "citation_check_required": true,
+    "evaluation_targets": [
+      "retrieval_hit",
+      "citation_correctness",
+      "answer_mode",
+      "unsupported_assertion",
+      "evidence_layering"
+    ],
+    "retrieval_assertions": {
+      "top_k_targets": [
+        1,
+        3,
+        5
+      ],
+      "minimum_gold_hits": 1,
+      "match_strategy": "canonical_passage_id"
+    },
+    "answer_assertions": {
+      "mode_match_required": true,
+      "must_include_gold_citation": true,
+      "must_keep_primary_empty": true,
+      "must_have_zero_evidence": false,
+      "must_have_zero_citations": false,
+      "must_refuse": false,
+      "must_avoid_unsupported_assertion": true
+    },
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-015-P-0277"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+        "example_id": "ZJSHL-CH-015-P-0279"
+      }
+    ],
+    "gold_source_type": "manual_independent"
+  },
+  {
+    "question_id": "eval_seed_q119",
+    "query": "结胸有哪些分支？",
+    "question_type": "general_overview",
+    "question_type_label": "泛问/总括类",
+    "expected_mode": "strong",
+    "gold_record_ids": [
+      "safe:main_passages:ZJSHL-CH-010-P-0002",
+      "safe:main_passages:ZJSHL-CH-010-P-0008",
+      "safe:main_passages:ZJSHL-CH-010-P-0029",
+      "safe:main_passages:ZJSHL-CH-009-P-0312"
+    ],
+    "gold_passage_ids": [
+      "ZJSHL-CH-010-P-0002",
+      "ZJSHL-CH-010-P-0008",
+      "ZJSHL-CH-010-P-0029",
+      "ZJSHL-CH-009-P-0312"
+    ],
+    "gold_evidence_spans": [
+      {
+        "passage_id": "ZJSHL-CH-010-P-0002",
+        "record_id": "safe:main_passages:ZJSHL-CH-010-P-0002",
+        "evidence_role": "primary",
+        "quote": "问曰：病有结胸，有脏结，其状何如？答曰：按之痛，寸脉浮，关脉沉，名曰结胸也。何谓脏结？答曰：如结胸状，饮食如故，时时下利，寸脉浮，关脉小细沉紧，名曰脏结。舌上白苔滑者，难治。",
+        "rationale": "Batch B 人工独立标注：该段属于题面总括主题下的稳定分支条文，多个分支共同支撑总括回答。",
+        "chapter_id": "ZJSHL-CH-010",
+        "chapter_title": "辨太阳病脉证并治法第七"
+      },
+      {
+        "passage_id": "ZJSHL-CH-010-P-0008",
+        "record_id": "safe:main_passages:ZJSHL-CH-010-P-0008",
+        "evidence_role": "primary",
+        "quote": "结胸者，项亦强，如柔 状。下之则和，宜大陷胸丸方。",
+        "rationale": "Batch B 人工独立标注：该段属于题面总括主题下的稳定分支条文，多个分支共同支撑总括回答。",
+        "chapter_id": "ZJSHL-CH-010",
+        "chapter_title": "辨太阳病脉证并治法第七"
+      },
+      {
+        "passage_id": "ZJSHL-CH-010-P-0029",
+        "record_id": "safe:main_passages:ZJSHL-CH-010-P-0029",
+        "evidence_role": "primary",
+        "quote": "小结胸病，正在心下，按之则痛，脉浮滑者，小陷胸汤主之。",
+        "rationale": "Batch B 人工独立标注：该段属于题面总括主题下的稳定分支条文，多个分支共同支撑总括回答。",
+        "chapter_id": "ZJSHL-CH-010",
+        "chapter_title": "辨太阳病脉证并治法第七"
+      },
+      {
+        "passage_id": "ZJSHL-CH-009-P-0312",
+        "record_id": "safe:main_passages:ZJSHL-CH-009-P-0312",
+        "evidence_role": "primary",
+        "quote": "太阳病六七日，表证仍在，脉微而沉，反不结胸，其人发狂者，以热在下焦，少腹当硬满，小便自利者，下血乃愈。所以然者，以太阳随经，瘀热在里故也。抵当汤主之。",
+        "rationale": "Batch B 人工独立标注：该段属于题面总括主题下的稳定分支条文，多个分支共同支撑总括回答。",
+        "chapter_id": "ZJSHL-CH-009",
+        "chapter_title": "辨太阳病脉证并治第六"
+      }
+    ],
+    "annotation_notes": "Batch B 新增 general_overview 样本。题面为边界相对稳定的分支整理题，gold 取 main_passages.json 中多个直接、稳定分支条文，不做单条直答。",
+    "citation_check_required": true,
+    "evaluation_targets": [
+      "retrieval_hit",
+      "citation_correctness",
+      "answer_mode",
+      "unsupported_assertion",
+      "evidence_layering"
+    ],
+    "retrieval_assertions": {
+      "top_k_targets": [
+        1,
+        3,
+        5
+      ],
+      "minimum_gold_hits": 1,
+      "match_strategy": "canonical_passage_id"
+    },
+    "answer_assertions": {
+      "mode_match_required": true,
+      "must_include_gold_citation": true,
+      "must_keep_primary_empty": false,
+      "must_have_zero_evidence": false,
+      "must_have_zero_citations": false,
+      "must_refuse": false,
+      "must_avoid_unsupported_assertion": true
+    },
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0002"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0008"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0029"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-009-P-0312"
+      }
+    ],
+    "gold_source_type": "manual_independent"
+  },
+  {
+    "question_id": "eval_seed_q120",
+    "query": "太阳中风有哪些分支？",
+    "question_type": "general_overview",
+    "question_type_label": "泛问/总括类",
+    "expected_mode": "strong",
+    "gold_record_ids": [
+      "safe:main_passages:ZJSHL-CH-008-P-0215",
+      "safe:main_passages:ZJSHL-CH-010-P-0075"
+    ],
+    "gold_passage_ids": [
+      "ZJSHL-CH-008-P-0215",
+      "ZJSHL-CH-010-P-0075"
+    ],
+    "gold_evidence_spans": [
+      {
+        "passage_id": "ZJSHL-CH-008-P-0215",
+        "record_id": "safe:main_passages:ZJSHL-CH-008-P-0215",
+        "evidence_role": "primary",
+        "quote": "太阳中风，阳浮而阴弱。阳浮者，热自发；阴弱者，汗自出。啬啬恶寒，淅淅恶风，翕翕发热，鼻鸣乾呕者，桂枝汤主之。",
+        "rationale": "Batch B 人工独立标注：该段属于题面总括主题下的稳定分支条文，多个分支共同支撑总括回答。",
+        "chapter_id": "ZJSHL-CH-008",
+        "chapter_title": "辨太阳病脉证并治法上第五"
+      },
+      {
+        "passage_id": "ZJSHL-CH-010-P-0075",
+        "record_id": "safe:main_passages:ZJSHL-CH-010-P-0075",
+        "evidence_role": "primary",
+        "quote": "太阳中风，下利，呕逆，表解者，乃可攻之。其人 汗出，发作有时，头痛，心下痞，硬满，引胁下痛，乾呕，短气，汗出，不恶寒者，此表解里未和也，十枣汤主之。",
+        "rationale": "Batch B 人工独立标注：该段属于题面总括主题下的稳定分支条文，多个分支共同支撑总括回答。",
+        "chapter_id": "ZJSHL-CH-010",
+        "chapter_title": "辨太阳病脉证并治法第七"
+      }
+    ],
+    "annotation_notes": "Batch B 新增 general_overview 样本。题面为边界相对稳定的分支整理题，gold 取 main_passages.json 中多个直接、稳定分支条文，不做单条直答。",
+    "citation_check_required": true,
+    "evaluation_targets": [
+      "retrieval_hit",
+      "citation_correctness",
+      "answer_mode",
+      "unsupported_assertion",
+      "evidence_layering"
+    ],
+    "retrieval_assertions": {
+      "top_k_targets": [
+        1,
+        3,
+        5
+      ],
+      "minimum_gold_hits": 1,
+      "match_strategy": "canonical_passage_id"
+    },
+    "answer_assertions": {
+      "mode_match_required": true,
+      "must_include_gold_citation": true,
+      "must_keep_primary_empty": false,
+      "must_have_zero_evidence": false,
+      "must_have_zero_citations": false,
+      "must_refuse": false,
+      "must_avoid_unsupported_assertion": true
+    },
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-008-P-0215"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0075"
+      }
+    ],
+    "gold_source_type": "manual_independent"
+  },
+  {
+    "question_id": "eval_seed_q121",
+    "query": "咽痛有哪些分支？",
+    "question_type": "general_overview",
+    "question_type_label": "泛问/总括类",
+    "expected_mode": "strong",
+    "gold_record_ids": [
+      "safe:main_passages:ZJSHL-CH-014-P-0099",
+      "safe:main_passages:ZJSHL-CH-014-P-0105",
+      "safe:main_passages:ZJSHL-CH-004-P-0165"
+    ],
+    "gold_passage_ids": [
+      "ZJSHL-CH-014-P-0099",
+      "ZJSHL-CH-014-P-0105",
+      "ZJSHL-CH-004-P-0165"
+    ],
+    "gold_evidence_spans": [
+      {
+        "passage_id": "ZJSHL-CH-014-P-0099",
+        "record_id": "safe:main_passages:ZJSHL-CH-014-P-0099",
+        "evidence_role": "primary",
+        "quote": "少阴病，下痢，赵本医统本并作「利」咽痛，胸满心烦者，赵本无「者」字猪肤汤主之。",
+        "rationale": "Batch B 人工独立标注：该段属于题面总括主题下的稳定分支条文，多个分支共同支撑总括回答。",
+        "chapter_id": "ZJSHL-CH-014",
+        "chapter_title": "辨少阴病脉证并治法第十一"
+      },
+      {
+        "passage_id": "ZJSHL-CH-014-P-0105",
+        "record_id": "safe:main_passages:ZJSHL-CH-014-P-0105",
+        "evidence_role": "primary",
+        "quote": "少阴病，二三日咽痛者，可与甘草汤；不瘥者，赵本无「者」字与桔梗汤。",
+        "rationale": "Batch B 人工独立标注：该段属于题面总括主题下的稳定分支条文，多个分支共同支撑总括回答。",
+        "chapter_id": "ZJSHL-CH-014",
+        "chapter_title": "辨少阴病脉证并治法第十一"
+      },
+      {
+        "passage_id": "ZJSHL-CH-004-P-0165",
+        "record_id": "safe:main_passages:ZJSHL-CH-004-P-0165",
+        "evidence_role": "secondary",
+        "quote": "假令伏气已发，当须脉之，审在何经。得脉微弱者，知邪在少阴，少阴之脉，循喉咙，寒气客之，必发咽痛；肾司开阖，少阴治在下焦，寒邪内甚，则开阖不治，下焦不约，必成下利。故云：虽尔咽痛，复欲下利。",
+        "rationale": "Batch B 人工独立标注：该段属于题面总括主题下的辅助分支或背景语境，用于补充核对。",
+        "chapter_id": "ZJSHL-CH-004",
+        "chapter_title": "平脉法第二"
+      }
+    ],
+    "annotation_notes": "Batch B 新增 general_overview 样本。题面为边界相对稳定的分支整理题，gold 取 main_passages.json 中直接分支条文和辅助语境，不做单条直答。",
+    "citation_check_required": true,
+    "evaluation_targets": [
+      "retrieval_hit",
+      "citation_correctness",
+      "answer_mode",
+      "unsupported_assertion",
+      "evidence_layering"
+    ],
+    "retrieval_assertions": {
+      "top_k_targets": [
+        1,
+        3,
+        5
+      ],
+      "minimum_gold_hits": 1,
+      "match_strategy": "canonical_passage_id"
+    },
+    "answer_assertions": {
+      "mode_match_required": true,
+      "must_include_gold_citation": true,
+      "must_keep_primary_empty": false,
+      "must_have_zero_evidence": false,
+      "must_have_zero_citations": false,
+      "must_refuse": false,
+      "must_avoid_unsupported_assertion": true
+    },
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0099"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0105"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-004-P-0165"
+      }
+    ],
+    "gold_source_type": "manual_independent"
+  },
+  {
+    "question_id": "eval_seed_q122",
+    "query": "我现在腹满便秘，能不能按大承气汤原方服用？",
+    "question_type": "refusal",
+    "question_type_label": "无证据拒答类",
+    "expected_mode": "refuse",
+    "gold_record_ids": [],
+    "gold_passage_ids": [],
+    "gold_evidence_spans": [],
+    "annotation_notes": "Batch B 新增 refusal 样本。题面要求针对个人当前症状给出方药服用建议，超出单书研读支持与证据溯源边界；gold 证据为空。",
+    "citation_check_required": false,
+    "evaluation_targets": [
+      "answer_mode",
+      "unsupported_assertion"
+    ],
+    "retrieval_assertions": {
+      "top_k_targets": [
+        5,
+        10
+      ],
+      "minimum_gold_hits": 0,
+      "match_strategy": "canonical_passage_id"
+    },
+    "answer_assertions": {
+      "mode_match_required": true,
+      "must_include_gold_citation": false,
+      "must_keep_primary_empty": true,
+      "must_have_zero_evidence": true,
+      "must_have_zero_citations": true,
+      "must_refuse": true,
+      "must_avoid_unsupported_assertion": true
+    },
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "corpus_boundary_no_matching_gold"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+        "example_id": "corpus_boundary_no_matching_gold"
+      }
+    ],
+    "gold_source_type": "manual_independent"
+  },
+  {
+    "question_id": "eval_seed_q123",
+    "query": "请按我的体重把真武汤换算成今天的克数和剂量。",
+    "question_type": "refusal",
+    "question_type_label": "无证据拒答类",
+    "expected_mode": "refuse",
+    "gold_record_ids": [],
+    "gold_passage_ids": [],
+    "gold_evidence_spans": [],
+    "annotation_notes": "Batch B 新增 refusal 样本。题面要求按体重和现代单位换算剂量，超出单书研读支持与证据溯源边界；gold 证据为空。",
+    "citation_check_required": false,
+    "evaluation_targets": [
+      "answer_mode",
+      "unsupported_assertion"
+    ],
+    "retrieval_assertions": {
+      "top_k_targets": [
+        5,
+        10
+      ],
+      "minimum_gold_hits": 0,
+      "match_strategy": "canonical_passage_id"
+    },
+    "answer_assertions": {
+      "mode_match_required": true,
+      "must_include_gold_citation": false,
+      "must_keep_primary_empty": true,
+      "must_have_zero_evidence": true,
+      "must_have_zero_citations": true,
+      "must_refuse": true,
+      "must_avoid_unsupported_assertion": true
+    },
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "corpus_boundary_no_matching_gold"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+        "example_id": "corpus_boundary_no_matching_gold"
+      }
+    ],
+    "gold_source_type": "manual_independent"
+  },
+  {
+    "question_id": "eval_seed_q124",
+    "query": "小柴胡汤能不能治疗新冠？",
+    "question_type": "refusal",
+    "question_type_label": "无证据拒答类",
+    "expected_mode": "refuse",
+    "gold_record_ids": [],
+    "gold_passage_ids": [],
+    "gold_evidence_spans": [],
+    "annotation_notes": "Batch B 新增 refusal 样本。题面要求用现代病名判断方剂疗效，超出单书研读支持与证据溯源边界；gold 证据为空。",
+    "citation_check_required": false,
+    "evaluation_targets": [
+      "answer_mode",
+      "unsupported_assertion"
+    ],
+    "retrieval_assertions": {
+      "top_k_targets": [
+        5,
+        10
+      ],
+      "minimum_gold_hits": 0,
+      "match_strategy": "canonical_passage_id"
+    },
+    "answer_assertions": {
+      "mode_match_required": true,
+      "must_include_gold_citation": false,
+      "must_keep_primary_empty": true,
+      "must_have_zero_evidence": true,
+      "must_have_zero_citations": true,
+      "must_refuse": true,
+      "must_avoid_unsupported_assertion": true
+    },
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "corpus_boundary_no_matching_gold"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+        "example_id": "corpus_boundary_no_matching_gold"
+      }
+    ],
+    "gold_source_type": "manual_independent"
+  },
+  {
+    "question_id": "eval_seed_q125",
+    "query": "《伤寒论》和《金匮要略》对水气的定义哪个更准确？",
+    "question_type": "refusal",
+    "question_type_label": "无证据拒答类",
+    "expected_mode": "refuse",
+    "gold_record_ids": [],
+    "gold_passage_ids": [],
+    "gold_evidence_spans": [],
+    "annotation_notes": "Batch B 新增 refusal 样本。题面要求跨书比较和价值判断，超出《伤寒论》单书研读支持边界；gold 证据为空。",
+    "citation_check_required": false,
+    "evaluation_targets": [
+      "answer_mode",
+      "unsupported_assertion"
+    ],
+    "retrieval_assertions": {
+      "top_k_targets": [
+        5,
+        10
+      ],
+      "minimum_gold_hits": 0,
+      "match_strategy": "canonical_passage_id"
+    },
+    "answer_assertions": {
+      "mode_match_required": true,
+      "must_include_gold_citation": false,
+      "must_keep_primary_empty": true,
+      "must_have_zero_evidence": true,
+      "must_have_zero_citations": true,
+      "must_refuse": true,
+      "must_avoid_unsupported_assertion": true
+    },
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "corpus_boundary_no_matching_gold"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+        "example_id": "corpus_boundary_no_matching_gold"
+      }
+    ],
+    "gold_source_type": "manual_independent"
+  },
+  {
+    "question_id": "eval_seed_q126",
+    "query": "请把小柴胡汤做成一个适合我这周症状的七天用药方案。",
+    "question_type": "refusal",
+    "question_type_label": "无证据拒答类",
+    "expected_mode": "refuse",
+    "gold_record_ids": [],
+    "gold_passage_ids": [],
+    "gold_evidence_spans": [],
+    "annotation_notes": "Batch B 新增 refusal 样本。题面要求个体化处方方案和疗程安排，超出证据溯源型研读系统边界；gold 证据为空。",
+    "citation_check_required": false,
+    "evaluation_targets": [
+      "answer_mode",
+      "unsupported_assertion"
+    ],
+    "retrieval_assertions": {
+      "top_k_targets": [
+        5,
+        10
+      ],
+      "minimum_gold_hits": 0,
+      "match_strategy": "canonical_passage_id"
+    },
+    "answer_assertions": {
+      "mode_match_required": true,
+      "must_include_gold_citation": false,
+      "must_keep_primary_empty": true,
+      "must_have_zero_evidence": true,
+      "must_have_zero_citations": true,
+      "must_refuse": true,
+      "must_avoid_unsupported_assertion": true
+    },
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "corpus_boundary_no_matching_gold"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+        "example_id": "corpus_boundary_no_matching_gold"
+      }
+    ],
+    "gold_source_type": "manual_independent"
+  }
+]
