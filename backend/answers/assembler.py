@@ -278,6 +278,34 @@ def normalize_formula_lookup_text(text: str | None, *, keep_formula_suffix: bool
     return normalized
 
 
+def raw_title_anchor(text: str | None) -> str:
+    if not text:
+        return ""
+    first_line = next((line.strip() for line in str(text).splitlines() if line.strip()), "")
+    if not first_line:
+        return ""
+    return re.split(r"[：:]", first_line, maxsplit=1)[0].strip()
+
+
+def clean_formula_title_anchor(title: str | None) -> str:
+    raw_title = compact_whitespace(title)
+    if not raw_title:
+        return ""
+    cleaned = re.sub(r"(?:赵本|医统本)+并有「([^」]+)」字", r"\1", raw_title)
+    cleaned = re.sub(r"(?:赵本|医统本)+(?:作|无)「[^」]+」字?", "", cleaned)
+    return compact_text(cleaned)
+
+
+def formula_title_alias_variants(raw_title: str, canonical_title: str) -> set[str]:
+    variants = {raw_title, canonical_title}
+    variants.add(clean_formula_title_anchor(raw_title))
+    variants.add(
+        clean_formula_title_anchor(re.sub(r"([一-龥])(?:赵本|医统本)+作「([^」]+)」", r"\2", raw_title))
+    )
+    variants.add(clean_formula_title_anchor(re.sub(r"(?:赵本|医统本)+并有「([^」]+)」字", "", raw_title)))
+    return {variant for variant in variants if variant}
+
+
 def dedupe_strings(values: list[str]) -> list[str]:
     seen: set[str] = set()
     ordered: list[str] = []
@@ -976,7 +1004,7 @@ class AnswerAssembler:
 
     def _row_is_formula_heading_for_entity(self, row: dict[str, Any], canonical_name: str) -> bool:
         text = row.get("retrieval_text") or row.get("text_preview", "")
-        title = extract_title_anchor(text)
+        title = clean_formula_title_anchor(raw_title_anchor(text))
         if not title or not title.endswith("方"):
             return False
         return normalize_formula_lookup_text(title, keep_formula_suffix=False) == normalize_formula_lookup_text(
@@ -1311,7 +1339,8 @@ class AnswerAssembler:
         alias_records: list[dict[str, Any]] = []
         for row in rows:
             row_dict = dict(row)
-            title = extract_title_anchor(row_dict["text"])
+            raw_title = raw_title_anchor(row_dict["text"])
+            title = clean_formula_title_anchor(raw_title)
             if not title or not title.endswith("方"):
                 continue
             if title not in catalog:
@@ -1321,10 +1350,11 @@ class AnswerAssembler:
                     "chapter_id": row_dict["chapter_id"],
                     "chapter_name": row_dict["chapter_name"],
                 }
-            alias_keys = {
-                normalize_formula_lookup_text(title, keep_formula_suffix=True),
-                normalize_formula_lookup_text(title, keep_formula_suffix=False),
-            }
+            title_aliases = formula_title_alias_variants(raw_title, title)
+            alias_keys = set()
+            for title_alias in title_aliases:
+                alias_keys.add(normalize_formula_lookup_text(title_alias, keep_formula_suffix=True))
+                alias_keys.add(normalize_formula_lookup_text(title_alias, keep_formula_suffix=False))
             for alias_key in alias_keys:
                 if not alias_key:
                     continue
