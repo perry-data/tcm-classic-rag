@@ -16,6 +16,9 @@ GENERAL_TRIGGER_SPECS = [
     ("如何应对", "management"),
     ("如何治疗", "management"),
     ("如何治", "management"),
+    ("有哪些核心表现和处理边界", "overview"),
+    ("有哪些处理分支", "overview"),
+    ("有哪些核心表现", "overview"),
     ("有哪些情况", "overview"),
     ("有什么情况", "overview"),
     ("有什么分类", "overview"),
@@ -67,6 +70,7 @@ GENERAL_BLOCK_HINTS = (
 FORMULA_BRANCH_PATTERNS = (
     re.compile(r"([一-龥0-9]{1,16}(?:汤|散|丸|饮|方))主之"),
     re.compile(r"宜([一-龥0-9]{1,16}(?:汤|散|丸|饮|方))"),
+    re.compile(r"与([一-龥0-9]{1,16}(?:汤|散|丸|饮|方))"),
 )
 
 NOTE_PATTERNS = (

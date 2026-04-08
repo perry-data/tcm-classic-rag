@@ -48,6 +48,24 @@ GENERAL_WEAK_BRANCH_LIMIT = 3
 GENERAL_SECONDARY_LIMIT = 5
 GENERAL_REVIEW_LIMIT = 3
 
+GENERAL_TOPIC_ALIAS_CONFIG = {
+    compact_text("少阳病"): {
+        "text_aliases": (compact_text("少阳"),),
+        "chapter_aliases": (compact_text("辨少阳病"),),
+    },
+    compact_text("伤寒瘥后"): {
+        "text_aliases": (
+            compact_text("伤寒瘥"),
+            compact_text("大病瘥后"),
+            compact_text("伤寒解后"),
+        ),
+        "chapter_aliases": (
+            compact_text("瘥后"),
+            compact_text("劳复"),
+        ),
+    },
+}
+
 FORMULA_VARIANT_REPLACEMENTS = (
     ("厚朴", "浓朴"),
     ("杏仁", "杏子"),
@@ -722,14 +740,14 @@ class AnswerAssembler:
                 continue
             if row["evidence_level"] not in {"A", "B"}:
                 continue
-            if general_plan.normalized_topic not in compact_text(row["retrieval_text"]):
+            if not self._general_topic_matches(general_plan, row):
                 continue
 
             branch_meta = analyze_general_branch(
                 row["retrieval_text"],
                 general_plan.topic_text,
                 general_kind=general_plan.general_kind,
-                chapter_matches_topic=general_plan.normalized_topic in compact_text(row["chapter_name"]),
+                chapter_matches_topic=self._general_chapter_matches(general_plan, row),
             )
             if branch_meta is None:
                 continue
@@ -757,6 +775,27 @@ class AnswerAssembler:
                 item["row"]["record_id"],
             ),
         )
+
+    def _general_topic_matches(self, general_plan: GeneralQuestionPlan, row: dict[str, Any]) -> bool:
+        normalized_text = compact_text(row["retrieval_text"])
+        if general_plan.normalized_topic in normalized_text:
+            return True
+
+        alias_config = GENERAL_TOPIC_ALIAS_CONFIG.get(general_plan.normalized_topic)
+        if not alias_config:
+            return False
+        if not self._general_chapter_matches(general_plan, row):
+            return False
+        return any(alias in normalized_text for alias in alias_config["text_aliases"])
+
+    def _general_chapter_matches(self, general_plan: GeneralQuestionPlan, row: dict[str, Any]) -> bool:
+        normalized_chapter_name = compact_text(row.get("chapter_name"))
+        if general_plan.normalized_topic in normalized_chapter_name:
+            return True
+        alias_config = GENERAL_TOPIC_ALIAS_CONFIG.get(general_plan.normalized_topic)
+        if not alias_config:
+            return False
+        return any(alias in normalized_chapter_name for alias in alias_config["chapter_aliases"])
 
     def _select_general_branches(
         self,
