@@ -219,31 +219,24 @@
       "question_type_label": "泛问/总括类",
       "expected_mode": "strong",
       "gold_record_ids": [
-        "safe:main_passages:ZJSHL-CH-008-P-0195",
         "safe:main_passages:ZJSHL-CH-008-P-0220",
-        "safe:main_passages:ZJSHL-CH-009-P-0002"
+        "safe:main_passages:ZJSHL-CH-009-P-0002",
+        "safe:main_passages:ZJSHL-CH-008-P-0207",
+        "safe:main_passages:ZJSHL-CH-008-P-0195"
       ],
       "gold_passage_ids": [
-        "ZJSHL-CH-008-P-0195",
         "ZJSHL-CH-008-P-0220",
-        "ZJSHL-CH-009-P-0002"
+        "ZJSHL-CH-009-P-0002",
+        "ZJSHL-CH-008-P-0207",
+        "ZJSHL-CH-008-P-0195"
       ],
       "gold_evidence_spans": [
-        {
-          "passage_id": "ZJSHL-CH-008-P-0195",
-          "record_id": "safe:main_passages:ZJSHL-CH-008-P-0195",
-          "evidence_role": "primary",
-          "quote": "太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名曰赵本作「为」伤寒。",
-          "rationale": "这是太阳病总括回答中的首个稳定分支。",
-          "chapter_id": "ZJSHL-CH-008",
-          "chapter_title": "辨太阳病脉证并治法上第五"
-        },
         {
           "passage_id": "ZJSHL-CH-008-P-0220",
           "record_id": "safe:main_passages:ZJSHL-CH-008-P-0220",
           "evidence_role": "primary",
           "quote": "太阳病，头痛发热，汗出恶风者，赵本无「者」字桂枝汤主之。",
-          "rationale": "这是太阳病总括中的桂枝汤分支，体现“分情况整理”能力。",
+          "rationale": "general_overview 正式化修正 v1：桂枝汤分支直接回答太阳病头痛发热、汗出恶风的治法。",
           "chapter_id": "ZJSHL-CH-008",
           "chapter_title": "辨太阳病脉证并治法上第五"
         },
@@ -252,12 +245,30 @@
           "record_id": "safe:main_passages:ZJSHL-CH-009-P-0002",
           "evidence_role": "primary",
           "quote": "太阳病，项背强几几，无汗，恶风，葛根汤主之。",
-          "rationale": "这是太阳病总括中的另一条稳定分支，避免把总括问答误做成单条直答。",
+          "rationale": "general_overview 正式化修正 v1：葛根汤分支直接回答太阳病项背强几几、无汗恶风的治法。",
           "chapter_id": "ZJSHL-CH-009",
           "chapter_title": "辨太阳病脉证并治第六"
+        },
+        {
+          "passage_id": "ZJSHL-CH-008-P-0207",
+          "record_id": "safe:main_passages:ZJSHL-CH-008-P-0207",
+          "evidence_role": "primary",
+          "quote": "太阳病，头痛至七日已赵本作「以」上自愈者，以行其经尽故也。若欲作再经者，针足阳明，使经不传则愈。",
+          "rationale": "general_overview 正式化修正 v1：针足阳明使经不传为太阳病传经语境下的处理分支。",
+          "chapter_id": "ZJSHL-CH-008",
+          "chapter_title": "辨太阳病脉证并治法上第五"
+        },
+        {
+          "passage_id": "ZJSHL-CH-008-P-0195",
+          "record_id": "safe:main_passages:ZJSHL-CH-008-P-0195",
+          "evidence_role": "secondary",
+          "quote": "太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名曰赵本作「为」伤寒。",
+          "rationale": "general_overview 正式化修正 v1：太阳伤寒分支用于说明太阳病并非单一治法。",
+          "chapter_id": "ZJSHL-CH-008",
+          "chapter_title": "辨太阳病脉证并治法上第五"
         }
       ],
-      "annotation_notes": "该题不是单条问答，而是最小分支整理题。正确行为是 strong + 分支化引用，而不是只给一条方文。",
+      "annotation_notes": "general_overview 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面主题核对最小稳定分支集合：太阳病治法总括：保留 strong，用桂枝汤、葛根汤、针足阳明防传等稳定分支支撑，并以太阳伤寒条作分支语境。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 manual_with_system_reference，本轮改为 manual_independent。",
       "citation_check_required": true,
       "evaluation_targets": [
         "retrieval_hit",
@@ -285,11 +296,23 @@
       },
       "source_refs": [
         {
-          "artifact_path": "artifacts/general_question_examples.json",
-          "example_id": "taiyang_management_strong"
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0220"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0002"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0207"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0195"
         }
       ],
-      "gold_source_type": "manual_with_system_reference"
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q004",
@@ -410,56 +433,78 @@
       "question_type_label": "泛问/总括类",
       "expected_mode": "weak_with_review_notice",
       "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-006-P-0065",
+        "safe:main_passages:ZJSHL-CH-006-P-0073",
         "safe:main_passages:ZJSHL-CH-008-P-0207",
         "safe:main_passages:ZJSHL-CH-016-P-0009",
-        "safe:main_passages:ZJSHL-CH-014-P-0058",
-        "safe:main_passages:ZJSHL-CH-009-P-0312"
+        "safe:main_passages:ZJSHL-CH-006-P-0074",
+        "safe:main_passages:ZJSHL-CH-006-P-0076"
       ],
       "gold_passage_ids": [
+        "ZJSHL-CH-006-P-0065",
+        "ZJSHL-CH-006-P-0073",
         "ZJSHL-CH-008-P-0207",
         "ZJSHL-CH-016-P-0009",
-        "ZJSHL-CH-014-P-0058",
-        "ZJSHL-CH-009-P-0312"
+        "ZJSHL-CH-006-P-0074",
+        "ZJSHL-CH-006-P-0076"
       ],
       "gold_evidence_spans": [
+        {
+          "passage_id": "ZJSHL-CH-006-P-0065",
+          "record_id": "safe:main_passages:ZJSHL-CH-006-P-0065",
+          "evidence_role": "secondary",
+          "quote": "三阳受邪，为病在表，法当汗解。然三阳亦有便入腑者，入腑则宜下，故云未入于腑者，可汗而已。",
+          "rationale": "general_overview 正式化修正 v1：三阳受邪在表可汗，给出六经治法的阳经原则。",
+          "chapter_id": "ZJSHL-CH-006",
+          "chapter_title": "伤寒例第三"
+        },
+        {
+          "passage_id": "ZJSHL-CH-006-P-0073",
+          "record_id": "safe:main_passages:ZJSHL-CH-006-P-0073",
+          "evidence_role": "secondary",
+          "quote": "三阴受邪，为病在里，于法当下。然三阴亦有在经者，在经则宜汗，故云已入于腑者，可下而已。经曰：临病之工，宜须两审。",
+          "rationale": "general_overview 正式化修正 v1：三阴受邪在里可下，给出六经治法的阴经原则。",
+          "chapter_id": "ZJSHL-CH-006",
+          "chapter_title": "伤寒例第三"
+        },
         {
           "passage_id": "ZJSHL-CH-008-P-0207",
           "record_id": "safe:main_passages:ZJSHL-CH-008-P-0207",
           "evidence_role": "secondary",
           "quote": "太阳病，头痛至七日已赵本作「以」上自愈者，以行其经尽故也。若欲作再经者，针足阳明，使经不传则愈。",
-          "rationale": "该题过宽，现有系统只能给出分散线索，这条属于辅助而非主证据。",
+          "rationale": "general_overview 正式化修正 v1：太阳病七日与再经阳明语境可辅助说明六经传变下的处理。",
           "chapter_id": "ZJSHL-CH-008",
           "chapter_title": "辨太阳病脉证并治法上第五"
         },
         {
           "passage_id": "ZJSHL-CH-016-P-0009",
           "record_id": "safe:main_passages:ZJSHL-CH-016-P-0009",
-          "evidence_role": "secondary",
-          "quote": "微为亡阳，涩为亡血。伤寒脉微涩，则本是霍乱，吐利亡阳、亡血，吐利止，伤寒之邪未已，还是伤寒，却四五日邪传阴经之时，里虚遇邪，必作自利。",
-          "rationale": "这是系统当前能召回的跨经线索之一，支持 weak 而非 strong。",
+          "evidence_role": "review",
+          "quote": "微为亡阳，涩为亡血。伤寒脉微涩，则本是霍乱，吐利亡阳、亡血，吐利止，伤寒之邪未已，还是伤寒，却四五日邪传阴经之时，里虚遇邪，必作自利，本呕者，邪甚于上，又利者，邪甚于下，先霍乱里气大虚，又伤寒之邪，再传为吐利，是重虚也，故为不治。若欲似大便，而反失气仍不利者，利为虚，不利为实，欲大便而反失气，里气热也，此属阳明，便必硬也。十三日愈者，伤寒六日，传遍三阴三阳，后六日再传经尽，则阴阳之气和，大邪之气去而愈也。",
+          "rationale": "general_overview 正式化修正 v1：霍乱/伤寒语境中提到传遍三阴三阳，只作宽主题核对材料。",
           "chapter_id": "ZJSHL-CH-016",
           "chapter_title": "辨霍乱病脉证并治法第十三"
         },
         {
-          "passage_id": "ZJSHL-CH-014-P-0058",
-          "record_id": "safe:main_passages:ZJSHL-CH-014-P-0058",
-          "evidence_role": "secondary",
-          "quote": "少阴病，六七日，息高者，死。",
-          "rationale": "该条过短且被降级，进一步说明当前主题覆盖不完整。",
-          "chapter_id": "ZJSHL-CH-014",
-          "chapter_title": "辨少阴病脉证并治法第十一"
+          "passage_id": "ZJSHL-CH-006-P-0074",
+          "record_id": "safe:main_passages:ZJSHL-CH-006-P-0074",
+          "evidence_role": "review",
+          "quote": "若两感于寒者，一日太阳受之，即与少阴俱病，则头痛、口乾、烦满而渴；二日阳明受之，即与太阴俱病，则腹满身热、不欲食、谵语；三日少阳受之，即与厥阴俱病，则耳聋，囊缩而厥，水浆不入，不知人者，六日死。若三阴三阳、六脏六腑皆受病，则荣卫不行；腑脏赵本作「脏腑」不通，则死矣。",
+          "rationale": "general_overview 正式化修正 v1：两感于寒涉及三阴三阳并病，只能作边界核对。",
+          "chapter_id": "ZJSHL-CH-006",
+          "chapter_title": "伤寒例第三"
         },
         {
-          "passage_id": "ZJSHL-CH-009-P-0312",
-          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0312",
-          "evidence_role": "secondary",
-          "quote": "太阳病六七日，表证仍在，脉微而沉，反不结胸，其人发狂者，以热在下焦，少腹当硬满，小便自利者，下血乃愈。所以然者，以太阳随经，瘀热在里故也。抵当汤主之。",
-          "rationale": "这是六经病宽主题下的另一条辅助线索，仍不足以支撑 strong。",
-          "chapter_id": "ZJSHL-CH-009",
-          "chapter_title": "辨太阳病脉证并治第六"
+          "passage_id": "ZJSHL-CH-006-P-0076",
+          "record_id": "safe:main_passages:ZJSHL-CH-006-P-0076",
+          "evidence_role": "review",
+          "quote": "其不两感于寒，更不传经，不加异气者，至七日太阳病衰，头痛少愈也；八日阳明病衰，身热少歇也；九日少阳病衰，耳聋微闻也；十日太阴病衰，腹减如故，则思饮食；十一日少阴病衰，渴止舌乾，已而嚏也；十二日厥阴病衰，囊纵，少腹微下，大气皆去，病患精神爽慧也。",
+          "rationale": "general_overview 正式化修正 v1：六经病衰次序属于预后/传经语境，不作强主证据。",
+          "chapter_id": "ZJSHL-CH-006",
+          "chapter_title": "伤寒例第三"
         }
       ],
-      "annotation_notes": "该题是总括类降级基线。正确行为是 weak_with_review_notice，且 primary_evidence 必须为空；若给 strong，说明系统对超宽主题过度自信。",
+      "annotation_notes": "general_overview 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面主题核对最小稳定分支集合：六经病治法总括过宽：保留 weak，用三阳/三阴治法原则与传经语境作辅助整理。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 manual_with_system_reference，本轮改为 manual_independent。",
       "citation_check_required": true,
       "evaluation_targets": [
         "retrieval_hit",
@@ -487,11 +532,31 @@
       },
       "source_refs": [
         {
-          "artifact_path": "artifacts/general_question_examples.json",
-          "example_id": "liujing_management_weak"
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-006-P-0065"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-006-P-0073"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0207"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-016-P-0009"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-006-P-0074"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-006-P-0076"
         }
       ],
-      "gold_source_type": "manual_with_system_reference"
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q006",
@@ -3240,499 +3305,6 @@
       "gold_record_ids": [
         "safe:main_passages:ZJSHL-CH-011-P-0123",
         "safe:main_passages:ZJSHL-CH-011-P-0146",
-        "safe:main_passages:ZJSHL-CH-011-P-0086"
-      ],
-      "gold_passage_ids": [
-        "ZJSHL-CH-011-P-0123",
-        "ZJSHL-CH-011-P-0146",
-        "ZJSHL-CH-011-P-0086"
-      ],
-      "gold_evidence_spans": [
-        {
-          "passage_id": "ZJSHL-CH-011-P-0123",
-          "record_id": "safe:main_passages:ZJSHL-CH-011-P-0123",
-          "evidence_role": "primary",
-          "quote": "阳明病，发潮热，大便溏，小便自可，胸胁满不去者，小柴胡汤主之。赵本作「与小柴胡汤」，又有「小柴胡汤方」详见卷三",
-          "rationale": "当前正式系统选入的典型分支依据，可支撑总括类最小分支整理。",
-          "chapter_id": "ZJSHL-CH-011",
-          "chapter_title": "辨阳明病脉证并治法第八"
-        },
-        {
-          "passage_id": "ZJSHL-CH-011-P-0146",
-          "record_id": "safe:main_passages:ZJSHL-CH-011-P-0146",
-          "evidence_role": "primary",
-          "quote": "阳明病，下之，心中懊 而烦，胃中有燥屎者可攻。腹微满，初头硬，后必溏，不可攻之。若有燥屎者，宜大承气汤。",
-          "rationale": "当前正式系统选入的典型分支依据，可支撑总括类最小分支整理。",
-          "chapter_id": "ZJSHL-CH-011",
-          "chapter_title": "辨阳明病脉证并治法第八"
-        },
-        {
-          "passage_id": "ZJSHL-CH-011-P-0086",
-          "record_id": "safe:main_passages:ZJSHL-CH-011-P-0086",
-          "evidence_role": "primary",
-          "quote": "阳明病，谵语发潮热，脉滑而疾者，小承气汤主之。因与承气汤一升，腹中转失赵本无「失」字气者，更服一升；若不转失气，赵本作「转气者」勿更与之。明日赵本有「又」字不大便，脉反微涩者，里虚也，为难治，不可更与承气汤也。",
-          "rationale": "当前正式系统选入的典型分支依据，可支撑总括类最小分支整理。",
-          "chapter_id": "ZJSHL-CH-011",
-          "chapter_title": "辨阳明病脉证并治法第八"
-        }
-      ],
-      "annotation_notes": "60-80 扩展样本。按当前总括类最小分支整理口径应返回 strong，不要求穷尽全部分支。",
-      "citation_check_required": true,
-      "evaluation_targets": [
-        "retrieval_hit",
-        "citation_correctness",
-        "answer_mode",
-        "unsupported_assertion",
-        "evidence_layering"
-      ],
-      "retrieval_assertions": {
-        "top_k_targets": [
-          5,
-          10
-        ],
-        "minimum_gold_hits": 2,
-        "match_strategy": "canonical_passage_id"
-      },
-      "answer_assertions": {
-        "mode_match_required": true,
-        "must_include_gold_citation": true,
-        "must_keep_primary_empty": false,
-        "must_have_zero_evidence": false,
-        "must_have_zero_citations": false,
-        "must_refuse": false,
-        "must_avoid_unsupported_assertion": true
-      },
-      "source_refs": [
-        {
-          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
-          "example_id": "eval_seed_q042"
-        }
-      ],
-      "gold_source_type": "system_bootstrapped"
-    },
-    {
-      "question_id": "eval_seed_q043",
-      "query": "太阴病应该怎么办？",
-      "question_type": "general_overview",
-      "question_type_label": "泛问/总括类",
-      "expected_mode": "weak_with_review_notice",
-      "gold_record_ids": [
-        "safe:main_passages:ZJSHL-CH-013-P-0008",
-        "safe:main_passages:ZJSHL-CH-013-P-0018",
-        "safe:main_passages:ZJSHL-CH-014-P-0078",
-        "safe:main_passages:ZJSHL-CH-013-P-0002",
-        "safe:main_passages:ZJSHL-CH-014-P-0072",
-        "full:passages:ZJSHL-CH-013-P-0008",
-        "full:passages:ZJSHL-CH-013-P-0006",
-        "full:ambiguous_passages:ZJSHL-CH-013-P-0006"
-      ],
-      "gold_passage_ids": [
-        "ZJSHL-CH-013-P-0008",
-        "ZJSHL-CH-013-P-0018",
-        "ZJSHL-CH-014-P-0078",
-        "ZJSHL-CH-013-P-0002",
-        "ZJSHL-CH-014-P-0072",
-        "ZJSHL-CH-013-P-0006"
-      ],
-      "gold_evidence_spans": [
-        {
-          "passage_id": "ZJSHL-CH-013-P-0008",
-          "record_id": "safe:main_passages:ZJSHL-CH-013-P-0008",
-          "evidence_role": "secondary",
-          "quote": "太阴病脉浮者，可发汗，宜桂枝汤。赵本有「桂枝汤方」详见卷二",
-          "rationale": "当前正式系统用于总括题的部分分支线索，只能作为弱整理依据。",
-          "chapter_id": "ZJSHL-CH-013",
-          "chapter_title": "辨太阴病脉证并治法第十"
-        },
-        {
-          "passage_id": "ZJSHL-CH-013-P-0018",
-          "record_id": "safe:main_passages:ZJSHL-CH-013-P-0018",
-          "evidence_role": "secondary",
-          "quote": "太阴为病脉弱，其人续自便利，设当行大黄芍药者，宜减之，以其人胃气弱，易动故也。赵本注：「下利者，先煎芍药三沸」",
-          "rationale": "当前正式系统用于总括题的部分分支线索，只能作为弱整理依据。",
-          "chapter_id": "ZJSHL-CH-013",
-          "chapter_title": "辨太阴病脉证并治法第十"
-        },
-        {
-          "passage_id": "ZJSHL-CH-014-P-0078",
-          "record_id": "safe:main_passages:ZJSHL-CH-014-P-0078",
-          "evidence_role": "secondary",
-          "quote": "少阴病，得之一二日，口中和，其背恶寒者，当灸之，附子汤主之。",
-          "rationale": "当前正式系统用于总括题的部分分支线索，只能作为弱整理依据。",
-          "chapter_id": "ZJSHL-CH-014",
-          "chapter_title": "辨少阴病脉证并治法第十一"
-        }
-      ],
-      "annotation_notes": "60-80 扩展样本。按当前总括类最小分支整理口径应返回 weak_with_review_notice，不要求穷尽全部分支。",
-      "citation_check_required": true,
-      "evaluation_targets": [
-        "retrieval_hit",
-        "citation_correctness",
-        "answer_mode",
-        "unsupported_assertion",
-        "evidence_layering"
-      ],
-      "retrieval_assertions": {
-        "top_k_targets": [
-          5,
-          10
-        ],
-        "minimum_gold_hits": 2,
-        "match_strategy": "canonical_passage_id"
-      },
-      "answer_assertions": {
-        "mode_match_required": true,
-        "must_include_gold_citation": true,
-        "must_keep_primary_empty": true,
-        "must_have_zero_evidence": false,
-        "must_have_zero_citations": false,
-        "must_refuse": false,
-        "must_avoid_unsupported_assertion": true
-      },
-      "source_refs": [
-        {
-          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
-          "example_id": "eval_seed_q043"
-        }
-      ],
-      "gold_source_type": "system_bootstrapped"
-    },
-    {
-      "question_id": "eval_seed_q044",
-      "query": "厥阴病应该怎么办？",
-      "question_type": "general_overview",
-      "question_type_label": "泛问/总括类",
-      "expected_mode": "weak_with_review_notice",
-      "gold_record_ids": [
-        "safe:main_passages:ZJSHL-CH-015-P-0193",
-        "safe:main_passages:ZJSHL-CH-015-P-0232",
-        "safe:main_passages:ZJSHL-CH-006-P-0071",
-        "safe:main_passages:ZJSHL-CH-014-P-0097",
-        "safe:main_passages:ZJSHL-CH-014-P-0047",
-        "full:passages:ZJSHL-CH-015-P-0200",
-        "full:ambiguous_passages:ZJSHL-CH-015-P-0200",
-        "full:passages:ZJSHL-CH-015-P-0198"
-      ],
-      "gold_passage_ids": [
-        "ZJSHL-CH-015-P-0193",
-        "ZJSHL-CH-015-P-0232",
-        "ZJSHL-CH-006-P-0071",
-        "ZJSHL-CH-014-P-0097",
-        "ZJSHL-CH-014-P-0047",
-        "ZJSHL-CH-015-P-0200",
-        "ZJSHL-CH-015-P-0198"
-      ],
-      "gold_evidence_spans": [
-        {
-          "passage_id": "ZJSHL-CH-015-P-0193",
-          "record_id": "safe:main_passages:ZJSHL-CH-015-P-0193",
-          "evidence_role": "secondary",
-          "quote": "厥阴之为病，消渴，气上撞心，心中疼热，饥而不欲食，食则吐蛔，下之利不止。",
-          "rationale": "当前正式系统用于总括题的部分分支线索，只能作为弱整理依据。",
-          "chapter_id": "ZJSHL-CH-015",
-          "chapter_title": "辨厥阴病脉证并治法第十二"
-        },
-        {
-          "passage_id": "ZJSHL-CH-015-P-0232",
-          "record_id": "safe:main_passages:ZJSHL-CH-015-P-0232",
-          "evidence_role": "secondary",
-          "quote": "厥少则邪微，热多为阳胜，其病为愈。至七日传经尽，热除则愈；热不除者，为热气有馀，内搏厥阴之血，其后必大便脓血。",
-          "rationale": "当前正式系统用于总括题的部分分支线索，只能作为弱整理依据。",
-          "chapter_id": "ZJSHL-CH-015",
-          "chapter_title": "辨厥阴病脉证并治法第十二"
-        },
-        {
-          "passage_id": "ZJSHL-CH-006-P-0071",
-          "record_id": "safe:main_passages:ZJSHL-CH-006-P-0071",
-          "evidence_role": "secondary",
-          "quote": "缓者，风脉也。厥阴脉微缓者，邪传厥阴，热气已剧，近于风也。当六七日发，以少阴邪传于厥阴。烦满而囊缩者，热气聚于内也。",
-          "rationale": "当前正式系统用于总括题的部分分支线索，只能作为弱整理依据。",
-          "chapter_id": "ZJSHL-CH-006",
-          "chapter_title": "伤寒例第三"
-        }
-      ],
-      "annotation_notes": "60-80 扩展样本。按当前总括类最小分支整理口径应返回 weak_with_review_notice，不要求穷尽全部分支。",
-      "citation_check_required": true,
-      "evaluation_targets": [
-        "retrieval_hit",
-        "citation_correctness",
-        "answer_mode",
-        "unsupported_assertion",
-        "evidence_layering"
-      ],
-      "retrieval_assertions": {
-        "top_k_targets": [
-          5,
-          10
-        ],
-        "minimum_gold_hits": 2,
-        "match_strategy": "canonical_passage_id"
-      },
-      "answer_assertions": {
-        "mode_match_required": true,
-        "must_include_gold_citation": true,
-        "must_keep_primary_empty": true,
-        "must_have_zero_evidence": false,
-        "must_have_zero_citations": false,
-        "must_refuse": false,
-        "must_avoid_unsupported_assertion": true
-      },
-      "source_refs": [
-        {
-          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
-          "example_id": "eval_seed_q044"
-        }
-      ],
-      "gold_source_type": "system_bootstrapped"
-    },
-    {
-      "question_id": "eval_seed_q045",
-      "query": "伤寒应该怎么办？",
-      "question_type": "general_overview",
-      "question_type_label": "泛问/总括类",
-      "expected_mode": "strong",
-      "gold_record_ids": [
-        "safe:main_passages:ZJSHL-CH-006-P-0012",
-        "safe:main_passages:ZJSHL-CH-009-P-0173",
-        "safe:main_passages:ZJSHL-CH-009-P-0320"
-      ],
-      "gold_passage_ids": [
-        "ZJSHL-CH-006-P-0012",
-        "ZJSHL-CH-009-P-0173",
-        "ZJSHL-CH-009-P-0320"
-      ],
-      "gold_evidence_spans": [
-        {
-          "passage_id": "ZJSHL-CH-006-P-0012",
-          "record_id": "safe:main_passages:ZJSHL-CH-006-P-0012",
-          "evidence_role": "primary",
-          "quote": "中而即病者，名曰伤寒；不即病者，寒毒藏于肌肤，至春变为温病，至夏变为暑病。暑病者，热极重于温也。",
-          "rationale": "当前正式系统选入的典型分支依据，可支撑总括类最小分支整理。",
-          "chapter_id": "ZJSHL-CH-006",
-          "chapter_title": "伤寒例第三"
-        },
-        {
-          "passage_id": "ZJSHL-CH-009-P-0173",
-          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0173",
-          "evidence_role": "primary",
-          "quote": "伤寒，医以丸药大下之，身热不去，微烦者，栀子乾姜汤主之。",
-          "rationale": "当前正式系统选入的典型分支依据，可支撑总括类最小分支整理。",
-          "chapter_id": "ZJSHL-CH-009",
-          "chapter_title": "辨太阳病脉证并治第六"
-        },
-        {
-          "passage_id": "ZJSHL-CH-009-P-0320",
-          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0320",
-          "evidence_role": "primary",
-          "quote": "伤寒有热，少腹满，应小便不利；今反利者，为有血也，当下之，不可馀药，宜抵当丸。",
-          "rationale": "当前正式系统选入的典型分支依据，可支撑总括类最小分支整理。",
-          "chapter_id": "ZJSHL-CH-009",
-          "chapter_title": "辨太阳病脉证并治第六"
-        }
-      ],
-      "annotation_notes": "60-80 扩展样本。按当前总括类最小分支整理口径应返回 strong，不要求穷尽全部分支。",
-      "citation_check_required": true,
-      "evaluation_targets": [
-        "retrieval_hit",
-        "citation_correctness",
-        "answer_mode",
-        "unsupported_assertion",
-        "evidence_layering"
-      ],
-      "retrieval_assertions": {
-        "top_k_targets": [
-          5,
-          10
-        ],
-        "minimum_gold_hits": 2,
-        "match_strategy": "canonical_passage_id"
-      },
-      "answer_assertions": {
-        "mode_match_required": true,
-        "must_include_gold_citation": true,
-        "must_keep_primary_empty": false,
-        "must_have_zero_evidence": false,
-        "must_have_zero_citations": false,
-        "must_refuse": false,
-        "must_avoid_unsupported_assertion": true
-      },
-      "source_refs": [
-        {
-          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
-          "example_id": "eval_seed_q045"
-        }
-      ],
-      "gold_source_type": "system_bootstrapped"
-    },
-    {
-      "question_id": "eval_seed_q046",
-      "query": "中风应该怎么办？",
-      "question_type": "general_overview",
-      "question_type_label": "泛问/总括类",
-      "expected_mode": "strong",
-      "gold_record_ids": [
-        "safe:main_passages:ZJSHL-CH-008-P-0193",
-        "safe:main_passages:ZJSHL-CH-008-P-0215",
-        "safe:main_passages:ZJSHL-CH-010-P-0075"
-      ],
-      "gold_passage_ids": [
-        "ZJSHL-CH-008-P-0193",
-        "ZJSHL-CH-008-P-0215",
-        "ZJSHL-CH-010-P-0075"
-      ],
-      "gold_evidence_spans": [
-        {
-          "passage_id": "ZJSHL-CH-008-P-0193",
-          "record_id": "safe:main_passages:ZJSHL-CH-008-P-0193",
-          "evidence_role": "primary",
-          "quote": "太阳病，发热，汗出，恶风，脉缓者，名为中风。",
-          "rationale": "当前正式系统选入的典型分支依据，可支撑总括类最小分支整理。",
-          "chapter_id": "ZJSHL-CH-008",
-          "chapter_title": "辨太阳病脉证并治法上第五"
-        },
-        {
-          "passage_id": "ZJSHL-CH-008-P-0215",
-          "record_id": "safe:main_passages:ZJSHL-CH-008-P-0215",
-          "evidence_role": "primary",
-          "quote": "太阳中风，阳浮而阴弱。阳浮者，热自发；阴弱者，汗自出。啬啬恶寒，淅淅恶风，翕翕发热，鼻鸣乾呕者，桂枝汤主之。",
-          "rationale": "当前正式系统选入的典型分支依据，可支撑总括类最小分支整理。",
-          "chapter_id": "ZJSHL-CH-008",
-          "chapter_title": "辨太阳病脉证并治法上第五"
-        },
-        {
-          "passage_id": "ZJSHL-CH-010-P-0075",
-          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0075",
-          "evidence_role": "primary",
-          "quote": "太阳中风，下利，呕逆，表解者，乃可攻之。其人 汗出，发作有时，头痛，心下痞，硬满，引胁下痛，乾呕，短气，汗出，不恶寒者，此表解里未和也，十枣汤主之。",
-          "rationale": "当前正式系统选入的典型分支依据，可支撑总括类最小分支整理。",
-          "chapter_id": "ZJSHL-CH-010",
-          "chapter_title": "辨太阳病脉证并治法第七"
-        }
-      ],
-      "annotation_notes": "60-80 扩展样本。按当前总括类最小分支整理口径应返回 strong，不要求穷尽全部分支。",
-      "citation_check_required": true,
-      "evaluation_targets": [
-        "retrieval_hit",
-        "citation_correctness",
-        "answer_mode",
-        "unsupported_assertion",
-        "evidence_layering"
-      ],
-      "retrieval_assertions": {
-        "top_k_targets": [
-          5,
-          10
-        ],
-        "minimum_gold_hits": 2,
-        "match_strategy": "canonical_passage_id"
-      },
-      "answer_assertions": {
-        "mode_match_required": true,
-        "must_include_gold_citation": true,
-        "must_keep_primary_empty": false,
-        "must_have_zero_evidence": false,
-        "must_have_zero_citations": false,
-        "must_refuse": false,
-        "must_avoid_unsupported_assertion": true
-      },
-      "source_refs": [
-        {
-          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
-          "example_id": "eval_seed_q046"
-        }
-      ],
-      "gold_source_type": "system_bootstrapped"
-    },
-    {
-      "question_id": "eval_seed_q047",
-      "query": "太阳病有哪些分支？",
-      "question_type": "general_overview",
-      "question_type_label": "泛问/总括类",
-      "expected_mode": "strong",
-      "gold_record_ids": [
-        "safe:main_passages:ZJSHL-CH-008-P-0195",
-        "safe:main_passages:ZJSHL-CH-008-P-0193",
-        "safe:main_passages:ZJSHL-CH-009-P-0002",
-        "safe:main_passages:ZJSHL-CH-008-P-0220"
-      ],
-      "gold_passage_ids": [
-        "ZJSHL-CH-008-P-0195",
-        "ZJSHL-CH-008-P-0193",
-        "ZJSHL-CH-009-P-0002",
-        "ZJSHL-CH-008-P-0220"
-      ],
-      "gold_evidence_spans": [
-        {
-          "passage_id": "ZJSHL-CH-008-P-0195",
-          "record_id": "safe:main_passages:ZJSHL-CH-008-P-0195",
-          "evidence_role": "primary",
-          "quote": "太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名曰赵本作「为」伤寒。",
-          "rationale": "当前正式系统选入的典型分支依据，可支撑总括类最小分支整理。",
-          "chapter_id": "ZJSHL-CH-008",
-          "chapter_title": "辨太阳病脉证并治法上第五"
-        },
-        {
-          "passage_id": "ZJSHL-CH-008-P-0193",
-          "record_id": "safe:main_passages:ZJSHL-CH-008-P-0193",
-          "evidence_role": "primary",
-          "quote": "太阳病，发热，汗出，恶风，脉缓者，名为中风。",
-          "rationale": "当前正式系统选入的典型分支依据，可支撑总括类最小分支整理。",
-          "chapter_id": "ZJSHL-CH-008",
-          "chapter_title": "辨太阳病脉证并治法上第五"
-        },
-        {
-          "passage_id": "ZJSHL-CH-009-P-0002",
-          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0002",
-          "evidence_role": "primary",
-          "quote": "太阳病，项背强几几，无汗，恶风，葛根汤主之。",
-          "rationale": "当前正式系统选入的典型分支依据，可支撑总括类最小分支整理。",
-          "chapter_id": "ZJSHL-CH-009",
-          "chapter_title": "辨太阳病脉证并治第六"
-        }
-      ],
-      "annotation_notes": "60-80 扩展样本。按当前总括类最小分支整理口径应返回 strong，不要求穷尽全部分支。",
-      "citation_check_required": true,
-      "evaluation_targets": [
-        "retrieval_hit",
-        "citation_correctness",
-        "answer_mode",
-        "unsupported_assertion",
-        "evidence_layering"
-      ],
-      "retrieval_assertions": {
-        "top_k_targets": [
-          5,
-          10
-        ],
-        "minimum_gold_hits": 2,
-        "match_strategy": "canonical_passage_id"
-      },
-      "answer_assertions": {
-        "mode_match_required": true,
-        "must_include_gold_citation": true,
-        "must_keep_primary_empty": false,
-        "must_have_zero_evidence": false,
-        "must_have_zero_citations": false,
-        "must_refuse": false,
-        "must_avoid_unsupported_assertion": true
-      },
-      "source_refs": [
-        {
-          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
-          "example_id": "eval_seed_q047"
-        }
-      ],
-      "gold_source_type": "system_bootstrapped"
-    },
-    {
-      "question_id": "eval_seed_q048",
-      "query": "阳明病有哪些情况？",
-      "question_type": "general_overview",
-      "question_type_label": "泛问/总括类",
-      "expected_mode": "strong",
-      "gold_record_ids": [
-        "safe:main_passages:ZJSHL-CH-011-P-0123",
-        "safe:main_passages:ZJSHL-CH-011-P-0146",
         "safe:main_passages:ZJSHL-CH-011-P-0086",
         "safe:main_passages:ZJSHL-CH-011-P-0101"
       ],
@@ -3748,7 +3320,7 @@
           "record_id": "safe:main_passages:ZJSHL-CH-011-P-0123",
           "evidence_role": "primary",
           "quote": "阳明病，发潮热，大便溏，小便自可，胸胁满不去者，小柴胡汤主之。赵本作「与小柴胡汤」，又有「小柴胡汤方」详见卷三",
-          "rationale": "当前正式系统选入的典型分支依据，可支撑总括类最小分支整理。",
+          "rationale": "general_overview 正式化修正 v1：阳明病胸胁满不去分支，主以小柴胡汤。",
           "chapter_id": "ZJSHL-CH-011",
           "chapter_title": "辨阳明病脉证并治法第八"
         },
@@ -3757,7 +3329,7 @@
           "record_id": "safe:main_passages:ZJSHL-CH-011-P-0146",
           "evidence_role": "primary",
           "quote": "阳明病，下之，心中懊 而烦，胃中有燥屎者可攻。腹微满，初头硬，后必溏，不可攻之。若有燥屎者，宜大承气汤。",
-          "rationale": "当前正式系统选入的典型分支依据，可支撑总括类最小分支整理。",
+          "rationale": "general_overview 正式化修正 v1：阳明病燥屎可攻分支，宜大承气汤。",
           "chapter_id": "ZJSHL-CH-011",
           "chapter_title": "辨阳明病脉证并治法第八"
         },
@@ -3766,12 +3338,21 @@
           "record_id": "safe:main_passages:ZJSHL-CH-011-P-0086",
           "evidence_role": "primary",
           "quote": "阳明病，谵语发潮热，脉滑而疾者，小承气汤主之。因与承气汤一升，腹中转失赵本无「失」字气者，更服一升；若不转失气，赵本作「转气者」勿更与之。明日赵本有「又」字不大便，脉反微涩者，里虚也，为难治，不可更与承气汤也。",
-          "rationale": "当前正式系统选入的典型分支依据，可支撑总括类最小分支整理。",
+          "rationale": "general_overview 正式化修正 v1：阳明病谵语发潮热分支，小承气汤主之。",
+          "chapter_id": "ZJSHL-CH-011",
+          "chapter_title": "辨阳明病脉证并治法第八"
+        },
+        {
+          "passage_id": "ZJSHL-CH-011-P-0101",
+          "record_id": "safe:main_passages:ZJSHL-CH-011-P-0101",
+          "evidence_role": "primary",
+          "quote": "阳明病，脉浮而紧，咽燥口苦，腹满而喘，发热汗出，不恶寒，反恶热，身重。若发汗则躁，心愦愦，反谵语。若加烧赵本作「温」针，必怵惕烦躁，不得眠；若下之，则胃中空虚，客气动膈，心中懊 ，舌上苔者，栀子豉汤主之。赵本有「栀子豉汤方」详见卷三",
+          "rationale": "general_overview 正式化修正 v1：阳明病心中懊、舌上苔分支，栀子豉汤主之。",
           "chapter_id": "ZJSHL-CH-011",
           "chapter_title": "辨阳明病脉证并治法第八"
         }
       ],
-      "annotation_notes": "60-80 扩展样本。按当前总括类最小分支整理口径应返回 strong，不要求穷尽全部分支。",
+      "annotation_notes": "general_overview 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面主题核对最小稳定分支集合：阳明病治法总括：保留 strong，用小柴胡、小承气、大承气等稳定分支支撑。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
       "citation_check_required": true,
       "evaluation_targets": [
         "retrieval_hit",
@@ -3799,128 +3380,92 @@
       },
       "source_refs": [
         {
-          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
-          "example_id": "eval_seed_q048"
-        }
-      ],
-      "gold_source_type": "system_bootstrapped"
-    },
-    {
-      "question_id": "eval_seed_q049",
-      "query": "少阴病有哪些分支？",
-      "question_type": "general_overview",
-      "question_type_label": "泛问/总括类",
-      "expected_mode": "strong",
-      "gold_record_ids": [
-        "safe:main_passages:ZJSHL-CH-014-P-0078",
-        "safe:main_passages:ZJSHL-CH-014-P-0112",
-        "safe:main_passages:ZJSHL-CH-014-P-0062",
-        "safe:main_passages:ZJSHL-CH-014-P-0072"
-      ],
-      "gold_passage_ids": [
-        "ZJSHL-CH-014-P-0078",
-        "ZJSHL-CH-014-P-0112",
-        "ZJSHL-CH-014-P-0062",
-        "ZJSHL-CH-014-P-0072"
-      ],
-      "gold_evidence_spans": [
-        {
-          "passage_id": "ZJSHL-CH-014-P-0078",
-          "record_id": "safe:main_passages:ZJSHL-CH-014-P-0078",
-          "evidence_role": "primary",
-          "quote": "少阴病，得之一二日，口中和，其背恶寒者，当灸之，附子汤主之。",
-          "rationale": "当前正式系统选入的典型分支依据，可支撑总括类最小分支整理。",
-          "chapter_id": "ZJSHL-CH-014",
-          "chapter_title": "辨少阴病脉证并治法第十一"
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-011-P-0123"
         },
         {
-          "passage_id": "ZJSHL-CH-014-P-0112",
-          "record_id": "safe:main_passages:ZJSHL-CH-014-P-0112",
-          "evidence_role": "primary",
-          "quote": "少阴病，咽中伤生疮，不能语言，声不出者，苦酒汤主之。",
-          "rationale": "当前正式系统选入的典型分支依据，可支撑总括类最小分支整理。",
-          "chapter_id": "ZJSHL-CH-014",
-          "chapter_title": "辨少阴病脉证并治法第十一"
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-011-P-0146"
         },
         {
-          "passage_id": "ZJSHL-CH-014-P-0062",
-          "record_id": "safe:main_passages:ZJSHL-CH-014-P-0062",
-          "evidence_role": "primary",
-          "quote": "少阴病，始得之，反发热，脉沉者，麻黄附子细辛赵本作「细辛附子」汤主之。",
-          "rationale": "当前正式系统选入的典型分支依据，可支撑总括类最小分支整理。",
-          "chapter_id": "ZJSHL-CH-014",
-          "chapter_title": "辨少阴病脉证并治法第十一"
-        }
-      ],
-      "annotation_notes": "60-80 扩展样本。按当前总括类最小分支整理口径应返回 strong，不要求穷尽全部分支。",
-      "citation_check_required": true,
-      "evaluation_targets": [
-        "retrieval_hit",
-        "citation_correctness",
-        "answer_mode",
-        "unsupported_assertion",
-        "evidence_layering"
-      ],
-      "retrieval_assertions": {
-        "top_k_targets": [
-          5,
-          10
-        ],
-        "minimum_gold_hits": 2,
-        "match_strategy": "canonical_passage_id"
-      },
-      "answer_assertions": {
-        "mode_match_required": true,
-        "must_include_gold_citation": true,
-        "must_keep_primary_empty": false,
-        "must_have_zero_evidence": false,
-        "must_have_zero_citations": false,
-        "must_refuse": false,
-        "must_avoid_unsupported_assertion": true
-      },
-      "source_refs": [
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-011-P-0086"
+        },
         {
-          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
-          "example_id": "eval_seed_q049"
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-011-P-0101"
         }
       ],
-      "gold_source_type": "system_bootstrapped"
+      "gold_source_type": "manual_independent"
     },
     {
-      "question_id": "eval_seed_q050",
-      "query": "霍乱病应该怎么办？",
+      "question_id": "eval_seed_q043",
+      "query": "太阴病应该怎么办？",
       "question_type": "general_overview",
       "question_type_label": "泛问/总括类",
       "expected_mode": "weak_with_review_notice",
       "gold_record_ids": [
-        "safe:main_passages:ZJSHL-CH-016-P-0002",
-        "safe:main_passages:ZJSHL-CH-016-P-0004"
+        "safe:main_passages:ZJSHL-CH-013-P-0002",
+        "safe:main_passages:ZJSHL-CH-013-P-0008",
+        "safe:main_passages:ZJSHL-CH-013-P-0010",
+        "safe:main_passages:ZJSHL-CH-013-P-0014",
+        "safe:main_passages:ZJSHL-CH-013-P-0018"
       ],
       "gold_passage_ids": [
-        "ZJSHL-CH-016-P-0002",
-        "ZJSHL-CH-016-P-0004"
+        "ZJSHL-CH-013-P-0002",
+        "ZJSHL-CH-013-P-0008",
+        "ZJSHL-CH-013-P-0010",
+        "ZJSHL-CH-013-P-0014",
+        "ZJSHL-CH-013-P-0018"
       ],
       "gold_evidence_spans": [
         {
-          "passage_id": "ZJSHL-CH-016-P-0002",
-          "record_id": "safe:main_passages:ZJSHL-CH-016-P-0002",
+          "passage_id": "ZJSHL-CH-013-P-0002",
+          "record_id": "safe:main_passages:ZJSHL-CH-013-P-0002",
           "evidence_role": "secondary",
-          "quote": "问曰：病有霍乱者何？答曰：呕吐而利，名曰霍乱。赵本作「此名霍乱」",
-          "rationale": "当前正式系统用于总括题的部分分支线索，只能作为弱整理依据。",
-          "chapter_id": "ZJSHL-CH-016",
-          "chapter_title": "辨霍乱病脉证并治法第十三"
+          "quote": "太阴之为病，腹满而吐，食不下，自利益甚，时腹自痛。若下之，必胸下结硬。",
+          "rationale": "general_overview 正式化修正 v1：太阴病定义与误下风险，限定主题范围。",
+          "chapter_id": "ZJSHL-CH-013",
+          "chapter_title": "辨太阴病脉证并治法第十"
         },
         {
-          "passage_id": "ZJSHL-CH-016-P-0004",
-          "record_id": "safe:main_passages:ZJSHL-CH-016-P-0004",
+          "passage_id": "ZJSHL-CH-013-P-0008",
+          "record_id": "safe:main_passages:ZJSHL-CH-013-P-0008",
           "evidence_role": "secondary",
-          "quote": "问曰：病发热，头痛，身疼，恶寒，吐利者，此属何病？答曰：此名霍乱。赵本有「霍乱」二字",
-          "rationale": "当前正式系统用于总括题的部分分支线索，只能作为弱整理依据。",
-          "chapter_id": "ZJSHL-CH-016",
-          "chapter_title": "辨霍乱病脉证并治法第十三"
+          "quote": "太阴病脉浮者，可发汗，宜桂枝汤。赵本有「桂枝汤方」详见卷二",
+          "rationale": "general_overview 正式化修正 v1：太阴病脉浮可发汗，宜桂枝汤。",
+          "chapter_id": "ZJSHL-CH-013",
+          "chapter_title": "辨太阴病脉证并治法第十"
+        },
+        {
+          "passage_id": "ZJSHL-CH-013-P-0010",
+          "record_id": "safe:main_passages:ZJSHL-CH-013-P-0010",
+          "evidence_role": "secondary",
+          "quote": "自利不渴者，属太阴，以其脏有寒故也，当温之。宜服四逆辈。",
+          "rationale": "general_overview 正式化修正 v1：自利不渴属太阴，当温之，宜服四逆辈。",
+          "chapter_id": "ZJSHL-CH-013",
+          "chapter_title": "辨太阴病脉证并治法第十"
+        },
+        {
+          "passage_id": "ZJSHL-CH-013-P-0014",
+          "record_id": "safe:main_passages:ZJSHL-CH-013-P-0014",
+          "evidence_role": "secondary",
+          "quote": "本太阳病，医反下之，因而赵本作「尔」腹满时痛者，属太阴也，桂枝加芍药汤主之。赵本有「桂枝加芍药汤方」详见卷十",
+          "rationale": "general_overview 正式化修正 v1：本太阳病误下而属太阴，桂枝加芍药汤主之。",
+          "chapter_id": "ZJSHL-CH-013",
+          "chapter_title": "辨太阴病脉证并治法第十"
+        },
+        {
+          "passage_id": "ZJSHL-CH-013-P-0018",
+          "record_id": "safe:main_passages:ZJSHL-CH-013-P-0018",
+          "evidence_role": "review",
+          "quote": "太阴为病脉弱，其人续自便利，设当行大黄芍药者，宜减之，以其人胃气弱，易动故也。赵本注：「下利者，先煎芍药三沸」",
+          "rationale": "general_overview 正式化修正 v1：太阴为病脉弱时大黄芍药宜减，只作治法边界核对。",
+          "chapter_id": "ZJSHL-CH-013",
+          "chapter_title": "辨太阴病脉证并治法第十"
         }
       ],
-      "annotation_notes": "60-80 扩展样本。按当前总括类最小分支整理口径应返回 weak_with_review_notice，不要求穷尽全部分支。",
+      "annotation_notes": "general_overview 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面主题核对最小稳定分支集合：太阴病治法总括：保留 weak，收紧为太阴章内定义、桂枝汤、四逆辈、桂枝加芍药汤与减药语境。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
       "citation_check_required": true,
       "evaluation_targets": [
         "retrieval_hit",
@@ -3948,11 +3493,801 @@
       },
       "source_refs": [
         {
-          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
-          "example_id": "eval_seed_q050"
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-013-P-0002"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-013-P-0008"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-013-P-0010"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-013-P-0014"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-013-P-0018"
         }
       ],
-      "gold_source_type": "system_bootstrapped"
+      "gold_source_type": "manual_independent"
+    },
+    {
+      "question_id": "eval_seed_q044",
+      "query": "厥阴病应该怎么办？",
+      "question_type": "general_overview",
+      "question_type_label": "泛问/总括类",
+      "expected_mode": "weak_with_review_notice",
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-015-P-0193",
+        "safe:main_passages:ZJSHL-CH-015-P-0200",
+        "safe:main_passages:ZJSHL-CH-015-P-0235",
+        "safe:main_passages:ZJSHL-CH-015-P-0269",
+        "safe:main_passages:ZJSHL-CH-015-P-0232",
+        "safe:main_passages:ZJSHL-CH-015-P-0198"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-015-P-0193",
+        "ZJSHL-CH-015-P-0200",
+        "ZJSHL-CH-015-P-0235",
+        "ZJSHL-CH-015-P-0269",
+        "ZJSHL-CH-015-P-0232",
+        "ZJSHL-CH-015-P-0198"
+      ],
+      "gold_evidence_spans": [
+        {
+          "passage_id": "ZJSHL-CH-015-P-0193",
+          "record_id": "safe:main_passages:ZJSHL-CH-015-P-0193",
+          "evidence_role": "secondary",
+          "quote": "厥阴之为病，消渴，气上撞心，心中疼热，饥而不欲食，食则吐蛔，下之利不止。",
+          "rationale": "general_overview 正式化修正 v1：厥阴病定义与下之利不止风险，限定主题范围。",
+          "chapter_id": "ZJSHL-CH-015",
+          "chapter_title": "辨厥阴病脉证并治法第十二"
+        },
+        {
+          "passage_id": "ZJSHL-CH-015-P-0200",
+          "record_id": "safe:main_passages:ZJSHL-CH-015-P-0200",
+          "evidence_role": "secondary",
+          "quote": "厥阴病，渴欲饮水者，少少与之，愈。",
+          "rationale": "general_overview 正式化修正 v1：厥阴病渴欲饮水者少少与之，为直接处理条文。",
+          "chapter_id": "ZJSHL-CH-015",
+          "chapter_title": "辨厥阴病脉证并治法第十二"
+        },
+        {
+          "passage_id": "ZJSHL-CH-015-P-0235",
+          "record_id": "safe:main_passages:ZJSHL-CH-015-P-0235",
+          "evidence_role": "secondary",
+          "quote": "伤寒六七日，脉微，手足厥冷，烦躁，灸厥阴，厥不还者，死。",
+          "rationale": "general_overview 正式化修正 v1：伤寒六七日厥冷烦躁可灸厥阴，但语境偏危重。",
+          "chapter_id": "ZJSHL-CH-015",
+          "chapter_title": "辨厥阴病脉证并治法第十二"
+        },
+        {
+          "passage_id": "ZJSHL-CH-015-P-0269",
+          "record_id": "safe:main_passages:ZJSHL-CH-015-P-0269",
+          "evidence_role": "secondary",
+          "quote": "伤寒六七日，邪传厥阴之时。大下之后，下焦气虚，阳气内陷，寸脉迟而手足厥逆，下部脉不至。厥阴之脉，贯膈上注肺，循喉咙。在厥阴随经射肺，因亡津液，遂成肺痿，咽喉不利而唾脓血也。《金匮要略》曰：肺痿之病，从何得之，被快药下利，重亡津液，故得之。若泄利不止者，为里气大虚，故云难治。与麻黄升麻汤，以调肝肺之气。",
+          "rationale": "general_overview 正式化修正 v1：邪传厥阴、大下后肺痿咽喉不利语境下，与麻黄升麻汤以调肝肺之气。",
+          "chapter_id": "ZJSHL-CH-015",
+          "chapter_title": "辨厥阴病脉证并治法第十二"
+        },
+        {
+          "passage_id": "ZJSHL-CH-015-P-0232",
+          "record_id": "safe:main_passages:ZJSHL-CH-015-P-0232",
+          "evidence_role": "review",
+          "quote": "厥少则邪微，热多为阳胜，其病为愈。至七日传经尽，热除则愈；热不除者，为热气有馀，内搏厥阴之血，其后必大便脓血。",
+          "rationale": "general_overview 正式化修正 v1：厥少热多等预后语境，只作边界核对。",
+          "chapter_id": "ZJSHL-CH-015",
+          "chapter_title": "辨厥阴病脉证并治法第十二"
+        },
+        {
+          "passage_id": "ZJSHL-CH-015-P-0198",
+          "record_id": "safe:main_passages:ZJSHL-CH-015-P-0198",
+          "evidence_role": "review",
+          "quote": "厥阴病，欲解时，从寅赵本医统本并作「丑」至卯上。",
+          "rationale": "general_overview 正式化修正 v1：厥阴病欲解时属于时间/预后语境，只作 review。",
+          "chapter_id": "ZJSHL-CH-015",
+          "chapter_title": "辨厥阴病脉证并治法第十二"
+        }
+      ],
+      "annotation_notes": "general_overview 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面主题核对最小稳定分支集合：厥阴病治法总括：保留 weak，收紧为厥阴章内定义、少少与水、灸厥阴和麻黄升麻汤语境。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "citation_check_required": true,
+      "evaluation_targets": [
+        "retrieval_hit",
+        "citation_correctness",
+        "answer_mode",
+        "unsupported_assertion",
+        "evidence_layering"
+      ],
+      "retrieval_assertions": {
+        "top_k_targets": [
+          5,
+          10
+        ],
+        "minimum_gold_hits": 2,
+        "match_strategy": "canonical_passage_id"
+      },
+      "answer_assertions": {
+        "mode_match_required": true,
+        "must_include_gold_citation": true,
+        "must_keep_primary_empty": true,
+        "must_have_zero_evidence": false,
+        "must_have_zero_citations": false,
+        "must_refuse": false,
+        "must_avoid_unsupported_assertion": true
+      },
+      "source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-015-P-0193"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-015-P-0200"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-015-P-0235"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-015-P-0269"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-015-P-0232"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-015-P-0198"
+        }
+      ],
+      "gold_source_type": "manual_independent"
+    },
+    {
+      "question_id": "eval_seed_q045",
+      "query": "伤寒应该怎么办？",
+      "question_type": "general_overview",
+      "question_type_label": "泛问/总括类",
+      "expected_mode": "strong",
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-006-P-0048",
+        "safe:main_passages:ZJSHL-CH-006-P-0050",
+        "safe:main_passages:ZJSHL-CH-009-P-0173",
+        "safe:main_passages:ZJSHL-CH-009-P-0320",
+        "safe:main_passages:ZJSHL-CH-006-P-0012"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-006-P-0048",
+        "ZJSHL-CH-006-P-0050",
+        "ZJSHL-CH-009-P-0173",
+        "ZJSHL-CH-009-P-0320",
+        "ZJSHL-CH-006-P-0012"
+      ],
+      "gold_evidence_spans": [
+        {
+          "passage_id": "ZJSHL-CH-006-P-0048",
+          "record_id": "safe:main_passages:ZJSHL-CH-006-P-0048",
+          "evidence_role": "primary",
+          "quote": "伤寒之病，逐日浅深，以斯方治。",
+          "rationale": "general_overview 正式化修正 v1：伤寒之病逐日浅深，以斯方治，为总括治法框架。",
+          "chapter_id": "ZJSHL-CH-006",
+          "chapter_title": "伤寒例第三"
+        },
+        {
+          "passage_id": "ZJSHL-CH-006-P-0050",
+          "record_id": "safe:main_passages:ZJSHL-CH-006-P-0050",
+          "evidence_role": "primary",
+          "quote": "今世人伤寒，或始不早治，或治不对病，或日数久淹，困乃告医。医人又不根据次第而治之，则不中病。皆宜临时消息制方，无不效也。今搜采仲景旧论，录其证候诊脉声色，对病真方，有神验者，拟防世急也。",
+          "rationale": "general_overview 正式化修正 v1：伤寒治疗须临时消息制方，说明不能单条直答。",
+          "chapter_id": "ZJSHL-CH-006",
+          "chapter_title": "伤寒例第三"
+        },
+        {
+          "passage_id": "ZJSHL-CH-009-P-0173",
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0173",
+          "evidence_role": "primary",
+          "quote": "伤寒，医以丸药大下之，身热不去，微烦者，栀子乾姜汤主之。",
+          "rationale": "general_overview 正式化修正 v1：伤寒误下身热不去、微烦者，栀子乾姜汤主之。",
+          "chapter_id": "ZJSHL-CH-009",
+          "chapter_title": "辨太阳病脉证并治第六"
+        },
+        {
+          "passage_id": "ZJSHL-CH-009-P-0320",
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0320",
+          "evidence_role": "primary",
+          "quote": "伤寒有热，少腹满，应小便不利；今反利者，为有血也，当下之，不可馀药，宜抵当丸。",
+          "rationale": "general_overview 正式化修正 v1：伤寒有热、少腹满且小便反利为蓄血，宜抵当丸。",
+          "chapter_id": "ZJSHL-CH-009",
+          "chapter_title": "辨太阳病脉证并治第六"
+        },
+        {
+          "passage_id": "ZJSHL-CH-006-P-0012",
+          "record_id": "safe:main_passages:ZJSHL-CH-006-P-0012",
+          "evidence_role": "secondary",
+          "quote": "中而即病者，名曰伤寒；不即病者，寒毒藏于肌肤，至春变为温病，至夏变为暑病。暑病者，热极重于温也。",
+          "rationale": "general_overview 正式化修正 v1：伤寒定义语境，用于限定题面主题。",
+          "chapter_id": "ZJSHL-CH-006",
+          "chapter_title": "伤寒例第三"
+        }
+      ],
+      "annotation_notes": "general_overview 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面主题核对最小稳定分支集合：伤寒治法总括：保留 strong，用逐日浅深/临时消息制方框架和两个方证分支支撑。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "citation_check_required": true,
+      "evaluation_targets": [
+        "retrieval_hit",
+        "citation_correctness",
+        "answer_mode",
+        "unsupported_assertion",
+        "evidence_layering"
+      ],
+      "retrieval_assertions": {
+        "top_k_targets": [
+          5,
+          10
+        ],
+        "minimum_gold_hits": 2,
+        "match_strategy": "canonical_passage_id"
+      },
+      "answer_assertions": {
+        "mode_match_required": true,
+        "must_include_gold_citation": true,
+        "must_keep_primary_empty": false,
+        "must_have_zero_evidence": false,
+        "must_have_zero_citations": false,
+        "must_refuse": false,
+        "must_avoid_unsupported_assertion": true
+      },
+      "source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-006-P-0048"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-006-P-0050"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0173"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0320"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-006-P-0012"
+        }
+      ],
+      "gold_source_type": "manual_independent"
+    },
+    {
+      "question_id": "eval_seed_q046",
+      "query": "中风应该怎么办？",
+      "question_type": "general_overview",
+      "question_type_label": "泛问/总括类",
+      "expected_mode": "strong",
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0215",
+        "safe:main_passages:ZJSHL-CH-009-P-0031",
+        "safe:main_passages:ZJSHL-CH-009-P-0148",
+        "safe:main_passages:ZJSHL-CH-010-P-0075",
+        "safe:main_passages:ZJSHL-CH-008-P-0193"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-008-P-0215",
+        "ZJSHL-CH-009-P-0031",
+        "ZJSHL-CH-009-P-0148",
+        "ZJSHL-CH-010-P-0075",
+        "ZJSHL-CH-008-P-0193"
+      ],
+      "gold_evidence_spans": [
+        {
+          "passage_id": "ZJSHL-CH-008-P-0215",
+          "record_id": "safe:main_passages:ZJSHL-CH-008-P-0215",
+          "evidence_role": "primary",
+          "quote": "太阳中风，阳浮而阴弱。阳浮者，热自发；阴弱者，汗自出。啬啬恶寒，淅淅恶风，翕翕发热，鼻鸣乾呕者，桂枝汤主之。",
+          "rationale": "general_overview 正式化修正 v1：太阳中风典型分支，桂枝汤主之。",
+          "chapter_id": "ZJSHL-CH-008",
+          "chapter_title": "辨太阳病脉证并治法上第五"
+        },
+        {
+          "passage_id": "ZJSHL-CH-009-P-0031",
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0031",
+          "evidence_role": "primary",
+          "quote": "太阳中风，脉浮紧，发热恶寒，身疼痛，不汗出而烦躁者，大青龙汤主之。若脉微弱，汗出恶风者，不可服。赵本有「之」字服之则厥逆，筋惕肉 ，此为逆也。赵本有「大青龙汤方」五字，医统本作「大青龙汤主之」",
+          "rationale": "general_overview 正式化修正 v1：太阳中风脉浮紧、发热恶寒、烦躁者，大青龙汤主之。",
+          "chapter_id": "ZJSHL-CH-009",
+          "chapter_title": "辨太阳病脉证并治第六"
+        },
+        {
+          "passage_id": "ZJSHL-CH-009-P-0148",
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0148",
+          "evidence_role": "primary",
+          "quote": "中风发热，六七日不解而烦，有表里证，渴欲饮水，水入则吐者，名曰水逆。五苓散主之。",
+          "rationale": "general_overview 正式化修正 v1：中风六七日不解而烦、水逆者，五苓散主之。",
+          "chapter_id": "ZJSHL-CH-009",
+          "chapter_title": "辨太阳病脉证并治第六"
+        },
+        {
+          "passage_id": "ZJSHL-CH-010-P-0075",
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0075",
+          "evidence_role": "primary",
+          "quote": "太阳中风，下利，呕逆，表解者，乃可攻之。其人 汗出，发作有时，头痛，心下痞，硬满，引胁下痛，乾呕，短气，汗出，不恶寒者，此表解里未和也，十枣汤主之。",
+          "rationale": "general_overview 正式化修正 v1：太阳中风表解里未和者，十枣汤主之。",
+          "chapter_id": "ZJSHL-CH-010",
+          "chapter_title": "辨太阳病脉证并治法第七"
+        },
+        {
+          "passage_id": "ZJSHL-CH-008-P-0193",
+          "record_id": "safe:main_passages:ZJSHL-CH-008-P-0193",
+          "evidence_role": "secondary",
+          "quote": "太阳病，发热，汗出，恶风，脉缓者，名为中风。",
+          "rationale": "general_overview 正式化修正 v1：中风定义语境，用于限定题面主题。",
+          "chapter_id": "ZJSHL-CH-008",
+          "chapter_title": "辨太阳病脉证并治法上第五"
+        }
+      ],
+      "annotation_notes": "general_overview 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面主题核对最小稳定分支集合：中风治法总括：保留 strong，用桂枝汤、大青龙汤、五苓散、十枣汤等稳定分支支撑。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "citation_check_required": true,
+      "evaluation_targets": [
+        "retrieval_hit",
+        "citation_correctness",
+        "answer_mode",
+        "unsupported_assertion",
+        "evidence_layering"
+      ],
+      "retrieval_assertions": {
+        "top_k_targets": [
+          5,
+          10
+        ],
+        "minimum_gold_hits": 2,
+        "match_strategy": "canonical_passage_id"
+      },
+      "answer_assertions": {
+        "mode_match_required": true,
+        "must_include_gold_citation": true,
+        "must_keep_primary_empty": false,
+        "must_have_zero_evidence": false,
+        "must_have_zero_citations": false,
+        "must_refuse": false,
+        "must_avoid_unsupported_assertion": true
+      },
+      "source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0215"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0031"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0148"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-010-P-0075"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0193"
+        }
+      ],
+      "gold_source_type": "manual_independent"
+    },
+    {
+      "question_id": "eval_seed_q047",
+      "query": "太阳病有哪些分支？",
+      "question_type": "general_overview",
+      "question_type_label": "泛问/总括类",
+      "expected_mode": "strong",
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0193",
+        "safe:main_passages:ZJSHL-CH-008-P-0195",
+        "safe:main_passages:ZJSHL-CH-008-P-0220",
+        "safe:main_passages:ZJSHL-CH-009-P-0002"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-008-P-0193",
+        "ZJSHL-CH-008-P-0195",
+        "ZJSHL-CH-008-P-0220",
+        "ZJSHL-CH-009-P-0002"
+      ],
+      "gold_evidence_spans": [
+        {
+          "passage_id": "ZJSHL-CH-008-P-0193",
+          "record_id": "safe:main_passages:ZJSHL-CH-008-P-0193",
+          "evidence_role": "primary",
+          "quote": "太阳病，发热，汗出，恶风，脉缓者，名为中风。",
+          "rationale": "general_overview 正式化修正 v1：太阳病中风分支。",
+          "chapter_id": "ZJSHL-CH-008",
+          "chapter_title": "辨太阳病脉证并治法上第五"
+        },
+        {
+          "passage_id": "ZJSHL-CH-008-P-0195",
+          "record_id": "safe:main_passages:ZJSHL-CH-008-P-0195",
+          "evidence_role": "primary",
+          "quote": "太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名曰赵本作「为」伤寒。",
+          "rationale": "general_overview 正式化修正 v1：太阳病伤寒分支。",
+          "chapter_id": "ZJSHL-CH-008",
+          "chapter_title": "辨太阳病脉证并治法上第五"
+        },
+        {
+          "passage_id": "ZJSHL-CH-008-P-0220",
+          "record_id": "safe:main_passages:ZJSHL-CH-008-P-0220",
+          "evidence_role": "primary",
+          "quote": "太阳病，头痛发热，汗出恶风者，赵本无「者」字桂枝汤主之。",
+          "rationale": "general_overview 正式化修正 v1：太阳病头痛发热、汗出恶风的桂枝汤分支。",
+          "chapter_id": "ZJSHL-CH-008",
+          "chapter_title": "辨太阳病脉证并治法上第五"
+        },
+        {
+          "passage_id": "ZJSHL-CH-009-P-0002",
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0002",
+          "evidence_role": "primary",
+          "quote": "太阳病，项背强几几，无汗，恶风，葛根汤主之。",
+          "rationale": "general_overview 正式化修正 v1：太阳病项背强几几、无汗恶风的葛根汤分支。",
+          "chapter_id": "ZJSHL-CH-009",
+          "chapter_title": "辨太阳病脉证并治第六"
+        }
+      ],
+      "annotation_notes": "general_overview 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面主题核对最小稳定分支集合：太阳病分支总括：保留 strong，用中风、伤寒、桂枝汤证、葛根汤证等稳定分支支撑。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "citation_check_required": true,
+      "evaluation_targets": [
+        "retrieval_hit",
+        "citation_correctness",
+        "answer_mode",
+        "unsupported_assertion",
+        "evidence_layering"
+      ],
+      "retrieval_assertions": {
+        "top_k_targets": [
+          5,
+          10
+        ],
+        "minimum_gold_hits": 2,
+        "match_strategy": "canonical_passage_id"
+      },
+      "answer_assertions": {
+        "mode_match_required": true,
+        "must_include_gold_citation": true,
+        "must_keep_primary_empty": false,
+        "must_have_zero_evidence": false,
+        "must_have_zero_citations": false,
+        "must_refuse": false,
+        "must_avoid_unsupported_assertion": true
+      },
+      "source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0193"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0195"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0220"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0002"
+        }
+      ],
+      "gold_source_type": "manual_independent"
+    },
+    {
+      "question_id": "eval_seed_q048",
+      "query": "阳明病有哪些情况？",
+      "question_type": "general_overview",
+      "question_type_label": "泛问/总括类",
+      "expected_mode": "strong",
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0101",
+        "safe:main_passages:ZJSHL-CH-011-P-0123",
+        "safe:main_passages:ZJSHL-CH-011-P-0086",
+        "safe:main_passages:ZJSHL-CH-011-P-0146"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-011-P-0101",
+        "ZJSHL-CH-011-P-0123",
+        "ZJSHL-CH-011-P-0086",
+        "ZJSHL-CH-011-P-0146"
+      ],
+      "gold_evidence_spans": [
+        {
+          "passage_id": "ZJSHL-CH-011-P-0101",
+          "record_id": "safe:main_passages:ZJSHL-CH-011-P-0101",
+          "evidence_role": "primary",
+          "quote": "阳明病，脉浮而紧，咽燥口苦，腹满而喘，发热汗出，不恶寒，反恶热，身重。若发汗则躁，心愦愦，反谵语。若加烧赵本作「温」针，必怵惕烦躁，不得眠；若下之，则胃中空虚，客气动膈，心中懊 ，舌上苔者，栀子豉汤主之。赵本有「栀子豉汤方」详见卷三",
+          "rationale": "general_overview 正式化修正 v1：阳明病发热汗出、不恶寒反恶热等分支，栀子豉汤主之。",
+          "chapter_id": "ZJSHL-CH-011",
+          "chapter_title": "辨阳明病脉证并治法第八"
+        },
+        {
+          "passage_id": "ZJSHL-CH-011-P-0123",
+          "record_id": "safe:main_passages:ZJSHL-CH-011-P-0123",
+          "evidence_role": "primary",
+          "quote": "阳明病，发潮热，大便溏，小便自可，胸胁满不去者，小柴胡汤主之。赵本作「与小柴胡汤」，又有「小柴胡汤方」详见卷三",
+          "rationale": "general_overview 正式化修正 v1：阳明病胸胁满不去分支，小柴胡汤主之。",
+          "chapter_id": "ZJSHL-CH-011",
+          "chapter_title": "辨阳明病脉证并治法第八"
+        },
+        {
+          "passage_id": "ZJSHL-CH-011-P-0086",
+          "record_id": "safe:main_passages:ZJSHL-CH-011-P-0086",
+          "evidence_role": "primary",
+          "quote": "阳明病，谵语发潮热，脉滑而疾者，小承气汤主之。因与承气汤一升，腹中转失赵本无「失」字气者，更服一升；若不转失气，赵本作「转气者」勿更与之。明日赵本有「又」字不大便，脉反微涩者，里虚也，为难治，不可更与承气汤也。",
+          "rationale": "general_overview 正式化修正 v1：阳明病谵语发潮热分支，小承气汤主之。",
+          "chapter_id": "ZJSHL-CH-011",
+          "chapter_title": "辨阳明病脉证并治法第八"
+        },
+        {
+          "passage_id": "ZJSHL-CH-011-P-0146",
+          "record_id": "safe:main_passages:ZJSHL-CH-011-P-0146",
+          "evidence_role": "primary",
+          "quote": "阳明病，下之，心中懊 而烦，胃中有燥屎者可攻。腹微满，初头硬，后必溏，不可攻之。若有燥屎者，宜大承气汤。",
+          "rationale": "general_overview 正式化修正 v1：阳明病燥屎可攻分支，宜大承气汤。",
+          "chapter_id": "ZJSHL-CH-011",
+          "chapter_title": "辨阳明病脉证并治法第八"
+        }
+      ],
+      "annotation_notes": "general_overview 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面主题核对最小稳定分支集合：阳明病情况总括：保留 strong，用栀子豉、小柴胡、小承气、大承气等稳定分支支撑。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "citation_check_required": true,
+      "evaluation_targets": [
+        "retrieval_hit",
+        "citation_correctness",
+        "answer_mode",
+        "unsupported_assertion",
+        "evidence_layering"
+      ],
+      "retrieval_assertions": {
+        "top_k_targets": [
+          5,
+          10
+        ],
+        "minimum_gold_hits": 2,
+        "match_strategy": "canonical_passage_id"
+      },
+      "answer_assertions": {
+        "mode_match_required": true,
+        "must_include_gold_citation": true,
+        "must_keep_primary_empty": false,
+        "must_have_zero_evidence": false,
+        "must_have_zero_citations": false,
+        "must_refuse": false,
+        "must_avoid_unsupported_assertion": true
+      },
+      "source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-011-P-0101"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-011-P-0123"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-011-P-0086"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-011-P-0146"
+        }
+      ],
+      "gold_source_type": "manual_independent"
+    },
+    {
+      "question_id": "eval_seed_q049",
+      "query": "少阴病有哪些分支？",
+      "question_type": "general_overview",
+      "question_type_label": "泛问/总括类",
+      "expected_mode": "strong",
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0062",
+        "safe:main_passages:ZJSHL-CH-014-P-0072",
+        "safe:main_passages:ZJSHL-CH-014-P-0078",
+        "safe:main_passages:ZJSHL-CH-014-P-0112"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-014-P-0062",
+        "ZJSHL-CH-014-P-0072",
+        "ZJSHL-CH-014-P-0078",
+        "ZJSHL-CH-014-P-0112"
+      ],
+      "gold_evidence_spans": [
+        {
+          "passage_id": "ZJSHL-CH-014-P-0062",
+          "record_id": "safe:main_passages:ZJSHL-CH-014-P-0062",
+          "evidence_role": "primary",
+          "quote": "少阴病，始得之，反发热，脉沉者，麻黄附子细辛赵本作「细辛附子」汤主之。",
+          "rationale": "general_overview 正式化修正 v1：少阴病始得反发热、脉沉分支，麻黄附子细辛汤主之。",
+          "chapter_id": "ZJSHL-CH-014",
+          "chapter_title": "辨少阴病脉证并治法第十一"
+        },
+        {
+          "passage_id": "ZJSHL-CH-014-P-0072",
+          "record_id": "safe:main_passages:ZJSHL-CH-014-P-0072",
+          "evidence_role": "primary",
+          "quote": "少阴病，得之二三日以上，心中烦，不得卧，黄连阿胶汤主之。",
+          "rationale": "general_overview 正式化修正 v1：少阴病心中烦、不得卧分支，黄连阿胶汤主之。",
+          "chapter_id": "ZJSHL-CH-014",
+          "chapter_title": "辨少阴病脉证并治法第十一"
+        },
+        {
+          "passage_id": "ZJSHL-CH-014-P-0078",
+          "record_id": "safe:main_passages:ZJSHL-CH-014-P-0078",
+          "evidence_role": "primary",
+          "quote": "少阴病，得之一二日，口中和，其背恶寒者，当灸之，附子汤主之。",
+          "rationale": "general_overview 正式化修正 v1：少阴病背恶寒分支，当灸之，附子汤主之。",
+          "chapter_id": "ZJSHL-CH-014",
+          "chapter_title": "辨少阴病脉证并治法第十一"
+        },
+        {
+          "passage_id": "ZJSHL-CH-014-P-0112",
+          "record_id": "safe:main_passages:ZJSHL-CH-014-P-0112",
+          "evidence_role": "primary",
+          "quote": "少阴病，咽中伤生疮，不能语言，声不出者，苦酒汤主之。",
+          "rationale": "general_overview 正式化修正 v1：少阴病咽中伤生疮、声不出分支，苦酒汤主之。",
+          "chapter_id": "ZJSHL-CH-014",
+          "chapter_title": "辨少阴病脉证并治法第十一"
+        }
+      ],
+      "annotation_notes": "general_overview 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面主题核对最小稳定分支集合：少阴病分支总括：保留 strong，但只处理“有哪些分支”题，不处理 q004 的“应该怎么办”专项口径。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "citation_check_required": true,
+      "evaluation_targets": [
+        "retrieval_hit",
+        "citation_correctness",
+        "answer_mode",
+        "unsupported_assertion",
+        "evidence_layering"
+      ],
+      "retrieval_assertions": {
+        "top_k_targets": [
+          5,
+          10
+        ],
+        "minimum_gold_hits": 2,
+        "match_strategy": "canonical_passage_id"
+      },
+      "answer_assertions": {
+        "mode_match_required": true,
+        "must_include_gold_citation": true,
+        "must_keep_primary_empty": false,
+        "must_have_zero_evidence": false,
+        "must_have_zero_citations": false,
+        "must_refuse": false,
+        "must_avoid_unsupported_assertion": true
+      },
+      "source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-014-P-0062"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-014-P-0072"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-014-P-0078"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-014-P-0112"
+        }
+      ],
+      "gold_source_type": "manual_independent"
+    },
+    {
+      "question_id": "eval_seed_q050",
+      "query": "霍乱病应该怎么办？",
+      "question_type": "general_overview",
+      "question_type_label": "泛问/总括类",
+      "expected_mode": "weak_with_review_notice",
+      "gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-016-P-0002",
+        "safe:main_passages:ZJSHL-CH-016-P-0004",
+        "safe:main_passages:ZJSHL-CH-016-P-0014",
+        "safe:main_passages:ZJSHL-CH-016-P-0006"
+      ],
+      "gold_passage_ids": [
+        "ZJSHL-CH-016-P-0002",
+        "ZJSHL-CH-016-P-0004",
+        "ZJSHL-CH-016-P-0014",
+        "ZJSHL-CH-016-P-0006"
+      ],
+      "gold_evidence_spans": [
+        {
+          "passage_id": "ZJSHL-CH-016-P-0002",
+          "record_id": "safe:main_passages:ZJSHL-CH-016-P-0002",
+          "evidence_role": "secondary",
+          "quote": "问曰：病有霍乱者何？答曰：呕吐而利，名曰霍乱。赵本作「此名霍乱」",
+          "rationale": "general_overview 正式化修正 v1：霍乱定义：呕吐而利。",
+          "chapter_id": "ZJSHL-CH-016",
+          "chapter_title": "辨霍乱病脉证并治法第十三"
+        },
+        {
+          "passage_id": "ZJSHL-CH-016-P-0004",
+          "record_id": "safe:main_passages:ZJSHL-CH-016-P-0004",
+          "evidence_role": "secondary",
+          "quote": "问曰：病发热，头痛，身疼，恶寒，吐利者，此属何病？答曰：此名霍乱。赵本有「霍乱」二字",
+          "rationale": "general_overview 正式化修正 v1：发热头痛身疼恶寒吐利也名霍乱，限定主题范围。",
+          "chapter_id": "ZJSHL-CH-016",
+          "chapter_title": "辨霍乱病脉证并治法第十三"
+        },
+        {
+          "passage_id": "ZJSHL-CH-016-P-0014",
+          "record_id": "safe:main_passages:ZJSHL-CH-016-P-0014",
+          "evidence_role": "secondary",
+          "quote": "霍乱，头痛，发热，身疼痛，热多欲饮水者，五苓散主之；寒多不用水者，理中丸主之。赵本有「五芩散方」详见卷三",
+          "rationale": "general_overview 正式化修正 v1：霍乱头痛发热身疼痛，热多欲饮水者五苓散主之，寒多不用水者理中丸主之。",
+          "chapter_id": "ZJSHL-CH-016",
+          "chapter_title": "辨霍乱病脉证并治法第十三"
+        },
+        {
+          "passage_id": "ZJSHL-CH-016-P-0006",
+          "record_id": "safe:main_passages:ZJSHL-CH-016-P-0006",
+          "evidence_role": "review",
+          "quote": "发热，头痛，身疼，恶寒者，本是伤寒，因邪入里，伤于脾胃，上吐下利，令为霍乱。利止里和，复更发热者，还是伤寒，必汗出而解。",
+          "rationale": "general_overview 正式化修正 v1：霍乱与伤寒关系及利止复热汗解语境，只作 review。",
+          "chapter_id": "ZJSHL-CH-016",
+          "chapter_title": "辨霍乱病脉证并治法第十三"
+        }
+      ],
+      "annotation_notes": "general_overview 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面主题核对最小稳定分支集合：霍乱病治法总括：保留 weak，补入直接治法条文，同时保留定义条文作弱语境。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "citation_check_required": true,
+      "evaluation_targets": [
+        "retrieval_hit",
+        "citation_correctness",
+        "answer_mode",
+        "unsupported_assertion",
+        "evidence_layering"
+      ],
+      "retrieval_assertions": {
+        "top_k_targets": [
+          5,
+          10
+        ],
+        "minimum_gold_hits": 2,
+        "match_strategy": "canonical_passage_id"
+      },
+      "answer_assertions": {
+        "mode_match_required": true,
+        "must_include_gold_citation": true,
+        "must_keep_primary_empty": true,
+        "must_have_zero_evidence": false,
+        "must_have_zero_citations": false,
+        "must_refuse": false,
+        "must_avoid_unsupported_assertion": true
+      },
+      "source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-016-P-0002"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-016-P-0004"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-016-P-0014"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-016-P-0006"
+        }
+      ],
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q051",
