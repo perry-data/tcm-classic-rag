@@ -147,7 +147,7 @@
           "record_id": "full:annotations:ZJSHL-CH-003-P-0016",
           "evidence_role": "secondary",
           "quote": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
-          "rationale": "这段注解直接解释了句意，但只能作辅助依据，不能升格为主证据。",
+          "rationale": "meaning_explanation 正式化修正 v1：注解直接解释“卫阳、荣阴”以及烧针益阳损阴的机制，是本题的解释主体；因仍为弱边界，不升为 primary。",
           "chapter_id": "ZJSHL-CH-003",
           "chapter_title": "辨脉法第一"
         },
@@ -155,8 +155,8 @@
           "passage_id": "ZJSHL-CH-009-P-0295",
           "record_id": "safe:main_passages:ZJSHL-CH-009-P-0295",
           "evidence_role": "secondary",
-          "quote": "烧针发汗，则损阴血，而惊动心气。针处被寒，气聚而成核。心气因惊而虚，肾气乘寒气而动，发为奔豚。",
-          "rationale": "这是与烧针后果相关的正文支持，帮助判断应为弱回答而非强答。",
+          "quote": "烧针发汗，则损阴血，而惊动心气。针处被寒，气聚而成核。心气因惊而虚，肾气乘寒气而动，发为奔豚。《金匮要略》曰：病有奔豚，从惊发得之。肾气欲上乘心，故其气从少腹上冲心也。先灸核上，以散其寒，与桂枝加桂汤，以泄奔豚之气。",
+          "rationale": "meaning_explanation 正式化修正 v1：正文说明烧针发汗会损阴血、惊动心气，可支持烧针对阴血的损伤语境。",
           "chapter_id": "ZJSHL-CH-009",
           "chapter_title": "辨太阳病脉证并治第六"
         },
@@ -165,12 +165,12 @@
           "record_id": "safe:main_passages:ZJSHL-CH-010-P-0080",
           "evidence_role": "secondary",
           "quote": "太阳病，医发汗，遂发热恶寒，因复下之，心下痞，表里俱虚，阴阳气并竭，无阳则阴独，复加烧针，因胸烦，面色青黄，肤 者，难治；今色微黄，手足温者，易愈。",
-          "rationale": "这是烧针相关的正文场景补充，支持“需核对”的弱解释。",
+          "rationale": "meaning_explanation 正式化修正 v1：正文列出表里俱虚后复加烧针的病证场景，可作弱解释的核对语境。",
           "chapter_id": "ZJSHL-CH-010",
           "chapter_title": "辨太阳病脉证并治法第七"
         }
       ],
-      "annotation_notes": "该题当前没有稳定主证据。正确行为是 weak_with_review_notice，且 primary_evidence 必须为空；如果给 strong，视为无证据强答。",
+      "annotation_notes": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：烧针益阳而损阴：保留弱边界，注解为解释主体，烧针损阴血与复加烧针正文作语境补充。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 manual_with_system_reference，本轮改为 manual_independent。",
       "citation_check_required": true,
       "evaluation_targets": [
         "retrieval_hit",
@@ -198,11 +198,19 @@
       },
       "source_refs": [
         {
-          "artifact_path": "artifacts/hybrid_answer_examples.json",
-          "example_id": "weak_with_review_notice"
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0016"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0295"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-010-P-0080"
         }
       ],
-      "gold_source_type": "manual_with_system_reference"
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q003",
@@ -2235,8 +2243,7 @@
       "expected_mode": "weak_with_review_notice",
       "gold_record_ids": [
         "full:annotations:ZJSHL-CH-003-P-0007",
-        "safe:main_passages:ZJSHL-CH-006-P-0034",
-        "full:passages:ZJSHL-CH-003-P-0007"
+        "safe:main_passages:ZJSHL-CH-006-P-0034"
       ],
       "gold_passage_ids": [
         "ZJSHL-CH-003-P-0007",
@@ -2248,7 +2255,7 @@
           "record_id": "full:annotations:ZJSHL-CH-003-P-0007",
           "evidence_role": "secondary",
           "quote": "一阴一阳谓之道，偏阴偏阳谓之疾。阴偏不足，则阳得而从之；阳偏不足，则阴得而乘之。阳不足，则阴气上入阳中，为恶寒者，阴胜则寒矣；阴不足，阳气下陷入阴中，为发热者，阳胜则热矣。",
-          "rationale": "当前正式系统以辅助或核对材料支撑弱解释，需保留核对提示。",
+          "rationale": "meaning_explanation 正式化修正 v1：注解直接解释“一阴一阳谓之道，偏阴偏阳谓之疾”，并说明阴阳偏胜导致寒热。",
           "chapter_id": "ZJSHL-CH-003",
           "chapter_title": "辨脉法第一"
         },
@@ -2257,21 +2264,12 @@
           "record_id": "safe:main_passages:ZJSHL-CH-006-P-0034",
           "evidence_role": "secondary",
           "quote": "是故冬至之后，一阳爻升，一阴爻降也。夏至之后，一阳气下，一阴气上也。",
-          "rationale": "当前正式系统以辅助或核对材料支撑弱解释，需保留核对提示。",
+          "rationale": "meaning_explanation 正式化修正 v1：正文从节气升降说明一阴一阳的往来，可作概念语境补充。",
           "chapter_id": "ZJSHL-CH-006",
           "chapter_title": "伤寒例第三"
-        },
-        {
-          "passage_id": "ZJSHL-CH-003-P-0007",
-          "record_id": "full:passages:ZJSHL-CH-003-P-0007",
-          "evidence_role": "review",
-          "quote": "一阴一阳谓之道，偏阴偏阳谓之疾。阴偏不足，则阳得而从之；阳偏不足，则阴得而乘之。阳不足，则阴气上入阳中，为恶寒者，阴胜则寒矣；阴不足，阳气下陷入阴中，为发热者，阳胜则热矣。",
-          "rationale": "当前正式系统以辅助或核对材料支撑弱解释，需保留核对提示。",
-          "chapter_id": "ZJSHL-CH-003",
-          "chapter_title": "辨脉法第一"
         }
       ],
-      "annotation_notes": "60-80 扩展样本。按当前正式系统边界应返回 weak_with_review_notice，重点检查是否避免无依据强解释。",
+      "annotation_notes": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：一阴一阳谓之道：保留弱边界，注解解释阴阳偏胜，节气阴阳升降正文作辅助。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
       "citation_check_required": true,
       "evaluation_targets": [
         "retrieval_hit",
@@ -2299,11 +2297,15 @@
       },
       "source_refs": [
         {
-          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
-          "example_id": "eval_seed_q029"
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0007"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-006-P-0034"
         }
       ],
-      "gold_source_type": "system_bootstrapped"
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q030",
@@ -2313,18 +2315,11 @@
       "expected_mode": "weak_with_review_notice",
       "gold_record_ids": [
         "full:annotations:ZJSHL-CH-003-P-0009",
-        "safe:main_passages:ZJSHL-CH-003-P-0080",
-        "safe:main_passages:ZJSHL-CH-016-P-0009",
-        "safe:main_passages:ZJSHL-CH-006-P-0067",
-        "safe:main_passages:ZJSHL-CH-003-P-0088",
-        "full:passages:ZJSHL-CH-003-P-0009"
+        "safe:main_passages:ZJSHL-CH-003-P-0080"
       ],
       "gold_passage_ids": [
         "ZJSHL-CH-003-P-0009",
-        "ZJSHL-CH-003-P-0080",
-        "ZJSHL-CH-016-P-0009",
-        "ZJSHL-CH-006-P-0067",
-        "ZJSHL-CH-003-P-0088"
+        "ZJSHL-CH-003-P-0080"
       ],
       "gold_evidence_spans": [
         {
@@ -2332,7 +2327,7 @@
           "record_id": "full:annotations:ZJSHL-CH-003-P-0009",
           "evidence_role": "secondary",
           "quote": "阳为气，阴为血。阳脉浮者，卫气强也；阴脉弱者，荣血弱也。《难经》曰：气主 之，血主濡之。血虚，则不能濡润筋络，故筋急也。",
-          "rationale": "当前正式系统以辅助或核对材料支撑弱解释，需保留核对提示。",
+          "rationale": "meaning_explanation 正式化修正 v1：注解直接解释“阳为气，阴为血”，并以卫气、荣血和气血濡润作说明。",
           "chapter_id": "ZJSHL-CH-003",
           "chapter_title": "辨脉法第一"
         },
@@ -2341,21 +2336,12 @@
           "record_id": "safe:main_passages:ZJSHL-CH-003-P-0080",
           "evidence_role": "secondary",
           "quote": "肺主气，心主血，气为阳，血为阴。阳反独留者，则为身体大热，是血先绝而气独在也。形体如烟熏者，为身无精华，是血绝不荣于身也。心脉侠咽系目，直视者，心经绝也。头为诸阳之会，摇头者，阴绝而阳无根也。",
-          "rationale": "当前正式系统以辅助或核对材料支撑弱解释，需保留核对提示。",
+          "rationale": "meaning_explanation 正式化修正 v1：正文明确说“气为阳，血为阴”，是题面概念的正文支撑。",
           "chapter_id": "ZJSHL-CH-003",
           "chapter_title": "辨脉法第一"
-        },
-        {
-          "passage_id": "ZJSHL-CH-016-P-0009",
-          "record_id": "safe:main_passages:ZJSHL-CH-016-P-0009",
-          "evidence_role": "secondary",
-          "quote": "微为亡阳，涩为亡血。伤寒脉微涩，则本是霍乱，吐利亡阳、亡血，吐利止，伤寒之邪未已，还是伤寒，却四五日邪传阴经之时，里虚遇邪，必作自利，本呕者，邪甚于上，又利者，邪甚于下，先霍乱里气大虚，又伤寒之邪，再传为吐利，是重虚也，故为不治。若欲似大便...",
-          "rationale": "当前正式系统以辅助或核对材料支撑弱解释，需保留核对提示。",
-          "chapter_id": "ZJSHL-CH-016",
-          "chapter_title": "辨霍乱病脉证并治法第十三"
         }
       ],
-      "annotation_notes": "60-80 扩展样本。按当前正式系统边界应返回 weak_with_review_notice，重点检查是否避免无依据强解释。",
+      "annotation_notes": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：阳为气，阴为血：保留弱边界，注解和正文“气为阳，血为阴”共同支撑。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
       "citation_check_required": true,
       "evaluation_targets": [
         "retrieval_hit",
@@ -2383,11 +2369,15 @@
       },
       "source_refs": [
         {
-          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
-          "example_id": "eval_seed_q030"
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0009"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-003-P-0080"
         }
       ],
-      "gold_source_type": "system_bootstrapped"
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q031",
@@ -2397,18 +2387,11 @@
       "expected_mode": "weak_with_review_notice",
       "gold_record_ids": [
         "full:annotations:ZJSHL-CH-003-P-0011",
-        "safe:main_passages:ZJSHL-CH-003-P-0010",
-        "safe:main_passages:ZJSHL-CH-003-P-0067",
-        "safe:main_passages:ZJSHL-CH-015-P-0294",
-        "safe:main_passages:ZJSHL-CH-004-P-0257",
-        "full:passages:ZJSHL-CH-003-P-0011"
+        "safe:main_passages:ZJSHL-CH-003-P-0010"
       ],
       "gold_passage_ids": [
         "ZJSHL-CH-003-P-0011",
-        "ZJSHL-CH-003-P-0010",
-        "ZJSHL-CH-003-P-0067",
-        "ZJSHL-CH-015-P-0294",
-        "ZJSHL-CH-004-P-0257"
+        "ZJSHL-CH-003-P-0010"
       ],
       "gold_evidence_spans": [
         {
@@ -2416,7 +2399,7 @@
           "record_id": "full:annotations:ZJSHL-CH-003-P-0011",
           "evidence_role": "secondary",
           "quote": "《内经》云：脉者，血之府也。脉实则血实，脉虚则血虚，此其常也。脉沉者，知荣血内微也。",
-          "rationale": "当前正式系统以辅助或核对材料支撑弱解释，需保留核对提示。",
+          "rationale": "meaning_explanation 正式化修正 v1：注解直接说明“脉者血之府”，并以脉沉推知荣血内微。",
           "chapter_id": "ZJSHL-CH-003",
           "chapter_title": "辨脉法第一"
         },
@@ -2425,21 +2408,12 @@
           "record_id": "safe:main_passages:ZJSHL-CH-003-P-0010",
           "evidence_role": "secondary",
           "quote": "其脉沉者，荣气微也。",
-          "rationale": "当前正式系统以辅助或核对材料支撑弱解释，需保留核对提示。",
-          "chapter_id": "ZJSHL-CH-003",
-          "chapter_title": "辨脉法第一"
-        },
-        {
-          "passage_id": "ZJSHL-CH-003-P-0067",
-          "record_id": "safe:main_passages:ZJSHL-CH-003-P-0067",
-          "evidence_role": "secondary",
-          "quote": "师曰：病患脉微而涩者，此为医所病也。大发其汗，又数大下之，其人亡血，病当恶寒，后乃发热，无休止时。夏月盛热，欲著覆衣，冬月盛寒，欲裸其身，所以然者，阳微则恶寒，阴弱则发热。此医发其汗，令赵本作「使」阳气微，又大下之，令阴气弱，五月之时，阳气...",
-          "rationale": "当前正式系统以辅助或核对材料支撑弱解释，需保留核对提示。",
+          "rationale": "meaning_explanation 正式化修正 v1：正文原句“其脉沉者，荣气微也”是题面句子的直接正文语境。",
           "chapter_id": "ZJSHL-CH-003",
           "chapter_title": "辨脉法第一"
         }
       ],
-      "annotation_notes": "60-80 扩展样本。按当前正式系统边界应返回 weak_with_review_notice，重点检查是否避免无依据强解释。",
+      "annotation_notes": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：脉沉者知荣血内微：保留弱边界，注解说明脉为血府，正文给出荣气微原句。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
       "citation_check_required": true,
       "evaluation_targets": [
         "retrieval_hit",
@@ -2467,11 +2441,15 @@
       },
       "source_refs": [
         {
-          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
-          "example_id": "eval_seed_q031"
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0011"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-003-P-0010"
         }
       ],
-      "gold_source_type": "system_bootstrapped"
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q032",
@@ -2481,9 +2459,7 @@
       "expected_mode": "weak_with_review_notice",
       "gold_record_ids": [
         "full:annotations:ZJSHL-CH-003-P-0013",
-        "full:annotations:ZJSHL-CH-004-P-0209",
-        "full:passages:ZJSHL-CH-003-P-0013",
-        "full:passages:ZJSHL-CH-004-P-0209"
+        "full:annotations:ZJSHL-CH-004-P-0209"
       ],
       "gold_passage_ids": [
         "ZJSHL-CH-003-P-0013",
@@ -2495,7 +2471,7 @@
           "record_id": "full:annotations:ZJSHL-CH-003-P-0013",
           "evidence_role": "secondary",
           "quote": "《针经》云：卫气者，所以温分肉、充皮毛、肥腠理、司开合者也。脉浮，汗出如流珠者，腠理不密，开合不司，为卫气外衰也。浮主候卫，沉主候荣，以浮沉别荣卫之衰微，理固然矣。",
-          "rationale": "当前正式系统以辅助或核对材料支撑弱解释，需保留核对提示。",
+          "rationale": "meaning_explanation 正式化修正 v1：注解直接引“卫气者，所以温分肉、充皮毛、肥腠理、司开合者也”，是解释主体。",
           "chapter_id": "ZJSHL-CH-003",
           "chapter_title": "辨脉法第一"
         },
@@ -2504,21 +2480,12 @@
           "record_id": "full:annotations:ZJSHL-CH-004-P-0209",
           "evidence_role": "secondary",
           "quote": "高者，暴狂而肥。《内经》曰：阴不胜其阳，则脉流薄疾，并乃狂。卫为阳气，卫盛而暴狂者，阴不胜阳也。《针经》曰：卫气者，所以温分肉、充皮毛、肥腠理、司开阖者也。卫气盛，为肥者气盛于外也。",
-          "rationale": "当前正式系统以辅助或核对材料支撑弱解释，需保留核对提示。",
+          "rationale": "meaning_explanation 正式化修正 v1：平脉法注解再次引用同一句，并从卫为阳气、卫盛于外解释其语境。",
           "chapter_id": "ZJSHL-CH-004",
           "chapter_title": "平脉法第二"
-        },
-        {
-          "passage_id": "ZJSHL-CH-003-P-0013",
-          "record_id": "full:passages:ZJSHL-CH-003-P-0013",
-          "evidence_role": "review",
-          "quote": "《针经》云：卫气者，所以温分肉、充皮毛、肥腠理、司开合者也。脉浮，汗出如流珠者，腠理不密，开合不司，为卫气外衰也。浮主候卫，沉主候荣，以浮沉别荣卫之衰微，理固然矣。",
-          "rationale": "当前正式系统以辅助或核对材料支撑弱解释，需保留核对提示。",
-          "chapter_id": "ZJSHL-CH-003",
-          "chapter_title": "辨脉法第一"
         }
       ],
-      "annotation_notes": "60-80 扩展样本。按当前正式系统边界应返回 weak_with_review_notice，重点检查是否避免无依据强解释。",
+      "annotation_notes": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：卫气者所以温分肉：保留弱边界，以两处注解中直接引文为解释材料。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
       "citation_check_required": true,
       "evaluation_targets": [
         "retrieval_hit",
@@ -2546,11 +2513,15 @@
       },
       "source_refs": [
         {
-          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
-          "example_id": "eval_seed_q032"
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0013"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-004-P-0209"
         }
       ],
-      "gold_source_type": "system_bootstrapped"
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q033",
@@ -2561,16 +2532,12 @@
       "gold_record_ids": [
         "full:annotations:ZJSHL-CH-003-P-0015",
         "full:annotations:ZJSHL-CH-009-P-0302",
-        "full:annotations:ZJSHL-CH-011-P-0103",
-        "full:passages:ZJSHL-CH-003-P-0015",
-        "full:passages:ZJSHL-CH-009-P-0302",
-        "full:ambiguous_passages:ZJSHL-CH-008-P-0257"
+        "full:annotations:ZJSHL-CH-011-P-0103"
       ],
       "gold_passage_ids": [
         "ZJSHL-CH-003-P-0015",
         "ZJSHL-CH-009-P-0302",
-        "ZJSHL-CH-011-P-0103",
-        "ZJSHL-CH-008-P-0257"
+        "ZJSHL-CH-011-P-0103"
       ],
       "gold_evidence_spans": [
         {
@@ -2578,7 +2545,7 @@
           "record_id": "full:annotations:ZJSHL-CH-003-P-0015",
           "evidence_role": "secondary",
           "quote": "荣气微者，加烧针，则血流赵本作「留」不行，更发热而躁烦也。",
-          "rationale": "当前正式系统以辅助或核对材料支撑弱解释，需保留核对提示。",
+          "rationale": "meaning_explanation 正式化修正 v1：注解直接解释荣气微而加烧针会使血留不行、更发热躁烦。",
           "chapter_id": "ZJSHL-CH-003",
           "chapter_title": "辨脉法第一"
         },
@@ -2587,21 +2554,21 @@
           "record_id": "full:annotations:ZJSHL-CH-009-P-0302",
           "evidence_role": "secondary",
           "quote": "寒则伤荣。荣气微者，加烧针，则血留不行。惊者温针，损荣血而动心气。《金匮要略》曰：血气少者属于心。",
-          "rationale": "当前正式系统以辅助或核对材料支撑弱解释，需保留核对提示。",
+          "rationale": "meaning_explanation 正式化修正 v1：太阳病注解说明寒伤荣与温针损荣血、动心气，可作同概念补充。",
           "chapter_id": "ZJSHL-CH-009",
           "chapter_title": "辨太阳病脉证并治第六"
         },
         {
           "passage_id": "ZJSHL-CH-011-P-0103",
           "record_id": "full:annotations:ZJSHL-CH-011-P-0103",
-          "evidence_role": "secondary",
-          "quote": "此表里俱有邪，犹当双医统本作「和」解之。若发汗攻表，表热虽除，而内热益甚，故躁而愦愦，反谵语。愦愦者，心乱。经曰：荣气微者，加烧针则血不行，更发热而躁烦。此表里有热，若加烧针，则损动阴气，故怵惕烦躁不得眠也；若下之，里热虽去，则胃中空虚，表...",
-          "rationale": "当前正式系统以辅助或核对材料支撑弱解释，需保留核对提示。",
+          "evidence_role": "review",
+          "quote": "此表里俱有邪，犹当双医统本作「和」解之。若发汗攻表，表热虽除，而内热益甚，故躁而愦愦，反谵语。愦愦者，心乱。经曰：荣气微者，加烧针则血不行，更发热而躁烦。此表里有热，若加烧针，则损动阴气，故怵惕烦躁不得眠也；若下之，里热虽去，则胃中空虚，表中客邪之气乘虚陷于上焦，烦动于膈，使心中懊 而不了了也。舌上苔黄者，热气客于胃中；舌上苔白，知热气客于胸中，与栀子豉汤，以吐胸中之邪。",
+          "rationale": "meaning_explanation 正式化修正 v1：阳明病注解引用“荣气微者，加烧针则血不行”，但处于另一证候说明中，只作 review 核对。",
           "chapter_id": "ZJSHL-CH-011",
           "chapter_title": "辨阳明病脉证并治法第八"
         }
       ],
-      "annotation_notes": "60-80 扩展样本。按当前正式系统边界应返回 weak_with_review_notice，重点检查是否避免无依据强解释。",
+      "annotation_notes": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：荣气微者加烧针：保留弱边界，直接注解和太阳病注解为 secondary，阳明注解作 review。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
       "citation_check_required": true,
       "evaluation_targets": [
         "retrieval_hit",
@@ -2629,11 +2596,19 @@
       },
       "source_refs": [
         {
-          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
-          "example_id": "eval_seed_q033"
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0015"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-009-P-0302"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-011-P-0103"
         }
       ],
-      "gold_source_type": "system_bootstrapped"
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q034",
@@ -2642,10 +2617,12 @@
       "question_type_label": "含义解释类",
       "expected_mode": "strong",
       "gold_record_ids": [
-        "safe:main_passages:ZJSHL-CH-003-P-0017"
+        "safe:main_passages:ZJSHL-CH-003-P-0017",
+        "full:annotations:ZJSHL-CH-003-P-0018"
       ],
       "gold_passage_ids": [
-        "ZJSHL-CH-003-P-0017"
+        "ZJSHL-CH-003-P-0017",
+        "ZJSHL-CH-003-P-0018"
       ],
       "gold_evidence_spans": [
         {
@@ -2653,12 +2630,21 @@
           "record_id": "safe:main_passages:ZJSHL-CH-003-P-0017",
           "evidence_role": "primary",
           "quote": "脉赵本注：「一云秋脉」蔼蔼，如车盖者，名曰阳结也。",
-          "rationale": "当前正式系统以主条文直接支撑该解释问。",
+          "rationale": "meaning_explanation 正式化修正 v1：正文直接说“蔼蔼，如车盖者，名曰阳结也”，可作 strong 主证据。",
+          "chapter_id": "ZJSHL-CH-003",
+          "chapter_title": "辨脉法第一"
+        },
+        {
+          "passage_id": "ZJSHL-CH-003-P-0018",
+          "record_id": "full:annotations:ZJSHL-CH-003-P-0018",
+          "evidence_role": "secondary",
+          "quote": "蔼蔼如车盖者，大而厌厌聂聂也。为阳气郁结于外，不与阴气和杂也。",
+          "rationale": "meaning_explanation 正式化修正 v1：紧邻注解解释“蔼蔼如车盖”的脉象为大而郁结于外，可作说明补充。",
           "chapter_id": "ZJSHL-CH-003",
           "chapter_title": "辨脉法第一"
         }
       ],
-      "annotation_notes": "60-80 扩展样本。按当前正式系统边界应返回 strong，重点检查是否避免无依据强解释。",
+      "annotation_notes": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：蔼蔼如车盖：正文可直接支持 strong，紧邻注解作 secondary。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
       "citation_check_required": true,
       "evaluation_targets": [
         "retrieval_hit",
@@ -2686,11 +2672,15 @@
       },
       "source_refs": [
         {
-          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
-          "example_id": "eval_seed_q034"
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-003-P-0017"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0018"
         }
       ],
-      "gold_source_type": "system_bootstrapped"
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q035",
@@ -2699,10 +2689,12 @@
       "question_type_label": "含义解释类",
       "expected_mode": "strong",
       "gold_record_ids": [
-        "safe:main_passages:ZJSHL-CH-003-P-0019"
+        "safe:main_passages:ZJSHL-CH-003-P-0019",
+        "full:annotations:ZJSHL-CH-003-P-0020"
       ],
       "gold_passage_ids": [
-        "ZJSHL-CH-003-P-0019"
+        "ZJSHL-CH-003-P-0019",
+        "ZJSHL-CH-003-P-0020"
       ],
       "gold_evidence_spans": [
         {
@@ -2710,12 +2702,21 @@
           "record_id": "safe:main_passages:ZJSHL-CH-003-P-0019",
           "evidence_role": "primary",
           "quote": "脉赵本注：「一云夏脉」 ，赵本作：「累累」如循长竿者，名曰阴结也。",
-          "rationale": "当前正式系统以主条文直接支撑该解释问。",
+          "rationale": "meaning_explanation 正式化修正 v1：正文直接说“累累如循长竿者，名曰阴结也”，可作 strong 主证据。",
+          "chapter_id": "ZJSHL-CH-003",
+          "chapter_title": "辨脉法第一"
+        },
+        {
+          "passage_id": "ZJSHL-CH-003-P-0020",
+          "record_id": "full:annotations:ZJSHL-CH-003-P-0020",
+          "evidence_role": "secondary",
+          "quote": "累累如循长竿者，连连而强直也。为阴气郁结于内，不与阳气和杂也。",
+          "rationale": "meaning_explanation 正式化修正 v1：紧邻注解解释累累如循长竿为连连强直、阴气郁结于内，可作说明补充。",
           "chapter_id": "ZJSHL-CH-003",
           "chapter_title": "辨脉法第一"
         }
       ],
-      "annotation_notes": "60-80 扩展样本。按当前正式系统边界应返回 strong，重点检查是否避免无依据强解释。",
+      "annotation_notes": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：累累如循长竿：正文可直接支持 strong，紧邻注解作 secondary。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
       "citation_check_required": true,
       "evaluation_targets": [
         "retrieval_hit",
@@ -2743,11 +2744,15 @@
       },
       "source_refs": [
         {
-          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
-          "example_id": "eval_seed_q035"
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-003-P-0019"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0020"
         }
       ],
-      "gold_source_type": "system_bootstrapped"
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q036",
@@ -2756,10 +2761,12 @@
       "question_type_label": "含义解释类",
       "expected_mode": "strong",
       "gold_record_ids": [
-        "safe:main_passages:ZJSHL-CH-003-P-0023"
+        "safe:main_passages:ZJSHL-CH-003-P-0023",
+        "full:annotations:ZJSHL-CH-003-P-0024"
       ],
       "gold_passage_ids": [
-        "ZJSHL-CH-003-P-0023"
+        "ZJSHL-CH-003-P-0023",
+        "ZJSHL-CH-003-P-0024"
       ],
       "gold_evidence_spans": [
         {
@@ -2767,12 +2774,21 @@
           "record_id": "safe:main_passages:ZJSHL-CH-003-P-0023",
           "evidence_role": "primary",
           "quote": "脉萦萦，如蜘蛛丝者，阳气赵本注：「一云阴气」衰也。",
-          "rationale": "当前正式系统以主条文直接支撑该解释问。",
+          "rationale": "meaning_explanation 正式化修正 v1：正文直接说“如蜘蛛丝者，阳气衰也”，可作 strong 主证据。",
+          "chapter_id": "ZJSHL-CH-003",
+          "chapter_title": "辨脉法第一"
+        },
+        {
+          "passage_id": "ZJSHL-CH-003-P-0024",
+          "record_id": "full:annotations:ZJSHL-CH-003-P-0024",
+          "evidence_role": "secondary",
+          "quote": "萦萦滞也，若萦萦惹惹之不利也。如蜘蛛丝者，至细也。微为阳微，细为阳衰。《脉要》曰：微为气痞，是未至于衰。",
+          "rationale": "meaning_explanation 正式化修正 v1：紧邻注解说明如蜘蛛丝为至细，并联系阳微阳衰，可作说明补充。",
           "chapter_id": "ZJSHL-CH-003",
           "chapter_title": "辨脉法第一"
         }
       ],
-      "annotation_notes": "60-80 扩展样本。按当前正式系统边界应返回 strong，重点检查是否避免无依据强解释。",
+      "annotation_notes": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：如蜘蛛丝：正文可直接支持 strong，紧邻注解作 secondary。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
       "citation_check_required": true,
       "evaluation_targets": [
         "retrieval_hit",
@@ -2800,11 +2816,15 @@
       },
       "source_refs": [
         {
-          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
-          "example_id": "eval_seed_q036"
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-003-P-0023"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0024"
         }
       ],
-      "gold_source_type": "system_bootstrapped"
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q037",
@@ -2813,8 +2833,7 @@
       "question_type_label": "含义解释类",
       "expected_mode": "weak_with_review_notice",
       "gold_record_ids": [
-        "full:annotations:ZJSHL-CH-003-P-0027",
-        "full:passages:ZJSHL-CH-003-P-0027"
+        "full:annotations:ZJSHL-CH-003-P-0027"
       ],
       "gold_passage_ids": [
         "ZJSHL-CH-003-P-0027"
@@ -2825,21 +2844,12 @@
           "record_id": "full:annotations:ZJSHL-CH-003-P-0027",
           "evidence_role": "secondary",
           "quote": "绵绵者，连绵而软也。如泻漆之绝者，前大而后细也。《正理论》曰：天枢开发，精移气变，阴阳交会，胃和脉生，脉复生也。阳气前医统本作「先」至，阴气后至，则脉前为阳气，后为阴气。脉来，前大后细，为阳气有馀，而阴气不足，是知亡血。",
-          "rationale": "当前正式系统以辅助或核对材料支撑弱解释，需保留核对提示。",
-          "chapter_id": "ZJSHL-CH-003",
-          "chapter_title": "辨脉法第一"
-        },
-        {
-          "passage_id": "ZJSHL-CH-003-P-0027",
-          "record_id": "full:passages:ZJSHL-CH-003-P-0027",
-          "evidence_role": "review",
-          "quote": "绵绵者，连绵而软也。如泻漆之绝者，前大而后细也。《正理论》曰：天枢开发，精移气变，阴阳交会，胃和脉生，脉复生也。阳气前医统本作「先」至，阴气后至，则脉前为阳气，后为阴气。脉来，前大后细，为阳气有馀，而阴气不足，是知亡血。",
-          "rationale": "当前正式系统以辅助或核对材料支撑弱解释，需保留核对提示。",
+          "rationale": "meaning_explanation 正式化修正 v1：注解直接解释“绵绵者，连绵而软也”，并说明后续“如泻漆之绝”的脉象语境。",
           "chapter_id": "ZJSHL-CH-003",
           "chapter_title": "辨脉法第一"
         }
       ],
-      "annotation_notes": "60-80 扩展样本。按当前正式系统边界应返回 weak_with_review_notice，重点检查是否避免无依据强解释。",
+      "annotation_notes": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：绵绵者连绵而软：保留 weak 边界，仅用直接注解作 secondary。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
       "citation_check_required": true,
       "evaluation_targets": [
         "retrieval_hit",
@@ -2867,11 +2877,11 @@
       },
       "source_refs": [
         {
-          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
-          "example_id": "eval_seed_q037"
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0027"
         }
       ],
-      "gold_source_type": "system_bootstrapped"
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q038",
@@ -2881,11 +2891,15 @@
       "expected_mode": "strong",
       "gold_record_ids": [
         "safe:main_passages:ZJSHL-CH-003-P-0031",
-        "safe:main_passages:ZJSHL-CH-004-P-0130"
+        "safe:main_passages:ZJSHL-CH-004-P-0130",
+        "full:annotations:ZJSHL-CH-003-P-0032",
+        "full:annotations:ZJSHL-CH-003-P-0036"
       ],
       "gold_passage_ids": [
         "ZJSHL-CH-003-P-0031",
-        "ZJSHL-CH-004-P-0130"
+        "ZJSHL-CH-004-P-0130",
+        "ZJSHL-CH-003-P-0032",
+        "ZJSHL-CH-003-P-0036"
       ],
       "gold_evidence_spans": [
         {
@@ -2893,7 +2907,7 @@
           "record_id": "safe:main_passages:ZJSHL-CH-003-P-0031",
           "evidence_role": "primary",
           "quote": "阴阳相搏，名曰动。阳动则汗出，阴动则发热。形冷、恶寒者，此三焦伤也。",
-          "rationale": "当前正式系统以主条文直接支撑该解释问。",
+          "rationale": "meaning_explanation 正式化修正 v1：正文直接说“阴阳相搏，名曰动”，并说明阳动、阴动的表现。",
           "chapter_id": "ZJSHL-CH-003",
           "chapter_title": "辨脉法第一"
         },
@@ -2902,12 +2916,30 @@
           "record_id": "safe:main_passages:ZJSHL-CH-004-P-0130",
           "evidence_role": "primary",
           "quote": "风伤阳，故脉浮虚；寒伤阴，故脉牢坚；蓄积于内者，谓之水蓄，故脉沉潜；支散于外者，谓之支饮，故脉急弦。动则阴阳相搏，相搏则痛生焉。数为阳邪气胜，阳胜则热烦焉。",
-          "rationale": "当前正式系统以主条文直接支撑该解释问。",
+          "rationale": "meaning_explanation 正式化修正 v1：平脉法正文说明“动则阴阳相搏，相搏则痛生焉”，可作为同概念主证据。",
           "chapter_id": "ZJSHL-CH-004",
           "chapter_title": "平脉法第二"
+        },
+        {
+          "passage_id": "ZJSHL-CH-003-P-0032",
+          "record_id": "full:annotations:ZJSHL-CH-003-P-0032",
+          "evidence_role": "secondary",
+          "quote": "动，为阴阳相搏，方其阴阳相搏而虚者，则动。阳动为阳虚，故汗出；阴动为阴虚，故发热也。如不汗出，发热，而反形冷、恶寒者，三焦伤也。三焦者，原气之别使，主行气于阳。三焦既伤，则阳气不通而微，致身冷而恶寒也。《金匮要略》曰：阳气不通即身冷。经曰：阳微则恶寒。",
+          "rationale": "meaning_explanation 正式化修正 v1：紧邻注解解释阴阳相搏与虚、汗出、发热、三焦伤的关系。",
+          "chapter_id": "ZJSHL-CH-003",
+          "chapter_title": "辨脉法第一"
+        },
+        {
+          "passage_id": "ZJSHL-CH-003-P-0036",
+          "record_id": "full:annotations:ZJSHL-CH-003-P-0036",
+          "evidence_role": "review",
+          "quote": "阳脉寸口也，阴脉尺中也。上下同等，无有偏胜者，是阴阳之气和缓也，非若迟缓之有邪也。阴阳偏胜者为结、为促，阴阳相搏者为动，阴阳气和者为缓，学人不可不知也。",
+          "rationale": "meaning_explanation 正式化修正 v1：注解把阴阳相搏归入动脉分类说明，作概念核对材料。",
+          "chapter_id": "ZJSHL-CH-003",
+          "chapter_title": "辨脉法第一"
         }
       ],
-      "annotation_notes": "60-80 扩展样本。按当前正式系统边界应返回 strong，重点检查是否避免无依据强解释。",
+      "annotation_notes": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：阴阳相搏：正文两处可直接支持 strong，紧邻注解作 secondary/review。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
       "citation_check_required": true,
       "evaluation_targets": [
         "retrieval_hit",
@@ -2935,11 +2967,23 @@
       },
       "source_refs": [
         {
-          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
-          "example_id": "eval_seed_q038"
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-003-P-0031"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-004-P-0130"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0032"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0036"
         }
       ],
-      "gold_source_type": "system_bootstrapped"
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q039",
@@ -2950,23 +2994,20 @@
       "gold_record_ids": [
         "full:annotations:ZJSHL-CH-003-P-0041",
         "safe:main_passages:ZJSHL-CH-003-P-0039",
-        "safe:main_passages:ZJSHL-CH-023-P-0018",
-        "safe:main_passages:ZJSHL-CH-004-P-0260",
-        "full:passages:ZJSHL-CH-003-P-0041"
+        "safe:main_passages:ZJSHL-CH-023-P-0018"
       ],
       "gold_passage_ids": [
         "ZJSHL-CH-003-P-0041",
         "ZJSHL-CH-003-P-0039",
-        "ZJSHL-CH-023-P-0018",
-        "ZJSHL-CH-004-P-0260"
+        "ZJSHL-CH-023-P-0018"
       ],
       "gold_evidence_spans": [
         {
           "passage_id": "ZJSHL-CH-003-P-0041",
           "record_id": "full:annotations:ZJSHL-CH-003-P-0041",
           "evidence_role": "secondary",
-          "quote": "弦则为减，减则为寒。寒者谓阳气少也。大则为芤，芤则为虚，虚者谓血少不足也。熊校记：芤则为虚者，汪本虚下增虚字。按注义总释弦减寒气少，大芤虚为血少，非单言寒少气、虚少血也。元版上句误重寒字，谓血少不足也。旧钞与汪本同。按少即不足，于义为复，少...",
-          "rationale": "当前正式系统以辅助或核对材料支撑弱解释，需保留核对提示。",
+          "quote": "弦则为减，减则为寒。寒者谓阳气少也。大则为芤，芤则为虚，虚者谓血少不足也。熊校记：芤则为虚者，汪本虚下增虚字。按注义总释弦减寒气少，大芤虚为血少，非单言寒少气、虚少血也。元版上句误重寒字，谓血少不足也。旧钞与汪本同。按少即不足，于义为复，少字疑误衍所谓革者，言其既寒且虚，则气血改革，不循常度。男子得之，为真阳减，而不能内固，故主亡血、失精；妇人得之，为阴血虚，而不能滋养，故主半产、漏下。",
+          "rationale": "meaning_explanation 正式化修正 v1：注解直接解释“弦则为减，减则为寒”，并说明寒为阳气少、血少不足等义。",
           "chapter_id": "ZJSHL-CH-003",
           "chapter_title": "辨脉法第一"
         },
@@ -2975,21 +3016,21 @@
           "record_id": "safe:main_passages:ZJSHL-CH-003-P-0039",
           "evidence_role": "secondary",
           "quote": "经曰：弦则为减，以紧为实，是切之如转索无常而不散。《金匮要略》曰：脉紧如转索无常者，有宿食也。",
-          "rationale": "当前正式系统以辅助或核对材料支撑弱解释，需保留核对提示。",
+          "rationale": "meaning_explanation 正式化修正 v1：正文出现“经曰：弦则为减”，是题面句的正文语境。",
           "chapter_id": "ZJSHL-CH-003",
           "chapter_title": "辨脉法第一"
         },
         {
           "passage_id": "ZJSHL-CH-023-P-0018",
           "record_id": "safe:main_passages:ZJSHL-CH-023-P-0018",
-          "evidence_role": "secondary",
+          "evidence_role": "review",
           "quote": "脉濡而弱，弱反在关，濡反在巅；弦反在上，微反在下。弦为阳运，微为阴寒。上实下虚，意欲得温。",
-          "rationale": "当前正式系统以辅助或核对材料支撑弱解释，需保留核对提示。",
+          "rationale": "meaning_explanation 正式化修正 v1：正文另处说“弦为阳运，微为阴寒”，只作弦、寒关系的核对材料。",
           "chapter_id": "ZJSHL-CH-023",
           "chapter_title": "辨不可下病脉证并治法第二十"
         }
       ],
-      "annotation_notes": "60-80 扩展样本。按当前正式系统边界应返回 weak_with_review_notice，重点检查是否避免无依据强解释。",
+      "annotation_notes": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：弦则为减减则为寒：保留 weak 边界，直接注解和正文原句作 secondary，远端弦寒关系作 review。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
       "citation_check_required": true,
       "evaluation_targets": [
         "retrieval_hit",
@@ -3017,11 +3058,19 @@
       },
       "source_refs": [
         {
-          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
-          "example_id": "eval_seed_q039"
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0041"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-003-P-0039"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-023-P-0018"
         }
       ],
-      "gold_source_type": "system_bootstrapped"
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q040",
@@ -3032,17 +3081,12 @@
       "gold_record_ids": [
         "full:annotations:ZJSHL-CH-003-P-0043",
         "safe:main_passages:ZJSHL-CH-003-P-0099",
-        "safe:main_passages:ZJSHL-CH-003-P-0037",
-        "safe:main_passages:ZJSHL-CH-003-P-0035",
-        "safe:main_passages:ZJSHL-CH-004-P-0274",
-        "full:passages:ZJSHL-CH-003-P-0043"
+        "safe:main_passages:ZJSHL-CH-003-P-0037"
       ],
       "gold_passage_ids": [
         "ZJSHL-CH-003-P-0043",
         "ZJSHL-CH-003-P-0099",
-        "ZJSHL-CH-003-P-0037",
-        "ZJSHL-CH-003-P-0035",
-        "ZJSHL-CH-004-P-0274"
+        "ZJSHL-CH-003-P-0037"
       ],
       "gold_evidence_spans": [
         {
@@ -3050,7 +3094,7 @@
           "record_id": "full:annotations:ZJSHL-CH-003-P-0043",
           "evidence_role": "secondary",
           "quote": "浮为阳，紧为阴，芤为虚。阴阳争则战，邪气将出，邪与正争，其人本虚，是以发战。正气胜则战，战已复发热而大汗解也。",
-          "rationale": "当前正式系统以辅助或核对材料支撑弱解释，需保留核对提示。",
+          "rationale": "meaning_explanation 正式化修正 v1：注解直接解释“浮为阳，紧为阴，芤为虚”，并说明阴阳争则战。",
           "chapter_id": "ZJSHL-CH-003",
           "chapter_title": "辨脉法第一"
         },
@@ -3058,22 +3102,22 @@
           "passage_id": "ZJSHL-CH-003-P-0099",
           "record_id": "safe:main_passages:ZJSHL-CH-003-P-0099",
           "evidence_role": "secondary",
-          "quote": "浮为阳，沉为阴。阳脉紧，则雾露之气中于上焦；阴脉紧，则寒邪中于下焦。上焦者，太阳也。下焦者，少阴也。发热、头痛、项强、颈挛、腰疼、胫酸者，雾露之气中于太阳之经也；浊邪中下，阴气为栗，足胫逆冷，便溺妄出者，寒邪中于少阴也。因表气微虚，邪入而客...",
-          "rationale": "当前正式系统以辅助或核对材料支撑弱解释，需保留核对提示。",
+          "quote": "浮为阳，沉为阴。阳脉紧，则雾露之气中于上焦；阴脉紧，则寒邪中于下焦。上焦者，太阳也。下焦者，少阴也。发热、头痛、项强、颈挛、腰疼、胫酸者，雾露之气中于太阳之经也；浊邪中下，阴气为栗，足胫逆冷，便溺妄出者，寒邪中于少阴也。因表气微虚，邪入而客之，又里气不守，邪乘里弱，遂中于阴，阴虚遇邪，内为惧栗，致气微急矣。《内经》曰：阳病者，上行极而下；阴病者，下行极而上。此上焦之邪，甚则下干中焦，下焦之邪，甚则上干中焦，由是三焦混乱也。三焦主持诸气，三焦既相混乱，则内外之气，俱不得通，膻中为阳气之海，气因不得通于内外，怫郁于上焦而为热，与脏相熏，口烂食断。《内经》曰：隔热不便，上为口糜。中焦为上下二焦之邪混乱，则不得平治，中焦在胃之中，中焦失治，胃气因上冲也。脾，坤也，坤助胃气，消磨医统本作「磨消」水谷，脾气不转，则胃中水谷不得磨消，故胃中浊也。《金匮要略》曰：谷气不消，胃中苦浊。荣者，水谷之精气也；卫者，水谷之悍气也。气不能布散，致荣卫不通，血凝不流。卫气者，阳气也；荣血者，阴气也。阳主为热，阴主为寒。卫气前通者，阳气先通而热气得行也。",
+          "rationale": "meaning_explanation 正式化修正 v1：正文从“浮为阳，沉为阴”和阳脉紧、阴脉紧展开，可作浮紧阴阳语境补充。",
           "chapter_id": "ZJSHL-CH-003",
           "chapter_title": "辨脉法第一"
         },
         {
           "passage_id": "ZJSHL-CH-003-P-0037",
           "record_id": "safe:main_passages:ZJSHL-CH-003-P-0037",
-          "evidence_role": "secondary",
+          "evidence_role": "review",
           "quote": "脉浮而紧者，名曰弦也。弦者状如弓弦，按之不移也。脉紧赵本作「阴」者，如转索无常也。",
-          "rationale": "当前正式系统以辅助或核对材料支撑弱解释，需保留核对提示。",
+          "rationale": "meaning_explanation 正式化修正 v1：正文解释脉浮而紧、弦、紧的脉象，只作紧脉含义核对。",
           "chapter_id": "ZJSHL-CH-003",
           "chapter_title": "辨脉法第一"
         }
       ],
-      "annotation_notes": "60-80 扩展样本。按当前正式系统边界应返回 weak_with_review_notice，重点检查是否避免无依据强解释。",
+      "annotation_notes": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：浮为阳紧为阴：保留 weak 边界，直接注解和浮紧阴阳正文作 secondary，紧脉脉象作 review。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
       "citation_check_required": true,
       "evaluation_targets": [
         "retrieval_hit",
@@ -3101,11 +3145,19 @@
       },
       "source_refs": [
         {
-          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
-          "example_id": "eval_seed_q040"
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0043"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-003-P-0099"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-003-P-0037"
         }
       ],
-      "gold_source_type": "system_bootstrapped"
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q041",
@@ -3115,16 +3167,11 @@
       "expected_mode": "weak_with_review_notice",
       "gold_record_ids": [
         "full:annotations:ZJSHL-CH-003-P-0047",
-        "safe:main_passages:ZJSHL-CH-003-P-0031",
-        "safe:main_passages:ZJSHL-CH-003-P-0088",
-        "safe:main_passages:ZJSHL-CH-023-P-0039",
-        "full:passages:ZJSHL-CH-003-P-0047"
+        "safe:main_passages:ZJSHL-CH-003-P-0088"
       ],
       "gold_passage_ids": [
         "ZJSHL-CH-003-P-0047",
-        "ZJSHL-CH-003-P-0031",
-        "ZJSHL-CH-003-P-0088",
-        "ZJSHL-CH-023-P-0039"
+        "ZJSHL-CH-003-P-0088"
       ],
       "gold_evidence_spans": [
         {
@@ -3132,16 +3179,7 @@
           "record_id": "full:annotations:ZJSHL-CH-003-P-0047",
           "evidence_role": "secondary",
           "quote": "阳胜则热，阴胜则寒，阴阳争则战。脉大而浮数皆阳也，阳气全胜，阴无所争，何战之有。",
-          "rationale": "当前正式系统以辅助或核对材料支撑弱解释，需保留核对提示。",
-          "chapter_id": "ZJSHL-CH-003",
-          "chapter_title": "辨脉法第一"
-        },
-        {
-          "passage_id": "ZJSHL-CH-003-P-0031",
-          "record_id": "safe:main_passages:ZJSHL-CH-003-P-0031",
-          "evidence_role": "secondary",
-          "quote": "阴阳相搏，名曰动。阳动则汗出，阴动则发热。形冷、恶寒者，此三焦伤也。",
-          "rationale": "当前正式系统以辅助或核对材料支撑弱解释，需保留核对提示。",
+          "rationale": "meaning_explanation 正式化修正 v1：注解直接解释“阳胜则热，阴胜则寒，阴阳争则战”。",
           "chapter_id": "ZJSHL-CH-003",
           "chapter_title": "辨脉法第一"
         },
@@ -3150,12 +3188,12 @@
           "record_id": "safe:main_passages:ZJSHL-CH-003-P-0088",
           "evidence_role": "secondary",
           "quote": "阳主热而色赤，阴主寒而色青。其人死也，身色青，则阴未离乎体，故曰阴气后竭。身色赤，腋下温，心下热，则阳未离乎体，故曰阳气后竭。《针经》云：医统本作「曰」人有两死而无两生，此之谓也。",
-          "rationale": "当前正式系统以辅助或核对材料支撑弱解释，需保留核对提示。",
+          "rationale": "meaning_explanation 正式化修正 v1：正文说“阳主热而色赤，阴主寒而色青”，可作阳热阴寒的正文支撑。",
           "chapter_id": "ZJSHL-CH-003",
           "chapter_title": "辨脉法第一"
         }
       ],
-      "annotation_notes": "60-80 扩展样本。按当前正式系统边界应返回 weak_with_review_notice，重点检查是否避免无依据强解释。",
+      "annotation_notes": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：阳胜则热阴胜则寒：保留 weak 边界，直接注解和阳热阴寒正文作 secondary。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
       "citation_check_required": true,
       "evaluation_targets": [
         "retrieval_hit",
@@ -3183,11 +3221,15 @@
       },
       "source_refs": [
         {
-          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
-          "example_id": "eval_seed_q041"
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0047"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-003-P-0088"
         }
       ],
-      "gold_source_type": "system_bootstrapped"
+      "gold_source_type": "manual_independent"
     },
     {
       "question_id": "eval_seed_q042",

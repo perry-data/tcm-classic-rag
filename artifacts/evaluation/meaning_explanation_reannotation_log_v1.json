@@ -1,0 +1,777 @@
+{
+  "log_version": "meaning_explanation_reannotation_log_v1",
+  "review_date": "2026-04-08",
+  "scope": "question_type = meaning_explanation",
+  "goldset_path": "artifacts/evaluation/goldset_v1_seed.json",
+  "source_text_paths": [
+    "data/processed/zjshl_dataset_v2/annotations.json",
+    "data/processed/zjshl_dataset_v2/main_passages.json"
+  ],
+  "summary": {
+    "meaning_explanation_total": 14,
+    "old_source_type_counts": {
+      "manual_with_system_reference": 1,
+      "system_bootstrapped": 13
+    },
+    "new_source_type_counts": {
+      "manual_independent": 14
+    },
+    "promoted_bootstrapped_to_manual_independent_count": 13,
+    "promoted_bootstrapped_to_manual_independent_ids": [
+      "eval_seed_q029",
+      "eval_seed_q030",
+      "eval_seed_q031",
+      "eval_seed_q032",
+      "eval_seed_q033",
+      "eval_seed_q034",
+      "eval_seed_q035",
+      "eval_seed_q036",
+      "eval_seed_q037",
+      "eval_seed_q038",
+      "eval_seed_q039",
+      "eval_seed_q040",
+      "eval_seed_q041"
+    ],
+    "promoted_manual_reference_to_manual_independent_count": 1,
+    "promoted_manual_reference_to_manual_independent_ids": [
+      "eval_seed_q002"
+    ],
+    "total_promoted_to_manual_independent_count": 14,
+    "remaining_unfinished_count": 0,
+    "remaining_unfinished_ids": [],
+    "weak_boundary_retained_count": 10,
+    "weak_boundary_retained_ids": [
+      "eval_seed_q002",
+      "eval_seed_q029",
+      "eval_seed_q030",
+      "eval_seed_q031",
+      "eval_seed_q032",
+      "eval_seed_q033",
+      "eval_seed_q037",
+      "eval_seed_q039",
+      "eval_seed_q040",
+      "eval_seed_q041"
+    ],
+    "adjusted_gold_scope_count": 13,
+    "adjusted_gold_scope_ids": [
+      "eval_seed_q029",
+      "eval_seed_q030",
+      "eval_seed_q031",
+      "eval_seed_q032",
+      "eval_seed_q033",
+      "eval_seed_q034",
+      "eval_seed_q035",
+      "eval_seed_q036",
+      "eval_seed_q037",
+      "eval_seed_q038",
+      "eval_seed_q039",
+      "eval_seed_q040",
+      "eval_seed_q041"
+    ]
+  },
+  "items": [
+    {
+      "question_id": "eval_seed_q002",
+      "query": "烧针益阳而损阴是什么意思？",
+      "expected_mode": "weak_with_review_notice",
+      "old_gold_source_type": "manual_with_system_reference",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0016",
+        "safe:main_passages:ZJSHL-CH-009-P-0295",
+        "safe:main_passages:ZJSHL-CH-010-P-0080"
+      ],
+      "new_gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0016",
+        "safe:main_passages:ZJSHL-CH-009-P-0295",
+        "safe:main_passages:ZJSHL-CH-010-P-0080"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0016",
+        "ZJSHL-CH-009-P-0295",
+        "ZJSHL-CH-010-P-0080"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0016",
+        "ZJSHL-CH-009-P-0295",
+        "ZJSHL-CH-010-P-0080"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/hybrid_answer_examples.json",
+          "example_id": "weak_with_review_notice"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0016"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0295"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-010-P-0080"
+        }
+      ],
+      "reannotation_action": "promote_manual_reference_to_manual_independent+retain_weak_boundary",
+      "evidence_role_counts": {
+        "secondary": 3
+      },
+      "rationale": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：烧针益阳而损阴：保留弱边界，注解为解释主体，烧针损阴血与复加烧针正文作语境补充。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 manual_with_system_reference，本轮改为 manual_independent。",
+      "boundary_note": "保留 weak_with_review_notice 和 must_keep_primary_empty；注解虽可解释题面句子，但本轮不把弱证据升格为 strong primary。"
+    },
+    {
+      "question_id": "eval_seed_q029",
+      "query": "一阴一阳谓之道是什么意思？",
+      "expected_mode": "weak_with_review_notice",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0007",
+        "safe:main_passages:ZJSHL-CH-006-P-0034",
+        "full:passages:ZJSHL-CH-003-P-0007"
+      ],
+      "new_gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0007",
+        "safe:main_passages:ZJSHL-CH-006-P-0034"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0007",
+        "ZJSHL-CH-006-P-0034"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0007",
+        "ZJSHL-CH-006-P-0034"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q029"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0007"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-006-P-0034"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope+retain_weak_boundary",
+      "evidence_role_counts": {
+        "secondary": 2
+      },
+      "rationale": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：一阴一阳谓之道：保留弱边界，注解解释阴阳偏胜，节气阴阳升降正文作辅助。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "保留 weak_with_review_notice 和 must_keep_primary_empty；注解虽可解释题面句子，但本轮不把弱证据升格为 strong primary。"
+    },
+    {
+      "question_id": "eval_seed_q030",
+      "query": "阳为气，阴为血是什么意思？",
+      "expected_mode": "weak_with_review_notice",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0009",
+        "safe:main_passages:ZJSHL-CH-003-P-0080",
+        "safe:main_passages:ZJSHL-CH-016-P-0009",
+        "safe:main_passages:ZJSHL-CH-006-P-0067",
+        "safe:main_passages:ZJSHL-CH-003-P-0088",
+        "full:passages:ZJSHL-CH-003-P-0009"
+      ],
+      "new_gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0009",
+        "safe:main_passages:ZJSHL-CH-003-P-0080"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0009",
+        "ZJSHL-CH-003-P-0080",
+        "ZJSHL-CH-016-P-0009",
+        "ZJSHL-CH-006-P-0067",
+        "ZJSHL-CH-003-P-0088"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0009",
+        "ZJSHL-CH-003-P-0080"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q030"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0009"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-003-P-0080"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope+retain_weak_boundary",
+      "evidence_role_counts": {
+        "secondary": 2
+      },
+      "rationale": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：阳为气，阴为血：保留弱边界，注解和正文“气为阳，血为阴”共同支撑。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "保留 weak_with_review_notice 和 must_keep_primary_empty；注解虽可解释题面句子，但本轮不把弱证据升格为 strong primary。"
+    },
+    {
+      "question_id": "eval_seed_q031",
+      "query": "脉沉者知荣血内微是什么意思？",
+      "expected_mode": "weak_with_review_notice",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0011",
+        "safe:main_passages:ZJSHL-CH-003-P-0010",
+        "safe:main_passages:ZJSHL-CH-003-P-0067",
+        "safe:main_passages:ZJSHL-CH-015-P-0294",
+        "safe:main_passages:ZJSHL-CH-004-P-0257",
+        "full:passages:ZJSHL-CH-003-P-0011"
+      ],
+      "new_gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0011",
+        "safe:main_passages:ZJSHL-CH-003-P-0010"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0011",
+        "ZJSHL-CH-003-P-0010",
+        "ZJSHL-CH-003-P-0067",
+        "ZJSHL-CH-015-P-0294",
+        "ZJSHL-CH-004-P-0257"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0011",
+        "ZJSHL-CH-003-P-0010"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q031"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0011"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-003-P-0010"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope+retain_weak_boundary",
+      "evidence_role_counts": {
+        "secondary": 2
+      },
+      "rationale": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：脉沉者知荣血内微：保留弱边界，注解说明脉为血府，正文给出荣气微原句。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "保留 weak_with_review_notice 和 must_keep_primary_empty；注解虽可解释题面句子，但本轮不把弱证据升格为 strong primary。"
+    },
+    {
+      "question_id": "eval_seed_q032",
+      "query": "卫气者所以温分肉是什么意思？",
+      "expected_mode": "weak_with_review_notice",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0013",
+        "full:annotations:ZJSHL-CH-004-P-0209",
+        "full:passages:ZJSHL-CH-003-P-0013",
+        "full:passages:ZJSHL-CH-004-P-0209"
+      ],
+      "new_gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0013",
+        "full:annotations:ZJSHL-CH-004-P-0209"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0013",
+        "ZJSHL-CH-004-P-0209"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0013",
+        "ZJSHL-CH-004-P-0209"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q032"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0013"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-004-P-0209"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope+retain_weak_boundary",
+      "evidence_role_counts": {
+        "secondary": 2
+      },
+      "rationale": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：卫气者所以温分肉：保留弱边界，以两处注解中直接引文为解释材料。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "保留 weak_with_review_notice 和 must_keep_primary_empty；注解虽可解释题面句子，但本轮不把弱证据升格为 strong primary。"
+    },
+    {
+      "question_id": "eval_seed_q033",
+      "query": "荣气微者加烧针是什么意思？",
+      "expected_mode": "weak_with_review_notice",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0015",
+        "full:annotations:ZJSHL-CH-009-P-0302",
+        "full:annotations:ZJSHL-CH-011-P-0103",
+        "full:passages:ZJSHL-CH-003-P-0015",
+        "full:passages:ZJSHL-CH-009-P-0302",
+        "full:ambiguous_passages:ZJSHL-CH-008-P-0257"
+      ],
+      "new_gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0015",
+        "full:annotations:ZJSHL-CH-009-P-0302",
+        "full:annotations:ZJSHL-CH-011-P-0103"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0015",
+        "ZJSHL-CH-009-P-0302",
+        "ZJSHL-CH-011-P-0103",
+        "ZJSHL-CH-008-P-0257"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0015",
+        "ZJSHL-CH-009-P-0302",
+        "ZJSHL-CH-011-P-0103"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q033"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0015"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-009-P-0302"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-011-P-0103"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope+retain_weak_boundary",
+      "evidence_role_counts": {
+        "review": 1,
+        "secondary": 2
+      },
+      "rationale": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：荣气微者加烧针：保留弱边界，直接注解和太阳病注解为 secondary，阳明注解作 review。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "保留 weak_with_review_notice 和 must_keep_primary_empty；注解虽可解释题面句子，但本轮不把弱证据升格为 strong primary。"
+    },
+    {
+      "question_id": "eval_seed_q034",
+      "query": "蔼蔼如车盖是什么意思？",
+      "expected_mode": "strong",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0017"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0017",
+        "full:annotations:ZJSHL-CH-003-P-0018"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0017"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0017",
+        "ZJSHL-CH-003-P-0018"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q034"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-003-P-0017"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0018"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope",
+      "evidence_role_counts": {
+        "primary": 1,
+        "secondary": 1
+      },
+      "rationale": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：蔼蔼如车盖：正文可直接支持 strong，紧邻注解作 secondary。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "正文主条可独立支撑 strong；注解仅作为 secondary/review 说明材料。"
+    },
+    {
+      "question_id": "eval_seed_q035",
+      "query": "累累如循长竿是什么意思？",
+      "expected_mode": "strong",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0019"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0019",
+        "full:annotations:ZJSHL-CH-003-P-0020"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0019"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0019",
+        "ZJSHL-CH-003-P-0020"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q035"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-003-P-0019"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0020"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope",
+      "evidence_role_counts": {
+        "primary": 1,
+        "secondary": 1
+      },
+      "rationale": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：累累如循长竿：正文可直接支持 strong，紧邻注解作 secondary。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "正文主条可独立支撑 strong；注解仅作为 secondary/review 说明材料。"
+    },
+    {
+      "question_id": "eval_seed_q036",
+      "query": "如蜘蛛丝是什么意思？",
+      "expected_mode": "strong",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0023"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0023",
+        "full:annotations:ZJSHL-CH-003-P-0024"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0023"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0023",
+        "ZJSHL-CH-003-P-0024"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q036"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-003-P-0023"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0024"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope",
+      "evidence_role_counts": {
+        "primary": 1,
+        "secondary": 1
+      },
+      "rationale": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：如蜘蛛丝：正文可直接支持 strong，紧邻注解作 secondary。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "正文主条可独立支撑 strong；注解仅作为 secondary/review 说明材料。"
+    },
+    {
+      "question_id": "eval_seed_q037",
+      "query": "绵绵者连绵而软是什么意思？",
+      "expected_mode": "weak_with_review_notice",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0027",
+        "full:passages:ZJSHL-CH-003-P-0027"
+      ],
+      "new_gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0027"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0027"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0027"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q037"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0027"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope+retain_weak_boundary",
+      "evidence_role_counts": {
+        "secondary": 1
+      },
+      "rationale": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：绵绵者连绵而软：保留 weak 边界，仅用直接注解作 secondary。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "保留 weak_with_review_notice 和 must_keep_primary_empty；注解虽可解释题面句子，但本轮不把弱证据升格为 strong primary。"
+    },
+    {
+      "question_id": "eval_seed_q038",
+      "query": "阴阳相搏是什么意思？",
+      "expected_mode": "strong",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0031",
+        "safe:main_passages:ZJSHL-CH-004-P-0130"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0031",
+        "safe:main_passages:ZJSHL-CH-004-P-0130",
+        "full:annotations:ZJSHL-CH-003-P-0032",
+        "full:annotations:ZJSHL-CH-003-P-0036"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0031",
+        "ZJSHL-CH-004-P-0130"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0031",
+        "ZJSHL-CH-004-P-0130",
+        "ZJSHL-CH-003-P-0032",
+        "ZJSHL-CH-003-P-0036"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q038"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-003-P-0031"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-004-P-0130"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0032"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0036"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope",
+      "evidence_role_counts": {
+        "primary": 2,
+        "review": 1,
+        "secondary": 1
+      },
+      "rationale": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：阴阳相搏：正文两处可直接支持 strong，紧邻注解作 secondary/review。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "正文主条可独立支撑 strong；注解仅作为 secondary/review 说明材料。"
+    },
+    {
+      "question_id": "eval_seed_q039",
+      "query": "弦则为减减则为寒是什么意思？",
+      "expected_mode": "weak_with_review_notice",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0041",
+        "safe:main_passages:ZJSHL-CH-003-P-0039",
+        "safe:main_passages:ZJSHL-CH-023-P-0018",
+        "safe:main_passages:ZJSHL-CH-004-P-0260",
+        "full:passages:ZJSHL-CH-003-P-0041"
+      ],
+      "new_gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0041",
+        "safe:main_passages:ZJSHL-CH-003-P-0039",
+        "safe:main_passages:ZJSHL-CH-023-P-0018"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0041",
+        "ZJSHL-CH-003-P-0039",
+        "ZJSHL-CH-023-P-0018",
+        "ZJSHL-CH-004-P-0260"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0041",
+        "ZJSHL-CH-003-P-0039",
+        "ZJSHL-CH-023-P-0018"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q039"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0041"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-003-P-0039"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-023-P-0018"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope+retain_weak_boundary",
+      "evidence_role_counts": {
+        "review": 1,
+        "secondary": 2
+      },
+      "rationale": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：弦则为减减则为寒：保留 weak 边界，直接注解和正文原句作 secondary，远端弦寒关系作 review。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "保留 weak_with_review_notice 和 must_keep_primary_empty；注解虽可解释题面句子，但本轮不把弱证据升格为 strong primary。"
+    },
+    {
+      "question_id": "eval_seed_q040",
+      "query": "浮为阳紧为阴是什么意思？",
+      "expected_mode": "weak_with_review_notice",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0043",
+        "safe:main_passages:ZJSHL-CH-003-P-0099",
+        "safe:main_passages:ZJSHL-CH-003-P-0037",
+        "safe:main_passages:ZJSHL-CH-003-P-0035",
+        "safe:main_passages:ZJSHL-CH-004-P-0274",
+        "full:passages:ZJSHL-CH-003-P-0043"
+      ],
+      "new_gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0043",
+        "safe:main_passages:ZJSHL-CH-003-P-0099",
+        "safe:main_passages:ZJSHL-CH-003-P-0037"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0043",
+        "ZJSHL-CH-003-P-0099",
+        "ZJSHL-CH-003-P-0037",
+        "ZJSHL-CH-003-P-0035",
+        "ZJSHL-CH-004-P-0274"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0043",
+        "ZJSHL-CH-003-P-0099",
+        "ZJSHL-CH-003-P-0037"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q040"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0043"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-003-P-0099"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-003-P-0037"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope+retain_weak_boundary",
+      "evidence_role_counts": {
+        "review": 1,
+        "secondary": 2
+      },
+      "rationale": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：浮为阳紧为阴：保留 weak 边界，直接注解和浮紧阴阳正文作 secondary，紧脉脉象作 review。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "保留 weak_with_review_notice 和 must_keep_primary_empty；注解虽可解释题面句子，但本轮不把弱证据升格为 strong primary。"
+    },
+    {
+      "question_id": "eval_seed_q041",
+      "query": "阳胜则热阴胜则寒是什么意思？",
+      "expected_mode": "weak_with_review_notice",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0047",
+        "safe:main_passages:ZJSHL-CH-003-P-0031",
+        "safe:main_passages:ZJSHL-CH-003-P-0088",
+        "safe:main_passages:ZJSHL-CH-023-P-0039",
+        "full:passages:ZJSHL-CH-003-P-0047"
+      ],
+      "new_gold_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0047",
+        "safe:main_passages:ZJSHL-CH-003-P-0088"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0047",
+        "ZJSHL-CH-003-P-0031",
+        "ZJSHL-CH-003-P-0088",
+        "ZJSHL-CH-023-P-0039"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-003-P-0047",
+        "ZJSHL-CH-003-P-0088"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q041"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+          "example_id": "ZJSHL-CH-003-P-0047"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-003-P-0088"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope+retain_weak_boundary",
+      "evidence_role_counts": {
+        "secondary": 2
+      },
+      "rationale": "meaning_explanation 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/annotations.json 和 data/processed/zjshl_dataset_v2/main_passages.json 按题面句子/概念核对：阳胜则热阴胜则寒：保留 weak 边界，直接注解和阳热阴寒正文作 secondary。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "保留 weak_with_review_notice 和 must_keep_primary_empty；注解虽可解释题面句子，但本轮不把弱证据升格为 strong primary。"
+    }
+  ]
+}
