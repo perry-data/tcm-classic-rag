@@ -84,6 +84,96 @@ COMPARISON_CONTEXT_HINTS = (
     "条文语境",
 )
 
+PERSONAL_HEALTH_CONTEXT_HINTS = (
+    "我的体重",
+    "我的症状",
+    "我的体质",
+    "我现在",
+    "我目前",
+    "我血压",
+    "我发烧",
+    "我发热",
+    "我咳嗽",
+    "按我的",
+    "适合我",
+    "本人",
+    "患者",
+    "病人",
+)
+
+PERSONAL_TREATMENT_ACTION_HINTS = (
+    "能不能",
+    "可不可以",
+    "可以不可以",
+    "能用",
+    "服用",
+    "该用",
+    "应该用",
+    "用哪个方",
+    "开处方",
+    "用药",
+)
+
+DOSAGE_CONVERSION_HINTS = (
+    "体重",
+    "克数",
+    "剂量",
+    "换算",
+    "折算",
+    "用量",
+)
+
+MODERN_MEDICAL_TERMS = (
+    "支气管炎",
+    "高血压",
+    "血压高",
+    "糖尿病",
+    "肺炎",
+    "新冠",
+    "疫苗",
+    "癌",
+    "肿瘤",
+)
+
+MODERN_MEDICAL_ACTION_HINTS = (
+    "治疗",
+    "疗效",
+    "能不能",
+    "能用",
+    "适应症",
+    "治",
+)
+
+PERSONAL_REGIMEN_HINTS = (
+    "七天",
+    "7天",
+    "疗程",
+    "方案",
+    "用药方案",
+    "适合我体质",
+)
+
+EXTERNAL_BOOK_HINTS = (
+    "黄帝内经",
+    "素问",
+    "灵枢",
+    "金匮要略",
+    "温病条辨",
+    "本草纲目",
+)
+
+VALUE_JUDGMENT_HINTS = (
+    "哪个更准确",
+    "哪一个更准确",
+    "谁更准确",
+    "哪个更好",
+    "哪个好",
+    "谁更好",
+    "更适合",
+    "优劣",
+    "更强",
+)
+
 REFUSE_GUIDANCE_TEMPLATES = [
     "请改问具体条文，例如：某一条文的原文或含义是什么？",
     "请改问具体方名，例如：黄连汤方的组成或条文是什么？",
@@ -237,6 +327,9 @@ class AnswerAssembler:
     def assemble(self, query_text: str) -> dict[str, Any]:
         self._last_comparison_debug = None
         self._last_general_debug = None
+        policy_refusal = self._detect_policy_refusal(query_text)
+        if policy_refusal is not None:
+            return self._assemble_policy_refusal(query_text, policy_refusal)
         comparison_plan = self._detect_comparison_query(query_text)
         if comparison_plan is not None:
             return self._assemble_comparison(query_text, comparison_plan)
@@ -247,6 +340,56 @@ class AnswerAssembler:
 
     def get_last_comparison_debug(self) -> dict[str, Any] | None:
         return self._last_comparison_debug
+
+    def _detect_policy_refusal(self, query_text: str) -> str | None:
+        compact_query = compact_whitespace(query_text)
+        if not compact_query:
+            return None
+
+        has_personal_context = self._has_any_hint(compact_query, PERSONAL_HEALTH_CONTEXT_HINTS)
+        has_personal_action = self._has_any_hint(compact_query, PERSONAL_TREATMENT_ACTION_HINTS)
+
+        if self._has_any_hint(compact_query, EXTERNAL_BOOK_HINTS) and self._has_any_hint(
+            compact_query,
+            VALUE_JUDGMENT_HINTS,
+        ):
+            return "跨书比较或价值判断超出《伤寒论》单书研读支持边界。"
+
+        if has_personal_context and self._has_any_hint(compact_query, DOSAGE_CONVERSION_HINTS):
+            return "按体重或个体情况换算剂量超出《伤寒论》研读支持边界。"
+
+        if has_personal_context and self._has_any_hint(compact_query, PERSONAL_REGIMEN_HINTS):
+            return "个体化处方或疗程方案超出《伤寒论》研读支持边界。"
+
+        if self._has_any_hint(compact_query, MODERN_MEDICAL_TERMS) and self._has_any_hint(
+            compact_query,
+            MODERN_MEDICAL_ACTION_HINTS,
+        ):
+            return "现代病名疗效或用药判断超出《伤寒论》研读支持边界。"
+
+        if has_personal_context and has_personal_action:
+            return "个人诊疗、服药或处方建议超出《伤寒论》研读支持边界。"
+
+        return None
+
+    @staticmethod
+    def _has_any_hint(text: str, hints: tuple[str, ...]) -> bool:
+        return any(hint in text for hint in hints)
+
+    def _assemble_policy_refusal(self, query_text: str, refuse_reason: str) -> dict[str, Any]:
+        return self._compose_payload(
+            query_text=query_text,
+            answer_mode="refuse",
+            answer_text="该问题超出《伤寒论》单书研读支持边界，暂不提供诊疗、剂量、现代病名疗效或跨书价值判断。",
+            primary=[],
+            secondary=[],
+            review=[],
+            review_notice=None,
+            disclaimer=self._build_disclaimer("refuse", False, False),
+            refuse_reason=refuse_reason,
+            suggested_followup_questions=self._build_followups("refuse"),
+            citations=[],
+        )
 
     def _assemble_standard(self, query_text: str) -> dict[str, Any]:
         retrieval = self.engine.retrieve(query_text)
