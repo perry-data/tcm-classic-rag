@@ -10,6 +10,17 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from backend.llm import (
+    DEFAULT_OPENROUTER_BASE_URL,
+    DEFAULT_OPENROUTER_MODEL,
+    LLMOutputValidationError,
+    OpenRouterLLMClient,
+    OpenRouterLLMConfig,
+    OpenRouterLLMError,
+    build_answer_text_prompt,
+    parse_answer_text_json,
+    validate_rendered_answer_text,
+)
 from backend.strategies.general_question import (
     GeneralBranchMeta,
     GeneralQuestionPlan,
@@ -355,6 +366,7 @@ class AnswerAssembler:
     dense_chunks_meta: Path
     dense_main_index: Path
     dense_main_meta: Path
+    llm_config: OpenRouterLLMConfig | None = None
 
     def __post_init__(self) -> None:
         self.engine = HybridRetrievalEngine(
@@ -376,6 +388,14 @@ class AnswerAssembler:
         ) = self._load_formula_catalog()
         self._last_comparison_debug: dict[str, Any] | None = None
         self._last_general_debug: dict[str, Any] | None = None
+        self._last_llm_debug: dict[str, Any] | None = None
+        self._llm_config = self.llm_config or OpenRouterLLMConfig(
+            enabled=False,
+            api_key=None,
+            model=DEFAULT_OPENROUTER_MODEL,
+            base_url=DEFAULT_OPENROUTER_BASE_URL,
+        )
+        self._llm_client = OpenRouterLLMClient(self._llm_config) if self._llm_config.enabled else None
 
     def close(self) -> None:
         self.engine.close()
@@ -383,6 +403,7 @@ class AnswerAssembler:
     def assemble(self, query_text: str) -> dict[str, Any]:
         self._last_comparison_debug = None
         self._last_general_debug = None
+        self._last_llm_debug = None
         policy_refusal = self._detect_policy_refusal(query_text)
         if policy_refusal is not None:
             return self._assemble_policy_refusal(query_text, policy_refusal)
@@ -396,6 +417,9 @@ class AnswerAssembler:
 
     def get_last_comparison_debug(self) -> dict[str, Any] | None:
         return self._last_comparison_debug
+
+    def get_last_llm_debug(self) -> dict[str, Any] | None:
+        return self._last_llm_debug
 
     def _detect_policy_refusal(self, query_text: str) -> str | None:
         compact_query = compact_whitespace(query_text)
@@ -469,30 +493,19 @@ class AnswerAssembler:
         refuse_reason = self._build_refuse_reason(answer_mode)
         suggested_followup_questions = self._build_followups(answer_mode)
         citations = self._build_citations(answer_mode, primary, secondary, review)
-        display_sections = self._build_display_sections(
+        return self._compose_payload(
+            query_text=query_text,
+            answer_mode=answer_mode,
             answer_text=answer_text,
             primary=primary,
             secondary=secondary,
             review=review,
-            citations=citations,
             review_notice=review_notice,
+            disclaimer=disclaimer,
+            refuse_reason=refuse_reason,
             suggested_followup_questions=suggested_followup_questions,
+            citations=citations,
         )
-
-        return {
-            "query": query_text,
-            "answer_mode": answer_mode,
-            "answer_text": answer_text,
-            "primary_evidence": primary,
-            "secondary_evidence": secondary,
-            "review_materials": review,
-            "disclaimer": disclaimer,
-            "review_notice": review_notice,
-            "refuse_reason": refuse_reason,
-            "suggested_followup_questions": suggested_followup_questions,
-            "citations": citations,
-            "display_sections": display_sections,
-        }
 
     def _should_demote_meaning_explanation(
         self,
@@ -1687,8 +1700,16 @@ class AnswerAssembler:
         suggested_followup_questions: list[str],
         citations: list[dict[str, Any]],
     ) -> dict[str, Any]:
+        final_answer_text = self._maybe_render_answer_text(
+            query_text=query_text,
+            answer_mode=answer_mode,
+            baseline_answer_text=answer_text,
+            primary=primary,
+            secondary=secondary,
+            review=review,
+        )
         display_sections = self._build_display_sections(
-            answer_text=answer_text,
+            answer_text=final_answer_text,
             primary=primary,
             secondary=secondary,
             review=review,
@@ -1699,7 +1720,7 @@ class AnswerAssembler:
         return {
             "query": query_text,
             "answer_mode": answer_mode,
-            "answer_text": answer_text,
+            "answer_text": final_answer_text,
             "primary_evidence": primary,
             "secondary_evidence": secondary,
             "review_materials": review,
@@ -1710,6 +1731,82 @@ class AnswerAssembler:
             "citations": citations,
             "display_sections": display_sections,
         }
+
+    def _maybe_render_answer_text(
+        self,
+        *,
+        query_text: str,
+        answer_mode: str,
+        baseline_answer_text: str,
+        primary: list[dict[str, Any]],
+        secondary: list[dict[str, Any]],
+        review: list[dict[str, Any]],
+    ) -> str:
+        debug: dict[str, Any] = {
+            "provider": self._llm_config.provider_name,
+            "enabled": self._llm_config.enabled,
+            "model": self._llm_config.model,
+            "base_url": self._llm_config.base_url,
+            "query_text": query_text,
+            "answer_mode": answer_mode,
+            "attempted": False,
+            "used_llm": False,
+            "fallback_used": False,
+            "skipped_reason": None,
+            "fallback_reason": None,
+            "answer_source": "baseline",
+            "baseline_answer_text_excerpt": snippet_text(baseline_answer_text, limit=160),
+        }
+
+        if answer_mode == "refuse":
+            debug["skipped_reason"] = "refuse_mode"
+            debug["answer_source"] = "baseline_refuse"
+            self._last_llm_debug = debug
+            return baseline_answer_text
+
+        if not self._llm_client:
+            debug["skipped_reason"] = "llm_disabled"
+            self._last_llm_debug = debug
+            return baseline_answer_text
+
+        if not baseline_answer_text.strip():
+            debug["skipped_reason"] = "empty_baseline_answer"
+            self._last_llm_debug = debug
+            return baseline_answer_text
+
+        prompt = build_answer_text_prompt(
+            config=self._llm_config,
+            query_text=query_text,
+            answer_mode=answer_mode,
+            baseline_answer_text=baseline_answer_text,
+            primary=primary,
+            secondary=secondary,
+            review=review,
+        )
+        debug["attempted"] = True
+
+        try:
+            raw_content = self._llm_client.render_answer_text(
+                system_instruction=prompt.system_instruction,
+                user_prompt=prompt.user_prompt,
+            )
+            candidate_answer_text = parse_answer_text_json(raw_content)
+            validate_rendered_answer_text(
+                answer_mode=answer_mode,
+                baseline_answer_text=baseline_answer_text,
+                candidate_answer_text=candidate_answer_text,
+            )
+        except (OpenRouterLLMError, LLMOutputValidationError) as exc:
+            debug["fallback_used"] = True
+            debug["fallback_reason"] = str(exc)
+            self._last_llm_debug = debug
+            return baseline_answer_text
+
+        debug["used_llm"] = True
+        debug["answer_source"] = "llm"
+        debug["rendered_answer_text_excerpt"] = snippet_text(candidate_answer_text, limit=160)
+        self._last_llm_debug = debug
+        return candidate_answer_text
 
     def _fetch_record_meta(self, record_id: str) -> dict[str, Any]:
         cached = self._record_cache.get(record_id)
