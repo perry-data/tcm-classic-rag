@@ -1,0 +1,366 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "config/evaluation/evaluator_v2_metric_schema_draft.json",
+  "title": "Evaluator v2 Metric Schema Draft",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "generated_at_utc",
+    "report_kind",
+    "run_metadata",
+    "dataset",
+    "summary",
+    "retrieval_metrics",
+    "failure_taxonomy",
+    "artifacts"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "evaluator_v2_metric_schema_draft"
+    },
+    "generated_at_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "report_kind": {
+      "type": "string",
+      "enum": [
+        "evaluator_v2_report"
+      ]
+    },
+    "run_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runner_version",
+        "runner_backend",
+        "command"
+      ],
+      "properties": {
+        "runner_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "runner_backend": {
+          "type": "string",
+          "enum": [
+            "local_assembler",
+            "api"
+          ]
+        },
+        "command": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "dataset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "schema_version",
+        "dataset_name",
+        "dataset_stage",
+        "total_questions"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "schema_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "dataset_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "dataset_stage": {
+          "type": "string",
+          "minLength": 1
+        },
+        "total_questions": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "total_questions",
+        "mode_match_count",
+        "citation_basic_pass_count",
+        "failure_count"
+      ],
+      "properties": {
+        "total_questions": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "mode_match_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "citation_basic_pass_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failure_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "all_checks_passed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "retrieval_metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "top_k_values",
+        "aggregate",
+        "by_question_type",
+        "rerank_delta_summary"
+      ],
+      "properties": {
+        "top_k_values": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "aggregate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "fused_hit_at_k",
+            "rerank_hit_at_k"
+          ],
+          "properties": {
+            "fused_hit_at_k": {
+              "$ref": "#/$defs/hitAtKMap"
+            },
+            "rerank_hit_at_k": {
+              "$ref": "#/$defs/hitAtKMap"
+            }
+          }
+        },
+        "by_question_type": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "count",
+              "fused_hit_at_k",
+              "rerank_hit_at_k"
+            ],
+            "properties": {
+              "count": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "fused_hit_at_k": {
+                "$ref": "#/$defs/hitAtKMap"
+              },
+              "rerank_hit_at_k": {
+                "$ref": "#/$defs/hitAtKMap"
+              }
+            }
+          }
+        },
+        "rerank_delta_summary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "count_with_gold_before_rerank",
+            "improved_count",
+            "unchanged_count",
+            "worsened_count"
+          ],
+          "properties": {
+            "count_with_gold_before_rerank": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "improved_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "unchanged_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "worsened_count": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    },
+    "answer_text_quality_review": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "enabled",
+        "sample_count",
+        "rubric_dimensions"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "sample_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rubric_dimensions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": [
+              "clarity",
+              "structure",
+              "evidence_faithfulness",
+              "mode_boundary_preservation"
+            ]
+          }
+        },
+        "summary_notes": {
+          "type": "string"
+        },
+        "artifact_path": {
+          "type": "string"
+        }
+      }
+    },
+    "latency_benchmark": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "enabled",
+        "modes"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "modes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "baseline",
+              "llm_enabled"
+            ]
+          }
+        },
+        "artifact_path": {
+          "type": "string"
+        },
+        "blocker_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "failure_taxonomy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "category_counts",
+        "subcategory_counts",
+        "items_with_failures"
+      ],
+      "properties": {
+        "category_counts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "subcategory_counts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "items_with_failures": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "artifact_path": {
+          "type": "string"
+        }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "json_report_path",
+        "markdown_report_path"
+      ],
+      "properties": {
+        "json_report_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "markdown_report_path": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  },
+  "$defs": {
+    "hitAtKMap": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "hit_count",
+          "hit_rate"
+        ],
+        "properties": {
+          "hit_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "hit_rate": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        }
+      }
+    }
+  }
+}
