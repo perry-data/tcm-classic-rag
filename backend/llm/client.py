@@ -7,11 +7,12 @@ from pathlib import Path
 from typing import Any
 from urllib import error as urllib_error
 from urllib import request as urllib_request
+from urllib.parse import urlsplit
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
-DEFAULT_OPENROUTER_MODEL = "qwen/qwen3-next-80b-a3b-instruct:free"
+DEFAULT_OPENROUTER_MODEL = "qwen/qwen3-next-80b-a3b-instruct"
 DEFAULT_LLM_TIMEOUT_SECONDS = 12.0
 DEFAULT_LLM_MAX_OUTPUT_TOKENS = 480
 DEFAULT_LLM_TEMPERATURE = 0.0
@@ -91,6 +92,18 @@ def _parse_bool(value: str | None, default: bool = False) -> bool:
     return value.strip().lower() in {"1", "true", "yes", "on"}
 
 
+def _clean_optional_text(value: str | None) -> str | None:
+    if value is None:
+        return None
+    cleaned = value.strip()
+    return cleaned or None
+
+
+def _is_openrouter_base_url(base_url: str) -> bool:
+    netloc = urlsplit(base_url).netloc.lower()
+    return netloc.endswith("openrouter.ai")
+
+
 def load_openrouter_llm_config(
     *,
     enabled_override: bool | None = None,
@@ -102,8 +115,10 @@ def load_openrouter_llm_config(
     _load_local_env(PROJECT_ROOT / ".env")
 
     enabled = enabled_override if enabled_override is not None else _parse_bool(os.environ.get(ENV_LLM_ENABLED), default=False)
-    model = model_override if model_override is not None else os.environ.get(ENV_MODEL)
-    base_url = base_url_override if base_url_override is not None else os.environ.get(ENV_BASE_URL, DEFAULT_OPENROUTER_BASE_URL)
+    model = _clean_optional_text(model_override if model_override is not None else os.environ.get(ENV_MODEL))
+    base_url = _clean_optional_text(
+        base_url_override if base_url_override is not None else os.environ.get(ENV_BASE_URL, DEFAULT_OPENROUTER_BASE_URL)
+    )
     api_key = os.environ.get(ENV_API_KEY)
 
     timeout_seconds = timeout_override if timeout_override is not None else DEFAULT_LLM_TIMEOUT_SECONDS
@@ -114,7 +129,7 @@ def load_openrouter_llm_config(
             enabled=False,
             api_key=None,
             model=model or DEFAULT_OPENROUTER_MODEL,
-            base_url=base_url,
+            base_url=(base_url or DEFAULT_OPENROUTER_BASE_URL).rstrip("/"),
             timeout_seconds=timeout_seconds,
             max_output_tokens=max_output_tokens,
         )
@@ -126,19 +141,14 @@ def load_openrouter_llm_config(
 
     if not model:
         raise LLMConfigError(
-            f"LLM is enabled but {ENV_MODEL} is missing. The only supported model for this release is {DEFAULT_OPENROUTER_MODEL}."
-        )
-
-    if model != DEFAULT_OPENROUTER_MODEL:
-        raise LLMConfigError(
-            f"Unsupported LLM model: {model}. This release only supports {DEFAULT_OPENROUTER_MODEL} via OpenRouter."
+            f"LLM is enabled but {ENV_MODEL} is missing. Set it to the OpenAI-compatible model identifier you want to use."
         )
 
     return OpenRouterLLMConfig(
         enabled=True,
         api_key=api_key,
         model=model,
-        base_url=base_url.rstrip("/"),
+        base_url=(base_url or DEFAULT_OPENROUTER_BASE_URL).rstrip("/"),
         timeout_seconds=timeout_seconds,
         max_output_tokens=max_output_tokens,
     )
@@ -162,6 +172,16 @@ class OpenRouterLLMClient:
     def __init__(self, config: OpenRouterLLMConfig) -> None:
         self.config = config
 
+    def _build_headers(self) -> dict[str, str]:
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {self.config.api_key}",
+        }
+        if _is_openrouter_base_url(self.config.base_url):
+            headers["HTTP-Referer"] = "https://localhost/tcm-classic-rag"
+            headers["X-Title"] = "tcm-classic-rag"
+        return headers
+
     def render_answer_text(self, *, system_instruction: str, user_prompt: str) -> str:
         if not self.config.enabled:
             raise OpenRouterLLMError("OpenRouterLLMClient called while disabled.")
@@ -180,12 +200,7 @@ class OpenRouterLLMClient:
         request = urllib_request.Request(
             endpoint,
             data=json.dumps(body, ensure_ascii=False).encode("utf-8"),
-            headers={
-                "Content-Type": "application/json",
-                "Authorization": f"Bearer {self.config.api_key}",
-                "HTTP-Referer": "https://localhost/tcm-classic-rag",
-                "X-Title": "tcm-classic-rag",
-            },
+            headers=self._build_headers(),
             method="POST",
         )
 

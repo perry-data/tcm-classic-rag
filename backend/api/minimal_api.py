@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import json
 import mimetypes
+import shlex
 import sys
 import threading
 from dataclasses import dataclass
@@ -729,7 +730,16 @@ def run_llm_smoke_mode(args: argparse.Namespace, paths: dict[str, Path]) -> int:
             json_dumps(build_llm_examples_payload(llm_config, results)) + "\n",
             encoding="utf-8",
         )
-        command = f"{Path(sys.executable).name} -m backend.api.minimal_api --llm-smoke --llm-enabled"
+        command_parts = [Path(sys.executable).name, "-m", "backend.api.minimal_api", "--llm-smoke", "--llm-enabled"]
+        if args.llm_model:
+            command_parts.extend(["--llm-model", args.llm_model])
+        if args.llm_base_url:
+            command_parts.extend(["--llm-base-url", args.llm_base_url])
+        if args.llm_timeout_seconds is not None:
+            command_parts.extend(["--llm-timeout-seconds", str(args.llm_timeout_seconds)])
+        if args.llm_max_output_tokens is not None:
+            command_parts.extend(["--llm-max-output-tokens", str(args.llm_max_output_tokens)])
+        command = " ".join(shlex.quote(part) for part in command_parts)
         paths["llm_smoke_out"].write_text(build_llm_smoke_markdown(command, llm_config, results), encoding="utf-8")
         log("[3/4] Ran OpenRouter LLM smoke examples and validated mode / evidence / citations stability")
         log(f"[4/4] Wrote {paths['llm_examples_out']} and {paths['llm_smoke_out']}")

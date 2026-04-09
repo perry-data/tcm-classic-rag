@@ -1,7 +1,7 @@
 {
-  "generated_at_utc": "2026-04-09T03:16:23.013758+00:00",
+  "generated_at_utc": "2026-04-09T07:12:20.776106+00:00",
   "provider": "OpenRouter",
-  "model": "qwen/qwen3-next-80b-a3b-instruct:free",
+  "model": "qwen/qwen3-next-80b-a3b-instruct",
   "base_url": "https://openrouter.ai/api/v1",
   "endpoint": "/api/v1/answers",
   "examples": [
@@ -248,7 +248,7 @@
       "llm_response_body": {
         "query": "黄连汤方的条文是什么？",
         "answer_mode": "strong",
-        "answer_text": "根据主依据，与“黄连汤方”直接对应的条文主要有：\n1. 黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。\n2. 味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温\n3. 上热者，泄之以苦，黄连之苦以降阳；下寒者，散之以辛，桂、姜、半夏之辛以升阴；脾欲缓，急食甘以缓之，人参、甘草、大枣之甘以益胃。",
+        "answer_text": "1. 黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。\n2. 味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温\n3. 上热者，泄之以苦，黄连之苦以降阳；下寒者，散之以辛，桂、姜、半夏之辛以升阴；脾欲缓，急食甘以缓之，人参、甘草、大枣之甘以益胃。",
         "primary_evidence": [
           {
             "record_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
@@ -399,7 +399,7 @@
             "section_type": "text",
             "visible": true,
             "field": "answer_text",
-            "summary": "根据主依据，与“黄连汤方”直接对应的条文主要有： 1. 黄连汤方：黄连味苦寒 甘草炙。味甘平 乾..."
+            "summary": "1. 黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。 2..."
           },
           {
             "section_id": "review_notice",
@@ -454,22 +454,23 @@
       "llm_debug": {
         "provider": "OpenRouter",
         "enabled": true,
-        "model": "qwen/qwen3-next-80b-a3b-instruct:free",
+        "model": "qwen/qwen3-next-80b-a3b-instruct",
         "base_url": "https://openrouter.ai/api/v1",
         "query_text": "黄连汤方的条文是什么？",
         "answer_mode": "strong",
         "attempted": true,
-        "used_llm": false,
-        "fallback_used": true,
+        "used_llm": true,
+        "fallback_used": false,
         "skipped_reason": null,
-        "fallback_reason": "OpenRouter request failed: [Errno 8] nodename nor servname provided, or not known",
-        "answer_source": "baseline",
-        "baseline_answer_text_excerpt": "根据主依据，与“黄连汤方”直接对应的条文主要有： 1. 黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。 2. 味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温 3. 上热者，泄之以苦，黄连之苦以降阳；下寒者，散之以辛，桂、姜、半夏之辛以升阴；脾欲缓，急食甘以缓之..."
+        "fallback_reason": null,
+        "answer_source": "llm",
+        "baseline_answer_text_excerpt": "根据主依据，与“黄连汤方”直接对应的条文主要有： 1. 黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。 2. 味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温 3. 上热者，泄之以苦，黄连之苦以降阳；下寒者，散之以辛，桂、姜、半夏之辛以升阴；脾欲缓，急食甘以缓之...",
+        "rendered_answer_text_excerpt": "1. 黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。 2. 味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温 3. 上热者，泄之以苦，黄连之苦以降阳；下寒者，散之以辛，桂、姜、半夏之辛以升阴；脾欲缓，急食甘以缓之，人参、甘草、大枣之甘以益胃。"
       },
       "mode_match": true,
       "evidence_unchanged": true,
       "citations_unchanged": true,
-      "answer_text_changed": false,
+      "answer_text_changed": true,
       "refuse_skipped": true
     },
     {
@@ -704,7 +705,7 @@
       "llm_response_body": {
         "query": "烧针益阳而损阴是什么意思？",
         "answer_mode": "weak_with_review_notice",
-        "answer_text": "正文强证据不足，以下内容需核对，暂不能视为确定答案。 当前可先参考辅助材料：卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+        "answer_text": "正文强证据不足，以下内容需核对，暂不能视为确定答案。当前可先参考辅助材料：卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
         "primary_evidence": [],
         "secondary_evidence": [
           {
@@ -844,7 +845,7 @@
             "section_type": "text",
             "visible": true,
             "field": "answer_text",
-            "summary": "正文强证据不足，以下内容需核对，暂不能视为确定答案。 当前可先参考辅助材料：卫阳也，荣阴也。烧针..."
+            "summary": "正文强证据不足，以下内容需核对，暂不能视为确定答案。当前可先参考辅助材料：卫阳也，荣阴也。烧针益..."
           },
           {
             "section_id": "review_notice",
@@ -899,22 +900,23 @@
       "llm_debug": {
         "provider": "OpenRouter",
         "enabled": true,
-        "model": "qwen/qwen3-next-80b-a3b-instruct:free",
+        "model": "qwen/qwen3-next-80b-a3b-instruct",
         "base_url": "https://openrouter.ai/api/v1",
         "query_text": "烧针益阳而损阴是什么意思？",
         "answer_mode": "weak_with_review_notice",
         "attempted": true,
-        "used_llm": false,
-        "fallback_used": true,
+        "used_llm": true,
+        "fallback_used": false,
         "skipped_reason": null,
-        "fallback_reason": "OpenRouter request failed: [Errno 8] nodename nor servname provided, or not known",
-        "answer_source": "baseline",
-        "baseline_answer_text_excerpt": "正文强证据不足，以下内容需核对，暂不能视为确定答案。 当前可先参考辅助材料：卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。"
+        "fallback_reason": null,
+        "answer_source": "llm",
+        "baseline_answer_text_excerpt": "正文强证据不足，以下内容需核对，暂不能视为确定答案。 当前可先参考辅助材料：卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+        "rendered_answer_text_excerpt": "正文强证据不足，以下内容需核对，暂不能视为确定答案。当前可先参考辅助材料：卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。"
       },
       "mode_match": true,
       "evidence_unchanged": true,
       "citations_unchanged": true,
-      "answer_text_changed": false,
+      "answer_text_changed": true,
       "refuse_skipped": true
     },
     {
@@ -1191,7 +1193,7 @@
       "llm_response_body": {
         "query": "太阳病应该怎么办？",
         "answer_mode": "strong",
-        "answer_text": "这是一个总括性问题，书中谈“太阳病”并非只有一个固定治法，需要分情况看。\n以下先按当前能稳定抓到的典型分支整理：\n1. 先辨伤寒：先看或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，书中把它单列成一个分支，提示“太阳病”并非只有一种证候。 依据：太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名曰赵本作「为」伤寒。\n2. 葛根汤这一支：若见项背强几几，无汗，恶风，条文多归到“葛根汤”这一支。 依据：太阳病，项背强几几，无汗，恶风，葛根汤主之。\n3. 桂枝汤这一支：若见头痛发热，汗出恶风者，条文多归到“桂枝汤”这一支。 依据：太阳病，头痛发热，汗出恶风者，赵本无「者」字桂枝汤主之。\n当前回答只列若干典型分支，不等于穷尽全部“太阳病”处理。",
+        "answer_text": "这是一个总括性问题，书中谈\"太阳病\"并非只有一个固定治法，需要分情况看。以下先按当前能稳定抓到的典型分支整理：\n1. 先辨伤寒：先看或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，书中把它单列成一个分支，提示\"太阳病\"并非只有一种证候。 依据：太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名曰赵本作「为」伤寒。\n2. 葛根汤这一支：若见项背强几几，无汗，恶风，条文多归到\"葛根汤\"这一支。 依据：太阳病，项背强几几，无汗，恶风，葛根汤主之。\n3. 桂枝汤这一支：若见头痛发热，汗出恶风者，条文多归到\"桂枝汤\"这一支。 依据：太阳病，头痛发热，汗出恶风者，赵本无「者」字桂枝汤主之。\n当前回答只列若干典型分支，不等于穷尽全部\"太阳病\"处理。",
         "primary_evidence": [
           {
             "record_id": "safe:main_passages:ZJSHL-CH-008-P-0195",
@@ -1373,7 +1375,7 @@
             "section_type": "text",
             "visible": true,
             "field": "answer_text",
-            "summary": "这是一个总括性问题，书中谈“太阳病”并非只有一个固定治法，需要分情况看。 以下先按当前能稳定抓到..."
+            "summary": "这是一个总括性问题，书中谈\"太阳病\"并非只有一个固定治法，需要分情况看。以下先按当前能稳定抓到的..."
           },
           {
             "section_id": "review_notice",
@@ -1428,22 +1430,23 @@
       "llm_debug": {
         "provider": "OpenRouter",
         "enabled": true,
-        "model": "qwen/qwen3-next-80b-a3b-instruct:free",
+        "model": "qwen/qwen3-next-80b-a3b-instruct",
         "base_url": "https://openrouter.ai/api/v1",
         "query_text": "太阳病应该怎么办？",
         "answer_mode": "strong",
         "attempted": true,
-        "used_llm": false,
-        "fallback_used": true,
+        "used_llm": true,
+        "fallback_used": false,
         "skipped_reason": null,
-        "fallback_reason": "OpenRouter request failed: [Errno 8] nodename nor servname provided, or not known",
-        "answer_source": "baseline",
-        "baseline_answer_text_excerpt": "这是一个总括性问题，书中谈“太阳病”并非只有一个固定治法，需要分情况看。 以下先按当前能稳定抓到的典型分支整理： 1. 先辨伤寒：先看或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，书中把它单列成一个分支，提示“太阳病”并非只有一种证候。 依据：太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名曰赵..."
+        "fallback_reason": null,
+        "answer_source": "llm",
+        "baseline_answer_text_excerpt": "这是一个总括性问题，书中谈“太阳病”并非只有一个固定治法，需要分情况看。 以下先按当前能稳定抓到的典型分支整理： 1. 先辨伤寒：先看或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，书中把它单列成一个分支，提示“太阳病”并非只有一种证候。 依据：太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名曰赵...",
+        "rendered_answer_text_excerpt": "这是一个总括性问题，书中谈\"太阳病\"并非只有一个固定治法，需要分情况看。以下先按当前能稳定抓到的典型分支整理： 1. 先辨伤寒：先看或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，书中把它单列成一个分支，提示\"太阳病\"并非只有一种证候。 依据：太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名曰赵本..."
       },
       "mode_match": true,
       "evidence_unchanged": true,
       "citations_unchanged": true,
-      "answer_text_changed": false,
+      "answer_text_changed": true,
       "refuse_skipped": true
     },
     {
@@ -1700,7 +1703,7 @@
       "llm_response_body": {
         "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
         "answer_mode": "strong",
-        "answer_text": "从现有方文与相关条文看，桂枝加附子汤方与桂枝加浓朴杏子汤方都从桂枝汤方加减而来，但显式加味和对应语境不同。\n1. 显式加减与药味差异：桂枝加附子汤方明写加附子；桂枝加浓朴杏子汤方明写加浓朴、杏仁。\n2. 条文语境：桂枝加附子汤方相关条文可见“太阳病，发汗，遂漏不止，其人恶风，小便难，四支微急，难以屈伸者”；桂枝加浓朴杏子汤方核对材料可见“太阳病，下之微喘者，表未解故也”。\n3. 出处线索：桂枝加附子汤方的方文见“卷十附方位置”；桂枝加浓朴杏子汤方的方文见“卷十附方位置”；桂枝加附子汤方相关条文位于“辨太阳病脉证并治法上第五”；桂枝加浓朴杏子汤方相关条文位于“辨太阳病脉证并治第六”。\n以上差异仅按当前可见条文与方文整理；若要逐字核对，请继续查看引用。",
+        "answer_text": "从现有方文与相关条文看，桂枝加附子汤方与桂枝加厚朴杏子汤方都从桂枝汤方加减而来，但显式加味和对应语境不同。\n1. 显式加减与药味差异：桂枝加附子汤方明写加附子一枚，炮，去皮，破八片；桂枝加厚朴杏子汤方明写加厚朴二两，杏仁五十个，去皮尖。\n2. 条文语境：桂枝加附子汤方相关条文为\"太阳病，发汗，遂漏不止，其人恶风，小便难，四支微急，难以屈伸者\"；桂枝加厚朴杏子汤方相关条文为\"太阳病，下之微喘者，表未解故也\"。\n3. 出处线索：桂枝加附子汤方的方文见\"卷十附方位置\"；桂枝加厚朴杏子汤方的方文见\"卷十附方位置\"；桂枝加附子汤方相关条文位于\"辨太阳病脉证并治法上第五\"；桂枝加厚朴杏子汤方相关条文位于\"辨太阳病脉证并治第六\"。\n以上差异仅按当前可见条文与方文整理；若要逐字核对，请继续查看引用。",
         "primary_evidence": [
           {
             "record_id": "safe:main_passages:ZJSHL-CH-025-P-0004",
@@ -1862,7 +1865,7 @@
             "section_type": "text",
             "visible": true,
             "field": "answer_text",
-            "summary": "从现有方文与相关条文看，桂枝加附子汤方与桂枝加浓朴杏子汤方都从桂枝汤方加减而来，但显式加味和对应..."
+            "summary": "从现有方文与相关条文看，桂枝加附子汤方与桂枝加厚朴杏子汤方都从桂枝汤方加减而来，但显式加味和对应..."
           },
           {
             "section_id": "review_notice",
@@ -1917,22 +1920,23 @@
       "llm_debug": {
         "provider": "OpenRouter",
         "enabled": true,
-        "model": "qwen/qwen3-next-80b-a3b-instruct:free",
+        "model": "qwen/qwen3-next-80b-a3b-instruct",
         "base_url": "https://openrouter.ai/api/v1",
         "query_text": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
         "answer_mode": "strong",
         "attempted": true,
-        "used_llm": false,
-        "fallback_used": true,
+        "used_llm": true,
+        "fallback_used": false,
         "skipped_reason": null,
-        "fallback_reason": "OpenRouter request failed: [Errno 8] nodename nor servname provided, or not known",
-        "answer_source": "baseline",
-        "baseline_answer_text_excerpt": "从现有方文与相关条文看，桂枝加附子汤方与桂枝加浓朴杏子汤方都从桂枝汤方加减而来，但显式加味和对应语境不同。 1. 显式加减与药味差异：桂枝加附子汤方明写加附子；桂枝加浓朴杏子汤方明写加浓朴、杏仁。 2. 条文语境：桂枝加附子汤方相关条文可见“太阳病，发汗，遂漏不止，其人恶风，小便难，四支微急，难以屈伸者”；桂枝加浓朴杏..."
+        "fallback_reason": null,
+        "answer_source": "llm",
+        "baseline_answer_text_excerpt": "从现有方文与相关条文看，桂枝加附子汤方与桂枝加浓朴杏子汤方都从桂枝汤方加减而来，但显式加味和对应语境不同。 1. 显式加减与药味差异：桂枝加附子汤方明写加附子；桂枝加浓朴杏子汤方明写加浓朴、杏仁。 2. 条文语境：桂枝加附子汤方相关条文可见“太阳病，发汗，遂漏不止，其人恶风，小便难，四支微急，难以屈伸者”；桂枝加浓朴杏...",
+        "rendered_answer_text_excerpt": "从现有方文与相关条文看，桂枝加附子汤方与桂枝加厚朴杏子汤方都从桂枝汤方加减而来，但显式加味和对应语境不同。 1. 显式加减与药味差异：桂枝加附子汤方明写加附子一枚，炮，去皮，破八片；桂枝加厚朴杏子汤方明写加厚朴二两，杏仁五十个，去皮尖。 2. 条文语境：桂枝加附子汤方相关条文为\"太阳病，发汗，遂漏不止，其人恶风，小便难..."
       },
       "mode_match": true,
       "evidence_unchanged": true,
       "citations_unchanged": true,
-      "answer_text_changed": false,
+      "answer_text_changed": true,
       "refuse_skipped": true
     },
     {
@@ -2122,7 +2126,7 @@
       "llm_debug": {
         "provider": "OpenRouter",
         "enabled": true,
-        "model": "qwen/qwen3-next-80b-a3b-instruct:free",
+        "model": "qwen/qwen3-next-80b-a3b-instruct",
         "base_url": "https://openrouter.ai/api/v1",
         "query_text": "书中有没有提到量子纠缠？",
         "answer_mode": "refuse",

@@ -5,7 +5,7 @@
 在不改 retrieval / rerank / gating / payload contract / frontend 的前提下，为当前最小系统接入首发真实 LLM provider：
 
 - provider: `OpenRouter`
-- model: `qwen/qwen3-next-80b-a3b-instruct:free`
+- 默认模型示例：`qwen/qwen3-next-80b-a3b-instruct`
 
 并补齐本地配置模板、密钥隔离、fallback、最小 smoke 与 150 条回归验证。
 
@@ -20,7 +20,9 @@
 
 2. `backend/llm/client.py`
    - 新增固定单 provider 的 OpenRouter client。
-   - 固定支持模型为 `qwen/qwen3-next-80b-a3b-instruct:free`。
+   - 默认模型示例调整为 `qwen/qwen3-next-80b-a3b-instruct`。
+   - 不再把模型名硬编码死为 `:free`；允许通过 `TCM_RAG_LLM_MODEL` 或 `--llm-model` 传入 OpenAI-compatible model identifier。
+   - 当 `base_url` 为 OpenRouter 时发送 `HTTP-Referer` / `X-Title`；其他兼容端点只发送通用鉴权头，便于后续尝试其他千问兼容服务。
    - 新增最小配置读取逻辑：
      - 优先环境变量
      - 自动尝试加载仓库根目录 `.env`
@@ -69,7 +71,7 @@
 
 ```env
 TCM_RAG_LLM_API_KEY=your_openrouter_api_key_here
-TCM_RAG_LLM_MODEL=qwen/qwen3-next-80b-a3b-instruct:free
+TCM_RAG_LLM_MODEL=qwen/qwen3-next-80b-a3b-instruct
 TCM_RAG_LLM_BASE_URL=https://openrouter.ai/api/v1
 TCM_RAG_LLM_ENABLED=true
 ```
