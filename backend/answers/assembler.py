@@ -11,12 +11,12 @@ from pathlib import Path
 from typing import Any
 
 from backend.llm import (
-    DEFAULT_OPENROUTER_BASE_URL,
-    DEFAULT_OPENROUTER_MODEL,
+    DEFAULT_MODEL_STUDIO_BASE_URL,
+    DEFAULT_MODEL_STUDIO_MODEL,
     LLMOutputValidationError,
-    OpenRouterLLMClient,
-    OpenRouterLLMConfig,
-    OpenRouterLLMError,
+    ModelStudioLLMClient,
+    ModelStudioLLMConfig,
+    ModelStudioLLMError,
     build_answer_text_prompt,
     parse_answer_text_json,
     validate_rendered_answer_text,
@@ -366,7 +366,7 @@ class AnswerAssembler:
     dense_chunks_meta: Path
     dense_main_index: Path
     dense_main_meta: Path
-    llm_config: OpenRouterLLMConfig | None = None
+    llm_config: ModelStudioLLMConfig | None = None
 
     def __post_init__(self) -> None:
         self.engine = HybridRetrievalEngine(
@@ -389,13 +389,13 @@ class AnswerAssembler:
         self._last_comparison_debug: dict[str, Any] | None = None
         self._last_general_debug: dict[str, Any] | None = None
         self._last_llm_debug: dict[str, Any] | None = None
-        self._llm_config = self.llm_config or OpenRouterLLMConfig(
+        self._llm_config = self.llm_config or ModelStudioLLMConfig(
             enabled=False,
             api_key=None,
-            model=DEFAULT_OPENROUTER_MODEL,
-            base_url=DEFAULT_OPENROUTER_BASE_URL,
+            model=DEFAULT_MODEL_STUDIO_MODEL,
+            base_url=DEFAULT_MODEL_STUDIO_BASE_URL,
         )
-        self._llm_client = OpenRouterLLMClient(self._llm_config) if self._llm_config.enabled else None
+        self._llm_client = ModelStudioLLMClient(self._llm_config) if self._llm_config.enabled else None
 
     def close(self) -> None:
         self.engine.close()
@@ -1796,7 +1796,7 @@ class AnswerAssembler:
                 baseline_answer_text=baseline_answer_text,
                 candidate_answer_text=candidate_answer_text,
             )
-        except (OpenRouterLLMError, LLMOutputValidationError) as exc:
+        except (ModelStudioLLMError, LLMOutputValidationError) as exc:
             debug["fallback_used"] = True
             debug["fallback_reason"] = str(exc)
             self._last_llm_debug = debug

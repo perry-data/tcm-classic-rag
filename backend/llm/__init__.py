@@ -1,11 +1,11 @@
 from .client import (
-    DEFAULT_OPENROUTER_BASE_URL,
-    DEFAULT_OPENROUTER_MODEL,
+    DEFAULT_MODEL_STUDIO_BASE_URL,
+    DEFAULT_MODEL_STUDIO_MODEL,
     LLMConfigError,
-    OpenRouterLLMClient,
-    OpenRouterLLMConfig,
-    OpenRouterLLMError,
-    load_openrouter_llm_config,
+    ModelStudioLLMClient,
+    ModelStudioLLMConfig,
+    ModelStudioLLMError,
+    load_modelstudio_llm_config,
 )
 from .prompt_builder import build_answer_text_prompt
 from .validator import (
@@ -15,15 +15,15 @@ from .validator import (
 )
 
 __all__ = [
-    "DEFAULT_OPENROUTER_BASE_URL",
-    "DEFAULT_OPENROUTER_MODEL",
+    "DEFAULT_MODEL_STUDIO_BASE_URL",
+    "DEFAULT_MODEL_STUDIO_MODEL",
     "LLMConfigError",
     "LLMOutputValidationError",
-    "OpenRouterLLMClient",
-    "OpenRouterLLMConfig",
-    "OpenRouterLLMError",
+    "ModelStudioLLMClient",
+    "ModelStudioLLMConfig",
+    "ModelStudioLLMError",
     "build_answer_text_prompt",
-    "load_openrouter_llm_config",
+    "load_modelstudio_llm_config",
     "parse_answer_text_json",
     "validate_rendered_answer_text",
 ]

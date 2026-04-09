@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
-from .client import OpenRouterLLMConfig
+from .client import ModelStudioLLMConfig
 
 
 @dataclass(frozen=True)
@@ -36,7 +36,7 @@ def _system_instruction() -> str:
 
 def build_answer_text_prompt(
     *,
-    config: OpenRouterLLMConfig,
+    config: ModelStudioLLMConfig,
     query_text: str,
     answer_mode: str,
     baseline_answer_text: str,
