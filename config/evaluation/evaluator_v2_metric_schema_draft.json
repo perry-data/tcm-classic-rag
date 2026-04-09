@@ -13,7 +13,8 @@
     "summary",
     "retrieval_metrics",
     "failure_taxonomy",
-    "artifacts"
+    "artifacts",
+    "items"
   ],
   "properties": {
     "schema_version": {
@@ -334,9 +335,144 @@
           "minLength": 1
         }
       }
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "question_id",
+          "query",
+          "question_type",
+          "expected_mode",
+          "actual_mode",
+          "mode_match",
+          "citation_check_required",
+          "citations_present",
+          "primary_empty_check",
+          "zero_evidence_check",
+          "zero_citations_check",
+          "gold_citation_check",
+          "unsupported_assertion_check",
+          "actual_counts",
+          "actual_record_ids",
+          "answer_text_excerpt",
+          "review_notice",
+          "refuse_reason",
+          "failed_checks",
+          "retrieval_metrics",
+          "failure_taxonomy"
+        ],
+        "properties": {
+          "question_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "query": {
+            "type": "string",
+            "minLength": 1
+          },
+          "question_type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "expected_mode": {
+            "type": "string",
+            "minLength": 1
+          },
+          "actual_mode": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "mode_match": {
+            "type": "boolean"
+          },
+          "citation_check_required": {
+            "type": "boolean"
+          },
+          "citations_present": {
+            "type": "boolean"
+          },
+          "primary_empty_check": {
+            "$ref": "#/$defs/checkResult"
+          },
+          "zero_evidence_check": {
+            "$ref": "#/$defs/checkResult"
+          },
+          "zero_citations_check": {
+            "$ref": "#/$defs/checkResult"
+          },
+          "gold_citation_check": {
+            "type": "object"
+          },
+          "unsupported_assertion_check": {
+            "type": "object"
+          },
+          "actual_counts": {
+            "type": "object"
+          },
+          "actual_record_ids": {
+            "type": "object"
+          },
+          "answer_text_excerpt": {
+            "type": "string"
+          },
+          "review_notice": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "refuse_reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "failed_checks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "retrieval_metrics": {
+            "type": "object"
+          },
+          "failure_taxonomy": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      }
     }
   },
   "$defs": {
+    "checkResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required",
+        "observed_count",
+        "passed"
+      ],
+      "properties": {
+        "required": {
+          "type": "boolean"
+        },
+        "observed_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "passed": {
+          "type": "boolean"
+        }
+      }
+    },
     "hitAtKMap": {
       "type": "object",
       "propertyNames": {
