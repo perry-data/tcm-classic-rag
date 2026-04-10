@@ -1,0 +1,519 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "config/evaluation/evaluator_v2_metric_schema_draft.json",
+  "title": "Evaluator v2 Metric Schema Draft",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "generated_at_utc",
+    "report_kind",
+    "run_metadata",
+    "dataset",
+    "summary",
+    "retrieval_metrics",
+    "answer_text_quality_review",
+    "latency_benchmark",
+    "failure_taxonomy",
+    "artifacts",
+    "items"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "evaluator_v2_metric_schema_draft"
+    },
+    "generated_at_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "report_kind": {
+      "type": "string",
+      "enum": [
+        "evaluator_v2_report"
+      ]
+    },
+    "run_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runner_version",
+        "runner_backend",
+        "command"
+      ],
+      "properties": {
+        "runner_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "runner_backend": {
+          "type": "string",
+          "enum": [
+            "local_assembler",
+            "api"
+          ]
+        },
+        "command": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "dataset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "schema_version",
+        "dataset_name",
+        "dataset_stage",
+        "total_questions"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "schema_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "dataset_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "dataset_stage": {
+          "type": "string",
+          "minLength": 1
+        },
+        "total_questions": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "total_questions",
+        "mode_match_count",
+        "citation_basic_pass_count",
+        "failure_count"
+      ],
+      "properties": {
+        "total_questions": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "mode_match_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "citation_basic_pass_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failure_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "all_checks_passed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "retrieval_metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "top_k_values",
+        "aggregate",
+        "by_question_type",
+        "rerank_delta_summary"
+      ],
+      "properties": {
+        "top_k_values": {
+          "description": "Frozen diagnostic K windows used for fused and rerank Hit@K reporting.",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "aggregate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "fused_hit_at_k",
+            "rerank_hit_at_k"
+          ],
+          "properties": {
+            "fused_hit_at_k": {
+              "$ref": "#/$defs/hitAtKMap"
+            },
+            "rerank_hit_at_k": {
+              "$ref": "#/$defs/hitAtKMap"
+            }
+          }
+        },
+        "by_question_type": {
+          "description": "Per question_type retrieval summary. count is the total item count for the type; Hit@K denominator is the evaluable subset within that type.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "count",
+              "fused_hit_at_k",
+              "rerank_hit_at_k"
+            ],
+            "properties": {
+              "count": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "fused_hit_at_k": {
+                "$ref": "#/$defs/hitAtKMap"
+              },
+              "rerank_hit_at_k": {
+                "$ref": "#/$defs/hitAtKMap"
+              }
+            }
+          }
+        },
+        "rerank_delta_summary": {
+          "description": "Summary of best gold rank movement between fused candidates and reranked candidates. Negative delta means improvement, positive delta means worsening.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "count_with_gold_before_rerank",
+            "improved_count",
+            "unchanged_count",
+            "worsened_count"
+          ],
+          "properties": {
+            "count_with_gold_before_rerank": {
+              "description": "Count of evaluable items whose best gold rank is non-null both before and after rerank.",
+              "type": "integer",
+              "minimum": 0
+            },
+            "improved_count": {
+              "description": "Number of comparable items with rerank_rank_delta < 0.",
+              "type": "integer",
+              "minimum": 0
+            },
+            "unchanged_count": {
+              "description": "Number of comparable items with rerank_rank_delta = 0.",
+              "type": "integer",
+              "minimum": 0
+            },
+            "worsened_count": {
+              "description": "Number of comparable items with rerank_rank_delta > 0.",
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    },
+    "answer_text_quality_review": {
+      "description": "Sampled manual review summary for answer_text quality. Diagnostic only; does not affect failure_count or exit-code behavior.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "enabled",
+        "sample_count",
+        "rubric_dimensions",
+        "artifact_path"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "sample_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rubric_dimensions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": [
+              "clarity",
+              "structure",
+              "evidence_faithfulness",
+              "mode_boundary_preservation"
+            ]
+          }
+        },
+        "summary_notes": {
+          "type": "string"
+        },
+        "artifact_path": {
+          "description": "Path to the human-readable answer_text review report artifact.",
+          "type": "string"
+        }
+      }
+    },
+    "latency_benchmark": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "enabled",
+        "modes"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "modes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "baseline",
+              "llm_enabled"
+            ]
+          }
+        },
+        "artifact_path": {
+          "type": "string"
+        },
+        "blocker_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "failure_taxonomy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "category_counts",
+        "subcategory_counts",
+        "items_with_failures",
+        "artifact_path"
+      ],
+      "properties": {
+        "category_counts": {
+          "description": "Counts taxonomy entries by top-level category. Each entry contributes 1; this is not a distinct-question count.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "subcategory_counts": {
+          "description": "Counts taxonomy entries by subcategory. Each entry contributes 1; this is not a distinct-question count.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "items_with_failures": {
+          "description": "Number of distinct items with at least one taxonomy entry. This does not change the v1 failure_count or exit-code semantics.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "artifact_path": {
+          "description": "Reference taxonomy glossary and semantics documentation path used by the report.",
+          "type": "string"
+        }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "json_report_path",
+        "markdown_report_path"
+      ],
+      "properties": {
+        "json_report_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "markdown_report_path": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "question_id",
+          "query",
+          "question_type",
+          "expected_mode",
+          "actual_mode",
+          "mode_match",
+          "citation_check_required",
+          "citations_present",
+          "primary_empty_check",
+          "zero_evidence_check",
+          "zero_citations_check",
+          "gold_citation_check",
+          "unsupported_assertion_check",
+          "actual_counts",
+          "actual_record_ids",
+          "answer_text_excerpt",
+          "review_notice",
+          "refuse_reason",
+          "failed_checks",
+          "retrieval_metrics",
+          "failure_taxonomy"
+        ],
+        "properties": {
+          "question_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "query": {
+            "type": "string",
+            "minLength": 1
+          },
+          "question_type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "expected_mode": {
+            "type": "string",
+            "minLength": 1
+          },
+          "actual_mode": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "mode_match": {
+            "type": "boolean"
+          },
+          "citation_check_required": {
+            "type": "boolean"
+          },
+          "citations_present": {
+            "type": "boolean"
+          },
+          "primary_empty_check": {
+            "$ref": "#/$defs/checkResult"
+          },
+          "zero_evidence_check": {
+            "$ref": "#/$defs/checkResult"
+          },
+          "zero_citations_check": {
+            "$ref": "#/$defs/checkResult"
+          },
+          "gold_citation_check": {
+            "type": "object"
+          },
+          "unsupported_assertion_check": {
+            "type": "object"
+          },
+          "actual_counts": {
+            "type": "object"
+          },
+          "actual_record_ids": {
+            "type": "object"
+          },
+          "answer_text_excerpt": {
+            "type": "string"
+          },
+          "review_notice": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "refuse_reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "failed_checks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "retrieval_metrics": {
+            "type": "object"
+          },
+          "failure_taxonomy": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "checkResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required",
+        "observed_count",
+        "passed"
+      ],
+      "properties": {
+        "required": {
+          "type": "boolean"
+        },
+        "observed_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "passed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "hitAtKMap": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "hit_count",
+          "hit_rate"
+        ],
+        "properties": {
+          "hit_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "hit_rate": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        }
+      }
+    }
+  }
+}

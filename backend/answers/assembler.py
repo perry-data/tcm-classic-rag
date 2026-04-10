@@ -10,6 +10,17 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from backend.llm import (
+    DEFAULT_MODEL_STUDIO_BASE_URL,
+    DEFAULT_MODEL_STUDIO_MODEL,
+    LLMOutputValidationError,
+    ModelStudioLLMClient,
+    ModelStudioLLMConfig,
+    ModelStudioLLMError,
+    build_answer_text_prompt,
+    parse_answer_text_json,
+    validate_rendered_answer_text,
+)
 from backend.strategies.general_question import (
     GeneralBranchMeta,
     GeneralQuestionPlan,
@@ -48,6 +59,24 @@ GENERAL_WEAK_BRANCH_LIMIT = 3
 GENERAL_SECONDARY_LIMIT = 5
 GENERAL_REVIEW_LIMIT = 3
 
+GENERAL_TOPIC_ALIAS_CONFIG = {
+    compact_text("少阳病"): {
+        "text_aliases": (compact_text("少阳"),),
+        "chapter_aliases": (compact_text("辨少阳病"),),
+    },
+    compact_text("伤寒瘥后"): {
+        "text_aliases": (
+            compact_text("伤寒瘥"),
+            compact_text("大病瘥后"),
+            compact_text("伤寒解后"),
+        ),
+        "chapter_aliases": (
+            compact_text("瘥后"),
+            compact_text("劳复"),
+        ),
+    },
+}
+
 FORMULA_VARIANT_REPLACEMENTS = (
     ("厚朴", "浓朴"),
     ("杏仁", "杏子"),
@@ -75,6 +104,16 @@ UNSUPPORTED_COMPARISON_HINTS = (
     "更强",
 )
 
+MEANING_EXPLANATION_QUERY_HINTS = (
+    "是什么意思",
+    "什么意思",
+)
+
+STRONG_MEANING_EXPLANATION_MARKERS = (
+    "名曰",
+    "谓之",
+)
+
 COMPARISON_CONTEXT_HINTS = (
     "证候",
     "主治",
@@ -82,6 +121,96 @@ COMPARISON_CONTEXT_HINTS = (
     "适用",
     "症状",
     "条文语境",
+)
+
+PERSONAL_HEALTH_CONTEXT_HINTS = (
+    "我的体重",
+    "我的症状",
+    "我的体质",
+    "我现在",
+    "我目前",
+    "我血压",
+    "我发烧",
+    "我发热",
+    "我咳嗽",
+    "按我的",
+    "适合我",
+    "本人",
+    "患者",
+    "病人",
+)
+
+PERSONAL_TREATMENT_ACTION_HINTS = (
+    "能不能",
+    "可不可以",
+    "可以不可以",
+    "能用",
+    "服用",
+    "该用",
+    "应该用",
+    "用哪个方",
+    "开处方",
+    "用药",
+)
+
+DOSAGE_CONVERSION_HINTS = (
+    "体重",
+    "克数",
+    "剂量",
+    "换算",
+    "折算",
+    "用量",
+)
+
+MODERN_MEDICAL_TERMS = (
+    "支气管炎",
+    "高血压",
+    "血压高",
+    "糖尿病",
+    "肺炎",
+    "新冠",
+    "疫苗",
+    "癌",
+    "肿瘤",
+)
+
+MODERN_MEDICAL_ACTION_HINTS = (
+    "治疗",
+    "疗效",
+    "能不能",
+    "能用",
+    "适应症",
+    "治",
+)
+
+PERSONAL_REGIMEN_HINTS = (
+    "七天",
+    "7天",
+    "疗程",
+    "方案",
+    "用药方案",
+    "适合我体质",
+)
+
+EXTERNAL_BOOK_HINTS = (
+    "黄帝内经",
+    "素问",
+    "灵枢",
+    "金匮要略",
+    "温病条辨",
+    "本草纲目",
+)
+
+VALUE_JUDGMENT_HINTS = (
+    "哪个更准确",
+    "哪一个更准确",
+    "谁更准确",
+    "哪个更好",
+    "哪个好",
+    "谁更好",
+    "更适合",
+    "优劣",
+    "更强",
 )
 
 REFUSE_GUIDANCE_TEMPLATES = [
@@ -188,6 +317,34 @@ def normalize_formula_lookup_text(text: str | None, *, keep_formula_suffix: bool
     return normalized
 
 
+def raw_title_anchor(text: str | None) -> str:
+    if not text:
+        return ""
+    first_line = next((line.strip() for line in str(text).splitlines() if line.strip()), "")
+    if not first_line:
+        return ""
+    return re.split(r"[：:]", first_line, maxsplit=1)[0].strip()
+
+
+def clean_formula_title_anchor(title: str | None) -> str:
+    raw_title = compact_whitespace(title)
+    if not raw_title:
+        return ""
+    cleaned = re.sub(r"(?:赵本|医统本)+并有「([^」]+)」字", r"\1", raw_title)
+    cleaned = re.sub(r"(?:赵本|医统本)+(?:作|无)「[^」]+」字?", "", cleaned)
+    return compact_text(cleaned)
+
+
+def formula_title_alias_variants(raw_title: str, canonical_title: str) -> set[str]:
+    variants = {raw_title, canonical_title}
+    variants.add(clean_formula_title_anchor(raw_title))
+    variants.add(
+        clean_formula_title_anchor(re.sub(r"([一-龥])(?:赵本|医统本)+作「([^」]+)」", r"\2", raw_title))
+    )
+    variants.add(clean_formula_title_anchor(re.sub(r"(?:赵本|医统本)+并有「([^」]+)」字", "", raw_title)))
+    return {variant for variant in variants if variant}
+
+
 def dedupe_strings(values: list[str]) -> list[str]:
     seen: set[str] = set()
     ordered: list[str] = []
@@ -209,6 +366,7 @@ class AnswerAssembler:
     dense_chunks_meta: Path
     dense_main_index: Path
     dense_main_meta: Path
+    llm_config: ModelStudioLLMConfig | None = None
 
     def __post_init__(self) -> None:
         self.engine = HybridRetrievalEngine(
@@ -230,6 +388,14 @@ class AnswerAssembler:
         ) = self._load_formula_catalog()
         self._last_comparison_debug: dict[str, Any] | None = None
         self._last_general_debug: dict[str, Any] | None = None
+        self._last_llm_debug: dict[str, Any] | None = None
+        self._llm_config = self.llm_config or ModelStudioLLMConfig(
+            enabled=False,
+            api_key=None,
+            model=DEFAULT_MODEL_STUDIO_MODEL,
+            base_url=DEFAULT_MODEL_STUDIO_BASE_URL,
+        )
+        self._llm_client = ModelStudioLLMClient(self._llm_config) if self._llm_config.enabled else None
 
     def close(self) -> None:
         self.engine.close()
@@ -237,6 +403,10 @@ class AnswerAssembler:
     def assemble(self, query_text: str) -> dict[str, Any]:
         self._last_comparison_debug = None
         self._last_general_debug = None
+        self._last_llm_debug = None
+        policy_refusal = self._detect_policy_refusal(query_text)
+        if policy_refusal is not None:
+            return self._assemble_policy_refusal(query_text, policy_refusal)
         comparison_plan = self._detect_comparison_query(query_text)
         if comparison_plan is not None:
             return self._assemble_comparison(query_text, comparison_plan)
@@ -248,6 +418,59 @@ class AnswerAssembler:
     def get_last_comparison_debug(self) -> dict[str, Any] | None:
         return self._last_comparison_debug
 
+    def get_last_llm_debug(self) -> dict[str, Any] | None:
+        return self._last_llm_debug
+
+    def _detect_policy_refusal(self, query_text: str) -> str | None:
+        compact_query = compact_whitespace(query_text)
+        if not compact_query:
+            return None
+
+        has_personal_context = self._has_any_hint(compact_query, PERSONAL_HEALTH_CONTEXT_HINTS)
+        has_personal_action = self._has_any_hint(compact_query, PERSONAL_TREATMENT_ACTION_HINTS)
+
+        if self._has_any_hint(compact_query, EXTERNAL_BOOK_HINTS) and self._has_any_hint(
+            compact_query,
+            VALUE_JUDGMENT_HINTS,
+        ):
+            return "跨书比较或价值判断超出《伤寒论》单书研读支持边界。"
+
+        if has_personal_context and self._has_any_hint(compact_query, DOSAGE_CONVERSION_HINTS):
+            return "按体重或个体情况换算剂量超出《伤寒论》研读支持边界。"
+
+        if has_personal_context and self._has_any_hint(compact_query, PERSONAL_REGIMEN_HINTS):
+            return "个体化处方或疗程方案超出《伤寒论》研读支持边界。"
+
+        if self._has_any_hint(compact_query, MODERN_MEDICAL_TERMS) and self._has_any_hint(
+            compact_query,
+            MODERN_MEDICAL_ACTION_HINTS,
+        ):
+            return "现代病名疗效或用药判断超出《伤寒论》研读支持边界。"
+
+        if has_personal_context and has_personal_action:
+            return "个人诊疗、服药或处方建议超出《伤寒论》研读支持边界。"
+
+        return None
+
+    @staticmethod
+    def _has_any_hint(text: str, hints: tuple[str, ...]) -> bool:
+        return any(hint in text for hint in hints)
+
+    def _assemble_policy_refusal(self, query_text: str, refuse_reason: str) -> dict[str, Any]:
+        return self._compose_payload(
+            query_text=query_text,
+            answer_mode="refuse",
+            answer_text="该问题超出《伤寒论》单书研读支持边界，暂不提供诊疗、剂量、现代病名疗效或跨书价值判断。",
+            primary=[],
+            secondary=[],
+            review=[],
+            review_notice=None,
+            disclaimer=self._build_disclaimer("refuse", False, False),
+            refuse_reason=refuse_reason,
+            suggested_followup_questions=self._build_followups("refuse"),
+            citations=[],
+        )
+
     def _assemble_standard(self, query_text: str) -> dict[str, Any]:
         retrieval = self.engine.retrieve(query_text)
         primary = [self._build_evidence_item(row, display_role="primary") for row in retrieval["primary_evidence"]]
@@ -255,36 +478,74 @@ class AnswerAssembler:
         review = [self._build_evidence_item(row, display_role="review") for row in retrieval["risk_materials"]]
 
         answer_mode = retrieval["mode"]
-        answer_text = self._build_answer_text(retrieval, primary, secondary, review)
+        answer_retrieval = retrieval
+        if self._should_demote_meaning_explanation(query_text, answer_mode, primary):
+            secondary = self._merge_evidence_items(
+                secondary,
+                [self._demote_primary_to_secondary(item) for item in primary],
+            )
+            primary = []
+            answer_mode = "weak_with_review_notice"
+            answer_retrieval = {**retrieval, "mode": answer_mode}
+        answer_text = self._build_answer_text(answer_retrieval, primary, secondary, review)
         review_notice = self._build_review_notice(answer_mode)
         disclaimer = self._build_disclaimer(answer_mode, bool(secondary), bool(review))
         refuse_reason = self._build_refuse_reason(answer_mode)
         suggested_followup_questions = self._build_followups(answer_mode)
         citations = self._build_citations(answer_mode, primary, secondary, review)
-        display_sections = self._build_display_sections(
+        return self._compose_payload(
+            query_text=query_text,
+            answer_mode=answer_mode,
             answer_text=answer_text,
             primary=primary,
             secondary=secondary,
             review=review,
-            citations=citations,
             review_notice=review_notice,
+            disclaimer=disclaimer,
+            refuse_reason=refuse_reason,
             suggested_followup_questions=suggested_followup_questions,
+            citations=citations,
         )
 
-        return {
-            "query": query_text,
-            "answer_mode": answer_mode,
-            "answer_text": answer_text,
-            "primary_evidence": primary,
-            "secondary_evidence": secondary,
-            "review_materials": review,
-            "disclaimer": disclaimer,
-            "review_notice": review_notice,
-            "refuse_reason": refuse_reason,
-            "suggested_followup_questions": suggested_followup_questions,
-            "citations": citations,
-            "display_sections": display_sections,
-        }
+    def _should_demote_meaning_explanation(
+        self,
+        query_text: str,
+        answer_mode: str,
+        primary: list[dict[str, Any]],
+    ) -> bool:
+        if answer_mode != "strong" or not primary:
+            return False
+        if not any(hint in query_text for hint in MEANING_EXPLANATION_QUERY_HINTS):
+            return False
+        return not any(self._evidence_supports_strong_meaning_explanation(item) for item in primary)
+
+    def _evidence_supports_strong_meaning_explanation(self, item: dict[str, Any]) -> bool:
+        snippet = item.get("snippet", "")
+        if any(marker in snippet for marker in STRONG_MEANING_EXPLANATION_MARKERS):
+            return True
+        return bool(re.search(r"者[^。；]*也", snippet))
+
+    def _demote_primary_to_secondary(self, item: dict[str, Any]) -> dict[str, Any]:
+        demoted = dict(item)
+        demoted["display_role"] = "secondary"
+        demoted["risk_flags"] = dedupe_strings(list(demoted.get("risk_flags") or []) + ["meaning_explanation_demoted"])
+        return demoted
+
+    def _merge_evidence_items(
+        self,
+        first: list[dict[str, Any]],
+        second: list[dict[str, Any]],
+    ) -> list[dict[str, Any]]:
+        merged: list[dict[str, Any]] = []
+        seen: set[str] = set()
+        for item in first + second:
+            record_id = item.get("record_id")
+            if record_id in seen:
+                continue
+            if record_id:
+                seen.add(record_id)
+            merged.append(item)
+        return merged
 
     def _assemble_general_question(self, query_text: str, general_plan: GeneralQuestionPlan) -> dict[str, Any]:
         query_retrieval = self.engine.retrieve(query_text)
@@ -492,14 +753,14 @@ class AnswerAssembler:
                 continue
             if row["evidence_level"] not in {"A", "B"}:
                 continue
-            if general_plan.normalized_topic not in compact_text(row["retrieval_text"]):
+            if not self._general_topic_matches(general_plan, row):
                 continue
 
             branch_meta = analyze_general_branch(
                 row["retrieval_text"],
                 general_plan.topic_text,
                 general_kind=general_plan.general_kind,
-                chapter_matches_topic=general_plan.normalized_topic in compact_text(row["chapter_name"]),
+                chapter_matches_topic=self._general_chapter_matches(general_plan, row),
             )
             if branch_meta is None:
                 continue
@@ -527,6 +788,27 @@ class AnswerAssembler:
                 item["row"]["record_id"],
             ),
         )
+
+    def _general_topic_matches(self, general_plan: GeneralQuestionPlan, row: dict[str, Any]) -> bool:
+        normalized_text = compact_text(row["retrieval_text"])
+        if general_plan.normalized_topic in normalized_text:
+            return True
+
+        alias_config = GENERAL_TOPIC_ALIAS_CONFIG.get(general_plan.normalized_topic)
+        if not alias_config:
+            return False
+        if not self._general_chapter_matches(general_plan, row):
+            return False
+        return any(alias in normalized_text for alias in alias_config["text_aliases"])
+
+    def _general_chapter_matches(self, general_plan: GeneralQuestionPlan, row: dict[str, Any]) -> bool:
+        normalized_chapter_name = compact_text(row.get("chapter_name"))
+        if general_plan.normalized_topic in normalized_chapter_name:
+            return True
+        alias_config = GENERAL_TOPIC_ALIAS_CONFIG.get(general_plan.normalized_topic)
+        if not alias_config:
+            return False
+        return any(alias in normalized_chapter_name for alias in alias_config["chapter_aliases"])
 
     def _select_general_branches(
         self,
@@ -833,7 +1115,7 @@ class AnswerAssembler:
 
     def _row_is_formula_heading_for_entity(self, row: dict[str, Any], canonical_name: str) -> bool:
         text = row.get("retrieval_text") or row.get("text_preview", "")
-        title = extract_title_anchor(text)
+        title = clean_formula_title_anchor(raw_title_anchor(text))
         if not title or not title.endswith("方"):
             return False
         return normalize_formula_lookup_text(title, keep_formula_suffix=False) == normalize_formula_lookup_text(
@@ -1168,7 +1450,8 @@ class AnswerAssembler:
         alias_records: list[dict[str, Any]] = []
         for row in rows:
             row_dict = dict(row)
-            title = extract_title_anchor(row_dict["text"])
+            raw_title = raw_title_anchor(row_dict["text"])
+            title = clean_formula_title_anchor(raw_title)
             if not title or not title.endswith("方"):
                 continue
             if title not in catalog:
@@ -1178,10 +1461,11 @@ class AnswerAssembler:
                     "chapter_id": row_dict["chapter_id"],
                     "chapter_name": row_dict["chapter_name"],
                 }
-            alias_keys = {
-                normalize_formula_lookup_text(title, keep_formula_suffix=True),
-                normalize_formula_lookup_text(title, keep_formula_suffix=False),
-            }
+            title_aliases = formula_title_alias_variants(raw_title, title)
+            alias_keys = set()
+            for title_alias in title_aliases:
+                alias_keys.add(normalize_formula_lookup_text(title_alias, keep_formula_suffix=True))
+                alias_keys.add(normalize_formula_lookup_text(title_alias, keep_formula_suffix=False))
             for alias_key in alias_keys:
                 if not alias_key:
                     continue
@@ -1416,8 +1700,16 @@ class AnswerAssembler:
         suggested_followup_questions: list[str],
         citations: list[dict[str, Any]],
     ) -> dict[str, Any]:
+        final_answer_text = self._maybe_render_answer_text(
+            query_text=query_text,
+            answer_mode=answer_mode,
+            baseline_answer_text=answer_text,
+            primary=primary,
+            secondary=secondary,
+            review=review,
+        )
         display_sections = self._build_display_sections(
-            answer_text=answer_text,
+            answer_text=final_answer_text,
             primary=primary,
             secondary=secondary,
             review=review,
@@ -1428,7 +1720,7 @@ class AnswerAssembler:
         return {
             "query": query_text,
             "answer_mode": answer_mode,
-            "answer_text": answer_text,
+            "answer_text": final_answer_text,
             "primary_evidence": primary,
             "secondary_evidence": secondary,
             "review_materials": review,
@@ -1439,6 +1731,82 @@ class AnswerAssembler:
             "citations": citations,
             "display_sections": display_sections,
         }
+
+    def _maybe_render_answer_text(
+        self,
+        *,
+        query_text: str,
+        answer_mode: str,
+        baseline_answer_text: str,
+        primary: list[dict[str, Any]],
+        secondary: list[dict[str, Any]],
+        review: list[dict[str, Any]],
+    ) -> str:
+        debug: dict[str, Any] = {
+            "provider": self._llm_config.provider_name,
+            "enabled": self._llm_config.enabled,
+            "model": self._llm_config.model,
+            "base_url": self._llm_config.base_url,
+            "query_text": query_text,
+            "answer_mode": answer_mode,
+            "attempted": False,
+            "used_llm": False,
+            "fallback_used": False,
+            "skipped_reason": None,
+            "fallback_reason": None,
+            "answer_source": "baseline",
+            "baseline_answer_text_excerpt": snippet_text(baseline_answer_text, limit=160),
+        }
+
+        if answer_mode == "refuse":
+            debug["skipped_reason"] = "refuse_mode"
+            debug["answer_source"] = "baseline_refuse"
+            self._last_llm_debug = debug
+            return baseline_answer_text
+
+        if not self._llm_client:
+            debug["skipped_reason"] = "llm_disabled"
+            self._last_llm_debug = debug
+            return baseline_answer_text
+
+        if not baseline_answer_text.strip():
+            debug["skipped_reason"] = "empty_baseline_answer"
+            self._last_llm_debug = debug
+            return baseline_answer_text
+
+        prompt = build_answer_text_prompt(
+            config=self._llm_config,
+            query_text=query_text,
+            answer_mode=answer_mode,
+            baseline_answer_text=baseline_answer_text,
+            primary=primary,
+            secondary=secondary,
+            review=review,
+        )
+        debug["attempted"] = True
+
+        try:
+            raw_content = self._llm_client.render_answer_text(
+                system_instruction=prompt.system_instruction,
+                user_prompt=prompt.user_prompt,
+            )
+            candidate_answer_text = parse_answer_text_json(raw_content)
+            validate_rendered_answer_text(
+                answer_mode=answer_mode,
+                baseline_answer_text=baseline_answer_text,
+                candidate_answer_text=candidate_answer_text,
+            )
+        except (ModelStudioLLMError, LLMOutputValidationError) as exc:
+            debug["fallback_used"] = True
+            debug["fallback_reason"] = str(exc)
+            self._last_llm_debug = debug
+            return baseline_answer_text
+
+        debug["used_llm"] = True
+        debug["answer_source"] = "llm"
+        debug["rendered_answer_text_excerpt"] = snippet_text(candidate_answer_text, limit=160)
+        self._last_llm_debug = debug
+        return candidate_answer_text
 
     def _fetch_record_meta(self, record_id: str) -> dict[str, Any]:
         cached = self._record_cache.get(record_id)

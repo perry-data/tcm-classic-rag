@@ -1,0 +1,554 @@
+{
+  "log_version": "source_lookup_reannotation_v1",
+  "review_date": "2026-04-07",
+  "goldset_path": "artifacts/evaluation/goldset_v1_seed.json",
+  "source_text_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+  "scope": "question_type == source_lookup only",
+  "summary": {
+    "source_lookup_total": 20,
+    "old_source_type_counts": {
+      "manual_with_system_reference": 1,
+      "system_bootstrapped": 19
+    },
+    "new_source_type_counts": {
+      "manual_independent": 20
+    },
+    "promoted_bootstrapped_to_manual_independent_count": 19,
+    "promoted_bootstrapped_to_manual_independent_ids": [
+      "eval_seed_q010",
+      "eval_seed_q011",
+      "eval_seed_q012",
+      "eval_seed_q013",
+      "eval_seed_q014",
+      "eval_seed_q015",
+      "eval_seed_q016",
+      "eval_seed_q017",
+      "eval_seed_q018",
+      "eval_seed_q019",
+      "eval_seed_q020",
+      "eval_seed_q021",
+      "eval_seed_q022",
+      "eval_seed_q023",
+      "eval_seed_q024",
+      "eval_seed_q025",
+      "eval_seed_q026",
+      "eval_seed_q027",
+      "eval_seed_q028"
+    ],
+    "remaining_unfinished_count": 0,
+    "remaining_unfinished_ids": [],
+    "adjusted_gold_scope_count": 8,
+    "adjusted_gold_scope_ids": [
+      "eval_seed_q001",
+      "eval_seed_q014",
+      "eval_seed_q016",
+      "eval_seed_q017",
+      "eval_seed_q021",
+      "eval_seed_q022",
+      "eval_seed_q027",
+      "eval_seed_q028"
+    ]
+  },
+  "items": [
+    {
+      "question_id": "eval_seed_q001",
+      "query": "黄连汤方的条文是什么？",
+      "old_gold_source_type": "manual_with_system_reference",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0145",
+        "safe:main_passages:ZJSHL-CH-010-P-0146",
+        "safe:main_passages:ZJSHL-CH-010-P-0147"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0145",
+        "safe:main_passages:ZJSHL-CH-010-P-0146",
+        "safe:main_passages:ZJSHL-CH-010-P-0147",
+        "safe:main_passages:ZJSHL-CH-010-P-0148"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-010-P-0145",
+        "ZJSHL-CH-010-P-0146",
+        "ZJSHL-CH-010-P-0147"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-010-P-0145",
+        "ZJSHL-CH-010-P-0146",
+        "ZJSHL-CH-010-P-0147",
+        "ZJSHL-CH-010-P-0148"
+      ],
+      "reannotation_action": "promote_manual_reference_to_manual_independent+adjust_gold_scope",
+      "rationale": "按题面方名“黄连汤方”从 main_passages 人工核对，不再以当前系统 replay citations 作为唯一来源。保留明确方名段、组成延续段、制法/煎服法；紧邻方后说明仅作为可接受补充。新增独立核对出的连续段：ZJSHL-CH-010-P-0148。原样本虽有人工说明但 source_refs 指向系统样例，本轮改为语料文件引用后升级为 manual_independent。"
+    },
+    {
+      "question_id": "eval_seed_q010",
+      "query": "桂枝汤方的条文是什么？",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0217",
+        "safe:main_passages:ZJSHL-CH-008-P-0219"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0217",
+        "safe:main_passages:ZJSHL-CH-008-P-0219"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-008-P-0217",
+        "ZJSHL-CH-008-P-0219"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-008-P-0217",
+        "ZJSHL-CH-008-P-0219"
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent",
+      "rationale": "按题面方名“桂枝汤方”从 main_passages 人工核对，不再以当前系统 replay citations 作为唯一来源。保留明确方名段、组成延续段、制法/煎服法；紧邻方后说明仅作为可接受补充。因此由 system_bootstrapped 升级为 manual_independent。"
+    },
+    {
+      "question_id": "eval_seed_q011",
+      "query": "葛根汤方的条文是什么？",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0004",
+        "safe:main_passages:ZJSHL-CH-009-P-0006"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0004",
+        "safe:main_passages:ZJSHL-CH-009-P-0006"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-009-P-0004",
+        "ZJSHL-CH-009-P-0006"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-009-P-0004",
+        "ZJSHL-CH-009-P-0006"
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent",
+      "rationale": "按题面方名“葛根汤方”从 main_passages 人工核对，不再以当前系统 replay citations 作为唯一来源。保留明确方名段、组成延续段、制法/煎服法；紧邻方后说明仅作为可接受补充。因此由 system_bootstrapped 升级为 manual_independent。"
+    },
+    {
+      "question_id": "eval_seed_q012",
+      "query": "麻黄汤方的条文是什么？",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0022",
+        "safe:main_passages:ZJSHL-CH-009-P-0023",
+        "safe:main_passages:ZJSHL-CH-009-P-0025"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0022",
+        "safe:main_passages:ZJSHL-CH-009-P-0023",
+        "safe:main_passages:ZJSHL-CH-009-P-0025"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-009-P-0022",
+        "ZJSHL-CH-009-P-0023",
+        "ZJSHL-CH-009-P-0025"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-009-P-0022",
+        "ZJSHL-CH-009-P-0023",
+        "ZJSHL-CH-009-P-0025"
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent",
+      "rationale": "按题面方名“麻黄汤方”从 main_passages 人工核对，不再以当前系统 replay citations 作为唯一来源。保留明确方名段、组成延续段、制法/煎服法；紧邻方后说明仅作为可接受补充。因此由 system_bootstrapped 升级为 manual_independent。"
+    },
+    {
+      "question_id": "eval_seed_q013",
+      "query": "大青龙汤方的条文是什么？",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0033",
+        "safe:main_passages:ZJSHL-CH-009-P-0034",
+        "safe:main_passages:ZJSHL-CH-009-P-0035"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0033",
+        "safe:main_passages:ZJSHL-CH-009-P-0034",
+        "safe:main_passages:ZJSHL-CH-009-P-0035"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-009-P-0033",
+        "ZJSHL-CH-009-P-0034",
+        "ZJSHL-CH-009-P-0035"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-009-P-0033",
+        "ZJSHL-CH-009-P-0034",
+        "ZJSHL-CH-009-P-0035"
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent",
+      "rationale": "按题面方名“大青龙汤方”从 main_passages 人工核对，不再以当前系统 replay citations 作为唯一来源。保留明确方名段、组成延续段、制法/煎服法；紧邻方后说明仅作为可接受补充。因此由 system_bootstrapped 升级为 manual_independent。"
+    },
+    {
+      "question_id": "eval_seed_q014",
+      "query": "小青龙汤方的条文是什么？",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0040",
+        "safe:main_passages:ZJSHL-CH-009-P-0043"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0040",
+        "safe:main_passages:ZJSHL-CH-009-P-0041",
+        "safe:main_passages:ZJSHL-CH-009-P-0043"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-009-P-0040",
+        "ZJSHL-CH-009-P-0043"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-009-P-0040",
+        "ZJSHL-CH-009-P-0041",
+        "ZJSHL-CH-009-P-0043"
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope",
+      "rationale": "按题面方名“小青龙汤方”从 main_passages 人工核对，不再以当前系统 replay citations 作为唯一来源。保留明确方名段、组成延续段、制法/煎服法；紧邻方后说明仅作为可接受补充。新增独立核对出的连续段：ZJSHL-CH-009-P-0041。因此由 system_bootstrapped 升级为 manual_independent。"
+    },
+    {
+      "question_id": "eval_seed_q015",
+      "query": "小柴胡汤方的条文是什么？",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0211",
+        "safe:main_passages:ZJSHL-CH-009-P-0213"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0211",
+        "safe:main_passages:ZJSHL-CH-009-P-0213"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-009-P-0211",
+        "ZJSHL-CH-009-P-0213"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-009-P-0211",
+        "ZJSHL-CH-009-P-0213"
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent",
+      "rationale": "按题面方名“小柴胡汤方”从 main_passages 人工核对，不再以当前系统 replay citations 作为唯一来源。保留明确方名段、组成延续段、制法/煎服法；紧邻方后说明仅作为可接受补充。因此由 system_bootstrapped 升级为 manual_independent。"
+    },
+    {
+      "question_id": "eval_seed_q016",
+      "query": "大柴胡汤方的条文是什么？",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0250"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0250",
+        "safe:main_passages:ZJSHL-CH-009-P-0251"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-009-P-0250"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-009-P-0250",
+        "ZJSHL-CH-009-P-0251"
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope",
+      "rationale": "按题面方名“大柴胡汤方”从 main_passages 人工核对，不再以当前系统 replay citations 作为唯一来源。保留明确方名段、组成延续段、制法/煎服法；紧邻方后说明仅作为可接受补充。新增独立核对出的连续段：ZJSHL-CH-009-P-0251。因此由 system_bootstrapped 升级为 manual_independent。"
+    },
+    {
+      "question_id": "eval_seed_q017",
+      "query": "五苓散方的条文是什么？",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0138"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0138",
+        "safe:main_passages:ZJSHL-CH-009-P-0140"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-009-P-0138"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-009-P-0138",
+        "ZJSHL-CH-009-P-0140"
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope",
+      "rationale": "按题面方名“五苓散方”从 main_passages 人工核对，不再以当前系统 replay citations 作为唯一来源。保留明确方名段、组成延续段、制法/煎服法；紧邻方后说明仅作为可接受补充。新增独立核对出的连续段：ZJSHL-CH-009-P-0140。因此由 system_bootstrapped 升级为 manual_independent。"
+    },
+    {
+      "question_id": "eval_seed_q018",
+      "query": "白虎汤方的条文是什么？",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0165",
+        "safe:main_passages:ZJSHL-CH-010-P-0167"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0165",
+        "safe:main_passages:ZJSHL-CH-010-P-0167"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-010-P-0165",
+        "ZJSHL-CH-010-P-0167"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-010-P-0165",
+        "ZJSHL-CH-010-P-0167"
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent",
+      "rationale": "按题面方名“白虎汤方”从 main_passages 人工核对，不再以当前系统 replay citations 作为唯一来源。保留明确方名段、组成延续段、制法/煎服法；紧邻方后说明仅作为可接受补充。因此由 system_bootstrapped 升级为 manual_independent。"
+    },
+    {
+      "question_id": "eval_seed_q019",
+      "query": "大承气汤方的条文是什么？",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0068",
+        "safe:main_passages:ZJSHL-CH-011-P-0070"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0068",
+        "safe:main_passages:ZJSHL-CH-011-P-0070"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-011-P-0068",
+        "ZJSHL-CH-011-P-0070"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-011-P-0068",
+        "ZJSHL-CH-011-P-0070"
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent",
+      "rationale": "按题面方名“大承气汤方”从 main_passages 人工核对，不再以当前系统 replay citations 作为唯一来源。保留明确方名段、组成延续段、制法/煎服法；紧邻方后说明仅作为可接受补充。因此由 system_bootstrapped 升级为 manual_independent。"
+    },
+    {
+      "question_id": "eval_seed_q020",
+      "query": "小承气汤方的条文是什么？",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0071",
+        "safe:main_passages:ZJSHL-CH-011-P-0072",
+        "safe:main_passages:ZJSHL-CH-011-P-0073"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0071",
+        "safe:main_passages:ZJSHL-CH-011-P-0072",
+        "safe:main_passages:ZJSHL-CH-011-P-0073"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-011-P-0071",
+        "ZJSHL-CH-011-P-0072",
+        "ZJSHL-CH-011-P-0073"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-011-P-0071",
+        "ZJSHL-CH-011-P-0072",
+        "ZJSHL-CH-011-P-0073"
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent",
+      "rationale": "按题面方名“小承气汤方”从 main_passages 人工核对，不再以当前系统 replay citations 作为唯一来源。保留明确方名段、组成延续段、制法/煎服法；紧邻方后说明仅作为可接受补充。因此由 system_bootstrapped 升级为 manual_independent。"
+    },
+    {
+      "question_id": "eval_seed_q021",
+      "query": "猪苓汤方的条文是什么？",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0109"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0109",
+        "safe:main_passages:ZJSHL-CH-011-P-0111"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-011-P-0109"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-011-P-0109",
+        "ZJSHL-CH-011-P-0111"
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope",
+      "rationale": "按题面方名“猪苓汤方”从 main_passages 人工核对，不再以当前系统 replay citations 作为唯一来源。保留明确方名段、组成延续段、制法/煎服法；紧邻方后说明仅作为可接受补充。新增独立核对出的连续段：ZJSHL-CH-011-P-0111。因此由 system_bootstrapped 升级为 manual_independent。"
+    },
+    {
+      "question_id": "eval_seed_q022",
+      "query": "茵陈蒿汤方的条文是什么？",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0141"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0141",
+        "safe:main_passages:ZJSHL-CH-011-P-0142"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-011-P-0141"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-011-P-0141",
+        "ZJSHL-CH-011-P-0142"
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope",
+      "rationale": "按题面方名“茵陈蒿汤方”从 main_passages 人工核对，不再以当前系统 replay citations 作为唯一来源。保留明确方名段、组成延续段、制法/煎服法；紧邻方后说明仅作为可接受补充。新增独立核对出的连续段：ZJSHL-CH-011-P-0142。因此由 system_bootstrapped 升级为 manual_independent。"
+    },
+    {
+      "question_id": "eval_seed_q023",
+      "query": "四逆汤方的条文是什么？",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0267",
+        "safe:main_passages:ZJSHL-CH-008-P-0268",
+        "safe:main_passages:ZJSHL-CH-008-P-0269"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0267",
+        "safe:main_passages:ZJSHL-CH-008-P-0268",
+        "safe:main_passages:ZJSHL-CH-008-P-0269"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-008-P-0267",
+        "ZJSHL-CH-008-P-0268",
+        "ZJSHL-CH-008-P-0269"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-008-P-0267",
+        "ZJSHL-CH-008-P-0268",
+        "ZJSHL-CH-008-P-0269"
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent",
+      "rationale": "按题面方名“四逆汤方”从 main_passages 人工核对，不再以当前系统 replay citations 作为唯一来源。保留明确方名段、组成延续段、制法/煎服法；紧邻方后说明仅作为可接受补充。因此由 system_bootstrapped 升级为 manual_independent。"
+    },
+    {
+      "question_id": "eval_seed_q024",
+      "query": "甘草乾姜汤方的条文是什么？",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0258",
+        "safe:main_passages:ZJSHL-CH-008-P-0259",
+        "safe:main_passages:ZJSHL-CH-008-P-0260"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0258",
+        "safe:main_passages:ZJSHL-CH-008-P-0259",
+        "safe:main_passages:ZJSHL-CH-008-P-0260"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-008-P-0258",
+        "ZJSHL-CH-008-P-0259",
+        "ZJSHL-CH-008-P-0260"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-008-P-0258",
+        "ZJSHL-CH-008-P-0259",
+        "ZJSHL-CH-008-P-0260"
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent",
+      "rationale": "按题面方名“甘草乾姜汤方”从 main_passages 人工核对，不再以当前系统 replay citations 作为唯一来源。保留明确方名段、组成延续段、制法/煎服法；紧邻方后说明仅作为可接受补充。因此由 system_bootstrapped 升级为 manual_independent。"
+    },
+    {
+      "question_id": "eval_seed_q025",
+      "query": "芍药甘草汤方的条文是什么？",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0261",
+        "safe:main_passages:ZJSHL-CH-008-P-0262",
+        "safe:main_passages:ZJSHL-CH-008-P-0263"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0261",
+        "safe:main_passages:ZJSHL-CH-008-P-0262",
+        "safe:main_passages:ZJSHL-CH-008-P-0263"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-008-P-0261",
+        "ZJSHL-CH-008-P-0262",
+        "ZJSHL-CH-008-P-0263"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-008-P-0261",
+        "ZJSHL-CH-008-P-0262",
+        "ZJSHL-CH-008-P-0263"
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent",
+      "rationale": "按题面方名“芍药甘草汤方”从 main_passages 人工核对，不再以当前系统 replay citations 作为唯一来源。保留明确方名段、组成延续段、制法/煎服法；紧邻方后说明仅作为可接受补充。因此由 system_bootstrapped 升级为 manual_independent。"
+    },
+    {
+      "question_id": "eval_seed_q026",
+      "query": "调胃承气汤方的条文是什么？",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0264",
+        "safe:main_passages:ZJSHL-CH-008-P-0266"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0264",
+        "safe:main_passages:ZJSHL-CH-008-P-0266"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-008-P-0264",
+        "ZJSHL-CH-008-P-0266"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-008-P-0264",
+        "ZJSHL-CH-008-P-0266"
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent",
+      "rationale": "按题面方名“调胃承气汤方”从 main_passages 人工核对，不再以当前系统 replay citations 作为唯一来源。保留明确方名段、组成延续段、制法/煎服法；紧邻方后说明仅作为可接受补充。因此由 system_bootstrapped 升级为 manual_independent。"
+    },
+    {
+      "question_id": "eval_seed_q027",
+      "query": "桂枝甘草汤方的条文是什么？",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0105"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0105",
+        "safe:main_passages:ZJSHL-CH-009-P-0107"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-009-P-0105"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-009-P-0105",
+        "ZJSHL-CH-009-P-0107"
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope",
+      "rationale": "按题面方名“桂枝甘草汤方”从 main_passages 人工核对，不再以当前系统 replay citations 作为唯一来源。保留明确方名段、组成延续段、制法/煎服法；紧邻方后说明仅作为可接受补充。新增独立核对出的连续段：ZJSHL-CH-009-P-0107。因此由 system_bootstrapped 升级为 manual_independent。"
+    },
+    {
+      "question_id": "eval_seed_q028",
+      "query": "半夏泻心汤方的条文是什么？",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0068"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0068",
+        "safe:main_passages:ZJSHL-CH-010-P-0070"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-010-P-0068"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-010-P-0068",
+        "ZJSHL-CH-010-P-0070"
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope",
+      "rationale": "按题面方名“半夏泻心汤方”从 main_passages 人工核对，不再以当前系统 replay citations 作为唯一来源。保留明确方名段、组成延续段、制法/煎服法；紧邻方后说明仅作为可接受补充。新增独立核对出的连续段：ZJSHL-CH-010-P-0070。因此由 system_bootstrapped 升级为 manual_independent。"
+    }
+  ]
+}

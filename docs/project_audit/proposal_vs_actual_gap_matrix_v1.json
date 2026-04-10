@@ -1,0 +1,415 @@
+{
+  "metadata": {
+    "audit_id": "proposal_vs_actual_gap_audit_v1",
+    "generated_on": "2026-04-08",
+    "proposal_source": "docs/proposal/221030147张前_开题报告.docx",
+    "scope": "Audit only. No system rewrite, no new features, no thesis body drafting.",
+    "summary_counts": {
+      "已完成": 10,
+      "未完成且必须补做": 5,
+      "未完成但可通过缩范围/改论文表述解决": 9,
+      "total_items": 24
+    }
+  },
+  "items": [
+    {
+      "proposal_item": "《伤寒论》单书知识库与数据底座",
+      "proposal_source_section": "2. 研究目标；3. 毕业论文基本框架；4. 研究重点与难点",
+      "proposal_commitment": "构建中医经典知识库，支持经典文献内容的计算机检索和证据回指。",
+      "current_status": "已完成当前单书范围内的 safe/full 数据底座、SQLite 数据库与统一检索视图。",
+      "gap_type": "已完成",
+      "gap": "双书范围未完成，但单书《伤寒论》数据底座本身已可支撑当前论文口径。",
+      "evidence_files": [
+        "docs/final/technical_design_v1.md",
+        "docs/final/system_spec_v1.md",
+        "artifacts/database_build_report.md",
+        "artifacts/database_counts.json"
+      ],
+      "recommended_action": "论文中写成“以《伤寒论》为研究对象的知识库构建”，不要写成双书知识库已完成。",
+      "priority": "P0",
+      "rationale": "数据库、表级统计与运行视图已有直接 artifact，可作为当前冻结范围的实物证据。"
+    },
+    {
+      "proposal_item": "SQLite FTS5 / BM25 稀疏检索",
+      "proposal_source_section": "2. 研究目标；2.5.1 稀疏检索（BM25）设计；5. 研究方法",
+      "proposal_commitment": "采用 SQLite FTS5 构建全文检索索引，并使用 BM25 作为稀疏检索路线。",
+      "current_status": "已启用 SQLite FTS5 虚表 retrieval_sparse_fts 与 SQLite bm25() sparse layer。",
+      "gap_type": "已完成",
+      "gap": "当前稀疏检索按单书库调优，未做多书扩库校准。",
+      "evidence_files": [
+        "docs/final/technical_design_v1.md",
+        "docs/final/system_spec_v1.md",
+        "artifacts/hybrid_retrieval_smoke_checks.md"
+      ],
+      "recommended_action": "论文保留 FTS5/BM25 已实现结论，同时注明 tokenizer 和 score 映射以当前单书库为边界。",
+      "priority": "P0",
+      "rationale": "技术设计明确说明 FTS5/BM25 已进入正式运行链路。"
+    },
+    {
+      "proposal_item": "FAISS 稠密向量索引",
+      "proposal_source_section": "2. 研究目标；2.5.2 稠密向量检索设计",
+      "proposal_commitment": "利用预训练向量模型生成文本向量嵌入并建立 FAISS 向量索引。",
+      "current_status": "已对 chunks 与 main_passages 构建 FAISS 双索引，embedding model 为 BAAI/bge-small-zh-v1.5。",
+      "gap_type": "已完成",
+      "gap": "未对所有 annotations/passages/ambiguous_passages 建 dense index。",
+      "evidence_files": [
+        "docs/final/technical_design_v1.md",
+        "artifacts/dense_chunks_meta.json",
+        "artifacts/dense_main_passages_meta.json"
+      ],
+      "recommended_action": "论文写成“面向主检索对象的 FAISS 双索引”，把未索引 full 风险材料说明为证据门控策略。",
+      "priority": "P0",
+      "rationale": "FAISS 元数据与技术设计能够证明稠密索引不是计划项，而是已落地项。"
+    },
+    {
+      "proposal_item": "Hybrid 检索、RRF 融合与重排序",
+      "proposal_source_section": "2. 研究目标；4. 研究重点与难点；5. 研究方法",
+      "proposal_commitment": "综合 BM25 与向量检索，采用 RRF 融合并用交叉编码器或大模型评分进行重排序。",
+      "current_status": "已实现 sparse recall、dense recall、RRF fusion、BAAI/bge-reranker-base Cross-Encoder rerank。",
+      "gap_type": "已完成",
+      "gap": "未采用 LLM scoring rerank 或训练式排序模型。",
+      "evidence_files": [
+        "docs/final/technical_design_v1.md",
+        "docs/final/system_spec_v1.md",
+        "artifacts/hybrid_retrieval_smoke_checks.md"
+      ],
+      "recommended_action": "论文描述为 RRF + Cross-Encoder 的最小可靠重排序实现，不引入未做的 LLM scoring。",
+      "priority": "P0",
+      "rationale": "当前技术形态与开题报告允许的交叉编码器路线一致。"
+    },
+    {
+      "proposal_item": "引用、出处与证据分层展示",
+      "proposal_source_section": "2. 研究目标；2.6.3 答案形式与引用机制；6. 论文创新点",
+      "proposal_commitment": "答案中引用经典原文依据，并让用户能够溯源核验。",
+      "current_status": "已实现 primary_evidence、secondary_evidence、review_materials、citations、display_sections 等字段。",
+      "gap_type": "已完成",
+      "gap": "未实现完整的全文高亮联动展示，该项另列为可改口径项。",
+      "evidence_files": [
+        "docs/final/system_spec_v1.md",
+        "artifacts/api_smoke_checks.md",
+        "artifacts/frontend_mvp_smoke_checks.md"
+      ],
+      "recommended_action": "论文写成“证据分区与 citation 展示”，不要扩大为复杂联动 UI。",
+      "priority": "P0",
+      "rationale": "API 和前端 smoke 已证明证据槽位与 citation 能被返回和消费。"
+    },
+    {
+      "proposal_item": "无证据强答控制与拒答机制",
+      "proposal_source_section": "4. 研究重点与难点；5. 研究方法；6. 论文创新点",
+      "proposal_commitment": "抑制模型幻觉和错引，确保回答严格基于检索证据。",
+      "current_status": "已通过 evidence gating 与 strong / weak_with_review_notice / refuse 三模式实现证据不足时降级或拒答。",
+      "gap_type": "已完成",
+      "gap": "未实现生成后 LLM verifier。",
+      "evidence_files": [
+        "docs/final/system_spec_v1.md",
+        "docs/evaluation/evaluation_spec_v1.md",
+        "artifacts/evaluation/goldset_v2_batchC_eval_report.json"
+      ],
+      "recommended_action": "论文写成“门控式证据一致性控制”，不要写“LLM 生成后校验器已实现”。",
+      "priority": "P0",
+      "rationale": "refusal goldset 与 evaluator v1 已覆盖无证据强答风险，当前实现形态可支撑该收缩表述。"
+    },
+    {
+      "proposal_item": "Minimal API 与调用流程",
+      "proposal_source_section": "2.6.2 接口与调用流程；3.2.4 回答生成接口",
+      "proposal_commitment": "实现后端接口，支撑前端调用回答生成流程。",
+      "current_status": "已冻结 POST /api/v1/answers，request body 仅 query，返回稳定 answer payload。",
+      "gap_type": "已完成",
+      "gap": "该接口不是 LLM 模型插件接口。",
+      "evidence_files": [
+        "docs/final/system_spec_v1.md",
+        "artifacts/api_smoke_checks.md",
+        "backend/api/minimal_api.py"
+      ],
+      "recommended_action": "第 3 章按 Minimal API 写实现，不写成可插拔 LLM API 已完成。",
+      "priority": "P0",
+      "rationale": "API smoke 已对三条冻结样例验证 200 状态与 payload 字段。"
+    },
+    {
+      "proposal_item": "前端 MVP 闭环",
+      "proposal_source_section": "2. 研究目标；3.3 前端界面实现",
+      "proposal_commitment": "开发 Web 前端，支持用户现代汉语提问并展示答案与出处。",
+      "current_status": "已实现同源原生 SPA，包含 index.html、styles.css、app.js，并能 fetch /api/v1/answers。",
+      "gap_type": "已完成",
+      "gap": "前端技术栈不是 React + Tailwind，该项另列为可改口径项。",
+      "evidence_files": [
+        "docs/final/PRD_v1.md",
+        "docs/final/technical_design_v1.md",
+        "artifacts/frontend_mvp_smoke_checks.md",
+        "frontend/index.html",
+        "frontend/styles.css",
+        "frontend/app.js"
+      ],
+      "recommended_action": "论文按“原生 HTML/CSS/JS 同源前端 MVP”描述现状。",
+      "priority": "P0",
+      "rationale": "前端已可支撑演示闭环，但必须修正框架口径。"
+    },
+    {
+      "proposal_item": "功能 smoke 与案例验证",
+      "proposal_source_section": "2. 研究目标；5. 研究方法；第4章 系统测试与结果分析",
+      "proposal_commitment": "通过功能测试和案例测试验证系统在典型问题上的有效性。",
+      "current_status": "已形成 API、frontend、hybrid retrieval、answer smoke 和数据库构建报告。",
+      "gap_type": "已完成",
+      "gap": "功能 smoke 不覆盖响应速度、用户满意度和 200-250 goldset。",
+      "evidence_files": [
+        "artifacts/api_smoke_checks.md",
+        "artifacts/frontend_mvp_smoke_checks.md",
+        "artifacts/hybrid_retrieval_smoke_checks.md",
+        "artifacts/hybrid_answer_smoke_checks.md",
+        "artifacts/database_build_report.md"
+      ],
+      "recommended_action": "第 4 章把功能 smoke 与其他未做评估分开写。",
+      "priority": "P1",
+      "rationale": "典型案例链路有证据，但不能替代所有评估承诺。"
+    },
+    {
+      "proposal_item": "150 条 evaluator v1 阶段性评估",
+      "proposal_source_section": "5. 研究方法；第4章 系统测试与结果分析",
+      "proposal_commitment": "建立自建测试集、人工标注标准依据，并评估引用和回答是否基于证据。",
+      "current_status": "已完成 150 条 working set，evaluator v1 报告 total_questions=150、mode_match=150/150、citation_basic_pass=120/120、failure_count=0。",
+      "gap_type": "已完成",
+      "gap": "数量未达开题报告的 200-250 条，该数量差距另列为可改口径项。",
+      "evidence_files": [
+        "artifacts/evaluation/goldset_v2_working_150.json",
+        "artifacts/evaluation/goldset_v2_batchC_eval_report.json",
+        "docs/patch_notes/goldset_v2_batchC_patch_note.md"
+      ],
+      "recommended_action": "论文写成“150 条阶段性 goldset evaluator v1 评估”，不要宣称 200-250 已完成。",
+      "priority": "P0",
+      "rationale": "150 条评估已经有正式 artifact 和通过结果，是当前第 4 章最强量化证据。"
+    },
+    {
+      "proposal_item": "响应速度 / 性能测试",
+      "proposal_source_section": "2. 研究目标；2.4 性能测试方案设计；5. 研究方法",
+      "proposal_commitment": "对检索模块响应速度和核心流程响应时间进行测试。",
+      "current_status": "未发现正式 latency、p50/p95 或响应时间 benchmark artifact。",
+      "gap_type": "未完成且必须补做",
+      "gap": "只有功能 smoke 和 evaluator，不足以支撑“响应速度测试已完成”。",
+      "evidence_files": [
+        "docs/proposal/221030147张前_开题报告.docx",
+        "docs/evaluation/evaluation_spec_v1.md",
+        "artifacts/api_smoke_checks.md",
+        "artifacts/frontend_mvp_smoke_checks.md"
+      ],
+      "recommended_action": "补最小性能测试报告：固定五类代表问题、多轮调用 /api/v1/answers，记录环境、命令、均值、p50、p95 和结论。",
+      "priority": "P0",
+      "rationale": "这是明确测试承诺，且补做不需要改系统。"
+    },
+    {
+      "proposal_item": "用户满意度测试",
+      "proposal_source_section": "2. 研究目标；5. 研究方法",
+      "proposal_commitment": "初步评价包括用户满意度，并通过与中医专业学习者交流获取需求。",
+      "current_status": "未发现问卷、访谈记录、用户评分、任务完成反馈或满意度统计 artifact。",
+      "gap_type": "未完成且必须补做",
+      "gap": "evaluator 和 smoke 不能替代用户满意度证据。",
+      "evidence_files": [
+        "docs/proposal/221030147张前_开题报告.docx",
+        "docs/evaluation/evaluation_spec_v1.md",
+        "docs/final/PRD_v1.md"
+      ],
+      "recommended_action": "若论文保留满意度评价，补 3-5 人轻量问卷/访谈记录；若导师允许删除，则论文中不得写满意度结果。",
+      "priority": "P0",
+      "rationale": "满意度是人工评价承诺，当前没有任何直接证据。"
+    },
+    {
+      "proposal_item": "图 1 / 图 2 / UML / 架构图正式版",
+      "proposal_source_section": "3. 毕业论文基本框架；5. 研究方法",
+      "proposal_commitment": "提供系统功能结构图、系统框架结构图，并使用 UML 图、流程图、架构图表达系统模块和数据流。",
+      "current_status": "仓库内未发现正式 .png/.svg/.drawio/.mmd/.puml 图件；现有文档主要是文本架构说明。",
+      "gap_type": "未完成且必须补做",
+      "gap": "论文第 2/3 章缺可直接入文的正式图件。",
+      "evidence_files": [
+        "docs/proposal/221030147张前_开题报告.docx",
+        "docs/final/technical_design_v1.md",
+        "docs/final/system_spec_v1.md"
+      ],
+      "recommended_action": "补功能结构图、系统框架结构图和在线调用流程图；优先用 Mermaid 或 Drawio 源文件，便于复审和导出。",
+      "priority": "P0",
+      "rationale": "图件是论文结构要求，不属于功能扩展，但缺失会影响论文完整性。"
+    },
+    {
+      "proposal_item": "第 3 章系统部署与运行支撑",
+      "proposal_source_section": "3. 毕业论文基本框架：3.4 系统部署与运行",
+      "proposal_commitment": "论文第 3 章包含系统部署与运行内容。",
+      "current_status": "已有启动命令、API smoke 和 frontend smoke，但没有单独的部署运行说明或可直接引用的运行记录包。",
+      "gap_type": "未完成且必须补做",
+      "gap": "运行证据分散，缺少第 3.4 可引用的环境、启动、页面入口、API 验证和结论说明。",
+      "evidence_files": [
+        "artifacts/frontend_mvp_smoke_checks.md",
+        "artifacts/api_smoke_checks.md",
+        "docs/final/system_spec_v1.md",
+        "backend/api/minimal_api.py"
+      ],
+      "recommended_action": "补最小部署运行文档或运行记录，收束本地启动命令、页面入口、API 入口、运行环境与 smoke 结论。",
+      "priority": "P0",
+      "rationale": "系统可以运行，但论文所需的部署运行材料仍需整理成正式证据。"
+    },
+    {
+      "proposal_item": "论文阶段性成稿与第 4 章结果整理",
+      "proposal_source_section": "3. 毕业论文基本框架；7. 毕业论文计划进度",
+      "proposal_commitment": "完成论文初稿、修改和最终论文，并包含第 4 章系统测试与结果分析。",
+      "current_status": "当前仓库主要是工程文档和评估 artifact，尚不是论文正文；Batch C 报告可作为第 4 章素材。",
+      "gap_type": "未完成且必须补做",
+      "gap": "论文正文交付物不能由工程 artifact 自动替代。",
+      "evidence_files": [
+        "docs/proposal/221030147张前_开题报告.docx",
+        "docs/evaluation/evaluation_spec_v1.md",
+        "artifacts/evaluation/goldset_v2_batchC_eval_report.json",
+        "docs/patch_notes/goldset_v2_batchC_patch_note.md"
+      ],
+      "recommended_action": "后续论文写作轮次中补第 4 章结果表、边界说明和失败分析；本轮不写正文。",
+      "priority": "P1",
+      "rationale": "这是毕业论文阶段性产物要求，不是当前审计轮次要直接实现的代码任务。"
+    },
+    {
+      "proposal_item": "双书范围：《伤寒论》+《金匮要略》",
+      "proposal_source_section": "1. 选题意义与价值；2. 研究目标；4. 研究重点与难点",
+      "proposal_commitment": "系统面向《伤寒论》《金匮要略》两部经典，提升两部经典研读效率和质量。",
+      "current_status": "当前正式系统、数据库、PRD、system spec 和 goldset 均明确为《伤寒论》单书。",
+      "gap_type": "未完成但可通过缩范围/改论文表述解决",
+      "gap": "《金匮要略》未入库、未索引、未检索、未评估。",
+      "evidence_files": [
+        "docs/final/PRD_v1.md",
+        "docs/final/technical_design_v1.md",
+        "docs/final/system_spec_v1.md",
+        "artifacts/evaluation/goldset_v2_working_150.json"
+      ],
+      "recommended_action": "论文统一改成“以《伤寒论》为对象的单书研读支持系统”，多书扩展放入限制与展望。",
+      "priority": "P0",
+      "rationale": "补多书会牵动数据、检索、引用、评估和论文口径，超出当前冻结范围。"
+    },
+    {
+      "proposal_item": "CTEXT / 四部丛刊底本口径",
+      "proposal_source_section": "2. 研究目标；4. 研究重点与难点",
+      "proposal_commitment": "数据底本采用 CTEXT 收录的《四部丛刊初编》版本，并作为标准底本。",
+      "current_status": "当前输入源为 data/raw/《注解伤寒论》.zip、data/processed/zjshl_dataset_v2/ 和 safe zip，未形成双书 CTEXT/四部丛刊完整处理证据。",
+      "gap_type": "未完成但可通过缩范围/改论文表述解决",
+      "gap": "底本来源与开题报告原始表述不完全一致。",
+      "evidence_files": [
+        "docs/final/technical_design_v1.md",
+        "artifacts/database_build_report.md",
+        "docs/final/PRD_v1.md"
+      ],
+      "recommended_action": "论文按当前结构化数据源如实写，不再宣称 CTEXT 双书底本已完整处理。",
+      "priority": "P0",
+      "rationale": "该差距属于来源和范围口径问题，补原始双书底本会引入新数据工程。"
+    },
+    {
+      "proposal_item": "外接 LLM API 与可插拔模型",
+      "proposal_source_section": "2. 研究目标；2.6 答案生成模块设计；4. 研究重点与难点",
+      "proposal_commitment": "调用 ChatGPT 或本地 ChatGLM 等大语言模型 API 生成回答，并设计可插拔 LLM 模块。",
+      "current_status": "当前 answer 层为 backend/answers/assembler.py 的证据驱动规则化编排，不外接真实 LLM。",
+      "gap_type": "未完成但可通过缩范围/改论文表述解决",
+      "gap": "真实 LLM 生成、模型切换、插件式 LLM 接口均未实现。",
+      "evidence_files": [
+        "docs/final/technical_design_v1.md",
+        "docs/final/system_spec_v1.md",
+        "docs/patch_notes/evaluation_baseline_v1_patch_note.md"
+      ],
+      "recommended_action": "论文改写为“检索增强的证据驱动回答编排”，不要宣称接入 ChatGPT/ChatGLM。",
+      "priority": "P0",
+      "rationale": "接入 LLM 会改变评估和风险控制，当前更适合收缩论文口径。"
+    },
+    {
+      "proposal_item": "分步 Prompt Engineering",
+      "proposal_source_section": "4. 研究重点与难点；5. 研究方法；6. 论文创新点",
+      "proposal_commitment": "通过分步 Prompt 将证据释义/要点抽取、基于证据生成、条文依据输出流程显式化，并降低幻觉。",
+      "current_status": "当前以规则化模板、evidence gating 和三模式裁决实现控制意图，没有真实 prompt 调用栈。",
+      "gap_type": "未完成但可通过缩范围/改论文表述解决",
+      "gap": "Prompt 模板、LLM 调用和生成前后校验流程未实现。",
+      "evidence_files": [
+        "docs/final/technical_design_v1.md",
+        "docs/final/system_spec_v1.md",
+        "docs/evaluation/evaluation_spec_v1.md"
+      ],
+      "recommended_action": "创新点改成“证据分层、规则化回答编排与门控式一致性控制”。",
+      "priority": "P0",
+      "rationale": "控制目标有落点，但技术实现形态已经从 Prompt 栈收束为规则化编排。"
+    },
+    {
+      "proposal_item": "React + Tailwind 前端技术栈",
+      "proposal_source_section": "2. 研究目标；3.3 前端界面实现",
+      "proposal_commitment": "使用 React 结合 Tailwind CSS 实现友好 Web 前端。",
+      "current_status": "当前为原生 HTML/CSS/JS 同源 SPA；仓库内未发现 package.json、tailwind.config、Vite 或 src 工程脚手架。",
+      "gap_type": "未完成但可通过缩范围/改论文表述解决",
+      "gap": "React + Tailwind 工程化前端未实现。",
+      "evidence_files": [
+        "docs/final/PRD_v1.md",
+        "docs/final/technical_design_v1.md",
+        "artifacts/frontend_mvp_smoke_checks.md",
+        "frontend/index.html",
+        "frontend/styles.css",
+        "frontend/app.js"
+      ],
+      "recommended_action": "论文技术选型改为原生 HTML/CSS/JS，同步说明选择原因是降低演示和部署复杂度。",
+      "priority": "P0",
+      "rationale": "当前前端已满足演示闭环，重写框架不服务核心研究目标。"
+    },
+    {
+      "proposal_item": "出处文本高亮与联动展示",
+      "proposal_source_section": "2. 研究目标；6. 论文创新点",
+      "proposal_commitment": "前端实时返回回答并附带出处文本高亮显示，实现引用标记与证据片段联动展示。",
+      "current_status": "当前前端可展示证据分区、引用、record_id 和章节信息，但没有复杂全文高亮联动功能。",
+      "gap_type": "未完成但可通过缩范围/改论文表述解决",
+      "gap": "高亮联动展示未达到开题报告原表述强度。",
+      "evidence_files": [
+        "artifacts/frontend_mvp_smoke_checks.md",
+        "docs/final/system_spec_v1.md",
+        "docs/final/PRD_v1.md"
+      ],
+      "recommended_action": "论文写成“引用与证据分区展示”，不要写“高亮联动展示已完成”。",
+      "priority": "P1",
+      "rationale": "当前 UI 已能支撑核验，但不是完整联动展示系统。"
+    },
+    {
+      "proposal_item": "200-250 条自建金标准测试集",
+      "proposal_source_section": "5. 研究方法",
+      "proposal_commitment": "自建 200-250 条测试问题，人工标注标准依据和 1-3 段证据片段。",
+      "current_status": "当前 working set 为 150 条，Batch C 明确完成“扩到 150 左右”，未扩到 200-250。",
+      "gap_type": "未完成但可通过缩范围/改论文表述解决",
+      "gap": "数量缺口为 50-100 条，且当前冻结范围明确不继续扩。",
+      "evidence_files": [
+        "docs/evaluation/evaluation_plan_v1.md",
+        "artifacts/evaluation/goldset_v2_working_150.json",
+        "artifacts/evaluation/goldset_v2_batchC_eval_report.json",
+        "docs/patch_notes/goldset_v2_batchC_patch_note.md"
+      ],
+      "recommended_action": "论文写成“150 条阶段性评估集”，把 200-250 放限制或后续扩展计划。",
+      "priority": "P0",
+      "rationale": "150 条评估已经稳定，通过改论文口径比临近收尾继续扩样本更稳。"
+    },
+    {
+      "proposal_item": "古今对照能力",
+      "proposal_source_section": "1. 选题意义与价值；4. 研究重点与难点",
+      "proposal_commitment": "满足研读者对“溯源求证”和“古今对照”的需求，改善古文语义理解。",
+      "current_status": "当前支持现代汉语问题到古文证据的检索与解释，但没有成体系古今对照翻译模块。",
+      "gap_type": "未完成但可通过缩范围/改论文表述解决",
+      "gap": "不能宣称完整古今对照或系统化翻译能力。",
+      "evidence_files": [
+        "docs/final/PRD_v1.md",
+        "docs/final/system_spec_v1.md",
+        "artifacts/api_smoke_checks.md",
+        "artifacts/evaluation/goldset_v2_working_150.json"
+      ],
+      "recommended_action": "论文写成“现代问法到书内证据的映射与解释支持”，完整古今对照放展望。",
+      "priority": "P1",
+      "rationale": "当前已覆盖部分需求，但没有独立翻译/对照模块。"
+    },
+    {
+      "proposal_item": "生产级部署与复杂运维",
+      "proposal_source_section": "3.4 系统部署与运行；研究背景中的实际部署挑战",
+      "proposal_commitment": "论文包含系统部署与运行说明，研究背景提到 RAG 实际部署挑战。",
+      "current_status": "当前定位为本地同源 MVP，PRD 明确不做生产级高并发、复杂部署和运维。",
+      "gap_type": "未完成但可通过缩范围/改论文表述解决",
+      "gap": "没有容器化、线上部署、高并发、监控或运维体系。",
+      "evidence_files": [
+        "docs/final/PRD_v1.md",
+        "docs/final/system_spec_v1.md",
+        "artifacts/frontend_mvp_smoke_checks.md"
+      ],
+      "recommended_action": "第 3.4 只写本地运行/演示部署，生产级部署作为限制与展望。",
+      "priority": "P1",
+      "rationale": "生产部署不属于当前毕设 MVP 主链路，适合通过论文范围收缩处理。"
+    }
+  ]
+}

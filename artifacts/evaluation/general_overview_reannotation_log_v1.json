@@ -1,0 +1,814 @@
+{
+  "schema_version": "general_overview_reannotation_log_v1",
+  "generated_at": "2026-04-08",
+  "scope": {
+    "question_type": "general_overview",
+    "excluded_question_ids": [
+      "eval_seed_q004"
+    ],
+    "processed_question_ids": [
+      "eval_seed_q003",
+      "eval_seed_q005",
+      "eval_seed_q042",
+      "eval_seed_q043",
+      "eval_seed_q044",
+      "eval_seed_q045",
+      "eval_seed_q046",
+      "eval_seed_q047",
+      "eval_seed_q048",
+      "eval_seed_q049",
+      "eval_seed_q050"
+    ]
+  },
+  "summary": {
+    "general_overview_total_in_goldset": 12,
+    "excluded_count": 1,
+    "excluded_question_ids": [
+      "eval_seed_q004"
+    ],
+    "processed_general_overview_total": 11,
+    "processed_strong_count": 7,
+    "processed_strong_ids": [
+      "eval_seed_q003",
+      "eval_seed_q042",
+      "eval_seed_q045",
+      "eval_seed_q046",
+      "eval_seed_q047",
+      "eval_seed_q048",
+      "eval_seed_q049"
+    ],
+    "processed_weak_count": 4,
+    "old_source_type_counts": {
+      "manual_with_system_reference": 2,
+      "system_bootstrapped": 9
+    },
+    "new_source_type_counts": {
+      "manual_independent": 11
+    },
+    "promoted_bootstrapped_to_manual_independent_count": 9,
+    "promoted_bootstrapped_to_manual_independent_ids": [
+      "eval_seed_q042",
+      "eval_seed_q043",
+      "eval_seed_q044",
+      "eval_seed_q045",
+      "eval_seed_q046",
+      "eval_seed_q047",
+      "eval_seed_q048",
+      "eval_seed_q049",
+      "eval_seed_q050"
+    ],
+    "promoted_manual_reference_to_manual_independent_count": 2,
+    "promoted_manual_reference_to_manual_independent_ids": [
+      "eval_seed_q003",
+      "eval_seed_q005"
+    ],
+    "total_promoted_to_manual_independent_count": 11,
+    "remaining_unfinished_count": 0,
+    "remaining_unfinished_ids": [],
+    "weak_boundary_retained_count": 4,
+    "weak_boundary_retained_ids": [
+      "eval_seed_q005",
+      "eval_seed_q043",
+      "eval_seed_q044",
+      "eval_seed_q050"
+    ],
+    "adjusted_gold_scope_count": 11,
+    "adjusted_gold_scope_ids": [
+      "eval_seed_q003",
+      "eval_seed_q005",
+      "eval_seed_q042",
+      "eval_seed_q043",
+      "eval_seed_q044",
+      "eval_seed_q045",
+      "eval_seed_q046",
+      "eval_seed_q047",
+      "eval_seed_q048",
+      "eval_seed_q049",
+      "eval_seed_q050"
+    ],
+    "q004_exclusion_reason": "eval_seed_q004 是 needs_reannotation 的少阴病治法总括专项样本，gold 覆盖口径曾由当前系统 citations 扩展；本轮按任务要求排除，留待后续单独重标。"
+  },
+  "items": [
+    {
+      "question_id": "eval_seed_q003",
+      "query": "太阳病应该怎么办？",
+      "expected_mode": "strong",
+      "old_gold_source_type": "manual_with_system_reference",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0195",
+        "safe:main_passages:ZJSHL-CH-008-P-0220",
+        "safe:main_passages:ZJSHL-CH-009-P-0002"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0220",
+        "safe:main_passages:ZJSHL-CH-009-P-0002",
+        "safe:main_passages:ZJSHL-CH-008-P-0207",
+        "safe:main_passages:ZJSHL-CH-008-P-0195"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-008-P-0195",
+        "ZJSHL-CH-008-P-0220",
+        "ZJSHL-CH-009-P-0002"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-008-P-0220",
+        "ZJSHL-CH-009-P-0002",
+        "ZJSHL-CH-008-P-0207",
+        "ZJSHL-CH-008-P-0195"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/general_question_examples.json",
+          "example_id": "taiyang_management_strong"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0220"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0002"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0207"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0195"
+        }
+      ],
+      "reannotation_action": "promote_manual_reference_to_manual_independent+adjust_gold_scope",
+      "evidence_role_counts": {
+        "primary": 3,
+        "secondary": 1
+      },
+      "rationale": "general_overview 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面主题核对最小稳定分支集合：太阳病治法总括：保留 strong，用桂枝汤、葛根汤、针足阳明防传等稳定分支支撑，并以太阳伤寒条作分支语境。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 manual_with_system_reference，本轮改为 manual_independent。",
+      "boundary_note": "strong 总括题；由多个太阳病 main_passages 分支支撑，不退化为单条直答。"
+    },
+    {
+      "question_id": "eval_seed_q005",
+      "query": "六经病应该怎么办？",
+      "expected_mode": "weak_with_review_notice",
+      "old_gold_source_type": "manual_with_system_reference",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0207",
+        "safe:main_passages:ZJSHL-CH-016-P-0009",
+        "safe:main_passages:ZJSHL-CH-014-P-0058",
+        "safe:main_passages:ZJSHL-CH-009-P-0312"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-006-P-0065",
+        "safe:main_passages:ZJSHL-CH-006-P-0073",
+        "safe:main_passages:ZJSHL-CH-008-P-0207",
+        "safe:main_passages:ZJSHL-CH-016-P-0009",
+        "safe:main_passages:ZJSHL-CH-006-P-0074",
+        "safe:main_passages:ZJSHL-CH-006-P-0076"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-008-P-0207",
+        "ZJSHL-CH-016-P-0009",
+        "ZJSHL-CH-014-P-0058",
+        "ZJSHL-CH-009-P-0312"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-006-P-0065",
+        "ZJSHL-CH-006-P-0073",
+        "ZJSHL-CH-008-P-0207",
+        "ZJSHL-CH-016-P-0009",
+        "ZJSHL-CH-006-P-0074",
+        "ZJSHL-CH-006-P-0076"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/general_question_examples.json",
+          "example_id": "liujing_management_weak"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-006-P-0065"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-006-P-0073"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0207"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-016-P-0009"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-006-P-0074"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-006-P-0076"
+        }
+      ],
+      "reannotation_action": "promote_manual_reference_to_manual_independent+adjust_gold_scope+retain_weak_boundary",
+      "evidence_role_counts": {
+        "review": 3,
+        "secondary": 3
+      },
+      "rationale": "general_overview 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面主题核对最小稳定分支集合：六经病治法总括过宽：保留 weak，用三阳/三阴治法原则与传经语境作辅助整理。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 manual_with_system_reference，本轮改为 manual_independent。",
+      "boundary_note": "保留 weak_with_review_notice 和 must_keep_primary_empty；六经病范围过宽，材料只支撑弱整理。"
+    },
+    {
+      "question_id": "eval_seed_q042",
+      "query": "阳明病应该怎么办？",
+      "expected_mode": "strong",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0123",
+        "safe:main_passages:ZJSHL-CH-011-P-0146",
+        "safe:main_passages:ZJSHL-CH-011-P-0086"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0123",
+        "safe:main_passages:ZJSHL-CH-011-P-0146",
+        "safe:main_passages:ZJSHL-CH-011-P-0086",
+        "safe:main_passages:ZJSHL-CH-011-P-0101"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-011-P-0123",
+        "ZJSHL-CH-011-P-0146",
+        "ZJSHL-CH-011-P-0086"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-011-P-0123",
+        "ZJSHL-CH-011-P-0146",
+        "ZJSHL-CH-011-P-0086",
+        "ZJSHL-CH-011-P-0101"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q042"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-011-P-0123"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-011-P-0146"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-011-P-0086"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-011-P-0101"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope",
+      "evidence_role_counts": {
+        "primary": 4
+      },
+      "rationale": "general_overview 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面主题核对最小稳定分支集合：阳明病治法总括：保留 strong，用小柴胡、小承气、大承气等稳定分支支撑。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "strong 总括题；由多个阳明病 main_passages 分支支撑。"
+    },
+    {
+      "question_id": "eval_seed_q043",
+      "query": "太阴病应该怎么办？",
+      "expected_mode": "weak_with_review_notice",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-013-P-0008",
+        "safe:main_passages:ZJSHL-CH-013-P-0018",
+        "safe:main_passages:ZJSHL-CH-014-P-0078",
+        "safe:main_passages:ZJSHL-CH-013-P-0002",
+        "safe:main_passages:ZJSHL-CH-014-P-0072",
+        "full:passages:ZJSHL-CH-013-P-0008",
+        "full:passages:ZJSHL-CH-013-P-0006",
+        "full:ambiguous_passages:ZJSHL-CH-013-P-0006"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-013-P-0002",
+        "safe:main_passages:ZJSHL-CH-013-P-0008",
+        "safe:main_passages:ZJSHL-CH-013-P-0010",
+        "safe:main_passages:ZJSHL-CH-013-P-0014",
+        "safe:main_passages:ZJSHL-CH-013-P-0018"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-013-P-0008",
+        "ZJSHL-CH-013-P-0018",
+        "ZJSHL-CH-014-P-0078",
+        "ZJSHL-CH-013-P-0002",
+        "ZJSHL-CH-014-P-0072",
+        "ZJSHL-CH-013-P-0006"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-013-P-0002",
+        "ZJSHL-CH-013-P-0008",
+        "ZJSHL-CH-013-P-0010",
+        "ZJSHL-CH-013-P-0014",
+        "ZJSHL-CH-013-P-0018"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q043"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-013-P-0002"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-013-P-0008"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-013-P-0010"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-013-P-0014"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-013-P-0018"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope+retain_weak_boundary",
+      "evidence_role_counts": {
+        "review": 1,
+        "secondary": 4
+      },
+      "rationale": "general_overview 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面主题核对最小稳定分支集合：太阴病治法总括：保留 weak，收紧为太阴章内定义、桂枝汤、四逆辈、桂枝加芍药汤与减药语境。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "保留 weak_with_review_notice 和 must_keep_primary_empty；太阴病题面仍宽，不把分散条文升为 strong primary。"
+    },
+    {
+      "question_id": "eval_seed_q044",
+      "query": "厥阴病应该怎么办？",
+      "expected_mode": "weak_with_review_notice",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-015-P-0193",
+        "safe:main_passages:ZJSHL-CH-015-P-0232",
+        "safe:main_passages:ZJSHL-CH-006-P-0071",
+        "safe:main_passages:ZJSHL-CH-014-P-0097",
+        "safe:main_passages:ZJSHL-CH-014-P-0047",
+        "full:passages:ZJSHL-CH-015-P-0200",
+        "full:ambiguous_passages:ZJSHL-CH-015-P-0200",
+        "full:passages:ZJSHL-CH-015-P-0198"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-015-P-0193",
+        "safe:main_passages:ZJSHL-CH-015-P-0200",
+        "safe:main_passages:ZJSHL-CH-015-P-0235",
+        "safe:main_passages:ZJSHL-CH-015-P-0269",
+        "safe:main_passages:ZJSHL-CH-015-P-0232",
+        "safe:main_passages:ZJSHL-CH-015-P-0198"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-015-P-0193",
+        "ZJSHL-CH-015-P-0232",
+        "ZJSHL-CH-006-P-0071",
+        "ZJSHL-CH-014-P-0097",
+        "ZJSHL-CH-014-P-0047",
+        "ZJSHL-CH-015-P-0200",
+        "ZJSHL-CH-015-P-0198"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-015-P-0193",
+        "ZJSHL-CH-015-P-0200",
+        "ZJSHL-CH-015-P-0235",
+        "ZJSHL-CH-015-P-0269",
+        "ZJSHL-CH-015-P-0232",
+        "ZJSHL-CH-015-P-0198"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q044"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-015-P-0193"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-015-P-0200"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-015-P-0235"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-015-P-0269"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-015-P-0232"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-015-P-0198"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope+retain_weak_boundary",
+      "evidence_role_counts": {
+        "review": 2,
+        "secondary": 4
+      },
+      "rationale": "general_overview 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面主题核对最小稳定分支集合：厥阴病治法总括：保留 weak，收紧为厥阴章内定义、少少与水、灸厥阴和麻黄升麻汤语境。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "保留 weak_with_review_notice 和 must_keep_primary_empty；厥阴病治法分散且夹杂预后材料，不升为 strong。"
+    },
+    {
+      "question_id": "eval_seed_q045",
+      "query": "伤寒应该怎么办？",
+      "expected_mode": "strong",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-006-P-0012",
+        "safe:main_passages:ZJSHL-CH-009-P-0173",
+        "safe:main_passages:ZJSHL-CH-009-P-0320"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-006-P-0048",
+        "safe:main_passages:ZJSHL-CH-006-P-0050",
+        "safe:main_passages:ZJSHL-CH-009-P-0173",
+        "safe:main_passages:ZJSHL-CH-009-P-0320",
+        "safe:main_passages:ZJSHL-CH-006-P-0012"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-006-P-0012",
+        "ZJSHL-CH-009-P-0173",
+        "ZJSHL-CH-009-P-0320"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-006-P-0048",
+        "ZJSHL-CH-006-P-0050",
+        "ZJSHL-CH-009-P-0173",
+        "ZJSHL-CH-009-P-0320",
+        "ZJSHL-CH-006-P-0012"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q045"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-006-P-0048"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-006-P-0050"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0173"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0320"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-006-P-0012"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope",
+      "evidence_role_counts": {
+        "primary": 4,
+        "secondary": 1
+      },
+      "rationale": "general_overview 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面主题核对最小稳定分支集合：伤寒治法总括：保留 strong，用逐日浅深/临时消息制方框架和两个方证分支支撑。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "strong 总括题；由伤寒例治法框架和多个伤寒 main_passages 方证分支支撑。"
+    },
+    {
+      "question_id": "eval_seed_q046",
+      "query": "中风应该怎么办？",
+      "expected_mode": "strong",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0193",
+        "safe:main_passages:ZJSHL-CH-008-P-0215",
+        "safe:main_passages:ZJSHL-CH-010-P-0075"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0215",
+        "safe:main_passages:ZJSHL-CH-009-P-0031",
+        "safe:main_passages:ZJSHL-CH-009-P-0148",
+        "safe:main_passages:ZJSHL-CH-010-P-0075",
+        "safe:main_passages:ZJSHL-CH-008-P-0193"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-008-P-0193",
+        "ZJSHL-CH-008-P-0215",
+        "ZJSHL-CH-010-P-0075"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-008-P-0215",
+        "ZJSHL-CH-009-P-0031",
+        "ZJSHL-CH-009-P-0148",
+        "ZJSHL-CH-010-P-0075",
+        "ZJSHL-CH-008-P-0193"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q046"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0215"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0031"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0148"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-010-P-0075"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0193"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope",
+      "evidence_role_counts": {
+        "primary": 4,
+        "secondary": 1
+      },
+      "rationale": "general_overview 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面主题核对最小稳定分支集合：中风治法总括：保留 strong，用桂枝汤、大青龙汤、五苓散、十枣汤等稳定分支支撑。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "strong 总括题；由多个中风/太阳中风 main_passages 分支支撑。"
+    },
+    {
+      "question_id": "eval_seed_q047",
+      "query": "太阳病有哪些分支？",
+      "expected_mode": "strong",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0195",
+        "safe:main_passages:ZJSHL-CH-008-P-0193",
+        "safe:main_passages:ZJSHL-CH-009-P-0002",
+        "safe:main_passages:ZJSHL-CH-008-P-0220"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0193",
+        "safe:main_passages:ZJSHL-CH-008-P-0195",
+        "safe:main_passages:ZJSHL-CH-008-P-0220",
+        "safe:main_passages:ZJSHL-CH-009-P-0002"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-008-P-0195",
+        "ZJSHL-CH-008-P-0193",
+        "ZJSHL-CH-009-P-0002",
+        "ZJSHL-CH-008-P-0220"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-008-P-0193",
+        "ZJSHL-CH-008-P-0195",
+        "ZJSHL-CH-008-P-0220",
+        "ZJSHL-CH-009-P-0002"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q047"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0193"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0195"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0220"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0002"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope",
+      "evidence_role_counts": {
+        "primary": 4
+      },
+      "rationale": "general_overview 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面主题核对最小稳定分支集合：太阳病分支总括：保留 strong，用中风、伤寒、桂枝汤证、葛根汤证等稳定分支支撑。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "strong 总括题；由多个太阳病 main_passages 分支支撑。"
+    },
+    {
+      "question_id": "eval_seed_q048",
+      "query": "阳明病有哪些情况？",
+      "expected_mode": "strong",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0123",
+        "safe:main_passages:ZJSHL-CH-011-P-0146",
+        "safe:main_passages:ZJSHL-CH-011-P-0086",
+        "safe:main_passages:ZJSHL-CH-011-P-0101"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0101",
+        "safe:main_passages:ZJSHL-CH-011-P-0123",
+        "safe:main_passages:ZJSHL-CH-011-P-0086",
+        "safe:main_passages:ZJSHL-CH-011-P-0146"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-011-P-0123",
+        "ZJSHL-CH-011-P-0146",
+        "ZJSHL-CH-011-P-0086",
+        "ZJSHL-CH-011-P-0101"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-011-P-0101",
+        "ZJSHL-CH-011-P-0123",
+        "ZJSHL-CH-011-P-0086",
+        "ZJSHL-CH-011-P-0146"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q048"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-011-P-0101"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-011-P-0123"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-011-P-0086"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-011-P-0146"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope",
+      "evidence_role_counts": {
+        "primary": 4
+      },
+      "rationale": "general_overview 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面主题核对最小稳定分支集合：阳明病情况总括：保留 strong，用栀子豉、小柴胡、小承气、大承气等稳定分支支撑。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "strong 总括题；由多个阳明病 main_passages 分支支撑。"
+    },
+    {
+      "question_id": "eval_seed_q049",
+      "query": "少阴病有哪些分支？",
+      "expected_mode": "strong",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0078",
+        "safe:main_passages:ZJSHL-CH-014-P-0112",
+        "safe:main_passages:ZJSHL-CH-014-P-0062",
+        "safe:main_passages:ZJSHL-CH-014-P-0072"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0062",
+        "safe:main_passages:ZJSHL-CH-014-P-0072",
+        "safe:main_passages:ZJSHL-CH-014-P-0078",
+        "safe:main_passages:ZJSHL-CH-014-P-0112"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-014-P-0078",
+        "ZJSHL-CH-014-P-0112",
+        "ZJSHL-CH-014-P-0062",
+        "ZJSHL-CH-014-P-0072"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-014-P-0062",
+        "ZJSHL-CH-014-P-0072",
+        "ZJSHL-CH-014-P-0078",
+        "ZJSHL-CH-014-P-0112"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q049"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-014-P-0062"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-014-P-0072"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-014-P-0078"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-014-P-0112"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope+q004_still_excluded",
+      "evidence_role_counts": {
+        "primary": 4
+      },
+      "rationale": "general_overview 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面主题核对最小稳定分支集合：少阴病分支总括：保留 strong，但只处理“有哪些分支”题，不处理 q004 的“应该怎么办”专项口径。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "strong 分支题；不同于 q004 的治法总括专项，本题只按少阴病稳定分支整理。"
+    },
+    {
+      "question_id": "eval_seed_q050",
+      "query": "霍乱病应该怎么办？",
+      "expected_mode": "weak_with_review_notice",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-016-P-0002",
+        "safe:main_passages:ZJSHL-CH-016-P-0004"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-016-P-0002",
+        "safe:main_passages:ZJSHL-CH-016-P-0004",
+        "safe:main_passages:ZJSHL-CH-016-P-0014",
+        "safe:main_passages:ZJSHL-CH-016-P-0006"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-016-P-0002",
+        "ZJSHL-CH-016-P-0004"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-016-P-0002",
+        "ZJSHL-CH-016-P-0004",
+        "ZJSHL-CH-016-P-0014",
+        "ZJSHL-CH-016-P-0006"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q050"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-016-P-0002"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-016-P-0004"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-016-P-0014"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-016-P-0006"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope+retain_weak_boundary",
+      "evidence_role_counts": {
+        "review": 1,
+        "secondary": 3
+      },
+      "rationale": "general_overview 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面主题核对最小稳定分支集合：霍乱病治法总括：保留 weak，补入直接治法条文，同时保留定义条文作弱语境。 不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "保留 weak_with_review_notice 和 must_keep_primary_empty；霍乱病题面宽，定义与治法分支只能支撑弱整理。"
+    }
+  ]
+}

@@ -1,0 +1,894 @@
+{
+  "log_version": "comparison_reannotation_log_v1",
+  "review_date": "2026-04-08",
+  "scope": "question_type = comparison",
+  "goldset_path": "artifacts/evaluation/goldset_v1_seed.json",
+  "source_text_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+  "summary": {
+    "comparison_total": 12,
+    "old_source_type_counts": {
+      "manual_with_system_reference": 2,
+      "system_bootstrapped": 10
+    },
+    "new_source_type_counts": {
+      "manual_independent": 12
+    },
+    "promoted_bootstrapped_to_manual_independent_count": 10,
+    "promoted_bootstrapped_to_manual_independent_ids": [
+      "eval_seed_q051",
+      "eval_seed_q052",
+      "eval_seed_q053",
+      "eval_seed_q054",
+      "eval_seed_q055",
+      "eval_seed_q056",
+      "eval_seed_q057",
+      "eval_seed_q058",
+      "eval_seed_q059",
+      "eval_seed_q060"
+    ],
+    "promoted_manual_reference_to_manual_independent_count": 2,
+    "promoted_manual_reference_to_manual_independent_ids": [
+      "eval_seed_q006",
+      "eval_seed_q007"
+    ],
+    "total_promoted_to_manual_independent_count": 12,
+    "remaining_unfinished_count": 0,
+    "remaining_unfinished_ids": [],
+    "weak_boundary_retained_count": 1,
+    "weak_boundary_retained_ids": [
+      "eval_seed_q007"
+    ],
+    "adjusted_gold_scope_count": 12,
+    "adjusted_gold_scope_ids": [
+      "eval_seed_q006",
+      "eval_seed_q007",
+      "eval_seed_q051",
+      "eval_seed_q052",
+      "eval_seed_q053",
+      "eval_seed_q054",
+      "eval_seed_q055",
+      "eval_seed_q056",
+      "eval_seed_q057",
+      "eval_seed_q058",
+      "eval_seed_q059",
+      "eval_seed_q060"
+    ]
+  },
+  "items": [
+    {
+      "question_id": "eval_seed_q006",
+      "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+      "expected_mode": "strong",
+      "old_gold_source_type": "manual_with_system_reference",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-025-P-0004",
+        "safe:main_passages:ZJSHL-CH-025-P-0003",
+        "safe:main_passages:ZJSHL-CH-008-P-0236"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-025-P-0004",
+        "safe:main_passages:ZJSHL-CH-025-P-0003",
+        "safe:main_passages:ZJSHL-CH-008-P-0236",
+        "safe:main_passages:ZJSHL-CH-009-P-0053"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-025-P-0004",
+        "ZJSHL-CH-025-P-0003",
+        "ZJSHL-CH-008-P-0236"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-025-P-0004",
+        "ZJSHL-CH-025-P-0003",
+        "ZJSHL-CH-008-P-0236",
+        "ZJSHL-CH-009-P-0053"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/comparison_examples.json",
+          "example_id": "comparison_demo_scene"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-025-P-0004"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-025-P-0003"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0236"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0053"
+        }
+      ],
+      "reannotation_action": "promote_manual_reference_to_manual_independent+adjust_gold_scope",
+      "evidence_role_counts": {
+        "primary": 2,
+        "secondary": 2
+      },
+      "rationale": "comparison 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面两端对象核对：桂枝加附子汤方 vs 桂枝加浓朴杏子汤方：主证据为两方加味方文，secondary 补入两端各自条文语境。不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 manual_with_system_reference，本轮改为 manual_independent。",
+      "boundary_note": "按题面两端对象可独立确定 primary 方文；语境仅作 secondary 补充。"
+    },
+    {
+      "question_id": "eval_seed_q007",
+      "query": "桂枝去芍药汤方和桂枝去芍药加附子汤方的条文语境有什么不同？",
+      "expected_mode": "weak_with_review_notice",
+      "old_gold_source_type": "manual_with_system_reference",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-025-P-0005",
+        "safe:main_passages:ZJSHL-CH-025-P-0006",
+        "full:ambiguous_passages:ZJSHL-CH-008-P-0238"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-025-P-0005",
+        "safe:main_passages:ZJSHL-CH-025-P-0006",
+        "safe:main_passages:ZJSHL-CH-008-P-0238"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-025-P-0005",
+        "ZJSHL-CH-025-P-0006",
+        "ZJSHL-CH-008-P-0238"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-025-P-0005",
+        "ZJSHL-CH-025-P-0006",
+        "ZJSHL-CH-008-P-0238"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/comparison_examples.json",
+          "example_id": "comparison_context_weak"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-025-P-0005"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-025-P-0006"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0238"
+        }
+      ],
+      "reannotation_action": "promote_manual_reference_to_manual_independent+adjust_gold_scope+retain_weak_boundary",
+      "evidence_role_counts": {
+        "review": 1,
+        "secondary": 2
+      },
+      "rationale": "comparison 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面两端对象核对：桂枝去芍药汤方 vs 桂枝去芍药加附子汤方：保留 weak_with_review_notice 与 primary_empty 边界，方文作 secondary，共用语境作 review。不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 manual_with_system_reference，本轮改为 manual_independent。",
+      "boundary_note": "保留 weak_with_review_notice 和 must_keep_primary_empty；本轮只修正 gold 来源与 review 分层，不把待核对语境升格为 strong。"
+    },
+    {
+      "question_id": "eval_seed_q051",
+      "query": "桂枝汤方和葛根汤方的区别是什么？",
+      "expected_mode": "strong",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0217",
+        "safe:main_passages:ZJSHL-CH-009-P-0004",
+        "safe:main_passages:ZJSHL-CH-009-P-0098",
+        "safe:main_passages:ZJSHL-CH-008-P-0222"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0217",
+        "safe:main_passages:ZJSHL-CH-008-P-0219",
+        "safe:main_passages:ZJSHL-CH-009-P-0004",
+        "safe:main_passages:ZJSHL-CH-009-P-0006",
+        "safe:main_passages:ZJSHL-CH-008-P-0220",
+        "safe:main_passages:ZJSHL-CH-009-P-0002"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-008-P-0217",
+        "ZJSHL-CH-009-P-0004",
+        "ZJSHL-CH-009-P-0098",
+        "ZJSHL-CH-008-P-0222"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-008-P-0217",
+        "ZJSHL-CH-008-P-0219",
+        "ZJSHL-CH-009-P-0004",
+        "ZJSHL-CH-009-P-0006",
+        "ZJSHL-CH-008-P-0220",
+        "ZJSHL-CH-009-P-0002"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q051"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0217"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0219"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0004"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0006"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0220"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0002"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope",
+      "evidence_role_counts": {
+        "primary": 4,
+        "secondary": 2
+      },
+      "rationale": "comparison 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面两端对象核对：桂枝汤方 vs 葛根汤方：主证据收紧为两方完整方文块，移除旧 replay 中的桂枝加葛根/麻杏石甘汤误入语境。不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "按题面两端对象可独立确定 primary 方文；语境仅作 secondary 补充。"
+    },
+    {
+      "question_id": "eval_seed_q052",
+      "query": "麻黄汤方和大青龙汤方的区别是什么？",
+      "expected_mode": "strong",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0022",
+        "safe:main_passages:ZJSHL-CH-009-P-0033",
+        "safe:main_passages:ZJSHL-CH-009-P-0077",
+        "safe:main_passages:ZJSHL-CH-009-P-0036"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0022",
+        "safe:main_passages:ZJSHL-CH-009-P-0023",
+        "safe:main_passages:ZJSHL-CH-009-P-0025",
+        "safe:main_passages:ZJSHL-CH-009-P-0033",
+        "safe:main_passages:ZJSHL-CH-009-P-0035",
+        "safe:main_passages:ZJSHL-CH-009-P-0077",
+        "safe:main_passages:ZJSHL-CH-009-P-0036"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-009-P-0022",
+        "ZJSHL-CH-009-P-0033",
+        "ZJSHL-CH-009-P-0077",
+        "ZJSHL-CH-009-P-0036"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-009-P-0022",
+        "ZJSHL-CH-009-P-0023",
+        "ZJSHL-CH-009-P-0025",
+        "ZJSHL-CH-009-P-0033",
+        "ZJSHL-CH-009-P-0035",
+        "ZJSHL-CH-009-P-0077",
+        "ZJSHL-CH-009-P-0036"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q052"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0022"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0023"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0025"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0033"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0035"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0077"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0036"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope",
+      "evidence_role_counts": {
+        "primary": 5,
+        "secondary": 2
+      },
+      "rationale": "comparison 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面两端对象核对：麻黄汤方 vs 大青龙汤方：补齐麻黄汤杏仁段与两方煎服法，语境仅保留可独立核对的直接条文。不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "按题面两端对象可独立确定 primary 方文；语境仅作 secondary 补充。"
+    },
+    {
+      "question_id": "eval_seed_q053",
+      "query": "大承气汤方和小承气汤方的区别是什么？",
+      "expected_mode": "strong",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0068",
+        "safe:main_passages:ZJSHL-CH-011-P-0071",
+        "safe:main_passages:ZJSHL-CH-011-P-0005",
+        "safe:main_passages:ZJSHL-CH-015-P-0316"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0068",
+        "safe:main_passages:ZJSHL-CH-011-P-0070",
+        "safe:main_passages:ZJSHL-CH-011-P-0071",
+        "safe:main_passages:ZJSHL-CH-011-P-0073",
+        "safe:main_passages:ZJSHL-CH-011-P-0072",
+        "safe:main_passages:ZJSHL-CH-011-P-0066"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-011-P-0068",
+        "ZJSHL-CH-011-P-0071",
+        "ZJSHL-CH-011-P-0005",
+        "ZJSHL-CH-015-P-0316"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-011-P-0068",
+        "ZJSHL-CH-011-P-0070",
+        "ZJSHL-CH-011-P-0071",
+        "ZJSHL-CH-011-P-0073",
+        "ZJSHL-CH-011-P-0072",
+        "ZJSHL-CH-011-P-0066"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q053"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-011-P-0068"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-011-P-0070"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-011-P-0071"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-011-P-0073"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-011-P-0072"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-011-P-0066"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope",
+      "evidence_role_counts": {
+        "primary": 4,
+        "secondary": 2
+      },
+      "rationale": "comparison 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面两端对象核对：大承气汤方 vs 小承气汤方：主证据为两方方文块，secondary 使用紧邻原文中直接比较大小承气差异的说明。不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "按题面两端对象可独立确定 primary 方文；语境仅作 secondary 补充。"
+    },
+    {
+      "question_id": "eval_seed_q054",
+      "query": "小柴胡汤方和大柴胡汤方有什么异同？",
+      "expected_mode": "strong",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0211",
+        "safe:main_passages:ZJSHL-CH-009-P-0250",
+        "safe:main_passages:ZJSHL-CH-015-P-0326",
+        "safe:main_passages:ZJSHL-CH-024-P-0071"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0211",
+        "safe:main_passages:ZJSHL-CH-009-P-0213",
+        "safe:main_passages:ZJSHL-CH-009-P-0250",
+        "safe:main_passages:ZJSHL-CH-009-P-0209",
+        "safe:main_passages:ZJSHL-CH-009-P-0248"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-009-P-0211",
+        "ZJSHL-CH-009-P-0250",
+        "ZJSHL-CH-015-P-0326",
+        "ZJSHL-CH-024-P-0071"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-009-P-0211",
+        "ZJSHL-CH-009-P-0213",
+        "ZJSHL-CH-009-P-0250",
+        "ZJSHL-CH-009-P-0209",
+        "ZJSHL-CH-009-P-0248"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q054"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0211"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0213"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0250"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0209"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0248"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope",
+      "evidence_role_counts": {
+        "primary": 3,
+        "secondary": 2
+      },
+      "rationale": "comparison 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面两端对象核对：小柴胡汤方 vs 大柴胡汤方：主证据为两方方文块，secondary 改为同章直接证候/转方语境。不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "按题面两端对象可独立确定 primary 方文；语境仅作 secondary 补充。"
+    },
+    {
+      "question_id": "eval_seed_q055",
+      "query": "五苓散方和猪苓汤方的区别是什么？",
+      "expected_mode": "strong",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0138",
+        "safe:main_passages:ZJSHL-CH-011-P-0109",
+        "safe:main_passages:ZJSHL-CH-016-P-0014",
+        "safe:main_passages:ZJSHL-CH-011-P-0108"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0138",
+        "safe:main_passages:ZJSHL-CH-009-P-0140",
+        "safe:main_passages:ZJSHL-CH-011-P-0109",
+        "safe:main_passages:ZJSHL-CH-011-P-0111",
+        "safe:main_passages:ZJSHL-CH-009-P-0136",
+        "safe:main_passages:ZJSHL-CH-011-P-0106"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-009-P-0138",
+        "ZJSHL-CH-011-P-0109",
+        "ZJSHL-CH-016-P-0014",
+        "ZJSHL-CH-011-P-0108"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-009-P-0138",
+        "ZJSHL-CH-009-P-0140",
+        "ZJSHL-CH-011-P-0109",
+        "ZJSHL-CH-011-P-0111",
+        "ZJSHL-CH-009-P-0136",
+        "ZJSHL-CH-011-P-0106"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q055"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0138"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0140"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-011-P-0109"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-011-P-0111"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0136"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-011-P-0106"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope",
+      "evidence_role_counts": {
+        "primary": 4,
+        "secondary": 2
+      },
+      "rationale": "comparison 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面两端对象核对：五苓散方 vs 猪苓汤方：主证据为两方方文块，secondary 使用各自小便不利/消渴相关直接条文。不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "按题面两端对象可独立确定 primary 方文；语境仅作 secondary 补充。"
+    },
+    {
+      "question_id": "eval_seed_q056",
+      "query": "四逆汤方和茯苓四逆汤方的区别是什么？",
+      "expected_mode": "strong",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0267",
+        "safe:main_passages:ZJSHL-CH-009-P-0130",
+        "safe:main_passages:ZJSHL-CH-015-P-0305",
+        "full:passages:ZJSHL-CH-009-P-0130",
+        "full:ambiguous_passages:ZJSHL-CH-009-P-0128"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0267",
+        "safe:main_passages:ZJSHL-CH-008-P-0269",
+        "safe:main_passages:ZJSHL-CH-009-P-0130",
+        "safe:main_passages:ZJSHL-CH-009-P-0132",
+        "safe:main_passages:ZJSHL-CH-008-P-0256",
+        "safe:main_passages:ZJSHL-CH-009-P-0128"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-008-P-0267",
+        "ZJSHL-CH-009-P-0130",
+        "ZJSHL-CH-015-P-0305",
+        "ZJSHL-CH-009-P-0128"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-008-P-0267",
+        "ZJSHL-CH-008-P-0269",
+        "ZJSHL-CH-009-P-0130",
+        "ZJSHL-CH-009-P-0132",
+        "ZJSHL-CH-008-P-0256",
+        "ZJSHL-CH-009-P-0128"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q056"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0267"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0269"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0130"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0132"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0256"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0128"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope",
+      "evidence_role_counts": {
+        "primary": 4,
+        "secondary": 2
+      },
+      "rationale": "comparison 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面两端对象核对：四逆汤方 vs 茯苓四逆汤方：主证据为两方方文块，移除旧 replay 中误入的通脉四逆汤语境。不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "按题面两端对象可独立确定 primary 方文；语境仅作 secondary 补充。"
+    },
+    {
+      "question_id": "eval_seed_q057",
+      "query": "甘草乾姜汤方和芍药甘草汤方的区别是什么？",
+      "expected_mode": "strong",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0258",
+        "safe:main_passages:ZJSHL-CH-008-P-0261",
+        "safe:main_passages:ZJSHL-CH-008-P-0256"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0258",
+        "safe:main_passages:ZJSHL-CH-008-P-0260",
+        "safe:main_passages:ZJSHL-CH-008-P-0261",
+        "safe:main_passages:ZJSHL-CH-008-P-0263",
+        "safe:main_passages:ZJSHL-CH-008-P-0256"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-008-P-0258",
+        "ZJSHL-CH-008-P-0261",
+        "ZJSHL-CH-008-P-0256"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-008-P-0258",
+        "ZJSHL-CH-008-P-0260",
+        "ZJSHL-CH-008-P-0261",
+        "ZJSHL-CH-008-P-0263",
+        "ZJSHL-CH-008-P-0256"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q057"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0258"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0260"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0261"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0263"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-008-P-0256"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope",
+      "evidence_role_counts": {
+        "primary": 4,
+        "secondary": 1
+      },
+      "rationale": "comparison 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面两端对象核对：甘草乾姜汤方 vs 芍药甘草汤方：主证据为两方方文块，secondary 保留同一条文中先复阳后益阴的语境。不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "按题面两端对象可独立确定 primary 方文；语境仅作 secondary 补充。"
+    },
+    {
+      "question_id": "eval_seed_q058",
+      "query": "栀子豉汤方和栀子乾姜汤方有什么不同？",
+      "expected_mode": "strong",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-009-P-0175",
+        "safe:main_passages:ZJSHL-CH-011-P-0101",
+        "safe:main_passages:ZJSHL-CH-009-P-0173"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-009-P-0161",
+        "safe:main_passages:ZJSHL-CH-009-P-0175",
+        "safe:main_passages:ZJSHL-CH-009-P-0156",
+        "safe:main_passages:ZJSHL-CH-009-P-0173"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-009-P-0159",
+        "ZJSHL-CH-009-P-0175",
+        "ZJSHL-CH-011-P-0101",
+        "ZJSHL-CH-009-P-0173"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-009-P-0159",
+        "ZJSHL-CH-009-P-0161",
+        "ZJSHL-CH-009-P-0175",
+        "ZJSHL-CH-009-P-0156",
+        "ZJSHL-CH-009-P-0173"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q058"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0159"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0161"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0175"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0156"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-009-P-0173"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope",
+      "evidence_role_counts": {
+        "primary": 3,
+        "secondary": 2
+      },
+      "rationale": "comparison 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面两端对象核对：栀子豉汤方 vs 栀子乾姜汤方：主证据为两方方文，secondary 使用各自直接主治条文。不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "按题面两端对象可独立确定 primary 方文；语境仅作 secondary 补充。"
+    },
+    {
+      "question_id": "eval_seed_q059",
+      "query": "半夏泻心汤方和甘草泻心汤方的区别是什么？",
+      "expected_mode": "strong",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0068",
+        "safe:main_passages:ZJSHL-CH-027-P-0009",
+        "full:passages:ZJSHL-CH-010-P-0068",
+        "full:ambiguous_passages:ZJSHL-CH-010-P-0066",
+        "full:passages:ZJSHL-CH-027-P-0009",
+        "full:ambiguous_passages:ZJSHL-CH-010-P-0095"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0068",
+        "safe:main_passages:ZJSHL-CH-010-P-0070",
+        "safe:main_passages:ZJSHL-CH-027-P-0009",
+        "safe:main_passages:ZJSHL-CH-027-P-0010",
+        "safe:main_passages:ZJSHL-CH-010-P-0066",
+        "safe:main_passages:ZJSHL-CH-010-P-0095"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-010-P-0068",
+        "ZJSHL-CH-027-P-0009",
+        "ZJSHL-CH-010-P-0066",
+        "ZJSHL-CH-010-P-0095"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-010-P-0068",
+        "ZJSHL-CH-010-P-0070",
+        "ZJSHL-CH-027-P-0009",
+        "ZJSHL-CH-027-P-0010",
+        "ZJSHL-CH-010-P-0066",
+        "ZJSHL-CH-010-P-0095"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q059"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-010-P-0068"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-010-P-0070"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-027-P-0009"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-027-P-0010"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-010-P-0066"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-010-P-0095"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope",
+      "evidence_role_counts": {
+        "primary": 4,
+        "secondary": 2
+      },
+      "rationale": "comparison 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面两端对象核对：半夏泻心汤方 vs 甘草泻心汤方：主证据为两方方文块，去除 full/ambiguous replay record 依赖。不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "按题面两端对象可独立确定 primary 方文；语境仅作 secondary 补充。"
+    },
+    {
+      "question_id": "eval_seed_q060",
+      "query": "白虎汤方和白虎加人参汤方的区别是什么？",
+      "expected_mode": "strong",
+      "old_gold_source_type": "system_bootstrapped",
+      "new_gold_source_type": "manual_independent",
+      "old_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0165",
+        "safe:main_passages:ZJSHL-CH-025-P-0012",
+        "safe:main_passages:ZJSHL-CH-011-P-0104"
+      ],
+      "new_gold_record_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0165",
+        "safe:main_passages:ZJSHL-CH-010-P-0167",
+        "safe:main_passages:ZJSHL-CH-025-P-0012",
+        "safe:main_passages:ZJSHL-CH-010-P-0163",
+        "safe:main_passages:ZJSHL-CH-011-P-0104"
+      ],
+      "old_gold_passage_ids": [
+        "ZJSHL-CH-010-P-0165",
+        "ZJSHL-CH-025-P-0012",
+        "ZJSHL-CH-011-P-0104"
+      ],
+      "new_gold_passage_ids": [
+        "ZJSHL-CH-010-P-0165",
+        "ZJSHL-CH-010-P-0167",
+        "ZJSHL-CH-025-P-0012",
+        "ZJSHL-CH-010-P-0163",
+        "ZJSHL-CH-011-P-0104"
+      ],
+      "old_source_refs": [
+        {
+          "artifact_path": "artifacts/evaluation/evaluator_v1_report.json",
+          "example_id": "eval_seed_q060"
+        }
+      ],
+      "new_source_refs": [
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-010-P-0165"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-010-P-0167"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-025-P-0012"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-010-P-0163"
+        },
+        {
+          "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+          "example_id": "ZJSHL-CH-011-P-0104"
+        }
+      ],
+      "reannotation_action": "promote_bootstrapped_to_manual_independent+adjust_gold_scope",
+      "evidence_role_counts": {
+        "primary": 3,
+        "secondary": 2
+      },
+      "rationale": "comparison 正式化修正 v1。人工从 data/processed/zjshl_dataset_v2/main_passages.json 按题面两端对象核对：白虎汤方 vs 白虎加人参汤方：主证据为白虎汤方文块与白虎加人参加味方文，secondary 使用各自直接主治条文。不再以系统样例或 evaluator replay citations 作为 gold 唯一来源；旧来源标记为 system_bootstrapped，本轮改为 manual_independent。",
+      "boundary_note": "按题面两端对象可独立确定 primary 方文；语境仅作 secondary 补充。"
+    }
+  ]
+}

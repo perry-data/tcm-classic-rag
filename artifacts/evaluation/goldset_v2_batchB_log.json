@@ -1,0 +1,683 @@
+[
+  {
+    "question_id": "eval_seed_q103",
+    "query": "茯苓甘草汤方的条文是什么？",
+    "question_type": "source_lookup",
+    "gold_source_type": "manual_independent",
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-009-P-0145"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-009-P-0147"
+      }
+    ],
+    "source_ref_ids": [
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-009-P-0145",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-009-P-0147"
+    ],
+    "rationale": "按题面方名从 main_passages.json 独立核对方文起始段、连续组成和紧邻煎服法。",
+    "answer_mode_bucket": "strong",
+    "expected_mode": "strong",
+    "design_notes": "出处/方文查找题，expected_mode=strong，要求命中 gold citation。"
+  },
+  {
+    "question_id": "eval_seed_q104",
+    "query": "芍药甘草附子汤方的条文是什么？",
+    "question_type": "source_lookup",
+    "gold_source_type": "manual_independent",
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-009-P-0125"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-009-P-0127"
+      }
+    ],
+    "source_ref_ids": [
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-009-P-0125",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-009-P-0127"
+    ],
+    "rationale": "按题面方名从 main_passages.json 独立核对方文起始段、连续组成和紧邻煎服法。",
+    "answer_mode_bucket": "strong",
+    "expected_mode": "strong",
+    "design_notes": "出处/方文查找题，expected_mode=strong，要求命中 gold citation。"
+  },
+  {
+    "question_id": "eval_seed_q105",
+    "query": "黄芩汤方的条文是什么？",
+    "question_type": "source_lookup",
+    "gold_source_type": "manual_independent",
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0140"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0142"
+      }
+    ],
+    "source_ref_ids": [
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-010-P-0140",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-010-P-0142"
+    ],
+    "rationale": "按题面方名从 main_passages.json 独立核对方文起始段、连续组成和紧邻煎服法。",
+    "answer_mode_bucket": "strong",
+    "expected_mode": "strong",
+    "design_notes": "出处/方文查找题，expected_mode=strong，要求命中 gold citation。"
+  },
+  {
+    "question_id": "eval_seed_q106",
+    "query": "桂枝附子汤方的条文是什么？",
+    "question_type": "source_lookup",
+    "gold_source_type": "manual_independent",
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0153"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0154"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0156"
+      }
+    ],
+    "source_ref_ids": [
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-010-P-0153",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-010-P-0154",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-010-P-0156"
+    ],
+    "rationale": "按题面方名从 main_passages.json 独立核对方文起始段、连续组成和紧邻煎服法。",
+    "answer_mode_bucket": "strong",
+    "expected_mode": "strong",
+    "design_notes": "出处/方文查找题，expected_mode=strong，要求命中 gold citation。"
+  },
+  {
+    "question_id": "eval_seed_q107",
+    "query": "真武汤方的条文是什么？",
+    "question_type": "source_lookup",
+    "gold_source_type": "manual_independent",
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0134"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0135"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0137"
+      }
+    ],
+    "source_ref_ids": [
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-014-P-0134",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-014-P-0135",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-014-P-0137"
+    ],
+    "rationale": "按题面方名从 main_passages.json 独立核对方文起始段、连续组成和紧邻煎服法。",
+    "answer_mode_bucket": "strong",
+    "expected_mode": "strong",
+    "design_notes": "出处/方文查找题，expected_mode=strong，要求命中 gold citation。"
+  },
+  {
+    "question_id": "eval_seed_q108",
+    "query": "黄芩汤方和黄芩加半夏生姜汤方的区别是什么？",
+    "question_type": "comparison",
+    "gold_source_type": "manual_independent",
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0140"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0142"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-027-P-0011"
+      }
+    ],
+    "source_ref_ids": [
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-010-P-0140",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-010-P-0142",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-027-P-0011"
+    ],
+    "rationale": "先拆出题面双方对象，再从 main_passages.json 独立核对双方核心方文、煎服法和直接语境。",
+    "answer_mode_bucket": "strong",
+    "expected_mode": "strong",
+    "design_notes": "比较题，双方实体清晰、方名稳定，expected_mode=strong。"
+  },
+  {
+    "question_id": "eval_seed_q109",
+    "query": "桂枝附子汤方和甘草附子汤方的区别是什么？",
+    "question_type": "comparison",
+    "gold_source_type": "manual_independent",
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0153"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0154"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0156"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0159"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0149"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0157"
+      }
+    ],
+    "source_ref_ids": [
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-010-P-0153",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-010-P-0154",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-010-P-0156",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-010-P-0159",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-010-P-0149",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-010-P-0157"
+    ],
+    "rationale": "先拆出题面双方对象，再从 main_passages.json 独立核对双方核心方文、煎服法和直接语境。",
+    "answer_mode_bucket": "strong",
+    "expected_mode": "strong",
+    "design_notes": "比较题，双方实体清晰、方名稳定，expected_mode=strong。"
+  },
+  {
+    "question_id": "eval_seed_q110",
+    "query": "麻黄附子细辛汤方和麻黄附子甘草汤方的区别是什么？",
+    "question_type": "comparison",
+    "gold_source_type": "manual_independent",
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0064"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0066"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0069"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0062"
+      }
+    ],
+    "source_ref_ids": [
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-014-P-0064",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-014-P-0066",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-014-P-0069",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-014-P-0062"
+    ],
+    "rationale": "先拆出题面双方对象，再从 main_passages.json 独立核对双方核心方文、煎服法和直接语境。",
+    "answer_mode_bucket": "strong",
+    "expected_mode": "strong",
+    "design_notes": "比较题，双方实体清晰、方名稳定，expected_mode=strong。"
+  },
+  {
+    "question_id": "eval_seed_q111",
+    "query": "真武汤方和附子汤方的区别是什么？",
+    "question_type": "comparison",
+    "gold_source_type": "manual_independent",
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0134"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0135"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0137"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0081"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0082"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0085"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0078"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0086"
+      }
+    ],
+    "source_ref_ids": [
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-014-P-0134",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-014-P-0135",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-014-P-0137",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-014-P-0081",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-014-P-0082",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-014-P-0085",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-014-P-0078",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-014-P-0086"
+    ],
+    "rationale": "先拆出题面双方对象，再从 main_passages.json 独立核对双方核心方文、煎服法和直接语境。",
+    "answer_mode_bucket": "strong",
+    "expected_mode": "strong",
+    "design_notes": "比较题，双方实体清晰、方名稳定，expected_mode=strong。"
+  },
+  {
+    "question_id": "eval_seed_q112",
+    "query": "抵当汤方和抵当丸方的区别是什么？",
+    "question_type": "comparison",
+    "gold_source_type": "manual_independent",
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-009-P-0315"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-009-P-0322"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-009-P-0323"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-009-P-0318"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-009-P-0320"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-009-P-0321"
+      }
+    ],
+    "source_ref_ids": [
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-009-P-0315",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-009-P-0322",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-009-P-0323",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-009-P-0318",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-009-P-0320",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-009-P-0321"
+    ],
+    "rationale": "先拆出题面双方对象，再从 main_passages.json 独立核对双方核心方文、煎服法和直接语境。",
+    "answer_mode_bucket": "strong",
+    "expected_mode": "strong",
+    "design_notes": "比较题，双方实体清晰、方名稳定，expected_mode=strong。"
+  },
+  {
+    "question_id": "eval_seed_q113",
+    "query": "阳结是什么意思？",
+    "question_type": "meaning_explanation",
+    "gold_source_type": "manual_independent",
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-003-P-0004"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+        "example_id": "ZJSHL-CH-003-P-0005"
+      }
+    ],
+    "source_ref_ids": [
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-003-P-0004",
+      "data/processed/zjshl_dataset_v2/annotations.json:ZJSHL-CH-003-P-0005"
+    ],
+    "rationale": "按题面概念从 main_passages.json 与 annotations.json 独立核对定义句式、注解解释或正文语境。",
+    "answer_mode_bucket": "strong",
+    "expected_mode": "strong",
+    "design_notes": "含义解释题，保留 strong/weak 结构平衡；weak 样本不设置 primary 证据。"
+  },
+  {
+    "question_id": "eval_seed_q114",
+    "query": "阴不足是什么意思？",
+    "question_type": "meaning_explanation",
+    "gold_source_type": "manual_independent",
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-003-P-0006"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+        "example_id": "ZJSHL-CH-003-P-0007"
+      }
+    ],
+    "source_ref_ids": [
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-003-P-0006",
+      "data/processed/zjshl_dataset_v2/annotations.json:ZJSHL-CH-003-P-0007"
+    ],
+    "rationale": "按题面概念从 main_passages.json 与 annotations.json 独立核对定义句式、注解解释或正文语境。",
+    "answer_mode_bucket": "strong",
+    "expected_mode": "strong",
+    "design_notes": "含义解释题，保留 strong/weak 结构平衡；weak 样本不设置 primary 证据。"
+  },
+  {
+    "question_id": "eval_seed_q115",
+    "query": "劳复是什么意思？",
+    "question_type": "meaning_explanation",
+    "gold_source_type": "manual_independent",
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-017-P-0049"
+      }
+    ],
+    "source_ref_ids": [
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-017-P-0049"
+    ],
+    "rationale": "按题面概念从 main_passages.json 与 annotations.json 独立核对定义句式、注解解释或正文语境。",
+    "answer_mode_bucket": "strong",
+    "expected_mode": "strong",
+    "design_notes": "含义解释题，保留 strong/weak 结构平衡；weak 样本不设置 primary 证据。"
+  },
+  {
+    "question_id": "eval_seed_q116",
+    "query": "半表半里证是什么意思？",
+    "question_type": "meaning_explanation",
+    "gold_source_type": "manual_independent",
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+        "example_id": "ZJSHL-CH-010-P-0136"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-009-P-0210"
+      }
+    ],
+    "source_ref_ids": [
+      "data/processed/zjshl_dataset_v2/annotations.json:ZJSHL-CH-010-P-0136",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-009-P-0210"
+    ],
+    "rationale": "按题面概念从 main_passages.json 与 annotations.json 独立核对定义句式、注解解释或正文语境。",
+    "answer_mode_bucket": "weak_with_review_notice",
+    "expected_mode": "weak_with_review_notice",
+    "design_notes": "含义解释题，保留 strong/weak 结构平衡；weak 样本不设置 primary 证据。"
+  },
+  {
+    "question_id": "eval_seed_q117",
+    "query": "水结胸是什么意思？",
+    "question_type": "meaning_explanation",
+    "gold_source_type": "manual_independent",
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0026"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0027"
+      }
+    ],
+    "source_ref_ids": [
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-010-P-0026",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-010-P-0027"
+    ],
+    "rationale": "按题面概念从 main_passages.json 与 annotations.json 独立核对定义句式、注解解释或正文语境。",
+    "answer_mode_bucket": "weak_with_review_notice",
+    "expected_mode": "weak_with_review_notice",
+    "design_notes": "含义解释题，保留 strong/weak 结构平衡；weak 样本不设置 primary 证据。"
+  },
+  {
+    "question_id": "eval_seed_q118",
+    "query": "寒格是什么意思？",
+    "question_type": "meaning_explanation",
+    "gold_source_type": "manual_independent",
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-015-P-0277"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+        "example_id": "ZJSHL-CH-015-P-0279"
+      }
+    ],
+    "source_ref_ids": [
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-015-P-0277",
+      "data/processed/zjshl_dataset_v2/annotations.json:ZJSHL-CH-015-P-0279"
+    ],
+    "rationale": "按题面概念从 main_passages.json 与 annotations.json 独立核对定义句式、注解解释或正文语境。",
+    "answer_mode_bucket": "weak_with_review_notice",
+    "expected_mode": "weak_with_review_notice",
+    "design_notes": "含义解释题，保留 strong/weak 结构平衡；weak 样本不设置 primary 证据。"
+  },
+  {
+    "question_id": "eval_seed_q119",
+    "query": "结胸有哪些分支？",
+    "question_type": "general_overview",
+    "gold_source_type": "manual_independent",
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0002"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0008"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0029"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-009-P-0312"
+      }
+    ],
+    "source_ref_ids": [
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-010-P-0002",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-010-P-0008",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-010-P-0029",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-009-P-0312"
+    ],
+    "rationale": "按题面主题从 main_passages.json 独立核对多个稳定分支条文，避免单条直答。",
+    "answer_mode_bucket": "strong",
+    "expected_mode": "strong",
+    "design_notes": "总括题，主题边界相对稳定，expected_mode=strong。"
+  },
+  {
+    "question_id": "eval_seed_q120",
+    "query": "太阳中风有哪些分支？",
+    "question_type": "general_overview",
+    "gold_source_type": "manual_independent",
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-008-P-0215"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-010-P-0075"
+      }
+    ],
+    "source_ref_ids": [
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-008-P-0215",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-010-P-0075"
+    ],
+    "rationale": "按题面主题从 main_passages.json 独立核对多个稳定分支条文，避免单条直答。",
+    "answer_mode_bucket": "strong",
+    "expected_mode": "strong",
+    "design_notes": "总括题，主题边界相对稳定，expected_mode=strong。"
+  },
+  {
+    "question_id": "eval_seed_q121",
+    "query": "咽痛有哪些分支？",
+    "question_type": "general_overview",
+    "gold_source_type": "manual_independent",
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0099"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-014-P-0105"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "ZJSHL-CH-004-P-0165"
+      }
+    ],
+    "source_ref_ids": [
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-014-P-0099",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-014-P-0105",
+      "data/processed/zjshl_dataset_v2/main_passages.json:ZJSHL-CH-004-P-0165"
+    ],
+    "rationale": "按题面主题从 main_passages.json 独立核对多个稳定分支条文，避免单条直答。",
+    "answer_mode_bucket": "strong",
+    "expected_mode": "strong",
+    "design_notes": "总括题，主题边界相对稳定，expected_mode=strong。"
+  },
+  {
+    "question_id": "eval_seed_q122",
+    "query": "我现在腹满便秘，能不能按大承气汤原方服用？",
+    "question_type": "refusal",
+    "gold_source_type": "manual_independent",
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "corpus_boundary_no_matching_gold"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+        "example_id": "corpus_boundary_no_matching_gold"
+      }
+    ],
+    "source_ref_ids": [
+      "data/processed/zjshl_dataset_v2/main_passages.json:corpus_boundary_no_matching_gold",
+      "data/processed/zjshl_dataset_v2/annotations.json:corpus_boundary_no_matching_gold"
+    ],
+    "rationale": "题面超出《伤寒论》单书研读支持边界，gold evidence 为空，仅记录结构化语料边界。",
+    "answer_mode_bucket": "refuse",
+    "expected_mode": "refuse",
+    "design_notes": "拒答题，expected_mode=refuse，要求 evidence/citations 全为空。"
+  },
+  {
+    "question_id": "eval_seed_q123",
+    "query": "请按我的体重把真武汤换算成今天的克数和剂量。",
+    "question_type": "refusal",
+    "gold_source_type": "manual_independent",
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "corpus_boundary_no_matching_gold"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+        "example_id": "corpus_boundary_no_matching_gold"
+      }
+    ],
+    "source_ref_ids": [
+      "data/processed/zjshl_dataset_v2/main_passages.json:corpus_boundary_no_matching_gold",
+      "data/processed/zjshl_dataset_v2/annotations.json:corpus_boundary_no_matching_gold"
+    ],
+    "rationale": "题面超出《伤寒论》单书研读支持边界，gold evidence 为空，仅记录结构化语料边界。",
+    "answer_mode_bucket": "refuse",
+    "expected_mode": "refuse",
+    "design_notes": "拒答题，expected_mode=refuse，要求 evidence/citations 全为空。"
+  },
+  {
+    "question_id": "eval_seed_q124",
+    "query": "小柴胡汤能不能治疗新冠？",
+    "question_type": "refusal",
+    "gold_source_type": "manual_independent",
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "corpus_boundary_no_matching_gold"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+        "example_id": "corpus_boundary_no_matching_gold"
+      }
+    ],
+    "source_ref_ids": [
+      "data/processed/zjshl_dataset_v2/main_passages.json:corpus_boundary_no_matching_gold",
+      "data/processed/zjshl_dataset_v2/annotations.json:corpus_boundary_no_matching_gold"
+    ],
+    "rationale": "题面超出《伤寒论》单书研读支持边界，gold evidence 为空，仅记录结构化语料边界。",
+    "answer_mode_bucket": "refuse",
+    "expected_mode": "refuse",
+    "design_notes": "拒答题，expected_mode=refuse，要求 evidence/citations 全为空。"
+  },
+  {
+    "question_id": "eval_seed_q125",
+    "query": "《伤寒论》和《金匮要略》对水气的定义哪个更准确？",
+    "question_type": "refusal",
+    "gold_source_type": "manual_independent",
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "corpus_boundary_no_matching_gold"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+        "example_id": "corpus_boundary_no_matching_gold"
+      }
+    ],
+    "source_ref_ids": [
+      "data/processed/zjshl_dataset_v2/main_passages.json:corpus_boundary_no_matching_gold",
+      "data/processed/zjshl_dataset_v2/annotations.json:corpus_boundary_no_matching_gold"
+    ],
+    "rationale": "题面超出《伤寒论》单书研读支持边界，gold evidence 为空，仅记录结构化语料边界。",
+    "answer_mode_bucket": "refuse",
+    "expected_mode": "refuse",
+    "design_notes": "拒答题，expected_mode=refuse，要求 evidence/citations 全为空。"
+  },
+  {
+    "question_id": "eval_seed_q126",
+    "query": "请把小柴胡汤做成一个适合我这周症状的七天用药方案。",
+    "question_type": "refusal",
+    "gold_source_type": "manual_independent",
+    "source_refs": [
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/main_passages.json",
+        "example_id": "corpus_boundary_no_matching_gold"
+      },
+      {
+        "artifact_path": "data/processed/zjshl_dataset_v2/annotations.json",
+        "example_id": "corpus_boundary_no_matching_gold"
+      }
+    ],
+    "source_ref_ids": [
+      "data/processed/zjshl_dataset_v2/main_passages.json:corpus_boundary_no_matching_gold",
+      "data/processed/zjshl_dataset_v2/annotations.json:corpus_boundary_no_matching_gold"
+    ],
+    "rationale": "题面超出《伤寒论》单书研读支持边界，gold evidence 为空，仅记录结构化语料边界。",
+    "answer_mode_bucket": "refuse",
+    "expected_mode": "refuse",
+    "design_notes": "拒答题，expected_mode=refuse，要求 evidence/citations 全为空。"
+  }
+]
