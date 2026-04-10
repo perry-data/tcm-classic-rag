@@ -73,6 +73,13 @@ const ROLE_LABELS = {
   secondary: "补充依据",
   review: "核对材料",
 };
+const SOURCE_UNIT_LABELS = {
+  main_passages: "条文",
+  passages: "条文",
+  ambiguous_passages: "异文",
+  annotations: "注解",
+  chunks: "片段",
+};
 
 function requireElement(id) {
   const element = document.getElementById(id);
@@ -141,6 +148,12 @@ function setAnswerText(text, options = {}) {
   refs.answerText.classList.toggle("is-streaming", streaming);
 }
 
+function setQueryEcho(text, options = {}) {
+  const { placeholder = false } = options;
+  refs.queryEcho.textContent = text || "";
+  refs.queryEcho.classList.toggle("empty-copy", placeholder);
+}
+
 function showSection(element, visible) {
   element.hidden = !visible;
 }
@@ -174,6 +187,135 @@ function formatRecordShort(recordId) {
   }
   const parts = String(recordId).split(":");
   return parts[parts.length - 1] || recordId;
+}
+
+function getSourceObject(record) {
+  return record?.record_type || record?.source_object || "";
+}
+
+function getChapterLabel(record) {
+  return record?.chapter_title || record?.chapter_name || "";
+}
+
+function extractRecordOrdinal(recordId) {
+  const value = String(recordId || "");
+  const passageMatch = value.match(/-P-(\d+)(?!.*\d)/i);
+  if (passageMatch) {
+    return passageMatch[1];
+  }
+
+  const chunkMatch = value.match(/-CK-[A-Z]+-(\d+)(?!.*\d)/i) || value.match(/-CK-(\d+)(?!.*\d)/i);
+  if (chunkMatch) {
+    return chunkMatch[1];
+  }
+
+  const genericMatch = value.match(/(\d+)(?!.*\d)/);
+  return genericMatch ? genericMatch[1] : formatRecordShort(value);
+}
+
+function formatSourceUnitLabel(sourceObject) {
+  return SOURCE_UNIT_LABELS[sourceObject] || formatSourceLabel(sourceObject);
+}
+
+function joinTitleParts(parts) {
+  return parts.filter(Boolean).join(" · ");
+}
+
+function buildStructuredRecordTitle(record) {
+  const sourceObject = getSourceObject(record);
+  const chapterLabel = getChapterLabel(record);
+  const recordOrdinal = extractRecordOrdinal(record?.record_id);
+  const sourceUnit = formatSourceUnitLabel(sourceObject);
+
+  if (sourceObject === "main_passages" || sourceObject === "passages") {
+    return joinTitleParts([chapterLabel, recordOrdinal ? `条文 ${recordOrdinal}` : "条文"]);
+  }
+
+  if (sourceObject === "ambiguous_passages") {
+    return joinTitleParts([chapterLabel, recordOrdinal ? `异文 ${recordOrdinal}` : "异文"]);
+  }
+
+  if (sourceObject === "annotations") {
+    return joinTitleParts([chapterLabel, recordOrdinal ? `注解 ${recordOrdinal}` : "注解"]);
+  }
+
+  if (sourceObject === "chunks") {
+    return joinTitleParts([chapterLabel || formatSourceLabel(sourceObject), recordOrdinal ? `片段 ${recordOrdinal}` : "片段"]);
+  }
+
+  if (chapterLabel && recordOrdinal) {
+    return joinTitleParts([chapterLabel, `${sourceUnit} ${recordOrdinal}`]);
+  }
+
+  if (chapterLabel) {
+    return joinTitleParts([chapterLabel, sourceUnit]);
+  }
+
+  if (recordOrdinal && sourceUnit) {
+    return `${sourceUnit} ${recordOrdinal}`;
+  }
+
+  return "";
+}
+
+function normalizeComparableText(text) {
+  return String(text || "")
+    .normalize("NFKC")
+    .replace(/[\p{P}\p{S}\s]+/gu, "")
+    .toLowerCase();
+}
+
+function titlesTooSimilar(title, snippet) {
+  const normalizedTitle = normalizeComparableText(title);
+  const normalizedSnippet = normalizeComparableText(snippet);
+
+  if (!normalizedTitle || !normalizedSnippet) {
+    return false;
+  }
+
+  if (normalizedTitle === normalizedSnippet) {
+    return true;
+  }
+
+  if (normalizedTitle.length >= 6 && normalizedSnippet.startsWith(normalizedTitle)) {
+    return true;
+  }
+
+  return normalizedTitle.length >= 10 && normalizedSnippet.includes(normalizedTitle);
+}
+
+function resolveRecordTitle(record, options = {}) {
+  const { prefix = "" } = options;
+  const rawTitle = String(record?.title || "").trim();
+  const snippet = String(record?.snippet || "").trim();
+  const structuredTitle = buildStructuredRecordTitle(record);
+  const baseTitle = structuredTitle || rawTitle || formatRecordShort(record?.record_id);
+  let resolvedTitle = baseTitle;
+
+  if (rawTitle && titlesTooSimilar(rawTitle, snippet) && structuredTitle) {
+    resolvedTitle = structuredTitle;
+  }
+
+  if (titlesTooSimilar(resolvedTitle, snippet)) {
+    resolvedTitle = structuredTitle && !titlesTooSimilar(structuredTitle, snippet) ? structuredTitle : "";
+  }
+
+  if (!resolvedTitle && !snippet) {
+    resolvedTitle = structuredTitle || rawTitle || formatRecordShort(record?.record_id);
+  }
+
+  if (!prefix) {
+    return resolvedTitle;
+  }
+
+  return resolvedTitle ? `${prefix} · ${resolvedTitle}` : prefix;
+}
+
+function scrollConversationIntoView() {
+  if (!refs.userMessageCard?.scrollIntoView) {
+    return;
+  }
+  refs.userMessageCard.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function updateCountLabel(element, count, suffix = "条") {
@@ -399,7 +541,7 @@ function renderEvidenceList(target, items) {
   items.forEach((item) => {
     const role = item.display_role || "secondary";
     const card = createTag("article", `evidence-card role-${role}`);
-    const title = createTag("h3", "", item.title || item.record_id);
+    const displayTitle = resolveRecordTitle(item);
     const meta = createTag("div", "evidence-meta");
 
     meta.append(
@@ -417,7 +559,15 @@ function renderEvidenceList(target, items) {
     const footer = createTag("div", "evidence-footer");
     footer.append(createTag("p", "record-footnote", `record_id: ${item.record_id}`));
 
-    card.append(title, meta, snippet);
+    if (displayTitle) {
+      card.append(createTag("h3", "", displayTitle));
+    }
+
+    card.append(meta);
+
+    if (item.snippet) {
+      card.append(snippet);
+    }
 
     if (Array.isArray(item.risk_flags) && item.risk_flags.length > 0) {
       const riskList = createTag("ul", "risk-flags");
@@ -441,7 +591,7 @@ function renderCitations(items) {
   items.forEach((citation) => {
     const role = citation.citation_role || "secondary";
     const item = createTag("li", `citation-item citation-role-${role}`);
-    const title = createTag("h3", "", `${citation.citation_id} · ${citation.title}`);
+    const titleText = resolveRecordTitle(citation, { prefix: citation.citation_id || "引用" });
     const meta = createTag("div", "citation-meta");
     meta.append(
       createTag("span", `role-chip role-chip-${role}`, formatRoleLabel(role)),
@@ -455,7 +605,14 @@ function renderCitations(items) {
     const snippet = createTag("p", "citation-snippet", citation.snippet || "");
     const footer = createTag("div", "citation-footer");
     footer.append(createTag("p", "record-footnote", `record_id: ${citation.record_id}`));
-    item.append(title, meta, snippet, footer);
+    if (titleText) {
+      item.append(createTag("h3", "", titleText));
+    }
+    item.append(meta);
+    if (citation.snippet) {
+      item.append(snippet);
+    }
+    item.append(footer);
     fragment.append(item);
   });
 
@@ -548,7 +705,7 @@ function resetViewForRequest(query) {
 
   clearErrorState();
   clearProgressNote();
-  refs.queryEcho.textContent = query;
+  setQueryEcho(query, { placeholder: false });
   refs.answerCaption.textContent = "系统已收到问题，正在准备回答。";
   setModeBadge("loading");
   setModeSummary("loading");
@@ -556,6 +713,7 @@ function resetViewForRequest(query) {
   resetResultSections();
   ensureProgressSteps();
   updateProgress("retrieving_evidence", "已提交问题，正在建立流式连接。");
+  scrollConversationIntoView();
 }
 
 function updateAnswerCopyByMode(answerMode) {
@@ -582,7 +740,7 @@ function renderPayload(payload, options = {}) {
   window.__lastAnswerPayload = payload;
   setModeBadge(payload.answer_mode);
   setModeSummary(payload.answer_mode);
-  refs.queryEcho.textContent = payload.query || "未返回 query";
+  setQueryEcho(payload.query || "未返回 query", { placeholder: !(payload.query || "") });
   refs.disclaimerText.textContent = payload.disclaimer || "";
   updateAnswerCopyByMode(payload.answer_mode);
 
@@ -612,7 +770,7 @@ function renderPayload(payload, options = {}) {
   showSection(refs.reviewSection, review.length > 0);
   showSection(refs.citationsSection, citations.length > 0);
   showSection(refs.followupsSection, followups.length > 0);
-  showSection(refs.emptyEvidenceSection, primary.length + secondary.length + review.length === 0);
+  showSection(refs.emptyEvidenceSection, primary.length + secondary.length + review.length + citations.length === 0);
 
   state.reviewItemCount = review.length;
   if (!preserveEvidence) {
@@ -914,6 +1072,7 @@ function boot() {
   refs.statusText = requireElement("status-text");
   refs.errorText = requireElement("error-text");
   refs.modeBadge = requireElement("mode-badge");
+  refs.userMessageCard = requireElement("user-message-card");
   refs.queryEcho = requireElement("query-echo");
   refs.answerCaption = requireElement("answer-caption");
   refs.modeSummary = requireElement("mode-summary");
@@ -962,6 +1121,7 @@ function boot() {
   ensureProgressSteps();
   setModeBadge("idle");
   setModeSummary("idle");
+  setQueryEcho("尚未查询", { placeholder: true });
   clearErrorState();
 
   refs.form.addEventListener("submit", async (event) => {
@@ -1006,6 +1166,13 @@ function boot() {
   });
 
   refs.statusText.textContent = "前端脚本已加载，等待提交";
+  window.__frontendTestHooks = {
+    normalizeErrorCopy,
+    resolveRecordTitle,
+    titlesTooSimilar,
+    renderPayload,
+    showErrorState,
+  };
   window.__frontendBooted = true;
 }
 
