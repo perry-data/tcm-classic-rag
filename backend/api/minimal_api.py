@@ -7,11 +7,12 @@ import mimetypes
 import shlex
 import sys
 import threading
+import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 from urllib import request as urllib_request
 from urllib.parse import urlsplit
 
@@ -34,6 +35,7 @@ from backend.llm import LLMConfigError, ModelStudioLLMConfig, load_modelstudio_l
 
 
 API_PATH = "/api/v1/answers"
+API_STREAM_PATH = "/api/v1/answers/stream"
 DEFAULT_HOST = "127.0.0.1"
 DEFAULT_PORT = 8000
 DEFAULT_API_EXAMPLES_OUT = "artifacts/api_examples.json"
@@ -56,6 +58,21 @@ EXPECTED_PAYLOAD_FIELDS = [
     "citations",
     "display_sections",
 ]
+STREAM_STAGE_LABELS = {
+    "retrieving_evidence": "正在检索依据",
+    "organizing_evidence": "正在组织证据",
+    "generating_answer": "正在生成回答",
+    "completed": "已完成",
+}
+STREAM_STAGE_SEQUENCE = [
+    "retrieving_evidence",
+    "organizing_evidence",
+    "generating_answer",
+    "completed",
+]
+STREAM_MIN_CHUNK_SIZE = 20
+STREAM_MAX_CHUNK_SIZE = 48
+STREAM_CHUNK_DELAY_SECONDS = 0.03
 LLM_SMOKE_EXAMPLES = [
     {
         "example_id": "source_lookup_strong",
@@ -183,7 +200,7 @@ class MinimalApiService:
     def close(self) -> None:
         self.assembler.close()
 
-    def answer(self, payload: Any) -> dict[str, Any]:
+    def _normalize_query_payload(self, payload: Any) -> str:
         self.last_llm_debug = None
         if not isinstance(payload, dict):
             raise ApiRequestError(400, "invalid_json", "Request body must be a JSON object.")
@@ -191,14 +208,64 @@ class MinimalApiService:
         query = payload.get("query")
         if not isinstance(query, str) or not query.strip():
             raise ApiRequestError(400, "invalid_request", "Field 'query' must be a non-empty string.")
+        return query.strip()
 
-        response_payload = self.assembler.assemble(query.strip())
+    def answer_query(
+        self,
+        query: str,
+        *,
+        progress_callback: Callable[[dict[str, Any]], None] | None = None,
+    ) -> dict[str, Any]:
+        response_payload = self.assembler.assemble(query, progress_callback=progress_callback)
         self.last_llm_debug = self.assembler.get_last_llm_debug()
         return response_payload
+
+    def answer(
+        self,
+        payload: Any,
+        *,
+        progress_callback: Callable[[dict[str, Any]], None] | None = None,
+    ) -> dict[str, Any]:
+        query = self._normalize_query_payload(payload)
+        return self.answer_query(query, progress_callback=progress_callback)
 
 
 class MinimalApiHTTPServer(HTTPServer):
     allow_reuse_address = True
+
+
+def build_stream_phase_event(stage: str, detail: str | None = None) -> dict[str, Any]:
+    return {
+        "type": "phase",
+        "stage": stage,
+        "label": STREAM_STAGE_LABELS.get(stage, stage),
+        "detail": detail or "",
+        "step_index": STREAM_STAGE_SEQUENCE.index(stage) + 1 if stage in STREAM_STAGE_SEQUENCE else None,
+        "step_count": len(STREAM_STAGE_SEQUENCE),
+    }
+
+
+def split_answer_text_for_stream(answer_text: str) -> list[str]:
+    if not answer_text:
+        return []
+
+    chunks: list[str] = []
+    current: list[str] = []
+    break_chars = {"，", "。", "！", "？", "；", "：", "\n"}
+
+    for char in answer_text:
+        current.append(char)
+        current_text = "".join(current)
+        if len(current_text) < STREAM_MIN_CHUNK_SIZE:
+            continue
+        if char in break_chars or len(current_text) >= STREAM_MAX_CHUNK_SIZE:
+            chunks.append(current_text)
+            current = []
+
+    if current:
+        chunks.append("".join(current))
+
+    return chunks or [answer_text]
 
 
 def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHTTPRequestHandler]:
@@ -207,7 +274,12 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
         protocol_version = "HTTP/1.1"
 
         def do_POST(self) -> None:  # noqa: N802
-            if urlsplit(self.path).path != API_PATH:
+            request_path = urlsplit(self.path).path
+            if request_path == API_STREAM_PATH:
+                self._handle_stream_post()
+                return
+
+            if request_path != API_PATH:
                 self._send_json(404, {"error": {"code": "not_found", "message": "Route not found."}})
                 return
 
@@ -263,7 +335,7 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
                 self._send_file(target_path, include_body=False)
                 return
 
-            if request_path == API_PATH:
+            if request_path in {API_PATH, API_STREAM_PATH}:
                 self.send_response(405)
                 self._send_cache_headers()
                 self.send_header("Allow", "POST")
@@ -326,6 +398,67 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
             self.send_header("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0")
             self.send_header("Pragma", "no-cache")
             self.send_header("Expires", "0")
+
+        def _handle_stream_post(self) -> None:
+            try:
+                payload = self._read_json_body()
+                query = service._normalize_query_payload(payload)
+            except ApiRequestError as exc:
+                self._send_json(exc.status_code, {"error": {"code": exc.code, "message": exc.message}})
+                return
+
+            try:
+                self.send_response(200)
+                self._send_cache_headers()
+                self.send_header("Content-Type", "application/x-ndjson; charset=utf-8")
+                self.send_header("Connection", "close")
+                self.end_headers()
+                self.close_connection = True
+
+                def progress_callback(progress_event: dict[str, Any]) -> None:
+                    self._write_stream_event(
+                        build_stream_phase_event(
+                            progress_event.get("stage", ""),
+                            progress_event.get("detail"),
+                        )
+                    )
+
+                response_payload = service.answer_query(query, progress_callback=progress_callback)
+                self._write_stream_event({"type": "evidence_ready", "payload": response_payload})
+                for chunk in split_answer_text_for_stream(response_payload.get("answer_text", "")):
+                    self._write_stream_event({"type": "answer_delta", "delta": chunk})
+                    time.sleep(STREAM_CHUNK_DELAY_SECONDS)
+                self._write_stream_event(
+                    {
+                        **build_stream_phase_event("completed", "回答已准备完成，正在切换到最终展示。"),
+                        "type": "completed",
+                        "payload": response_payload,
+                    }
+                )
+            except (BrokenPipeError, ConnectionResetError):
+                return
+            except ApiRequestError as exc:
+                self._write_stream_error(exc.status_code, exc.code, exc.message)
+            except Exception as exc:  # pragma: no cover - defensive transport guard
+                log(f"[api:stream_error] {exc}")
+                self._write_stream_error(500, "internal_error", "Internal server error.")
+
+        def _write_stream_event(self, payload: dict[str, Any]) -> None:
+            body = (json.dumps(payload, ensure_ascii=False) + "\n").encode("utf-8")
+            self.wfile.write(body)
+            self.wfile.flush()
+
+        def _write_stream_error(self, status_code: int, code: str, message: str) -> None:
+            try:
+                self._write_stream_event(
+                    {
+                        "type": "error",
+                        "status_code": status_code,
+                        "error": {"code": code, "message": message},
+                    }
+                )
+            except (BrokenPipeError, ConnectionResetError):
+                return
 
     return MinimalApiHandler
 
@@ -774,7 +907,10 @@ def run_server_mode(args: argparse.Namespace, paths: dict[str, Path]) -> int:
     server = MinimalApiHTTPServer((args.host, args.port), make_handler(service, paths["frontend_root"]))
     try:
         log(f"[1/3] Loaded minimal API service from {paths['db_path']}")
-        log(f"[2/3] Serving frontend on http://{args.host}:{args.port}/ and POST {API_PATH}")
+        log(
+            f"[2/3] Serving frontend on http://{args.host}:{args.port}/ and POST "
+            f"{API_PATH} / {API_STREAM_PATH}"
+        )
         log("[3/3] Press Ctrl+C to stop")
         server.serve_forever()
         return 0

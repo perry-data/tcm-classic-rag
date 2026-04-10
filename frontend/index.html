@@ -13,9 +13,9 @@
           <p class="eyebrow">TCM Classic RAG MVP</p>
           <h1>《伤寒论》问答演示页</h1>
           <p class="hero-text">
-            页面只消费已冻结的
-            <code>POST /api/v1/answers</code>
-            ，展示 answer payload 的稳定结果，不依赖任何检索内部细节。
+            页面优先使用最小流式等待体验，但最终仍以已冻结的
+            <code>answer payload</code>
+            为准展示结果，不依赖任何检索内部细节。
           </p>
         </div>
         <div class="hero-meta">
@@ -73,7 +73,7 @@
           </div>
           <div class="summary-row">
             <span class="summary-label">接口</span>
-            <p class="summary-value"><code>POST /api/v1/answers</code></p>
+            <p class="summary-value"><code>POST /api/v1/answers</code>（流式增强已接入）</p>
           </div>
         </section>
 
@@ -82,6 +82,13 @@
             <h2>回答</h2>
             <p id="answer-caption">提交问题后，这里会显示 answer_text。</p>
           </div>
+          <section id="progress-section" class="progress-section" hidden>
+            <div class="progress-copy">
+              <p class="progress-kicker">回答进度</p>
+              <p id="progress-detail" class="progress-detail">提交问题后，这里会显示阶段进度。</p>
+            </div>
+            <ol id="progress-steps" class="progress-steps" aria-live="polite"></ol>
+          </section>
           <p id="answer-text" class="answer-text empty-copy">等待查询结果。</p>
           <p id="disclaimer-text" class="disclaimer-text"></p>
         </section>

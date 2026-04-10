@@ -1,3 +1,5 @@
+const API_PATH = "/api/v1/answers";
+const STREAM_API_PATH = "/api/v1/answers/stream";
 const REQUIRED_TOP_FIELDS = [
   "query",
   "answer_mode",
@@ -12,6 +14,12 @@ const REQUIRED_TOP_FIELDS = [
   "citations",
   "display_sections",
 ];
+const PROGRESS_STEPS = [
+  { stage: "retrieving_evidence", label: "正在检索依据" },
+  { stage: "organizing_evidence", label: "正在组织证据" },
+  { stage: "generating_answer", label: "正在生成回答" },
+  { stage: "completed", label: "已完成" },
+];
 
 function requireElement(id) {
   const element = document.getElementById(id);
@@ -22,12 +30,16 @@ function requireElement(id) {
 }
 
 const refs = {};
+const state = {
+  streamedAnswerText: "",
+  latestPayload: null,
+};
 
 function setLoading(isLoading) {
   refs.submitButton.disabled = isLoading;
   refs.submitButton.textContent = isLoading ? "查询中…" : "提交查询";
   if (isLoading) {
-    refs.statusText.textContent = "正在请求 /api/v1/answers";
+    refs.statusText.textContent = "已提交问题，正在准备回答";
   }
 }
 
@@ -35,12 +47,23 @@ function setError(message) {
   refs.errorText.textContent = message || "";
   if (message) {
     refs.statusText.textContent = "请求失败";
+    refs.answerText.classList.remove("is-streaming");
+    if (refs.progressDetail) {
+      refs.progressDetail.textContent = `请求失败：${message}`;
+    }
   }
 }
 
 function setModeBadge(mode) {
   refs.modeBadge.className = `mode-badge mode-${mode || "idle"}`;
   refs.modeBadge.textContent = mode || "idle";
+}
+
+function setAnswerText(text, options = {}) {
+  const { placeholder = false, streaming = false } = options;
+  refs.answerText.textContent = text || "";
+  refs.answerText.classList.toggle("empty-copy", placeholder);
+  refs.answerText.classList.toggle("is-streaming", streaming);
 }
 
 function showSection(element, visible) {
@@ -138,13 +161,102 @@ function validatePayload(payload) {
   }
 }
 
-function renderPayload(payload) {
+function ensureProgressSteps() {
+  if (refs.progressSteps.childElementCount === PROGRESS_STEPS.length) {
+    return;
+  }
+
+  clearList(refs.progressSteps);
+  const fragment = document.createDocumentFragment();
+
+  PROGRESS_STEPS.forEach((step, index) => {
+    const item = createTag("li", "progress-step");
+    item.dataset.stage = step.stage;
+    const marker = createTag("span", "progress-step-marker", String(index + 1));
+    marker.dataset.role = "marker";
+    const text = createTag("span", "progress-step-text", step.label);
+    item.append(marker, text);
+    fragment.append(item);
+  });
+
+  refs.progressSteps.append(fragment);
+}
+
+function updateProgress(stage, detail) {
+  ensureProgressSteps();
+  showSection(refs.progressSection, true);
+
+  const stageIndex = PROGRESS_STEPS.findIndex((item) => item.stage === stage);
+  const label = PROGRESS_STEPS.find((item) => item.stage === stage)?.label || stage || "处理中";
+
+  Array.from(refs.progressSteps.children).forEach((node, index) => {
+    const marker = node.querySelector('[data-role="marker"]');
+    const isComplete = stageIndex >= 0 && index < stageIndex;
+    const isActive = stageIndex >= 0 && index === stageIndex && stage !== "completed";
+    const isFinalComplete = stage === "completed" && index <= stageIndex;
+
+    node.classList.toggle("is-complete", isComplete || isFinalComplete);
+    node.classList.toggle("is-active", isActive);
+
+    if (marker) {
+      marker.textContent = isComplete || isFinalComplete ? "✓" : String(index + 1);
+    }
+  });
+
+  refs.progressDetail.textContent = detail || label;
+  refs.statusText.textContent = detail || label;
+}
+
+function resetResultSections() {
+  refs.disclaimerText.textContent = "";
+  refs.reviewNoticeText.textContent = "";
+  refs.refuseReasonText.textContent = "";
+  clearList(refs.primaryList);
+  clearList(refs.secondaryList);
+  clearList(refs.reviewList);
+  clearList(refs.citationsList);
+  clearList(refs.followupsList);
+
+  showSection(refs.reviewNoticeSection, false);
+  showSection(refs.refuseSection, false);
+  showSection(refs.emptyEvidenceSection, false);
+  showSection(refs.primarySection, false);
+  showSection(refs.secondarySection, false);
+  showSection(refs.reviewSection, false);
+  showSection(refs.citationsSection, false);
+  showSection(refs.followupsSection, false);
+}
+
+function resetViewForRequest(query) {
+  state.streamedAnswerText = "";
+  state.latestPayload = null;
+  window.__lastAnswerPayload = null;
+  window.__lastStreamEvent = null;
+
+  refs.queryEcho.textContent = query;
+  refs.answerCaption.textContent = "系统已收到问题，正在准备回答。";
+  setModeBadge("loading");
+  setAnswerText("已提交问题，正在准备回答…", { placeholder: true, streaming: true });
+  resetResultSections();
+  ensureProgressSteps();
+  updateProgress("retrieving_evidence", "已提交问题，正在建立流式连接。");
+}
+
+function renderPayload(payload, options = {}) {
+  const { preserveAnswerText = false } = options;
   validatePayload(payload);
+  state.latestPayload = payload;
   window.__lastAnswerPayload = payload;
   setModeBadge(payload.answer_mode);
   refs.queryEcho.textContent = payload.query || "未返回 query";
-  refs.answerText.textContent = payload.answer_text || "";
   refs.disclaimerText.textContent = payload.disclaimer || "";
+
+  if (!preserveAnswerText) {
+    setAnswerText(payload.answer_text || "", {
+      placeholder: !(payload.answer_text || ""),
+      streaming: false,
+    });
+  }
 
   if (payload.answer_mode === "strong") {
     refs.answerCaption.textContent = "当前结果为 strong，优先展示主依据。";
@@ -183,13 +295,139 @@ function renderPayload(payload) {
   renderFollowups(followups);
 }
 
-async function submitQuery(query) {
-  setError("");
-  setLoading(true);
-  window.__lastSubmitQuery = query;
+function applyEvidenceReadyPayload(payload) {
+  validatePayload(payload);
+  state.latestPayload = payload;
+  state.streamedAnswerText = "";
+  setAnswerText("", { streaming: true });
+  renderPayload(payload, { preserveAnswerText: true });
+  refs.statusText.textContent = "依据已整理，正在渐进显示 answer_text";
+}
+
+function appendAnswerDelta(delta) {
+  if (!delta) {
+    return;
+  }
+  state.streamedAnswerText += delta;
+  setAnswerText(state.streamedAnswerText, { streaming: true });
+}
+
+function handleStreamEvent(event) {
+  if (!event || typeof event !== "object") {
+    return false;
+  }
+
+  window.__lastStreamEvent = event;
+
+  if (event.type === "phase") {
+    updateProgress(event.stage, event.detail || event.label);
+    return false;
+  }
+
+  if (event.type === "evidence_ready") {
+    applyEvidenceReadyPayload(event.payload || {});
+    return false;
+  }
+
+  if (event.type === "answer_delta") {
+    appendAnswerDelta(event.delta || "");
+    refs.statusText.textContent = "正在生成回答";
+    return false;
+  }
+
+  if (event.type === "completed") {
+    renderPayload(event.payload || state.latestPayload || {});
+    updateProgress("completed", event.detail || "回答已完成。");
+    refs.statusText.textContent = "请求已完成";
+    return true;
+  }
+
+  if (event.type === "error") {
+    throw new Error(event?.error?.message || "请求失败");
+  }
+
+  return false;
+}
+
+async function consumeNdjsonStream(response) {
+  if (!response.body) {
+    throw new Error("浏览器未提供可读流，无法进入流式渲染。");
+  }
+
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+  let completed = false;
+
+  while (true) {
+    const { value, done } = await reader.read();
+    if (done) {
+      break;
+    }
+
+    buffer += decoder.decode(value, { stream: true });
+    const lines = buffer.split("\n");
+    buffer = lines.pop() || "";
+
+    for (const rawLine of lines) {
+      const line = rawLine.trim();
+      if (!line) {
+        continue;
+      }
+      const event = JSON.parse(line);
+      completed = handleStreamEvent(event) || completed;
+    }
+  }
+
+  buffer += decoder.decode();
+  const trailingLine = buffer.trim();
+  if (trailingLine) {
+    const event = JSON.parse(trailingLine);
+    completed = handleStreamEvent(event) || completed;
+  }
+
+  if (!completed) {
+    throw new Error("流式响应提前结束，未收到 completed 事件。");
+  }
+}
+
+async function submitQueryWithStream(query) {
+  const response = await fetch(STREAM_API_PATH, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ query }),
+  });
+
+  const contentType = response.headers.get("Content-Type") || "";
+
+  if (response.status === 404 || response.status === 405) {
+    return false;
+  }
+
+  if (!response.ok) {
+    if (contentType.includes("application/json")) {
+      const payload = await response.json();
+      throw new Error(payload?.error?.message || "请求失败");
+    }
+    throw new Error("请求失败");
+  }
+
+  if (!response.body || !contentType.includes("application/x-ndjson")) {
+    return false;
+  }
+
+  await consumeNdjsonStream(response);
+  return true;
+}
+
+async function submitQueryWithFallback(query) {
+  refs.statusText.textContent = "流式接口不可用，正在回退到标准请求";
+  updateProgress("retrieving_evidence", "流式接口不可用，已回退到标准请求。");
 
   try {
-    const response = await fetch("/api/v1/answers", {
+    const response = await fetch(API_PATH, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -203,7 +441,24 @@ async function submitQuery(query) {
     }
 
     renderPayload(payload);
+    updateProgress("completed", "标准响应已返回。");
     refs.statusText.textContent = "请求已完成";
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function submitQuery(query) {
+  setError("");
+  setLoading(true);
+  window.__lastSubmitQuery = query;
+  resetViewForRequest(query);
+
+  try {
+    const streamed = await submitQueryWithStream(query);
+    if (!streamed) {
+      await submitQueryWithFallback(query);
+    }
   } catch (error) {
     setError(error instanceof Error ? error.message : "请求失败");
     console.error(error);
@@ -221,6 +476,9 @@ function boot() {
   refs.modeBadge = requireElement("mode-badge");
   refs.queryEcho = requireElement("query-echo");
   refs.answerCaption = requireElement("answer-caption");
+  refs.progressSection = requireElement("progress-section");
+  refs.progressDetail = requireElement("progress-detail");
+  refs.progressSteps = requireElement("progress-steps");
   refs.answerText = requireElement("answer-text");
   refs.disclaimerText = requireElement("disclaimer-text");
   refs.reviewNoticeSection = requireElement("review-notice-section");
@@ -239,6 +497,7 @@ function boot() {
   refs.followupsSection = requireElement("followups-section");
   refs.followupsList = requireElement("followups-list");
   refs.sampleButtons = Array.from(document.querySelectorAll(".sample-chip"));
+  ensureProgressSteps();
 
   refs.form.addEventListener("submit", async (event) => {
     event.preventDefault();

@@ -8,7 +8,7 @@ import sys
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 from backend.llm import (
     DEFAULT_MODEL_STUDIO_BASE_URL,
@@ -389,6 +389,8 @@ class AnswerAssembler:
         self._last_comparison_debug: dict[str, Any] | None = None
         self._last_general_debug: dict[str, Any] | None = None
         self._last_llm_debug: dict[str, Any] | None = None
+        self._progress_callback: Callable[[dict[str, Any]], None] | None = None
+        self._last_progress_stage: str | None = None
         self._llm_config = self.llm_config or ModelStudioLLMConfig(
             enabled=False,
             api_key=None,
@@ -400,26 +402,47 @@ class AnswerAssembler:
     def close(self) -> None:
         self.engine.close()
 
-    def assemble(self, query_text: str) -> dict[str, Any]:
+    def assemble(
+        self,
+        query_text: str,
+        progress_callback: Callable[[dict[str, Any]], None] | None = None,
+    ) -> dict[str, Any]:
         self._last_comparison_debug = None
         self._last_general_debug = None
         self._last_llm_debug = None
-        policy_refusal = self._detect_policy_refusal(query_text)
-        if policy_refusal is not None:
-            return self._assemble_policy_refusal(query_text, policy_refusal)
-        comparison_plan = self._detect_comparison_query(query_text)
-        if comparison_plan is not None:
-            return self._assemble_comparison(query_text, comparison_plan)
-        general_plan = detect_general_question(query_text)
-        if general_plan is not None:
-            return self._assemble_general_question(query_text, general_plan)
-        return self._assemble_standard(query_text)
+        self._progress_callback = progress_callback
+        self._last_progress_stage = None
+        self._emit_progress(
+            "retrieving_evidence",
+            "已提交问题，正在检索可用依据并判断是否命中稳定边界。",
+        )
+        try:
+            policy_refusal = self._detect_policy_refusal(query_text)
+            if policy_refusal is not None:
+                return self._assemble_policy_refusal(query_text, policy_refusal)
+            comparison_plan = self._detect_comparison_query(query_text)
+            if comparison_plan is not None:
+                return self._assemble_comparison(query_text, comparison_plan)
+            general_plan = detect_general_question(query_text)
+            if general_plan is not None:
+                return self._assemble_general_question(query_text, general_plan)
+            return self._assemble_standard(query_text)
+        finally:
+            self._progress_callback = None
+            self._last_progress_stage = None
 
     def get_last_comparison_debug(self) -> dict[str, Any] | None:
         return self._last_comparison_debug
 
     def get_last_llm_debug(self) -> dict[str, Any] | None:
         return self._last_llm_debug
+
+    def _emit_progress(self, stage: str, detail: str) -> None:
+        if stage == self._last_progress_stage:
+            return
+        self._last_progress_stage = stage
+        if self._progress_callback:
+            self._progress_callback({"stage": stage, "detail": detail})
 
     def _detect_policy_refusal(self, query_text: str) -> str | None:
         compact_query = compact_whitespace(query_text)
@@ -457,6 +480,10 @@ class AnswerAssembler:
         return any(hint in text for hint in hints)
 
     def _assemble_policy_refusal(self, query_text: str, refuse_reason: str) -> dict[str, Any]:
+        self._emit_progress(
+            "organizing_evidence",
+            "当前问题落在统一拒答边界，正在整理拒答原因与改问建议。",
+        )
         return self._compose_payload(
             query_text=query_text,
             answer_mode="refuse",
@@ -473,6 +500,10 @@ class AnswerAssembler:
 
     def _assemble_standard(self, query_text: str) -> dict[str, Any]:
         retrieval = self.engine.retrieve(query_text)
+        self._emit_progress(
+            "organizing_evidence",
+            "已拿到候选依据，正在裁决主依据、补充依据与核对材料。",
+        )
         primary = [self._build_evidence_item(row, display_role="primary") for row in retrieval["primary_evidence"]]
         secondary = [self._build_evidence_item(row, display_role="secondary") for row in retrieval["secondary_evidence"]]
         review = [self._build_evidence_item(row, display_role="review") for row in retrieval["risk_materials"]]
@@ -553,6 +584,10 @@ class AnswerAssembler:
             query_retrieval
             if compact_text(query_text) == general_plan.normalized_topic
             else self.engine.retrieve(general_plan.topic_text)
+        )
+        self._emit_progress(
+            "organizing_evidence",
+            "已拿到总括性问题的候选分支，正在整理主依据与核对材料。",
         )
         retrievals = [query_retrieval] if topic_retrieval is query_retrieval else [query_retrieval, topic_retrieval]
 
@@ -1558,6 +1593,10 @@ class AnswerAssembler:
 
     def _assemble_comparison(self, query_text: str, comparison_plan: dict[str, Any]) -> dict[str, Any]:
         if not comparison_plan["valid"]:
+            self._emit_progress(
+                "organizing_evidence",
+                "比较对象未能稳定识别，正在整理拒答原因与改问建议。",
+            )
             refuse_reason = self._build_comparison_refuse_reason(comparison_plan["reason"])
             self._last_comparison_debug = {
                 "query": query_text,
@@ -1582,6 +1621,10 @@ class AnswerAssembler:
             )
 
         entity_bundles = [self._build_comparison_entity_bundle(entity) for entity in comparison_plan["entities"]]
+        self._emit_progress(
+            "organizing_evidence",
+            "已定位待比较对象，正在组织差异点与证据层级。",
+        )
         answer_mode = self._determine_comparison_mode(comparison_plan, entity_bundles)
         structured_lines = self._build_comparison_lines(comparison_plan, entity_bundles, answer_mode)
 
@@ -1700,6 +1743,12 @@ class AnswerAssembler:
         suggested_followup_questions: list[str],
         citations: list[dict[str, Any]],
     ) -> dict[str, Any]:
+        generating_detail = "正在生成回答文本。"
+        if answer_mode == "weak_with_review_notice":
+            generating_detail = "正在生成待核对回答。"
+        elif answer_mode == "refuse":
+            generating_detail = "正在生成统一拒答说明。"
+        self._emit_progress("generating_answer", generating_detail)
         final_answer_text = self._maybe_render_answer_text(
             query_text=query_text,
             answer_mode=answer_mode,
