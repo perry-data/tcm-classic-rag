@@ -9,225 +9,158 @@
   <body>
     <div class="page-shell">
       <header class="app-header">
-        <section class="app-intro">
-          <p class="eyebrow">TCM Classic RAG MVP</p>
-          <h1>《伤寒论》单轮研读页</h1>
-          <p class="hero-text">
-            页面把一次提问组织成同一阅读流：先看当前问题，再看这条系统回答，
-            然后在回答下方展开主依据、补充依据、核对材料与引用。
-          </p>
-        </section>
+        <div class="app-brand">
+          <p class="app-label">TCM Classic RAG</p>
+          <h1>《伤寒论》单轮研读</h1>
+        </div>
 
-        <aside class="header-meta" aria-label="页面说明">
-          <div class="meta-item">
-            <p class="meta-label">接口</p>
-            <p class="meta-value"><code>POST /api/v1/answers</code> + 流式增强</p>
-          </div>
-          <div class="meta-item">
-            <p class="meta-label">当前状态</p>
-            <p id="status-text" class="status-text" aria-live="polite">正在加载前端脚本…</p>
-            <p id="error-text" class="error-text" aria-live="polite"></p>
-          </div>
-        </aside>
+        <div class="app-presence" aria-live="polite">
+          <span class="status-pill">单轮模式</span>
+          <p id="status-text" class="status-text">正在加载前端脚本…</p>
+          <p id="error-text" class="error-text"></p>
+        </div>
       </header>
 
-      <main class="chat-layout">
+      <main class="chat-shell">
         <section class="conversation-stage" aria-label="当前单轮问答">
           <article id="user-message-card" class="message-card user-message">
-            <div class="message-head">
-              <div>
-                <p class="message-role">本轮问题</p>
-                <h2>用户提问</h2>
-              </div>
-              <span class="message-tag">user</span>
-            </div>
-            <p id="query-echo" class="user-bubble empty-copy">尚未查询</p>
+            <p class="message-role">用户</p>
+            <p id="query-echo" class="bubble user-bubble empty-copy">尚未查询</p>
           </article>
 
           <article id="answer-section" class="message-card assistant-message">
-            <div class="message-head assistant-head">
-              <div>
-                <p class="message-role">当前回答</p>
-                <h2>研读助手</h2>
+            <div class="message-topline">
+              <div class="assistant-identity">
+                <p class="message-role">研读助手</p>
+                <h2>当前回答</h2>
               </div>
               <span id="mode-badge" class="mode-badge mode-idle">idle</span>
             </div>
 
-            <div class="assistant-main">
-              <p id="answer-caption" class="assistant-caption">
-                提交问题后，这里会显示一条完整的回答与展开阅读区。
-              </p>
-
-              <section id="mode-summary" class="mode-summary mode-summary-idle">
-                <div class="mode-summary-copy">
-                  <p class="mode-summary-kicker">结果状态</p>
-                  <h3 id="mode-title">等待提问</h3>
-                  <p id="mode-description" class="mode-description">
-                    提交问题后，这里会给出当前模式和阅读建议。
-                  </p>
-                </div>
-                <p id="mode-reading-hint" class="mode-reading-hint">
-                  strong / weak / refuse 会在这里切换成易读说明。
+            <section id="mode-summary" class="mode-summary mode-summary-idle">
+              <div class="mode-summary-copy">
+                <h3 id="mode-title">等待提问</h3>
+                <p id="mode-description" class="mode-description">
+                  输入问题后开始本轮研读。
                 </p>
-              </section>
+              </div>
+              <p id="mode-reading-hint" class="mode-reading-hint">
+                支持 <code>Cmd/Ctrl + Enter</code> 提交。
+              </p>
+            </section>
 
-              <section id="progress-section" class="progress-section" hidden>
-                <div class="progress-copy">
-                  <p class="progress-kicker">回答进度</p>
-                  <p id="progress-detail" class="progress-detail">
-                    提交问题后，这里会显示阶段进度。
-                  </p>
-                </div>
-                <ol id="progress-steps" class="progress-steps" aria-live="polite"></ol>
-                <p id="progress-note" class="progress-note" hidden></p>
-              </section>
+            <section id="progress-section" class="progress-section" hidden>
+              <div class="progress-copy">
+                <p id="progress-detail" class="progress-detail">提交问题后，这里会显示阶段进度。</p>
+              </div>
+              <ol id="progress-steps" class="progress-steps" aria-live="polite"></ol>
+              <p id="progress-note" class="progress-note" hidden></p>
+            </section>
 
-              <section class="answer-block" aria-label="回答正文">
-                <p class="answer-block-label">回答正文</p>
-                <p id="answer-text" class="answer-text empty-copy">等待查询结果。</p>
-              </section>
+            <section class="answer-block" aria-label="回答正文">
+              <p id="answer-text" class="answer-text empty-copy">等待查询结果。</p>
+            </section>
 
-              <p id="disclaimer-text" class="disclaimer-text"></p>
-            </div>
+            <p id="disclaimer-text" class="disclaimer-text"></p>
 
             <div class="assistant-callouts">
               <section id="review-notice-section" class="callout callout-review" hidden>
-                <div class="panel-head">
-                  <h3>核对提示</h3>
-                </div>
+                <h3>核对提示</h3>
                 <p id="review-notice-text"></p>
               </section>
 
               <section id="refuse-section" class="callout callout-refuse" hidden>
-                <div class="panel-head">
-                  <h3>拒答原因</h3>
-                </div>
+                <h3>拒答原因</h3>
                 <p id="refuse-reason-text"></p>
               </section>
 
               <section id="error-section" class="callout callout-error" hidden>
-                <div class="panel-head panel-head-actionable">
+                <div class="callout-head">
                   <div>
                     <h3 id="error-title">请求未完成</h3>
                     <p id="error-help-text">这是请求错误或超时，不等同于系统拒答。</p>
                   </div>
                   <button id="retry-button" class="secondary-button" type="button">
-                    重新提交上一个问题
+                    重试上一个问题
                   </button>
                 </div>
                 <p id="error-message-text"></p>
               </section>
             </div>
 
-            <section class="assistant-supporting" aria-label="当前回答的展开信息">
-              <div class="assistant-supporting-head">
-                <div>
-                  <p class="supporting-kicker">回答展开</p>
-                  <h3>依据与附加信息</h3>
-                </div>
-                <p class="supporting-note">
-                  这些内容属于同一条 assistant response 的展开区，不再散落成整页结果面板。
-                </p>
+            <section id="primary-section" class="support-block support-block-primary" hidden>
+              <div class="support-head">
+                <h3>主依据 <span id="primary-count" class="section-count"></span></h3>
               </div>
-
-              <section id="empty-evidence-section" class="support-panel empty-state-panel" hidden>
-                <p>当前结果没有可展示证据。若为拒答模式，这是预期行为。</p>
-              </section>
-
-              <section id="primary-section" class="support-panel primary-panel" hidden>
-                <div class="panel-head">
-                  <div>
-                    <h3>主依据 <span id="primary-count" class="section-count"></span></h3>
-                    <p id="primary-hint">strong 模式下优先展示，只允许主证据语义。</p>
-                  </div>
-                </div>
-                <div id="primary-list" class="evidence-list"></div>
-              </section>
-
-              <section id="secondary-section" class="support-panel evidence-panel" hidden>
-                <div class="panel-head">
-                  <div>
-                    <h3>补充依据 <span id="secondary-count" class="section-count"></span></h3>
-                    <p id="secondary-hint">作为补充说明使用，不替代主证据。</p>
-                  </div>
-                </div>
-                <div id="secondary-list" class="evidence-list"></div>
-              </section>
-
-              <section id="review-section" class="support-panel evidence-panel review-panel" hidden>
-                <div class="panel-head panel-head-actionable">
-                  <div>
-                    <h3>核对材料 <span id="review-count" class="section-count"></span></h3>
-                    <p id="review-hint">
-                      风险层或待核对材料，默认收起，避免压过正式回答。
-                    </p>
-                  </div>
-                  <button id="review-toggle" class="secondary-button" type="button" hidden>
-                    展开核对材料
-                  </button>
-                </div>
-                <div id="review-body">
-                  <div id="review-list" class="evidence-list"></div>
-                </div>
-              </section>
-
-              <section id="citations-section" class="support-panel citations-panel" hidden>
-                <div class="panel-head">
-                  <div>
-                    <h3>回答引用 <span id="citations-count" class="section-count"></span></h3>
-                    <p id="citations-hint">这些引用与当前回答和证据区块直接对应。</p>
-                  </div>
-                </div>
-                <ol id="citations-list" class="citation-list"></ol>
-              </section>
-
-              <section id="followups-section" class="support-panel followups-panel" hidden>
-                <div class="panel-head">
-                  <div>
-                    <h3>改问建议 <span id="followups-count" class="section-count"></span></h3>
-                    <p id="followups-hint">
-                      当前问题不适合直接作答时，可从这些方向继续追问。
-                    </p>
-                  </div>
-                </div>
-                <ul id="followups-list" class="followups-list"></ul>
-              </section>
+              <div id="primary-list" class="evidence-list"></div>
             </section>
+
+            <details id="supporting-details" class="supporting-details" hidden>
+              <summary class="supporting-summary-row">
+                <div>
+                  <p class="supporting-kicker">展开更多</p>
+                  <h3 id="supporting-title">查看依据与补充信息</h3>
+                </div>
+                <p id="supporting-summary" class="supporting-summary">暂无附加信息</p>
+              </summary>
+
+              <div class="supporting-details-body">
+                <section id="empty-evidence-section" class="support-block empty-state-panel" hidden>
+                  <p>当前回答没有可直接展开的依据。</p>
+                </section>
+
+                <section id="secondary-section" class="support-block" hidden>
+                  <div class="support-head">
+                    <h3>补充依据 <span id="secondary-count" class="section-count"></span></h3>
+                  </div>
+                  <div id="secondary-list" class="evidence-list"></div>
+                </section>
+
+                <section id="review-section" class="support-block support-block-review" hidden>
+                  <div class="support-head">
+                    <h3>核对材料 <span id="review-count" class="section-count"></span></h3>
+                  </div>
+                  <div id="review-list" class="evidence-list"></div>
+                </section>
+
+                <section id="citations-section" class="support-block citations-panel" hidden>
+                  <div class="support-head">
+                    <h3>引用 <span id="citations-count" class="section-count"></span></h3>
+                  </div>
+                  <ol id="citations-list" class="citation-list"></ol>
+                </section>
+
+                <section id="followups-section" class="support-block followups-panel" hidden>
+                  <div class="support-head">
+                    <h3>改问建议 <span id="followups-count" class="section-count"></span></h3>
+                  </div>
+                  <ul id="followups-list" class="followups-list"></ul>
+                </section>
+              </div>
+            </details>
           </article>
         </section>
       </main>
 
       <footer class="composer-shell">
-        <section class="composer-panel" aria-label="底部输入区">
-          <div class="composer-copy">
-            <p class="eyebrow">继续提问</p>
-            <h2>底部 Composer</h2>
-            <p class="composer-text">
-              当前页面只承接一条用户问题和一条系统回答。再次提交后，页面会以新的单轮问答替换当前内容。
-            </p>
-          </div>
+        <form id="query-form" class="composer-panel" aria-label="底部输入区">
+          <label class="sr-only" for="query-input">问题</label>
 
-          <form id="query-form" class="composer-form">
-            <label class="field-label" for="query-input">问题</label>
+          <div class="composer-input-row">
             <textarea
               id="query-input"
               name="query"
-              rows="4"
+              rows="1"
               placeholder="例如：黄连汤方的条文是什么？"
             ></textarea>
+            <button id="submit-button" type="submit">发送</button>
+          </div>
 
-            <div class="composer-actions">
-              <p class="query-hint">
-                按 <code>Cmd/Ctrl + Enter</code> 可直接提交；处理过程中会自动禁用重复提交。
-              </p>
-              <button id="submit-button" type="submit">提交查询</button>
-            </div>
-          </form>
+          <div class="composer-meta">
+            <p class="query-hint"><code>Cmd/Ctrl + Enter</code></p>
 
-          <details class="sample-queries">
-            <summary class="sample-summary">查看冻结样例</summary>
-            <div class="sample-drawer">
-              <p class="sample-title">可快速填充的单轮示例</p>
+            <details class="sample-queries">
+              <summary class="sample-summary">样例</summary>
               <div class="sample-list">
                 <button class="sample-chip" type="button" data-query="黄连汤方的条文是什么？">
                   黄连汤方
@@ -250,10 +183,9 @@
                   方剂比较
                 </button>
               </div>
-              <p class="sample-note">样例按钮只填充输入框，不会自动提交。</p>
-            </div>
-          </details>
-        </section>
+            </details>
+          </div>
+        </form>
       </footer>
     </div>
 

@@ -28,38 +28,38 @@ const MODE_COPY = {
   idle: {
     badge: "等待中",
     title: "等待提问",
-    description: "提交问题后，这里会给出当前结果模式和阅读建议。",
-    hint: "系统会在 strong / weak / refuse 之间自动切换可读说明。",
+    description: "输入问题后开始本轮研读。",
+    hint: "支持 Cmd/Ctrl + Enter 提交。",
   },
   loading: {
     badge: "处理中",
     title: "正在整理回答",
-    description: "系统正在检索依据、组织证据并准备最终回答。",
-    hint: "如果等待时间稍长，页面会提示你当前仍在处理；这不等同于拒答。",
+    description: "正在检索依据并生成回答。",
+    hint: "等待稍长时会提示处理进度，这不等同于拒答。",
   },
   strong: {
     badge: "可参考",
-    title: "可直接参考的回答",
-    description: "当前回答优先依据主依据整理，可先读回答，再回看主依据区核对原文。",
-    hint: "阅读顺序建议：回答 -> 主依据 -> 补充依据 -> 回答引用。",
+    title: "可直接参考",
+    description: "先看正文，再回看主依据。",
+    hint: "补充依据和引用收在下方展开区。",
   },
   weak_with_review_notice: {
     badge: "需核对",
-    title: "需核对的回答",
-    description: "当前没有足够强的正文证据，回答只提供可核对线索，不能视为确定结论。",
-    hint: "请优先看核对提示，再对照补充依据和核对材料阅读。",
+    title: "需核对",
+    description: "这是一条需核对的整理结果，不能直接视为定论。",
+    hint: "先看核对提示，再决定是否展开依据。",
   },
   refuse: {
     badge: "暂不支持",
     title: "当前不支持这样回答",
-    description: "这属于正常的业务拒答，不是系统报错。请先看拒答原因，再按改问建议继续追问。",
-    hint: "阅读顺序建议：拒答原因 -> 改问建议 -> 重新收窄问题。",
+    description: "这属于业务拒答，不是系统报错。",
+    hint: "可按下方改问建议继续追问。",
   },
   error: {
     badge: "请求异常",
     title: "本次请求未完成",
-    description: "这是请求错误、超时或流式中断，不等同于系统拒答。",
-    hint: "可以直接重试上一个问题；如果问题持续存在，再检查服务状态。",
+    description: "这次请求没拿到完整结果，不等同于系统拒答。",
+    hint: "可以直接重试上一个问题。",
   },
 };
 const SOURCE_LABELS = {
@@ -106,13 +106,12 @@ const state = {
   requestInFlight: false,
   softWarningTimer: null,
   hardTimeoutTimer: null,
-  reviewCollapsed: true,
-  reviewItemCount: 0,
+  supportingExpanded: false,
 };
 
 function setLoading(isLoading) {
   refs.submitButton.disabled = isLoading;
-  refs.submitButton.textContent = isLoading ? "正在处理…" : "提交查询";
+  refs.submitButton.textContent = isLoading ? "发送中…" : "发送";
   refs.sampleButtons.forEach((button) => {
     button.disabled = isLoading;
   });
@@ -135,10 +134,12 @@ function setModeBadge(mode) {
 
 function setModeSummary(mode, overrides = {}) {
   const copy = MODE_COPY[mode] || MODE_COPY.idle;
+  const hint = overrides.hint || copy.hint;
   refs.modeSummary.className = `mode-summary mode-summary-${mode || "idle"}`;
   refs.modeTitle.textContent = overrides.title || copy.title;
   refs.modeDescription.textContent = overrides.description || copy.description;
-  refs.modeReadingHint.textContent = overrides.hint || copy.hint;
+  refs.modeReadingHint.textContent = hint || "";
+  showSection(refs.modeReadingHint, Boolean(hint));
 }
 
 function setAnswerText(text, options = {}) {
@@ -152,6 +153,14 @@ function setQueryEcho(text, options = {}) {
   const { placeholder = false } = options;
   refs.queryEcho.textContent = text || "";
   refs.queryEcho.classList.toggle("empty-copy", placeholder);
+}
+
+function autoResizeQueryInput() {
+  if (!refs.queryInput) {
+    return;
+  }
+  refs.queryInput.style.height = "auto";
+  refs.queryInput.style.height = `${Math.min(refs.queryInput.scrollHeight, 220)}px`;
 }
 
 function showSection(element, visible) {
@@ -194,7 +203,7 @@ function getSourceObject(record) {
 }
 
 function getChapterLabel(record) {
-  return record?.chapter_title || record?.chapter_name || "";
+  return record?.chapter_name || record?.chapter_title || "";
 }
 
 function extractRecordOrdinal(recordId) {
@@ -471,7 +480,6 @@ function showErrorState(copy) {
     description: copy.message,
     hint: copy.help,
   });
-  refs.answerCaption.textContent = "当前没有拿到完整回答，请先查看错误说明。";
   setAnswerText("本次请求未完成，请重试。", { placeholder: true, streaming: false });
   refs.errorTitle.textContent = copy.title;
   refs.errorMessageText.textContent = copy.message;
@@ -515,23 +523,61 @@ function normalizeErrorCopy(error) {
   };
 }
 
-function setReviewCollapsed(collapsed) {
-  state.reviewCollapsed = collapsed;
-  refs.reviewBody.hidden = collapsed;
-  refs.reviewToggle.textContent = collapsed
-    ? `展开核对材料（${state.reviewItemCount}）`
-    : "收起核对材料";
-  refs.reviewToggle.setAttribute("aria-expanded", String(!collapsed));
+function formatSupportingSummary(answerMode, secondary, review, citations, followups) {
+  const parts = [];
+
+  if (secondary.length > 0) {
+    parts.push(`补充 ${secondary.length}`);
+  }
+  if (review.length > 0) {
+    parts.push(`核对 ${review.length}`);
+  }
+  if (citations.length > 0) {
+    parts.push(`引用 ${citations.length}`);
+  }
+  if (followups.length > 0) {
+    parts.push(`${answerMode === "refuse" ? "改问" : "追问"} ${followups.length}`);
+  }
+
+  return parts.length > 0 ? parts.join(" · ") : "暂无附加信息";
 }
 
-function syncReviewControls(hasReview) {
-  refs.reviewToggle.hidden = !hasReview;
-  refs.reviewToggle.disabled = !hasReview;
-  if (!hasReview) {
-    refs.reviewBody.hidden = true;
+function updateSupportingDetails(answerMode, sections, options = {}) {
+  const { preserveOpen = false } = options;
+  const { secondary, review, citations, followups, hasEmptyEvidence } = sections;
+  const hasSupportingContent =
+    secondary.length > 0 ||
+    review.length > 0 ||
+    citations.length > 0 ||
+    followups.length > 0 ||
+    hasEmptyEvidence;
+
+  refs.supportingTitle.textContent =
+    answerMode === "refuse" && followups.length > 0 ? "查看改问建议" : "查看依据与补充信息";
+  refs.supportingSummary.textContent = formatSupportingSummary(
+    answerMode,
+    secondary,
+    review,
+    citations,
+    followups,
+  );
+
+  showSection(refs.supportingDetails, hasSupportingContent);
+
+  if (!hasSupportingContent) {
+    refs.supportingDetails.open = false;
+    state.supportingExpanded = false;
     return;
   }
-  setReviewCollapsed(state.reviewCollapsed);
+
+  if (preserveOpen) {
+    refs.supportingDetails.open = state.supportingExpanded;
+    return;
+  }
+
+  const shouldOpenByDefault = answerMode === "refuse" && followups.length > 0;
+  refs.supportingDetails.open = shouldOpenByDefault;
+  state.supportingExpanded = shouldOpenByDefault;
 }
 
 function renderEvidenceList(target, items) {
@@ -551,8 +597,8 @@ function renderEvidenceList(target, items) {
       createTag("span", "chip", `记录 ${formatRecordShort(item.record_id)}`),
     );
 
-    if (item.chapter_title) {
-      meta.append(createTag("span", "chip", item.chapter_title));
+    if (getChapterLabel(item)) {
+      meta.append(createTag("span", "chip", getChapterLabel(item)));
     }
 
     const snippet = createTag("p", "snippet", item.snippet || "");
@@ -599,8 +645,8 @@ function renderCitations(items) {
       createTag("span", "chip", formatSourceLabel(citation.record_type)),
       createTag("span", "chip", `记录 ${formatRecordShort(citation.record_id)}`),
     );
-    if (citation.chapter_title) {
-      meta.append(createTag("span", "chip", citation.chapter_title));
+    if (getChapterLabel(citation)) {
+      meta.append(createTag("span", "chip", getChapterLabel(citation)));
     }
     const snippet = createTag("p", "citation-snippet", citation.snippet || "");
     const footer = createTag("div", "citation-footer");
@@ -635,37 +681,12 @@ function validatePayload(payload) {
   }
 }
 
-function updateEvidenceHints(answerMode, primary, secondary, review, citations, followups) {
+function updateEvidenceCounts(primary, secondary, review, citations, followups) {
   updateCountLabel(refs.primaryCount, primary.length);
   updateCountLabel(refs.secondaryCount, secondary.length);
   updateCountLabel(refs.reviewCount, review.length);
   updateCountLabel(refs.citationsCount, citations.length);
   updateCountLabel(refs.followupsCount, followups.length);
-
-  refs.primaryHint.textContent =
-    answerMode === "strong"
-      ? "这些条目直接支撑上方回答，应优先作为正式依据阅读。"
-      : "当前结果没有可直接作为主依据展示的条目。";
-
-  refs.secondaryHint.textContent =
-    answerMode === "weak_with_review_notice"
-      ? "这些条目是当前可先参考的线索，但仍不能替代确定答案。"
-      : "这些条目用于补充理解，不替代主依据。";
-
-  refs.reviewHint.textContent =
-    answerMode === "weak_with_review_notice"
-      ? "这些材料只用于进一步核对边界与出处，默认收起，避免压过正文。"
-      : "这些材料用于复核出处与风险点，默认收起，避免抢走主依据焦点。";
-
-  refs.citationsHint.textContent =
-    answerMode === "weak_with_review_notice"
-      ? "这些引用对应当前弱整理与核对材料，不等于已确认结论。"
-      : "这些引用与当前回答和证据区块直接对应，便于回看出处。";
-
-  refs.followupsHint.textContent =
-    answerMode === "refuse"
-      ? "当前问题不适合直接作答，可优先按这些方向继续追问。"
-      : "当前问题如果还想继续收窄，可以从这些方向继续追问。";
 }
 
 function resetResultSections() {
@@ -691,10 +712,11 @@ function resetResultSections() {
   showSection(refs.reviewSection, false);
   showSection(refs.citationsSection, false);
   showSection(refs.followupsSection, false);
-  refs.reviewToggle.hidden = true;
-  refs.reviewBody.hidden = true;
-  state.reviewItemCount = 0;
-  state.reviewCollapsed = true;
+  showSection(refs.supportingDetails, false);
+  refs.supportingDetails.open = false;
+  refs.supportingSummary.textContent = "暂无附加信息";
+  refs.supportingTitle.textContent = "查看依据与补充信息";
+  state.supportingExpanded = false;
 }
 
 function resetViewForRequest(query) {
@@ -706,7 +728,6 @@ function resetViewForRequest(query) {
   clearErrorState();
   clearProgressNote();
   setQueryEcho(query, { placeholder: false });
-  refs.answerCaption.textContent = "系统已收到问题，正在准备回答。";
   setModeBadge("loading");
   setModeSummary("loading");
   setAnswerText("已提交问题，正在准备回答…", { placeholder: true, streaming: false });
@@ -714,22 +735,6 @@ function resetViewForRequest(query) {
   ensureProgressSteps();
   updateProgress("retrieving_evidence", "已提交问题，正在建立流式连接。");
   scrollConversationIntoView();
-}
-
-function updateAnswerCopyByMode(answerMode) {
-  if (answerMode === "strong") {
-    refs.answerCaption.textContent = "可直接参考的回答已生成，建议先看正文，再核对主依据。";
-    return;
-  }
-  if (answerMode === "weak_with_review_notice") {
-    refs.answerCaption.textContent = "这是需核对的回答，请务必结合核对提示与核对材料阅读。";
-    return;
-  }
-  if (answerMode === "refuse") {
-    refs.answerCaption.textContent = "当前不支持这样回答；请先看拒答原因与改问建议。";
-    return;
-  }
-  refs.answerCaption.textContent = "返回了未识别模式。";
 }
 
 function renderPayload(payload, options = {}) {
@@ -742,7 +747,6 @@ function renderPayload(payload, options = {}) {
   setModeSummary(payload.answer_mode);
   setQueryEcho(payload.query || "未返回 query", { placeholder: !(payload.query || "") });
   refs.disclaimerText.textContent = payload.disclaimer || "";
-  updateAnswerCopyByMode(payload.answer_mode);
 
   if (!preserveAnswerText) {
     setAnswerText(payload.answer_text || "", {
@@ -762,7 +766,7 @@ function renderPayload(payload, options = {}) {
     ? payload.suggested_followup_questions
     : [];
 
-  updateEvidenceHints(payload.answer_mode, primary, secondary, review, citations, followups);
+  updateEvidenceCounts(primary, secondary, review, citations, followups);
   showSection(refs.reviewNoticeSection, Boolean(payload.review_notice));
   showSection(refs.refuseSection, Boolean(payload.refuse_reason));
   showSection(refs.primarySection, primary.length > 0);
@@ -770,20 +774,22 @@ function renderPayload(payload, options = {}) {
   showSection(refs.reviewSection, review.length > 0);
   showSection(refs.citationsSection, citations.length > 0);
   showSection(refs.followupsSection, followups.length > 0);
-  showSection(refs.emptyEvidenceSection, primary.length + secondary.length + review.length + citations.length === 0);
+  const hasEmptyEvidence = primary.length + secondary.length + review.length + citations.length === 0;
+  showSection(refs.emptyEvidenceSection, hasEmptyEvidence);
 
-  state.reviewItemCount = review.length;
   if (!preserveEvidence) {
     renderEvidenceList(refs.primaryList, primary);
     renderEvidenceList(refs.secondaryList, secondary);
     renderEvidenceList(refs.reviewList, review);
     renderCitations(citations);
     renderFollowups(followups);
-    if (review.length > 0) {
-      state.reviewCollapsed = true;
-    }
   }
-  syncReviewControls(review.length > 0);
+
+  updateSupportingDetails(
+    payload.answer_mode,
+    { secondary, review, citations, followups, hasEmptyEvidence },
+    { preserveOpen: preserveEvidence },
+  );
 }
 
 function applyEvidenceReadyPayload(payload) {
@@ -948,7 +954,6 @@ function prepareFallbackView(message) {
     description: "流式响应未顺利完成，系统正在改用标准请求重新获取最终结果。",
     hint: "这仍属于同一次回答流程，不等同于拒答。",
   });
-  refs.answerCaption.textContent = "流式响应未完整返回，正在改用标准请求。";
   setAnswerText("流式响应未完整返回，正在改用标准请求…", {
     placeholder: true,
     streaming: false,
@@ -1059,6 +1064,7 @@ function retryLastQuery() {
     return;
   }
   refs.queryInput.value = state.lastQuery;
+  autoResizeQueryInput();
   refs.queryInput.focus();
   refs.queryInput.setSelectionRange(state.lastQuery.length, state.lastQuery.length);
   void submitQuery(state.lastQuery);
@@ -1074,7 +1080,6 @@ function boot() {
   refs.modeBadge = requireElement("mode-badge");
   refs.userMessageCard = requireElement("user-message-card");
   refs.queryEcho = requireElement("query-echo");
-  refs.answerCaption = requireElement("answer-caption");
   refs.modeSummary = requireElement("mode-summary");
   refs.modeTitle = requireElement("mode-title");
   refs.modeDescription = requireElement("mode-description");
@@ -1096,25 +1101,21 @@ function boot() {
   refs.emptyEvidenceSection = requireElement("empty-evidence-section");
   refs.primarySection = requireElement("primary-section");
   refs.primaryCount = requireElement("primary-count");
-  refs.primaryHint = requireElement("primary-hint");
   refs.primaryList = requireElement("primary-list");
+  refs.supportingDetails = requireElement("supporting-details");
+  refs.supportingTitle = requireElement("supporting-title");
+  refs.supportingSummary = requireElement("supporting-summary");
   refs.secondarySection = requireElement("secondary-section");
   refs.secondaryCount = requireElement("secondary-count");
-  refs.secondaryHint = requireElement("secondary-hint");
   refs.secondaryList = requireElement("secondary-list");
   refs.reviewSection = requireElement("review-section");
   refs.reviewCount = requireElement("review-count");
-  refs.reviewHint = requireElement("review-hint");
-  refs.reviewToggle = requireElement("review-toggle");
-  refs.reviewBody = requireElement("review-body");
   refs.reviewList = requireElement("review-list");
   refs.citationsSection = requireElement("citations-section");
   refs.citationsCount = requireElement("citations-count");
-  refs.citationsHint = requireElement("citations-hint");
   refs.citationsList = requireElement("citations-list");
   refs.followupsSection = requireElement("followups-section");
   refs.followupsCount = requireElement("followups-count");
-  refs.followupsHint = requireElement("followups-hint");
   refs.followupsList = requireElement("followups-list");
   refs.sampleButtons = Array.from(document.querySelectorAll(".sample-chip"));
 
@@ -1122,6 +1123,7 @@ function boot() {
   setModeBadge("idle");
   setModeSummary("idle");
   setQueryEcho("尚未查询", { placeholder: true });
+  autoResizeQueryInput();
   clearErrorState();
 
   refs.form.addEventListener("submit", async (event) => {
@@ -1137,6 +1139,10 @@ function boot() {
     await submitQuery(query);
   });
 
+  refs.queryInput.addEventListener("input", () => {
+    autoResizeQueryInput();
+  });
+
   refs.queryInput.addEventListener("keydown", (event) => {
     const shouldSubmit = (event.metaKey || event.ctrlKey) && event.key === "Enter";
     if (!shouldSubmit || refs.submitButton.disabled) {
@@ -1150,17 +1156,18 @@ function boot() {
     retryLastQuery();
   });
 
-  refs.reviewToggle.addEventListener("click", () => {
-    setReviewCollapsed(!state.reviewCollapsed);
+  refs.supportingDetails.addEventListener("toggle", () => {
+    state.supportingExpanded = refs.supportingDetails.open;
   });
 
   refs.sampleButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const query = button.dataset.query || "";
       refs.queryInput.value = query;
+      autoResizeQueryInput();
       refs.queryInput.focus();
       refs.queryInput.setSelectionRange(query.length, query.length);
-      refs.statusText.textContent = "样例已填充，可按 Cmd/Ctrl + Enter 或点击“提交查询”发起请求";
+      refs.statusText.textContent = "样例已填充，可直接发送";
       setErrorSummary("");
     });
   });
