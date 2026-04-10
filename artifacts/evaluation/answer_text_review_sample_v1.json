@@ -1,0 +1,257 @@
+{
+  "review_version": "answer_text_review_v1_minimal",
+  "generated_at_utc": "2026-04-10T00:00:00+08:00",
+  "enabled": true,
+  "source_report_path": "artifacts/evaluation/evaluator_v2_report.json",
+  "review_report_path": "artifacts/evaluation/answer_text_review_report_v1.md",
+  "review_scope": "Sampled manual review for current evaluator_v2 outputs only. This round does not perform baseline-vs-qwen-plus pairwise scoring and does not affect failure_count or exit-code behavior.",
+  "sample_count": 7,
+  "sampling_rules": [
+    "Keep the review set intentionally small so the manual review loop is connected without turning this round into a 150-item annotation task.",
+    "Cover strong, weak_with_review_notice, and refuse answer modes.",
+    "Cover at least one general_overview item and one source_lookup item.",
+    "Include at least one item that already carries retrieval diagnostic signals in evaluator_v2."
+  ],
+  "rubric_dimensions": [
+    "clarity",
+    "structure",
+    "evidence_faithfulness",
+    "mode_boundary_preservation"
+  ],
+  "score_scale": {
+    "0": "dimension fail",
+    "1": "pass with visible gaps",
+    "2": "stable pass"
+  },
+  "answer_text_quality_issue_rule": {
+    "candidate_when_any_dimension_is_zero": true,
+    "boundary_affecting_dimensions": [
+      "evidence_faithfulness",
+      "mode_boundary_preservation"
+    ],
+    "note": "Candidate status is diagnostic only in this round and is not merged into failure_count, fail-on-evaluation-failure, or taxonomy counters."
+  },
+  "summary_notes": "Sampled manual review on 7 current evaluator_v2 answers found 2 style-only answer_text_quality_issue candidates (eval_seed_q002 and eval_seed_q005) and 0 boundary-affecting candidates. Main gaps cluster in quote-heavy weak answers and broad general_overview answers whose structure is usable but still not compact enough. Source_lookup, comparison, and refuse samples are comparatively stable. This sample is sufficient to scope the next prompt/answer_text optimization pass, but not sufficient to claim full 150-sample quality improvements.",
+  "samples": [
+    {
+      "question_id": "eval_seed_q001",
+      "query": "黄连汤方的条文是什么？",
+      "question_type": "source_lookup",
+      "expected_mode": "strong",
+      "actual_mode": "strong",
+      "sampling_tags": [
+        "strong",
+        "source_lookup",
+        "retrieval_diagnostic"
+      ],
+      "retrieval_diagnostic_signal": true,
+      "failure_taxonomy_subcategories": [
+        "gold_miss_after_rerank"
+      ],
+      "answer_text": "根据主依据，与“黄连汤方”直接对应的条文主要有：\n1. 黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。\n2. 味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温\n3. 上热者，泄之以苦，黄连之苦以降阳；下寒者，散之以辛，桂、姜、半夏之辛以升阴；脾欲缓，急食甘以缓之，人参、甘草、大枣之甘以益胃。",
+      "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
+      "citation_record_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0145",
+        "safe:main_passages:ZJSHL-CH-010-P-0146",
+        "safe:main_passages:ZJSHL-CH-010-P-0147"
+      ],
+      "rubric_scores": {
+        "clarity": 2,
+        "structure": 2,
+        "evidence_faithfulness": 2,
+        "mode_boundary_preservation": 2
+      },
+      "answer_text_quality_issue_candidate": false,
+      "issue_class": "none",
+      "candidate_subcategories": [],
+      "reviewer_note": "回答直接命中题意，结构清楚，强答边界稳定。虽然该样本带有 rerank 诊断信号，但最终 answer_text 本身没有出现明显表达或边界问题。"
+    },
+    {
+      "question_id": "eval_seed_q002",
+      "query": "烧针益阳而损阴是什么意思？",
+      "question_type": "meaning_explanation",
+      "expected_mode": "weak_with_review_notice",
+      "actual_mode": "weak_with_review_notice",
+      "sampling_tags": [
+        "weak_with_review_notice",
+        "meaning_explanation"
+      ],
+      "retrieval_diagnostic_signal": false,
+      "failure_taxonomy_subcategories": [],
+      "answer_text": "正文强证据不足，以下内容需核对，暂不能视为确定答案。 当前可先参考辅助材料：卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+      "review_notice": "正文强证据不足，以下内容需核对，不应视为确定答案。",
+      "citation_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0016",
+        "safe:main_passages:ZJSHL-CH-009-P-0295",
+        "safe:main_passages:ZJSHL-CH-010-P-0080",
+        "full:passages:ZJSHL-CH-003-P-0016",
+        "full:ambiguous_passages:ZJSHL-CH-003-P-0016"
+      ],
+      "rubric_scores": {
+        "clarity": 1,
+        "structure": 0,
+        "evidence_faithfulness": 2,
+        "mode_boundary_preservation": 2
+      },
+      "answer_text_quality_issue_candidate": true,
+      "issue_class": "style_only",
+      "candidate_subcategories": [
+        "structure_low"
+      ],
+      "reviewer_note": "弱答边界保持得很好，但正文几乎直接贴辅助材料，缺少把“是什么意思”拆开解释的中间层，因此结构维度记为 0。该问题目前更像表达组织问题，不是系统边界问题。"
+    },
+    {
+      "question_id": "eval_seed_q003",
+      "query": "太阳病应该怎么办？",
+      "question_type": "general_overview",
+      "expected_mode": "strong",
+      "actual_mode": "strong",
+      "sampling_tags": [
+        "strong",
+        "general_overview"
+      ],
+      "retrieval_diagnostic_signal": false,
+      "failure_taxonomy_subcategories": [],
+      "answer_text": "这是一个总括性问题，书中谈“太阳病”并非只有一个固定治法，需要分情况看。\n以下先按当前能稳定抓到的典型分支整理：\n1. 先辨伤寒：先看或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，书中把它单列成一个分支，提示“太阳病”并非只有一种证候。 依据：太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名曰赵本作「为」伤寒。\n2. 葛根汤这一支：若见项背强几几，无汗，恶风，条文多归到“葛根汤”这一支。 依据：太阳病，项背强几几，无汗，恶风，葛根汤主之。\n3. 桂枝汤这一支：若见头痛发热，汗出恶风者，条文多归到“桂枝汤”这一支。 依据：太阳病，头痛发热，汗出恶风者，赵本无「者」字桂枝汤主之。\n当前回答只列若干典型分支，不等于穷尽全部“太阳病”处理。",
+      "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
+      "citation_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0195",
+        "safe:main_passages:ZJSHL-CH-009-P-0002",
+        "safe:main_passages:ZJSHL-CH-008-P-0220"
+      ],
+      "rubric_scores": {
+        "clarity": 1,
+        "structure": 2,
+        "evidence_faithfulness": 1,
+        "mode_boundary_preservation": 2
+      },
+      "answer_text_quality_issue_candidate": false,
+      "issue_class": "none",
+      "candidate_subcategories": [],
+      "reviewer_note": "总括性回答已有比较清楚的分支结构，但表述仍偏长，且“应该怎么办”与“典型分支整理”之间还可以再做一层归纳。问题更多是压缩与组织，不是边界失守。"
+    },
+    {
+      "question_id": "eval_seed_q005",
+      "query": "六经病应该怎么办？",
+      "question_type": "general_overview",
+      "expected_mode": "weak_with_review_notice",
+      "actual_mode": "weak_with_review_notice",
+      "sampling_tags": [
+        "weak_with_review_notice",
+        "general_overview"
+      ],
+      "retrieval_diagnostic_signal": false,
+      "failure_taxonomy_subcategories": [],
+      "answer_text": "这是一个总括性问题，书中谈“六经病”并非只有一个固定治法，需要分情况看。\n当前只能先整理出部分可核对的分支线索：\n1. 待核对线索 1：当前只检索到与“六经病”相关的一条待核对线索，尚不足以独立成支。 依据：太阳病，头痛至七日已赵本作「以」上自愈者，以行其经尽故也。若欲作再经者，针足阳明，使经不传则愈。\n2. 待核对线索 2：当前只检索到与“六经病”相关的一条待核对线索，尚不足以独立成支。 依据：微为亡阳，涩为亡血。伤寒脉微涩，则本是霍乱，吐利亡阳、亡血，吐利止，伤寒之邪未已，还是伤寒，却四五日邪传阴经之时，里虚遇邪，必作自利，本呕者，邪甚于上，又利者，邪甚于下，先霍乱里气大虚，又伤寒之邪，再传为吐利，是重虚也，故为不治。若欲似大便...\n3. 待核对线索 3：当前只检索到与“六经病”相关的一条待核对线索，尚不足以独立成支。 依据：少阴病，六七日，息高者，死。\n分支组织仍不完整，建议继续收窄到某一支再问。",
+      "review_notice": "这是总括性问题，但当前只能整理出部分分支线索，以下内容需核对，不应视为完整答案。",
+      "citation_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0207",
+        "safe:main_passages:ZJSHL-CH-016-P-0009",
+        "safe:main_passages:ZJSHL-CH-014-P-0058",
+        "safe:main_passages:ZJSHL-CH-009-P-0312"
+      ],
+      "rubric_scores": {
+        "clarity": 0,
+        "structure": 1,
+        "evidence_faithfulness": 2,
+        "mode_boundary_preservation": 2
+      },
+      "answer_text_quality_issue_candidate": true,
+      "issue_class": "style_only",
+      "candidate_subcategories": [
+        "clarity_low"
+      ],
+      "reviewer_note": "弱答边界和证据边界是守住的，但就“六经病应该怎么办”这个问法来说，正文仍然更像待核对线索堆叠而不是可直接吸收的解释，因此 clarity 记为 0。该问题仍主要是表达问题。"
+    },
+    {
+      "question_id": "eval_seed_q006",
+      "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+      "question_type": "comparison",
+      "expected_mode": "strong",
+      "actual_mode": "strong",
+      "sampling_tags": [
+        "strong",
+        "comparison"
+      ],
+      "retrieval_diagnostic_signal": false,
+      "failure_taxonomy_subcategories": [],
+      "answer_text": "从现有方文与相关条文看，桂枝加附子汤方与桂枝加浓朴杏子汤方都从桂枝汤方加减而来，但显式加味和对应语境不同。\n1. 显式加减与药味差异：桂枝加附子汤方明写加附子；桂枝加浓朴杏子汤方明写加浓朴、杏仁。\n2. 条文语境：桂枝加附子汤方相关条文可见“太阳病，发汗，遂漏不止，其人恶风，小便难，四支微急，难以屈伸者”；桂枝加浓朴杏子汤方核对材料可见“太阳病，下之微喘者，表未解故也”。\n3. 出处线索：桂枝加附子汤方的方文见“卷十附方位置”；桂枝加浓朴杏子汤方的方文见“卷十附方位置”；桂枝加附子汤方相关条文位于“辨太阳病脉证并治法上第五”；桂枝加浓朴杏子汤方相关条文位于“辨太阳病脉证并治第六”。\n以上差异仅按当前可见条文与方文整理；若要逐字核对，请继续查看引用。",
+      "review_notice": "以下补充依据与核对材料仅用于比较佐证，不作为主结论。",
+      "citation_record_ids": [
+        "safe:main_passages:ZJSHL-CH-025-P-0004",
+        "safe:main_passages:ZJSHL-CH-025-P-0003",
+        "safe:main_passages:ZJSHL-CH-008-P-0236",
+        "full:passages:ZJSHL-CH-025-P-0003",
+        "full:ambiguous_passages:ZJSHL-CH-009-P-0053"
+      ],
+      "rubric_scores": {
+        "clarity": 2,
+        "structure": 2,
+        "evidence_faithfulness": 2,
+        "mode_boundary_preservation": 2
+      },
+      "answer_text_quality_issue_candidate": false,
+      "issue_class": "none",
+      "candidate_subcategories": [],
+      "reviewer_note": "比较结构清楚，差异项组织明确，结尾也保留了继续核对的提示。当前看是本轮样本中最稳定的一类 answer_text。"
+    },
+    {
+      "question_id": "eval_seed_q008",
+      "query": "书中有没有提到量子纠缠？",
+      "question_type": "refusal",
+      "expected_mode": "refuse",
+      "actual_mode": "refuse",
+      "sampling_tags": [
+        "refuse"
+      ],
+      "retrieval_diagnostic_signal": false,
+      "failure_taxonomy_subcategories": [],
+      "answer_text": "当前未检索到足以支撑回答的依据，暂不提供答案。",
+      "review_notice": null,
+      "citation_record_ids": [],
+      "rubric_scores": {
+        "clarity": 2,
+        "structure": 2,
+        "evidence_faithfulness": 2,
+        "mode_boundary_preservation": 2
+      },
+      "answer_text_quality_issue_candidate": false,
+      "issue_class": "none",
+      "candidate_subcategories": [],
+      "reviewer_note": "拒答短而干净，没有越界解释，也没有假装给出内容。作为边界样本，它的文本表现稳定。"
+    },
+    {
+      "question_id": "eval_seed_q095",
+      "query": "少阳病有哪些核心表现和处理边界？",
+      "question_type": "general_overview",
+      "expected_mode": "strong",
+      "actual_mode": "strong",
+      "sampling_tags": [
+        "strong",
+        "general_overview",
+        "retrieval_diagnostic"
+      ],
+      "retrieval_diagnostic_signal": true,
+      "failure_taxonomy_subcategories": [
+        "gold_miss_in_fused_topk",
+        "gold_miss_after_rerank"
+      ],
+      "answer_text": "这是一个总括性问题，书中谈“少阳病”并非只有一条统一描述，需要分情况整理。\n以下先按当前能稳定抓到的典型分支整理：\n1. 小柴胡汤这一支：若见本太阳病不解，转入少阳者，条文多归到“小柴胡汤”这一支。 依据：本太阳病不解，转入少阳者，胁下硬满，乾呕不能食，往来寒热，尚未吐下，脉沉紧者，与小柴胡汤。赵本有「小柴胡汤方」详见卷三\n2. 不可吐下：若见少阳中风，两耳无所闻，目赤，胸中满而烦者，条文强调“不可吐下”，提示不能按单一路径处理。 依据：少阳中风，两耳无所闻，目赤，胸中满而烦者，不可吐下，吐下则悸而惊。\n当前回答只列若干典型分支，不等于穷尽全部“少阳病”处理。",
+      "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
+      "citation_record_ids": [
+        "safe:main_passages:ZJSHL-CH-012-P-0219",
+        "safe:main_passages:ZJSHL-CH-012-P-0215"
+      ],
+      "rubric_scores": {
+        "clarity": 1,
+        "structure": 2,
+        "evidence_faithfulness": 1,
+        "mode_boundary_preservation": 2
+      },
+      "answer_text_quality_issue_candidate": false,
+      "issue_class": "none",
+      "candidate_subcategories": [],
+      "reviewer_note": "虽然该样本在 retrieval 层带有明显诊断信号，但 answer_text 仍然把“典型分支整理”和“不穷尽全部处理”说清了。当前风险更像总括性问题的压缩与概括力度不够，而不是 mode 失守。"
+    }
+  ]
+}

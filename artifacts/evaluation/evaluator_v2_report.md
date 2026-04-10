@@ -2,12 +2,12 @@
 
 ## 运行信息
 
-- generated_at_utc: `2026-04-09T12:48:56.421203+00:00`
+- generated_at_utc: `2026-04-10T01:42:37.478887+00:00`
 - runner_version: `evaluator_runner_v2_skeleton`
 - runner_backend: `local_assembler`
 - goldset: `/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/evaluation/goldset_v2_working_150.json`
 - command: `python scripts/run_evaluator_v2.py --fail-on-evaluation-failure`
-- notes: v2 skeleton keeps v1 enforced checks, adds retrieval diagnostics and failure taxonomy, and does not yet include answer_text review or latency benchmark artifacts.
+- notes: v2 keeps v1 enforced checks, adds retrieval diagnostics and failure taxonomy, and now carries a sampled answer_text review summary when the review artifact is present. Latency benchmark artifacts are still not included.
 
 ## 汇总
 
@@ -50,6 +50,14 @@
 - improved_count: `19`
 - unchanged_count: `71`
 - worsened_count: `30`
+
+## Answer_text Review
+
+- enabled: `True`
+- sample_count: `7`
+- rubric_dimensions: `["clarity", "structure", "evidence_faithfulness", "mode_boundary_preservation"]`
+- summary_notes: Sampled manual review on 7 current evaluator_v2 answers found 2 style-only answer_text_quality_issue candidates (eval_seed_q002 and eval_seed_q005) and 0 boundary-affecting candidates. Main gaps cluster in quote-heavy weak answers and broad general_overview answers whose structure is usable but still not compact enough. Source_lookup, comparison, and refuse samples are comparatively stable. This sample is sufficient to scope the next prompt/answer_text optimization pass, but not sufficient to claim full 150-sample quality improvements.
+- artifact_path: `/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/evaluation/answer_text_review_report_v1.md`
 
 ## Failure Taxonomy
 
@@ -273,4 +281,5 @@
 
 - 本轮 v2 skeleton 保留了 v1 的 mode / citation / unsupported assertion 检查。
 - 本轮已接入 retrieval 指标字段与 failure taxonomy 字段。
-- `answer_text_quality_review` 与 `latency_benchmark` 仍为后续轮次范围，本报告中未实际填充。
+- `answer_text_quality_review` 已以 sampled manual review 形态接入，但仍属于诊断层，不影响 failure_count 或退出码。
+- `latency_benchmark` 仍为后续轮次范围，本报告中未实际填充。

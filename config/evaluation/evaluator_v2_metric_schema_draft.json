@@ -221,6 +221,7 @@
       }
     },
     "answer_text_quality_review": {
+      "description": "Sampled manual review summary for answer_text quality. Diagnostic only; does not affect failure_count or exit-code behavior.",
       "type": [
         "object",
         "null"
@@ -229,7 +230,8 @@
       "required": [
         "enabled",
         "sample_count",
-        "rubric_dimensions"
+        "rubric_dimensions",
+        "artifact_path"
       ],
       "properties": {
         "enabled": {
@@ -256,6 +258,7 @@
           "type": "string"
         },
         "artifact_path": {
+          "description": "Path to the human-readable answer_text review report artifact.",
           "type": "string"
         }
       }

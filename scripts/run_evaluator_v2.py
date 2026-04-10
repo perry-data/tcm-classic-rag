@@ -48,6 +48,8 @@ from run_evaluator_v1 import (  # noqa: E402
 DEFAULT_GOLDSET_PATH = "artifacts/evaluation/goldset_v2_working_150.json"
 DEFAULT_REPORT_JSON_PATH = "artifacts/evaluation/evaluator_v2_report.json"
 DEFAULT_REPORT_MD_PATH = "artifacts/evaluation/evaluator_v2_report.md"
+DEFAULT_ANSWER_TEXT_REVIEW_SAMPLE_PATH = "artifacts/evaluation/answer_text_review_sample_v1.json"
+DEFAULT_ANSWER_TEXT_REVIEW_REPORT_PATH = "artifacts/evaluation/answer_text_review_report_v1.md"
 RUNNER_VERSION = "evaluator_runner_v2_skeleton"
 TOP_K_VALUES = (1, 3, 5, 10)
 FAILURE_CATEGORY_ORDER = (
@@ -543,6 +545,30 @@ def build_summary(results: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
+def load_answer_text_review_summary() -> dict[str, Any] | None:
+    sample_path = resolve_project_path(DEFAULT_ANSWER_TEXT_REVIEW_SAMPLE_PATH)
+    if not sample_path.exists():
+        return None
+
+    data = json.loads(sample_path.read_text(encoding="utf-8"))
+    samples = data.get("samples", [])
+    rubric_dimensions = data.get("rubric_dimensions", [])
+    if not data.get("enabled", True):
+        return None
+    if not isinstance(samples, list) or not isinstance(rubric_dimensions, list) or not rubric_dimensions:
+        return None
+
+    artifact_path_value = data.get("review_report_path", DEFAULT_ANSWER_TEXT_REVIEW_REPORT_PATH)
+    artifact_path = resolve_project_path(artifact_path_value)
+    return {
+        "enabled": True,
+        "sample_count": len(samples),
+        "rubric_dimensions": rubric_dimensions,
+        "summary_notes": data.get("summary_notes", ""),
+        "artifact_path": str(artifact_path),
+    }
+
+
 def build_report(
     goldset: dict[str, Any],
     results: list[dict[str, Any]],
@@ -562,8 +588,9 @@ def build_report(
             "runner_backend": args.runner_backend,
             "command": command_line(),
             "notes": (
-                "v2 skeleton keeps v1 enforced checks, adds retrieval diagnostics and failure taxonomy, "
-                "and does not yet include answer_text review or latency benchmark artifacts."
+                "v2 keeps v1 enforced checks, adds retrieval diagnostics and failure taxonomy, "
+                "and now carries a sampled answer_text review summary when the review artifact is present. "
+                "Latency benchmark artifacts are still not included."
             ),
         },
         "dataset": {
@@ -575,7 +602,7 @@ def build_report(
         },
         "summary": build_summary(results),
         "retrieval_metrics": build_retrieval_summary(results),
-        "answer_text_quality_review": None,
+        "answer_text_quality_review": load_answer_text_review_summary(),
         "latency_benchmark": None,
         "failure_taxonomy": build_failure_taxonomy_summary(results),
         "artifacts": {
@@ -593,6 +620,7 @@ def build_report(
 def build_markdown(report: dict[str, Any]) -> str:
     summary = report["summary"]
     retrieval = report["retrieval_metrics"]
+    answer_text_review = report["answer_text_quality_review"]
     taxonomy = report["failure_taxonomy"]
     lines = [
         "# Evaluator v2 Report",
@@ -665,6 +693,33 @@ def build_markdown(report: dict[str, Any]) -> str:
             f"- unchanged_count: `{delta['unchanged_count']}`",
             f"- worsened_count: `{delta['worsened_count']}`",
             "",
+            "## Answer_text Review",
+            "",
+        ]
+    )
+
+    if answer_text_review is None:
+        lines.extend(
+            [
+                "- enabled: `False`",
+                "- summary: `_No sampled answer_text review artifact loaded._`",
+                "",
+            ]
+        )
+    else:
+        lines.extend(
+            [
+                f"- enabled: `{answer_text_review['enabled']}`",
+                f"- sample_count: `{answer_text_review['sample_count']}`",
+                f"- rubric_dimensions: `{json.dumps(answer_text_review['rubric_dimensions'], ensure_ascii=False)}`",
+                f"- summary_notes: {answer_text_review['summary_notes']}",
+                f"- artifact_path: `{answer_text_review['artifact_path']}`",
+                "",
+            ]
+        )
+
+    lines.extend(
+        [
             "## Failure Taxonomy",
             "",
             f"- items_with_failures: `{taxonomy['items_with_failures']}`",
@@ -730,7 +785,8 @@ def build_markdown(report: dict[str, Any]) -> str:
             "",
             "- 本轮 v2 skeleton 保留了 v1 的 mode / citation / unsupported assertion 检查。",
             "- 本轮已接入 retrieval 指标字段与 failure taxonomy 字段。",
-            "- `answer_text_quality_review` 与 `latency_benchmark` 仍为后续轮次范围，本报告中未实际填充。",
+            "- `answer_text_quality_review` 已以 sampled manual review 形态接入，但仍属于诊断层，不影响 failure_count 或退出码。",
+            "- `latency_benchmark` 仍为后续轮次范围，本报告中未实际填充。",
         ]
     )
     return "\n".join(lines) + "\n"
