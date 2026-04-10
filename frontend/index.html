@@ -44,6 +44,7 @@
               <button id="submit-button" type="submit">提交查询</button>
               <span id="status-text" class="status-text" aria-live="polite">正在加载前端脚本…</span>
             </div>
+            <p class="query-hint">按 <code>Cmd/Ctrl + Enter</code> 可直接提交；处理过程中会自动禁用重复提交。</p>
           </form>
 
           <div class="sample-queries">
@@ -82,15 +83,35 @@
             <h2>回答</h2>
             <p id="answer-caption">提交问题后，这里会显示 answer_text。</p>
           </div>
+          <section id="mode-summary" class="mode-summary mode-summary-idle">
+            <div class="mode-summary-copy">
+              <p class="mode-summary-kicker">结果状态</p>
+              <h3 id="mode-title">等待提问</h3>
+              <p id="mode-description" class="mode-description">提交问题后，这里会给出当前模式和阅读建议。</p>
+            </div>
+            <p id="mode-reading-hint" class="mode-reading-hint">strong / weak / refuse 会在这里切换成易读说明。</p>
+          </section>
           <section id="progress-section" class="progress-section" hidden>
             <div class="progress-copy">
               <p class="progress-kicker">回答进度</p>
               <p id="progress-detail" class="progress-detail">提交问题后，这里会显示阶段进度。</p>
             </div>
             <ol id="progress-steps" class="progress-steps" aria-live="polite"></ol>
+            <p id="progress-note" class="progress-note" hidden></p>
           </section>
           <p id="answer-text" class="answer-text empty-copy">等待查询结果。</p>
           <p id="disclaimer-text" class="disclaimer-text"></p>
+        </section>
+
+        <section id="error-section" class="panel callout callout-error" hidden>
+          <div class="panel-head panel-head-actionable">
+            <div>
+              <h2 id="error-title">请求未完成</h2>
+              <p id="error-help-text">这是请求错误或超时，不等同于系统拒答。</p>
+            </div>
+            <button id="retry-button" class="secondary-button" type="button">重新提交上一个问题</button>
+          </div>
+          <p id="error-message-text"></p>
         </section>
 
         <section id="review-notice-section" class="panel callout callout-review" hidden>
@@ -113,39 +134,45 @@
 
         <section id="primary-section" class="panel evidence-panel primary-panel" hidden>
           <div class="panel-head">
-            <h2>主依据</h2>
-            <p>strong 模式下优先展示，只允许主证据语义。</p>
+            <h2>主依据 <span id="primary-count" class="section-count"></span></h2>
+            <p id="primary-hint">strong 模式下优先展示，只允许主证据语义。</p>
           </div>
           <div id="primary-list" class="evidence-list"></div>
         </section>
 
         <section id="secondary-section" class="panel evidence-panel" hidden>
           <div class="panel-head">
-            <h2>补充依据</h2>
-            <p>作为补充说明使用，不替代主证据。</p>
+            <h2>补充依据 <span id="secondary-count" class="section-count"></span></h2>
+            <p id="secondary-hint">作为补充说明使用，不替代主证据。</p>
           </div>
           <div id="secondary-list" class="evidence-list"></div>
         </section>
 
         <section id="review-section" class="panel evidence-panel" hidden>
-          <div class="panel-head">
-            <h2>核对材料</h2>
-            <p>风险层或待核对材料，单独分区展示。</p>
+          <div class="panel-head panel-head-actionable">
+            <div>
+              <h2>核对材料 <span id="review-count" class="section-count"></span></h2>
+              <p id="review-hint">风险层或待核对材料，默认收起，避免压过正式回答。</p>
+            </div>
+            <button id="review-toggle" class="secondary-button" type="button" hidden>展开核对材料</button>
           </div>
-          <div id="review-list" class="evidence-list"></div>
+          <div id="review-body">
+            <div id="review-list" class="evidence-list"></div>
+          </div>
         </section>
 
         <section id="citations-section" class="panel citations-panel" hidden>
           <div class="panel-head">
-            <h2>引用</h2>
-            <p>与当前 payload 中的 citations 保持一致。</p>
+            <h2>回答引用 <span id="citations-count" class="section-count"></span></h2>
+            <p id="citations-hint">这些引用与当前回答和证据区块直接对应。</p>
           </div>
           <ol id="citations-list" class="citation-list"></ol>
         </section>
 
         <section id="followups-section" class="panel followups-panel" hidden>
           <div class="panel-head">
-            <h2>改问建议</h2>
+            <h2>改问建议 <span id="followups-count" class="section-count"></span></h2>
+            <p id="followups-hint">当前问题不适合直接作答时，可从这些方向继续追问。</p>
           </div>
           <ul id="followups-list" class="followups-list"></ul>
         </section>
