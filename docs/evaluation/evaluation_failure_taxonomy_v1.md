@@ -3,6 +3,8 @@
 - 文档版本：v1
 - 文档日期：2026-04-09
 - 适用范围：`evaluator_v2` 主骨架阶段
+- 语义冻结参考：
+  - `docs/evaluation/evaluator_v2_taxonomy_semantics_v1.md`
 - 对应产物：
   - `scripts/run_evaluator_v2.py`
   - `artifacts/evaluation/evaluator_v2_report.json`
@@ -22,6 +24,7 @@
 1. `summary.failure_count` 仍然沿用 `evaluator_v1` 的强校验口径。
 2. `failure_taxonomy` 用于暴露更细粒度的问题信号。
 3. taxonomy 中出现条目，不等价于本轮 replay 失败退出。
+4. taxonomy 当前不影响 `--fail-on-evaluation-failure` 的退出逻辑。
 
 ## 2. 与 v1 强校验的关系
 

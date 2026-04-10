@@ -12,6 +12,8 @@
     "dataset",
     "summary",
     "retrieval_metrics",
+    "answer_text_quality_review",
+    "latency_benchmark",
     "failure_taxonomy",
     "artifacts",
     "items"
@@ -134,6 +136,7 @@
       ],
       "properties": {
         "top_k_values": {
+          "description": "Frozen diagnostic K windows used for fused and rerank Hit@K reporting.",
           "type": "array",
           "minItems": 1,
           "items": {
@@ -158,6 +161,7 @@
           }
         },
         "by_question_type": {
+          "description": "Per question_type retrieval summary. count is the total item count for the type; Hit@K denominator is the evaluable subset within that type.",
           "type": "object",
           "additionalProperties": {
             "type": "object",
@@ -182,6 +186,7 @@
           }
         },
         "rerank_delta_summary": {
+          "description": "Summary of best gold rank movement between fused candidates and reranked candidates. Negative delta means improvement, positive delta means worsening.",
           "type": "object",
           "additionalProperties": false,
           "required": [
@@ -192,18 +197,22 @@
           ],
           "properties": {
             "count_with_gold_before_rerank": {
+              "description": "Count of evaluable items whose best gold rank is non-null both before and after rerank.",
               "type": "integer",
               "minimum": 0
             },
             "improved_count": {
+              "description": "Number of comparable items with rerank_rank_delta < 0.",
               "type": "integer",
               "minimum": 0
             },
             "unchanged_count": {
+              "description": "Number of comparable items with rerank_rank_delta = 0.",
               "type": "integer",
               "minimum": 0
             },
             "worsened_count": {
+              "description": "Number of comparable items with rerank_rank_delta > 0.",
               "type": "integer",
               "minimum": 0
             }
@@ -292,10 +301,12 @@
       "required": [
         "category_counts",
         "subcategory_counts",
-        "items_with_failures"
+        "items_with_failures",
+        "artifact_path"
       ],
       "properties": {
         "category_counts": {
+          "description": "Counts taxonomy entries by top-level category. Each entry contributes 1; this is not a distinct-question count.",
           "type": "object",
           "additionalProperties": {
             "type": "integer",
@@ -303,6 +314,7 @@
           }
         },
         "subcategory_counts": {
+          "description": "Counts taxonomy entries by subcategory. Each entry contributes 1; this is not a distinct-question count.",
           "type": "object",
           "additionalProperties": {
             "type": "integer",
@@ -310,10 +322,12 @@
           }
         },
         "items_with_failures": {
+          "description": "Number of distinct items with at least one taxonomy entry. This does not change the v1 failure_count or exit-code semantics.",
           "type": "integer",
           "minimum": 0
         },
         "artifact_path": {
+          "description": "Reference taxonomy glossary and semantics documentation path used by the report.",
           "type": "string"
         }
       }
