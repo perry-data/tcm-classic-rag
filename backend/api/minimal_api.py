@@ -367,14 +367,24 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
             except (UnicodeDecodeError, json.JSONDecodeError) as exc:
                 raise ApiRequestError(400, "invalid_json", "Request body must be valid JSON.") from exc
 
+        @staticmethod
+        def _is_client_disconnect(exc: BaseException) -> bool:
+            return isinstance(exc, (BrokenPipeError, ConnectionResetError, ConnectionAbortedError))
+
         def _send_json(self, status_code: int, payload: dict[str, Any]) -> None:
             body = (json.dumps(payload, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
-            self.send_response(status_code)
-            self._send_cache_headers()
-            self.send_header("Content-Type", "application/json; charset=utf-8")
-            self.send_header("Content-Length", str(len(body)))
-            self.end_headers()
-            self.wfile.write(body)
+            try:
+                self.send_response(status_code)
+                self._send_cache_headers()
+                self.send_header("Content-Type", "application/json; charset=utf-8")
+                self.send_header("Content-Length", str(len(body)))
+                self.end_headers()
+                self.wfile.write(body)
+            except BaseException as exc:
+                if self._is_client_disconnect(exc):
+                    self.close_connection = True
+                    return
+                raise
 
         def _send_file(self, file_path: Path, include_body: bool = True) -> None:
             if not file_path.exists() or not file_path.is_file():
@@ -390,9 +400,15 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
             self._send_cache_headers()
             self.send_header("Content-Type", f"{content_type}; charset=utf-8" if content_type.startswith("text/") else content_type)
             self.send_header("Content-Length", str(len(body)))
-            self.end_headers()
-            if include_body:
-                self.wfile.write(body)
+            try:
+                self.end_headers()
+                if include_body:
+                    self.wfile.write(body)
+            except BaseException as exc:
+                if self._is_client_disconnect(exc):
+                    self.close_connection = True
+                    return
+                raise
 
         def _send_cache_headers(self) -> None:
             self.send_header("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0")
@@ -435,7 +451,7 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
                         "payload": response_payload,
                     }
                 )
-            except (BrokenPipeError, ConnectionResetError):
+            except (BrokenPipeError, ConnectionResetError, ConnectionAbortedError):
                 return
             except ApiRequestError as exc:
                 self._write_stream_error(exc.status_code, exc.code, exc.message)
@@ -457,7 +473,7 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
                         "error": {"code": code, "message": message},
                     }
                 )
-            except (BrokenPipeError, ConnectionResetError):
+            except (BrokenPipeError, ConnectionResetError, ConnectionAbortedError):
                 return
 
     return MinimalApiHandler

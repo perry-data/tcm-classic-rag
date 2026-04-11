@@ -102,11 +102,10 @@ const state = {
   latestPayload: null,
   lastQuery: "",
   activeRequestId: 0,
-  activeController: null,
+  activeTransport: null,
   requestInFlight: false,
-  softWarningTimer: null,
-  hardTimeoutTimer: null,
   supportingExpanded: false,
+  debugRequestFailure: null,
 };
 
 function setLoading(isLoading) {
@@ -331,15 +330,91 @@ function updateCountLabel(element, count, suffix = "条") {
   element.textContent = count > 0 ? `${count}${suffix}` : "";
 }
 
-function clearRequestTimers() {
-  if (state.softWarningTimer) {
-    window.clearTimeout(state.softWarningTimer);
-    state.softWarningTimer = null;
+function clearRequestTimers(requestId = null) {
+  const activeTransport = state.activeTransport;
+  if (!activeTransport) {
+    return;
   }
-  if (state.hardTimeoutTimer) {
-    window.clearTimeout(state.hardTimeoutTimer);
-    state.hardTimeoutTimer = null;
+
+  if (requestId !== null && activeTransport.requestId !== requestId) {
+    return;
   }
+
+  if (activeTransport.softWarningTimer) {
+    window.clearTimeout(activeTransport.softWarningTimer);
+  }
+  if (activeTransport.hardTimeoutTimer) {
+    window.clearTimeout(activeTransport.hardTimeoutTimer);
+  }
+
+  state.activeTransport = null;
+}
+
+function getAbortReason(error, controller) {
+  if (error?.name !== "AbortError") {
+    return null;
+  }
+  return controller?.__abortReason || controller?.signal?.reason || null;
+}
+
+function normalizeDebugFailure(stage, input) {
+  if (!input) {
+    return null;
+  }
+
+  if (typeof input === "string") {
+    return {
+      kind: `${stage}_transport_failed`,
+      message: input,
+    };
+  }
+
+  if (typeof input === "object") {
+    return {
+      kind: input.kind || `${stage}_transport_failed`,
+      message: input.message || `${stage === "stream" ? "流式" : "标准"}请求模拟失败。`,
+    };
+  }
+
+  return {
+    kind: `${stage}_transport_failed`,
+    message: `${stage === "stream" ? "流式" : "标准"}请求模拟失败。`,
+  };
+}
+
+function failNextRequest(options = {}) {
+  state.debugRequestFailure = {
+    query: options.query || "",
+    once: options.once !== false,
+    stream: normalizeDebugFailure("stream", options.stream),
+    fallback: normalizeDebugFailure("fallback", options.fallback),
+  };
+}
+
+function consumeDebugFailure(stage, query) {
+  const pendingFailure = state.debugRequestFailure;
+  if (!pendingFailure) {
+    return null;
+  }
+
+  if (pendingFailure.query && pendingFailure.query !== query) {
+    return null;
+  }
+
+  const failure = pendingFailure[stage];
+  if (!failure) {
+    return null;
+  }
+
+  if (pendingFailure.once) {
+    const nextFailure = {
+      ...pendingFailure,
+      [stage]: null,
+    };
+    state.debugRequestFailure = nextFailure.stream || nextFailure.fallback ? nextFailure : null;
+  }
+
+  return createRequestError(failure.kind, failure.message);
 }
 
 function setProgressVisualState(kind) {
@@ -446,21 +521,28 @@ function startRequestTimers(requestId, controller, options = {}) {
   } = options;
 
   clearRequestTimers();
-  state.activeController = controller;
 
-  state.softWarningTimer = window.setTimeout(() => {
-    if (state.activeRequestId !== requestId || !state.requestInFlight) {
+  const transportState = {
+    requestId,
+    controller,
+    softWarningTimer: null,
+    hardTimeoutTimer: null,
+  };
+  state.activeTransport = transportState;
+
+  transportState.softWarningTimer = window.setTimeout(() => {
+    if (state.activeRequestId !== requestId || !state.requestInFlight || state.activeTransport !== transportState) {
       return;
     }
     setProgressNote(softMessage, "warning");
   }, softDelayMs);
 
-  state.hardTimeoutTimer = window.setTimeout(() => {
-    if (state.activeRequestId !== requestId || !state.requestInFlight) {
+  transportState.hardTimeoutTimer = window.setTimeout(() => {
+    if (state.activeRequestId !== requestId || !state.requestInFlight || state.activeTransport !== transportState) {
       return;
     }
     controller.__abortReason = createRequestError(hardKind, hardMessage);
-    controller.abort();
+    controller.abort(controller.__abortReason);
   }, hardDelayMs);
 }
 
@@ -850,7 +932,7 @@ function handleStreamEvent(event, requestId) {
   return false;
 }
 
-async function consumeNdjsonStream(response, requestId) {
+async function consumeNdjsonStream(response, requestId, controller) {
   if (!response.body) {
     throw createRequestError("stream_unavailable", "浏览器未提供可读流，无法进入流式渲染。");
   }
@@ -888,8 +970,9 @@ async function consumeNdjsonStream(response, requestId) {
       completed = handleStreamEvent(event, requestId) || completed;
     }
   } catch (error) {
-    if (error?.name === "AbortError" && state.activeController?.__abortReason) {
-      throw state.activeController.__abortReason;
+    const abortReason = getAbortReason(error, controller);
+    if (abortReason) {
+      throw abortReason;
     }
     throw error;
   }
@@ -907,7 +990,12 @@ async function readJsonSafely(response) {
   }
 }
 
-async function submitQueryWithStream(query, requestId, signal) {
+async function submitQueryWithStream(query, requestId, controller) {
+  const debugFailure = consumeDebugFailure("stream", query);
+  if (debugFailure) {
+    throw debugFailure;
+  }
+
   let response;
 
   try {
@@ -917,11 +1005,12 @@ async function submitQueryWithStream(query, requestId, signal) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ query }),
-      signal,
+      signal: controller.signal,
     });
   } catch (error) {
-    if (error?.name === "AbortError" && state.activeController?.__abortReason) {
-      throw state.activeController.__abortReason;
+    const abortReason = getAbortReason(error, controller);
+    if (abortReason) {
+      throw abortReason;
     }
     throw createRequestError("stream_transport_failed", "流式请求未能成功建立。");
   }
@@ -941,7 +1030,8 @@ async function submitQueryWithStream(query, requestId, signal) {
     return false;
   }
 
-  await consumeNdjsonStream(response, requestId);
+  await consumeNdjsonStream(response, requestId, controller);
+  clearRequestTimers(requestId);
   return true;
 }
 
@@ -973,6 +1063,11 @@ async function submitQueryWithFallback(query, requestId, triggerError) {
     hardMessage: "标准请求等待时间较长，本次请求已停止。你可以直接重试。",
   });
 
+  const debugFailure = consumeDebugFailure("fallback", query);
+  if (debugFailure) {
+    throw debugFailure;
+  }
+
   let response;
   try {
     response = await fetch(API_PATH, {
@@ -984,8 +1079,9 @@ async function submitQueryWithFallback(query, requestId, triggerError) {
       signal: controller.signal,
     });
   } catch (error) {
-    if (error?.name === "AbortError" && state.activeController?.__abortReason) {
-      throw state.activeController.__abortReason;
+    const abortReason = getAbortReason(error, controller);
+    if (abortReason) {
+      throw abortReason;
     }
     throw createRequestError("fallback_transport_failed", "标准请求未能成功返回。");
   }
@@ -998,6 +1094,7 @@ async function submitQueryWithFallback(query, requestId, triggerError) {
     throw createRequestError("fallback_response_failed", "标准请求未返回可解析的 JSON。");
   }
 
+  clearRequestTimers(requestId);
   renderPayload(payload, { preserveAnswerText: false, preserveEvidence: false });
   settleProgress("标准响应已返回，界面已完成收尾。");
   refs.statusText.textContent = "请求已完成";
@@ -1022,38 +1119,43 @@ async function submitQuery(query) {
     hardMessage: "等待时间较长，本次流式请求已停止。你可以直接重试。",
   });
 
+  let streamError = null;
+
   try {
-    const streamed = await submitQueryWithStream(query, requestId, streamController.signal);
+    const streamed = await submitQueryWithStream(query, requestId, streamController);
     if (!streamed) {
-      await submitQueryWithFallback(
-        query,
-        requestId,
-        createRequestError("stream_unavailable", "流式接口不可用，已自动回退到标准请求。"),
-      );
+      streamError = createRequestError("stream_unavailable", "流式接口不可用，已自动回退到标准请求。");
+    } else {
+      return;
     }
-  } catch (streamError) {
+  } catch (error) {
     if (requestId !== state.activeRequestId) {
       return;
     }
-    try {
-      await submitQueryWithFallback(query, requestId, streamError);
-    } catch (fallbackError) {
-      const combinedError = createRequestError(
-        "stream_and_fallback_failed",
-        fallbackError.message,
-        { streamError, fallbackError },
-      );
-      const errorCopy = normalizeErrorCopy(combinedError);
-      interruptProgress(errorCopy.title);
-      showErrorState(errorCopy);
-      console.error(streamError);
-      console.error(fallbackError);
-    }
+    streamError = error;
+  }
+
+  if (requestId !== state.activeRequestId) {
+    return;
+  }
+
+  try {
+    await submitQueryWithFallback(query, requestId, streamError);
+  } catch (fallbackError) {
+    const combinedError = createRequestError(
+      "stream_and_fallback_failed",
+      fallbackError.message,
+      { streamError, fallbackError },
+    );
+    const errorCopy = normalizeErrorCopy(combinedError);
+    interruptProgress(errorCopy.title);
+    showErrorState(errorCopy);
+    console.error(streamError);
+    console.error(fallbackError);
   } finally {
     if (requestId === state.activeRequestId) {
       state.requestInFlight = false;
-      state.activeController = null;
-      clearRequestTimers();
+      clearRequestTimers(requestId);
       setLoading(false);
     }
   }
@@ -1174,6 +1276,19 @@ function boot() {
 
   refs.statusText.textContent = "前端脚本已加载，等待提交";
   window.__frontendTestHooks = {
+    submitQuery,
+    failNextRequest,
+    clearPlannedFailures: () => {
+      state.debugRequestFailure = null;
+    },
+    getRequestState: () => ({
+      activeRequestId: state.activeRequestId,
+      requestInFlight: state.requestInFlight,
+      activeTransportRequestId: state.activeTransport?.requestId || null,
+      lastQuery: state.lastQuery,
+      latestAnswerMode: state.latestPayload?.answer_mode || null,
+      debugRequestFailure: state.debugRequestFailure,
+    }),
     normalizeErrorCopy,
     resolveRecordTitle,
     titlesTooSimilar,
