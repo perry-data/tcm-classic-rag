@@ -38,6 +38,7 @@ API_PATH = "/api/v1/answers"
 API_STREAM_PATH = "/api/v1/answers/stream"
 DEFAULT_HOST = "127.0.0.1"
 DEFAULT_PORT = 8000
+BENIGN_DISCONNECT_ERRNOS = {32, 53, 54, 104}
 DEFAULT_API_EXAMPLES_OUT = "artifacts/api_examples.json"
 DEFAULT_API_SMOKE_OUT = "artifacts/api_smoke_checks.md"
 DEFAULT_LLM_API_EXAMPLES_OUT = "artifacts/llm_api_examples_modelstudio.json"
@@ -230,8 +231,29 @@ class MinimalApiService:
         return self.answer_query(query, progress_callback=progress_callback)
 
 
+def is_benign_disconnect_exception(exc: BaseException | None) -> bool:
+    seen: set[int] = set()
+    current = exc
+
+    while current is not None and id(current) not in seen:
+        seen.add(id(current))
+        if isinstance(current, (BrokenPipeError, ConnectionResetError, ConnectionAbortedError)):
+            return True
+        if isinstance(current, OSError) and getattr(current, "errno", None) in BENIGN_DISCONNECT_ERRNOS:
+            return True
+        current = current.__cause__ or current.__context__
+
+    return False
+
+
 class MinimalApiHTTPServer(HTTPServer):
     allow_reuse_address = True
+
+    def handle_error(self, request: Any, client_address: tuple[str, int] | str) -> None:
+        exc = sys.exc_info()[1]
+        if is_benign_disconnect_exception(exc):
+            return
+        super().handle_error(request, client_address)
 
 
 def build_stream_phase_event(stage: str, detail: str | None = None) -> dict[str, Any]:
@@ -272,6 +294,24 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
     class MinimalApiHandler(BaseHTTPRequestHandler):
         server_version = "TCMClassicRAGMinimalAPI/0.1"
         protocol_version = "HTTP/1.1"
+
+        def handle_one_request(self) -> None:
+            try:
+                super().handle_one_request()
+            except Exception as exc:
+                if self._is_client_disconnect(exc):
+                    self.close_connection = True
+                    return
+                raise
+
+        def finish(self) -> None:
+            try:
+                super().finish()
+            except Exception as exc:
+                if self._is_client_disconnect(exc):
+                    self.close_connection = True
+                    return
+                raise
 
         def do_POST(self) -> None:  # noqa: N802
             request_path = urlsplit(self.path).path
@@ -369,7 +409,7 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
 
         @staticmethod
         def _is_client_disconnect(exc: BaseException) -> bool:
-            return isinstance(exc, (BrokenPipeError, ConnectionResetError, ConnectionAbortedError))
+            return is_benign_disconnect_exception(exc)
 
         def _send_json(self, status_code: int, payload: dict[str, Any]) -> None:
             body = (json.dumps(payload, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
