@@ -103,6 +103,7 @@ const state = {
   lastQuery: "",
   activeRequestId: 0,
   activeTransport: null,
+  activeStreamReader: null,
   requestInFlight: false,
   supportingExpanded: false,
   debugRequestFailure: null,
@@ -348,6 +349,60 @@ function clearRequestTimers(requestId = null) {
   }
 
   state.activeTransport = null;
+}
+
+function registerActiveStreamReader(requestId, reader) {
+  if (requestId !== state.activeRequestId) {
+    return;
+  }
+  state.activeStreamReader = reader;
+}
+
+function releaseActiveStreamReader(requestId, reader) {
+  if (requestId === state.activeRequestId && state.activeStreamReader === reader) {
+    state.activeStreamReader = null;
+  }
+
+  try {
+    reader.releaseLock();
+  } catch (error) {
+    // Ignore lock-release noise when the browser has already detached the reader.
+  }
+}
+
+function startRequest(query) {
+  setErrorSummary("");
+  setLoading(true);
+  state.lastQuery = query;
+  state.requestInFlight = true;
+  state.activeStreamReader = null;
+
+  const requestId = state.activeRequestId + 1;
+  state.activeRequestId = requestId;
+  window.__lastSubmitQuery = query;
+  resetViewForRequest(query);
+  return requestId;
+}
+
+function cleanupRequestState(requestId) {
+  if (requestId !== state.activeRequestId) {
+    return;
+  }
+
+  clearRequestTimers(requestId);
+  state.activeStreamReader = null;
+  state.requestInFlight = false;
+  setLoading(false);
+}
+
+function settleRequestError(requestId, error) {
+  if (requestId !== state.activeRequestId) {
+    return;
+  }
+
+  const errorCopy = normalizeErrorCopy(error);
+  interruptProgress(errorCopy.title);
+  showErrorState(errorCopy);
 }
 
 function getAbortReason(error, controller) {
@@ -938,6 +993,7 @@ async function consumeNdjsonStream(response, requestId, controller) {
   }
 
   const reader = response.body.getReader();
+  registerActiveStreamReader(requestId, reader);
   const decoder = new TextDecoder();
   let buffer = "";
   let completed = false;
@@ -975,6 +1031,8 @@ async function consumeNdjsonStream(response, requestId, controller) {
       throw abortReason;
     }
     throw error;
+  } finally {
+    releaseActiveStreamReader(requestId, reader);
   }
 
   if (!completed) {
@@ -1101,45 +1159,43 @@ async function submitQueryWithFallback(query, requestId, triggerError) {
 }
 
 async function submitQuery(query) {
-  setErrorSummary("");
-  setLoading(true);
-  state.lastQuery = query;
-  state.requestInFlight = true;
-  const requestId = state.activeRequestId + 1;
-  state.activeRequestId = requestId;
-  window.__lastSubmitQuery = query;
-  resetViewForRequest(query);
-
-  const streamController = new AbortController();
-  startRequestTimers(requestId, streamController, {
-    softDelayMs: STREAM_SOFT_WARNING_MS,
-    hardDelayMs: STREAM_HARD_TIMEOUT_MS,
-    softMessage: "等待时间比平时更长，系统仍在继续处理。你可以继续等待。",
-    hardKind: "request_timeout",
-    hardMessage: "等待时间较长，本次流式请求已停止。你可以直接重试。",
-  });
-
-  let streamError = null;
-
-  try {
-    const streamed = await submitQueryWithStream(query, requestId, streamController);
-    if (!streamed) {
-      streamError = createRequestError("stream_unavailable", "流式接口不可用，已自动回退到标准请求。");
-    } else {
-      return;
-    }
-  } catch (error) {
-    if (requestId !== state.activeRequestId) {
-      return;
-    }
-    streamError = error;
-  }
-
-  if (requestId !== state.activeRequestId) {
+  if (state.requestInFlight) {
+    setErrorSummary("当前请求仍在处理中，请等待当前回答完成后再发起下一问。");
+    refs.statusText.textContent = "当前请求仍在处理中";
     return;
   }
 
+  const requestId = startRequest(query);
+
+  const streamController = new AbortController();
+  let streamError = null;
+
   try {
+    startRequestTimers(requestId, streamController, {
+      softDelayMs: STREAM_SOFT_WARNING_MS,
+      hardDelayMs: STREAM_HARD_TIMEOUT_MS,
+      softMessage: "等待时间比平时更长，系统仍在继续处理。你可以继续等待。",
+      hardKind: "request_timeout",
+      hardMessage: "等待时间较长，本次流式请求已停止。你可以直接重试。",
+    });
+
+    try {
+      const streamed = await submitQueryWithStream(query, requestId, streamController);
+      if (streamed) {
+        return;
+      }
+      streamError = createRequestError("stream_unavailable", "流式接口不可用，已自动回退到标准请求。");
+    } catch (error) {
+      if (requestId !== state.activeRequestId) {
+        return;
+      }
+      streamError = error;
+    }
+
+    if (requestId !== state.activeRequestId) {
+      return;
+    }
+
     await submitQueryWithFallback(query, requestId, streamError);
   } catch (fallbackError) {
     const combinedError = createRequestError(
@@ -1147,17 +1203,11 @@ async function submitQuery(query) {
       fallbackError.message,
       { streamError, fallbackError },
     );
-    const errorCopy = normalizeErrorCopy(combinedError);
-    interruptProgress(errorCopy.title);
-    showErrorState(errorCopy);
+    settleRequestError(requestId, combinedError);
     console.error(streamError);
     console.error(fallbackError);
   } finally {
-    if (requestId === state.activeRequestId) {
-      state.requestInFlight = false;
-      clearRequestTimers(requestId);
-      setLoading(false);
-    }
+    cleanupRequestState(requestId);
   }
 }
 
@@ -1285,9 +1335,11 @@ function boot() {
       activeRequestId: state.activeRequestId,
       requestInFlight: state.requestInFlight,
       activeTransportRequestId: state.activeTransport?.requestId || null,
+      activeStreamReader: Boolean(state.activeStreamReader),
       lastQuery: state.lastQuery,
       latestAnswerMode: state.latestPayload?.answer_mode || null,
       debugRequestFailure: state.debugRequestFailure,
+      submitDisabled: refs.submitButton?.disabled || false,
     }),
     normalizeErrorCopy,
     resolveRecordTitle,

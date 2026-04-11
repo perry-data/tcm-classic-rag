@@ -325,7 +325,9 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
 
             try:
                 payload = self._read_json_body()
-                response_payload = service.answer(payload)
+                query = service._normalize_query_payload(payload)
+                response_payload = service.answer_query(query)
+                log(f"[api:request] path={request_path} mode={response_payload.get('answer_mode')} query={query}")
             except ApiRequestError as exc:
                 self._send_json(exc.status_code, {"error": {"code": exc.code, "message": exc.message}})
                 return
@@ -480,6 +482,7 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
                     )
 
                 response_payload = service.answer_query(query, progress_callback=progress_callback)
+                log(f"[api:request] path={API_STREAM_PATH} mode={response_payload.get('answer_mode')} query={query}")
                 self._write_stream_event({"type": "evidence_ready", "payload": response_payload})
                 for chunk in split_answer_text_for_stream(response_payload.get("answer_text", "")):
                     self._write_stream_event({"type": "answer_delta", "delta": chunk})
