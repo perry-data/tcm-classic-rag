@@ -43,6 +43,7 @@ from backend.retrieval.hybrid import (
     log,
 )
 from backend.retrieval.minimal import compact_text, extract_title_anchor
+from backend.retrieval.minimal import extract_focus_text
 
 
 DEFAULT_ANSWER_EXAMPLES_OUT = "artifacts/hybrid_answer_examples.json"
@@ -58,6 +59,8 @@ GENERAL_MANAGEMENT_BRANCH_LIMIT = 3
 GENERAL_WEAK_BRANCH_LIMIT = 3
 GENERAL_SECONDARY_LIMIT = 5
 GENERAL_REVIEW_LIMIT = 3
+DEFINITION_OUTLINE_SECONDARY_LIMIT = 5
+DEFINITION_OUTLINE_REVIEW_LIMIT = 3
 
 GENERAL_TOPIC_ALIAS_CONFIG = {
     compact_text("少阳病"): {
@@ -76,6 +79,97 @@ GENERAL_TOPIC_ALIAS_CONFIG = {
         ),
     },
 }
+
+SIX_STAGE_DISEASE_BASES = (
+    "太阳",
+    "阳明",
+    "少阳",
+    "太阴",
+    "少阴",
+    "厥阴",
+)
+
+DEFINITION_OUTLINE_TOPIC_CONFIG = {
+    compact_text(f"{base}病"): {
+        "canonical_name": f"{base}病",
+        "topic_base": base,
+        "topic_aliases": (
+            compact_text(f"{base}病"),
+            compact_text(base),
+            compact_text(f"{base}之为病"),
+            compact_text(f"{base}之病"),
+        ),
+        "chapter_aliases": (compact_text(f"辨{base}病"),),
+        "definition_prefixes": (
+            compact_text(f"{base}之为病"),
+            compact_text(f"{base}之病"),
+        ),
+    }
+    for base in SIX_STAGE_DISEASE_BASES
+}
+
+DEFINITION_OUTLINE_ALIAS_LOOKUP = {
+    alias: config_key
+    for config_key, config in DEFINITION_OUTLINE_TOPIC_CONFIG.items()
+    for alias in config["topic_aliases"]
+}
+
+DEFINITION_OUTLINE_TRIGGER_SPECS = (
+    ("之为病是什么", "definition"),
+    ("的提纲是什么", "outline"),
+    ("的定义是什么", "definition"),
+    ("提纲是什么", "outline"),
+    ("定义是什么", "definition"),
+    ("是什么病", "definition"),
+    ("是什么", "definition"),
+)
+
+DEFINITION_OUTLINE_PREFIXES = (
+    "请问",
+    "关于",
+    "对于",
+    "书中",
+    "文中",
+    "伤寒论里",
+    "伤寒论中",
+)
+
+DEFINITION_OUTLINE_SUFFIX_NOISE = (
+    "的",
+    "呢",
+    "呀",
+)
+
+DEFINITION_OUTLINE_BLOCK_HINTS = tuple(
+    compact_text(hint)
+    for hint in (
+        "怎么办",
+        "该怎么办",
+        "应该怎么办",
+        "怎么处理",
+        "如何处理",
+        "如何治疗",
+        "条文",
+        "原文",
+        "出处",
+        "出自",
+        "有哪些情况",
+        "有什么情况",
+        "有哪些分支",
+        "有什么分支",
+        "分类",
+        "区别",
+        "不同",
+        "异同",
+        "比较",
+        "为什么",
+        "是什么意思",
+        "什么意思",
+        "有哪些核心表现",
+        "应该用什么方",
+        "如何用药",
+    )
+)
 
 FORMULA_VARIANT_REPLACEMENTS = (
     ("厚朴", "浓朴"),
@@ -422,6 +516,17 @@ def dedupe_strings(values: list[str]) -> list[str]:
     return ordered
 
 
+@dataclass(frozen=True)
+class DefinitionOutlinePlan:
+    query_text: str
+    topic_text: str
+    normalized_topic: str
+    canonical_topic: str
+    topic_base: str
+    query_kind: str
+    matched_trigger: str
+
+
 @dataclass
 class AnswerAssembler:
     db_path: Path
@@ -496,6 +601,9 @@ class AnswerAssembler:
             formula_effect_plan = self._detect_formula_effect_query(query_text)
             if formula_effect_plan is not None:
                 return self._assemble_formula_effect_query(query_text, formula_effect_plan)
+            definition_outline_plan = self._detect_definition_outline_query(query_text)
+            if definition_outline_plan is not None:
+                return self._assemble_definition_outline_query(query_text, definition_outline_plan)
             general_plan = detect_general_question(query_text)
             if general_plan is not None:
                 return self._assemble_general_question(query_text, general_plan)
@@ -1067,6 +1175,310 @@ class AnswerAssembler:
                 f"可以继续追问：{general_plan.topic_text}里“{candidate['branch_meta'].branch_label}”具体怎么理解？"
             )
         return dedupe_strings(followups)[:3]
+
+    def _detect_definition_outline_query(self, query_text: str) -> DefinitionOutlinePlan | None:
+        compact_query = compact_whitespace(query_text)
+        if not compact_query:
+            return None
+
+        normalized_query = compact_text(compact_query)
+        if any(hint in normalized_query for hint in DEFINITION_OUTLINE_BLOCK_HINTS):
+            return None
+
+        matched_trigger = ""
+        query_kind = ""
+        for trigger, kind in DEFINITION_OUTLINE_TRIGGER_SPECS:
+            if normalized_query.endswith(compact_text(trigger)):
+                matched_trigger = trigger
+                query_kind = kind
+                break
+
+        if not matched_trigger:
+            return None
+
+        stripped_query = compact_query.strip().strip("？?！!。；;，,：:")
+        topic_text = stripped_query[: -len(matched_trigger)].strip().strip("？?！!。；;，,：:")
+        for prefix in DEFINITION_OUTLINE_PREFIXES:
+            if topic_text.startswith(prefix):
+                topic_text = topic_text[len(prefix) :].strip()
+        for suffix in DEFINITION_OUTLINE_SUFFIX_NOISE:
+            if topic_text.endswith(suffix):
+                topic_text = topic_text[: -len(suffix)].strip()
+        topic_text = topic_text.strip("？?！!。；;，,：:")
+        if not topic_text:
+            return None
+
+        normalized_topic = self._normalize_definition_outline_topic(topic_text)
+        if not normalized_topic:
+            return None
+
+        topic_config = DEFINITION_OUTLINE_TOPIC_CONFIG[normalized_topic]
+        return DefinitionOutlinePlan(
+            query_text=compact_query,
+            topic_text=topic_text,
+            normalized_topic=normalized_topic,
+            canonical_topic=topic_config["canonical_name"],
+            topic_base=topic_config["topic_base"],
+            query_kind=query_kind,
+            matched_trigger=matched_trigger,
+        )
+
+    def _normalize_definition_outline_topic(self, topic_text: str) -> str | None:
+        normalized_topic = compact_text(topic_text)
+        if not normalized_topic:
+            return None
+
+        direct_hit = DEFINITION_OUTLINE_ALIAS_LOOKUP.get(normalized_topic)
+        if direct_hit:
+            return direct_hit
+
+        for suffix in (compact_text("之为病"), compact_text("之病")):
+            if normalized_topic.endswith(suffix) and len(normalized_topic) > len(suffix):
+                trimmed = normalized_topic[: -len(suffix)]
+                return (
+                    DEFINITION_OUTLINE_ALIAS_LOOKUP.get(trimmed)
+                    or DEFINITION_OUTLINE_ALIAS_LOOKUP.get(trimmed + compact_text("病"))
+                )
+
+        if not normalized_topic.endswith(compact_text("病")):
+            return DEFINITION_OUTLINE_ALIAS_LOOKUP.get(normalized_topic + compact_text("病"))
+        return None
+
+    def _assemble_definition_outline_query(
+        self,
+        query_text: str,
+        definition_plan: DefinitionOutlinePlan,
+    ) -> dict[str, Any]:
+        query_retrieval = self.engine.retrieve(query_text)
+        topic_focus = extract_focus_text(query_text)
+        topic_retrieval = (
+            query_retrieval
+            if topic_focus == definition_plan.normalized_topic
+            else self.engine.retrieve(definition_plan.canonical_topic)
+        )
+        retrievals = [query_retrieval] if topic_retrieval is query_retrieval else [query_retrieval, topic_retrieval]
+        seed_scores = self._build_general_seed_scores(retrievals)
+
+        self._emit_progress(
+            "organizing_evidence",
+            "已识别为定义 / 提纲类问题，正在优先裁决经典定义句与总纲句。",
+        )
+        candidates = self._collect_definition_outline_candidates(definition_plan, seed_scores)
+        if not candidates:
+            return self._assemble_standard(query_text)
+
+        primary = [
+            self._build_evidence_item(
+                candidates[0]["row"],
+                display_role="primary",
+                title_override=f"{definition_plan.canonical_topic} · 提纲条文",
+            )
+        ]
+        secondary = self._build_definition_outline_secondary(
+            definition_plan,
+            candidates=candidates[1:],
+            retrievals=retrievals,
+            selected_record_ids={primary[0]["record_id"]},
+        )
+        review_rows = self._collect_general_slot_rows(retrievals, slot_name="risk_materials")
+        review = [
+            self._build_evidence_item(row, display_role="review")
+            for row in review_rows[:DEFINITION_OUTLINE_REVIEW_LIMIT]
+        ]
+        answer_text = self._build_definition_outline_answer_text(
+            definition_plan,
+            primary[0],
+            has_secondary=bool(secondary),
+        )
+        citations = self._build_citations("strong", primary, secondary, review)
+        return self._compose_payload(
+            query_text=query_text,
+            answer_mode="strong",
+            answer_text=answer_text,
+            primary=primary,
+            secondary=secondary,
+            review=review,
+            review_notice=self._build_review_notice("strong") if secondary or review else None,
+            disclaimer=self._build_disclaimer("strong", bool(secondary), bool(review)),
+            refuse_reason=None,
+            suggested_followup_questions=[],
+            citations=citations,
+        )
+
+    def _collect_definition_outline_candidates(
+        self,
+        definition_plan: DefinitionOutlinePlan,
+        seed_scores: dict[str, float],
+    ) -> list[dict[str, Any]]:
+        candidates: list[dict[str, Any]] = []
+        for row in self.engine.unified_rows:
+            if row["source_object"] != "main_passages":
+                continue
+            if row["evidence_level"] not in {"A", "B"}:
+                continue
+            candidate_meta = self._score_definition_outline_row(
+                definition_plan,
+                row,
+                seed_score=seed_scores.get(row["record_id"], 0.0),
+            )
+            if candidate_meta is None:
+                continue
+            candidates.append(
+                {
+                    "row": self._normalize_record_row(row),
+                    **candidate_meta,
+                }
+            )
+
+        return sorted(
+            candidates,
+            key=lambda item: (
+                -item["selection_score"],
+                item["row"]["chapter_id"],
+                item["row"]["record_id"],
+            ),
+        )
+
+    def _score_definition_outline_row(
+        self,
+        definition_plan: DefinitionOutlinePlan,
+        row: dict[str, Any],
+        *,
+        seed_score: float,
+    ) -> dict[str, Any] | None:
+        cleaned_compact = self._definition_outline_clean_text(row.get("retrieval_text", ""))
+        if not cleaned_compact:
+            return None
+
+        topic_compact = compact_text(definition_plan.canonical_topic)
+        topic_config = DEFINITION_OUTLINE_TOPIC_CONFIG[definition_plan.normalized_topic]
+
+        candidate_kind = ""
+        score = 0.0
+        if any(cleaned_compact.startswith(prefix) for prefix in topic_config["definition_prefixes"]):
+            candidate_kind = "outline_definition"
+            score = 120.0
+        elif re.match(
+            rf"^问曰{re.escape(topic_compact)}[^。；]{0,24}(?:外证云何|何谓也|何也)答曰",
+            cleaned_compact,
+        ):
+            candidate_kind = "qa_definition"
+            score = 72.0
+        elif cleaned_compact.startswith(compact_text(f"凡{definition_plan.topic_base}病")) or cleaned_compact.startswith(
+            compact_text(f"凡{definition_plan.topic_base}")
+        ):
+            candidate_kind = "fan_definition"
+            score = 86.0
+        elif cleaned_compact.startswith(topic_compact) and ("名曰" in cleaned_compact or "名为" in cleaned_compact):
+            candidate_kind = "named_definition"
+            score = 64.0
+        elif cleaned_compact.startswith(topic_compact):
+            candidate_kind = "topic_statement"
+            score = 38.0
+        else:
+            return None
+
+        score += 16.0 if self._definition_outline_chapter_matches(definition_plan, row) else 0.0
+        score += 10.0 if row["evidence_level"] == "A" else 6.0
+        score += min(seed_score, 24.0)
+
+        text_length = len(cleaned_compact)
+        if text_length <= 40:
+            score += 6.0
+        elif text_length <= 80:
+            score += 3.0
+
+        if "主之" in cleaned_compact:
+            score -= 18.0
+        if "欲解时" in cleaned_compact:
+            score -= 24.0
+        if "死" in cleaned_compact and candidate_kind == "topic_statement":
+            score -= 18.0
+        if "问曰" in cleaned_compact and candidate_kind != "qa_definition":
+            score -= 10.0
+
+        if score < 48.0:
+            return None
+
+        return {
+            "selection_score": score,
+            "candidate_kind": candidate_kind,
+            "clean_snippet": self._normalize_definition_outline_source_text(row.get("retrieval_text", "")),
+        }
+
+    def _build_definition_outline_secondary(
+        self,
+        definition_plan: DefinitionOutlinePlan,
+        *,
+        candidates: list[dict[str, Any]],
+        retrievals: list[dict[str, Any]],
+        selected_record_ids: set[str],
+    ) -> list[dict[str, Any]]:
+        secondary: list[dict[str, Any]] = []
+        seen_ids = set(selected_record_ids)
+
+        for candidate in candidates:
+            if candidate["selection_score"] < 64.0:
+                continue
+            record_id = candidate["row"]["record_id"]
+            if record_id in seen_ids:
+                continue
+            secondary.append(self._build_evidence_item(candidate["row"], display_role="secondary"))
+            seen_ids.add(record_id)
+            if len(secondary) >= 2:
+                break
+
+        fallback_primary_rows = self._collect_general_slot_rows(retrievals, slot_name="primary_evidence")
+        fallback_secondary_rows = self._collect_general_slot_rows(retrievals, slot_name="secondary_evidence")
+        for row in fallback_primary_rows + fallback_secondary_rows:
+            if row["record_id"] in seen_ids:
+                continue
+            secondary.append(self._build_evidence_item(row, display_role="secondary"))
+            seen_ids.add(row["record_id"])
+            if len(secondary) >= DEFINITION_OUTLINE_SECONDARY_LIMIT:
+                break
+
+        return secondary
+
+    def _definition_outline_chapter_matches(
+        self,
+        definition_plan: DefinitionOutlinePlan,
+        row: dict[str, Any],
+    ) -> bool:
+        normalized_chapter_name = compact_text(row.get("chapter_name"))
+        if definition_plan.normalized_topic in normalized_chapter_name:
+            return True
+        topic_config = DEFINITION_OUTLINE_TOPIC_CONFIG[definition_plan.normalized_topic]
+        return any(alias in normalized_chapter_name for alias in topic_config["chapter_aliases"])
+
+    def _definition_outline_clean_text(self, text: str | None) -> str:
+        return compact_text(self._normalize_definition_outline_source_text(text))
+
+    def _normalize_definition_outline_source_text(self, text: str | None) -> str:
+        cleaned = compact_whitespace(text)
+        cleaned = re.sub(r"(?:赵本|医统本)+(?:皆)?并有「([^」]+)」字", r"\1", cleaned)
+        cleaned = re.sub(r"(?:赵本|医统本)+(?:皆)?有「([^」]+)」字", r"\1", cleaned)
+        cleaned = re.sub(r"(?:赵本|医统本)+(?:皆)?(?:作|无)「[^」]+」字?", "", cleaned)
+        cleaned = re.sub(r"(?:赵本|医统本)注：?「[^」]+」", "", cleaned)
+        return compact_whitespace(cleaned).strip()
+
+    def _build_definition_outline_answer_text(
+        self,
+        definition_plan: DefinitionOutlinePlan,
+        primary_item: dict[str, Any],
+        *,
+        has_secondary: bool,
+    ) -> str:
+        primary_text = self._normalize_definition_outline_source_text(
+            self._fetch_record_meta(primary_item["record_id"])["retrieval_text"]
+        ) or primary_item["snippet"]
+        lines = [
+            f"书中对“{definition_plan.canonical_topic}”的提纲性表述，可先看“{primary_text}”",
+            f"主依据条文：{primary_text}",
+        ]
+        if has_secondary:
+            lines.append("其余相关条文可再看补充依据，用来展开外证、分类或治法，但不替代这条提纲句。")
+        return "\n".join(lines)
 
     def _build_comparison_refuse_reason(self, reason: str) -> str:
         if reason == "unsupported_comparison":
