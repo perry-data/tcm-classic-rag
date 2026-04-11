@@ -109,6 +109,58 @@ MEANING_EXPLANATION_QUERY_HINTS = (
     "什么意思",
 )
 
+FORMULA_EFFECT_QUERY_HINTS = tuple(
+    compact_text(hint)
+    for hint in (
+        "有什么作用",
+        "有何作用",
+        "作用是什么",
+        "有什么用",
+        "有何用",
+        "是干什么的",
+        "是做什么的",
+        "主什么",
+        "主治什么",
+        "适用于什么情况",
+        "适用什么情况",
+        "用于什么情况",
+        "用在什么情况",
+        "是治什么的",
+        "治什么的",
+    )
+)
+
+FORMULA_COMPOSITION_QUERY_HINTS = tuple(
+    compact_text(hint)
+    for hint in (
+        "由什么组成",
+        "组成是什么",
+        "由哪些组成",
+        "有哪些药",
+        "有什么药",
+        "药味",
+        "组成",
+    )
+)
+
+FORMULA_EFFECT_BLOCK_HINTS = tuple(
+    compact_text(hint)
+    for hint in (
+        "条文",
+        "原文",
+        "出处",
+        "出自",
+        "组成",
+        "药味",
+        "区别",
+        "不同",
+        "比较",
+        "异同",
+        "多了什么",
+        "少了什么",
+    )
+)
+
 STRONG_MEANING_EXPLANATION_MARKERS = (
     "名曰",
     "谓之",
@@ -241,6 +293,11 @@ NON_INGREDIENT_TOKENS = {
     "右",
 }
 
+FORMULA_EFFECT_SUPPORT_LIMIT = 1
+FORMULA_EFFECT_FORMULA_LIMIT = 1
+FORMULA_EFFECT_REVIEW_LIMIT = 3
+FORMULA_COMPOSITION_LIMIT = 3
+
 
 def resolve_project_path(path_value: str) -> Path:
     path = Path(path_value).expanduser()
@@ -299,6 +356,16 @@ def first_meaningful_line(text: str | None) -> str:
         if line:
             return line
     return ""
+
+
+def strip_inline_notes(text: str | None) -> str:
+    if not text:
+        return ""
+    cleaned = compact_whitespace(text)
+    cleaned = re.sub(r"(?:赵本|医统本)+(?:有|无|作)「[^」]+」字?", "", cleaned)
+    cleaned = re.sub(r"(?:赵本|医统本)+并有「[^」]+」字", "", cleaned)
+    cleaned = re.sub(r"(?:赵本|医统本)注：?「[^」]+」", "", cleaned)
+    return compact_whitespace(cleaned).strip()
 
 
 def build_examples_payload(results: list[dict[str, Any]]) -> dict[str, Any]:
@@ -423,6 +490,12 @@ class AnswerAssembler:
             comparison_plan = self._detect_comparison_query(query_text)
             if comparison_plan is not None:
                 return self._assemble_comparison(query_text, comparison_plan)
+            formula_composition_plan = self._detect_formula_composition_query(query_text)
+            if formula_composition_plan is not None:
+                return self._assemble_formula_composition_query(query_text, formula_composition_plan)
+            formula_effect_plan = self._detect_formula_effect_query(query_text)
+            if formula_effect_plan is not None:
+                return self._assemble_formula_effect_query(query_text, formula_effect_plan)
             general_plan = detect_general_question(query_text)
             if general_plan is not None:
                 return self._assemble_general_question(query_text, general_plan)
@@ -1002,16 +1075,197 @@ class AnswerAssembler:
             return "当前一次只支持两个对象的 pairwise comparison，请把问题收缩到两个方名。"
         return "当前无法稳定识别两个待比较的方名，因此不能可靠组织比较答案。"
 
-    def _build_comparison_entity_bundle(self, entity: dict[str, Any]) -> dict[str, Any]:
-        retrieval = self.engine.retrieve(entity["canonical_name"])
-        formula_row = self._find_formula_heading_row(entity["canonical_name"], retrieval)
+    def _detect_formula_composition_query(self, query_text: str) -> dict[str, Any] | None:
+        compact_query = compact_whitespace(query_text)
+        if not compact_query:
+            return None
+
+        mentions = self._find_formula_mentions(compact_query)
+        if len(mentions) != 1:
+            return None
+
+        normalized_query = normalize_formula_lookup_text(compact_query, keep_formula_suffix=True)
+        mention = mentions[0]
+        residual = compact_text(normalized_query[: mention["start"]] + normalized_query[mention["end"] :])
+        if not residual:
+            return None
+        if any(hint in residual for hint in COMPARISON_KEYWORDS):
+            return None
+        if not any(hint in residual for hint in FORMULA_COMPOSITION_QUERY_HINTS):
+            return None
+
+        return {
+            "canonical_name": mention["canonical_name"],
+            "mention": mention,
+        }
+
+    def _assemble_formula_composition_query(
+        self,
+        query_text: str,
+        composition_plan: dict[str, Any],
+    ) -> dict[str, Any]:
+        canonical_name = composition_plan["canonical_name"]
+        rows = self._collect_formula_composition_rows(canonical_name)
+        self._emit_progress(
+            "organizing_evidence",
+            "已识别为方剂组成类问题，正在整理方文中的药味组成。",
+        )
+
+        if rows:
+            primary = [
+                self._build_evidence_item(
+                    row,
+                    display_role="primary",
+                    title_override=f"{canonical_name} · 方文组成",
+                )
+                for row in rows[:FORMULA_COMPOSITION_LIMIT]
+            ]
+            secondary = []
+            review = [
+                self._build_evidence_item(row, display_role="review")
+                for row in self._lookup_review_rows(rows[:FORMULA_COMPOSITION_LIMIT])[:FORMULA_EFFECT_REVIEW_LIMIT]
+            ]
+            answer_text = self._build_formula_composition_answer_text(canonical_name, primary)
+            return self._compose_payload(
+                query_text=query_text,
+                answer_mode="strong",
+                answer_text=answer_text,
+                primary=primary,
+                secondary=secondary,
+                review=review,
+                review_notice=self._build_review_notice("strong"),
+                disclaimer=self._build_disclaimer("strong", False, bool(review)),
+                refuse_reason=None,
+                suggested_followup_questions=[],
+                citations=self._build_citations("strong", primary, secondary, review),
+            )
+
+        return self._compose_payload(
+            query_text=query_text,
+            answer_mode="refuse",
+            answer_text=f"当前未稳定检索到足以支撑“{canonical_name}由什么组成”这一问法的方文依据，暂不提供答案。",
+            primary=[],
+            secondary=[],
+            review=[],
+            review_notice=None,
+            disclaimer=self._build_disclaimer("refuse", False, False),
+            refuse_reason=self._build_refuse_reason("refuse"),
+            suggested_followup_questions=self._build_followups("refuse"),
+            citations=[],
+        )
+
+    def _detect_formula_effect_query(self, query_text: str) -> dict[str, Any] | None:
+        compact_query = compact_whitespace(query_text)
+        if not compact_query:
+            return None
+
+        mentions = self._find_formula_mentions(compact_query)
+        if len(mentions) != 1:
+            return None
+
+        normalized_query = normalize_formula_lookup_text(compact_query, keep_formula_suffix=True)
+        mention = mentions[0]
+        residual = compact_text(normalized_query[: mention["start"]] + normalized_query[mention["end"] :])
+        if not residual:
+            return None
+        if any(hint in residual for hint in FORMULA_EFFECT_BLOCK_HINTS):
+            return None
+        if not any(hint in residual for hint in FORMULA_EFFECT_QUERY_HINTS):
+            return None
+
+        return {
+            "canonical_name": mention["canonical_name"],
+            "mention": mention,
+        }
+
+    def _assemble_formula_effect_query(
+        self,
+        query_text: str,
+        effect_plan: dict[str, Any],
+    ) -> dict[str, Any]:
+        canonical_name = effect_plan["canonical_name"]
+        bundle = self._build_formula_bundle(canonical_name)
+        self._emit_progress(
+            "organizing_evidence",
+            "已识别为方剂作用类问题，正在整理直接使用语境与条文依据。",
+        )
+
+        answer_mode = self._determine_formula_effect_mode(bundle)
+        if answer_mode == "strong":
+            primary = [
+                self._build_evidence_item(
+                    row,
+                    display_role="primary",
+                    title_override=f"{canonical_name} · 直接条文依据",
+                )
+                for row in bundle["support_rows"][:FORMULA_EFFECT_SUPPORT_LIMIT]
+            ]
+            secondary = [
+                self._build_evidence_item(
+                    row,
+                    display_role="secondary",
+                    title_override=f"{canonical_name} · 方文",
+                )
+                for row in bundle["formula_rows"][:FORMULA_EFFECT_FORMULA_LIMIT]
+            ]
+            review = [
+                self._build_evidence_item(row, display_role="review")
+                for row in bundle["review_rows"][:FORMULA_EFFECT_REVIEW_LIMIT]
+            ]
+        elif answer_mode == "weak_with_review_notice":
+            primary = []
+            secondary = [
+                self._build_evidence_item(
+                    row,
+                    display_role="secondary",
+                    title_override=f"{canonical_name} · 方文",
+                    risk_flags_override=dedupe_strings(self._extract_risk_flags(row) + ["formula_effect_mode_demoted"]),
+                )
+                for row in bundle["formula_rows"][:FORMULA_EFFECT_FORMULA_LIMIT]
+            ]
+            review = [
+                self._build_evidence_item(row, display_role="review")
+                for row in bundle["review_rows"][:FORMULA_EFFECT_REVIEW_LIMIT]
+            ]
+        else:
+            primary = []
+            secondary = []
+            review = []
+
+        answer_text = self._build_formula_effect_answer_text(
+            canonical_name,
+            bundle,
+            answer_mode=answer_mode,
+        )
+        review_notice = self._build_review_notice(answer_mode)
+        disclaimer = self._build_disclaimer(answer_mode, bool(secondary), bool(review))
+        citations = self._build_formula_effect_citations(answer_mode, primary, secondary, review)
+        refuse_reason = self._build_refuse_reason(answer_mode)
+        followups = self._build_followups(answer_mode)
+        return self._compose_payload(
+            query_text=query_text,
+            answer_mode=answer_mode,
+            answer_text=answer_text,
+            primary=primary,
+            secondary=secondary,
+            review=review,
+            review_notice=review_notice,
+            disclaimer=disclaimer,
+            refuse_reason=refuse_reason,
+            suggested_followup_questions=followups,
+            citations=citations,
+        )
+
+    def _build_formula_bundle(self, canonical_name: str) -> dict[str, Any]:
+        retrieval = self.engine.retrieve(canonical_name)
+        formula_row = self._find_formula_heading_row(canonical_name, retrieval)
         formula_rows = [formula_row] if formula_row else []
         support_rows = self._find_support_rows(
-            entity["canonical_name"],
+            canonical_name,
             excluded_record_ids={row["record_id"] for row in formula_rows},
         )
-        context_row = support_rows[0] if support_rows else self._find_review_context_row(
-            entity["canonical_name"],
+        context_row = support_rows[0] if support_rows else self._find_formula_effect_review_context_row(
+            canonical_name,
             excluded_record_ids={row["record_id"] for row in formula_rows},
         )
         review_rows = self._lookup_review_rows(formula_rows + support_rows)
@@ -1020,18 +1274,25 @@ class AnswerAssembler:
             if context_row["record_id"] not in existing_review_ids:
                 review_rows.append(context_row)
         facts = self._extract_formula_facts(
-            entity["canonical_name"],
+            canonical_name,
             formula_row=formula_rows[0] if formula_rows else None,
             context_row=context_row,
         )
         return {
-            "group_label": entity["group_label"],
-            "canonical_name": entity["canonical_name"],
+            "canonical_name": canonical_name,
             "formula_rows": formula_rows,
             "support_rows": support_rows,
             "review_rows": review_rows,
             "facts": facts,
+            "context_row": context_row,
             "context_source": context_row["source_object"] if context_row else None,
+        }
+
+    def _build_comparison_entity_bundle(self, entity: dict[str, Any]) -> dict[str, Any]:
+        bundle = self._build_formula_bundle(entity["canonical_name"])
+        return {
+            "group_label": entity["group_label"],
+            **bundle,
         }
 
     def _find_formula_heading_row(self, canonical_name: str, retrieval: dict[str, Any]) -> dict[str, Any] | None:
@@ -1042,13 +1303,48 @@ class AnswerAssembler:
                 return row
         return None
 
+    def _collect_formula_composition_rows(self, canonical_name: str) -> list[dict[str, Any]]:
+        retrieval = self.engine.retrieve(canonical_name)
+        formula_row = self._find_formula_heading_row(canonical_name, retrieval)
+        if not formula_row:
+            return []
+
+        formula_chapter_id = formula_row["chapter_id"]
+        ordered_rows = sorted(
+            retrieval["primary_evidence"] + retrieval["secondary_evidence"],
+            key=lambda row: row["record_id"],
+        )
+        rows: list[dict[str, Any]] = []
+        for row in ordered_rows:
+            if row["source_object"] != "main_passages":
+                continue
+            if row["chapter_id"] != formula_chapter_id:
+                continue
+            if row["record_id"] < formula_row["record_id"]:
+                continue
+            if self._row_is_other_formula_heading(row, canonical_name):
+                continue
+            if not self._row_is_formula_composition_line(row, canonical_name):
+                continue
+            rows.append(row)
+        return rows[:FORMULA_COMPOSITION_LIMIT]
+
+    def _row_is_formula_composition_line(self, row: dict[str, Any], canonical_name: str) -> bool:
+        text = self._fetch_record_meta(row["record_id"])["retrieval_text"] or row.get("text_preview", "")
+        if self._row_is_formula_heading_for_entity(row, canonical_name):
+            return True
+        compact_line = compact_whitespace(text)
+        if compact_line.startswith("上") and "以水" in compact_line:
+            return False
+        return bool(re.search(r"(两|枚|个|斤|升|合|钱|铢)", compact_line))
+
     def _find_support_rows(self, canonical_name: str, excluded_record_ids: set[str]) -> list[dict[str, Any]]:
         return self._find_matching_rows(
             canonical_name,
             excluded_record_ids=excluded_record_ids,
             source_objects=("main_passages",),
             extra_risk_flags=["topic_mismatch_demoted"],
-            limit=COMPARISON_SUPPORT_LIMIT,
+            limit=FORMULA_EFFECT_SUPPORT_LIMIT,
         )
 
     def _find_review_context_row(self, canonical_name: str, excluded_record_ids: set[str]) -> dict[str, Any] | None:
@@ -1061,6 +1357,44 @@ class AnswerAssembler:
         )
         return rows[0] if rows else None
 
+    def _find_formula_effect_review_context_row(
+        self,
+        canonical_name: str,
+        excluded_record_ids: set[str],
+    ) -> dict[str, Any] | None:
+        preferred_chapter_id = self._formula_catalog.get(canonical_name, {}).get("chapter_id")
+        candidates: list[tuple[int, int, dict[str, Any]]] = []
+        for row in self.engine.unified_rows:
+            if row["record_id"] in excluded_record_ids:
+                continue
+            if row["source_object"] not in {"passages", "ambiguous_passages"}:
+                continue
+            row_mentions = {mention["canonical_name"] for mention in self._find_formula_mentions(row["retrieval_text"])}
+            if canonical_name not in row_mentions:
+                continue
+            if self._row_is_other_formula_heading(row, canonical_name):
+                continue
+            score = 0
+            if "主之" in row["retrieval_text"]:
+                score += 40
+            if row.get("chapter_id") == preferred_chapter_id:
+                score += 25
+            if row["source_object"] == "passages":
+                score += 8
+            compact_length = len(compact_whitespace(row["retrieval_text"]))
+            if compact_length <= 96:
+                score += 10
+            candidates.append(
+                (
+                    score,
+                    compact_length,
+                    self._normalize_record_row(row),
+                )
+            )
+
+        candidates.sort(key=lambda item: (-item[0], item[1], item[2]["record_id"]))
+        return candidates[0][2] if candidates else None
+
     def _find_matching_rows(
         self,
         canonical_name: str,
@@ -1070,17 +1404,18 @@ class AnswerAssembler:
         extra_risk_flags: list[str] | None,
         limit: int,
     ) -> list[dict[str, Any]]:
-        query_key = normalize_formula_lookup_text(canonical_name, keep_formula_suffix=False)
         candidates: list[tuple[int, int, dict[str, Any]]] = []
         for row in self.engine.unified_rows:
             if row["record_id"] in excluded_record_ids:
                 continue
             if row["source_object"] not in source_objects:
                 continue
-            normalized_text = normalize_formula_lookup_text(row["retrieval_text"], keep_formula_suffix=True)
-            if query_key not in normalized_text:
+            row_mentions = {mention["canonical_name"] for mention in self._find_formula_mentions(row["retrieval_text"])}
+            if canonical_name not in row_mentions:
                 continue
             if self._row_is_formula_heading_for_entity(row, canonical_name):
+                continue
+            if self._row_is_other_formula_heading(row, canonical_name):
                 continue
             score = 0
             if "主之" in row["retrieval_text"]:
@@ -1154,6 +1489,16 @@ class AnswerAssembler:
         if not title or not title.endswith("方"):
             return False
         return normalize_formula_lookup_text(title, keep_formula_suffix=False) == normalize_formula_lookup_text(
+            canonical_name,
+            keep_formula_suffix=False,
+        )
+
+    def _row_is_other_formula_heading(self, row: dict[str, Any], canonical_name: str) -> bool:
+        text = row.get("retrieval_text") or row.get("text_preview", "")
+        title = clean_formula_title_anchor(raw_title_anchor(text))
+        if not title or not title.endswith("方"):
+            return False
+        return normalize_formula_lookup_text(title, keep_formula_suffix=False) != normalize_formula_lookup_text(
             canonical_name,
             keep_formula_suffix=False,
         )
@@ -1245,6 +1590,75 @@ class AnswerAssembler:
         if "；" in context_text:
             context_text = context_text.split("；")[-1]
         return compact_whitespace(context_text.strip("，。；：: "))
+
+    def _clean_formula_effect_context(self, context_text: str) -> str:
+        cleaned = strip_inline_notes(context_text).strip("，。；：: ")
+        if cleaned.endswith("者") and len(cleaned) > 1:
+            cleaned = cleaned[:-1]
+        return cleaned.strip("，。；：: ")
+
+    def _build_formula_composition_answer_text(
+        self,
+        canonical_name: str,
+        primary: list[dict[str, Any]],
+    ) -> str:
+        lines = [f"根据当前主依据，{canonical_name}的组成可先按方文直读："]
+        for idx, item in enumerate(primary, start=1):
+            lines.append(f"{idx}. {item['snippet']}")
+        return "\n".join(lines)
+
+    def _determine_formula_effect_mode(self, bundle: dict[str, Any]) -> str:
+        if bundle["support_rows"] and bundle["context_source"] == "main_passages":
+            return "strong"
+        if bundle["context_row"] or bundle["formula_rows"]:
+            return "weak_with_review_notice"
+        return "refuse"
+
+    def _build_formula_effect_answer_text(
+        self,
+        canonical_name: str,
+        bundle: dict[str, Any],
+        *,
+        answer_mode: str,
+    ) -> str:
+        display_name = canonical_name[:-1] if canonical_name.endswith("方") else canonical_name
+        context_row = bundle.get("context_row")
+        context_text = self._clean_formula_effect_context(bundle["facts"].get("context_clause", ""))
+        context_snippet = ""
+        if context_row:
+            context_snippet = snippet_text(self._fetch_record_meta(context_row["record_id"])["retrieval_text"])
+        formula_snippet = ""
+        if bundle["formula_rows"]:
+            formula_snippet = snippet_text(self._fetch_record_meta(bundle["formula_rows"][0]["record_id"])["retrieval_text"])
+
+        if answer_mode == "strong":
+            lines = [
+                f"根据当前主依据，{display_name}在书中的直接使用语境，是“{context_text or context_snippet}”。",
+                f"也就是说，它更偏向用于{context_text or context_snippet}这类情况。",
+            ]
+            if context_snippet:
+                lines.append(f"依据条文：{context_snippet}")
+            if formula_snippet:
+                lines.append(f"补充方文：{formula_snippet}")
+            return "\n".join(lines)
+
+        if answer_mode == "weak_with_review_notice":
+            if context_text or context_snippet:
+                lines = [
+                    f"当前未稳定找到{display_name}在正文中的直接主治条文；目前只能从核对层材料看到“{context_text or context_snippet}”这一使用语境。",
+                    f"因此只能先保守理解为：它偏向用于{context_text or context_snippet}这类情况。",
+                ]
+                if context_snippet:
+                    lines.append(f"核对材料：{context_snippet}")
+            else:
+                lines = [
+                    f"当前只稳定找到{display_name}的方文，尚未稳定找到它在书中的直接使用语境，因此不能把“作用”概括成确定结论。"
+                ]
+            if formula_snippet:
+                lines.append(f"补充方文：{formula_snippet}")
+            return "\n".join(lines)
+
+        return f"当前未检索到足以支撑“{canonical_name}有什么作用”这一问法的直接使用语境依据，暂不提供答案。"
 
     def _formula_text_variants(self, canonical_name: str) -> list[str]:
         variants = {
@@ -1460,6 +1874,42 @@ class AnswerAssembler:
             citations.append(
                 {
                     "citation_id": f"c{index}",
+                    "record_id": item["record_id"],
+                    "record_type": item["record_type"],
+                    "title": item["title"],
+                    "evidence_level": item["evidence_level"],
+                    "snippet": item["snippet"],
+                    "chapter_id": item["chapter_id"],
+                    "chapter_title": item["chapter_title"],
+                    "citation_role": item["display_role"],
+                }
+            )
+        return citations
+
+    def _build_formula_effect_citations(
+        self,
+        answer_mode: str,
+        primary: list[dict[str, Any]],
+        secondary: list[dict[str, Any]],
+        review: list[dict[str, Any]],
+    ) -> list[dict[str, Any]]:
+        if answer_mode == "strong":
+            citation_source = primary + secondary
+        elif answer_mode == "weak_with_review_notice":
+            citation_source = secondary + review
+        else:
+            citation_source = []
+
+        citations: list[dict[str, Any]] = []
+        seen: set[str] = set()
+        for item in citation_source:
+            record_id = item["record_id"]
+            if record_id in seen:
+                continue
+            seen.add(record_id)
+            citations.append(
+                {
+                    "citation_id": f"c{len(citations) + 1}",
                     "record_id": item["record_id"],
                     "record_type": item["record_type"],
                     "title": item["title"],
