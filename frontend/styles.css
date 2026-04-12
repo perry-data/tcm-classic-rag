@@ -515,6 +515,23 @@ code {
   background: rgba(255, 255, 255, 0.52);
 }
 
+.support-note {
+  padding: 12px 14px;
+  border: 1px dashed rgba(106, 82, 60, 0.16);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.46);
+}
+
+.support-note-review {
+  color: #8b5b12;
+  background: rgba(255, 242, 219, 0.76);
+  border-color: rgba(206, 150, 68, 0.42);
+}
+
+.support-note p {
+  margin: 0;
+}
+
 .callout-review {
   background: rgba(255, 242, 219, 0.92);
   border-color: var(--warning-border);

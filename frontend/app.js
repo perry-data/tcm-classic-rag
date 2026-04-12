@@ -829,6 +829,7 @@ function updateEvidenceCounts(primary, secondary, review, citations, followups) 
 function resetResultSections() {
   refs.disclaimerText.textContent = "";
   refs.reviewNoticeText.textContent = "";
+  refs.supportingReviewNoteText.textContent = "";
   refs.refuseReasonText.textContent = "";
   clearList(refs.primaryList);
   clearList(refs.secondaryList);
@@ -842,6 +843,7 @@ function resetResultSections() {
   updateCountLabel(refs.followupsCount, 0);
 
   showSection(refs.reviewNoticeSection, false);
+  showSection(refs.supportingReviewNote, false);
   showSection(refs.refuseSection, false);
   showSection(refs.emptyEvidenceSection, false);
   showSection(refs.primarySection, false);
@@ -892,7 +894,9 @@ function renderPayload(payload, options = {}) {
     });
   }
 
-  refs.reviewNoticeText.textContent = payload.review_notice || "";
+  const reviewNotice = payload.review_notice || "";
+  refs.reviewNoticeText.textContent = reviewNotice;
+  refs.supportingReviewNoteText.textContent = reviewNotice;
   refs.refuseReasonText.textContent = payload.refuse_reason || "";
 
   const primary = Array.isArray(payload.primary_evidence) ? payload.primary_evidence : [];
@@ -904,7 +908,14 @@ function renderPayload(payload, options = {}) {
     : [];
 
   updateEvidenceCounts(primary, secondary, review, citations, followups);
-  showSection(refs.reviewNoticeSection, Boolean(payload.review_notice));
+  const shouldShowTopReviewNotice = Boolean(reviewNotice) && payload.answer_mode === "weak_with_review_notice";
+  const shouldShowSupportingReviewNotice =
+    Boolean(reviewNotice) &&
+    payload.answer_mode === "strong" &&
+    (secondary.length > 0 || review.length > 0);
+
+  showSection(refs.reviewNoticeSection, shouldShowTopReviewNotice);
+  showSection(refs.supportingReviewNote, shouldShowSupportingReviewNotice);
   showSection(refs.refuseSection, Boolean(payload.refuse_reason));
   showSection(refs.primarySection, primary.length > 0);
   showSection(refs.secondarySection, secondary.length > 0);
@@ -1248,6 +1259,8 @@ function boot() {
   refs.errorHelpText = requireElement("error-help-text");
   refs.reviewNoticeSection = requireElement("review-notice-section");
   refs.reviewNoticeText = requireElement("review-notice-text");
+  refs.supportingReviewNote = requireElement("supporting-review-note");
+  refs.supportingReviewNoteText = requireElement("supporting-review-note-text");
   refs.refuseSection = requireElement("refuse-section");
   refs.refuseReasonText = requireElement("refuse-reason-text");
   refs.emptyEvidenceSection = requireElement("empty-evidence-section");
