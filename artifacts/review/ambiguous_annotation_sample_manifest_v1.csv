@@ -1,0 +1,61 @@
+sample_id,source_type,original_id,current_safe_status,risk_reason,text_excerpt,related_anchor_or_passage_id,related_query_topic,suggested_review_bucket
+A01,main_passage,ZJSHL-CH-003-P-0049,removed,ambiguous_passages_registry_hit; removed_from_safe_main; query_topic_candidate,脉微者，邪气微也。邪气已微，正气又弱，脉所以微。既经发汗、吐下、亡阳、亡血，内无津液，则不能作汗，得阴阳气和而自愈也。,ZJSHL-CH-003-P-0048,发汗药,removed_ambiguous_query_gloss
+A02,main_passage,ZJSHL-CH-003-P-0050,removed,ambiguous_passages_registry_hit; removed_from_safe_main,问曰：伤寒三日，脉浮数而微，病患身凉和者，何也？答曰：此为欲解也。解以夜半。脉浮而解者，然汗出也；脉数而解者，必能食也；脉微而解者，必大汗出也。,ZJSHL-CH-003-P-0051,,removed_ambiguous_self_contained_qa
+A03,main_passage,ZJSHL-CH-006-P-0120,removed,ambiguous_passages_registry_hit; removed_from_safe_main; query_topic_candidate,桂枝汤者，发汗药也。承气汤者，下药也。《金匮玉函》曰：不当汗而强与汗之者，令人夺其津液，枯槁而死；不当下而强与下之者，令人开肠洞泄，便溺不禁而死。,ZJSHL-CH-006-P-0119,发汗药,removed_ambiguous_query_definition
+A04,main_passage,ZJSHL-CH-006-P-0126,removed,ambiguous_passages_registry_hit; removed_from_safe_main; query_topic_candidate,凡发汗温服赵本作「暖」汤药，其方虽言日三服，若病剧不解，当促其间，可半日中尽三服。若与病相阻，即便有所觉。重病赵本作「病重」者，一日一夜，当 时观之，如服一剂，病证犹…,ZJSHL-CH-006-P-0127,发汗药,removed_ambiguous_procedural_context
+A05,main_passage,ZJSHL-CH-006-P-0127,removed,ambiguous_passages_registry_hit; removed_from_safe_main; query_topic_candidate,发汗药，须温暖服者，易为发散也。日三服者，药势续也。病势稍重，当促急服之，以折盛热，不可拘于本方。设药病不相对，汤入即便知之，如阴多者，投以凉药，即寒逆随生；阳多者，…,ZJSHL-CH-006-P-0126,发汗药,removed_ambiguous_query_usage_note
+A06,main_passage,ZJSHL-CH-007-P-0165,removed,ambiguous_passages_registry_hit; removed_from_safe_main; query_topic_candidate,太阳病，发汗太多，则亡阳。《内经》曰：阳气者，精则养神，柔则养筋。阳微不能养筋，则筋脉紧急而成痓也。,ZJSHL-CH-007-P-0164,太阳病,removed_ambiguous_risk_caution
+A07,main_passage,ZJSHL-CH-008-P-0201,removed,ambiguous_passages_registry_hit; removed_from_safe_main; query_topic_candidate,太阳病，发热而渴，不恶寒者，为温病。,,太阳病,removed_ambiguous_definition_like
+A08,main_passage,ZJSHL-CH-008-P-0227,removed,ambiguous_passages_registry_hit; removed_from_safe_main; query_topic_candidate,太阳病，三日中，曾经发汗、吐下、温针，虚其正气，病仍不解者，谓之坏病，言为医所坏病也。不可复与桂枝汤。审观脉证，知犯何逆，而治之逆者，随所逆而救之。,ZJSHL-CH-008-P-0226,太阳病,removed_ambiguous_explanatory_followup
+A09,main_passage,ZJSHL-CH-003-P-0103,removed,ambiguous_passages_registry_hit; removed_from_safe_main,脉阴阳俱紧，为表里客寒。寒为阴，得阳则解。口中气出，唇口乾燥者，阳气渐复，正气方温也。虽尔然而阴未尽散，蜷卧足冷，鼻中涕出，舌上滑苔，知阴犹在也。方阴阳未分之时，不可…,,,removed_ambiguous_long_inferential
+A10,main_passage,ZJSHL-CH-017-P-0064,removed,ambiguous_passages_registry_hit; removed_from_safe_main; query_topic_candidate,伤寒解后，津液不足而虚羸，馀热未尽，热则伤气，故少气，气逆欲吐，与竹叶石膏汤，调胃散热。,ZJSHL-CH-017-P-0063,竹叶石膏汤方作用,removed_ambiguous_formula_effect_gloss
+A11,main_passage,ZJSHL-CH-003-P-0010,downgraded,short_text_lt20; retrieval_primary_demoted_in_safe,其脉沉者，荣气微也。,,,downgraded_short_fragment
+A12,main_passage,ZJSHL-CH-003-P-0012,downgraded,short_text_lt20; retrieval_primary_demoted_in_safe,其脉浮，而汗出如流珠者，卫气衰也。,,,downgraded_short_observation
+A13,main_passage,ZJSHL-CH-004-P-0161,downgraded,short_text_lt20; retrieval_primary_demoted_in_safe,里实护腹，如怀卵物者，心痛也。,,,downgraded_short_shorthand
+A14,main_passage,ZJSHL-CH-004-P-0239,downgraded,short_text_lt20; retrieval_primary_demoted_in_safe,阳气内微，心内虽饥，饥而虚满不能食也。,,,downgraded_short_complete_but_dense
+A15,main_passage,ZJSHL-CH-006-P-0102,downgraded,short_text_lt20; retrieval_primary_demoted_in_safe,凡伤寒之病，多从风寒得之。,,,downgraded_short_general_statement
+A16,main_passage,ZJSHL-CH-006-P-0109,downgraded,short_text_lt20; retrieval_primary_demoted_in_safe,先解表而后下之，则无复传之邪也。,,,downgraded_short_rule_statement
+A17,main_passage,ZJSHL-CH-006-P-0143,downgraded,short_text_lt20; retrieval_primary_demoted_in_safe,脉阴阳俱盛，大汗出，不解者，死。,,,downgraded_short_high_stakes
+A18,main_passage,ZJSHL-CH-014-P-0021,downgraded,short_text_lt20; retrieval_primary_demoted_in_safe,少阴之为病，脉微细，但欲寐也。,,,downgraded_short_definition_like
+A19,main_passage,ZJSHL-CH-015-P-0251,downgraded,short_text_lt20; retrieval_primary_demoted_in_safe,手足厥寒，脉细欲绝者，当归四逆汤主之。,,,downgraded_short_formula_indication
+A20,main_passage,ZJSHL-CH-010-P-0168,downgraded,short_text_lt20; retrieval_primary_demoted_in_safe,伤寒脉结代，心动悸，炙甘草汤主之。,,,downgraded_short_formula_indication
+B01,annotation,ZJSHL-CH-003-P-0073,disabled,annotation_link_disabled_in_safe; confirmed_mislink_to_previous_main,属腑者，不令溲数。溲数则大便硬，汗多则热愈，汗少则便难，脉迟尚未可攻。,ZJSHL-CH-003-P-0072 (expected ZJSHL-CH-003-P-0074),,confirmed_mislink_longer_explanatory
+B02,annotation,ZJSHL-CH-003-P-0077,disabled,annotation_link_disabled_in_safe; confirmed_mislink_to_previous_main,又未知何脏先受其灾，若汗出发润，喘不休者，此为肺先绝也。,ZJSHL-CH-003-P-0076 (expected ZJSHL-CH-003-P-0078),,confirmed_mislink_summary
+B03,annotation,ZJSHL-CH-003-P-0081,disabled,annotation_link_disabled_in_safe; confirmed_mislink_to_previous_main,唇吻反青，四肢漐习（zhixi）者，此为肝绝也。,ZJSHL-CH-003-P-0080 (expected ZJSHL-CH-003-P-0082),,confirmed_mislink_summary
+B04,annotation,ZJSHL-CH-003-P-0083,disabled,annotation_link_disabled_in_safe; confirmed_mislink_to_previous_main,环口黧黑，柔汗发黄者，此为脾绝也。,ZJSHL-CH-003-P-0082 (expected ZJSHL-CH-003-P-0084),,confirmed_mislink_summary
+B05,annotation,ZJSHL-CH-003-P-0085,disabled,annotation_link_disabled_in_safe; confirmed_mislink_to_previous_main,溲便遗失、狂言、目反直视者，此为肾绝也。,ZJSHL-CH-003-P-0084 (expected ZJSHL-CH-003-P-0086),,confirmed_mislink_summary
+B06,annotation,ZJSHL-CH-003-P-0087,disabled,annotation_link_disabled_in_safe; confirmed_mislink_to_previous_main,又未知何脏阴阳前绝，若阳气前绝，阴气后竭者，其人死，身色必青；阴气前绝，阳气后竭者，其人死，身色必赤，腋下温，心下热也。,ZJSHL-CH-003-P-0086 (expected ZJSHL-CH-003-P-0088),,confirmed_mislink_chain_summary
+B07,annotation,ZJSHL-CH-003-P-0053,disabled,annotation_link_disabled_in_safe; heuristic_adjacent_shift_suspect,三部脉均等，即正气已和，虽有馀邪，何害之有。立夏，赵本立上有「师曰」二字得洪赵本注：「一作浮」大脉，是其本位。其人病，身体苦疼重者，须发其汗；若明日身不疼不重者，不须…,ZJSHL-CH-003-P-0052 (expected ZJSHL-CH-003-P-0054),,heuristic_suspect_long_explanation
+B08,annotation,ZJSHL-CH-003-P-0079,disabled,annotation_link_disabled_in_safe; heuristic_adjacent_shift_suspect,阳反独留，形体如烟熏，直视摇头，赵本医统本皆有「者」字此赵本有「为」字心绝也。,ZJSHL-CH-003-P-0078 (expected ZJSHL-CH-003-P-0080),,heuristic_suspect_summary
+B09,annotation,ZJSHL-CH-003-P-0089,disabled,annotation_link_disabled_in_safe; heuristic_adjacent_shift_suspect,寸口脉浮大，而医反下之，此为大逆。浮则无血，大则为寒，寒气相搏，则为肠鸣，医乃不知，而反饮冷水，令汗大出，水得寒气，冷必相搏，其人即噎 。,ZJSHL-CH-003-P-0088 (expected ZJSHL-CH-003-P-0090),发汗药,heuristic_suspect_long_explanation
+B10,annotation,ZJSHL-CH-003-P-0091,disabled,annotation_link_disabled_in_safe; heuristic_adjacent_shift_suspect,寒邪因里虚而入，寒气相搏，乃为肠鸣，医见脉大，以为有热，饮以冷水，欲令水寒胜热而作大汗，里先虚寒，又得冷水，水寒相搏，使中焦之气涩滞，故令噎 也。,ZJSHL-CH-003-P-0090 (expected ZJSHL-CH-003-P-0092),,heuristic_suspect_followup
+B11,annotation,ZJSHL-CH-003-P-0098,disabled,annotation_link_disabled_in_safe; heuristic_adjacent_shift_suspect,寸口脉阴阳俱紧者，法当清邪中于上焦，浊邪中于下焦。清邪中上，名曰洁也；浊邪中下，名曰浑也。阴中于邪，必内栗也，表气微虚，里气不守，故使邪中于阴也。阳中于邪，必发热、头…,ZJSHL-CH-003-P-0097 (expected ZJSHL-CH-003-P-0099),,heuristic_suspect_long_explanation
+B12,annotation,ZJSHL-CH-004-P-0133,disabled,annotation_link_disabled_in_safe; heuristic_adjacent_shift_suspect,太赵本作「大」过可怪，不及亦然，邪不空见，中赵本作「终」必有奸，审察表里，三焦别焉，知其所舍，消息诊看，料度腑脏，独见若神。为子条记，传与贤人。,ZJSHL-CH-004-P-0132 (expected ZJSHL-CH-004-P-0134),,heuristic_suspect_long_explanation
+B13,annotation,ZJSHL-CH-004-P-0148,disabled,annotation_link_disabled_in_safe; heuristic_adjacent_shift_suspect,《针经》曰：阳引而上，阴引而下，阴阳相引，故欠。阴阳不相引，则病；阴阳相引则和。是欠者，无病也。,ZJSHL-CH-004-P-0146 (expected ZJSHL-CH-004-P-0149),,heuristic_suspect_low_confidence_short
+B14,annotation,ZJSHL-CH-004-P-0240,disabled,annotation_link_disabled_in_safe; heuristic_adjacent_shift_suspect,趺阳脉大而紧者，当即下利，为难治。,ZJSHL-CH-004-P-0239 (expected ZJSHL-CH-004-P-0241),,heuristic_suspect_short_diagnostic
+B15,annotation,ZJSHL-CH-008-P-0192,disabled,annotation_link_disabled_in_safe; medium_confidence_link_not_flagged,经曰：尺寸俱浮者，太阳受病。太阳受病，太阳主表，为诸阳主气。脉浮，头项强痛而恶寒者，太阳表病也。,ZJSHL-CH-008-P-0191,太阳病,stable_annotation_control_definition
+B16,annotation,ZJSHL-CH-008-P-0194,disabled,annotation_link_disabled_in_safe; medium_confidence_link_not_flagged,风，阳也。寒，阴也。风则伤卫，发热，汗出，恶风者，卫中风。医统本有「也」字荣病，发热，无汗，不恶风而恶寒；卫病，则发热，汗出，不恶寒而恶风。以卫为阳，卫外者也，病则不…,ZJSHL-CH-008-P-0193,太阳病,stable_annotation_control_definition
+B17,annotation,ZJSHL-CH-008-P-0196,disabled,annotation_link_disabled_in_safe; medium_confidence_link_not_flagged,经曰：凡伤于寒，则为病热，为寒气客于经中，阳经怫结而成热也。中风即发热者，风为阳也。及伤寒云，或已发热，或未发热，以寒为阴邪，不能即热，郁而方变热也。风则伤卫，寒则伤…,ZJSHL-CH-008-P-0195,太阳病,stable_annotation_control_definition
+B18,annotation,ZJSHL-CH-008-P-0216,disabled,annotation_link_disabled_in_safe; medium_confidence_link_not_flagged,阳以候卫，阴以候荣。阳脉浮者，卫中风也；阴脉弱者，荣气弱也。风并于卫，则卫实而荣虚，故发热汗自出也。经曰：太阳病，发热汗出者，此为荣弱卫强者是也。啬啬者，不足也，恶寒…,ZJSHL-CH-008-P-0215,太阳病,stable_annotation_control_branch
+B19,annotation,ZJSHL-CH-008-P-0221,disabled,annotation_link_disabled_in_safe; medium_confidence_link_not_flagged,头痛者，太阳也；发热汗出恶风者，中风也。与桂枝汤，解散风邪。,ZJSHL-CH-008-P-0220,太阳病,stable_annotation_control_branch
+B20,annotation,ZJSHL-CH-008-P-0202,disabled,annotation_link_disabled_in_safe; medium_confidence_link_not_flagged,发热而渴，不恶寒者，阳明也。此太阳受邪，知为温病，非伤寒也。积温成热，所以发热而渴，不恶寒也。,ZJSHL-CH-008-P-0201,太阳病,stable_annotation_control_definition
+C01,annotation,ZJSHL-CH-006-P-0118,disabled,annotation_link_disabled_in_safe; medium_confidence_link_not_flagged,夫如是，则神丹安可以误发，甘遂何可以妄攻。虚盛之治，相背千里，吉凶之机，应若影响，岂容易哉！神丹者，发汗之药也。甘遂者，下药也。若汗下当则吉，汗下不当则凶，其应如影随…,ZJSHL-CH-006-P-0117,发汗药,query_fahan_annotation
+C02,main_passage,ZJSHL-CH-003-P-0090,kept,safe_retained_query_candidate,经云：脉浮大，应发汗，若反下之，为大逆。浮大之脉，邪在表也，当发其汗，若反下之，是攻其正气，邪气得以深入，故为大逆。浮则无血者，下后亡血也；大则为寒者，邪气独在也。,,发汗药,query_fahan_kept_context
+C03,main_passage,ZJSHL-CH-009-P-0069,downgraded,short_text_lt20; retrieval_primary_demoted_in_safe,脉浮者，病在表，可发汗，宜麻黄汤。,,发汗药,query_fahan_short_formula_rule
+C04,main_passage,ZJSHL-CH-009-P-0071,downgraded,short_text_lt20; retrieval_primary_demoted_in_safe,脉浮而数者，可发汗，宜麻黄汤。,,发汗药,query_fahan_short_formula_rule
+C05,main_passage,ZJSHL-CH-008-P-0191,downgraded,short_text_lt20; retrieval_primary_demoted_in_safe,太阳之为病，脉浮，头项强痛而恶寒。,,太阳病,query_taiyang_definition
+C06,main_passage,ZJSHL-CH-008-P-0193,kept,safe_retained_query_candidate,太阳病，发热，汗出，恶风，脉缓者，名为中风。,,太阳病,query_taiyang_branch
+C07,main_passage,ZJSHL-CH-008-P-0207,kept,safe_retained_query_candidate,太阳病，头痛至七日已赵本作「以」上自愈者，以行其经尽故也。若欲作再经者，针足阳明，使经不传则愈。,,太阳病,query_taiyang_course
+C08,main_passage,ZJSHL-CH-017-P-0063,kept,safe_retained_query_candidate,伤寒解后，虚羸少气，气逆欲吐者，赵本无「者」字竹叶石膏汤主之。,,竹叶石膏汤方作用,query_formula_effect_primary
+C09,main_passage,ZJSHL-CH-017-P-0065,kept,safe_retained_query_candidate,竹叶石膏汤方：竹叶二把。辛平 石膏一斤。甘寒 半夏半升，洗。辛温 人参三。赵本作「二」两。,,竹叶石膏汤方作用,query_formula_heading
+C10,main_passage,ZJSHL-CH-017-P-0066,kept,safe_retained_query_candidate,甘温 甘草二两，炙。甘平 粳米半升。甘微寒 麦门冬一升，去心。甘平,,竹叶石膏汤方作用,query_formula_ingredients
+D01,main_passage,ZJSHL-CH-008-P-0195,kept,safe_retained_control,太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名曰赵本作「为」伤寒。,,,stable_safe_main_control
+D02,main_passage,ZJSHL-CH-008-P-0215,kept,safe_retained_control,太阳中风，阳浮而阴弱。阳浮者，热自发；阴弱者，汗自出。啬啬恶寒，淅淅恶风，翕翕发热，鼻鸣乾呕者，桂枝汤主之。,,,stable_safe_main_control
+D03,main_passage,ZJSHL-CH-008-P-0217,kept,safe_retained_control,桂枝汤方：桂枝三两，去皮，味辛热，按：下药性，赵本无，以后并同 芍药三两。味苦酸，微寒 甘草二两，炙，味甘平 生姜三两，切，味辛温 大枣十二枚，擘，味甘温,,,stable_safe_main_control
+D04,main_passage,ZJSHL-CH-008-P-0219,kept,safe_retained_control,右伍味，㕮咀。赵本有「三味」二字以水柒升，微火煑取三升，去滓，适寒温，服壹升。服已须臾，歠热稀粥壹升馀，以助药力，温覆令壹时许，遍身漐漐，微似有汗者益佳，不可令如水流…,,,stable_safe_main_control
+D05,main_passage,ZJSHL-CH-009-P-0002,kept,safe_retained_control,太阳病，项背强几几，无汗，恶风，葛根汤主之。,,,stable_safe_main_control
+D06,main_passage,ZJSHL-CH-009-P-0004,kept,safe_retained_control,葛根汤方：葛根四两麻黄三两，去节桂赵本有「枝」字，二两，去皮芍药二两，切。赵本无「切」字甘草二两，炙生姜三两，切 大枣十二枚，擘,,,stable_safe_main_control
+D07,main_passage,ZJSHL-CH-009-P-0006,kept,safe_retained_control,右柒味㕮咀，赵本无「㕮咀」二字以水一斗，先煑麻黄葛根，减二升，去赵本有「白」字沫，内诸药，煑取三升，去滓，温服一升，覆取微似汗，不须啜粥，赵本无「不须啜粥」一句馀如桂…,,,stable_safe_main_control
+D08,main_passage,ZJSHL-CH-009-P-0022,kept,safe_retained_control,麻黄汤方：麻黄三两，去节。味甘温 桂枝二，医统本作三两，去皮。味辛热 甘草一两，炙。味甘平,,,stable_safe_main_control
+D09,main_passage,ZJSHL-CH-009-P-0025,kept,safe_retained_control,上四味，以水九升，先煮麻黄，减二升，去上沫，内诸药，煮取二升半，去滓，温服八合，覆取微似汗，不须啜粥，馀如桂枝法将息。,,,stable_safe_main_control
+D10,main_passage,ZJSHL-CH-009-P-0038,kept,safe_retained_control,伤寒表不解，心下有水气，乾呕发热而咳，或渴，或利，或噎，或小便不利，少腹满，或喘者，小青龙汤主之。,,,stable_safe_main_control
