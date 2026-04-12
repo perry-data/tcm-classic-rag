@@ -41,6 +41,8 @@ DEFAULT_DENSE_CHUNKS_INDEX = "artifacts/dense_chunks.faiss"
 DEFAULT_DENSE_CHUNKS_META = "artifacts/dense_chunks_meta.json"
 DEFAULT_DENSE_MAIN_INDEX = "artifacts/dense_main_passages.faiss"
 DEFAULT_DENSE_MAIN_META = "artifacts/dense_main_passages_meta.json"
+DEFAULT_CONTROLLED_REPLAY_CONFIG = "config/controlled_replay/fahan_main_passages_allowlist_v1.json"
+DEFAULT_FULL_MAIN_PASSAGES_PATH = "data/processed/zjshl_dataset_v2/main_passages.json"
 
 SPARSE_TOP_K = 20
 DENSE_CHUNK_TOP_K = 20
@@ -127,6 +129,10 @@ def sigmoid(value: float) -> float:
         return 1.0 / (1.0 + exp_neg)
     exp_pos = math.exp(value)
     return exp_pos / (1.0 + exp_pos)
+
+
+def env_flag_enabled(value: str | None) -> bool:
+    return str(value or "").strip().lower() in {"1", "true", "yes", "on"}
 
 
 def short_candidate_view(rows: list[dict[str, Any]], stage_score_field: str, limit: int = 6) -> list[dict[str, Any]]:
@@ -316,7 +322,16 @@ class HybridRetrievalEngine(RetrievalEngine):
         self.CrossEncoder = CrossEncoder
         super().__post_init__()
 
+        self._chapter_name_by_id = {
+            row["chapter_id"]: row["chapter_name"]
+            for row in self.unified_rows
+            if row.get("chapter_id") and row.get("chapter_name")
+        }
+        self.controlled_replay_config = self._load_controlled_replay_config()
+        self.controlled_replay_enabled = self._is_controlled_replay_enabled(self.controlled_replay_config)
+        self.controlled_replay_rows = self._build_controlled_replay_rows(self.controlled_replay_config)
         self.record_by_id = {row["record_id"]: row for row in self.unified_rows}
+        self.record_by_id.update({row["record_id"]: row for row in self.controlled_replay_rows})
         self._ensure_sparse_fts_index()
         self.embedder = load_sentence_transformer_model(self.SentenceTransformer, self.embed_model_name, self.cache_dir)
         mps_backend = getattr(self.torch.backends, "mps", None)
@@ -333,6 +348,78 @@ class HybridRetrievalEngine(RetrievalEngine):
         self.dense_main_index = self.faiss.read_index(str(self.dense_main_index_path))
         self.dense_chunks_meta = json.loads(self.dense_chunks_meta_path.read_text(encoding="utf-8"))
         self.dense_main_meta = json.loads(self.dense_main_meta_path.read_text(encoding="utf-8"))
+
+    def _load_controlled_replay_config(self) -> dict[str, Any]:
+        config_path = resolve_project_path(DEFAULT_CONTROLLED_REPLAY_CONFIG)
+        if not config_path.exists():
+            return {
+                "experiment_id": "fahan_main_controlled_replay_v1",
+                "enabled_by_default": False,
+                "env_flag": "TCM_ENABLE_FAHAN_CONTROLLED_REPLAY_V1",
+                "target_layers": {
+                    "recall": True,
+                    "vector": False,
+                    "primary_candidate": False,
+                },
+                "allowed_main_passage_ids": [],
+                "_config_path": str(config_path),
+            }
+        config = json.loads(config_path.read_text(encoding="utf-8"))
+        config["_config_path"] = str(config_path)
+        return config
+
+    def _is_controlled_replay_enabled(self, config: dict[str, Any]) -> bool:
+        env_flag = str(config.get("env_flag") or "").strip()
+        if env_flag and os.getenv(env_flag) is not None:
+            return env_flag_enabled(os.getenv(env_flag))
+        return bool(config.get("enabled_by_default"))
+
+    def _build_controlled_replay_rows(self, config: dict[str, Any]) -> list[dict[str, Any]]:
+        if not self.controlled_replay_enabled:
+            return []
+
+        source_path = resolve_project_path(DEFAULT_FULL_MAIN_PASSAGES_PATH)
+        if not source_path.exists():
+            return []
+
+        allowed_ids = list(dict.fromkeys(config.get("allowed_main_passage_ids") or []))
+        if not allowed_ids:
+            return []
+
+        payload = json.loads(source_path.read_text(encoding="utf-8"))
+        rows_by_id = {row.get("passage_id"): row for row in payload if row.get("passage_id")}
+        replay_rows: list[dict[str, Any]] = []
+        for passage_id in allowed_ids:
+            row = rows_by_id.get(passage_id)
+            if not row or not row.get("text"):
+                continue
+            chapter_id = row.get("chapter_id")
+            replay_rows.append(
+                {
+                    "record_id": f"controlled:main_passages:{passage_id}",
+                    "record_table": "controlled_replay_main_passages",
+                    "source_object": "main_passages",
+                    "passage_id": passage_id,
+                    "retrieval_text": row["text"],
+                    "normalized_text": row.get("normalized_text") or row["text"],
+                    "chapter_id": chapter_id,
+                    "chapter_name": self._chapter_name_by_id.get(chapter_id),
+                    "policy_source_id": "controlled_replay_main_passages",
+                    "evidence_level": "B",
+                    "display_allowed": "secondary",
+                    "risk_flag": json.dumps(
+                        [
+                            "controlled_replay_main_passage",
+                            "secondary_only_replay",
+                            "manual_review_l2_allowlist",
+                        ],
+                        ensure_ascii=False,
+                    ),
+                    "default_weight_tier": "medium_low",
+                    "requires_disclaimer": 1,
+                }
+            )
+        return replay_rows
 
     def build_request(self, query_text: str, tight_primary_precision: bool = True) -> dict[str, Any]:
         request = super().build_request(query_text, tight_primary_precision=tight_primary_precision)
@@ -664,6 +751,32 @@ class HybridRetrievalEngine(RetrievalEngine):
             candidate["stage_ranks"][stage_name] = rank
         return dense_candidates
 
+    def _collect_controlled_replay_candidates(self, request: dict[str, Any]) -> list[dict[str, Any]]:
+        if not self.controlled_replay_rows:
+            return []
+
+        query_focus = request["query_text_normalized"]
+        query_terms = build_query_terms(query_focus)
+        scored: list[dict[str, Any]] = []
+        for row in self.controlled_replay_rows:
+            text_score, matched_terms = compute_text_match_score(query_focus, query_terms, row["normalized_text"])
+            if text_score <= 0:
+                continue
+            candidate = self._base_candidate_from_row(
+                row,
+                request,
+                text_match_score=text_score,
+                matched_terms=matched_terms,
+            )
+            candidate["sparse_score"] = round(
+                text_score + candidate["weight_bonus"] + candidate["precision_adjustment"],
+                6,
+            )
+            candidate["stage_sources"] = ["controlled_replay_recall"]
+            scored.append(candidate)
+
+        return self._trim_sparse_candidates(scored)
+
     def _fuse_candidates(self, *stage_groups: tuple[str, list[dict[str, Any]]]) -> list[dict[str, Any]]:
         merged: dict[str, dict[str, Any]] = {}
         for stage_name, candidates in stage_groups:
@@ -777,10 +890,12 @@ class HybridRetrievalEngine(RetrievalEngine):
             top_k=DENSE_MAIN_TOP_K,
             stage_name="dense_main_passages",
         )
+        controlled_replay_candidates = self._collect_controlled_replay_candidates(request)
         fused_candidates = self._fuse_candidates(
             ("sparse", sparse_candidates),
             ("dense_chunks", dense_chunk_candidates),
             ("dense_main_passages", dense_main_candidates),
+            ("controlled_replay_recall", controlled_replay_candidates),
         )
         reranked_candidates = self._rerank_candidates(request, fused_candidates)
 
@@ -817,6 +932,14 @@ class HybridRetrievalEngine(RetrievalEngine):
             "dense_top_candidates": {
                 "dense_chunks": short_candidate_view(dense_chunk_candidates, "dense_score"),
                 "dense_main_passages": short_candidate_view(dense_main_candidates, "dense_score"),
+            },
+            "controlled_replay": {
+                "enabled": self.controlled_replay_enabled,
+                "config_path": self.controlled_replay_config.get("_config_path"),
+                "env_flag": self.controlled_replay_config.get("env_flag"),
+                "target_layers": self.controlled_replay_config.get("target_layers", {}),
+                "allowed_main_passage_ids": self.controlled_replay_config.get("allowed_main_passage_ids", []),
+                "top_candidates": sparse_candidate_view(controlled_replay_candidates),
             },
             "fusion_top_candidates": [
                 {

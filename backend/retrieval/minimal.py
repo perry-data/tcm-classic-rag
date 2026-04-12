@@ -41,6 +41,7 @@ SOURCE_BUDGETS = {
     "safe_chunks": 8,
     "safe_main_passages_primary": 6,
     "safe_main_passages_secondary": 4,
+    "controlled_replay_main_passages": 2,
     "full_annotations_raw": 3,
     "full_passages_ledger": 2,
     "ambiguous_related_material": 1,
@@ -540,6 +541,11 @@ class RetrievalEngine:
                     if candidate["evidence_level"] == "A" and not candidate["primary_allowed"]:
                         entry["risk_flag"] = unique_preserve_order(entry["risk_flag"] + ["topic_mismatch_demoted"])
                     self._merge_evidence_entry(secondary_pool, entry)
+                continue
+
+            if candidate["record_table"] == "controlled_replay_main_passages":
+                entry = self._build_direct_entry(candidate, retrieval_path="controlled_replay_allowlist")
+                self._merge_evidence_entry(secondary_pool, entry)
                 continue
 
             if candidate["record_table"] == "records_annotations":

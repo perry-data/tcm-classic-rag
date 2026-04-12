@@ -2737,13 +2737,23 @@ class AnswerAssembler:
             (record_id,),
         ).fetchone()
         if row is None:
-            meta = {
-                "record_id": record_id,
-                "source_object": None,
-                "retrieval_text": "",
-                "chapter_id": None,
-                "chapter_name": None,
-            }
+            replay_row = self.engine.record_by_id.get(record_id)
+            if replay_row is None:
+                meta = {
+                    "record_id": record_id,
+                    "source_object": None,
+                    "retrieval_text": "",
+                    "chapter_id": None,
+                    "chapter_name": None,
+                }
+            else:
+                meta = {
+                    "record_id": replay_row["record_id"],
+                    "source_object": replay_row.get("source_object"),
+                    "retrieval_text": replay_row.get("retrieval_text", ""),
+                    "chapter_id": replay_row.get("chapter_id"),
+                    "chapter_name": replay_row.get("chapter_name"),
+                }
         else:
             meta = dict(row)
         self._record_cache[record_id] = meta

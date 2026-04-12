@@ -1,0 +1,14 @@
+{
+  "experiment_id": "fahan_main_controlled_replay_v1",
+  "enabled_by_default": false,
+  "env_flag": "TCM_ENABLE_FAHAN_CONTROLLED_REPLAY_V1",
+  "target_layers": {
+    "recall": true,
+    "vector": false,
+    "primary_candidate": false
+  },
+  "allowed_main_passage_ids": [
+    "ZJSHL-CH-006-P-0120",
+    "ZJSHL-CH-006-P-0127"
+  ]
+}
