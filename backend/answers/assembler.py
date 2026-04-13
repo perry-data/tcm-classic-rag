@@ -50,6 +50,7 @@ from backend.retrieval.minimal import extract_focus_text
 DEFAULT_ANSWER_EXAMPLES_OUT = "artifacts/hybrid_answer_examples.json"
 DEFAULT_ANSWER_SMOKE_OUT = "artifacts/hybrid_answer_smoke_checks.md"
 DEFAULT_DEFINITION_QUERY_PRIORITY_RULES_PATH = "config/controlled_replay/definition_query_priority_rules_v1.json"
+FORMULA_EFFECT_PRIMARY_RULES_ENV_FLAG = "TCM_ENABLE_FORMULA_EFFECT_PRIMARY_RULES_V1"
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 SNIPPET_LIMIT = 120
 COMPARISON_ENTITY_LIMIT = 2
@@ -255,6 +256,79 @@ FORMULA_EFFECT_BLOCK_HINTS = tuple(
         "多了什么",
         "少了什么",
     )
+)
+
+FORMULA_EFFECT_CONTEXT_SYMPTOM_HINTS = (
+    "恶寒",
+    "恶风",
+    "发热",
+    "汗出",
+    "无汗",
+    "头痛",
+    "项强",
+    "脉浮",
+    "脉紧",
+    "脉迟",
+    "脉数",
+    "身疼",
+    "腹满",
+    "腹痛",
+    "大便",
+    "不大便",
+    "小便不利",
+    "胸满",
+    "胸中有热",
+    "有水气",
+    "潮热",
+    "谵语",
+    "呕",
+    "吐",
+    "咳",
+    "喘",
+    "渴",
+    "烦",
+    "虚羸",
+    "少气",
+    "气逆",
+)
+
+FORMULA_EFFECT_CONTEXT_BAD_TAIL_HINTS = (
+    "当先与",
+    "可与",
+    "更作",
+    "发汗宜",
+    "解表宜",
+    "急下之宜",
+    "下之与",
+    "先与",
+    "当用",
+    "当以",
+    "当",
+    "宜",
+    "与",
+    "可",
+    "作",
+)
+
+FORMULA_EFFECT_CONTEXT_BAD_PREFIX_HINTS = (
+    "服",
+    "与",
+    "宜",
+    "可与",
+    "更作",
+    "作",
+    "本方",
+    "上为末",
+    "右",
+)
+
+FORMULA_EFFECT_CONTEXT_NOISE_HINTS = (
+    "赵本",
+    "医统本",
+    "详见",
+    "本云",
+    "按",
+    "问曰",
 )
 
 STRONG_MEANING_EXPLANATION_MARKERS = (
@@ -600,6 +674,7 @@ class AnswerAssembler:
         self.definition_query_priority_enabled = self._is_definition_query_priority_enabled(
             self.definition_query_priority_config
         )
+        self.formula_effect_primary_prioritization_enabled = self._is_formula_effect_primary_prioritization_enabled()
         self._llm_config = self.llm_config or ModelStudioLLMConfig(
             enabled=False,
             api_key=None,
@@ -630,6 +705,11 @@ class AnswerAssembler:
         if env_flag and env_flag in os.environ:
             return env_flag_enabled(os.environ.get(env_flag))
         return bool(config.get("enabled_by_default"))
+
+    def _is_formula_effect_primary_prioritization_enabled(self) -> bool:
+        if FORMULA_EFFECT_PRIMARY_RULES_ENV_FLAG in os.environ:
+            return env_flag_enabled(os.environ.get(FORMULA_EFFECT_PRIMARY_RULES_ENV_FLAG))
+        return True
 
     def assemble(
         self,
@@ -2140,7 +2220,10 @@ class AnswerAssembler:
         effect_plan: dict[str, Any],
     ) -> dict[str, Any]:
         canonical_name = effect_plan["canonical_name"]
-        bundle = self._build_formula_bundle(canonical_name)
+        bundle = self._build_formula_bundle(
+            canonical_name,
+            formula_effect_primary_v1=self.formula_effect_primary_prioritization_enabled,
+        )
         self._emit_progress(
             "organizing_evidence",
             "已识别为方剂作用类问题，正在整理直接使用语境与条文依据。",
@@ -2212,17 +2295,37 @@ class AnswerAssembler:
             citations=citations,
         )
 
-    def _build_formula_bundle(self, canonical_name: str) -> dict[str, Any]:
+    def _build_formula_bundle(
+        self,
+        canonical_name: str,
+        *,
+        formula_effect_primary_v1: bool = False,
+    ) -> dict[str, Any]:
         retrieval = self.engine.retrieve(canonical_name)
         formula_row = self._find_formula_heading_row(canonical_name, retrieval)
         formula_rows = [formula_row] if formula_row else []
-        support_rows = self._find_support_rows(
-            canonical_name,
-            excluded_record_ids={row["record_id"] for row in formula_rows},
+        excluded_record_ids = {row["record_id"] for row in formula_rows}
+        support_rows = (
+            self._find_formula_effect_support_rows_v1(
+                canonical_name,
+                excluded_record_ids=excluded_record_ids,
+            )
+            if formula_effect_primary_v1
+            else self._find_support_rows(
+                canonical_name,
+                excluded_record_ids=excluded_record_ids,
+            )
         )
-        context_row = support_rows[0] if support_rows else self._find_formula_effect_review_context_row(
-            canonical_name,
-            excluded_record_ids={row["record_id"] for row in formula_rows},
+        context_row = support_rows[0] if support_rows else (
+            self._find_formula_effect_review_context_row_v1(
+                canonical_name,
+                excluded_record_ids=excluded_record_ids,
+            )
+            if formula_effect_primary_v1
+            else self._find_formula_effect_review_context_row(
+                canonical_name,
+                excluded_record_ids=excluded_record_ids,
+            )
         )
         review_rows = self._lookup_review_rows(formula_rows + support_rows)
         if context_row and context_row["source_object"] != "main_passages":
@@ -2233,6 +2336,7 @@ class AnswerAssembler:
             canonical_name,
             formula_row=formula_rows[0] if formula_rows else None,
             context_row=context_row,
+            formula_effect_primary_v1=formula_effect_primary_v1,
         )
         return {
             "canonical_name": canonical_name,
@@ -2303,6 +2407,42 @@ class AnswerAssembler:
             limit=FORMULA_EFFECT_SUPPORT_LIMIT,
         )
 
+    def _find_formula_effect_support_rows_v1(
+        self,
+        canonical_name: str,
+        excluded_record_ids: set[str],
+    ) -> list[dict[str, Any]]:
+        preferred_chapter_id = self._formula_catalog.get(canonical_name, {}).get("chapter_id")
+        candidates: list[tuple[float, int, dict[str, Any]]] = []
+        for row in self.engine.unified_rows:
+            if row["record_id"] in excluded_record_ids:
+                continue
+            if row["source_object"] != "main_passages":
+                continue
+            row_mentions = {mention["canonical_name"] for mention in self._find_formula_mentions(row["retrieval_text"])}
+            if canonical_name not in row_mentions:
+                continue
+            if self._row_is_formula_heading_for_entity(row, canonical_name):
+                continue
+            if self._row_is_other_formula_heading(row, canonical_name):
+                continue
+            score, context_distance = self._score_formula_effect_context_row_v1(
+                row,
+                canonical_name=canonical_name,
+                preferred_chapter_id=preferred_chapter_id,
+                row_mentions=row_mentions,
+            )
+            candidates.append(
+                (
+                    score,
+                    context_distance,
+                    self._normalize_record_row(row),
+                )
+            )
+
+        candidates.sort(key=lambda item: (-item[0], item[1], item[2]["record_id"]))
+        return [candidate[2] for candidate in candidates[:FORMULA_EFFECT_SUPPORT_LIMIT]]
+
     def _find_review_context_row(self, canonical_name: str, excluded_record_ids: set[str]) -> dict[str, Any] | None:
         rows = self._find_matching_rows(
             canonical_name,
@@ -2350,6 +2490,104 @@ class AnswerAssembler:
 
         candidates.sort(key=lambda item: (-item[0], item[1], item[2]["record_id"]))
         return candidates[0][2] if candidates else None
+
+    def _find_formula_effect_review_context_row_v1(
+        self,
+        canonical_name: str,
+        excluded_record_ids: set[str],
+    ) -> dict[str, Any] | None:
+        preferred_chapter_id = self._formula_catalog.get(canonical_name, {}).get("chapter_id")
+        candidates: list[tuple[float, int, dict[str, Any]]] = []
+        for row in self.engine.unified_rows:
+            if row["record_id"] in excluded_record_ids:
+                continue
+            if row["source_object"] not in {"passages", "ambiguous_passages"}:
+                continue
+            row_mentions = {mention["canonical_name"] for mention in self._find_formula_mentions(row["retrieval_text"])}
+            if canonical_name not in row_mentions:
+                continue
+            if self._row_is_formula_heading_for_entity(row, canonical_name):
+                continue
+            if self._row_is_other_formula_heading(row, canonical_name):
+                continue
+            score, context_distance = self._score_formula_effect_context_row_v1(
+                row,
+                canonical_name=canonical_name,
+                preferred_chapter_id=preferred_chapter_id,
+                row_mentions=row_mentions,
+            )
+            if row["source_object"] == "passages":
+                score += 6.0
+            else:
+                score -= 4.0
+            candidates.append(
+                (
+                    score,
+                    context_distance,
+                    self._normalize_record_row(row),
+                )
+            )
+
+        candidates.sort(key=lambda item: (-item[0], item[1], item[2]["record_id"]))
+        return candidates[0][2] if candidates else None
+
+    def _score_formula_effect_context_row_v1(
+        self,
+        row: dict[str, Any],
+        *,
+        canonical_name: str,
+        preferred_chapter_id: str | None,
+        row_mentions: set[str],
+    ) -> tuple[float, int]:
+        row_text = strip_inline_notes(row.get("retrieval_text", ""))
+        context_clause = self._clean_formula_effect_context(
+            self._extract_formula_effect_context_clause_v1(row_text, canonical_name)
+        )
+        display_name = canonical_name[:-1] if canonical_name.endswith("方") else canonical_name
+        score = 0.0
+
+        if row.get("chapter_id") == preferred_chapter_id:
+            score += 12.0
+        else:
+            score += 8.0
+
+        if "主之" in row_text:
+            score += 16.0
+        if f"{canonical_name}主之" in row_text or f"{display_name}主之" in row_text:
+            score += 4.0
+
+        symptom_hits = sum(1 for hint in FORMULA_EFFECT_CONTEXT_SYMPTOM_HINTS if hint in context_clause)
+        score += min(symptom_hits, 6) * 4.0
+
+        separator_hits = context_clause.count("，") + context_clause.count("；")
+        score += min(separator_hits, 4) * 5.0
+
+        context_length = len(context_clause)
+        if 8 <= context_length <= 44:
+            score += 12.0
+        elif 45 <= context_length <= 64:
+            score += 4.0
+        elif context_length > 64:
+            score -= 20.0
+        else:
+            score -= 24.0
+
+        if any(context_clause.endswith(hint) for hint in FORMULA_EFFECT_CONTEXT_BAD_TAIL_HINTS):
+            score -= 20.0
+        if any(context_clause.startswith(hint) for hint in FORMULA_EFFECT_CONTEXT_BAD_PREFIX_HINTS):
+            score -= 16.0
+        if any(hint in context_clause for hint in FORMULA_EFFECT_CONTEXT_NOISE_HINTS):
+            score -= 14.0
+        if "详见" in row_text:
+            score -= 8.0
+
+        extra_formula_mentions = max(0, len(row_mentions) - 1)
+        score -= extra_formula_mentions * 24.0
+
+        if not context_clause:
+            score -= 32.0
+
+        return score, abs(context_length - 24)
 
     def _find_matching_rows(
         self,
@@ -2465,6 +2703,7 @@ class AnswerAssembler:
         *,
         formula_row: dict[str, Any] | None,
         context_row: dict[str, Any] | None,
+        formula_effect_primary_v1: bool = False,
     ) -> dict[str, Any]:
         facts = {
             "base_formula": "",
@@ -2488,7 +2727,11 @@ class AnswerAssembler:
 
         if context_row:
             support_text = self._fetch_record_meta(context_row["record_id"])["retrieval_text"]
-            facts["context_clause"] = self._extract_context_clause(support_text, canonical_name)
+            facts["context_clause"] = (
+                self._extract_formula_effect_context_clause_v1(support_text, canonical_name)
+                if formula_effect_primary_v1
+                else self._extract_context_clause(support_text, canonical_name)
+            )
         return facts
 
     def _extract_formula_delta_names(self, formula_text: str, *, marker: str) -> list[str]:
@@ -2547,8 +2790,48 @@ class AnswerAssembler:
             context_text = context_text.split("；")[-1]
         return compact_whitespace(context_text.strip("，。；：: "))
 
+    def _extract_formula_effect_context_clause_v1(self, support_text: str, canonical_name: str) -> str:
+        cleaned_text = strip_inline_notes(support_text)
+        match_index = -1
+        for variant in self._formula_text_variants(canonical_name):
+            current_index = cleaned_text.find(variant)
+            if current_index >= 0 and (match_index < 0 or current_index < match_index):
+                match_index = current_index
+        if match_index < 0:
+            return snippet_text(cleaned_text, limit=64)
+
+        context_text = cleaned_text[:match_index].strip("，。；：: ")
+        if not context_text:
+            return ""
+
+        segments = [
+            segment.strip("，。；：: ")
+            for segment in re.split(r"[。；]", context_text)
+            if segment.strip("，。；：: ")
+        ]
+        candidate = segments[-1] if segments else context_text
+        candidate = self._strip_formula_effect_tail_markers(candidate)
+        return compact_whitespace(candidate.strip("，。；：: "))
+
+    def _strip_formula_effect_tail_markers(self, text: str) -> str:
+        cleaned = compact_whitespace(text).strip("，。；：: ")
+        while cleaned:
+            matched_tail = next(
+                (
+                    hint
+                    for hint in sorted(FORMULA_EFFECT_CONTEXT_BAD_TAIL_HINTS, key=len, reverse=True)
+                    if cleaned.endswith(hint) and len(cleaned) > len(hint) + 1
+                ),
+                None,
+            )
+            if not matched_tail:
+                break
+            cleaned = cleaned[: -len(matched_tail)].strip("，。；：: ")
+        return cleaned
+
     def _clean_formula_effect_context(self, context_text: str) -> str:
         cleaned = strip_inline_notes(context_text).strip("，。；：: ")
+        cleaned = self._strip_formula_effect_tail_markers(cleaned)
         if cleaned.endswith("者") and len(cleaned) > 1:
             cleaned = cleaned[:-1]
         return cleaned.strip("，。；：: ")

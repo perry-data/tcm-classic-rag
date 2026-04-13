@@ -1,0 +1,118 @@
+{
+  "experiment_id": "formula_effect_primary_prioritization_v1_regression_set",
+  "generated_at": "2026-04-13T00:00:00+08:00",
+  "query_count": 15,
+  "query_groups": {
+    "positive": [
+      {
+        "query": "桂枝汤方有什么作用",
+        "expected_mode": "strong",
+        "expected_primary_after": "safe:main_passages:ZJSHL-CH-008-P-0215",
+        "expected_behavior_note": "应把 primary 从跨章“欲解外者，宜桂枝汤主之”切回同章直接证候条文，答案改为基于直接使用语境解释。",
+        "regression_tag": "improve"
+      },
+      {
+        "query": "桂枝汤方主治什么",
+        "expected_mode": "strong",
+        "expected_primary_after": "safe:main_passages:ZJSHL-CH-008-P-0215",
+        "expected_behavior_note": "与“有什么作用”同 family，但换成“主治什么”问法后仍应稳定落到同章直接语境条文，而不是继续输出短片段“欲解外”。",
+        "regression_tag": "improve"
+      },
+      {
+        "query": "桂枝汤方用于什么情况",
+        "expected_mode": "strong",
+        "expected_primary_after": "safe:main_passages:ZJSHL-CH-008-P-0215",
+        "expected_behavior_note": "应验证“用于什么情况”这类解释型问法也能共享同一条直接使用语境主依据，而不是被方文或泛引用条文拖走。",
+        "regression_tag": "improve"
+      },
+      {
+        "query": "竹叶石膏汤方有什么作用",
+        "expected_mode": "strong",
+        "expected_primary_after": "safe:main_passages:ZJSHL-CH-017-P-0063",
+        "expected_behavior_note": "这是本就稳定的正样本，应继续保持“伤寒解后，虚羸少气，气逆欲吐”的直接使用语境回答，不应回退成方文直出。",
+        "regression_tag": "stable_positive"
+      },
+      {
+        "query": "黄连汤方有什么作用",
+        "expected_mode": "weak_with_review_notice",
+        "expected_primary_after": null,
+        "expected_behavior_note": "当前只在 review/passages 层稳定拿到“伤寒胸中有热……”语境，应继续守在 weak，不把 review 线索误抬成 strong primary。",
+        "regression_tag": "stable_weak_boundary"
+      }
+    ],
+    "boundary": [
+      {
+        "query": "桂枝汤方由什么组成",
+        "expected_route": "formula_composition",
+        "expected_mode": "strong",
+        "expected_behavior_note": "组成类应继续按方文组成输出，不应被 formula_effect 专用规则误吸成“作用解释”。",
+        "regression_tag": "boundary"
+      },
+      {
+        "query": "竹叶石膏汤方的组成是什么",
+        "expected_route": "formula_composition",
+        "expected_mode": "strong",
+        "expected_behavior_note": "组成类边界继续守住；即使 query 含“是什么”，也不应改写成作用类解释。",
+        "regression_tag": "boundary"
+      },
+      {
+        "query": "桂枝汤方的条文是什么",
+        "expected_route": "source_lookup",
+        "expected_mode": "strong",
+        "expected_behavior_note": "条文类应继续按条文 / 方文直读输出，不应改成“更偏向用于……”式作用回答。",
+        "regression_tag": "boundary"
+      },
+      {
+        "query": "黄连汤方的条文是什么",
+        "expected_route": "source_lookup",
+        "expected_mode": "strong",
+        "expected_behavior_note": "条文类边界应保持原路线，不应被 formula_effect 的 weak/strong 判定扰动。",
+        "regression_tag": "boundary"
+      },
+      {
+        "query": "桂枝汤方和麻黄汤方有什么区别",
+        "expected_route": "comparison",
+        "expected_mode": "strong",
+        "expected_behavior_note": "比较类应继续走 comparison 专用路径，primary 仍应以两侧方文为主，不应被单方作用类 primary prioritization 抢走。",
+        "regression_tag": "boundary"
+      },
+      {
+        "query": "桂枝汤方比麻黄汤方多了什么",
+        "expected_route": "comparison",
+        "expected_mode": "strong",
+        "expected_behavior_note": "比较类的“多了什么”应继续做显式加减差异整理，而不是把一侧方剂的作用语境当主依据。",
+        "regression_tag": "boundary"
+      }
+    ],
+    "negative_cross_family_control": [
+      {
+        "query": "什么是发汗药",
+        "expected_route": "definition_priority",
+        "expected_mode": "strong",
+        "expected_behavior_note": "定义类控制样本应保持 definition priority 的既有改善，不应被 formula_effect v1 外溢影响。",
+        "regression_tag": "control"
+      },
+      {
+        "query": "桂枝汤是发汗药吗",
+        "expected_route": "definition_priority",
+        "expected_mode": "strong",
+        "expected_behavior_note": "归类 yes/no 控制样本应继续命中“桂枝汤者，发汗药也”，不应被单方作用专用规则截走。",
+        "regression_tag": "control"
+      },
+      {
+        "query": "太阳病是什么意思",
+        "expected_route": "standard",
+        "expected_mode": "strong",
+        "expected_behavior_note": "六经提纲主题当前仍是定义/outline 边界控制样本，本轮不应因为 formula_effect 调整而回归或乱吸。",
+        "regression_tag": "control"
+      },
+      {
+        "query": "书中有没有提到量子纠缠",
+        "expected_route": "refuse",
+        "expected_mode": "refuse",
+        "expected_behavior_note": "无书内依据的拒答控制样本应保持拒答，不应受到 formula_effect v1 的任何副作用影响。",
+        "regression_tag": "control"
+      }
+    ]
+  }
+}
