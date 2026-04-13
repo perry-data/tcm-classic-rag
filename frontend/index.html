@@ -11,14 +11,14 @@
       <div class="app-shell">
         <aside class="history-sidebar" aria-label="历史会话">
           <div class="sidebar-head">
-            <div>
-              <p class="eyebrow">Chat History v1</p>
+            <div class="sidebar-heading">
+              <p class="eyebrow">Chat History</p>
               <h1>历史会话</h1>
               <p class="sidebar-copy">
-                当前只落地最小多轮能力：查看历史、搜索、恢复会话、继续提问与删除。
+                搜索、切回并继续当前历史会话。
               </p>
             </div>
-            <button id="new-chat-button" class="primary-button" type="button">New chat</button>
+            <button id="new-chat-button" class="primary-button" type="button">新建对话</button>
           </div>
 
           <div class="sidebar-search">
@@ -40,7 +40,7 @@
 
             <div id="history-empty" class="sidebar-state-card" hidden>
               <p class="state-title">还没有历史会话</p>
-              <p class="state-copy">点击上方 <code>New chat</code>，或者直接在右侧输入问题开始第一轮会话。</p>
+              <p class="state-copy">点击上方 <code>新建对话</code>，或者直接在右侧输入问题开始第一轮会话。</p>
             </div>
 
             <div id="history-no-results" class="sidebar-state-card" hidden>
@@ -77,27 +77,28 @@
             </aside>
           </header>
 
-          <section id="conversation-loading" class="main-state-card" hidden>
-            <p class="state-title">正在加载会话</p>
-            <p class="state-copy">正在恢复完整聊天记录，请稍候。</p>
-          </section>
+          <section id="chat-body" class="chat-body" aria-label="当前会话">
+            <section id="conversation-loading" class="main-state-card" hidden>
+              <p class="state-title">正在加载会话</p>
+              <p class="state-copy">正在恢复完整聊天记录，请稍候。</p>
+            </section>
 
-          <section id="conversation-empty" class="main-state-card">
-            <p class="state-title">从右下角开始新会话，或打开左侧历史</p>
-            <p class="state-copy">
-              首轮发送后会自动生成会话标题；之后你可以从左侧搜索标题或消息内容，再点回对应会话继续聊天。
-            </p>
-          </section>
+            <section id="conversation-empty" class="main-state-card">
+              <p class="state-title">从下方输入框开始新会话，或打开左侧历史</p>
+              <p class="state-copy">
+                首轮发送后会自动生成会话标题；之后你可以从左侧搜索标题或消息内容，再点回对应会话继续聊天。
+              </p>
+            </section>
 
-          <section id="message-feed" class="message-feed" hidden></section>
+            <section id="message-feed" class="message-feed" hidden></section>
+          </section>
 
           <footer class="composer-shell">
             <section class="composer-panel" aria-label="底部输入区">
               <div class="composer-copy">
-                <p class="eyebrow">继续提问</p>
-                <h2>当前会话 Composer</h2>
+                <p class="eyebrow">当前会话</p>
                 <p class="composer-text">
-                  会话支持持续追加消息。切回旧会话后，新的问题会继续落在当前会话下。
+                  输入后会写入当前会话；切回历史后，后续问题会继续追加到该会话。
                 </p>
               </div>
 
@@ -106,20 +107,20 @@
                 <textarea
                   id="query-input"
                   name="query"
-                  rows="4"
+                  rows="3"
                   placeholder="例如：黄连汤方的条文是什么？"
                 ></textarea>
 
                 <div class="composer-actions">
                   <p class="query-hint">
-                    按 <code>Cmd/Ctrl + Enter</code> 可直接提交；发送期间会暂时锁定会话切换，避免串写到别的历史会话。
+                    <code>Cmd/Ctrl + Enter</code> 发送；发送期间会暂时锁定会话切换，避免串写到别的历史会话。
                   </p>
-                  <button id="submit-button" type="submit">发送到当前会话</button>
+                  <button id="submit-button" type="submit">发送</button>
                 </div>
               </form>
 
               <details class="sample-queries">
-                <summary class="sample-summary">查看冻结样例</summary>
+                <summary class="sample-summary">查看示例问题</summary>
                 <div class="sample-drawer">
                   <p class="sample-title">可快速填充的示例问题</p>
                   <div class="sample-list">
@@ -144,7 +145,7 @@
                       方剂比较
                     </button>
                   </div>
-                  <p class="sample-note">样例按钮只填充输入框，不会自动发送。</p>
+                  <p class="sample-note">点击后只填充输入框，不会自动发送。</p>
                 </div>
               </details>
             </section>

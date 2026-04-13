@@ -350,7 +350,7 @@ class RetrievalEngine:
 
     def __post_init__(self) -> None:
         self.policy = json.loads(self.policy_path.read_text(encoding="utf-8"))
-        self.conn = sqlite3.connect(self.db_path)
+        self.conn = sqlite3.connect(self.db_path, check_same_thread=False)
         self.conn.row_factory = sqlite3.Row
         self._assert_policy_guards()
         self.unified_rows = [dict(row) for row in self.conn.execute("SELECT * FROM vw_retrieval_records_unified")]

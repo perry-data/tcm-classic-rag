@@ -10,7 +10,7 @@ import threading
 import time
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
-from http.server import BaseHTTPRequestHandler, HTTPServer
+from http.server import BaseHTTPRequestHandler, HTTPServer, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any, Callable
 from urllib import request as urllib_request
@@ -300,7 +300,7 @@ def is_benign_disconnect_exception(exc: BaseException | None) -> bool:
     return False
 
 
-class MinimalApiHTTPServer(HTTPServer):
+class MinimalApiHTTPServer(ThreadingHTTPServer):
     allow_reuse_address = True
 
     def handle_error(self, request: Any, client_address: tuple[str, int] | str) -> None:

@@ -132,10 +132,17 @@ function setError(message) {
 function setComposerDisabled(disabled) {
   refs.queryInput.disabled = disabled;
   refs.submitButton.disabled = disabled;
-  refs.submitButton.textContent = disabled ? "正在发送…" : "发送到当前会话";
+  refs.submitButton.textContent = disabled ? "发送中…" : "发送";
   refs.sampleButtons.forEach((button) => {
     button.disabled = disabled;
   });
+}
+
+function resetComposerState() {
+  refs.queryInput.value = "";
+  if (refs.sampleQueries) {
+    refs.sampleQueries.open = false;
+  }
 }
 
 function formatSourceLabel(recordType) {
@@ -635,10 +642,7 @@ function createAssistantMessageCard(message) {
   article.append(head);
 
   const main = createTag("div", "assistant-main");
-  main.append(
-    createTag("p", "assistant-caption", getAnswerCaption(payload.answer_mode)),
-    createModeSummary(payload.answer_mode),
-  );
+  main.append(createTag("p", "assistant-caption", getAnswerCaption(payload.answer_mode)));
 
   const answerBlock = createTag("section", "answer-block");
   answerBlock.append(
@@ -650,6 +654,7 @@ function createAssistantMessageCard(message) {
   if (payload.disclaimer) {
     main.append(createTag("p", "disclaimer-text", payload.disclaimer));
   }
+  main.append(createModeSummary(payload.answer_mode));
   article.append(main);
 
   if (payload.review_notice || payload.refuse_reason) {
@@ -665,14 +670,9 @@ function createAssistantMessageCard(message) {
 
   const supporting = createTag("section", "assistant-supporting");
   const supportingHead = createTag("div", "assistant-supporting-head");
-  const supportingCopy = createTag("div", "");
-  supportingCopy.append(
-    createTag("p", "supporting-kicker", "回答展开"),
-    createTag("h3", "", "依据与附加信息"),
-  );
   supportingHead.append(
-    supportingCopy,
-    createTag("p", "supporting-note", "这些区块与当前 assistant 消息绑定，切回旧会话时会完整恢复。"),
+    createTag("p", "supporting-kicker", "依据与附加信息"),
+    createTag("p", "supporting-note", "这些信息会随当前 assistant 消息一起恢复。"),
   );
   supporting.append(supportingHead);
 
@@ -721,16 +721,14 @@ function createBrokenAssistantCard(message, error) {
   article.append(head);
 
   const main = createTag("div", "assistant-main");
-  main.append(
-    createTag("p", "assistant-caption", "这条历史消息已恢复，但其 answer payload 无法完整渲染。"),
-    createModeSummary("error"),
-  );
+  main.append(createTag("p", "assistant-caption", "这条历史消息已恢复，但其 answer payload 无法完整渲染。"));
   const answerBlock = createTag("section", "answer-block");
   answerBlock.append(
     createTag("p", "answer-block-label", "已保存文本"),
     createTag("p", "answer-text", message.content || "无正文内容"),
   );
   main.append(answerBlock);
+  main.append(createModeSummary("error"));
   article.append(main);
 
   const callouts = createTag("div", "assistant-callouts");
@@ -754,16 +752,14 @@ function createPendingAssistantCard() {
   article.append(head);
 
   const main = createTag("div", "assistant-main");
-  main.append(
-    createTag("p", "assistant-caption", getAnswerCaption("loading")),
-    createModeSummary("loading"),
-  );
+  main.append(createTag("p", "assistant-caption", getAnswerCaption("loading")));
   const answerBlock = createTag("section", "answer-block");
   answerBlock.append(
     createTag("p", "answer-block-label", "回答正文"),
     createTag("p", "answer-text pending-answer-copy", "正在检索依据并生成回答…"),
   );
   main.append(answerBlock);
+  main.append(createModeSummary("loading"));
   article.append(main);
   return article;
 }
@@ -886,6 +882,7 @@ function renderConversationBody() {
   if (state.conversationLoading) {
     showSection(refs.conversationEmpty, false);
     showSection(refs.messageFeed, false);
+    clearList(refs.messageFeed);
     return;
   }
 
@@ -893,11 +890,12 @@ function renderConversationBody() {
   const hasMessages = confirmedMessages.length > 0 || Boolean(state.pendingTurn);
 
   if (!state.activeConversationId || !state.activeConversation) {
-    refs.conversationEmpty.querySelector(".state-title").textContent = "从右下角开始新会话，或打开左侧历史";
+    refs.conversationEmpty.querySelector(".state-title").textContent = "从下方输入框开始新会话，或打开左侧历史";
     refs.conversationEmpty.querySelector(".state-copy").textContent =
       "首轮发送后会自动生成会话标题；之后你可以从左侧搜索标题或消息内容，再点回对应会话继续聊天。";
     showSection(refs.conversationEmpty, true);
     showSection(refs.messageFeed, false);
+    clearList(refs.messageFeed);
     return;
   }
 
@@ -907,6 +905,7 @@ function renderConversationBody() {
       "现在就可以发送第一条问题。首轮完成后，左侧会话标题会自动改成首问摘要。";
     showSection(refs.conversationEmpty, true);
     showSection(refs.messageFeed, false);
+    clearList(refs.messageFeed);
     return;
   }
 
@@ -934,13 +933,36 @@ function renderConversationBody() {
   }
 }
 
-function scrollFeedToBottom() {
+function scrollConversationBodyToTop() {
+  if (!refs.chatBody) {
+    return;
+  }
   window.requestAnimationFrame(() => {
-    window.scrollTo({
-      top: document.documentElement.scrollHeight,
+    refs.chatBody.scrollTo({
+      top: 0,
+      behavior: "auto",
+    });
+  });
+}
+
+function scrollFeedToBottom() {
+  if (!refs.chatBody) {
+    return;
+  }
+  window.requestAnimationFrame(() => {
+    refs.chatBody.scrollTo({
+      top: refs.chatBody.scrollHeight,
       behavior: "smooth",
     });
   });
+}
+
+function clearActiveConversationState() {
+  state.conversationRequestSeq += 1;
+  state.activeConversationId = null;
+  state.activeConversation = null;
+  state.pendingTurn = null;
+  state.conversationLoading = false;
 }
 
 function syncActiveConversationSummaryFromList() {
@@ -990,14 +1012,13 @@ async function openConversation(conversationId, options = {}) {
   const { updateUrl = true, replaceUrl = false } = options;
 
   if (!conversationId) {
-    state.activeConversationId = null;
-    state.activeConversation = null;
-    state.pendingTurn = null;
+    clearActiveConversationState();
     if (updateUrl) {
       updateBrowserLocation(null, { replace: replaceUrl });
     }
     renderHistoryList();
     renderConversationBody();
+    scrollConversationBodyToTop();
     return;
   }
 
@@ -1094,12 +1115,25 @@ async function handleNewChat() {
   }
 
   try {
-    await createAndActivateConversation();
+    const shouldRefreshHistory = state.conversationsLoading || Boolean(state.historySearch);
+    refs.historySearch.value = "";
+    state.historySearch = "";
+    clearActiveConversationState();
+    resetComposerState();
+    setError("");
+    setStatus("已回到空白新对话，可直接输入第一条问题");
+    updateBrowserLocation(null);
+    renderHistoryList();
+    renderConversationBody();
+    scrollConversationBodyToTop();
+    if (shouldRefreshHistory) {
+      await refreshConversationList("");
+    }
     refs.queryInput.focus();
   } catch (error) {
     console.error(error);
-    setError(error.message || "新会话创建失败。");
-    setStatus("新会话创建失败");
+    setError(error.message || "新对话复位失败。");
+    setStatus("新对话复位失败");
   }
 }
 
@@ -1124,15 +1158,14 @@ async function handleDeleteConversation(conversationId) {
     await apiDeleteConversation(conversationId);
     const deletedActive = state.activeConversationId === conversationId;
     if (deletedActive) {
-      state.activeConversationId = null;
-      state.activeConversation = null;
-      state.pendingTurn = null;
+      clearActiveConversationState();
       updateBrowserLocation(null, { replace: true });
     }
 
     await refreshConversationList(state.historySearch);
     if (deletedActive) {
       renderConversationBody();
+      scrollConversationBodyToTop();
     }
     setStatus("会话已删除");
   } catch (error) {
@@ -1249,12 +1282,14 @@ async function boot() {
   refs.conversationSubtitle = requireElement("conversation-subtitle");
   refs.statusText = requireElement("status-text");
   refs.errorText = requireElement("error-text");
+  refs.chatBody = requireElement("chat-body");
   refs.conversationLoading = requireElement("conversation-loading");
   refs.conversationEmpty = requireElement("conversation-empty");
   refs.messageFeed = requireElement("message-feed");
   refs.form = requireElement("query-form");
   refs.queryInput = requireElement("query-input");
   refs.submitButton = requireElement("submit-button");
+  refs.sampleQueries = document.querySelector(".sample-queries");
   refs.sampleButtons = Array.from(document.querySelectorAll(".sample-chip"));
 
   refs.newChatButton.addEventListener("click", () => {
