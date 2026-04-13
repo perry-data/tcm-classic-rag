@@ -1306,7 +1306,11 @@ async function boot() {
   });
 
   refs.queryInput.addEventListener("keydown", (event) => {
-    const shouldSubmit = (event.metaKey || event.ctrlKey) && event.key === "Enter";
+    const shouldSubmit =
+      event.key === "Enter" &&
+      !event.shiftKey &&
+      !event.isComposing;
+
     if (!shouldSubmit || state.sending) {
       return;
     }

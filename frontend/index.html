@@ -96,24 +96,24 @@
           <footer class="composer-shell">
             <section class="composer-panel" aria-label="底部输入区">
               <div class="composer-copy">
-                <p class="eyebrow">当前会话</p>
+                <p class="eyebrow">输入</p>
                 <p class="composer-text">
-                  输入后会写入当前会话；切回历史后，后续问题会继续追加到该会话。
+                  当前问题会写入此会话。
                 </p>
               </div>
 
               <form id="query-form" class="composer-form">
-                <label class="field-label" for="query-input">问题</label>
+                <label class="field-label" for="query-input">当前问题</label>
                 <textarea
                   id="query-input"
                   name="query"
-                  rows="3"
-                  placeholder="例如：黄连汤方的条文是什么？"
+                  rows="2"
+                  placeholder="输入问题，Enter 发送"
                 ></textarea>
 
                 <div class="composer-actions">
                   <p class="query-hint">
-                    <code>Cmd/Ctrl + Enter</code> 发送；发送期间会暂时锁定会话切换，避免串写到别的历史会话。
+                    <code>Enter</code> 发送，<code>Shift + Enter</code> 换行。
                   </p>
                   <button id="submit-button" type="submit">发送</button>
                 </div>

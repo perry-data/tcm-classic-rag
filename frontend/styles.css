@@ -874,31 +874,34 @@ textarea {
 
 .composer-panel {
   display: grid;
-  gap: 12px;
-  padding: 14px 16px;
+  gap: 8px;
+  padding: 10px 12px;
 }
 
 .composer-copy {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  gap: 12px;
+  align-items: center;
+  gap: 10px;
 }
 
 .composer-text {
-  max-width: 56ch;
-  font-size: 0.92rem;
+  max-width: 30ch;
+  font-size: 0.84rem;
+  line-height: 1.45;
 }
 
 .composer-form {
   display: grid;
-  gap: 10px;
+  gap: 7px;
 }
 
 .composer-form textarea {
-  min-height: 88px;
+  min-height: 62px;
+  padding: 9px 12px;
+  border-radius: 12px;
   resize: vertical;
-  line-height: 1.65;
+  line-height: 1.55;
 }
 
 .composer-form textarea:focus,
@@ -919,7 +922,12 @@ textarea {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
+}
+
+.query-hint {
+  font-size: 0.82rem;
+  line-height: 1.45;
 }
 
 .primary-button,
@@ -936,7 +944,7 @@ textarea {
 
 .primary-button,
 #submit-button {
-  padding: 9px 16px;
+  padding: 8px 13px;
   color: #fffdf9;
   background: #7f6044;
   font-weight: 600;
@@ -957,15 +965,15 @@ textarea {
 
 .sample-queries {
   display: grid;
-  gap: 10px;
-  padding-top: 4px;
+  gap: 6px;
+  padding-top: 2px;
 }
 
 .sample-summary {
   cursor: pointer;
   list-style: none;
   color: var(--accent);
-  font-size: 0.92rem;
+  font-size: 0.86rem;
   font-weight: 600;
 }
 
@@ -985,19 +993,20 @@ textarea {
 
 .sample-drawer {
   display: grid;
-  gap: 10px;
+  gap: 8px;
 }
 
 .sample-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
 }
 
 .sample-chip {
-  padding: 7px 12px;
+  padding: 5px 10px;
   color: var(--accent);
   background: rgba(127, 96, 68, 0.08);
+  font-size: 0.82rem;
 }
 
 .sample-chip:hover {
@@ -1007,7 +1016,7 @@ textarea {
 .sample-note {
   margin: 0;
   color: var(--muted);
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   line-height: 1.55;
 }
 
