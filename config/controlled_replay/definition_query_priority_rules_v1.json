@@ -1,0 +1,168 @@
+{
+  "experiment_id": "definition_query_primary_prioritization_v1",
+  "enabled_by_default": true,
+  "env_flag": "TCM_ENABLE_DEFINITION_QUERY_PRIORITY_RULES_V1",
+  "query_prefix_noise": [
+    "请问",
+    "书中",
+    "文中",
+    "伤寒论里",
+    "伤寒论中",
+    "关于",
+    "对于"
+  ],
+  "query_suffix_noise": [
+    "呢",
+    "呀",
+    "啊"
+  ],
+  "block_hints": [
+    "条文",
+    "原文",
+    "出处",
+    "出自",
+    "比较",
+    "区别",
+    "不同",
+    "异同",
+    "怎么办",
+    "怎么处理",
+    "如何处理",
+    "如何治疗"
+  ],
+  "primary_limit": 1,
+  "secondary_limit": 5,
+  "source_object_bonus": {
+    "main_passages": 8.0,
+    "passages": 6.0
+  },
+  "evidence_type_weights": {
+    "exact_term_definition": 180.0,
+    "subject_predicate_definition": 176.0,
+    "subject_category_definition": 172.0,
+    "exact_term_explanation": 152.0,
+    "term_membership_sentence": 144.0,
+    "subject_predicate_explanation": 132.0
+  },
+  "families": [
+    {
+      "family_id": "what_is",
+      "label": "X是什么",
+      "patterns": [
+        {
+          "pattern_id": "what_is_prefix",
+          "match_mode": "prefix",
+          "value": "什么是",
+          "extract_as": "topic"
+        },
+        {
+          "pattern_id": "what_is_suffix",
+          "match_mode": "suffix",
+          "value": "是什么",
+          "extract_as": "topic"
+        }
+      ],
+      "preferred_evidence_types": [
+        "exact_term_definition",
+        "exact_term_explanation",
+        "term_membership_sentence"
+      ],
+      "primary_source_allowlist": [
+        "main_passages",
+        "passages"
+      ],
+      "blocked_source_objects": [
+        "annotations",
+        "annotation_links",
+        "ambiguous_passages"
+      ]
+    },
+    {
+      "family_id": "what_means",
+      "label": "X是什么意思",
+      "patterns": [
+        {
+          "pattern_id": "what_means_long_suffix",
+          "match_mode": "suffix",
+          "value": "是什么意思",
+          "extract_as": "topic"
+        },
+        {
+          "pattern_id": "what_means_short_suffix",
+          "match_mode": "suffix",
+          "value": "什么意思",
+          "extract_as": "topic"
+        }
+      ],
+      "preferred_evidence_types": [
+        "exact_term_definition",
+        "exact_term_explanation",
+        "term_membership_sentence"
+      ],
+      "primary_source_allowlist": [
+        "main_passages",
+        "passages"
+      ],
+      "blocked_source_objects": [
+        "annotations",
+        "annotation_links",
+        "ambiguous_passages"
+      ]
+    },
+    {
+      "family_id": "category_membership_yesno",
+      "label": "X是Y吗",
+      "patterns": [
+        {
+          "pattern_id": "subject_predicate_yesno",
+          "match_mode": "regex",
+          "value": "^(?P<subject>.+?)是(?P<predicate>.+?)吗$"
+        }
+      ],
+      "preferred_evidence_types": [
+        "subject_predicate_definition",
+        "subject_predicate_explanation",
+        "subject_category_definition"
+      ],
+      "primary_source_allowlist": [
+        "main_passages",
+        "passages"
+      ],
+      "blocked_source_objects": [
+        "annotations",
+        "annotation_links",
+        "ambiguous_passages"
+      ]
+    },
+    {
+      "family_id": "category_membership_open",
+      "label": "X属于什么药",
+      "patterns": [
+        {
+          "pattern_id": "belongs_to_what_drug",
+          "match_mode": "regex",
+          "value": "^(?P<subject>.+?)属于什么药$"
+        },
+        {
+          "pattern_id": "what_kind_of_drug",
+          "match_mode": "regex",
+          "value": "^(?P<subject>.+?)是什么药$"
+        }
+      ],
+      "preferred_evidence_types": [
+        "subject_category_definition",
+        "subject_predicate_definition",
+        "subject_predicate_explanation"
+      ],
+      "primary_source_allowlist": [
+        "main_passages",
+        "passages"
+      ],
+      "blocked_source_objects": [
+        "annotations",
+        "annotation_links",
+        "ambiguous_passages"
+      ]
+    }
+  ]
+}

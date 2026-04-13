@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 from dataclasses import dataclass
@@ -48,6 +49,7 @@ from backend.retrieval.minimal import extract_focus_text
 
 DEFAULT_ANSWER_EXAMPLES_OUT = "artifacts/hybrid_answer_examples.json"
 DEFAULT_ANSWER_SMOKE_OUT = "artifacts/hybrid_answer_smoke_checks.md"
+DEFAULT_DEFINITION_QUERY_PRIORITY_RULES_PATH = "config/controlled_replay/definition_query_priority_rules_v1.json"
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 SNIPPET_LIMIT = 120
 COMPARISON_ENTITY_LIMIT = 2
@@ -391,6 +393,18 @@ FORMULA_EFFECT_SUPPORT_LIMIT = 1
 FORMULA_EFFECT_FORMULA_LIMIT = 1
 FORMULA_EFFECT_REVIEW_LIMIT = 3
 FORMULA_COMPOSITION_LIMIT = 3
+DEFINITION_PRIORITY_EXPLANATION_MARKERS = (
+    "也",
+    "名曰",
+    "谓之",
+    "所谓",
+    "故",
+    "所以",
+    "须",
+    "即",
+    "可见",
+)
+QUERY_TRAILING_PUNCTUATION = "？?！!。；;，,：:"
 
 
 def resolve_project_path(path_value: str) -> Path:
@@ -398,6 +412,10 @@ def resolve_project_path(path_value: str) -> Path:
     if path.is_absolute():
         return path.resolve()
     return (PROJECT_ROOT / path).resolve()
+
+
+def env_flag_enabled(value: str | None) -> bool:
+    return str(value or "").strip().lower() in {"1", "true", "yes", "on"}
 
 
 def parse_args() -> argparse.Namespace:
@@ -527,6 +545,20 @@ class DefinitionOutlinePlan:
     matched_trigger: str
 
 
+@dataclass(frozen=True)
+class DefinitionPriorityPlan:
+    query_text: str
+    family_id: str
+    family_label: str
+    pattern_id: str
+    topic_text: str | None = None
+    normalized_topic: str | None = None
+    subject_text: str | None = None
+    subject_variants: tuple[str, ...] = ()
+    predicate_text: str | None = None
+    predicate_variants: tuple[str, ...] = ()
+
+
 @dataclass
 class AnswerAssembler:
     db_path: Path
@@ -560,9 +592,14 @@ class AnswerAssembler:
         ) = self._load_formula_catalog()
         self._last_comparison_debug: dict[str, Any] | None = None
         self._last_general_debug: dict[str, Any] | None = None
+        self._last_definition_priority_debug: dict[str, Any] | None = None
         self._last_llm_debug: dict[str, Any] | None = None
         self._progress_callback: Callable[[dict[str, Any]], None] | None = None
         self._last_progress_stage: str | None = None
+        self.definition_query_priority_config = self._load_definition_query_priority_config()
+        self.definition_query_priority_enabled = self._is_definition_query_priority_enabled(
+            self.definition_query_priority_config
+        )
         self._llm_config = self.llm_config or ModelStudioLLMConfig(
             enabled=False,
             api_key=None,
@@ -574,6 +611,26 @@ class AnswerAssembler:
     def close(self) -> None:
         self.engine.close()
 
+    def _load_definition_query_priority_config(self) -> dict[str, Any]:
+        config_path = resolve_project_path(DEFAULT_DEFINITION_QUERY_PRIORITY_RULES_PATH)
+        if not config_path.exists():
+            return {
+                "experiment_id": "definition_query_priority_rules_v1",
+                "enabled_by_default": False,
+                "env_flag": "TCM_ENABLE_DEFINITION_QUERY_PRIORITY_RULES_V1",
+                "families": [],
+                "_config_path": str(config_path),
+            }
+        config = json.loads(config_path.read_text(encoding="utf-8"))
+        config["_config_path"] = str(config_path)
+        return config
+
+    def _is_definition_query_priority_enabled(self, config: dict[str, Any]) -> bool:
+        env_flag = str(config.get("env_flag") or "").strip()
+        if env_flag and env_flag in os.environ:
+            return env_flag_enabled(os.environ.get(env_flag))
+        return bool(config.get("enabled_by_default"))
+
     def assemble(
         self,
         query_text: str,
@@ -581,6 +638,7 @@ class AnswerAssembler:
     ) -> dict[str, Any]:
         self._last_comparison_debug = None
         self._last_general_debug = None
+        self._last_definition_priority_debug = None
         self._last_llm_debug = None
         self._progress_callback = progress_callback
         self._last_progress_stage = None
@@ -604,6 +662,9 @@ class AnswerAssembler:
             definition_outline_plan = self._detect_definition_outline_query(query_text)
             if definition_outline_plan is not None:
                 return self._assemble_definition_outline_query(query_text, definition_outline_plan)
+            definition_priority_plan = self._detect_definition_priority_query(query_text)
+            if definition_priority_plan is not None:
+                return self._assemble_definition_priority_query(query_text, definition_priority_plan)
             general_plan = detect_general_question(query_text)
             if general_plan is not None:
                 return self._assemble_general_question(query_text, general_plan)
@@ -614,6 +675,9 @@ class AnswerAssembler:
 
     def get_last_comparison_debug(self) -> dict[str, Any] | None:
         return self._last_comparison_debug
+
+    def get_last_definition_priority_debug(self) -> dict[str, Any] | None:
+        return self._last_definition_priority_debug
 
     def get_last_llm_debug(self) -> dict[str, Any] | None:
         return self._last_llm_debug
@@ -1479,6 +1543,479 @@ class AnswerAssembler:
         if has_secondary:
             lines.append("其余相关条文可再看补充依据，用来展开外证、分类或治法，但不替代这条提纲句。")
         return "\n".join(lines)
+
+    def _detect_definition_priority_query(self, query_text: str) -> DefinitionPriorityPlan | None:
+        if not self.definition_query_priority_enabled:
+            return None
+
+        compact_query = compact_whitespace(query_text)
+        if not compact_query:
+            return None
+
+        stripped_query = self._strip_definition_priority_query(compact_query)
+        normalized_query = compact_text(stripped_query)
+        if not normalized_query:
+            return None
+
+        block_hints = self.definition_query_priority_config.get("block_hints", [])
+        if any(compact_text(hint) in normalized_query for hint in block_hints):
+            return None
+
+        for family_rule in self.definition_query_priority_config.get("families", []):
+            for pattern in family_rule.get("patterns", []):
+                extracted = self._match_definition_priority_pattern(stripped_query, pattern)
+                if extracted is None:
+                    continue
+                plan = self._build_definition_priority_plan(
+                    compact_query,
+                    family_rule,
+                    pattern,
+                    extracted,
+                )
+                if plan is not None:
+                    return plan
+        return None
+
+    def _strip_definition_priority_query(self, query_text: str) -> str:
+        stripped = compact_whitespace(query_text).strip().strip(QUERY_TRAILING_PUNCTUATION)
+        for prefix in self.definition_query_priority_config.get("query_prefix_noise", []):
+            if stripped.startswith(prefix):
+                stripped = stripped[len(prefix) :].strip()
+        for suffix in self.definition_query_priority_config.get("query_suffix_noise", []):
+            if stripped.endswith(suffix):
+                stripped = stripped[: -len(suffix)].strip()
+        return stripped.strip(QUERY_TRAILING_PUNCTUATION)
+
+    def _match_definition_priority_pattern(
+        self,
+        stripped_query: str,
+        pattern: dict[str, Any],
+    ) -> dict[str, str] | None:
+        mode = pattern.get("match_mode")
+        value = str(pattern.get("value") or "")
+        extract_as = str(pattern.get("extract_as") or "topic")
+
+        if mode == "prefix":
+            if not value or not stripped_query.startswith(value):
+                return None
+            return {extract_as: stripped_query[len(value) :].strip()}
+
+        if mode == "suffix":
+            if not value or not stripped_query.endswith(value):
+                return None
+            return {extract_as: stripped_query[: -len(value)].strip()}
+
+        if mode == "regex":
+            if not value:
+                return None
+            match = re.match(value, stripped_query)
+            if not match:
+                return None
+            return {key: compact_whitespace(item).strip() for key, item in match.groupdict().items() if item}
+
+        return None
+
+    def _build_definition_priority_plan(
+        self,
+        query_text: str,
+        family_rule: dict[str, Any],
+        pattern: dict[str, Any],
+        extracted: dict[str, str],
+    ) -> DefinitionPriorityPlan | None:
+        family_id = str(family_rule.get("family_id") or "")
+        topic_text = extracted.get("topic")
+        subject_text = extracted.get("subject")
+        predicate_text = extracted.get("predicate")
+
+        if topic_text:
+            topic_text = topic_text.strip(QUERY_TRAILING_PUNCTUATION).strip()
+        if subject_text:
+            subject_text = subject_text.strip(QUERY_TRAILING_PUNCTUATION).strip()
+        if predicate_text:
+            predicate_text = predicate_text.strip(QUERY_TRAILING_PUNCTUATION).strip()
+
+        normalized_topic = compact_text(topic_text) if topic_text else None
+        if topic_text and not normalized_topic:
+            return None
+        if subject_text and not self._definition_priority_term_variants(subject_text):
+            return None
+        if predicate_text and not self._definition_priority_term_variants(predicate_text):
+            return None
+
+        if family_id in {"what_is", "what_means"} and not topic_text:
+            return None
+        if family_id.startswith("category_membership") and not subject_text:
+            return None
+
+        if topic_text and len(normalized_topic or "") < 2:
+            return None
+
+        return DefinitionPriorityPlan(
+            query_text=query_text,
+            family_id=family_id,
+            family_label=str(family_rule.get("label") or family_id),
+            pattern_id=str(pattern.get("pattern_id") or family_id),
+            topic_text=topic_text,
+            normalized_topic=normalized_topic,
+            subject_text=subject_text,
+            subject_variants=self._definition_priority_term_variants(subject_text),
+            predicate_text=predicate_text,
+            predicate_variants=self._definition_priority_term_variants(predicate_text),
+        )
+
+    def _definition_priority_term_variants(self, text: str | None) -> tuple[str, ...]:
+        if not text:
+            return ()
+        variants = [compact_text(text)]
+        normalized_formula = normalize_formula_lookup_text(text, keep_formula_suffix=True)
+        normalized_formula_without_suffix = normalize_formula_lookup_text(text, keep_formula_suffix=False)
+        variants.extend([normalized_formula, normalized_formula_without_suffix])
+        mentions = self._find_formula_mentions(text)
+        if len(mentions) == 1:
+            canonical_name = mentions[0]["canonical_name"]
+            variants.extend(
+                [
+                    normalize_formula_lookup_text(canonical_name, keep_formula_suffix=True),
+                    normalize_formula_lookup_text(canonical_name, keep_formula_suffix=False),
+                    compact_text(canonical_name),
+                ]
+            )
+        return tuple(value for value in dedupe_strings([value for value in variants if value]))
+
+    def _get_definition_priority_family_rule(self, family_id: str) -> dict[str, Any] | None:
+        for family_rule in self.definition_query_priority_config.get("families", []):
+            if family_rule.get("family_id") == family_id:
+                return family_rule
+        return None
+
+    def _assemble_definition_priority_query(
+        self,
+        query_text: str,
+        definition_plan: DefinitionPriorityPlan,
+    ) -> dict[str, Any]:
+        retrieval = self.engine.retrieve(query_text)
+        family_rule = self._get_definition_priority_family_rule(definition_plan.family_id)
+        if family_rule is None:
+            return self._assemble_standard(query_text)
+
+        self._emit_progress(
+            "organizing_evidence",
+            "已识别为定义 / 术语解释类问题，正在优先裁决定义句、解释句与方义句。",
+        )
+        prioritized_candidates = self._collect_definition_priority_candidates(definition_plan, retrieval, family_rule)
+        primary_limit = int(self.definition_query_priority_config.get("primary_limit", 1))
+        secondary_limit = int(self.definition_query_priority_config.get("secondary_limit", 5))
+
+        if not prioritized_candidates[:primary_limit]:
+            self._last_definition_priority_debug = {
+                "query": query_text,
+                "enabled": True,
+                "family_id": definition_plan.family_id,
+                "selected_primary_ids": [],
+                "candidate_debug": [],
+                "fallback_to_standard": True,
+            }
+            return self._assemble_standard(query_text)
+
+        selected_primary_candidates = prioritized_candidates[:primary_limit]
+        primary = [
+            self._build_evidence_item(candidate["row"], display_role="primary")
+            for candidate in selected_primary_candidates
+        ]
+        selected_primary_ids = {item["record_id"] for item in primary}
+
+        preferred_secondary_candidates = [
+            candidate
+            for candidate in prioritized_candidates[primary_limit:]
+            if candidate["row"]["record_id"] not in selected_primary_ids
+        ][:2]
+        secondary: list[dict[str, Any]] = [
+            self._build_evidence_item(candidate["row"], display_role="secondary")
+            for candidate in preferred_secondary_candidates
+        ]
+        seen_secondary_ids = set(selected_primary_ids) | {item["record_id"] for item in secondary}
+
+        for row in retrieval["primary_evidence"]:
+            if row["record_id"] in seen_secondary_ids:
+                continue
+            secondary.append(
+                self._build_evidence_item(
+                    row,
+                    display_role="secondary",
+                    risk_flags_override=dedupe_strings(
+                        self._extract_risk_flags(row) + ["definition_priority_demoted_from_primary"]
+                    ),
+                )
+            )
+            seen_secondary_ids.add(row["record_id"])
+            if len(secondary) >= secondary_limit:
+                break
+
+        if len(secondary) < secondary_limit:
+            for row in retrieval["secondary_evidence"]:
+                if row["record_id"] in seen_secondary_ids:
+                    continue
+                secondary.append(self._build_evidence_item(row, display_role="secondary"))
+                seen_secondary_ids.add(row["record_id"])
+                if len(secondary) >= secondary_limit:
+                    break
+
+        review = [
+            self._build_evidence_item(row, display_role="review")
+            for row in retrieval["risk_materials"]
+            if row["record_id"] not in selected_primary_ids
+        ]
+        answer_text = self._build_definition_priority_answer_text(
+            definition_plan,
+            selected_primary_candidates[0],
+            preferred_secondary_candidates,
+        )
+        citations = self._build_citations("strong", primary, secondary, review)
+        self._last_definition_priority_debug = {
+            "query": query_text,
+            "enabled": True,
+            "family_id": definition_plan.family_id,
+            "pattern_id": definition_plan.pattern_id,
+            "selected_primary_ids": [candidate["row"]["record_id"] for candidate in selected_primary_candidates],
+            "preferred_secondary_ids": [candidate["row"]["record_id"] for candidate in preferred_secondary_candidates],
+            "candidate_debug": [
+                {
+                    "record_id": candidate["row"]["record_id"],
+                    "record_type": candidate["row"]["source_object"],
+                    "evidence_type": candidate["evidence_type"],
+                    "selection_score": round(candidate["selection_score"], 3),
+                }
+                for candidate in prioritized_candidates[:8]
+            ],
+            "fallback_to_standard": False,
+        }
+        return self._compose_payload(
+            query_text=query_text,
+            answer_mode="strong",
+            answer_text=answer_text,
+            primary=primary,
+            secondary=secondary,
+            review=review,
+            review_notice=self._build_review_notice("strong") if secondary or review else None,
+            disclaimer=self._build_disclaimer("strong", bool(secondary), bool(review)),
+            refuse_reason=None,
+            suggested_followup_questions=[],
+            citations=citations,
+        )
+
+    def _collect_definition_priority_candidates(
+        self,
+        definition_plan: DefinitionPriorityPlan,
+        retrieval: dict[str, Any],
+        family_rule: dict[str, Any],
+    ) -> list[dict[str, Any]]:
+        deduped: dict[str, dict[str, Any]] = {}
+        for row in retrieval.get("raw_candidates", []):
+            candidate_meta = self._score_definition_priority_candidate(definition_plan, row, family_rule)
+            if candidate_meta is None:
+                continue
+            normalized_row = self._normalize_record_row(row)
+            candidate = {
+                "row": normalized_row,
+                **candidate_meta,
+            }
+            existing = deduped.get(normalized_row["record_id"])
+            if existing is None or candidate["selection_score"] > existing["selection_score"]:
+                deduped[normalized_row["record_id"]] = candidate
+
+        return sorted(
+            deduped.values(),
+            key=lambda item: (
+                -item["selection_score"],
+                item["row"]["chapter_id"] or "",
+                item["row"]["record_id"],
+            ),
+        )
+
+    def _score_definition_priority_candidate(
+        self,
+        definition_plan: DefinitionPriorityPlan,
+        row: dict[str, Any],
+        family_rule: dict[str, Any],
+    ) -> dict[str, Any] | None:
+        source_object = row.get("source_object")
+        blocked_sources = set(family_rule.get("blocked_source_objects", []))
+        allowed_sources = set(family_rule.get("primary_source_allowlist", []))
+        if source_object in blocked_sources:
+            return None
+        if allowed_sources and source_object not in allowed_sources:
+            return None
+
+        cleaned_text = strip_inline_notes(row.get("retrieval_text", ""))
+        normalized_text = compact_text(cleaned_text)
+        if not normalized_text:
+            return None
+
+        candidate_types: list[str] = []
+        topic = definition_plan.normalized_topic
+        if topic and topic in normalized_text:
+            if normalized_text.startswith(topic + "者") and "也" in normalized_text:
+                candidate_types.append("exact_term_definition")
+            elif normalized_text.startswith(topic + "之为病"):
+                candidate_types.append("exact_term_definition")
+            elif normalized_text.startswith(topic) and any(
+                marker in normalized_text for marker in map(compact_text, DEFINITION_PRIORITY_EXPLANATION_MARKERS)
+            ):
+                candidate_types.append("exact_term_explanation")
+            elif re.search(rf".{{1,20}}者.{{0,24}}{re.escape(topic)}也", normalized_text):
+                candidate_types.append("term_membership_sentence")
+
+        if definition_plan.subject_variants and definition_plan.predicate_variants:
+            subject_match = any(subject in normalized_text for subject in definition_plan.subject_variants)
+            predicate_match = any(predicate in normalized_text for predicate in definition_plan.predicate_variants)
+            if subject_match and predicate_match:
+                if any(
+                    re.search(rf"{re.escape(subject)}者.{{0,32}}{re.escape(predicate)}也", normalized_text)
+                    for subject in definition_plan.subject_variants
+                    for predicate in definition_plan.predicate_variants
+                ):
+                    candidate_types.append("subject_predicate_definition")
+                else:
+                    candidate_types.append("subject_predicate_explanation")
+
+        if definition_plan.subject_variants and not definition_plan.predicate_variants:
+            if any(subject in normalized_text for subject in definition_plan.subject_variants):
+                if any(
+                    re.search(rf"{re.escape(subject)}者(.{{1,18}}?药)也", normalized_text)
+                    for subject in definition_plan.subject_variants
+                ):
+                    candidate_types.append("subject_category_definition")
+
+        preferred_types = list(family_rule.get("preferred_evidence_types", []))
+        evidence_type_weights = self.definition_query_priority_config.get("evidence_type_weights", {})
+        ranked_types = [
+            (
+                float(evidence_type_weights.get(candidate_type, 0.0))
+                + float(len(preferred_types) - preferred_types.index(candidate_type)) * 4.0,
+                candidate_type,
+            )
+            for candidate_type in dedupe_strings(candidate_types)
+            if candidate_type in preferred_types
+        ]
+        if not ranked_types:
+            return None
+
+        base_score, evidence_type = max(ranked_types, key=lambda item: item[0])
+        source_bonus = float(self.definition_query_priority_config.get("source_object_bonus", {}).get(source_object, 0.0))
+        retrieval_bonus = min(float(row.get("combined_score", 0.0)) / 4.0, 24.0)
+        text_length = len(cleaned_text)
+        length_bonus = 6.0 if text_length <= 72 else 2.0 if text_length <= 120 else -4.0
+        selection_score = base_score + source_bonus + retrieval_bonus + length_bonus
+        return {
+            "selection_score": selection_score,
+            "evidence_type": evidence_type,
+            "clean_text": cleaned_text,
+        }
+
+    def _build_definition_priority_answer_text(
+        self,
+        definition_plan: DefinitionPriorityPlan,
+        primary_candidate: dict[str, Any],
+        secondary_candidates: list[dict[str, Any]],
+    ) -> str:
+        full_primary_text = strip_inline_notes(
+            self._fetch_record_meta(primary_candidate["row"]["record_id"]).get("retrieval_text", "")
+        ) or primary_candidate["row"]["text_preview"]
+        primary_text = self._definition_priority_excerpt(
+            full_primary_text,
+            definition_plan,
+            primary_candidate["evidence_type"],
+        )
+        secondary_text = ""
+        if secondary_candidates:
+            full_secondary_text = strip_inline_notes(
+                self._fetch_record_meta(secondary_candidates[0]["row"]["record_id"]).get("retrieval_text", "")
+            ) or secondary_candidates[0]["row"]["text_preview"]
+            secondary_text = self._definition_priority_excerpt(
+                full_secondary_text,
+                definition_plan,
+                secondary_candidates[0]["evidence_type"],
+            )
+
+        if definition_plan.family_id == "category_membership_yesno":
+            lines = [
+                f"从现有直接归类句看，可以把“{definition_plan.subject_text}”看作“{definition_plan.predicate_text}”。",
+                f"直接依据：{primary_text}",
+            ]
+            if secondary_text:
+                lines.append(f"补充说明：{secondary_text}")
+            return "\n".join(lines)
+
+        if definition_plan.family_id == "category_membership_open":
+            category = self._extract_subject_category_from_text(primary_text, definition_plan.subject_variants)
+            if category:
+                lines = [
+                    f"从现有归类句看，“{definition_plan.subject_text}”可归入“{category}”。",
+                    f"直接依据：{primary_text}",
+                ]
+            else:
+                lines = [
+                    f"从现有归类句看，可先据“{primary_text}”判断“{definition_plan.subject_text}”所属药类。",
+                ]
+            if secondary_text:
+                lines.append(f"补充说明：{secondary_text}")
+            return "\n".join(lines)
+
+        if definition_plan.family_id == "what_means":
+            lines = [
+                f"从现有解释句看，“{definition_plan.topic_text}”可先参考“{primary_text}”来理解。",
+                f"直接依据：{primary_text}",
+            ]
+            if secondary_text:
+                lines.append(f"补充说明：{secondary_text}")
+            return "\n".join(lines)
+
+        if primary_candidate["evidence_type"] == "term_membership_sentence":
+            lines = [
+                f"书中并不是先给“{definition_plan.topic_text}”下一条抽象定义，现有可直接对应该问法的归类句是“{primary_text}”。",
+                f"也就是说，这里是用具体对象的归属来说明“{definition_plan.topic_text}”这一类。",
+            ]
+        else:
+            lines = [
+                f"书中对“{definition_plan.topic_text}”的直接解释，可先看“{primary_text}”。",
+                f"直接依据：{primary_text}",
+            ]
+        if secondary_text:
+            lines.append(f"补充说明：{secondary_text}")
+        return "\n".join(lines)
+
+    def _definition_priority_excerpt(
+        self,
+        text: str,
+        definition_plan: DefinitionPriorityPlan,
+        evidence_type: str,
+    ) -> str:
+        compact = compact_whitespace(text)
+        if not compact:
+            return ""
+
+        if definition_plan.family_id == "category_membership_yesno":
+            subject = re.escape(definition_plan.subject_text or "")
+            predicate = re.escape(definition_plan.predicate_text or "")
+            if subject and predicate:
+                match = re.search(rf"({subject}者[^。；]*?{predicate}也。?)", compact)
+                if match:
+                    return match.group(1)
+
+        if evidence_type == "term_membership_sentence" and "《" in compact:
+            return compact.split("《", 1)[0].rstrip("，；; ")
+
+        first_sentence = re.split(r"(?<=[。；])", compact, maxsplit=1)[0].strip()
+        return first_sentence or compact
+
+    def _extract_subject_category_from_text(self, text: str, subject_variants: tuple[str, ...]) -> str | None:
+        normalized_text = compact_text(text)
+        for subject in subject_variants:
+            match = re.search(rf"{re.escape(subject)}者(.{{1,18}}?药)也", normalized_text)
+            if not match:
+                continue
+            return match.group(1)
+        return None
 
     def _build_comparison_refuse_reason(self, reason: str) -> str:
         if reason == "unsupported_comparison":
