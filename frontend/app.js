@@ -1,9 +1,4 @@
-const API_PATH = "/api/v1/answers";
-const STREAM_API_PATH = "/api/v1/answers/stream";
-const STREAM_SOFT_WARNING_MS = 8000;
-const STREAM_HARD_TIMEOUT_MS = 30000;
-const FALLBACK_SOFT_WARNING_MS = 6000;
-const FALLBACK_HARD_TIMEOUT_MS = 18000;
+const CONVERSATIONS_API_PATH = "/api/v1/conversations";
 const REQUIRED_TOP_FIELDS = [
   "query",
   "answer_mode",
@@ -18,48 +13,42 @@ const REQUIRED_TOP_FIELDS = [
   "citations",
   "display_sections",
 ];
-const PROGRESS_STEPS = [
-  { stage: "retrieving_evidence", label: "正在检索依据" },
-  { stage: "organizing_evidence", label: "正在组织证据" },
-  { stage: "generating_answer", label: "正在生成回答" },
-  { stage: "completed", label: "已完成" },
-];
 const MODE_COPY = {
   idle: {
     badge: "等待中",
     title: "等待提问",
-    description: "输入问题后开始本轮研读。",
-    hint: "支持 Cmd/Ctrl + Enter 提交。",
+    description: "开始发送后，这里会切换到当前回答的结果状态与阅读建议。",
+    hint: "当前会话恢复后，会按 strong / weak / refuse 展示每条 assistant 消息。",
   },
   loading: {
     badge: "处理中",
     title: "正在整理回答",
-    description: "正在检索依据并生成回答。",
-    hint: "等待稍长时会提示处理进度，这不等同于拒答。",
+    description: "系统正在检索依据、组织证据并准备最终回答。",
+    hint: "发送期间会暂时锁定会话切换，避免结果串写到别的历史会话。",
   },
   strong: {
     badge: "可参考",
-    title: "可直接参考",
-    description: "先看正文，再回看主依据。",
-    hint: "补充依据和引用收在下方展开区。",
+    title: "可直接参考的回答",
+    description: "当前回答优先依据主依据整理，可先读回答，再回看主依据区核对原文。",
+    hint: "阅读顺序建议：回答 -> 主依据 -> 补充依据 -> 回答引用。",
   },
   weak_with_review_notice: {
     badge: "需核对",
-    title: "需核对",
-    description: "这是一条需核对的整理结果，不能直接视为定论。",
-    hint: "先看核对提示，再决定是否展开依据。",
+    title: "需核对的回答",
+    description: "当前没有足够强的正文证据，回答只提供可核对线索，不能视为确定结论。",
+    hint: "请优先看核对提示，再对照补充依据和核对材料阅读。",
   },
   refuse: {
     badge: "暂不支持",
     title: "当前不支持这样回答",
-    description: "这属于业务拒答，不是系统报错。",
-    hint: "可按下方改问建议继续追问。",
+    description: "这属于正常的业务拒答，不是系统报错。请先看拒答原因，再按改问建议继续追问。",
+    hint: "阅读顺序建议：拒答原因 -> 改问建议 -> 重新收窄问题。",
   },
   error: {
     badge: "请求异常",
     title: "本次请求未完成",
-    description: "这次请求没拿到完整结果，不等同于系统拒答。",
-    hint: "可以直接重试上一个问题。",
+    description: "这是请求错误、超时或服务异常，不等同于系统拒答。",
+    hint: "可以直接重试当前问题；如果问题持续存在，再检查本地服务状态。",
   },
 };
 const SOURCE_LABELS = {
@@ -80,6 +69,7 @@ const SOURCE_UNIT_LABELS = {
   annotations: "注解",
   chunks: "片段",
 };
+const HISTORY_SEARCH_DEBOUNCE_MS = 180;
 
 function requireElement(id) {
   const element = document.getElementById(id);
@@ -96,71 +86,15 @@ function createRequestError(kind, message, extra = {}) {
   return error;
 }
 
-const refs = {};
-const state = {
-  streamedAnswerText: "",
-  latestPayload: null,
-  lastQuery: "",
-  activeRequestId: 0,
-  activeTransport: null,
-  activeStreamReader: null,
-  requestInFlight: false,
-  supportingExpanded: false,
-  debugRequestFailure: null,
-};
-
-function setLoading(isLoading) {
-  refs.submitButton.disabled = isLoading;
-  refs.submitButton.textContent = isLoading ? "发送中…" : "发送";
-  refs.sampleButtons.forEach((button) => {
-    button.disabled = isLoading;
-  });
-  refs.retryButton.disabled = isLoading || !state.lastQuery;
-  if (isLoading) {
-    refs.statusText.textContent = "已提交问题，正在准备回答";
+function createTag(tagName, className, text) {
+  const node = document.createElement(tagName);
+  if (className) {
+    node.className = className;
   }
-}
-
-function setErrorSummary(message) {
-  refs.errorText.textContent = message || "";
-}
-
-function setModeBadge(mode) {
-  const copy = MODE_COPY[mode] || MODE_COPY.idle;
-  refs.modeBadge.className = `mode-badge mode-${mode || "idle"}`;
-  refs.modeBadge.textContent = copy.badge;
-  refs.modeBadge.title = mode || "idle";
-}
-
-function setModeSummary(mode, overrides = {}) {
-  const copy = MODE_COPY[mode] || MODE_COPY.idle;
-  const hint = overrides.hint || copy.hint;
-  refs.modeSummary.className = `mode-summary mode-summary-${mode || "idle"}`;
-  refs.modeTitle.textContent = overrides.title || copy.title;
-  refs.modeDescription.textContent = overrides.description || copy.description;
-  refs.modeReadingHint.textContent = hint || "";
-  showSection(refs.modeReadingHint, Boolean(hint));
-}
-
-function setAnswerText(text, options = {}) {
-  const { placeholder = false, streaming = false } = options;
-  refs.answerText.textContent = text || "";
-  refs.answerText.classList.toggle("empty-copy", placeholder);
-  refs.answerText.classList.toggle("is-streaming", streaming);
-}
-
-function setQueryEcho(text, options = {}) {
-  const { placeholder = false } = options;
-  refs.queryEcho.textContent = text || "";
-  refs.queryEcho.classList.toggle("empty-copy", placeholder);
-}
-
-function autoResizeQueryInput() {
-  if (!refs.queryInput) {
-    return;
+  if (text !== undefined) {
+    node.textContent = text;
   }
-  refs.queryInput.style.height = "auto";
-  refs.queryInput.style.height = `${Math.min(refs.queryInput.scrollHeight, 220)}px`;
+  return node;
 }
 
 function showSection(element, visible) {
@@ -171,15 +105,37 @@ function clearList(element) {
   element.innerHTML = "";
 }
 
-function createTag(tagName, className, text) {
-  const node = document.createElement(tagName);
-  if (className) {
-    node.className = className;
-  }
-  if (text !== undefined) {
-    node.textContent = text;
-  }
-  return node;
+const refs = {};
+const state = {
+  conversations: [],
+  activeConversationId: null,
+  activeConversation: null,
+  historySearch: "",
+  conversationsLoading: true,
+  conversationLoading: false,
+  sending: false,
+  pendingTurn: null,
+  deletingConversationId: null,
+  historyRequestSeq: 0,
+  conversationRequestSeq: 0,
+  historySearchTimer: null,
+};
+
+function setStatus(message) {
+  refs.statusText.textContent = message || "";
+}
+
+function setError(message) {
+  refs.errorText.textContent = message || "";
+}
+
+function setComposerDisabled(disabled) {
+  refs.queryInput.disabled = disabled;
+  refs.submitButton.disabled = disabled;
+  refs.submitButton.textContent = disabled ? "正在发送…" : "发送到当前会话";
+  refs.sampleButtons.forEach((button) => {
+    button.disabled = disabled;
+  });
 }
 
 function formatSourceLabel(recordType) {
@@ -203,7 +159,7 @@ function getSourceObject(record) {
 }
 
 function getChapterLabel(record) {
-  return record?.chapter_name || record?.chapter_title || "";
+  return record?.chapter_title || record?.chapter_name || "";
 }
 
 function extractRecordOrdinal(recordId) {
@@ -320,497 +276,6 @@ function resolveRecordTitle(record, options = {}) {
   return resolvedTitle ? `${prefix} · ${resolvedTitle}` : prefix;
 }
 
-function scrollConversationIntoView() {
-  if (!refs.userMessageCard?.scrollIntoView) {
-    return;
-  }
-  refs.userMessageCard.scrollIntoView({ behavior: "smooth", block: "start" });
-}
-
-function updateCountLabel(element, count, suffix = "条") {
-  element.textContent = count > 0 ? `${count}${suffix}` : "";
-}
-
-function clearRequestTimers(requestId = null) {
-  const activeTransport = state.activeTransport;
-  if (!activeTransport) {
-    return;
-  }
-
-  if (requestId !== null && activeTransport.requestId !== requestId) {
-    return;
-  }
-
-  if (activeTransport.softWarningTimer) {
-    window.clearTimeout(activeTransport.softWarningTimer);
-  }
-  if (activeTransport.hardTimeoutTimer) {
-    window.clearTimeout(activeTransport.hardTimeoutTimer);
-  }
-
-  state.activeTransport = null;
-}
-
-function registerActiveStreamReader(requestId, reader) {
-  if (requestId !== state.activeRequestId) {
-    return;
-  }
-  state.activeStreamReader = reader;
-}
-
-function releaseActiveStreamReader(requestId, reader) {
-  if (requestId === state.activeRequestId && state.activeStreamReader === reader) {
-    state.activeStreamReader = null;
-  }
-
-  try {
-    reader.releaseLock();
-  } catch (error) {
-    // Ignore lock-release noise when the browser has already detached the reader.
-  }
-}
-
-function startRequest(query) {
-  setErrorSummary("");
-  setLoading(true);
-  state.lastQuery = query;
-  state.requestInFlight = true;
-  state.activeStreamReader = null;
-
-  const requestId = state.activeRequestId + 1;
-  state.activeRequestId = requestId;
-  window.__lastSubmitQuery = query;
-  resetViewForRequest(query);
-  return requestId;
-}
-
-function cleanupRequestState(requestId) {
-  if (requestId !== state.activeRequestId) {
-    return;
-  }
-
-  clearRequestTimers(requestId);
-  state.activeStreamReader = null;
-  state.requestInFlight = false;
-  setLoading(false);
-}
-
-function settleRequestError(requestId, error) {
-  if (requestId !== state.activeRequestId) {
-    return;
-  }
-
-  const errorCopy = normalizeErrorCopy(error);
-  interruptProgress(errorCopy.title);
-  showErrorState(errorCopy);
-}
-
-function getAbortReason(error, controller) {
-  if (error?.name !== "AbortError") {
-    return null;
-  }
-  return controller?.__abortReason || controller?.signal?.reason || null;
-}
-
-function normalizeDebugFailure(stage, input) {
-  if (!input) {
-    return null;
-  }
-
-  if (typeof input === "string") {
-    return {
-      kind: `${stage}_transport_failed`,
-      message: input,
-    };
-  }
-
-  if (typeof input === "object") {
-    return {
-      kind: input.kind || `${stage}_transport_failed`,
-      message: input.message || `${stage === "stream" ? "流式" : "标准"}请求模拟失败。`,
-    };
-  }
-
-  return {
-    kind: `${stage}_transport_failed`,
-    message: `${stage === "stream" ? "流式" : "标准"}请求模拟失败。`,
-  };
-}
-
-function failNextRequest(options = {}) {
-  state.debugRequestFailure = {
-    query: options.query || "",
-    once: options.once !== false,
-    stream: normalizeDebugFailure("stream", options.stream),
-    fallback: normalizeDebugFailure("fallback", options.fallback),
-  };
-}
-
-function consumeDebugFailure(stage, query) {
-  const pendingFailure = state.debugRequestFailure;
-  if (!pendingFailure) {
-    return null;
-  }
-
-  if (pendingFailure.query && pendingFailure.query !== query) {
-    return null;
-  }
-
-  const failure = pendingFailure[stage];
-  if (!failure) {
-    return null;
-  }
-
-  if (pendingFailure.once) {
-    const nextFailure = {
-      ...pendingFailure,
-      [stage]: null,
-    };
-    state.debugRequestFailure = nextFailure.stream || nextFailure.fallback ? nextFailure : null;
-  }
-
-  return createRequestError(failure.kind, failure.message);
-}
-
-function setProgressVisualState(kind) {
-  refs.progressSection.classList.remove("is-settled", "is-interrupted");
-  if (kind === "settled") {
-    refs.progressSection.classList.add("is-settled");
-  }
-  if (kind === "interrupted") {
-    refs.progressSection.classList.add("is-interrupted");
-  }
-}
-
-function setProgressNote(message, tone = "info") {
-  refs.progressNote.textContent = message || "";
-  refs.progressNote.className = "progress-note";
-  refs.progressNote.classList.toggle("is-warning", tone === "warning");
-  showSection(refs.progressNote, Boolean(message));
-}
-
-function clearProgressNote() {
-  setProgressNote("");
-}
-
-function ensureProgressSteps() {
-  if (refs.progressSteps.childElementCount === PROGRESS_STEPS.length) {
-    return;
-  }
-
-  clearList(refs.progressSteps);
-  const fragment = document.createDocumentFragment();
-
-  PROGRESS_STEPS.forEach((step, index) => {
-    const item = createTag("li", "progress-step");
-    item.dataset.stage = step.stage;
-    const marker = createTag("span", "progress-step-marker", String(index + 1));
-    marker.dataset.role = "marker";
-    const text = createTag("span", "progress-step-text", step.label);
-    item.append(marker, text);
-    fragment.append(item);
-  });
-
-  refs.progressSteps.append(fragment);
-}
-
-function updateProgress(stage, detail) {
-  ensureProgressSteps();
-  showSection(refs.progressSection, true);
-  setProgressVisualState("active");
-
-  const stageIndex = PROGRESS_STEPS.findIndex((item) => item.stage === stage);
-  const label = PROGRESS_STEPS.find((item) => item.stage === stage)?.label || stage || "处理中";
-
-  Array.from(refs.progressSteps.children).forEach((node, index) => {
-    const marker = node.querySelector('[data-role="marker"]');
-    const isComplete = stageIndex >= 0 && index < stageIndex;
-    const isActive = stageIndex >= 0 && index === stageIndex && stage !== "completed";
-    const isCompleted = stage === "completed" && index <= stageIndex;
-
-    node.classList.toggle("is-complete", isComplete || isCompleted);
-    node.classList.toggle("is-active", isActive);
-
-    if (marker) {
-      marker.textContent = isComplete || isCompleted ? "✓" : String(index + 1);
-    }
-  });
-
-  refs.progressDetail.textContent = detail || label;
-  refs.statusText.textContent = detail || label;
-}
-
-function settleProgress(detail) {
-  updateProgress("completed", detail || "回答已完成。");
-  setProgressVisualState("settled");
-  clearProgressNote();
-  refs.answerText.classList.remove("is-streaming");
-}
-
-function interruptProgress(detail) {
-  ensureProgressSteps();
-  showSection(refs.progressSection, true);
-  setProgressVisualState("interrupted");
-  clearProgressNote();
-
-  Array.from(refs.progressSteps.children).forEach((node, index) => {
-    const marker = node.querySelector('[data-role="marker"]');
-    node.classList.remove("is-active");
-    if (marker && !node.classList.contains("is-complete")) {
-      marker.textContent = String(index + 1);
-    }
-  });
-
-  refs.progressDetail.textContent = detail || "当前请求未完成。";
-  refs.statusText.textContent = detail || "当前请求未完成。";
-  refs.answerText.classList.remove("is-streaming");
-}
-
-function startRequestTimers(requestId, controller, options = {}) {
-  const {
-    softDelayMs = STREAM_SOFT_WARNING_MS,
-    hardDelayMs = STREAM_HARD_TIMEOUT_MS,
-    softMessage = "等待时间比平时更长，系统仍在继续处理。你可以继续等待。",
-    hardKind = "request_timeout",
-    hardMessage = "等待时间较长，本次请求已停止。你可以直接重试。",
-  } = options;
-
-  clearRequestTimers();
-
-  const transportState = {
-    requestId,
-    controller,
-    softWarningTimer: null,
-    hardTimeoutTimer: null,
-  };
-  state.activeTransport = transportState;
-
-  transportState.softWarningTimer = window.setTimeout(() => {
-    if (state.activeRequestId !== requestId || !state.requestInFlight || state.activeTransport !== transportState) {
-      return;
-    }
-    setProgressNote(softMessage, "warning");
-  }, softDelayMs);
-
-  transportState.hardTimeoutTimer = window.setTimeout(() => {
-    if (state.activeRequestId !== requestId || !state.requestInFlight || state.activeTransport !== transportState) {
-      return;
-    }
-    controller.__abortReason = createRequestError(hardKind, hardMessage);
-    controller.abort(controller.__abortReason);
-  }, hardDelayMs);
-}
-
-function clearErrorState() {
-  showSection(refs.errorSection, false);
-  refs.errorTitle.textContent = "请求未完成";
-  refs.errorMessageText.textContent = "";
-  refs.errorHelpText.textContent = "这是请求错误或超时，不等同于系统拒答。";
-  refs.retryButton.disabled = !state.lastQuery;
-  setErrorSummary("");
-}
-
-function showErrorState(copy) {
-  setModeBadge("error");
-  setModeSummary("error", {
-    title: copy.title,
-    description: copy.message,
-    hint: copy.help,
-  });
-  setAnswerText("本次请求未完成，请重试。", { placeholder: true, streaming: false });
-  refs.errorTitle.textContent = copy.title;
-  refs.errorMessageText.textContent = copy.message;
-  refs.errorHelpText.textContent = copy.help;
-  refs.retryButton.disabled = !state.lastQuery;
-  showSection(refs.errorSection, true);
-  setErrorSummary(copy.title);
-}
-
-function normalizeErrorCopy(error) {
-  if (error?.kind === "stream_and_fallback_failed") {
-    const streamMessage = String(error.streamError?.message || "流式请求未完成").replace(/[。.]$/, "");
-    const fallbackMessage = String(error.fallbackError?.message || "标准请求未完成").replace(/[。.]$/, "");
-    return {
-      title: "流式与标准请求都未完成",
-      message: `${streamMessage}；随后改用标准请求时又失败：${fallbackMessage}`,
-      help: "这属于请求错误或超时，不等同于系统拒答。可以直接重试上一个问题。",
-    };
-  }
-
-  if (error?.kind === "request_timeout" || error?.kind === "fallback_timeout") {
-    return {
-      title: "等待时间过长",
-      message: error.message,
-      help: "页面已经结束当前请求，不会继续停留在半状态。你可以直接重试。",
-    };
-  }
-
-  if (error?.kind === "fallback_response_failed" || error?.kind === "fallback_transport_failed") {
-    return {
-      title: "标准请求未完成",
-      message: error.message,
-      help: "流式回退也没有成功拿到结果。请稍后重试，或先检查本地服务状态。",
-    };
-  }
-
-  return {
-    title: "请求未完成",
-    message: error?.message || "请求失败",
-    help: "这属于请求错误或超时，不等同于系统拒答。你可以直接重试上一个问题。",
-  };
-}
-
-function formatSupportingSummary(answerMode, secondary, review, citations, followups) {
-  const parts = [];
-
-  if (secondary.length > 0) {
-    parts.push(`补充 ${secondary.length}`);
-  }
-  if (review.length > 0) {
-    parts.push(`核对 ${review.length}`);
-  }
-  if (citations.length > 0) {
-    parts.push(`引用 ${citations.length}`);
-  }
-  if (followups.length > 0) {
-    parts.push(`${answerMode === "refuse" ? "改问" : "追问"} ${followups.length}`);
-  }
-
-  return parts.length > 0 ? parts.join(" · ") : "暂无附加信息";
-}
-
-function updateSupportingDetails(answerMode, sections, options = {}) {
-  const { preserveOpen = false } = options;
-  const { secondary, review, citations, followups, hasEmptyEvidence } = sections;
-  const hasSupportingContent =
-    secondary.length > 0 ||
-    review.length > 0 ||
-    citations.length > 0 ||
-    followups.length > 0 ||
-    hasEmptyEvidence;
-
-  refs.supportingTitle.textContent =
-    answerMode === "refuse" && followups.length > 0 ? "查看改问建议" : "查看依据与补充信息";
-  refs.supportingSummary.textContent = formatSupportingSummary(
-    answerMode,
-    secondary,
-    review,
-    citations,
-    followups,
-  );
-
-  showSection(refs.supportingDetails, hasSupportingContent);
-
-  if (!hasSupportingContent) {
-    refs.supportingDetails.open = false;
-    state.supportingExpanded = false;
-    return;
-  }
-
-  if (preserveOpen) {
-    refs.supportingDetails.open = state.supportingExpanded;
-    return;
-  }
-
-  const shouldOpenByDefault = answerMode === "refuse" && followups.length > 0;
-  refs.supportingDetails.open = shouldOpenByDefault;
-  state.supportingExpanded = shouldOpenByDefault;
-}
-
-function renderEvidenceList(target, items) {
-  clearList(target);
-  const fragment = document.createDocumentFragment();
-
-  items.forEach((item) => {
-    const role = item.display_role || "secondary";
-    const card = createTag("article", `evidence-card role-${role}`);
-    const displayTitle = resolveRecordTitle(item);
-    const meta = createTag("div", "evidence-meta");
-
-    meta.append(
-      createTag("span", `role-chip role-chip-${role}`, formatRoleLabel(role)),
-      createTag("span", "chip", `等级 ${item.evidence_level}`),
-      createTag("span", "chip", formatSourceLabel(item.record_type)),
-      createTag("span", "chip", `记录 ${formatRecordShort(item.record_id)}`),
-    );
-
-    if (getChapterLabel(item)) {
-      meta.append(createTag("span", "chip", getChapterLabel(item)));
-    }
-
-    const snippet = createTag("p", "snippet", item.snippet || "");
-    const footer = createTag("div", "evidence-footer");
-    footer.append(createTag("p", "record-footnote", `record_id: ${item.record_id}`));
-
-    if (displayTitle) {
-      card.append(createTag("h3", "", displayTitle));
-    }
-
-    card.append(meta);
-
-    if (item.snippet) {
-      card.append(snippet);
-    }
-
-    if (Array.isArray(item.risk_flags) && item.risk_flags.length > 0) {
-      const riskList = createTag("ul", "risk-flags");
-      item.risk_flags.forEach((flag) => {
-        riskList.append(createTag("li", "", flag));
-      });
-      card.append(riskList);
-    }
-
-    card.append(footer);
-    fragment.append(card);
-  });
-
-  target.append(fragment);
-}
-
-function renderCitations(items) {
-  clearList(refs.citationsList);
-  const fragment = document.createDocumentFragment();
-
-  items.forEach((citation) => {
-    const role = citation.citation_role || "secondary";
-    const item = createTag("li", `citation-item citation-role-${role}`);
-    const titleText = resolveRecordTitle(citation, { prefix: citation.citation_id || "引用" });
-    const meta = createTag("div", "citation-meta");
-    meta.append(
-      createTag("span", `role-chip role-chip-${role}`, formatRoleLabel(role)),
-      createTag("span", "chip", `等级 ${citation.evidence_level}`),
-      createTag("span", "chip", formatSourceLabel(citation.record_type)),
-      createTag("span", "chip", `记录 ${formatRecordShort(citation.record_id)}`),
-    );
-    if (getChapterLabel(citation)) {
-      meta.append(createTag("span", "chip", getChapterLabel(citation)));
-    }
-    const snippet = createTag("p", "citation-snippet", citation.snippet || "");
-    const footer = createTag("div", "citation-footer");
-    footer.append(createTag("p", "record-footnote", `record_id: ${citation.record_id}`));
-    if (titleText) {
-      item.append(createTag("h3", "", titleText));
-    }
-    item.append(meta);
-    if (citation.snippet) {
-      item.append(snippet);
-    }
-    item.append(footer);
-    fragment.append(item);
-  });
-
-  refs.citationsList.append(fragment);
-}
-
-function renderFollowups(items) {
-  clearList(refs.followupsList);
-  const fragment = document.createDocumentFragment();
-  items.forEach((text) => {
-    fragment.append(createTag("li", "", text));
-  });
-  refs.followupsList.append(fragment);
-}
-
 function validatePayload(payload) {
   const missingFields = REQUIRED_TOP_FIELDS.filter((field) => !(field in payload));
   if (missingFields.length > 0) {
@@ -818,237 +283,75 @@ function validatePayload(payload) {
   }
 }
 
-function updateEvidenceCounts(primary, secondary, review, citations, followups) {
-  updateCountLabel(refs.primaryCount, primary.length);
-  updateCountLabel(refs.secondaryCount, secondary.length);
-  updateCountLabel(refs.reviewCount, review.length);
-  updateCountLabel(refs.citationsCount, citations.length);
-  updateCountLabel(refs.followupsCount, followups.length);
+function getModeCopy(mode) {
+  return MODE_COPY[mode] || MODE_COPY.idle;
 }
 
-function resetResultSections() {
-  refs.disclaimerText.textContent = "";
-  refs.reviewNoticeText.textContent = "";
-  refs.supportingReviewNoteText.textContent = "";
-  refs.refuseReasonText.textContent = "";
-  clearList(refs.primaryList);
-  clearList(refs.secondaryList);
-  clearList(refs.reviewList);
-  clearList(refs.citationsList);
-  clearList(refs.followupsList);
-  updateCountLabel(refs.primaryCount, 0);
-  updateCountLabel(refs.secondaryCount, 0);
-  updateCountLabel(refs.reviewCount, 0);
-  updateCountLabel(refs.citationsCount, 0);
-  updateCountLabel(refs.followupsCount, 0);
-
-  showSection(refs.reviewNoticeSection, false);
-  showSection(refs.supportingReviewNote, false);
-  showSection(refs.refuseSection, false);
-  showSection(refs.emptyEvidenceSection, false);
-  showSection(refs.primarySection, false);
-  showSection(refs.secondarySection, false);
-  showSection(refs.reviewSection, false);
-  showSection(refs.citationsSection, false);
-  showSection(refs.followupsSection, false);
-  showSection(refs.supportingDetails, false);
-  refs.supportingDetails.open = false;
-  refs.supportingSummary.textContent = "暂无附加信息";
-  refs.supportingTitle.textContent = "查看依据与补充信息";
-  state.supportingExpanded = false;
+function getAnswerCaption(mode) {
+  if (mode === "strong") {
+    return "可直接参考的回答已生成，建议先看正文，再核对主依据。";
+  }
+  if (mode === "weak_with_review_notice") {
+    return "这是需核对的回答，请务必结合核对提示与核对材料阅读。";
+  }
+  if (mode === "refuse") {
+    return "当前不支持这样回答；请先看拒答原因与改问建议。";
+  }
+  if (mode === "loading") {
+    return "系统已收到问题，正在为当前会话生成下一条回答。";
+  }
+  return "当前结果正在等待进一步操作。";
 }
 
-function resetViewForRequest(query) {
-  state.streamedAnswerText = "";
-  state.latestPayload = null;
-  window.__lastAnswerPayload = null;
-  window.__lastStreamEvent = null;
-
-  clearErrorState();
-  clearProgressNote();
-  setQueryEcho(query, { placeholder: false });
-  setModeBadge("loading");
-  setModeSummary("loading");
-  setAnswerText("已提交问题，正在准备回答…", { placeholder: true, streaming: false });
-  resetResultSections();
-  ensureProgressSteps();
-  updateProgress("retrieving_evidence", "已提交问题，正在建立流式连接。");
-  scrollConversationIntoView();
-}
-
-function renderPayload(payload, options = {}) {
-  const { preserveAnswerText = false, preserveEvidence = false } = options;
-  validatePayload(payload);
-  clearErrorState();
-  state.latestPayload = payload;
-  window.__lastAnswerPayload = payload;
-  setModeBadge(payload.answer_mode);
-  setModeSummary(payload.answer_mode);
-  setQueryEcho(payload.query || "未返回 query", { placeholder: !(payload.query || "") });
-  refs.disclaimerText.textContent = payload.disclaimer || "";
-
-  if (!preserveAnswerText) {
-    setAnswerText(payload.answer_text || "", {
-      placeholder: !(payload.answer_text || ""),
-      streaming: false,
-    });
+function formatDateTime(value) {
+  if (!value) {
+    return "刚刚";
+  }
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return "时间未知";
   }
 
-  const reviewNotice = payload.review_notice || "";
-  refs.reviewNoticeText.textContent = reviewNotice;
-  refs.supportingReviewNoteText.textContent = reviewNotice;
-  refs.refuseReasonText.textContent = payload.refuse_reason || "";
+  return new Intl.DateTimeFormat("zh-CN", {
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(date);
+}
 
-  const primary = Array.isArray(payload.primary_evidence) ? payload.primary_evidence : [];
-  const secondary = Array.isArray(payload.secondary_evidence) ? payload.secondary_evidence : [];
-  const review = Array.isArray(payload.review_materials) ? payload.review_materials : [];
-  const citations = Array.isArray(payload.citations) ? payload.citations : [];
-  const followups = Array.isArray(payload.suggested_followup_questions)
-    ? payload.suggested_followup_questions
-    : [];
+function formatConversationTurns(messageCount) {
+  const turns = Math.max(0, Math.floor(Number(messageCount || 0) / 2));
+  return `${turns} 轮`;
+}
 
-  updateEvidenceCounts(primary, secondary, review, citations, followups);
-  const shouldShowTopReviewNotice = Boolean(reviewNotice) && payload.answer_mode === "weak_with_review_notice";
-  const shouldShowSupportingReviewNotice =
-    Boolean(reviewNotice) &&
-    payload.answer_mode === "strong" &&
-    (secondary.length > 0 || review.length > 0);
+function buildConversationPath(conversationId) {
+  return conversationId ? `/chat/${encodeURIComponent(conversationId)}` : "/";
+}
 
-  showSection(refs.reviewNoticeSection, shouldShowTopReviewNotice);
-  showSection(refs.supportingReviewNote, shouldShowSupportingReviewNotice);
-  showSection(refs.refuseSection, Boolean(payload.refuse_reason));
-  showSection(refs.primarySection, primary.length > 0);
-  showSection(refs.secondarySection, secondary.length > 0);
-  showSection(refs.reviewSection, review.length > 0);
-  showSection(refs.citationsSection, citations.length > 0);
-  showSection(refs.followupsSection, followups.length > 0);
-  const hasEmptyEvidence = primary.length + secondary.length + review.length + citations.length === 0;
-  showSection(refs.emptyEvidenceSection, hasEmptyEvidence);
-
-  if (!preserveEvidence) {
-    renderEvidenceList(refs.primaryList, primary);
-    renderEvidenceList(refs.secondaryList, secondary);
-    renderEvidenceList(refs.reviewList, review);
-    renderCitations(citations);
-    renderFollowups(followups);
+function parseConversationIdFromLocation() {
+  const path = window.location.pathname.replace(/\/+$/, "");
+  if (!path || path === "") {
+    return null;
   }
-
-  updateSupportingDetails(
-    payload.answer_mode,
-    { secondary, review, citations, followups, hasEmptyEvidence },
-    { preserveOpen: preserveEvidence },
-  );
+  if (path === "/chat") {
+    return null;
+  }
+  const chatMatch = path.match(/^\/chat\/([^/]+)$/);
+  if (!chatMatch) {
+    return null;
+  }
+  return decodeURIComponent(chatMatch[1]);
 }
 
-function applyEvidenceReadyPayload(payload) {
-  validatePayload(payload);
-  state.streamedAnswerText = "";
-  renderPayload(payload, { preserveAnswerText: true, preserveEvidence: false });
-  setAnswerText("", { placeholder: false, streaming: true });
-  refs.statusText.textContent = "依据已整理，正在渐进显示 answer_text";
-}
-
-function appendAnswerDelta(delta) {
-  if (!delta) {
+function updateBrowserLocation(conversationId, options = {}) {
+  const { replace = false } = options;
+  const nextPath = buildConversationPath(conversationId);
+  const method = replace ? "replaceState" : "pushState";
+  if (window.location.pathname === nextPath) {
     return;
   }
-  state.streamedAnswerText += delta;
-  setAnswerText(state.streamedAnswerText, { placeholder: false, streaming: true });
-}
-
-function finalizeCompletedPayload(payload) {
-  const preserveEvidence = Boolean(state.latestPayload && state.latestPayload.query === payload.query);
-  renderPayload(payload, { preserveAnswerText: false, preserveEvidence });
-  settleProgress("回答已完成，界面已切换到最终展示。");
-  refs.statusText.textContent = "请求已完成";
-}
-
-function handleStreamEvent(event, requestId) {
-  if (requestId !== state.activeRequestId || !event || typeof event !== "object") {
-    return false;
-  }
-
-  window.__lastStreamEvent = event;
-
-  if (event.type === "phase") {
-    updateProgress(event.stage, event.detail || event.label);
-    return false;
-  }
-
-  if (event.type === "evidence_ready") {
-    applyEvidenceReadyPayload(event.payload || {});
-    return false;
-  }
-
-  if (event.type === "answer_delta") {
-    appendAnswerDelta(event.delta || "");
-    refs.statusText.textContent = "正在生成回答";
-    return false;
-  }
-
-  if (event.type === "completed") {
-    finalizeCompletedPayload(event.payload || state.latestPayload || {});
-    return true;
-  }
-
-  if (event.type === "error") {
-    throw createRequestError("stream_error_event", event?.error?.message || "流式过程中发生错误。");
-  }
-
-  return false;
-}
-
-async function consumeNdjsonStream(response, requestId, controller) {
-  if (!response.body) {
-    throw createRequestError("stream_unavailable", "浏览器未提供可读流，无法进入流式渲染。");
-  }
-
-  const reader = response.body.getReader();
-  registerActiveStreamReader(requestId, reader);
-  const decoder = new TextDecoder();
-  let buffer = "";
-  let completed = false;
-
-  try {
-    while (true) {
-      const { value, done } = await reader.read();
-      if (done) {
-        break;
-      }
-
-      buffer += decoder.decode(value, { stream: true });
-      const lines = buffer.split("\n");
-      buffer = lines.pop() || "";
-
-      for (const rawLine of lines) {
-        const line = rawLine.trim();
-        if (!line) {
-          continue;
-        }
-        const event = JSON.parse(line);
-        completed = handleStreamEvent(event, requestId) || completed;
-      }
-    }
-
-    buffer += decoder.decode();
-    const trailingLine = buffer.trim();
-    if (trailingLine) {
-      const event = JSON.parse(trailingLine);
-      completed = handleStreamEvent(event, requestId) || completed;
-    }
-  } catch (error) {
-    const abortReason = getAbortReason(error, controller);
-    if (abortReason) {
-      throw abortReason;
-    }
-    throw error;
-  } finally {
-    releaseActiveStreamReader(requestId, reader);
-  }
-
-  if (!completed) {
-    throw createRequestError("stream_incomplete", "流式响应提前结束，未收到 completed 事件。");
-  }
+  window.history[method]({ conversationId }, "", nextPath);
 }
 
 async function readJsonSafely(response) {
@@ -1059,321 +362,961 @@ async function readJsonSafely(response) {
   }
 }
 
-async function submitQueryWithStream(query, requestId, controller) {
-  const debugFailure = consumeDebugFailure("stream", query);
-  if (debugFailure) {
-    throw debugFailure;
-  }
-
+async function fetchJson(url, options = {}) {
   let response;
 
   try {
-    response = await fetch(STREAM_API_PATH, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ query }),
-      signal: controller.signal,
-    });
+    response = await fetch(url, options);
   } catch (error) {
-    const abortReason = getAbortReason(error, controller);
-    if (abortReason) {
-      throw abortReason;
-    }
-    throw createRequestError("stream_transport_failed", "流式请求未能成功建立。");
-  }
-
-  const contentType = response.headers.get("Content-Type") || "";
-
-  if (response.status === 404 || response.status === 405) {
-    return false;
-  }
-
-  if (!response.ok) {
-    const payload = contentType.includes("application/json") ? await readJsonSafely(response) : null;
-    throw createRequestError("stream_response_failed", payload?.error?.message || "流式请求失败。");
-  }
-
-  if (!response.body || !contentType.includes("application/x-ndjson")) {
-    return false;
-  }
-
-  await consumeNdjsonStream(response, requestId, controller);
-  clearRequestTimers(requestId);
-  return true;
-}
-
-function prepareFallbackView(message) {
-  clearProgressNote();
-  setProgressNote(message, "warning");
-  updateProgress("retrieving_evidence", "流式响应未完整返回，正在改用标准请求。");
-  setModeBadge("loading");
-  setModeSummary("loading", {
-    description: "流式响应未顺利完成，系统正在改用标准请求重新获取最终结果。",
-    hint: "这仍属于同一次回答流程，不等同于拒答。",
-  });
-  setAnswerText("流式响应未完整返回，正在改用标准请求…", {
-    placeholder: true,
-    streaming: false,
-  });
-  resetResultSections();
-}
-
-async function submitQueryWithFallback(query, requestId, triggerError) {
-  prepareFallbackView(triggerError?.message || "流式请求未完成，正在改用标准请求。");
-
-  const controller = new AbortController();
-  startRequestTimers(requestId, controller, {
-    softDelayMs: FALLBACK_SOFT_WARNING_MS,
-    hardDelayMs: FALLBACK_HARD_TIMEOUT_MS,
-    softMessage: "标准请求等待时间较长，系统仍在继续处理。你可以继续等待。",
-    hardKind: "fallback_timeout",
-    hardMessage: "标准请求等待时间较长，本次请求已停止。你可以直接重试。",
-  });
-
-  const debugFailure = consumeDebugFailure("fallback", query);
-  if (debugFailure) {
-    throw debugFailure;
-  }
-
-  let response;
-  try {
-    response = await fetch(API_PATH, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ query }),
-      signal: controller.signal,
-    });
-  } catch (error) {
-    const abortReason = getAbortReason(error, controller);
-    if (abortReason) {
-      throw abortReason;
-    }
-    throw createRequestError("fallback_transport_failed", "标准请求未能成功返回。");
+    throw createRequestError("network_error", "请求未成功返回，请确认本地服务仍在运行。");
   }
 
   const payload = await readJsonSafely(response);
   if (!response.ok) {
-    throw createRequestError("fallback_response_failed", payload?.error?.message || "标准请求失败。");
+    throw createRequestError(
+      "response_error",
+      payload?.error?.message || "请求失败。",
+      { status: response.status, payload },
+    );
   }
   if (!payload) {
-    throw createRequestError("fallback_response_failed", "标准请求未返回可解析的 JSON。");
+    throw createRequestError("invalid_json", "服务返回了不可解析的 JSON。");
   }
-
-  clearRequestTimers(requestId);
-  renderPayload(payload, { preserveAnswerText: false, preserveEvidence: false });
-  settleProgress("标准响应已返回，界面已完成收尾。");
-  refs.statusText.textContent = "请求已完成";
+  return payload;
 }
 
-async function submitQuery(query) {
-  if (state.requestInFlight) {
-    setErrorSummary("当前请求仍在处理中，请等待当前回答完成后再发起下一问。");
-    refs.statusText.textContent = "当前请求仍在处理中";
+async function apiListConversations(search) {
+  const query = search ? `?search=${encodeURIComponent(search)}` : "";
+  return fetchJson(`${CONVERSATIONS_API_PATH}${query}`);
+}
+
+async function apiCreateConversation() {
+  return fetchJson(CONVERSATIONS_API_PATH, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({}),
+  });
+}
+
+async function apiGetConversation(conversationId) {
+  return fetchJson(`${CONVERSATIONS_API_PATH}/${encodeURIComponent(conversationId)}`);
+}
+
+async function apiDeleteConversation(conversationId) {
+  return fetchJson(`${CONVERSATIONS_API_PATH}/${encodeURIComponent(conversationId)}`, {
+    method: "DELETE",
+  });
+}
+
+async function apiSendConversationMessage(conversationId, query) {
+  return fetchJson(`${CONVERSATIONS_API_PATH}/${encodeURIComponent(conversationId)}/messages`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ query }),
+  });
+}
+
+function buildCountBadge(count) {
+  const badge = createTag("span", "section-count", `${count}条`);
+  return badge;
+}
+
+function buildPanelHead(title, count, hint) {
+  const head = createTag("div", "panel-head");
+  const copyWrap = createTag("div", "");
+  const heading = createTag("h3", "", title);
+  if (count > 0) {
+    heading.append(buildCountBadge(count));
+  }
+  copyWrap.append(heading);
+  if (hint) {
+    copyWrap.append(createTag("p", "", hint));
+  }
+  head.append(copyWrap);
+  return head;
+}
+
+function createEvidenceCard(item) {
+  const role = item.display_role || "secondary";
+  const card = createTag("article", `evidence-card role-${role}`);
+  const displayTitle = resolveRecordTitle(item);
+  const meta = createTag("div", "evidence-meta");
+
+  meta.append(
+    createTag("span", `role-chip role-chip-${role}`, formatRoleLabel(role)),
+    createTag("span", "chip", `等级 ${item.evidence_level}`),
+    createTag("span", "chip", formatSourceLabel(item.record_type)),
+    createTag("span", "chip", `记录 ${formatRecordShort(item.record_id)}`),
+  );
+
+  if (item.chapter_title) {
+    meta.append(createTag("span", "chip", item.chapter_title));
+  }
+
+  if (displayTitle) {
+    card.append(createTag("h3", "", displayTitle));
+  }
+
+  card.append(meta);
+
+  if (item.snippet) {
+    card.append(createTag("p", "snippet", item.snippet));
+  }
+
+  if (Array.isArray(item.risk_flags) && item.risk_flags.length > 0) {
+    const riskList = createTag("ul", "risk-flags");
+    item.risk_flags.forEach((flag) => {
+      riskList.append(createTag("li", "", flag));
+    });
+    card.append(riskList);
+  }
+
+  const footer = createTag("div", "evidence-footer");
+  footer.append(createTag("p", "record-footnote", `record_id: ${item.record_id}`));
+  card.append(footer);
+
+  return card;
+}
+
+function createCitationItem(citation) {
+  const role = citation.citation_role || "secondary";
+  const item = createTag("li", `citation-item citation-role-${role}`);
+  const titleText = resolveRecordTitle(citation, { prefix: citation.citation_id || "引用" });
+  const meta = createTag("div", "citation-meta");
+
+  meta.append(
+    createTag("span", `role-chip role-chip-${role}`, formatRoleLabel(role)),
+    createTag("span", "chip", `等级 ${citation.evidence_level}`),
+    createTag("span", "chip", formatSourceLabel(citation.record_type)),
+    createTag("span", "chip", `记录 ${formatRecordShort(citation.record_id)}`),
+  );
+
+  if (citation.chapter_title) {
+    meta.append(createTag("span", "chip", citation.chapter_title));
+  }
+
+  if (titleText) {
+    item.append(createTag("h3", "", titleText));
+  }
+  item.append(meta);
+
+  if (citation.snippet) {
+    item.append(createTag("p", "citation-snippet", citation.snippet));
+  }
+
+  const footer = createTag("div", "citation-footer");
+  footer.append(createTag("p", "record-footnote", `record_id: ${citation.record_id}`));
+  item.append(footer);
+  return item;
+}
+
+function createEvidencePanel(title, hint, items, className) {
+  const section = createTag("section", `support-panel ${className}`.trim());
+  section.append(buildPanelHead(title, items.length, hint));
+  const list = createTag("div", "evidence-list");
+  items.forEach((item) => {
+    list.append(createEvidenceCard(item));
+  });
+  section.append(list);
+  return section;
+}
+
+function createCitationsPanel(items, hint) {
+  const section = createTag("section", "support-panel");
+  section.append(buildPanelHead("回答引用", items.length, hint));
+  const list = createTag("ol", "citation-list");
+  items.forEach((item) => {
+    list.append(createCitationItem(item));
+  });
+  section.append(list);
+  return section;
+}
+
+function createFollowupsPanel(items, hint) {
+  const section = createTag("section", "support-panel");
+  section.append(buildPanelHead("改问建议", items.length, hint));
+  const list = createTag("ul", "followups-list");
+  items.forEach((text) => {
+    list.append(createTag("li", "", text));
+  });
+  section.append(list);
+  return section;
+}
+
+function createCallout(title, bodyText, className) {
+  const section = createTag("section", `callout ${className}`.trim());
+  const head = createTag("div", "panel-head");
+  head.append(createTag("h3", "", title));
+  section.append(head, createTag("p", "", bodyText));
+  return section;
+}
+
+function createModeSummary(mode) {
+  const copy = getModeCopy(mode);
+  const summary = createTag("section", `mode-summary mode-summary-${mode || "idle"}`);
+  const copyWrap = createTag("div", "mode-summary-copy");
+  copyWrap.append(
+    createTag("p", "mode-summary-kicker", "结果状态"),
+    createTag("h4", "", copy.title),
+    createTag("p", "mode-description", copy.description),
+  );
+  summary.append(copyWrap, createTag("p", "mode-reading-hint", copy.hint));
+  return summary;
+}
+
+function buildSupportingHint(answerMode, slot) {
+  if (slot === "primary") {
+    return answerMode === "strong"
+      ? "这些条目直接支撑上方回答，应优先作为正式依据阅读。"
+      : "当前结果没有可直接作为主依据展示的条目。";
+  }
+  if (slot === "secondary") {
+    return answerMode === "weak_with_review_notice"
+      ? "这些条目是当前可先参考的线索，但仍不能替代确定答案。"
+      : "这些条目用于补充理解，不替代主依据。";
+  }
+  if (slot === "review") {
+    return answerMode === "weak_with_review_notice"
+      ? "这些材料只用于进一步核对边界与出处，避免把弱结论误当成确定答案。"
+      : "这些材料用于复核出处与风险点。";
+  }
+  if (slot === "citations") {
+    return answerMode === "weak_with_review_notice"
+      ? "这些引用对应当前弱整理与核对材料，不等于已确认结论。"
+      : "这些引用与当前回答和证据区块直接对应，便于回看出处。";
+  }
+  return answerMode === "refuse"
+    ? "当前问题不适合直接作答，可优先按这些方向继续追问。"
+    : "当前问题如果还想继续收窄，可以从这些方向继续追问。";
+}
+
+function createUserMessageCard(message, options = {}) {
+  const { pending = false } = options;
+  const article = createTag("article", `message-card user-message${pending ? " pending-card" : ""}`);
+  const head = createTag("div", "message-head");
+  const copy = createTag("div", "message-head-copy");
+  copy.append(
+    createTag("p", "message-role", pending ? "当前发送中" : "本轮问题"),
+    createTag("h3", "", pending ? "用户消息（待写入）" : "用户提问"),
+    createTag("p", "message-time", formatDateTime(message.created_at)),
+  );
+  head.append(copy, createTag("span", "message-tag", "user"));
+  article.append(head, createTag("p", "user-bubble", message.content || ""));
+  return article;
+}
+
+function createAssistantMessageCard(message) {
+  const payload = message.answer_payload;
+  validatePayload(payload);
+
+  const primary = Array.isArray(payload.primary_evidence) ? payload.primary_evidence : [];
+  const secondary = Array.isArray(payload.secondary_evidence) ? payload.secondary_evidence : [];
+  const review = Array.isArray(payload.review_materials) ? payload.review_materials : [];
+  const citations = Array.isArray(payload.citations) ? payload.citations : [];
+  const followups = Array.isArray(payload.suggested_followup_questions)
+    ? payload.suggested_followup_questions
+    : [];
+  const modeCopy = getModeCopy(payload.answer_mode);
+
+  const article = createTag("article", "message-card assistant-message");
+  const head = createTag("div", "message-head assistant-head");
+  const copy = createTag("div", "message-head-copy");
+  copy.append(
+    createTag("p", "message-role", "assistant response"),
+    createTag("h3", "", "研读助手"),
+    createTag("p", "message-time", formatDateTime(message.created_at)),
+  );
+  const badge = createTag("span", `mode-badge mode-${payload.answer_mode || "idle"}`, modeCopy.badge);
+  head.append(copy, badge);
+  article.append(head);
+
+  const main = createTag("div", "assistant-main");
+  main.append(
+    createTag("p", "assistant-caption", getAnswerCaption(payload.answer_mode)),
+    createModeSummary(payload.answer_mode),
+  );
+
+  const answerBlock = createTag("section", "answer-block");
+  answerBlock.append(
+    createTag("p", "answer-block-label", "回答正文"),
+    createTag("p", "answer-text", payload.answer_text || ""),
+  );
+  main.append(answerBlock);
+
+  if (payload.disclaimer) {
+    main.append(createTag("p", "disclaimer-text", payload.disclaimer));
+  }
+  article.append(main);
+
+  if (payload.review_notice || payload.refuse_reason) {
+    const callouts = createTag("div", "assistant-callouts");
+    if (payload.review_notice) {
+      callouts.append(createCallout("核对提示", payload.review_notice, "callout-review"));
+    }
+    if (payload.refuse_reason) {
+      callouts.append(createCallout("拒答原因", payload.refuse_reason, "callout-refuse"));
+    }
+    article.append(callouts);
+  }
+
+  const supporting = createTag("section", "assistant-supporting");
+  const supportingHead = createTag("div", "assistant-supporting-head");
+  const supportingCopy = createTag("div", "");
+  supportingCopy.append(
+    createTag("p", "supporting-kicker", "回答展开"),
+    createTag("h3", "", "依据与附加信息"),
+  );
+  supportingHead.append(
+    supportingCopy,
+    createTag("p", "supporting-note", "这些区块与当前 assistant 消息绑定，切回旧会话时会完整恢复。"),
+  );
+  supporting.append(supportingHead);
+
+  if (primary.length === 0 && secondary.length === 0 && review.length === 0 && citations.length === 0 && followups.length === 0) {
+    const emptyPanel = createTag("section", "support-panel");
+    emptyPanel.append(createTag("p", "state-copy", "当前结果没有可展示证据。若为拒答模式，这是预期行为。"));
+    supporting.append(emptyPanel);
+  } else {
+    if (primary.length > 0) {
+      supporting.append(
+        createEvidencePanel("主依据", buildSupportingHint(payload.answer_mode, "primary"), primary, "primary-panel"),
+      );
+    }
+    if (secondary.length > 0) {
+      supporting.append(
+        createEvidencePanel("补充依据", buildSupportingHint(payload.answer_mode, "secondary"), secondary, ""),
+      );
+    }
+    if (review.length > 0) {
+      supporting.append(
+        createEvidencePanel("核对材料", buildSupportingHint(payload.answer_mode, "review"), review, "review-panel"),
+      );
+    }
+    if (citations.length > 0) {
+      supporting.append(createCitationsPanel(citations, buildSupportingHint(payload.answer_mode, "citations")));
+    }
+    if (followups.length > 0) {
+      supporting.append(createFollowupsPanel(followups, buildSupportingHint(payload.answer_mode, "followups")));
+    }
+  }
+
+  article.append(supporting);
+  return article;
+}
+
+function createBrokenAssistantCard(message, error) {
+  const article = createTag("article", "message-card assistant-message");
+  const head = createTag("div", "message-head");
+  const copy = createTag("div", "message-head-copy");
+  copy.append(
+    createTag("p", "message-role", "assistant response"),
+    createTag("h3", "", "研读助手"),
+    createTag("p", "message-time", formatDateTime(message.created_at)),
+  );
+  head.append(copy, createTag("span", "mode-badge mode-error", "渲染失败"));
+  article.append(head);
+
+  const main = createTag("div", "assistant-main");
+  main.append(
+    createTag("p", "assistant-caption", "这条历史消息已恢复，但其 answer payload 无法完整渲染。"),
+    createModeSummary("error"),
+  );
+  const answerBlock = createTag("section", "answer-block");
+  answerBlock.append(
+    createTag("p", "answer-block-label", "已保存文本"),
+    createTag("p", "answer-text", message.content || "无正文内容"),
+  );
+  main.append(answerBlock);
+  article.append(main);
+
+  const callouts = createTag("div", "assistant-callouts");
+  callouts.append(
+    createCallout("渲染异常", error?.message || "这条历史消息的结构不完整。", "callout-refuse"),
+  );
+  article.append(callouts);
+  return article;
+}
+
+function createPendingAssistantCard() {
+  const article = createTag("article", "message-card assistant-message pending-card");
+  const head = createTag("div", "message-head");
+  const copy = createTag("div", "message-head-copy");
+  copy.append(
+    createTag("p", "message-role", "assistant response"),
+    createTag("h3", "", "研读助手"),
+    createTag("p", "message-time", "正在生成中"),
+  );
+  head.append(copy, createTag("span", "mode-badge mode-loading", MODE_COPY.loading.badge));
+  article.append(head);
+
+  const main = createTag("div", "assistant-main");
+  main.append(
+    createTag("p", "assistant-caption", getAnswerCaption("loading")),
+    createModeSummary("loading"),
+  );
+  const answerBlock = createTag("section", "answer-block");
+  answerBlock.append(
+    createTag("p", "answer-block-label", "回答正文"),
+    createTag("p", "answer-text pending-answer-copy", "正在检索依据并生成回答…"),
+  );
+  main.append(answerBlock);
+  article.append(main);
+  return article;
+}
+
+function renderHistoryList() {
+  clearList(refs.conversationList);
+  refs.historySearch.disabled = state.sending;
+  refs.newChatButton.disabled = state.sending;
+
+  const isSearching = Boolean(state.historySearch);
+  showSection(refs.historyLoading, state.conversationsLoading);
+  showSection(refs.historyEmpty, !state.conversationsLoading && state.conversations.length === 0 && !isSearching);
+  showSection(refs.historyNoResults, !state.conversationsLoading && state.conversations.length === 0 && isSearching);
+
+  if (state.conversationsLoading) {
+    refs.historyStatus.textContent = isSearching
+      ? `正在搜索“${state.historySearch}”…`
+      : "正在加载历史会话…";
     return;
   }
 
-  const requestId = startRequest(query);
+  if (state.conversations.length === 0) {
+    refs.historyStatus.textContent = isSearching ? `没有匹配“${state.historySearch}”的会话` : "还没有历史会话";
+    return;
+  }
 
-  const streamController = new AbortController();
-  let streamError = null;
+  refs.historyStatus.textContent = isSearching
+    ? `共找到 ${state.conversations.length} 条匹配会话`
+    : `共 ${state.conversations.length} 条历史会话`;
 
-  try {
-    startRequestTimers(requestId, streamController, {
-      softDelayMs: STREAM_SOFT_WARNING_MS,
-      hardDelayMs: STREAM_HARD_TIMEOUT_MS,
-      softMessage: "等待时间比平时更长，系统仍在继续处理。你可以继续等待。",
-      hardKind: "request_timeout",
-      hardMessage: "等待时间较长，本次流式请求已停止。你可以直接重试。",
+  state.conversations.forEach((conversation) => {
+    const item = createTag(
+      "li",
+      `conversation-item${conversation.id === state.activeConversationId ? " is-active" : ""}`,
+    );
+
+    const button = createTag("button", "conversation-item-button");
+    button.type = "button";
+    button.disabled = state.sending;
+    button.addEventListener("click", () => {
+      void openConversation(conversation.id);
     });
 
-    try {
-      const streamed = await submitQueryWithStream(query, requestId, streamController);
-      if (streamed) {
-        return;
-      }
-      streamError = createRequestError("stream_unavailable", "流式接口不可用，已自动回退到标准请求。");
-    } catch (error) {
-      if (requestId !== state.activeRequestId) {
-        return;
-      }
-      streamError = error;
-    }
+    const title = createTag("p", "conversation-item-title", conversation.title || "新对话");
+    const meta = createTag("div", "conversation-item-meta");
+    meta.append(
+      createTag("span", "conversation-item-time", formatDateTime(conversation.updated_at || conversation.created_at)),
+      createTag("span", "conversation-item-count", formatConversationTurns(conversation.message_count)),
+    );
 
-    if (requestId !== state.activeRequestId) {
+    button.append(title, meta);
+    item.append(button);
+
+    const menu = createTag("details", "conversation-menu");
+    const summary = createTag("summary", "conversation-menu-summary", "⋯");
+    if (state.sending) {
+      summary.setAttribute("disabled", "disabled");
+    }
+    summary.addEventListener("click", (event) => {
+      if (state.sending) {
+        event.preventDefault();
+      }
+    });
+    menu.append(summary);
+
+    const panel = createTag("div", "conversation-menu-panel");
+    const deleteButton = createTag(
+      "button",
+      "conversation-menu-action",
+      state.deletingConversationId === conversation.id ? "Deleting…" : "Delete",
+    );
+    deleteButton.type = "button";
+    deleteButton.disabled = state.sending || state.deletingConversationId === conversation.id;
+    deleteButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      menu.open = false;
+      void handleDeleteConversation(conversation.id);
+    });
+    panel.append(deleteButton);
+    menu.append(panel);
+    item.append(menu);
+
+    refs.conversationList.append(item);
+  });
+}
+
+function renderConversationHeader() {
+  const conversation = state.activeConversation?.conversation;
+
+  if (state.conversationLoading) {
+    refs.conversationTitle.textContent = "正在恢复会话…";
+    refs.conversationSubtitle.textContent = "正在读取当前会话的完整消息流，请稍候。";
+    return;
+  }
+
+  if (!conversation) {
+    refs.conversationTitle.textContent = "新对话";
+    refs.conversationSubtitle.textContent =
+      "主区会展示当前会话的完整消息流；点击左侧历史项可恢复旧会话并继续发送。";
+    return;
+  }
+
+  refs.conversationTitle.textContent = conversation.title || "新对话";
+  if ((state.activeConversation?.messages || []).length === 0 && !state.pendingTurn) {
+    refs.conversationSubtitle.textContent = "当前会话已创建，尚无消息。发送首轮问题后会自动生成标题并写入历史。";
+    return;
+  }
+
+  refs.conversationSubtitle.textContent = `共 ${conversation.message_count} 条消息 · 最近更新 ${formatDateTime(
+    conversation.updated_at || conversation.created_at,
+  )}`;
+}
+
+function renderConversationBody() {
+  renderConversationHeader();
+  setComposerDisabled(state.sending || state.conversationLoading);
+
+  showSection(refs.conversationLoading, state.conversationLoading);
+
+  if (state.conversationLoading) {
+    showSection(refs.conversationEmpty, false);
+    showSection(refs.messageFeed, false);
+    return;
+  }
+
+  const confirmedMessages = state.activeConversation?.messages || [];
+  const hasMessages = confirmedMessages.length > 0 || Boolean(state.pendingTurn);
+
+  if (!state.activeConversationId || !state.activeConversation) {
+    refs.conversationEmpty.querySelector(".state-title").textContent = "从右下角开始新会话，或打开左侧历史";
+    refs.conversationEmpty.querySelector(".state-copy").textContent =
+      "首轮发送后会自动生成会话标题；之后你可以从左侧搜索标题或消息内容，再点回对应会话继续聊天。";
+    showSection(refs.conversationEmpty, true);
+    showSection(refs.messageFeed, false);
+    return;
+  }
+
+  if (!hasMessages) {
+    refs.conversationEmpty.querySelector(".state-title").textContent = "当前会话还没有消息";
+    refs.conversationEmpty.querySelector(".state-copy").textContent =
+      "现在就可以发送第一条问题。首轮完成后，左侧会话标题会自动改成首问摘要。";
+    showSection(refs.conversationEmpty, true);
+    showSection(refs.messageFeed, false);
+    return;
+  }
+
+  showSection(refs.conversationEmpty, false);
+  showSection(refs.messageFeed, true);
+  clearList(refs.messageFeed);
+
+  confirmedMessages.forEach((message) => {
+    if (message.role === "user") {
+      refs.messageFeed.append(createUserMessageCard(message));
       return;
     }
 
-    await submitQueryWithFallback(query, requestId, streamError);
-  } catch (fallbackError) {
-    const combinedError = createRequestError(
-      "stream_and_fallback_failed",
-      fallbackError.message,
-      { streamError, fallbackError },
-    );
-    settleRequestError(requestId, combinedError);
-    console.error(streamError);
-    console.error(fallbackError);
-  } finally {
-    cleanupRequestState(requestId);
+    try {
+      refs.messageFeed.append(createAssistantMessageCard(message));
+    } catch (error) {
+      console.error(error);
+      refs.messageFeed.append(createBrokenAssistantCard(message, error));
+    }
+  });
+
+  if (state.pendingTurn) {
+    refs.messageFeed.append(createUserMessageCard(state.pendingTurn, { pending: true }));
+    refs.messageFeed.append(createPendingAssistantCard());
   }
 }
 
-function retryLastQuery() {
-  if (!state.lastQuery || refs.submitButton.disabled) {
+function scrollFeedToBottom() {
+  window.requestAnimationFrame(() => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: "smooth",
+    });
+  });
+}
+
+function syncActiveConversationSummaryFromList() {
+  if (!state.activeConversation?.conversation) {
     return;
   }
-  refs.queryInput.value = state.lastQuery;
-  autoResizeQueryInput();
-  refs.queryInput.focus();
-  refs.queryInput.setSelectionRange(state.lastQuery.length, state.lastQuery.length);
-  void submitQuery(state.lastQuery);
+  const updated = state.conversations.find((item) => item.id === state.activeConversation.conversation.id);
+  if (updated) {
+    state.activeConversation.conversation = {
+      ...state.activeConversation.conversation,
+      ...updated,
+    };
+  }
 }
 
-function boot() {
+async function refreshConversationList(search = state.historySearch) {
+  state.historySearch = search.trim();
+  const requestSeq = state.historyRequestSeq + 1;
+  state.historyRequestSeq = requestSeq;
+  state.conversationsLoading = true;
+  renderHistoryList();
+
+  try {
+    const payload = await apiListConversations(state.historySearch);
+    if (requestSeq !== state.historyRequestSeq) {
+      return;
+    }
+    state.conversations = Array.isArray(payload.items) ? payload.items : [];
+    state.conversationsLoading = false;
+    syncActiveConversationSummaryFromList();
+    renderHistoryList();
+    renderConversationHeader();
+  } catch (error) {
+    if (requestSeq !== state.historyRequestSeq) {
+      return;
+    }
+    console.error(error);
+    state.conversations = [];
+    state.conversationsLoading = false;
+    renderHistoryList();
+    setError(error.message || "历史会话加载失败。");
+    setStatus("历史会话加载失败");
+  }
+}
+
+async function openConversation(conversationId, options = {}) {
+  const { updateUrl = true, replaceUrl = false } = options;
+
+  if (!conversationId) {
+    state.activeConversationId = null;
+    state.activeConversation = null;
+    state.pendingTurn = null;
+    if (updateUrl) {
+      updateBrowserLocation(null, { replace: replaceUrl });
+    }
+    renderHistoryList();
+    renderConversationBody();
+    return;
+  }
+
+  if (state.sending) {
+    return;
+  }
+
+  if (state.activeConversation?.conversation?.id === conversationId && !state.conversationLoading) {
+    if (updateUrl) {
+      updateBrowserLocation(conversationId, { replace: replaceUrl });
+    }
+    return;
+  }
+
+  const requestSeq = state.conversationRequestSeq + 1;
+  state.conversationRequestSeq = requestSeq;
+  state.activeConversationId = conversationId;
+  state.conversationLoading = true;
+  state.pendingTurn = null;
+  setError("");
+  setStatus("正在恢复历史会话…");
+  if (updateUrl) {
+    updateBrowserLocation(conversationId, { replace: replaceUrl });
+  }
+  renderHistoryList();
+  renderConversationBody();
+
+  try {
+    const payload = await apiGetConversation(conversationId);
+    if (requestSeq !== state.conversationRequestSeq) {
+      return;
+    }
+    state.activeConversation = {
+      conversation: payload.conversation,
+      messages: Array.isArray(payload.messages) ? payload.messages : [],
+    };
+    state.activeConversationId = payload.conversation.id;
+    state.conversationLoading = false;
+    syncActiveConversationSummaryFromList();
+    renderHistoryList();
+    renderConversationBody();
+    setStatus("历史会话已恢复，可继续发送");
+    scrollFeedToBottom();
+  } catch (error) {
+    if (requestSeq !== state.conversationRequestSeq) {
+      return;
+    }
+    console.error(error);
+    state.conversationLoading = false;
+    if (error.status === 404) {
+      state.activeConversationId = null;
+      state.activeConversation = null;
+      updateBrowserLocation(null, { replace: true });
+      setError("要打开的会话不存在，已返回空白会话页。");
+      setStatus("会话不存在");
+    } else {
+      setError(error.message || "会话恢复失败。");
+      setStatus("会话恢复失败");
+    }
+    renderHistoryList();
+    renderConversationBody();
+  }
+}
+
+async function createAndActivateConversation(options = {}) {
+  const { silent = false } = options;
+
+  if (!silent) {
+    setStatus("正在创建新会话…");
+    setError("");
+  }
+
+  const payload = await apiCreateConversation();
+  const conversation = payload.conversation;
+  refs.historySearch.value = "";
+  state.activeConversationId = conversation.id;
+  state.activeConversation = {
+    conversation,
+    messages: [],
+  };
+  updateBrowserLocation(conversation.id);
+  await refreshConversationList("");
+  renderHistoryList();
+  renderConversationBody();
+  if (!silent) {
+    setStatus("已创建新会话，可以开始提问");
+  }
+  return conversation;
+}
+
+async function handleNewChat() {
+  if (state.sending) {
+    return;
+  }
+
+  try {
+    await createAndActivateConversation();
+    refs.queryInput.focus();
+  } catch (error) {
+    console.error(error);
+    setError(error.message || "新会话创建失败。");
+    setStatus("新会话创建失败");
+  }
+}
+
+async function handleDeleteConversation(conversationId) {
+  if (state.sending || state.deletingConversationId) {
+    return;
+  }
+
+  const conversation =
+    state.conversations.find((item) => item.id === conversationId) || state.activeConversation?.conversation;
+  const confirmed = window.confirm(`确定删除“${conversation?.title || "当前会话"}”吗？此操作不可撤销。`);
+  if (!confirmed) {
+    return;
+  }
+
+  state.deletingConversationId = conversationId;
+  renderHistoryList();
+  setError("");
+  setStatus("正在删除会话…");
+
+  try {
+    await apiDeleteConversation(conversationId);
+    const deletedActive = state.activeConversationId === conversationId;
+    if (deletedActive) {
+      state.activeConversationId = null;
+      state.activeConversation = null;
+      state.pendingTurn = null;
+      updateBrowserLocation(null, { replace: true });
+    }
+
+    await refreshConversationList(state.historySearch);
+    if (deletedActive) {
+      renderConversationBody();
+    }
+    setStatus("会话已删除");
+  } catch (error) {
+    console.error(error);
+    setError(error.message || "会话删除失败。");
+    setStatus("会话删除失败");
+  } finally {
+    state.deletingConversationId = null;
+    renderHistoryList();
+  }
+}
+
+async function ensureConversationForSend() {
+  if (state.activeConversationId && state.activeConversation) {
+    return state.activeConversationId;
+  }
+  const conversation = await createAndActivateConversation({ silent: true });
+  return conversation.id;
+}
+
+async function submitCurrentQuery(query) {
+  if (!query) {
+    setError("请输入问题后再发送。");
+    setStatus("请先输入问题");
+    return;
+  }
+
+  if (state.sending) {
+    return;
+  }
+
+  let conversationId;
+  try {
+    conversationId = await ensureConversationForSend();
+  } catch (error) {
+    console.error(error);
+    setError(error.message || "当前无法创建新会话。");
+    setStatus("发送前创建会话失败");
+    return;
+  }
+
+  state.sending = true;
+  state.pendingTurn = {
+    role: "user",
+    content: query,
+    created_at: new Date().toISOString(),
+  };
+  setError("");
+  setStatus("正在为当前会话生成回答…");
+  renderHistoryList();
+  renderConversationBody();
+  scrollFeedToBottom();
+
+  try {
+    const payload = await apiSendConversationMessage(conversationId, query);
+    const existingMessages = state.activeConversation?.messages || [];
+    state.activeConversation = {
+      conversation: payload.conversation,
+      messages: existingMessages.concat(Array.isArray(payload.messages) ? payload.messages : []),
+    };
+    state.activeConversationId = payload.conversation.id;
+    state.pendingTurn = null;
+    refs.queryInput.value = "";
+    await refreshConversationList(state.historySearch);
+    renderConversationBody();
+    setStatus("回答已写入当前会话");
+    refs.queryInput.focus();
+    scrollFeedToBottom();
+  } catch (error) {
+    console.error(error);
+    state.pendingTurn = null;
+    renderConversationBody();
+    setError(error.message || "本次消息未能成功写入会话。");
+    setStatus("本次消息未发送成功");
+  } finally {
+    state.sending = false;
+    renderHistoryList();
+    renderConversationBody();
+  }
+}
+
+function scheduleHistorySearch() {
+  if (state.historySearchTimer) {
+    window.clearTimeout(state.historySearchTimer);
+  }
+  state.historySearchTimer = window.setTimeout(() => {
+    void refreshConversationList(refs.historySearch.value);
+  }, HISTORY_SEARCH_DEBOUNCE_MS);
+}
+
+function handlePopState() {
+  if (state.sending) {
+    updateBrowserLocation(state.activeConversationId, { replace: true });
+    return;
+  }
+
+  const conversationId = parseConversationIdFromLocation();
+  if (!conversationId) {
+    void openConversation(null, { updateUrl: false });
+    return;
+  }
+  void openConversation(conversationId, { updateUrl: false });
+}
+
+async function boot() {
+  refs.newChatButton = requireElement("new-chat-button");
+  refs.historySearch = requireElement("history-search");
+  refs.historyStatus = requireElement("history-status");
+  refs.historyLoading = requireElement("history-loading");
+  refs.historyEmpty = requireElement("history-empty");
+  refs.historyNoResults = requireElement("history-no-results");
+  refs.conversationList = requireElement("conversation-list");
+  refs.conversationTitle = requireElement("conversation-title");
+  refs.conversationSubtitle = requireElement("conversation-subtitle");
+  refs.statusText = requireElement("status-text");
+  refs.errorText = requireElement("error-text");
+  refs.conversationLoading = requireElement("conversation-loading");
+  refs.conversationEmpty = requireElement("conversation-empty");
+  refs.messageFeed = requireElement("message-feed");
   refs.form = requireElement("query-form");
   refs.queryInput = requireElement("query-input");
   refs.submitButton = requireElement("submit-button");
-  refs.retryButton = requireElement("retry-button");
-  refs.statusText = requireElement("status-text");
-  refs.errorText = requireElement("error-text");
-  refs.modeBadge = requireElement("mode-badge");
-  refs.userMessageCard = requireElement("user-message-card");
-  refs.queryEcho = requireElement("query-echo");
-  refs.modeSummary = requireElement("mode-summary");
-  refs.modeTitle = requireElement("mode-title");
-  refs.modeDescription = requireElement("mode-description");
-  refs.modeReadingHint = requireElement("mode-reading-hint");
-  refs.progressSection = requireElement("progress-section");
-  refs.progressDetail = requireElement("progress-detail");
-  refs.progressSteps = requireElement("progress-steps");
-  refs.progressNote = requireElement("progress-note");
-  refs.answerText = requireElement("answer-text");
-  refs.disclaimerText = requireElement("disclaimer-text");
-  refs.errorSection = requireElement("error-section");
-  refs.errorTitle = requireElement("error-title");
-  refs.errorMessageText = requireElement("error-message-text");
-  refs.errorHelpText = requireElement("error-help-text");
-  refs.reviewNoticeSection = requireElement("review-notice-section");
-  refs.reviewNoticeText = requireElement("review-notice-text");
-  refs.supportingReviewNote = requireElement("supporting-review-note");
-  refs.supportingReviewNoteText = requireElement("supporting-review-note-text");
-  refs.refuseSection = requireElement("refuse-section");
-  refs.refuseReasonText = requireElement("refuse-reason-text");
-  refs.emptyEvidenceSection = requireElement("empty-evidence-section");
-  refs.primarySection = requireElement("primary-section");
-  refs.primaryCount = requireElement("primary-count");
-  refs.primaryList = requireElement("primary-list");
-  refs.supportingDetails = requireElement("supporting-details");
-  refs.supportingTitle = requireElement("supporting-title");
-  refs.supportingSummary = requireElement("supporting-summary");
-  refs.secondarySection = requireElement("secondary-section");
-  refs.secondaryCount = requireElement("secondary-count");
-  refs.secondaryList = requireElement("secondary-list");
-  refs.reviewSection = requireElement("review-section");
-  refs.reviewCount = requireElement("review-count");
-  refs.reviewList = requireElement("review-list");
-  refs.citationsSection = requireElement("citations-section");
-  refs.citationsCount = requireElement("citations-count");
-  refs.citationsList = requireElement("citations-list");
-  refs.followupsSection = requireElement("followups-section");
-  refs.followupsCount = requireElement("followups-count");
-  refs.followupsList = requireElement("followups-list");
   refs.sampleButtons = Array.from(document.querySelectorAll(".sample-chip"));
 
-  ensureProgressSteps();
-  setModeBadge("idle");
-  setModeSummary("idle");
-  setQueryEcho("尚未查询", { placeholder: true });
-  autoResizeQueryInput();
-  clearErrorState();
+  refs.newChatButton.addEventListener("click", () => {
+    void handleNewChat();
+  });
+
+  refs.historySearch.addEventListener("input", () => {
+    scheduleHistorySearch();
+  });
 
   refs.form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    const query = refs.queryInput.value.trim();
-
-    if (!query) {
-      setErrorSummary("请输入问题后再提交。");
-      refs.statusText.textContent = "请先输入问题";
-      return;
-    }
-
-    await submitQuery(query);
-  });
-
-  refs.queryInput.addEventListener("input", () => {
-    autoResizeQueryInput();
+    await submitCurrentQuery(refs.queryInput.value.trim());
   });
 
   refs.queryInput.addEventListener("keydown", (event) => {
     const shouldSubmit = (event.metaKey || event.ctrlKey) && event.key === "Enter";
-    if (!shouldSubmit || refs.submitButton.disabled) {
+    if (!shouldSubmit || state.sending) {
       return;
     }
     event.preventDefault();
     refs.form.requestSubmit();
   });
 
-  refs.retryButton.addEventListener("click", () => {
-    retryLastQuery();
-  });
-
-  refs.supportingDetails.addEventListener("toggle", () => {
-    state.supportingExpanded = refs.supportingDetails.open;
-  });
-
   refs.sampleButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const query = button.dataset.query || "";
       refs.queryInput.value = query;
-      autoResizeQueryInput();
       refs.queryInput.focus();
       refs.queryInput.setSelectionRange(query.length, query.length);
-      refs.statusText.textContent = "样例已填充，可直接发送";
-      setErrorSummary("");
+      setError("");
+      setStatus("样例已填充，可继续发送到当前会话");
     });
   });
 
-  refs.statusText.textContent = "前端脚本已加载，等待提交";
+  window.addEventListener("popstate", handlePopState);
+
+  renderHistoryList();
+  renderConversationBody();
+  setStatus("正在加载历史会话…");
+
+  await refreshConversationList("");
+
+  const conversationId = parseConversationIdFromLocation();
+  if (conversationId) {
+    await openConversation(conversationId, { updateUrl: false });
+  } else {
+    renderConversationBody();
+    setStatus("前端脚本已加载，可从空白会话开始，也可打开左侧历史");
+  }
+
   window.__frontendTestHooks = {
-    submitQuery,
-    failNextRequest,
-    clearPlannedFailures: () => {
-      state.debugRequestFailure = null;
-    },
-    getRequestState: () => ({
-      activeRequestId: state.activeRequestId,
-      requestInFlight: state.requestInFlight,
-      activeTransportRequestId: state.activeTransport?.requestId || null,
-      activeStreamReader: Boolean(state.activeStreamReader),
-      lastQuery: state.lastQuery,
-      latestAnswerMode: state.latestPayload?.answer_mode || null,
-      debugRequestFailure: state.debugRequestFailure,
-      submitDisabled: refs.submitButton?.disabled || false,
-    }),
-    normalizeErrorCopy,
+    parseConversationIdFromLocation,
+    validatePayload,
     resolveRecordTitle,
     titlesTooSimilar,
-    renderPayload,
-    showErrorState,
   };
   window.__frontendBooted = true;
 }
 
-try {
-  boot();
-} catch (error) {
-  window.__frontendBooted = false;
+boot().catch((error) => {
   console.error(error);
-  const statusElement = document.getElementById("status-text");
-  const errorElement = document.getElementById("error-text");
-  if (statusElement) {
-    statusElement.textContent = "前端初始化失败";
-  }
-  if (errorElement) {
-    errorElement.textContent = error instanceof Error ? error.message : "前端初始化失败";
-  }
-}
+  setError(error.message || "前端初始化失败。");
+  setStatus("前端初始化失败");
+});

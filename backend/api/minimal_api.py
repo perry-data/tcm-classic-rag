@@ -8,13 +8,13 @@ import shlex
 import sys
 import threading
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 from typing import Any, Callable
 from urllib import request as urllib_request
-from urllib.parse import urlsplit
+from urllib.parse import parse_qs, urlsplit
 
 from backend.answers.assembler import (
     DEFAULT_CACHE_DIR,
@@ -31,11 +31,13 @@ from backend.answers.assembler import (
     json_dumps,
     log,
 )
+from backend.chat_history import ConversationStore, DEFAULT_CONVERSATIONS_DB_PATH
 from backend.llm import LLMConfigError, ModelStudioLLMConfig, load_modelstudio_llm_config
 
 
 API_PATH = "/api/v1/answers"
 API_STREAM_PATH = "/api/v1/answers/stream"
+CONVERSATIONS_API_PATH = "/api/v1/conversations"
 DEFAULT_HOST = "127.0.0.1"
 DEFAULT_PORT = 8000
 BENIGN_DISCONNECT_ERRNOS = {32, 53, 54, 104}
@@ -44,6 +46,7 @@ DEFAULT_API_SMOKE_OUT = "artifacts/api_smoke_checks.md"
 DEFAULT_LLM_API_EXAMPLES_OUT = "artifacts/llm_api_examples_modelstudio.json"
 DEFAULT_LLM_API_SMOKE_OUT = "artifacts/llm_api_smoke_checks_modelstudio.md"
 DEFAULT_FRONTEND_DIR = "frontend"
+CHAT_ROUTE_PREFIX = "/chat"
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 EXPECTED_PAYLOAD_FIELDS = [
     "query",
@@ -159,6 +162,11 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Max output tokens for Model Studio answer_text rendering.",
     )
+    parser.add_argument(
+        "--conversations-db-path",
+        default=DEFAULT_CONVERSATIONS_DB_PATH,
+        help="Path to the decoupled conversation history sqlite database.",
+    )
     return parser.parse_args()
 
 
@@ -182,7 +190,9 @@ class MinimalApiService:
     dense_main_index: Path
     dense_main_meta: Path
     llm_config: ModelStudioLLMConfig
+    conversations_db_path: Path
     last_llm_debug: dict[str, Any] | None = None
+    conversation_store: ConversationStore = field(init=False)
 
     def __post_init__(self) -> None:
         self.assembler = AnswerAssembler(
@@ -197,8 +207,10 @@ class MinimalApiService:
             dense_main_meta=self.dense_main_meta,
             llm_config=self.llm_config,
         )
+        self.conversation_store = ConversationStore(self.conversations_db_path)
 
     def close(self) -> None:
+        self.conversation_store.close()
         self.assembler.close()
 
     def _normalize_query_payload(self, payload: Any) -> str:
@@ -229,6 +241,48 @@ class MinimalApiService:
     ) -> dict[str, Any]:
         query = self._normalize_query_payload(payload)
         return self.answer_query(query, progress_callback=progress_callback)
+
+    def create_conversation(self, payload: Any) -> dict[str, Any]:
+        if payload is None:
+            payload = {}
+        if not isinstance(payload, dict):
+            raise ApiRequestError(400, "invalid_json", "Request body must be a JSON object.")
+
+        raw_title = payload.get("title")
+        if raw_title is not None and not isinstance(raw_title, str):
+            raise ApiRequestError(400, "invalid_request", "Field 'title' must be a string when provided.")
+
+        return self.conversation_store.create_conversation(raw_title)
+
+    def list_conversations(self, search: str | None = None) -> dict[str, Any]:
+        normalized_search = search.strip() if isinstance(search, str) else ""
+        return {
+            "items": self.conversation_store.list_conversations(normalized_search),
+            "search": normalized_search,
+        }
+
+    def get_conversation(self, conversation_id: str) -> dict[str, Any]:
+        conversation = self.conversation_store.get_conversation_detail(conversation_id)
+        if conversation is None:
+            raise ApiRequestError(404, "not_found", "Conversation not found.")
+        return conversation
+
+    def delete_conversation(self, conversation_id: str) -> dict[str, Any]:
+        deleted = self.conversation_store.delete_conversation(conversation_id)
+        if not deleted:
+            raise ApiRequestError(404, "not_found", "Conversation not found.")
+        return {"id": conversation_id, "deleted": True}
+
+    def append_conversation_message(self, conversation_id: str, payload: Any) -> dict[str, Any]:
+        if self.conversation_store.get_conversation_summary(conversation_id) is None:
+            raise ApiRequestError(404, "not_found", "Conversation not found.")
+
+        query = self._normalize_query_payload(payload)
+        answer_payload = self.answer_query(query)
+        conversation_update = self.conversation_store.append_exchange(conversation_id, query, answer_payload)
+        if conversation_update is None:
+            raise ApiRequestError(404, "not_found", "Conversation not found.")
+        return conversation_update
 
 
 def is_benign_disconnect_exception(exc: BaseException | None) -> bool:
@@ -290,6 +344,33 @@ def split_answer_text_for_stream(answer_text: str) -> list[str]:
     return chunks or [answer_text]
 
 
+def is_frontend_shell_route(request_path: str) -> bool:
+    return request_path in {"/", "/index.html", "/frontend", "/frontend/", CHAT_ROUTE_PREFIX, f"{CHAT_ROUTE_PREFIX}/"} or request_path.startswith(
+        f"{CHAT_ROUTE_PREFIX}/"
+    )
+
+
+def match_conversation_detail_route(request_path: str) -> str | None:
+    prefix = f"{CONVERSATIONS_API_PATH}/"
+    if not request_path.startswith(prefix):
+        return None
+    suffix = request_path.removeprefix(prefix)
+    if not suffix or "/" in suffix:
+        return None
+    return suffix
+
+
+def match_conversation_messages_route(request_path: str) -> str | None:
+    prefix = f"{CONVERSATIONS_API_PATH}/"
+    if not request_path.startswith(prefix):
+        return None
+    suffix = request_path.removeprefix(prefix)
+    parts = [part for part in suffix.split("/") if part]
+    if len(parts) == 2 and parts[1] == "messages":
+        return parts[0]
+    return None
+
+
 def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHTTPRequestHandler]:
     class MinimalApiHandler(BaseHTTPRequestHandler):
         server_version = "TCMClassicRAGMinimalAPI/0.1"
@@ -319,6 +400,43 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
                 self._handle_stream_post()
                 return
 
+            if request_path == CONVERSATIONS_API_PATH:
+                try:
+                    payload = self._read_json_body()
+                    response_payload = {"conversation": service.create_conversation(payload)}
+                except ApiRequestError as exc:
+                    self._send_json(exc.status_code, {"error": {"code": exc.code, "message": exc.message}})
+                    return
+                except Exception as exc:  # pragma: no cover - defensive transport guard
+                    log(f"[api:error] {exc}")
+                    self._send_json(
+                        500,
+                        {"error": {"code": "internal_error", "message": "Internal server error."}},
+                    )
+                    return
+
+                self._send_json(201, response_payload)
+                return
+
+            conversation_id = match_conversation_messages_route(request_path)
+            if conversation_id is not None:
+                try:
+                    payload = self._read_json_body()
+                    response_payload = service.append_conversation_message(conversation_id, payload)
+                except ApiRequestError as exc:
+                    self._send_json(exc.status_code, {"error": {"code": exc.code, "message": exc.message}})
+                    return
+                except Exception as exc:  # pragma: no cover - defensive transport guard
+                    log(f"[api:error] {exc}")
+                    self._send_json(
+                        500,
+                        {"error": {"code": "internal_error", "message": "Internal server error."}},
+                    )
+                    return
+
+                self._send_json(200, response_payload)
+                return
+
             if request_path != API_PATH:
                 self._send_json(404, {"error": {"code": "not_found", "message": "Route not found."}})
                 return
@@ -342,8 +460,30 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
             self._send_json(200, response_payload)
 
         def do_GET(self) -> None:  # noqa: N802
-            request_path = urlsplit(self.path).path
-            if request_path in {"/", "/index.html", "/frontend", "/frontend/"}:
+            parsed = urlsplit(self.path)
+            request_path = parsed.path
+            if request_path == CONVERSATIONS_API_PATH:
+                query_params = parse_qs(parsed.query)
+                search = query_params.get("search", [""])[0]
+                try:
+                    response_payload = service.list_conversations(search)
+                except ApiRequestError as exc:
+                    self._send_json(exc.status_code, {"error": {"code": exc.code, "message": exc.message}})
+                    return
+                self._send_json(200, response_payload)
+                return
+
+            conversation_id = match_conversation_detail_route(request_path)
+            if conversation_id is not None:
+                try:
+                    response_payload = service.get_conversation(conversation_id)
+                except ApiRequestError as exc:
+                    self._send_json(exc.status_code, {"error": {"code": exc.code, "message": exc.message}})
+                    return
+                self._send_json(200, response_payload)
+                return
+
+            if is_frontend_shell_route(request_path):
                 self._send_file(frontend_root / "index.html")
                 return
 
@@ -362,7 +502,7 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
 
         def do_HEAD(self) -> None:  # noqa: N802
             request_path = urlsplit(self.path).path
-            if request_path in {"/", "/index.html", "/frontend", "/frontend/"}:
+            if is_frontend_shell_route(request_path):
                 self._send_file(frontend_root / "index.html", include_body=False)
                 return
 
@@ -377,15 +517,37 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
                 self._send_file(target_path, include_body=False)
                 return
 
-            if request_path in {API_PATH, API_STREAM_PATH}:
+            if request_path in {API_PATH, API_STREAM_PATH, CONVERSATIONS_API_PATH} or match_conversation_detail_route(request_path) or match_conversation_messages_route(request_path):
                 self.send_response(405)
                 self._send_cache_headers()
-                self.send_header("Allow", "POST")
+                self.send_header("Allow", "GET, POST, DELETE")
                 self.send_header("Content-Length", "0")
                 self.end_headers()
                 return
 
             self._send_json(404, {"error": {"code": "not_found", "message": "Route not found."}})
+
+        def do_DELETE(self) -> None:  # noqa: N802
+            request_path = urlsplit(self.path).path
+            conversation_id = match_conversation_detail_route(request_path)
+            if conversation_id is None:
+                self._send_json(404, {"error": {"code": "not_found", "message": "Route not found."}})
+                return
+
+            try:
+                response_payload = service.delete_conversation(conversation_id)
+            except ApiRequestError as exc:
+                self._send_json(exc.status_code, {"error": {"code": exc.code, "message": exc.message}})
+                return
+            except Exception as exc:  # pragma: no cover - defensive transport guard
+                log(f"[api:error] {exc}")
+                self._send_json(
+                    500,
+                    {"error": {"code": "internal_error", "message": "Internal server error."}},
+                )
+                return
+
+            self._send_json(200, response_payload)
 
         def log_message(self, format: str, *args: Any) -> None:
             return
@@ -810,6 +972,7 @@ def run_http_examples(server: MinimalApiHTTPServer, host: str) -> tuple[str, lis
 def resolve_runtime_paths(args: argparse.Namespace) -> dict[str, Path]:
     return {
         "db_path": resolve_project_path(args.db_path),
+        "conversations_db_path": resolve_project_path(args.conversations_db_path),
         "policy_path": resolve_project_path(args.policy_json),
         "cache_dir": resolve_project_path(args.cache_dir),
         "dense_chunks_index": resolve_project_path(args.dense_chunks_index),
@@ -843,6 +1006,7 @@ def create_service(
 ) -> MinimalApiService:
     return MinimalApiService(
         db_path=paths["db_path"],
+        conversations_db_path=paths["conversations_db_path"],
         policy_path=paths["policy_path"],
         embed_model=args.embed_model,
         rerank_model=args.rerank_model,
@@ -968,7 +1132,7 @@ def run_server_mode(args: argparse.Namespace, paths: dict[str, Path]) -> int:
         log(f"[1/3] Loaded minimal API service from {paths['db_path']}")
         log(
             f"[2/3] Serving frontend on http://{args.host}:{args.port}/ and POST "
-            f"{API_PATH} / {API_STREAM_PATH}"
+            f"{API_PATH} / {API_STREAM_PATH} plus {CONVERSATIONS_API_PATH}"
         )
         log("[3/3] Press Ctrl+C to stop")
         server.serve_forever()

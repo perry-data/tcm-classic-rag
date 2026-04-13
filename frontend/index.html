@@ -8,189 +8,149 @@
   </head>
   <body>
     <div class="page-shell">
-      <header class="app-header">
-        <div class="app-brand">
-          <p class="app-label">TCM Classic RAG</p>
-          <h1>《伤寒论》单轮研读</h1>
-        </div>
+      <div class="app-shell">
+        <aside class="history-sidebar" aria-label="历史会话">
+          <div class="sidebar-head">
+            <div>
+              <p class="eyebrow">Chat History v1</p>
+              <h1>历史会话</h1>
+              <p class="sidebar-copy">
+                当前只落地最小多轮能力：查看历史、搜索、恢复会话、继续提问与删除。
+              </p>
+            </div>
+            <button id="new-chat-button" class="primary-button" type="button">New chat</button>
+          </div>
 
-        <div class="app-presence" aria-live="polite">
-          <span class="status-pill">单轮模式</span>
-          <p id="status-text" class="status-text">正在加载前端脚本…</p>
-          <p id="error-text" class="error-text"></p>
-        </div>
-      </header>
+          <div class="sidebar-search">
+            <label class="field-label" for="history-search">搜索历史</label>
+            <input
+              id="history-search"
+              type="search"
+              placeholder="搜索标题或消息内容"
+              autocomplete="off"
+            />
+            <p id="history-status" class="history-status" aria-live="polite">正在加载历史会话…</p>
+          </div>
 
-      <main class="chat-shell">
-        <section class="conversation-stage" aria-label="当前单轮问答">
-          <article id="user-message-card" class="message-card user-message">
-            <p class="message-role">用户</p>
-            <p id="query-echo" class="bubble user-bubble empty-copy">尚未查询</p>
-          </article>
-
-          <article id="answer-section" class="message-card assistant-message">
-            <div class="message-topline">
-              <div class="assistant-identity">
-                <p class="message-role">研读助手</p>
-                <h2>当前回答</h2>
-              </div>
-              <span id="mode-badge" class="mode-badge mode-idle">idle</span>
+          <section class="sidebar-list-shell">
+            <div id="history-loading" class="sidebar-state-card">
+              <p class="state-title">正在加载历史会话</p>
+              <p class="state-copy">列表载入后，你可以从左侧直接恢复旧会话并继续聊天。</p>
             </div>
 
-            <section id="mode-summary" class="mode-summary mode-summary-idle">
-              <div class="mode-summary-copy">
-                <h3 id="mode-title">等待提问</h3>
-                <p id="mode-description" class="mode-description">
-                  输入问题后开始本轮研读。
-                </p>
-              </div>
-              <p id="mode-reading-hint" class="mode-reading-hint">
-                支持 <code>Cmd/Ctrl + Enter</code> 提交。
+            <div id="history-empty" class="sidebar-state-card" hidden>
+              <p class="state-title">还没有历史会话</p>
+              <p class="state-copy">点击上方 <code>New chat</code>，或者直接在右侧输入问题开始第一轮会话。</p>
+            </div>
+
+            <div id="history-no-results" class="sidebar-state-card" hidden>
+              <p class="state-title">没有匹配结果</p>
+              <p class="state-copy">当前搜索没有命中标题或消息内容，可以尝试缩短关键词后重试。</p>
+            </div>
+
+            <ul id="conversation-list" class="conversation-list" aria-live="polite"></ul>
+          </section>
+        </aside>
+
+        <main class="chat-panel">
+          <header class="chat-header">
+            <section class="chat-intro">
+              <p class="eyebrow">TCM Classic RAG MVP</p>
+              <h2 id="conversation-title">新对话</h2>
+              <p id="conversation-subtitle" class="chat-subtitle">
+                主区会展示当前会话的完整消息流；点击左侧历史项可恢复旧会话并继续发送。
               </p>
             </section>
 
-            <section id="progress-section" class="progress-section" hidden>
-              <div class="progress-copy">
-                <p id="progress-detail" class="progress-detail">提交问题后，这里会显示阶段进度。</p>
+            <aside class="header-meta" aria-label="页面状态">
+              <div class="meta-item">
+                <p class="meta-label">会话接口</p>
+                <p class="meta-value">
+                  <code>GET/POST/DELETE /api/v1/conversations</code>
+                </p>
               </div>
-              <ol id="progress-steps" class="progress-steps" aria-live="polite"></ol>
-              <p id="progress-note" class="progress-note" hidden></p>
-            </section>
+              <div class="meta-item">
+                <p class="meta-label">当前状态</p>
+                <p id="status-text" class="status-text" aria-live="polite">正在初始化聊天界面…</p>
+                <p id="error-text" class="error-text" aria-live="polite"></p>
+              </div>
+            </aside>
+          </header>
 
-            <section class="answer-block" aria-label="回答正文">
-              <p id="answer-text" class="answer-text empty-copy">等待查询结果。</p>
-            </section>
+          <section id="conversation-loading" class="main-state-card" hidden>
+            <p class="state-title">正在加载会话</p>
+            <p class="state-copy">正在恢复完整聊天记录，请稍候。</p>
+          </section>
 
-            <p id="disclaimer-text" class="disclaimer-text"></p>
+          <section id="conversation-empty" class="main-state-card">
+            <p class="state-title">从右下角开始新会话，或打开左侧历史</p>
+            <p class="state-copy">
+              首轮发送后会自动生成会话标题；之后你可以从左侧搜索标题或消息内容，再点回对应会话继续聊天。
+            </p>
+          </section>
 
-            <div class="assistant-callouts">
-              <section id="review-notice-section" class="callout callout-review" hidden>
-                <h3>核对提示</h3>
-                <p id="review-notice-text"></p>
-              </section>
+          <section id="message-feed" class="message-feed" hidden></section>
 
-              <section id="refuse-section" class="callout callout-refuse" hidden>
-                <h3>拒答原因</h3>
-                <p id="refuse-reason-text"></p>
-              </section>
+          <footer class="composer-shell">
+            <section class="composer-panel" aria-label="底部输入区">
+              <div class="composer-copy">
+                <p class="eyebrow">继续提问</p>
+                <h2>当前会话 Composer</h2>
+                <p class="composer-text">
+                  会话支持持续追加消息。切回旧会话后，新的问题会继续落在当前会话下。
+                </p>
+              </div>
 
-              <section id="error-section" class="callout callout-error" hidden>
-                <div class="callout-head">
-                  <div>
-                    <h3 id="error-title">请求未完成</h3>
-                    <p id="error-help-text">这是请求错误或超时，不等同于系统拒答。</p>
-                  </div>
-                  <button id="retry-button" class="secondary-button" type="button">
-                    重试上一个问题
-                  </button>
+              <form id="query-form" class="composer-form">
+                <label class="field-label" for="query-input">问题</label>
+                <textarea
+                  id="query-input"
+                  name="query"
+                  rows="4"
+                  placeholder="例如：黄连汤方的条文是什么？"
+                ></textarea>
+
+                <div class="composer-actions">
+                  <p class="query-hint">
+                    按 <code>Cmd/Ctrl + Enter</code> 可直接提交；发送期间会暂时锁定会话切换，避免串写到别的历史会话。
+                  </p>
+                  <button id="submit-button" type="submit">发送到当前会话</button>
                 </div>
-                <p id="error-message-text"></p>
-              </section>
-            </div>
+              </form>
 
-            <section id="primary-section" class="support-block support-block-primary" hidden>
-              <div class="support-head">
-                <h3>主依据 <span id="primary-count" class="section-count"></span></h3>
-              </div>
-              <div id="primary-list" class="evidence-list"></div>
-            </section>
-
-            <details id="supporting-details" class="supporting-details" hidden>
-              <summary class="supporting-summary-row">
-                <div>
-                  <p class="supporting-kicker">展开更多</p>
-                  <h3 id="supporting-title">查看依据与补充信息</h3>
+              <details class="sample-queries">
+                <summary class="sample-summary">查看冻结样例</summary>
+                <div class="sample-drawer">
+                  <p class="sample-title">可快速填充的示例问题</p>
+                  <div class="sample-list">
+                    <button class="sample-chip" type="button" data-query="黄连汤方的条文是什么？">
+                      黄连汤方
+                    </button>
+                    <button
+                      class="sample-chip"
+                      type="button"
+                      data-query="烧针益阳而损阴是什么意思？"
+                    >
+                      烧针益阳而损阴
+                    </button>
+                    <button class="sample-chip" type="button" data-query="书中有没有提到量子纠缠？">
+                      量子纠缠
+                    </button>
+                    <button
+                      class="sample-chip"
+                      type="button"
+                      data-query="桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？"
+                    >
+                      方剂比较
+                    </button>
+                  </div>
+                  <p class="sample-note">样例按钮只填充输入框，不会自动发送。</p>
                 </div>
-                <p id="supporting-summary" class="supporting-summary">暂无附加信息</p>
-              </summary>
-
-              <div class="supporting-details-body">
-                <section id="supporting-review-note" class="support-note support-note-review" hidden>
-                  <p id="supporting-review-note-text"></p>
-                </section>
-
-                <section id="empty-evidence-section" class="support-block empty-state-panel" hidden>
-                  <p>当前回答没有可直接展开的依据。</p>
-                </section>
-
-                <section id="secondary-section" class="support-block" hidden>
-                  <div class="support-head">
-                    <h3>补充依据 <span id="secondary-count" class="section-count"></span></h3>
-                  </div>
-                  <div id="secondary-list" class="evidence-list"></div>
-                </section>
-
-                <section id="review-section" class="support-block support-block-review" hidden>
-                  <div class="support-head">
-                    <h3>核对材料 <span id="review-count" class="section-count"></span></h3>
-                  </div>
-                  <div id="review-list" class="evidence-list"></div>
-                </section>
-
-                <section id="citations-section" class="support-block citations-panel" hidden>
-                  <div class="support-head">
-                    <h3>引用 <span id="citations-count" class="section-count"></span></h3>
-                  </div>
-                  <ol id="citations-list" class="citation-list"></ol>
-                </section>
-
-                <section id="followups-section" class="support-block followups-panel" hidden>
-                  <div class="support-head">
-                    <h3>改问建议 <span id="followups-count" class="section-count"></span></h3>
-                  </div>
-                  <ul id="followups-list" class="followups-list"></ul>
-                </section>
-              </div>
-            </details>
-          </article>
-        </section>
-      </main>
-
-      <footer class="composer-shell">
-        <form id="query-form" class="composer-panel" aria-label="底部输入区">
-          <label class="sr-only" for="query-input">问题</label>
-
-          <div class="composer-input-row">
-            <textarea
-              id="query-input"
-              name="query"
-              rows="1"
-              placeholder="例如：黄连汤方的条文是什么？"
-            ></textarea>
-            <button id="submit-button" type="submit">发送</button>
-          </div>
-
-          <div class="composer-meta">
-            <p class="query-hint"><code>Cmd/Ctrl + Enter</code></p>
-
-            <details class="sample-queries">
-              <summary class="sample-summary">样例</summary>
-              <div class="sample-list">
-                <button class="sample-chip" type="button" data-query="黄连汤方的条文是什么？">
-                  黄连汤方
-                </button>
-                <button
-                  class="sample-chip"
-                  type="button"
-                  data-query="烧针益阳而损阴是什么意思？"
-                >
-                  烧针益阳而损阴
-                </button>
-                <button class="sample-chip" type="button" data-query="书中有没有提到量子纠缠？">
-                  量子纠缠
-                </button>
-                <button
-                  class="sample-chip"
-                  type="button"
-                  data-query="桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？"
-                >
-                  方剂比较
-                </button>
-              </div>
-            </details>
-          </div>
-        </form>
-      </footer>
+              </details>
+            </section>
+          </footer>
+        </main>
+      </div>
     </div>
 
     <script type="module" src="/frontend/app.js"></script>
