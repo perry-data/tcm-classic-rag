@@ -1,0 +1,162 @@
+[
+  {
+    "module_name": "data_foundation",
+    "status": "已完成",
+    "counted_in_current_completion": true,
+    "evidence_paths": [
+      "data/raw/《注解伤寒论》.zip",
+      "data/processed/zjshl_dataset_v2/README_parse_report_v2.md",
+      "dist/zjshl_dataset_v2_mvp_safe.zip",
+      "docs/data/03_dataset_acceptance_report.md",
+      "artifacts/database_counts.json"
+    ],
+    "thesis_impact": "可直接支撑第2章知识库设计与第3章数据库/预处理实现，论文必须按《伤寒论》单书口径表述。",
+    "followup_needed": "无需补功能；只需在论文中固定为单书 safe/full 数据底座。"
+  },
+  {
+    "module_name": "retrieval_chain",
+    "status": "已完成",
+    "counted_in_current_completion": true,
+    "evidence_paths": [
+      "backend/retrieval/hybrid.py",
+      "backend/retrieval/minimal.py",
+      "scripts/build_mvp_database.py",
+      "scripts/build_dense_index.py",
+      "artifacts/zjshl_mvp.db",
+      "artifacts/dense_chunks.faiss",
+      "artifacts/dense_main_passages.faiss",
+      "docs/final/technical_design_v1.md"
+    ],
+    "thesis_impact": "可直接支撑第2.5节与第3.2.2节，检索方案不应再重新设计。",
+    "followup_needed": "无主链阻塞；只需统一论文写法为 FTS5/BM25 + FAISS + RRF + rerank。"
+  },
+  {
+    "module_name": "evidence_traceability",
+    "status": "已完成",
+    "counted_in_current_completion": true,
+    "evidence_paths": [
+      "backend/answers/assembler.py",
+      "config/layered_enablement_policy.json",
+      "docs/contracts/answer_payload_contract.md",
+      "artifacts/api_smoke_checks.md",
+      "artifacts/evaluation/evaluator_v2_report.md"
+    ],
+    "thesis_impact": "可直接支撑第2.6.3节、第3.2.3节与答辩中的证据优先表述。",
+    "followup_needed": "无功能缺口；论文中需突出三槽位与弱回答/拒答边界。"
+  },
+  {
+    "module_name": "answer_generation",
+    "status": "已完成",
+    "counted_in_current_completion": true,
+    "evidence_paths": [
+      "backend/answers/assembler.py",
+      "backend/strategies/general_question.py",
+      "artifacts/hybrid_answer_smoke_checks.md",
+      "docs/final/technical_design_v1.md"
+    ],
+    "thesis_impact": "第2.6节和第3.2.4节可写，但必须说明当前是规则化 AnswerAssembler 为主的收口实现。",
+    "followup_needed": "不要再把它写成完全自由生成问答器。"
+  },
+  {
+    "module_name": "llm_provider_integration",
+    "status": "已完成",
+    "counted_in_current_completion": true,
+    "evidence_paths": [
+      "backend/llm/client.py",
+      "backend/llm/prompt_builder.py",
+      "backend/llm/validator.py",
+      "backend/api/minimal_api.py",
+      ".env.example",
+      "artifacts/llm_api_smoke_checks_modelstudio_live.md",
+      "docs/patch_notes/modelstudio_qwen_plus_live_validation_patch_note.md"
+    ],
+    "thesis_impact": "答辩时不能再说 LLM 尚未接通；真实缺口是正式主文档尚未同步。",
+    "followup_needed": "回写正式文档口径，明确 LLM 只改写 answer_text。"
+  },
+  {
+    "module_name": "api_transport",
+    "status": "已完成",
+    "counted_in_current_completion": true,
+    "evidence_paths": [
+      "backend/api/minimal_api.py",
+      "docs/contracts/minimal_api_contract.md",
+      "artifacts/api_smoke_checks.md"
+    ],
+    "thesis_impact": "可直接支撑接口与调用流程章节；主答辩接口仍应以 /api/v1/answers 为主。",
+    "followup_needed": "补文档同步，说明 stream 与 conversations 为已存在扩展接口。"
+  },
+  {
+    "module_name": "frontend",
+    "status": "已完成",
+    "counted_in_current_completion": true,
+    "evidence_paths": [
+      "frontend/index.html",
+      "frontend/app.js",
+      "frontend/styles.css",
+      "artifacts/frontend_mvp_smoke_checks.md",
+      "docs/notes/frontend_debug_report.md"
+    ],
+    "thesis_impact": "当前前端已足够支撑演示，状态判断为“功能已成型，待封板优化”。",
+    "followup_needed": "无需先补功能；优先做口径回写与后续封板。"
+  },
+  {
+    "module_name": "chat_history",
+    "status": "不再实现 / 不纳入当前答辩范围",
+    "counted_in_current_completion": false,
+    "evidence_paths": [
+      "backend/chat_history/store.py",
+      "backend/api/minimal_api.py",
+      "frontend/app.js",
+      "docs/design/chat_history_uiux_v1.md",
+      "docs/patch_notes/chat_history_v1.md"
+    ],
+    "thesis_impact": "代码已回流主仓库并接通，不应再写成“未回流”；但也不建议抬升为当前答辩主线。",
+    "followup_needed": "只需在论文中说明其为附加实现，不计入冻结主链。"
+  },
+  {
+    "module_name": "evaluation_and_testing",
+    "status": "部分完成",
+    "counted_in_current_completion": true,
+    "evidence_paths": [
+      "scripts/run_evaluator_v1.py",
+      "scripts/run_evaluator_v2.py",
+      "docs/evaluation/evaluation_spec_v1.md",
+      "artifacts/evaluation/evaluator_v2_report.md",
+      "artifacts/evaluation/goldset_v2_working_150.json",
+      "artifacts/api_smoke_checks.md",
+      "artifacts/frontend_mvp_smoke_checks.md"
+    ],
+    "thesis_impact": "当前底座足够支撑论文第4章基础结果与答辩说明，但不能再宣称200–250样本、满意度或响应速度已完成。",
+    "followup_needed": "整理成论文可直接引用的结果摘要，并统一删去过期承诺。"
+  },
+  {
+    "module_name": "run_and_deploy",
+    "status": "部分完成",
+    "counted_in_current_completion": true,
+    "evidence_paths": [
+      "README.md",
+      "docs/setup/windows_11_quickstart.md",
+      "backend/api/minimal_api.py",
+      "artifacts/api_smoke_checks.md",
+      "artifacts/frontend_mvp_smoke_checks.md"
+    ],
+    "thesis_impact": "第3.4节可写本地同源运行链路，但不应写成生产级部署已完成。",
+    "followup_needed": "统一启动命令，清理 app_minimal_api.py 旧引用。"
+  },
+  {
+    "module_name": "documentation_completeness",
+    "status": "部分完成",
+    "counted_in_current_completion": true,
+    "evidence_paths": [
+      "docs/final/PRD_v1.md",
+      "docs/final/technical_design_v1.md",
+      "docs/final/system_spec_v1.md",
+      "docs/specs/frontend_mvp_spec.md",
+      "README.md",
+      "artifacts/api_smoke_checks.md",
+      "artifacts/frontend_mvp_smoke_checks.md"
+    ],
+    "thesis_impact": "这是当前最大的论文/答辩风险点：代码实物强于正式口径，但结构图缺失、文档存在滞后。",
+    "followup_needed": "下一轮优先执行论文/答辩口径与结构图封板。"
+  }
+]
