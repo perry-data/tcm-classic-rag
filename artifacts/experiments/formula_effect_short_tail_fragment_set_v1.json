@@ -1,0 +1,497 @@
+[
+  {
+    "formula_name": "半夏散及汤方",
+    "query": "半夏散及汤方有什么作用",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-014-P-0117",
+    "before_primary_text": "少阴病咽中痛，半夏散及汤主之。",
+    "before_context_clause": "少阴病咽中痛",
+    "fragment_type": "痛",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-014-P-0117",
+      "full:passages:ZJSHL-CH-014-P-0117",
+      "full:passages:ZJSHL-CH-014-P-0118"
+    ],
+    "expected_fix_note": "这类短而完整的直接语境已不再被误判成 short tail。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-014-P-0117",
+    "after_primary_text": "少阴病咽中痛，半夏散及汤主之。",
+    "after_context_clause": "少阴病咽中痛",
+    "after_pattern_label": "direct_context_main_selected"
+  },
+  {
+    "formula_name": "半夏散及汤方",
+    "query": "半夏散及汤方主治什么",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-014-P-0117",
+    "before_primary_text": "少阴病咽中痛，半夏散及汤主之。",
+    "before_context_clause": "少阴病咽中痛",
+    "fragment_type": "痛",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-014-P-0117",
+      "full:passages:ZJSHL-CH-014-P-0117",
+      "full:passages:ZJSHL-CH-014-P-0118"
+    ],
+    "expected_fix_note": "这类短而完整的直接语境已不再被误判成 short tail。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-014-P-0117",
+    "after_primary_text": "少阴病咽中痛，半夏散及汤主之。",
+    "after_context_clause": "少阴病咽中痛",
+    "after_pattern_label": "direct_context_main_selected"
+  },
+  {
+    "formula_name": "半夏散及汤方",
+    "query": "半夏散及汤方用于什么情况",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-014-P-0117",
+    "before_primary_text": "少阴病咽中痛，半夏散及汤主之。",
+    "before_context_clause": "少阴病咽中痛",
+    "fragment_type": "痛",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-014-P-0117",
+      "full:passages:ZJSHL-CH-014-P-0117",
+      "full:passages:ZJSHL-CH-014-P-0118"
+    ],
+    "expected_fix_note": "这类短而完整的直接语境已不再被误判成 short tail。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-014-P-0117",
+    "after_primary_text": "少阴病咽中痛，半夏散及汤主之。",
+    "after_context_clause": "少阴病咽中痛",
+    "after_pattern_label": "direct_context_main_selected"
+  },
+  {
+    "formula_name": "文蛤散方",
+    "query": "文蛤散方有什么作用",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-010-P-0040",
+    "before_primary_text": "病在阳，为邪在表也，法当汗出而解，反以冷水 之，灌洗，热被寒水，外不得出，则反攻其里。弥更益烦，肉上粟起者，水寒之气客于皮肤也；意欲饮水者，里有热也；反不渴者，寒在表也。与文蛤散以散表中水寒之气。若不瘥，是水热相搏，欲传于里，与五苓散发汗以和之。始热在表，因水寒制之，不得外泄，内攻于里，结于胸膈，心下硬痛，本是医统本作「以」水寒伏热为实，故谓之寒实结胸。无热证者，外无热，而热悉收敛于里也，与小陷胸汤以下逐之。白散下热，故亦可攻。",
+    "before_context_clause": "与",
+    "fragment_type": "与",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-010-P-0040",
+      "full:passages:ZJSHL-CH-010-P-0040"
+    ],
+    "expected_fix_note": "同一条 primary 内已从短尾残片回退到更完整的直接语境。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-010-P-0040",
+    "after_primary_text": "病在阳，为邪在表也，法当汗出而解，反以冷水 之，灌洗，热被寒水，外不得出，则反攻其里。弥更益烦，肉上粟起者，水寒之气客于皮肤也；意欲饮水者，里有热也；反不渴者，寒在表也。与文蛤散以散表中水寒之气。若不瘥，是水热相搏，欲传于里，与五苓散发汗以和之。始热在表，因水寒制之，不得外泄，内攻于里，结于胸膈，心下硬痛，本是医统本作「以」水寒伏热为实，故谓之寒实结胸。无热证者，外无热，而热悉收敛于里也，与小陷胸汤以下逐之。白散下热，故亦可攻。",
+    "after_context_clause": "反不渴者，寒在表也",
+    "after_pattern_label": "direct_context_main_selected"
+  },
+  {
+    "formula_name": "文蛤散方",
+    "query": "文蛤散方主治什么",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-010-P-0040",
+    "before_primary_text": "病在阳，为邪在表也，法当汗出而解，反以冷水 之，灌洗，热被寒水，外不得出，则反攻其里。弥更益烦，肉上粟起者，水寒之气客于皮肤也；意欲饮水者，里有热也；反不渴者，寒在表也。与文蛤散以散表中水寒之气。若不瘥，是水热相搏，欲传于里，与五苓散发汗以和之。始热在表，因水寒制之，不得外泄，内攻于里，结于胸膈，心下硬痛，本是医统本作「以」水寒伏热为实，故谓之寒实结胸。无热证者，外无热，而热悉收敛于里也，与小陷胸汤以下逐之。白散下热，故亦可攻。",
+    "before_context_clause": "与",
+    "fragment_type": "与",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-010-P-0040",
+      "full:passages:ZJSHL-CH-010-P-0040"
+    ],
+    "expected_fix_note": "同一条 primary 内已从短尾残片回退到更完整的直接语境。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-010-P-0040",
+    "after_primary_text": "病在阳，为邪在表也，法当汗出而解，反以冷水 之，灌洗，热被寒水，外不得出，则反攻其里。弥更益烦，肉上粟起者，水寒之气客于皮肤也；意欲饮水者，里有热也；反不渴者，寒在表也。与文蛤散以散表中水寒之气。若不瘥，是水热相搏，欲传于里，与五苓散发汗以和之。始热在表，因水寒制之，不得外泄，内攻于里，结于胸膈，心下硬痛，本是医统本作「以」水寒伏热为实，故谓之寒实结胸。无热证者，外无热，而热悉收敛于里也，与小陷胸汤以下逐之。白散下热，故亦可攻。",
+    "after_context_clause": "反不渴者，寒在表也",
+    "after_pattern_label": "direct_context_main_selected"
+  },
+  {
+    "formula_name": "文蛤散方",
+    "query": "文蛤散方用于什么情况",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-010-P-0040",
+    "before_primary_text": "病在阳，为邪在表也，法当汗出而解，反以冷水 之，灌洗，热被寒水，外不得出，则反攻其里。弥更益烦，肉上粟起者，水寒之气客于皮肤也；意欲饮水者，里有热也；反不渴者，寒在表也。与文蛤散以散表中水寒之气。若不瘥，是水热相搏，欲传于里，与五苓散发汗以和之。始热在表，因水寒制之，不得外泄，内攻于里，结于胸膈，心下硬痛，本是医统本作「以」水寒伏热为实，故谓之寒实结胸。无热证者，外无热，而热悉收敛于里也，与小陷胸汤以下逐之。白散下热，故亦可攻。",
+    "before_context_clause": "与",
+    "fragment_type": "与",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-010-P-0040",
+      "full:passages:ZJSHL-CH-010-P-0040"
+    ],
+    "expected_fix_note": "同一条 primary 内已从短尾残片回退到更完整的直接语境。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-010-P-0040",
+    "after_primary_text": "病在阳，为邪在表也，法当汗出而解，反以冷水 之，灌洗，热被寒水，外不得出，则反攻其里。弥更益烦，肉上粟起者，水寒之气客于皮肤也；意欲饮水者，里有热也；反不渴者，寒在表也。与文蛤散以散表中水寒之气。若不瘥，是水热相搏，欲传于里，与五苓散发汗以和之。始热在表，因水寒制之，不得外泄，内攻于里，结于胸膈，心下硬痛，本是医统本作「以」水寒伏热为实，故谓之寒实结胸。无热证者，外无热，而热悉收敛于里也，与小陷胸汤以下逐之。白散下热，故亦可攻。",
+    "after_context_clause": "反不渴者，寒在表也",
+    "after_pattern_label": "direct_context_main_selected"
+  },
+  {
+    "formula_name": "栀子甘草豉汤方",
+    "query": "栀子甘草豉汤方有什么作用",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-009-P-0162",
+    "before_primary_text": "若少气者，栀子甘草豉汤主之。赵本有「栀子甘草豉汤方」详见本书卷十若呕者，栀子生姜豉汤主之。赵本有「栀子生姜豉汤方」详见本书卷十",
+    "before_context_clause": "若少气",
+    "fragment_type": "若",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-009-P-0162",
+      "full:passages:ZJSHL-CH-009-P-0162"
+    ],
+    "expected_fix_note": "短尾残片已被清掉，但样本更准确地暴露为 cross-chapter bridge；本轮不继续扩修 bridge。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-009-P-0162",
+    "after_primary_text": "若少气者，栀子甘草豉汤主之。赵本有「栀子甘草豉汤方」详见本书卷十若呕者，栀子生姜豉汤主之。赵本有「栀子生姜豉汤方」详见本书卷十",
+    "after_context_clause": "少气",
+    "after_pattern_label": "cross_chapter_bridge_primary"
+  },
+  {
+    "formula_name": "栀子甘草豉汤方",
+    "query": "栀子甘草豉汤方主治什么",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-009-P-0162",
+    "before_primary_text": "若少气者，栀子甘草豉汤主之。赵本有「栀子甘草豉汤方」详见本书卷十若呕者，栀子生姜豉汤主之。赵本有「栀子生姜豉汤方」详见本书卷十",
+    "before_context_clause": "若少气",
+    "fragment_type": "若",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-009-P-0162",
+      "full:passages:ZJSHL-CH-009-P-0162"
+    ],
+    "expected_fix_note": "短尾残片已被清掉，但样本更准确地暴露为 cross-chapter bridge；本轮不继续扩修 bridge。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-009-P-0162",
+    "after_primary_text": "若少气者，栀子甘草豉汤主之。赵本有「栀子甘草豉汤方」详见本书卷十若呕者，栀子生姜豉汤主之。赵本有「栀子生姜豉汤方」详见本书卷十",
+    "after_context_clause": "少气",
+    "after_pattern_label": "cross_chapter_bridge_primary"
+  },
+  {
+    "formula_name": "栀子甘草豉汤方",
+    "query": "栀子甘草豉汤方用于什么情况",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-009-P-0162",
+    "before_primary_text": "若少气者，栀子甘草豉汤主之。赵本有「栀子甘草豉汤方」详见本书卷十若呕者，栀子生姜豉汤主之。赵本有「栀子生姜豉汤方」详见本书卷十",
+    "before_context_clause": "若少气",
+    "fragment_type": "若",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-009-P-0162",
+      "full:passages:ZJSHL-CH-009-P-0162"
+    ],
+    "expected_fix_note": "短尾残片已被清掉，但样本更准确地暴露为 cross-chapter bridge；本轮不继续扩修 bridge。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-009-P-0162",
+    "after_primary_text": "若少气者，栀子甘草豉汤主之。赵本有「栀子甘草豉汤方」详见本书卷十若呕者，栀子生姜豉汤主之。赵本有「栀子生姜豉汤方」详见本书卷十",
+    "after_context_clause": "少气",
+    "after_pattern_label": "cross_chapter_bridge_primary"
+  },
+  {
+    "formula_name": "桂枝加大黄汤方",
+    "query": "桂枝加大黄汤方有什么作用",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-013-P-0016",
+    "before_primary_text": "大实痛者，桂枝加大黄汤主之。赵本有「桂枝加大黄汤方」详见卷十",
+    "before_context_clause": "大实痛",
+    "fragment_type": "痛",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-013-P-0016",
+      "full:passages:ZJSHL-CH-013-P-0016"
+    ],
+    "expected_fix_note": "短尾残片已被清掉，但样本更准确地暴露为 cross-chapter bridge；本轮不继续扩修 bridge。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-013-P-0016",
+    "after_primary_text": "大实痛者，桂枝加大黄汤主之。赵本有「桂枝加大黄汤方」详见卷十",
+    "after_context_clause": "大实痛",
+    "after_pattern_label": "cross_chapter_bridge_primary"
+  },
+  {
+    "formula_name": "桂枝加大黄汤方",
+    "query": "桂枝加大黄汤方主治什么",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-013-P-0016",
+    "before_primary_text": "大实痛者，桂枝加大黄汤主之。赵本有「桂枝加大黄汤方」详见卷十",
+    "before_context_clause": "大实痛",
+    "fragment_type": "痛",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-013-P-0016",
+      "full:passages:ZJSHL-CH-013-P-0016"
+    ],
+    "expected_fix_note": "短尾残片已被清掉，但样本更准确地暴露为 cross-chapter bridge；本轮不继续扩修 bridge。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-013-P-0016",
+    "after_primary_text": "大实痛者，桂枝加大黄汤主之。赵本有「桂枝加大黄汤方」详见卷十",
+    "after_context_clause": "大实痛",
+    "after_pattern_label": "cross_chapter_bridge_primary"
+  },
+  {
+    "formula_name": "桂枝加大黄汤方",
+    "query": "桂枝加大黄汤方用于什么情况",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-013-P-0016",
+    "before_primary_text": "大实痛者，桂枝加大黄汤主之。赵本有「桂枝加大黄汤方」详见卷十",
+    "before_context_clause": "大实痛",
+    "fragment_type": "痛",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-013-P-0016",
+      "full:passages:ZJSHL-CH-013-P-0016"
+    ],
+    "expected_fix_note": "短尾残片已被清掉，但样本更准确地暴露为 cross-chapter bridge；本轮不继续扩修 bridge。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-013-P-0016",
+    "after_primary_text": "大实痛者，桂枝加大黄汤主之。赵本有「桂枝加大黄汤方」详见卷十",
+    "after_context_clause": "大实痛",
+    "after_pattern_label": "cross_chapter_bridge_primary"
+  },
+  {
+    "formula_name": "桔梗汤方",
+    "query": "桔梗汤方有什么作用",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-014-P-0105",
+    "before_primary_text": "少阴病，二三日咽痛者，可与甘草汤；不瘥者，赵本无「者」字与桔梗汤。",
+    "before_context_clause": "不瘥",
+    "fragment_type": "与",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-014-P-0105",
+      "full:passages:ZJSHL-CH-014-P-0105",
+      "full:passages:ZJSHL-CH-014-P-0106",
+      "full:passages:ZJSHL-CH-014-P-0118"
+    ],
+    "expected_fix_note": "同一条 primary 内已从短尾残片回退到更完整的直接语境。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-014-P-0105",
+    "after_primary_text": "少阴病，二三日咽痛者，可与甘草汤；不瘥者，赵本无「者」字与桔梗汤。",
+    "after_context_clause": "少阴病，二三日咽痛者，可与甘草汤；不瘥",
+    "after_pattern_label": "direct_context_main_selected"
+  },
+  {
+    "formula_name": "桔梗汤方",
+    "query": "桔梗汤方主治什么",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-014-P-0105",
+    "before_primary_text": "少阴病，二三日咽痛者，可与甘草汤；不瘥者，赵本无「者」字与桔梗汤。",
+    "before_context_clause": "不瘥",
+    "fragment_type": "与",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-014-P-0105",
+      "full:passages:ZJSHL-CH-014-P-0105",
+      "full:passages:ZJSHL-CH-014-P-0106",
+      "full:passages:ZJSHL-CH-014-P-0118"
+    ],
+    "expected_fix_note": "同一条 primary 内已从短尾残片回退到更完整的直接语境。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-014-P-0105",
+    "after_primary_text": "少阴病，二三日咽痛者，可与甘草汤；不瘥者，赵本无「者」字与桔梗汤。",
+    "after_context_clause": "少阴病，二三日咽痛者，可与甘草汤；不瘥",
+    "after_pattern_label": "direct_context_main_selected"
+  },
+  {
+    "formula_name": "桔梗汤方",
+    "query": "桔梗汤方用于什么情况",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-014-P-0105",
+    "before_primary_text": "少阴病，二三日咽痛者，可与甘草汤；不瘥者，赵本无「者」字与桔梗汤。",
+    "before_context_clause": "不瘥",
+    "fragment_type": "与",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-014-P-0105",
+      "full:passages:ZJSHL-CH-014-P-0105",
+      "full:passages:ZJSHL-CH-014-P-0106",
+      "full:passages:ZJSHL-CH-014-P-0118"
+    ],
+    "expected_fix_note": "同一条 primary 内已从短尾残片回退到更完整的直接语境。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-014-P-0105",
+    "after_primary_text": "少阴病，二三日咽痛者，可与甘草汤；不瘥者，赵本无「者」字与桔梗汤。",
+    "after_context_clause": "少阴病，二三日咽痛者，可与甘草汤；不瘥",
+    "after_pattern_label": "direct_context_main_selected"
+  },
+  {
+    "formula_name": "浓朴生姜甘草半夏人参汤方",
+    "query": "浓朴生姜甘草半夏人参汤方有什么作用",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-009-P-0113",
+    "before_primary_text": "发汗后，腹胀满者，浓朴生姜甘草半夏人参汤主之。",
+    "before_context_clause": "发汗后，腹胀满",
+    "fragment_type": "short_direct_clause",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-009-P-0113",
+      "full:passages:ZJSHL-CH-009-P-0113"
+    ],
+    "expected_fix_note": "这类短而完整的直接语境已不再被误判成 short tail。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-009-P-0113",
+    "after_primary_text": "发汗后，腹胀满者，浓朴生姜甘草半夏人参汤主之。",
+    "after_context_clause": "发汗后，腹胀满",
+    "after_pattern_label": "direct_context_main_selected"
+  },
+  {
+    "formula_name": "浓朴生姜甘草半夏人参汤方",
+    "query": "浓朴生姜甘草半夏人参汤方主治什么",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-009-P-0113",
+    "before_primary_text": "发汗后，腹胀满者，浓朴生姜甘草半夏人参汤主之。",
+    "before_context_clause": "发汗后，腹胀满",
+    "fragment_type": "short_direct_clause",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-009-P-0113",
+      "full:passages:ZJSHL-CH-009-P-0113"
+    ],
+    "expected_fix_note": "这类短而完整的直接语境已不再被误判成 short tail。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-009-P-0113",
+    "after_primary_text": "发汗后，腹胀满者，浓朴生姜甘草半夏人参汤主之。",
+    "after_context_clause": "发汗后，腹胀满",
+    "after_pattern_label": "direct_context_main_selected"
+  },
+  {
+    "formula_name": "浓朴生姜甘草半夏人参汤方",
+    "query": "浓朴生姜甘草半夏人参汤方用于什么情况",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-009-P-0113",
+    "before_primary_text": "发汗后，腹胀满者，浓朴生姜甘草半夏人参汤主之。",
+    "before_context_clause": "发汗后，腹胀满",
+    "fragment_type": "short_direct_clause",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-009-P-0113",
+      "full:passages:ZJSHL-CH-009-P-0113"
+    ],
+    "expected_fix_note": "这类短而完整的直接语境已不再被误判成 short tail。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-009-P-0113",
+    "after_primary_text": "发汗后，腹胀满者，浓朴生姜甘草半夏人参汤主之。",
+    "after_context_clause": "发汗后，腹胀满",
+    "after_pattern_label": "direct_context_main_selected"
+  },
+  {
+    "formula_name": "白虎汤方",
+    "query": "白虎汤方有什么作用",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-010-P-0132",
+    "before_primary_text": "背为阳，背恶寒口中和者，少阴病也，当与附子汤；今口燥而渴，背虽恶寒，此里也，则恶寒亦不至甚，故云微恶寒。与白虎汤和表散热，加人参止渴生津。",
+    "before_context_clause": "与",
+    "fragment_type": "与",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-010-P-0132",
+      "full:passages:ZJSHL-CH-010-P-0132",
+      "full:passages:ZJSHL-CH-010-P-0133",
+      "full:passages:ZJSHL-CH-010-P-0163",
+      "full:passages:ZJSHL-CH-010-P-0164"
+    ],
+    "expected_fix_note": "同一条 primary 内已从短尾残片回退到更完整的直接语境。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-010-P-0132",
+    "after_primary_text": "背为阳，背恶寒口中和者，少阴病也，当与附子汤；今口燥而渴，背虽恶寒，此里也，则恶寒亦不至甚，故云微恶寒。与白虎汤和表散热，加人参止渴生津。",
+    "after_context_clause": "今口燥而渴，背虽恶寒，此里也，则恶寒亦不至甚，故云微恶寒",
+    "after_pattern_label": "direct_context_main_selected"
+  },
+  {
+    "formula_name": "白虎汤方",
+    "query": "白虎汤方主治什么",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-010-P-0132",
+    "before_primary_text": "背为阳，背恶寒口中和者，少阴病也，当与附子汤；今口燥而渴，背虽恶寒，此里也，则恶寒亦不至甚，故云微恶寒。与白虎汤和表散热，加人参止渴生津。",
+    "before_context_clause": "与",
+    "fragment_type": "与",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-010-P-0132",
+      "full:passages:ZJSHL-CH-010-P-0132",
+      "full:passages:ZJSHL-CH-010-P-0133",
+      "full:passages:ZJSHL-CH-010-P-0163",
+      "full:passages:ZJSHL-CH-010-P-0164"
+    ],
+    "expected_fix_note": "同一条 primary 内已从短尾残片回退到更完整的直接语境。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-010-P-0132",
+    "after_primary_text": "背为阳，背恶寒口中和者，少阴病也，当与附子汤；今口燥而渴，背虽恶寒，此里也，则恶寒亦不至甚，故云微恶寒。与白虎汤和表散热，加人参止渴生津。",
+    "after_context_clause": "今口燥而渴，背虽恶寒，此里也，则恶寒亦不至甚，故云微恶寒",
+    "after_pattern_label": "direct_context_main_selected"
+  },
+  {
+    "formula_name": "白虎汤方",
+    "query": "白虎汤方用于什么情况",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-010-P-0132",
+    "before_primary_text": "背为阳，背恶寒口中和者，少阴病也，当与附子汤；今口燥而渴，背虽恶寒，此里也，则恶寒亦不至甚，故云微恶寒。与白虎汤和表散热，加人参止渴生津。",
+    "before_context_clause": "与",
+    "fragment_type": "与",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-010-P-0132",
+      "full:passages:ZJSHL-CH-010-P-0132",
+      "full:passages:ZJSHL-CH-010-P-0133",
+      "full:passages:ZJSHL-CH-010-P-0163",
+      "full:passages:ZJSHL-CH-010-P-0164"
+    ],
+    "expected_fix_note": "同一条 primary 内已从短尾残片回退到更完整的直接语境。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-010-P-0132",
+    "after_primary_text": "背为阳，背恶寒口中和者，少阴病也，当与附子汤；今口燥而渴，背虽恶寒，此里也，则恶寒亦不至甚，故云微恶寒。与白虎汤和表散热，加人参止渴生津。",
+    "after_context_clause": "今口燥而渴，背虽恶寒，此里也，则恶寒亦不至甚，故云微恶寒",
+    "after_pattern_label": "direct_context_main_selected"
+  },
+  {
+    "formula_name": "白通汤方",
+    "query": "白通汤方有什么作用",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-014-P-0122",
+    "before_primary_text": "少阴病，下利，白通汤主之。",
+    "before_context_clause": "少阴病，下利",
+    "fragment_type": "利",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-014-P-0122",
+      "full:passages:ZJSHL-CH-014-P-0122",
+      "full:passages:ZJSHL-CH-014-P-0123",
+      "full:passages:ZJSHL-CH-014-P-0127",
+      "full:passages:ZJSHL-CH-014-P-0128"
+    ],
+    "expected_fix_note": "这类短而完整的直接语境已不再被误判成 short tail。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-014-P-0122",
+    "after_primary_text": "少阴病，下利，白通汤主之。",
+    "after_context_clause": "少阴病，下利",
+    "after_pattern_label": "direct_context_main_selected"
+  },
+  {
+    "formula_name": "白通汤方",
+    "query": "白通汤方主治什么",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-014-P-0122",
+    "before_primary_text": "少阴病，下利，白通汤主之。",
+    "before_context_clause": "少阴病，下利",
+    "fragment_type": "利",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-014-P-0122",
+      "full:passages:ZJSHL-CH-014-P-0122",
+      "full:passages:ZJSHL-CH-014-P-0123",
+      "full:passages:ZJSHL-CH-014-P-0127",
+      "full:passages:ZJSHL-CH-014-P-0128"
+    ],
+    "expected_fix_note": "这类短而完整的直接语境已不再被误判成 short tail。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-014-P-0122",
+    "after_primary_text": "少阴病，下利，白通汤主之。",
+    "after_context_clause": "少阴病，下利",
+    "after_pattern_label": "direct_context_main_selected"
+  },
+  {
+    "formula_name": "白通汤方",
+    "query": "白通汤方用于什么情况",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-014-P-0122",
+    "before_primary_text": "少阴病，下利，白通汤主之。",
+    "before_context_clause": "少阴病，下利",
+    "fragment_type": "利",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-014-P-0122",
+      "full:passages:ZJSHL-CH-014-P-0122",
+      "full:passages:ZJSHL-CH-014-P-0123",
+      "full:passages:ZJSHL-CH-014-P-0127",
+      "full:passages:ZJSHL-CH-014-P-0128"
+    ],
+    "expected_fix_note": "这类短而完整的直接语境已不再被误判成 short tail。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-014-P-0122",
+    "after_primary_text": "少阴病，下利，白通汤主之。",
+    "after_context_clause": "少阴病，下利",
+    "after_pattern_label": "direct_context_main_selected"
+  },
+  {
+    "formula_name": "芍药甘草汤方",
+    "query": "芍药甘草汤方有什么作用",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-008-P-0256",
+    "before_primary_text": "伤寒脉浮，自汗出，小便数，心烦，微恶寒，脚挛急，反与桂枝汤，赵本无「汤」字，欲攻其表，此误也。得之便厥，咽中乾，烦燥，赵本作「躁」吐逆者，作甘草乾姜汤与之，以复其阳。若厥愈、足温者，更作芍药甘草汤与之，其脚即伸。若胃气不和，讝语者，少与调胃承气汤。若重发汗，复加烧针者，四逆汤主之。",
+    "before_context_clause": "若厥愈、足温",
+    "fragment_type": "更作",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-008-P-0256",
+      "full:passages:ZJSHL-CH-008-P-0256",
+      "full:passages:ZJSHL-CH-008-P-0257",
+      "full:passages:ZJSHL-CH-008-P-0270",
+      "full:passages:ZJSHL-CH-008-P-0271"
+    ],
+    "expected_fix_note": "同一条 primary 内已从短尾残片回退到更完整的直接语境。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-008-P-0256",
+    "after_primary_text": "伤寒脉浮，自汗出，小便数，心烦，微恶寒，脚挛急，反与桂枝汤，赵本无「汤」字，欲攻其表，此误也。得之便厥，咽中乾，烦燥，赵本作「躁」吐逆者，作甘草乾姜汤与之，以复其阳。若厥愈、足温者，更作芍药甘草汤与之，其脚即伸。若胃气不和，讝语者，少与调胃承气汤。若重发汗，复加烧针者，四逆汤主之。",
+    "after_context_clause": "厥愈、足温",
+    "after_pattern_label": "direct_context_main_selected"
+  },
+  {
+    "formula_name": "芍药甘草汤方",
+    "query": "芍药甘草汤方主治什么",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-008-P-0256",
+    "before_primary_text": "伤寒脉浮，自汗出，小便数，心烦，微恶寒，脚挛急，反与桂枝汤，赵本无「汤」字，欲攻其表，此误也。得之便厥，咽中乾，烦燥，赵本作「躁」吐逆者，作甘草乾姜汤与之，以复其阳。若厥愈、足温者，更作芍药甘草汤与之，其脚即伸。若胃气不和，讝语者，少与调胃承气汤。若重发汗，复加烧针者，四逆汤主之。",
+    "before_context_clause": "若厥愈、足温",
+    "fragment_type": "更作",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-008-P-0256",
+      "full:passages:ZJSHL-CH-008-P-0256",
+      "full:passages:ZJSHL-CH-008-P-0257",
+      "full:passages:ZJSHL-CH-008-P-0270",
+      "full:passages:ZJSHL-CH-008-P-0271"
+    ],
+    "expected_fix_note": "同一条 primary 内已从短尾残片回退到更完整的直接语境。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-008-P-0256",
+    "after_primary_text": "伤寒脉浮，自汗出，小便数，心烦，微恶寒，脚挛急，反与桂枝汤，赵本无「汤」字，欲攻其表，此误也。得之便厥，咽中乾，烦燥，赵本作「躁」吐逆者，作甘草乾姜汤与之，以复其阳。若厥愈、足温者，更作芍药甘草汤与之，其脚即伸。若胃气不和，讝语者，少与调胃承气汤。若重发汗，复加烧针者，四逆汤主之。",
+    "after_context_clause": "厥愈、足温",
+    "after_pattern_label": "direct_context_main_selected"
+  },
+  {
+    "formula_name": "芍药甘草汤方",
+    "query": "芍药甘草汤方用于什么情况",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-008-P-0256",
+    "before_primary_text": "伤寒脉浮，自汗出，小便数，心烦，微恶寒，脚挛急，反与桂枝汤，赵本无「汤」字，欲攻其表，此误也。得之便厥，咽中乾，烦燥，赵本作「躁」吐逆者，作甘草乾姜汤与之，以复其阳。若厥愈、足温者，更作芍药甘草汤与之，其脚即伸。若胃气不和，讝语者，少与调胃承气汤。若重发汗，复加烧针者，四逆汤主之。",
+    "before_context_clause": "若厥愈、足温",
+    "fragment_type": "更作",
+    "candidate_better_context_ids": [
+      "safe:main_passages:ZJSHL-CH-008-P-0256",
+      "full:passages:ZJSHL-CH-008-P-0256",
+      "full:passages:ZJSHL-CH-008-P-0257",
+      "full:passages:ZJSHL-CH-008-P-0270",
+      "full:passages:ZJSHL-CH-008-P-0271"
+    ],
+    "expected_fix_note": "同一条 primary 内已从短尾残片回退到更完整的直接语境。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-008-P-0256",
+    "after_primary_text": "伤寒脉浮，自汗出，小便数，心烦，微恶寒，脚挛急，反与桂枝汤，赵本无「汤」字，欲攻其表，此误也。得之便厥，咽中乾，烦燥，赵本作「躁」吐逆者，作甘草乾姜汤与之，以复其阳。若厥愈、足温者，更作芍药甘草汤与之，其脚即伸。若胃气不和，讝语者，少与调胃承气汤。若重发汗，复加烧针者，四逆汤主之。",
+    "after_context_clause": "厥愈、足温",
+    "after_pattern_label": "direct_context_main_selected"
+  }
+]

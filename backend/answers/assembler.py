@@ -281,12 +281,21 @@ FORMULA_EFFECT_CONTEXT_SYMPTOM_HINTS = (
     "有水气",
     "潮热",
     "谵语",
+    "下利",
+    "咽痛",
+    "咽中痛",
     "呕",
     "吐",
     "咳",
     "喘",
     "渴",
     "烦",
+    "挛急",
+    "拘急",
+    "胀满",
+    "实痛",
+    "厥愈",
+    "足温",
     "虚羸",
     "少气",
     "气逆",
@@ -2589,11 +2598,22 @@ class AnswerAssembler:
                 self._row_is_formula_composition_line(row, canonical_name)
             )
         context_length = len(context_clause)
+        is_compact_direct_clause = self._formula_effect_context_is_compact_direct_clause(
+            context_clause,
+            symptom_hits=symptom_hits,
+            separator_hits=separator_hits,
+            bad_tail=bad_tail,
+            bad_prefix=bad_prefix,
+            has_noise=has_noise,
+        )
         is_short_tail_fragment = bool(context_clause) and (
-            context_length <= 7
-            or bad_tail
-            or bad_prefix
-            or (symptom_hits == 0 and separator_hits == 0 and context_length <= 12)
+            not is_compact_direct_clause
+            and (
+                context_length <= 7
+                or bad_tail
+                or bad_prefix
+                or (symptom_hits == 0 and separator_hits == 0 and context_length <= 12)
+            )
         )
         contains_direct_context = (
             bool(context_clause)
@@ -2601,7 +2621,10 @@ class AnswerAssembler:
             and not bad_tail
             and not bad_prefix
             and not has_noise
-            and context_length >= 6
+            and (
+                is_compact_direct_clause
+                or context_length >= 6
+            )
             and (
                 symptom_hits >= 1
                 or separator_hits >= 1
@@ -2625,6 +2648,26 @@ class AnswerAssembler:
             "bad_prefix": bad_prefix,
             "has_noise": has_noise,
         }
+
+    def _formula_effect_context_is_compact_direct_clause(
+        self,
+        context_clause: str,
+        *,
+        symptom_hits: int,
+        separator_hits: int,
+        bad_tail: bool,
+        bad_prefix: bool,
+        has_noise: bool,
+    ) -> bool:
+        if not context_clause or bad_tail or bad_prefix or has_noise:
+            return False
+        if symptom_hits >= 1:
+            return True
+        if separator_hits >= 1 and ("病" in context_clause or len(context_clause) >= 6):
+            return True
+        if "病" in context_clause and len(context_clause) >= 4:
+            return True
+        return any(context_clause.endswith(hint) for hint in ("痛", "满", "利", "厥", "渴", "烦", "逆", "温"))
 
     def _row_qualifies_for_formula_effect_same_chapter_preference_v1(
         self,
@@ -2921,9 +2964,62 @@ class AnswerAssembler:
             for segment in re.split(r"[。；]", context_text)
             if segment.strip("，。；：: ")
         ]
-        candidate = segments[-1] if segments else context_text
+        candidate = self._choose_formula_effect_context_segment_v1(segments) if segments else context_text
         candidate = self._strip_formula_effect_tail_markers(candidate)
         return compact_whitespace(candidate.strip("，。；：: "))
+
+    def _choose_formula_effect_context_segment_v1(self, segments: list[str]) -> str:
+        normalized_segments = [compact_whitespace(segment.strip("，。；：: ")) for segment in segments if segment.strip("，。；：: ")]
+        if not normalized_segments:
+            return ""
+
+        candidate = compact_whitespace(
+            self._strip_formula_effect_tail_markers(normalized_segments[-1]).strip("，。；：: ")
+        )
+        if not self._formula_effect_context_segment_needs_backtrack(candidate):
+            return candidate
+
+        previous_segment = ""
+        for segment in reversed(normalized_segments[:-1]):
+            cleaned = compact_whitespace(self._strip_formula_effect_tail_markers(segment).strip("，。；：: "))
+            if not cleaned:
+                continue
+            previous_segment = cleaned
+            if not self._formula_effect_context_segment_needs_backtrack(cleaned):
+                break
+
+        if previous_segment:
+            if candidate and self._formula_effect_context_should_append_short_tail(candidate):
+                return f"{previous_segment}；{candidate}"
+            return previous_segment
+        return candidate
+
+    def _formula_effect_context_segment_needs_backtrack(self, text: str) -> bool:
+        cleaned = self._clean_formula_effect_context(text)
+        if not cleaned:
+            return True
+
+        symptom_hits = sum(1 for hint in FORMULA_EFFECT_CONTEXT_SYMPTOM_HINTS if hint in cleaned)
+        separator_hits = cleaned.count("，") + cleaned.count("；")
+        if self._formula_effect_context_is_compact_direct_clause(
+            cleaned,
+            symptom_hits=symptom_hits,
+            separator_hits=separator_hits,
+            bad_tail=any(cleaned.endswith(hint) for hint in FORMULA_EFFECT_CONTEXT_BAD_TAIL_HINTS),
+            bad_prefix=any(cleaned.startswith(hint) for hint in FORMULA_EFFECT_CONTEXT_BAD_PREFIX_HINTS),
+            has_noise=any(hint in cleaned for hint in FORMULA_EFFECT_CONTEXT_NOISE_HINTS),
+        ):
+            return False
+
+        if any(cleaned == hint for hint in FORMULA_EFFECT_CONTEXT_BAD_TAIL_HINTS):
+            return True
+        if any(cleaned.startswith(hint) and len(cleaned) <= len(hint) + 2 for hint in FORMULA_EFFECT_CONTEXT_BAD_PREFIX_HINTS):
+            return True
+        return len(cleaned) <= 2
+
+    def _formula_effect_context_should_append_short_tail(self, text: str) -> bool:
+        cleaned = self._clean_formula_effect_context(text)
+        return bool(cleaned) and len(cleaned) <= 4 and cleaned.startswith(("不", "未", "欲"))
 
     def _strip_formula_effect_tail_markers(self, text: str) -> str:
         cleaned = compact_whitespace(text).strip("，。；：: ")
@@ -2946,6 +3042,15 @@ class AnswerAssembler:
         cleaned = self._strip_formula_effect_tail_markers(cleaned)
         if cleaned.endswith("者") and len(cleaned) > 1:
             cleaned = cleaned[:-1]
+        if cleaned.startswith("若") and len(cleaned) > 2:
+            candidate = cleaned[1:].strip("，。；：: ")
+            if candidate and (
+                any(hint in candidate for hint in FORMULA_EFFECT_CONTEXT_SYMPTOM_HINTS)
+                or "病" in candidate
+                or "，" in candidate
+                or any(candidate.endswith(hint) for hint in ("痛", "满", "利", "厥", "渴", "烦", "逆", "温"))
+            ):
+                cleaned = candidate
         return cleaned.strip("，。；：: ")
 
     def _build_formula_composition_answer_text(
