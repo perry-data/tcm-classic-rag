@@ -1603,6 +1603,8 @@ class AnswerAssembler:
         if mode == "suffix":
             if not value or not stripped_query.endswith(value):
                 return None
+            if value == "什么意思" and stripped_query.endswith("是什么意思"):
+                return None
             return {extract_as: stripped_query[: -len(value)].strip()}
 
         if mode == "regex":
@@ -1645,6 +1647,11 @@ class AnswerAssembler:
         if family_id in {"what_is", "what_means"} and not topic_text:
             return None
         if family_id.startswith("category_membership") and not subject_text:
+            return None
+
+        # Keep already-specialized six-stage disease outline topics out of the
+        # generic "X 是什么意思" family to avoid stealing their stable path.
+        if family_id == "what_means" and topic_text and self._normalize_definition_outline_topic(topic_text):
             return None
 
         if topic_text and len(normalized_topic or "") < 2:

@@ -1,0 +1,154 @@
+{
+  "experiment_id": "definition_query_primary_prioritization_v1_regression_set",
+  "generated_at": "2026-04-13T01:47:18.066066+00:00",
+  "query_count": 20,
+  "family_query_count": 16,
+  "query_groups": {
+    "what_is": [
+      {
+        "query": "什么是发汗药",
+        "family": "what_is",
+        "expected_primary_type": "term_membership_sentence",
+        "expected_behavior_note": "应把“桂枝汤者，发汗药也”这类归类句抬成 primary，而不是继续让发汗语境主条占住 primary。",
+        "regression_tag": "positive"
+      },
+      {
+        "query": "阳结是什么",
+        "family": "what_is",
+        "expected_primary_type": "term_membership_sentence",
+        "expected_behavior_note": "应验证 what_is 不是只对“发汗药”生效，能把“名曰阳结也”类归类句抬成 primary。",
+        "regression_tag": "positive"
+      },
+      {
+        "query": "坏病是什么",
+        "family": "what_is",
+        "expected_primary_type": "term_membership_sentence",
+        "expected_behavior_note": "应优先利用“谓之坏病”类解释句，而不是退回泛检索主条直出。",
+        "regression_tag": "positive"
+      },
+      {
+        "query": "发汗药的组成是什么",
+        "family": "what_is",
+        "expected_primary_type": null,
+        "expected_behavior_note": "“组成是什么”属于边界句式，不应再被 what_is family 吸入 definition priority。",
+        "regression_tag": "boundary"
+      }
+    ],
+    "what_means": [
+      {
+        "query": "发汗药是什么意思",
+        "family": "what_means",
+        "expected_primary_type": "exact_term_explanation",
+        "expected_behavior_note": "应优先选中“发汗药，须温暖服者...”这类直接解释句，并把答案从 weak/辅助材料提升到基于依据解释。",
+        "regression_tag": "positive"
+      },
+      {
+        "query": "阳结是什么意思",
+        "family": "what_means",
+        "expected_primary_type": "term_membership_sentence",
+        "expected_behavior_note": "应验证 what_means 对脉象类术语也能稳定选中“名曰阳结也”类句子。",
+        "regression_tag": "positive"
+      },
+      {
+        "query": "坏病是什么意思",
+        "family": "what_means",
+        "expected_primary_type": "term_membership_sentence",
+        "expected_behavior_note": "应验证“谓之X”类术语解释可被 what_means 稳定抬升。",
+        "regression_tag": "positive"
+      },
+      {
+        "query": "太阳病是什么意思",
+        "family": "what_means",
+        "expected_primary_type": null,
+        "expected_behavior_note": "已有六经提纲主题不应被 what_means 抢走；本轮应验证 outline-topic guard 能阻止 definition priority 外溢。",
+        "regression_tag": "boundary"
+      }
+    ],
+    "category_membership_yesno": [
+      {
+        "query": "桂枝汤是发汗药吗",
+        "family": "category_membership_yesno",
+        "expected_primary_type": "subject_predicate_definition",
+        "expected_behavior_note": "应直接回到“桂枝汤者，发汗药也”，避免继续输出“可发汗语境”主条堆叠。",
+        "regression_tag": "positive"
+      },
+      {
+        "query": "承气汤是下药吗",
+        "family": "category_membership_yesno",
+        "expected_primary_type": null,
+        "expected_behavior_note": "当前 raw retrieval 若没带回“承气汤者，下药也”，应保持 fallback，不要为命中 family 硬抢 primary。",
+        "regression_tag": "boundary"
+      },
+      {
+        "query": "高血压能用桂枝汤吗",
+        "family": "category_membership_yesno",
+        "expected_primary_type": null,
+        "expected_behavior_note": "现代病名疗效类应被统一拒答边界拦截，不应落入归类 yes/no family。",
+        "regression_tag": "negative"
+      },
+      {
+        "query": "我发烧能用桂枝汤吗",
+        "family": "category_membership_yesno",
+        "expected_primary_type": null,
+        "expected_behavior_note": "个体化用药 yes/no 应被拒答边界拦截，不应进入归类 primary prioritization。",
+        "regression_tag": "negative"
+      }
+    ],
+    "category_membership_open": [
+      {
+        "query": "桂枝汤是什么药",
+        "family": "category_membership_open",
+        "expected_primary_type": null,
+        "expected_behavior_note": "当前 open family 更受 raw retrieval 约束；若未召回归类句，应 fallback，而不是抢错 primary。",
+        "regression_tag": "boundary"
+      },
+      {
+        "query": "桂枝汤属于什么药",
+        "family": "category_membership_open",
+        "expected_primary_type": null,
+        "expected_behavior_note": "应验证“属于什么药”问法在 raw recall 不足时维持 fallback，不产生过度抢占。",
+        "regression_tag": "boundary"
+      },
+      {
+        "query": "承气汤是什么药",
+        "family": "category_membership_open",
+        "expected_primary_type": null,
+        "expected_behavior_note": "应验证 open family 的当前短板主要是 raw recall，不是 assembler 乱抬 primary。",
+        "regression_tag": "boundary"
+      },
+      {
+        "query": "神丹是什么药",
+        "family": "category_membership_open",
+        "expected_primary_type": null,
+        "expected_behavior_note": "非方名药类问法也应保持 fallback；若 raw 未召回“神丹者，发汗之药也”，不应输出伪确定答案。",
+        "regression_tag": "negative"
+      }
+    ]
+  },
+  "cross_family_negative_controls": [
+    {
+      "query": "桂枝汤和麻黄汤有什么区别",
+      "expected_route": "comparison",
+      "expected_behavior_note": "比较类应保持 comparison 专用路径，不应被 definition priority family 吸入。",
+      "regression_tag": "negative"
+    },
+    {
+      "query": "太阳病应该怎么办",
+      "expected_route": "general",
+      "expected_behavior_note": "怎么办类应保持 general 路径，不应被 definition priority 外溢。",
+      "regression_tag": "negative"
+    },
+    {
+      "query": "桂枝汤的组成是什么",
+      "expected_route": "formula_composition",
+      "expected_behavior_note": "组成类应保持 formula_composition 专用路径，不应被 what_is 抢走。",
+      "regression_tag": "boundary"
+    },
+    {
+      "query": "竹叶石膏汤方有什么作用",
+      "expected_route": "formula_effect",
+      "expected_behavior_note": "作用类应保持 formula_effect 专用路径，不应被 definition priority family 吸入。",
+      "regression_tag": "boundary"
+    }
+  ]
+}
