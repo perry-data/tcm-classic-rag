@@ -310,62 +310,33 @@ def classify_context_row(
         }
 
     row_text = get_row_text(assembler, row)
-    context_clause = assembler._clean_formula_effect_context(
-        assembler._extract_formula_effect_context_clause_v1(row_text, canonical_name)
+    context_meta = assembler._analyze_formula_effect_context_row_v1(
+        {
+            **row,
+            "retrieval_text": row_text,
+        },
+        canonical_name=canonical_name,
+        formula_chapter_id=formula_chapter_id,
     )
     row_mentions = {mention["canonical_name"] for mention in assembler._find_formula_mentions(row_text)}
-    preferred_chapter_id = formula_chapter_id
     score, _ = assembler._score_formula_effect_context_row_v1(
         {
             **row,
             "retrieval_text": row_text,
         },
         canonical_name=canonical_name,
-        preferred_chapter_id=preferred_chapter_id,
+        preferred_chapter_id=formula_chapter_id,
         row_mentions=row_mentions,
     )
-    symptom_hits = sum(1 for hint in FORMULA_EFFECT_CONTEXT_SYMPTOM_HINTS if hint in context_clause)
-    separator_hits = context_clause.count("，") + context_clause.count("；")
-    bad_tail = any(context_clause.endswith(hint) for hint in FORMULA_EFFECT_CONTEXT_BAD_TAIL_HINTS)
-    bad_prefix = any(context_clause.startswith(hint) for hint in FORMULA_EFFECT_CONTEXT_BAD_PREFIX_HINTS)
-    has_noise = any(hint in context_clause for hint in FORMULA_EFFECT_CONTEXT_NOISE_HINTS)
-    is_formula_title_or_composition = False
-    if row.get("source_object") == "main_passages":
-        is_formula_title_or_composition = assembler._row_is_formula_heading_for_entity(row, canonical_name) or (
-            assembler._row_is_formula_composition_line(row, canonical_name)
-        )
-
-    context_length = len(context_clause)
-    is_short_tail_fragment = bool(context_clause) and (
-        context_length <= 7
-        or bad_tail
-        or bad_prefix
-        or (symptom_hits == 0 and separator_hits == 0 and context_length <= 12)
-    )
-    contains_direct_context = (
-        bool(context_clause)
-        and not is_formula_title_or_composition
-        and not bad_tail
-        and not bad_prefix
-        and not has_noise
-        and context_length >= 6
-        and (
-            symptom_hits >= 1
-            or separator_hits >= 1
-            or "主之" in row_text
-            or "者" in row_text
-        )
-    )
-    is_cross_chapter_bridge = bool(formula_chapter_id) and bool(row.get("chapter_id")) and row.get("chapter_id") != formula_chapter_id
     return {
         "record_id": row.get("record_id"),
-        "context_clause": context_clause,
-        "contains_direct_context": contains_direct_context,
-        "is_formula_title_or_composition": is_formula_title_or_composition,
-        "is_short_tail_fragment": is_short_tail_fragment,
-        "is_cross_chapter_bridge": is_cross_chapter_bridge,
-        "symptom_hits": symptom_hits,
-        "context_length": context_length,
+        "context_clause": context_meta["context_clause"],
+        "contains_direct_context": context_meta["contains_direct_context"],
+        "is_formula_title_or_composition": context_meta["is_formula_title_or_composition"],
+        "is_short_tail_fragment": context_meta["is_short_tail_fragment"],
+        "is_cross_chapter_bridge": context_meta["is_cross_chapter_bridge"],
+        "symptom_hits": context_meta["symptom_hits"],
+        "context_length": context_meta["context_length"],
         "score": round(score, 3),
     }
 

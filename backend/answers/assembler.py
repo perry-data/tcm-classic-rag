@@ -2413,7 +2413,7 @@ class AnswerAssembler:
         excluded_record_ids: set[str],
     ) -> list[dict[str, Any]]:
         preferred_chapter_id = self._formula_catalog.get(canonical_name, {}).get("chapter_id")
-        candidates: list[tuple[float, int, dict[str, Any]]] = []
+        candidates: list[tuple[float, int, dict[str, Any], dict[str, Any]]] = []
         for row in self.engine.unified_rows:
             if row["record_id"] in excluded_record_ids:
                 continue
@@ -2426,6 +2426,11 @@ class AnswerAssembler:
                 continue
             if self._row_is_other_formula_heading(row, canonical_name):
                 continue
+            context_meta = self._analyze_formula_effect_context_row_v1(
+                row,
+                canonical_name=canonical_name,
+                formula_chapter_id=preferred_chapter_id,
+            )
             score, context_distance = self._score_formula_effect_context_row_v1(
                 row,
                 canonical_name=canonical_name,
@@ -2437,10 +2442,41 @@ class AnswerAssembler:
                     score,
                     context_distance,
                     self._normalize_record_row(row),
+                    context_meta,
                 )
             )
 
         candidates.sort(key=lambda item: (-item[0], item[1], item[2]["record_id"]))
+        if candidates:
+            top_meta = candidates[0][3]
+            has_same_chapter_direct_candidate = any(
+                self._row_qualifies_for_formula_effect_same_chapter_preference_v1(
+                    candidate[3],
+                    score=candidate[0],
+                )
+                for candidate in candidates
+            )
+            if (
+                top_meta["is_cross_chapter_bridge"]
+                and top_meta["contains_direct_context"]
+                and not top_meta["is_formula_title_or_composition"]
+                and not top_meta["is_short_tail_fragment"]
+                and has_same_chapter_direct_candidate
+            ):
+                candidates.sort(
+                    key=lambda item: (
+                        0
+                        if self._row_qualifies_for_formula_effect_same_chapter_preference_v1(
+                            item[3],
+                            score=item[0],
+                        )
+                        else 1,
+                        -item[0],
+                        item[1],
+                        item[2]["record_id"],
+                    )
+                )
+
         return [candidate[2] for candidate in candidates[:FORMULA_EFFECT_SUPPORT_LIMIT]]
 
     def _find_review_context_row(self, canonical_name: str, excluded_record_ids: set[str]) -> dict[str, Any] | None:
@@ -2531,6 +2567,79 @@ class AnswerAssembler:
         candidates.sort(key=lambda item: (-item[0], item[1], item[2]["record_id"]))
         return candidates[0][2] if candidates else None
 
+    def _analyze_formula_effect_context_row_v1(
+        self,
+        row: dict[str, Any],
+        *,
+        canonical_name: str,
+        formula_chapter_id: str | None,
+    ) -> dict[str, Any]:
+        row_text = strip_inline_notes(row.get("retrieval_text", ""))
+        context_clause = self._clean_formula_effect_context(
+            self._extract_formula_effect_context_clause_v1(row_text, canonical_name)
+        )
+        symptom_hits = sum(1 for hint in FORMULA_EFFECT_CONTEXT_SYMPTOM_HINTS if hint in context_clause)
+        separator_hits = context_clause.count("，") + context_clause.count("；")
+        bad_tail = any(context_clause.endswith(hint) for hint in FORMULA_EFFECT_CONTEXT_BAD_TAIL_HINTS)
+        bad_prefix = any(context_clause.startswith(hint) for hint in FORMULA_EFFECT_CONTEXT_BAD_PREFIX_HINTS)
+        has_noise = any(hint in context_clause for hint in FORMULA_EFFECT_CONTEXT_NOISE_HINTS)
+        is_formula_title_or_composition = False
+        if row.get("source_object") == "main_passages":
+            is_formula_title_or_composition = self._row_is_formula_heading_for_entity(row, canonical_name) or (
+                self._row_is_formula_composition_line(row, canonical_name)
+            )
+        context_length = len(context_clause)
+        is_short_tail_fragment = bool(context_clause) and (
+            context_length <= 7
+            or bad_tail
+            or bad_prefix
+            or (symptom_hits == 0 and separator_hits == 0 and context_length <= 12)
+        )
+        contains_direct_context = (
+            bool(context_clause)
+            and not is_formula_title_or_composition
+            and not bad_tail
+            and not bad_prefix
+            and not has_noise
+            and context_length >= 6
+            and (
+                symptom_hits >= 1
+                or separator_hits >= 1
+                or "主之" in row_text
+                or "者" in row_text
+            )
+        )
+        is_cross_chapter_bridge = bool(formula_chapter_id) and bool(row.get("chapter_id")) and (
+            row.get("chapter_id") != formula_chapter_id
+        )
+        return {
+            "context_clause": context_clause,
+            "contains_direct_context": contains_direct_context,
+            "is_formula_title_or_composition": is_formula_title_or_composition,
+            "is_short_tail_fragment": is_short_tail_fragment,
+            "is_cross_chapter_bridge": is_cross_chapter_bridge,
+            "symptom_hits": symptom_hits,
+            "separator_hits": separator_hits,
+            "context_length": context_length,
+            "bad_tail": bad_tail,
+            "bad_prefix": bad_prefix,
+            "has_noise": has_noise,
+        }
+
+    def _row_qualifies_for_formula_effect_same_chapter_preference_v1(
+        self,
+        context_meta: dict[str, Any],
+        *,
+        score: float,
+    ) -> bool:
+        return (
+            context_meta["contains_direct_context"]
+            and not context_meta["is_formula_title_or_composition"]
+            and not context_meta["is_short_tail_fragment"]
+            and not context_meta["is_cross_chapter_bridge"]
+            and score >= 0.0
+        )
+
     def _score_formula_effect_context_row_v1(
         self,
         row: dict[str, Any],
@@ -2539,10 +2648,13 @@ class AnswerAssembler:
         preferred_chapter_id: str | None,
         row_mentions: set[str],
     ) -> tuple[float, int]:
-        row_text = strip_inline_notes(row.get("retrieval_text", ""))
-        context_clause = self._clean_formula_effect_context(
-            self._extract_formula_effect_context_clause_v1(row_text, canonical_name)
+        context_meta = self._analyze_formula_effect_context_row_v1(
+            row,
+            canonical_name=canonical_name,
+            formula_chapter_id=preferred_chapter_id,
         )
+        row_text = strip_inline_notes(row.get("retrieval_text", ""))
+        context_clause = context_meta["context_clause"]
         display_name = canonical_name[:-1] if canonical_name.endswith("方") else canonical_name
         score = 0.0
 
@@ -2556,13 +2668,13 @@ class AnswerAssembler:
         if f"{canonical_name}主之" in row_text or f"{display_name}主之" in row_text:
             score += 4.0
 
-        symptom_hits = sum(1 for hint in FORMULA_EFFECT_CONTEXT_SYMPTOM_HINTS if hint in context_clause)
+        symptom_hits = context_meta["symptom_hits"]
         score += min(symptom_hits, 6) * 4.0
 
-        separator_hits = context_clause.count("，") + context_clause.count("；")
+        separator_hits = context_meta["separator_hits"]
         score += min(separator_hits, 4) * 5.0
 
-        context_length = len(context_clause)
+        context_length = context_meta["context_length"]
         if 8 <= context_length <= 44:
             score += 12.0
         elif 45 <= context_length <= 64:
@@ -2572,11 +2684,11 @@ class AnswerAssembler:
         else:
             score -= 24.0
 
-        if any(context_clause.endswith(hint) for hint in FORMULA_EFFECT_CONTEXT_BAD_TAIL_HINTS):
+        if context_meta["bad_tail"]:
             score -= 20.0
-        if any(context_clause.startswith(hint) for hint in FORMULA_EFFECT_CONTEXT_BAD_PREFIX_HINTS):
+        if context_meta["bad_prefix"]:
             score -= 16.0
-        if any(hint in context_clause for hint in FORMULA_EFFECT_CONTEXT_NOISE_HINTS):
+        if context_meta["has_noise"]:
             score -= 14.0
         if "详见" in row_text:
             score -= 8.0
