@@ -340,6 +340,18 @@ FORMULA_EFFECT_CONTEXT_NOISE_HINTS = (
     "问曰",
 )
 
+FORMULA_EFFECT_DIRECT_USAGE_MARKERS = (
+    "主之",
+    "宜",
+    "与",
+    "可与",
+    "不可与",
+)
+
+FORMULA_COMPOSITION_DOSAGE_PATTERN = re.compile(
+    r"(?:各|半|[一二三四五六七八九十百千万\d]+)(?:两|枚|个|斤|升|合|钱|铢)"
+)
+
 STRONG_MEANING_EXPLANATION_MARKERS = (
     "名曰",
     "谓之",
@@ -2403,9 +2415,20 @@ class AnswerAssembler:
         if self._row_is_formula_heading_for_entity(row, canonical_name):
             return True
         compact_line = compact_whitespace(text)
+        if "主之" in compact_line:
+            return False
+        if any(hint in compact_line for hint in FORMULA_EFFECT_CONTEXT_SYMPTOM_HINTS) and any(
+            variant in compact_line for variant in self._formula_text_variants(canonical_name)
+        ):
+            return False
+        if any(
+            marker in compact_line and any(variant in compact_line for variant in self._formula_text_variants(canonical_name))
+            for marker in FORMULA_EFFECT_DIRECT_USAGE_MARKERS
+        ):
+            return False
         if compact_line.startswith("上") and "以水" in compact_line:
             return False
-        return bool(re.search(r"(两|枚|个|斤|升|合|钱|铢)", compact_line))
+        return len(FORMULA_COMPOSITION_DOSAGE_PATTERN.findall(compact_line)) >= 2
 
     def _find_support_rows(self, canonical_name: str, excluded_record_ids: set[str]) -> list[dict[str, Any]]:
         return self._find_matching_rows(
@@ -2458,6 +2481,28 @@ class AnswerAssembler:
         candidates.sort(key=lambda item: (-item[0], item[1], item[2]["record_id"]))
         if candidates:
             top_meta = candidates[0][3]
+            has_direct_context_candidate = any(
+                self._row_qualifies_for_formula_effect_direct_context_preference_v1(
+                    candidate[3],
+                    score=candidate[0],
+                )
+                for candidate in candidates
+            )
+            if top_meta["is_formula_title_or_composition"] and has_direct_context_candidate:
+                candidates.sort(
+                    key=lambda item: (
+                        0
+                        if self._row_qualifies_for_formula_effect_direct_context_preference_v1(
+                            item[3],
+                            score=item[0],
+                        )
+                        else 1,
+                        -item[0],
+                        item[1],
+                        item[2]["record_id"],
+                    )
+                )
+                top_meta = candidates[0][3]
             has_same_chapter_direct_candidate = any(
                 self._row_qualifies_for_formula_effect_same_chapter_preference_v1(
                     candidate[3],
@@ -2669,6 +2714,19 @@ class AnswerAssembler:
             return True
         return any(context_clause.endswith(hint) for hint in ("痛", "满", "利", "厥", "渴", "烦", "逆", "温"))
 
+    def _row_qualifies_for_formula_effect_direct_context_preference_v1(
+        self,
+        context_meta: dict[str, Any],
+        *,
+        score: float,
+    ) -> bool:
+        return (
+            context_meta["contains_direct_context"]
+            and not context_meta["is_formula_title_or_composition"]
+            and not context_meta["is_short_tail_fragment"]
+            and score >= 0.0
+        )
+
     def _row_qualifies_for_formula_effect_same_chapter_preference_v1(
         self,
         context_meta: dict[str, Any],
@@ -2733,6 +2791,8 @@ class AnswerAssembler:
             score -= 16.0
         if context_meta["has_noise"]:
             score -= 14.0
+        if context_meta["is_formula_title_or_composition"]:
+            score -= 36.0
         if "详见" in row_text:
             score -= 8.0
 

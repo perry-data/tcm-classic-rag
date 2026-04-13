@@ -1,0 +1,245 @@
+[
+  {
+    "formula_name": "小承气汤方",
+    "query": "小承气汤方有什么作用",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-011-P-0086",
+    "before_primary_text": "阳明病，谵语发潮热，脉滑而疾者，小承气汤主之。因与承气汤一升，腹中转失赵本无「失」字气者，更服一升；若不转失气，赵本作「转气者」勿更与之。明日赵本有「又」字不大便，脉反微涩者，里虚也，为难治，不可更与承气汤也。",
+    "before_primary_kind": "mixed",
+    "candidate_direct_context_ids": [
+      "safe:main_passages:ZJSHL-CH-011-P-0086",
+      "safe:main_passages:ZJSHL-CH-011-P-0179",
+      "safe:main_passages:ZJSHL-CH-015-P-0316",
+      "safe:main_passages:ZJSHL-CH-011-P-0181"
+    ],
+    "expected_fix_note": "当前 primary 本身就是正文直接语境，本轮修正的是 title/composition 误判。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-011-P-0086",
+    "after_primary_text": "阳明病，谵语发潮热，脉滑而疾者，小承气汤主之。因与承气汤一升，腹中转失赵本无「失」字气者，更服一升；若不转失气，赵本作「转气者」勿更与之。明日赵本有「又」字不大便，脉反微涩者，里虚也，为难治，不可更与承气汤也。",
+    "after_pattern_label": "direct_context_main_selected",
+    "after_primary_context_clause": "阳明病，谵语发潮热，脉滑而疾"
+  },
+  {
+    "formula_name": "小承气汤方",
+    "query": "小承气汤方主治什么",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-011-P-0086",
+    "before_primary_text": "阳明病，谵语发潮热，脉滑而疾者，小承气汤主之。因与承气汤一升，腹中转失赵本无「失」字气者，更服一升；若不转失气，赵本作「转气者」勿更与之。明日赵本有「又」字不大便，脉反微涩者，里虚也，为难治，不可更与承气汤也。",
+    "before_primary_kind": "mixed",
+    "candidate_direct_context_ids": [
+      "safe:main_passages:ZJSHL-CH-011-P-0086",
+      "safe:main_passages:ZJSHL-CH-011-P-0179",
+      "safe:main_passages:ZJSHL-CH-015-P-0316",
+      "safe:main_passages:ZJSHL-CH-011-P-0181"
+    ],
+    "expected_fix_note": "当前 primary 本身就是正文直接语境，本轮修正的是 title/composition 误判。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-011-P-0086",
+    "after_primary_text": "阳明病，谵语发潮热，脉滑而疾者，小承气汤主之。因与承气汤一升，腹中转失赵本无「失」字气者，更服一升；若不转失气，赵本作「转气者」勿更与之。明日赵本有「又」字不大便，脉反微涩者，里虚也，为难治，不可更与承气汤也。",
+    "after_pattern_label": "direct_context_main_selected",
+    "after_primary_context_clause": "阳明病，谵语发潮热，脉滑而疾"
+  },
+  {
+    "formula_name": "小承气汤方",
+    "query": "小承气汤方用于什么情况",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-011-P-0086",
+    "before_primary_text": "阳明病，谵语发潮热，脉滑而疾者，小承气汤主之。因与承气汤一升，腹中转失赵本无「失」字气者，更服一升；若不转失气，赵本作「转气者」勿更与之。明日赵本有「又」字不大便，脉反微涩者，里虚也，为难治，不可更与承气汤也。",
+    "before_primary_kind": "mixed",
+    "candidate_direct_context_ids": [
+      "safe:main_passages:ZJSHL-CH-011-P-0086",
+      "safe:main_passages:ZJSHL-CH-011-P-0179",
+      "safe:main_passages:ZJSHL-CH-015-P-0316",
+      "safe:main_passages:ZJSHL-CH-011-P-0181"
+    ],
+    "expected_fix_note": "当前 primary 本身就是正文直接语境，本轮修正的是 title/composition 误判。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-011-P-0086",
+    "after_primary_text": "阳明病，谵语发潮热，脉滑而疾者，小承气汤主之。因与承气汤一升，腹中转失赵本无「失」字气者，更服一升；若不转失气，赵本作「转气者」勿更与之。明日赵本有「又」字不大便，脉反微涩者，里虚也，为难治，不可更与承气汤也。",
+    "after_pattern_label": "direct_context_main_selected",
+    "after_primary_context_clause": "阳明病，谵语发潮热，脉滑而疾"
+  },
+  {
+    "formula_name": "枳实栀子豉汤方",
+    "query": "枳实栀子豉汤方有什么作用",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-017-P-0049",
+    "before_primary_text": "病有劳复，有食复。伤寒新瘥，血气未平，馀热未尽，早作劳动病者，名曰劳复。病热少愈而强食之，热有所藏，因其谷气留搏，两阳相合而病者，名曰食复。劳复，则热气浮越，与枳实栀子豉汤以解之；食复，则胃有宿积，加大黄以下之。",
+    "before_primary_kind": "mixed",
+    "candidate_direct_context_ids": [
+      "safe:main_passages:ZJSHL-CH-017-P-0049"
+    ],
+    "expected_fix_note": "当前 primary 本身就是正文直接语境，本轮修正的是 title/composition 误判。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-017-P-0049",
+    "after_primary_text": "病有劳复，有食复。伤寒新瘥，血气未平，馀热未尽，早作劳动病者，名曰劳复。病热少愈而强食之，热有所藏，因其谷气留搏，两阳相合而病者，名曰食复。劳复，则热气浮越，与枳实栀子豉汤以解之；食复，则胃有宿积，加大黄以下之。",
+    "after_pattern_label": "direct_context_main_selected",
+    "after_primary_context_clause": "劳复，则热气浮越"
+  },
+  {
+    "formula_name": "枳实栀子豉汤方",
+    "query": "枳实栀子豉汤方主治什么",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-017-P-0049",
+    "before_primary_text": "病有劳复，有食复。伤寒新瘥，血气未平，馀热未尽，早作劳动病者，名曰劳复。病热少愈而强食之，热有所藏，因其谷气留搏，两阳相合而病者，名曰食复。劳复，则热气浮越，与枳实栀子豉汤以解之；食复，则胃有宿积，加大黄以下之。",
+    "before_primary_kind": "mixed",
+    "candidate_direct_context_ids": [
+      "safe:main_passages:ZJSHL-CH-017-P-0049"
+    ],
+    "expected_fix_note": "当前 primary 本身就是正文直接语境，本轮修正的是 title/composition 误判。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-017-P-0049",
+    "after_primary_text": "病有劳复，有食复。伤寒新瘥，血气未平，馀热未尽，早作劳动病者，名曰劳复。病热少愈而强食之，热有所藏，因其谷气留搏，两阳相合而病者，名曰食复。劳复，则热气浮越，与枳实栀子豉汤以解之；食复，则胃有宿积，加大黄以下之。",
+    "after_pattern_label": "direct_context_main_selected",
+    "after_primary_context_clause": "劳复，则热气浮越"
+  },
+  {
+    "formula_name": "枳实栀子豉汤方",
+    "query": "枳实栀子豉汤方用于什么情况",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-017-P-0049",
+    "before_primary_text": "病有劳复，有食复。伤寒新瘥，血气未平，馀热未尽，早作劳动病者，名曰劳复。病热少愈而强食之，热有所藏，因其谷气留搏，两阳相合而病者，名曰食复。劳复，则热气浮越，与枳实栀子豉汤以解之；食复，则胃有宿积，加大黄以下之。",
+    "before_primary_kind": "mixed",
+    "candidate_direct_context_ids": [
+      "safe:main_passages:ZJSHL-CH-017-P-0049"
+    ],
+    "expected_fix_note": "当前 primary 本身就是正文直接语境，本轮修正的是 title/composition 误判。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-017-P-0049",
+    "after_primary_text": "病有劳复，有食复。伤寒新瘥，血气未平，馀热未尽，早作劳动病者，名曰劳复。病热少愈而强食之，热有所藏，因其谷气留搏，两阳相合而病者，名曰食复。劳复，则热气浮越，与枳实栀子豉汤以解之；食复，则胃有宿积，加大黄以下之。",
+    "after_pattern_label": "direct_context_main_selected",
+    "after_primary_context_clause": "劳复，则热气浮越"
+  },
+  {
+    "formula_name": "桂枝加芍药生姜人参新加汤方",
+    "query": "桂枝加芍药生姜人参新加汤方有什么作用",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-009-P-0096",
+    "before_primary_text": "发汗后，身疼痛，脉沉迟者，桂枝加芍药生姜各一两人参三两新加汤主之。赵本有「桂枝加芍药生姜人参新加汤方」详见本书卷十",
+    "before_primary_kind": "mixed",
+    "candidate_direct_context_ids": [],
+    "expected_fix_note": "title/composition 误占已消除，但样本更准确地暴露为 cross-chapter bridge；本轮不继续扩修 bridge。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-009-P-0096",
+    "after_primary_text": "发汗后，身疼痛，脉沉迟者，桂枝加芍药生姜各一两人参三两新加汤主之。赵本有「桂枝加芍药生姜人参新加汤方」详见本书卷十",
+    "after_pattern_label": "cross_chapter_bridge_primary",
+    "after_primary_context_clause": "发汗后，身疼痛，脉沉迟者，桂枝加芍药生姜各一两人参三两新加汤主之。详见本书卷十"
+  },
+  {
+    "formula_name": "桂枝加芍药生姜人参新加汤方",
+    "query": "桂枝加芍药生姜人参新加汤方主治什么",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-009-P-0096",
+    "before_primary_text": "发汗后，身疼痛，脉沉迟者，桂枝加芍药生姜各一两人参三两新加汤主之。赵本有「桂枝加芍药生姜人参新加汤方」详见本书卷十",
+    "before_primary_kind": "mixed",
+    "candidate_direct_context_ids": [],
+    "expected_fix_note": "title/composition 误占已消除，但样本更准确地暴露为 cross-chapter bridge；本轮不继续扩修 bridge。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-009-P-0096",
+    "after_primary_text": "发汗后，身疼痛，脉沉迟者，桂枝加芍药生姜各一两人参三两新加汤主之。赵本有「桂枝加芍药生姜人参新加汤方」详见本书卷十",
+    "after_pattern_label": "cross_chapter_bridge_primary",
+    "after_primary_context_clause": "发汗后，身疼痛，脉沉迟者，桂枝加芍药生姜各一两人参三两新加汤主之。详见本书卷十"
+  },
+  {
+    "formula_name": "桂枝加芍药生姜人参新加汤方",
+    "query": "桂枝加芍药生姜人参新加汤方用于什么情况",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-009-P-0096",
+    "before_primary_text": "发汗后，身疼痛，脉沉迟者，桂枝加芍药生姜各一两人参三两新加汤主之。赵本有「桂枝加芍药生姜人参新加汤方」详见本书卷十",
+    "before_primary_kind": "mixed",
+    "candidate_direct_context_ids": [],
+    "expected_fix_note": "title/composition 误占已消除，但样本更准确地暴露为 cross-chapter bridge；本轮不继续扩修 bridge。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-009-P-0096",
+    "after_primary_text": "发汗后，身疼痛，脉沉迟者，桂枝加芍药生姜各一两人参三两新加汤主之。赵本有「桂枝加芍药生姜人参新加汤方」详见本书卷十",
+    "after_pattern_label": "cross_chapter_bridge_primary",
+    "after_primary_context_clause": "发汗后，身疼痛，脉沉迟者，桂枝加芍药生姜各一两人参三两新加汤主之。详见本书卷十"
+  },
+  {
+    "formula_name": "白虎加人参汤方",
+    "query": "白虎加人参汤方有什么作用",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-010-P-0128",
+    "before_primary_text": "伤寒病，赵本无「病」字若吐、若下后，七八日不解，热结在里，表里俱热，时时恶风，大渴，舌上乾燥而烦，欲饮水数升者，白虎加人参汤主之。赵本有「白虎加人参汤方」详见卷十",
+    "before_primary_kind": "mixed",
+    "candidate_direct_context_ids": [
+      "safe:main_passages:ZJSHL-CH-010-P-0128",
+      "safe:main_passages:ZJSHL-CH-011-P-0104"
+    ],
+    "expected_fix_note": "title/composition 误占已消除，但样本更准确地暴露为 cross-chapter bridge；本轮不继续扩修 bridge。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-010-P-0128",
+    "after_primary_text": "伤寒病，赵本无「病」字若吐、若下后，七八日不解，热结在里，表里俱热，时时恶风，大渴，舌上乾燥而烦，欲饮水数升者，白虎加人参汤主之。赵本有「白虎加人参汤方」详见卷十",
+    "after_pattern_label": "cross_chapter_bridge_primary",
+    "after_primary_context_clause": "伤寒病，若吐、若下后，七八日不解，热结在里，表里俱热，时时恶风，大渴，舌上乾燥而烦，欲饮水数升"
+  },
+  {
+    "formula_name": "白虎加人参汤方",
+    "query": "白虎加人参汤方主治什么",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-010-P-0128",
+    "before_primary_text": "伤寒病，赵本无「病」字若吐、若下后，七八日不解，热结在里，表里俱热，时时恶风，大渴，舌上乾燥而烦，欲饮水数升者，白虎加人参汤主之。赵本有「白虎加人参汤方」详见卷十",
+    "before_primary_kind": "mixed",
+    "candidate_direct_context_ids": [
+      "safe:main_passages:ZJSHL-CH-010-P-0128",
+      "safe:main_passages:ZJSHL-CH-011-P-0104"
+    ],
+    "expected_fix_note": "title/composition 误占已消除，但样本更准确地暴露为 cross-chapter bridge；本轮不继续扩修 bridge。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-010-P-0128",
+    "after_primary_text": "伤寒病，赵本无「病」字若吐、若下后，七八日不解，热结在里，表里俱热，时时恶风，大渴，舌上乾燥而烦，欲饮水数升者，白虎加人参汤主之。赵本有「白虎加人参汤方」详见卷十",
+    "after_pattern_label": "cross_chapter_bridge_primary",
+    "after_primary_context_clause": "伤寒病，若吐、若下后，七八日不解，热结在里，表里俱热，时时恶风，大渴，舌上乾燥而烦，欲饮水数升"
+  },
+  {
+    "formula_name": "白虎加人参汤方",
+    "query": "白虎加人参汤方用于什么情况",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-010-P-0128",
+    "before_primary_text": "伤寒病，赵本无「病」字若吐、若下后，七八日不解，热结在里，表里俱热，时时恶风，大渴，舌上乾燥而烦，欲饮水数升者，白虎加人参汤主之。赵本有「白虎加人参汤方」详见卷十",
+    "before_primary_kind": "mixed",
+    "candidate_direct_context_ids": [
+      "safe:main_passages:ZJSHL-CH-010-P-0128",
+      "safe:main_passages:ZJSHL-CH-011-P-0104"
+    ],
+    "expected_fix_note": "title/composition 误占已消除，但样本更准确地暴露为 cross-chapter bridge；本轮不继续扩修 bridge。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-010-P-0128",
+    "after_primary_text": "伤寒病，赵本无「病」字若吐、若下后，七八日不解，热结在里，表里俱热，时时恶风，大渴，舌上乾燥而烦，欲饮水数升者，白虎加人参汤主之。赵本有「白虎加人参汤方」详见卷十",
+    "after_pattern_label": "cross_chapter_bridge_primary",
+    "after_primary_context_clause": "伤寒病，若吐、若下后，七八日不解，热结在里，表里俱热，时时恶风，大渴，舌上乾燥而烦，欲饮水数升"
+  },
+  {
+    "formula_name": "麻黄汤方",
+    "query": "麻黄汤方有什么作用",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-009-P-0026",
+    "before_primary_text": "太阳与阳明合病，喘而胸满者，不可下，宜麻黄汤主之。赵本无「主之」二字",
+    "before_primary_kind": "mixed",
+    "candidate_direct_context_ids": [
+      "safe:main_passages:ZJSHL-CH-009-P-0026",
+      "safe:main_passages:ZJSHL-CH-009-P-0059",
+      "safe:main_passages:ZJSHL-CH-009-P-0077",
+      "safe:main_passages:ZJSHL-CH-009-P-0069",
+      "safe:main_passages:ZJSHL-CH-009-P-0030"
+    ],
+    "expected_fix_note": "当前 primary 本身就是正文直接语境，本轮修正的是 title/composition 误判。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-009-P-0026",
+    "after_primary_text": "太阳与阳明合病，喘而胸满者，不可下，宜麻黄汤主之。赵本无「主之」二字",
+    "after_pattern_label": "direct_context_main_selected",
+    "after_primary_context_clause": "太阳与阳明合病，喘而胸满者，不可下"
+  },
+  {
+    "formula_name": "麻黄汤方",
+    "query": "麻黄汤方主治什么",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-009-P-0026",
+    "before_primary_text": "太阳与阳明合病，喘而胸满者，不可下，宜麻黄汤主之。赵本无「主之」二字",
+    "before_primary_kind": "mixed",
+    "candidate_direct_context_ids": [
+      "safe:main_passages:ZJSHL-CH-009-P-0026",
+      "safe:main_passages:ZJSHL-CH-009-P-0059",
+      "safe:main_passages:ZJSHL-CH-009-P-0077",
+      "safe:main_passages:ZJSHL-CH-009-P-0069",
+      "safe:main_passages:ZJSHL-CH-009-P-0030"
+    ],
+    "expected_fix_note": "当前 primary 本身就是正文直接语境，本轮修正的是 title/composition 误判。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-009-P-0026",
+    "after_primary_text": "太阳与阳明合病，喘而胸满者，不可下，宜麻黄汤主之。赵本无「主之」二字",
+    "after_pattern_label": "direct_context_main_selected",
+    "after_primary_context_clause": "太阳与阳明合病，喘而胸满者，不可下"
+  },
+  {
+    "formula_name": "麻黄汤方",
+    "query": "麻黄汤方用于什么情况",
+    "before_primary_id": "safe:main_passages:ZJSHL-CH-009-P-0026",
+    "before_primary_text": "太阳与阳明合病，喘而胸满者，不可下，宜麻黄汤主之。赵本无「主之」二字",
+    "before_primary_kind": "mixed",
+    "candidate_direct_context_ids": [
+      "safe:main_passages:ZJSHL-CH-009-P-0026",
+      "safe:main_passages:ZJSHL-CH-009-P-0059",
+      "safe:main_passages:ZJSHL-CH-009-P-0077",
+      "safe:main_passages:ZJSHL-CH-009-P-0069",
+      "safe:main_passages:ZJSHL-CH-009-P-0030"
+    ],
+    "expected_fix_note": "当前 primary 本身就是正文直接语境，本轮修正的是 title/composition 误判。",
+    "after_primary_id": "safe:main_passages:ZJSHL-CH-009-P-0026",
+    "after_primary_text": "太阳与阳明合病，喘而胸满者，不可下，宜麻黄汤主之。赵本无「主之」二字",
+    "after_pattern_label": "direct_context_main_selected",
+    "after_primary_context_clause": "太阳与阳明合病，喘而胸满者，不可下"
+  }
+]
