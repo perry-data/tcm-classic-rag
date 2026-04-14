@@ -1,0 +1,2381 @@
+{
+  "generated_at_utc": "2026-04-14T09:03:01.107876+00:00",
+  "command": "python -m backend.checks.generation_alignment_v1_checks",
+  "llm_config": {
+    "enabled": true,
+    "provider": "Alibaba Cloud Model Studio",
+    "interface": "OpenAI-compatible Chat Completions",
+    "model": "qwen-plus",
+    "mode": "non-thinking",
+    "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+    "timeout_seconds": 20.0,
+    "max_output_tokens": 900,
+    "temperature": 0.0,
+    "enable_thinking": false
+  },
+  "proposal_alignment_context": [
+    "开题要求生成式回答充分利用检索证据，并给出可核验的出处依据。",
+    "开题要求通过 Prompt 约束与结果校验降低幻觉，避免杜撰出处。",
+    "开题创新点明确提出“证据释义 / 要点抽取 -> 基于证据生成 -> 条文依据输出”的分步生成路径。"
+  ],
+  "cases": [
+    {
+      "case_id": "required_strong_huanglian_tang",
+      "label": "required",
+      "query": "黄连汤方的条文是什么？",
+      "expected_mode": "strong",
+      "baseline_response_body": {
+        "query": "黄连汤方的条文是什么？",
+        "answer_mode": "strong",
+        "answer_text": "根据主依据，与“黄连汤方”直接对应的条文主要有：\n1. 黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。\n2. 味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温\n3. 上热者，泄之以苦，黄连之苦以降阳；下寒者，散之以辛，桂、姜、半夏之辛以升阴；脾欲缓，急食甘以缓之，人参、甘草、大枣之甘以益胃。",
+        "primary_evidence": [
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
+            "record_type": "main_passages",
+            "display_role": "primary",
+            "title": "黄连汤方",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。",
+            "risk_flags": []
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0146",
+            "record_type": "main_passages",
+            "display_role": "primary",
+            "title": "黄连汤方",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温",
+            "risk_flags": []
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0147",
+            "record_type": "main_passages",
+            "display_role": "primary",
+            "title": "黄连汤方",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "上热者，泄之以苦，黄连之苦以降阳；下寒者，散之以辛，桂、姜、半夏之辛以升阴；脾欲缓，急食甘以缓之，人参、甘草、大枣之甘以益胃。",
+            "risk_flags": []
+          }
+        ],
+        "secondary_evidence": [
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0016",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "葛根黄芩黄连汤方",
+            "evidence_level": "B",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "snippet": "葛根黄芩黄连汤方：赵本芩、连互易",
+            "risk_flags": [
+              "short_text_demoted"
+            ]
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0017",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "葛根黄芩黄连汤方",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "snippet": "葛根半斤 甘草二两，炙。味甘平 黄芩二，赵本作「三」两。味苦寒 黄连三两。味苦寒",
+            "risk_flags": [
+              "topic_mismatch_demoted"
+            ]
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0019",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "葛根黄芩黄连汤方",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "snippet": "上四味，以水八升，先煮葛根，减二升，内诸药，煮取二升，去滓，分温再服。",
+            "risk_flags": [
+              "topic_mismatch_demoted"
+            ]
+          }
+        ],
+        "review_materials": [
+          {
+            "record_id": "full:passages:ZJSHL-CH-010-P-0145",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "黄连汤方",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。",
+            "risk_flags": [
+              "ledger_mixed_roles"
+            ]
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-009-P-0016",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "葛根黄芩黄连汤方",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "snippet": "葛根黄芩黄连汤方：赵本芩、连互易",
+            "risk_flags": [
+              "ledger_mixed_roles"
+            ]
+          }
+        ],
+        "disclaimer": "主证据优先；补充依据与核对材料不参与主结论判定。",
+        "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
+        "refuse_reason": null,
+        "suggested_followup_questions": [],
+        "citations": [
+          {
+            "citation_id": "c1",
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
+            "record_type": "main_passages",
+            "title": "黄连汤方",
+            "evidence_level": "A",
+            "snippet": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "citation_role": "primary"
+          },
+          {
+            "citation_id": "c2",
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0146",
+            "record_type": "main_passages",
+            "title": "黄连汤方",
+            "evidence_level": "A",
+            "snippet": "味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "citation_role": "primary"
+          },
+          {
+            "citation_id": "c3",
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0147",
+            "record_type": "main_passages",
+            "title": "黄连汤方",
+            "evidence_level": "A",
+            "snippet": "上热者，泄之以苦，黄连之苦以降阳；下寒者，散之以辛，桂、姜、半夏之辛以升阴；脾欲缓，急食甘以缓之，人参、甘草、大枣之甘以益胃。",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "citation_role": "primary"
+          }
+        ],
+        "display_sections": [
+          {
+            "section_id": "answer",
+            "title": "回答",
+            "section_type": "text",
+            "visible": true,
+            "field": "answer_text",
+            "summary": "根据主依据，与“黄连汤方”直接对应的条文主要有： 1. 黄连汤方：黄连味苦寒 甘草炙。味甘平 乾..."
+          },
+          {
+            "section_id": "review_notice",
+            "title": "核对提示",
+            "section_type": "notice",
+            "visible": true,
+            "field": "review_notice",
+            "summary": "以下补充依据与核对材料仅作说明，不作为主依据。"
+          },
+          {
+            "section_id": "primary_evidence",
+            "title": "主依据",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "primary_evidence",
+            "item_count": 3
+          },
+          {
+            "section_id": "secondary_evidence",
+            "title": "补充依据",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "secondary_evidence",
+            "item_count": 3
+          },
+          {
+            "section_id": "review_materials",
+            "title": "核对材料",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "review_materials",
+            "item_count": 2
+          },
+          {
+            "section_id": "citations",
+            "title": "引用",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "citations",
+            "item_count": 3
+          },
+          {
+            "section_id": "refusal_guidance",
+            "title": "改问建议",
+            "section_type": "list",
+            "visible": false,
+            "field": "suggested_followup_questions",
+            "item_count": 0
+          }
+        ]
+      },
+      "llm_response_body": {
+        "query": "黄连汤方的条文是什么？",
+        "answer_mode": "strong",
+        "answer_text": "《伤寒论》中黄连汤方的条文载于‘辨太阳病脉证并治法第七’，包含药物组成、性味、剂量及配伍意义 [E1][E2][E3]。\n1. 黄连汤由黄连、炙甘草、乾姜、桂枝（去皮）、人参、半夏、大枣七味药组成 [E1][E2]。\n2. 各药剂量与性味明确标注，如黄连味苦寒，甘草炙、味甘平，乾姜与桂枝均味辛热、各三两，人参二两，半夏半升（洗），大枣十二枚（擘） [E1][E2]。\n3. 条文指出其配伍原则为：黄连之苦以降上热，桂枝、乾姜、半夏之辛以散下寒，人参、甘草、大枣之甘以缓中益胃 [E3]。",
+        "primary_evidence": [
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
+            "record_type": "main_passages",
+            "display_role": "primary",
+            "title": "黄连汤方",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。",
+            "risk_flags": []
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0146",
+            "record_type": "main_passages",
+            "display_role": "primary",
+            "title": "黄连汤方",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温",
+            "risk_flags": []
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0147",
+            "record_type": "main_passages",
+            "display_role": "primary",
+            "title": "黄连汤方",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "上热者，泄之以苦，黄连之苦以降阳；下寒者，散之以辛，桂、姜、半夏之辛以升阴；脾欲缓，急食甘以缓之，人参、甘草、大枣之甘以益胃。",
+            "risk_flags": []
+          }
+        ],
+        "secondary_evidence": [
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0016",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "葛根黄芩黄连汤方",
+            "evidence_level": "B",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "snippet": "葛根黄芩黄连汤方：赵本芩、连互易",
+            "risk_flags": [
+              "short_text_demoted"
+            ]
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0017",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "葛根黄芩黄连汤方",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "snippet": "葛根半斤 甘草二两，炙。味甘平 黄芩二，赵本作「三」两。味苦寒 黄连三两。味苦寒",
+            "risk_flags": [
+              "topic_mismatch_demoted"
+            ]
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0019",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "葛根黄芩黄连汤方",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "snippet": "上四味，以水八升，先煮葛根，减二升，内诸药，煮取二升，去滓，分温再服。",
+            "risk_flags": [
+              "topic_mismatch_demoted"
+            ]
+          }
+        ],
+        "review_materials": [
+          {
+            "record_id": "full:passages:ZJSHL-CH-010-P-0145",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "黄连汤方",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。",
+            "risk_flags": [
+              "ledger_mixed_roles"
+            ]
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-009-P-0016",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "葛根黄芩黄连汤方",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "snippet": "葛根黄芩黄连汤方：赵本芩、连互易",
+            "risk_flags": [
+              "ledger_mixed_roles"
+            ]
+          }
+        ],
+        "disclaimer": "主证据优先；补充依据与核对材料不参与主结论判定。",
+        "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
+        "refuse_reason": null,
+        "suggested_followup_questions": [],
+        "citations": [
+          {
+            "citation_id": "c1",
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
+            "record_type": "main_passages",
+            "title": "黄连汤方",
+            "evidence_level": "A",
+            "snippet": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "citation_role": "primary"
+          },
+          {
+            "citation_id": "c2",
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0146",
+            "record_type": "main_passages",
+            "title": "黄连汤方",
+            "evidence_level": "A",
+            "snippet": "味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "citation_role": "primary"
+          },
+          {
+            "citation_id": "c3",
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0147",
+            "record_type": "main_passages",
+            "title": "黄连汤方",
+            "evidence_level": "A",
+            "snippet": "上热者，泄之以苦，黄连之苦以降阳；下寒者，散之以辛，桂、姜、半夏之辛以升阴；脾欲缓，急食甘以缓之，人参、甘草、大枣之甘以益胃。",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "citation_role": "primary"
+          }
+        ],
+        "display_sections": [
+          {
+            "section_id": "answer",
+            "title": "回答",
+            "section_type": "text",
+            "visible": true,
+            "field": "answer_text",
+            "summary": "《伤寒论》中黄连汤方的条文载于‘辨太阳病脉证并治法第七’，包含药物组成、性味、剂量及配伍意义 [..."
+          },
+          {
+            "section_id": "review_notice",
+            "title": "核对提示",
+            "section_type": "notice",
+            "visible": true,
+            "field": "review_notice",
+            "summary": "以下补充依据与核对材料仅作说明，不作为主依据。"
+          },
+          {
+            "section_id": "primary_evidence",
+            "title": "主依据",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "primary_evidence",
+            "item_count": 3
+          },
+          {
+            "section_id": "secondary_evidence",
+            "title": "补充依据",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "secondary_evidence",
+            "item_count": 3
+          },
+          {
+            "section_id": "review_materials",
+            "title": "核对材料",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "review_materials",
+            "item_count": 2
+          },
+          {
+            "section_id": "citations",
+            "title": "引用",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "citations",
+            "item_count": 3
+          },
+          {
+            "section_id": "refusal_guidance",
+            "title": "改问建议",
+            "section_type": "list",
+            "visible": false,
+            "field": "suggested_followup_questions",
+            "item_count": 0
+          }
+        ]
+      },
+      "llm_debug": {
+        "provider": "Alibaba Cloud Model Studio",
+        "enabled": true,
+        "model": "qwen-plus",
+        "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        "query_text": "黄连汤方的条文是什么？",
+        "answer_mode": "strong",
+        "attempted": true,
+        "used_llm": true,
+        "fallback_used": false,
+        "skipped_reason": null,
+        "fallback_reason": null,
+        "answer_source": "llm",
+        "baseline_answer_text_excerpt": "根据主依据，与“黄连汤方”直接对应的条文主要有： 1. 黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。 2. 味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温 3. 上热者，泄之以苦，黄连之苦以降阳；下寒者，散之以辛，桂、姜、半夏之辛以升阴；脾欲缓，急食甘以缓之...",
+        "attempts": [
+          {
+            "attempt": 1,
+            "strict_retry": false,
+            "status": "failed",
+            "error": "Rendered answer_text contains forbidden marker: ZJSHL-CH-"
+          },
+          {
+            "attempt": 2,
+            "strict_retry": true,
+            "status": "passed",
+            "rendered_answer_text_excerpt": "《伤寒论》中黄连汤方的条文载于‘辨太阳病脉证并治法第七’，包含药物组成、性味、剂量及配伍意义 [E1][E2][E3]。 1. 黄连汤由黄连、炙甘草、乾姜、桂枝（去皮）、人参、半夏、大枣七味药组成 [E1][E2]。 2. 各药剂量与性味明确标注，如黄连味苦寒，甘草炙、味甘平，乾姜与桂枝均味辛热、各三两，人参二两，半夏..."
+          }
+        ],
+        "evidence_pack_summary": {
+          "primary": [
+            "E1",
+            "E2",
+            "E3"
+          ],
+          "secondary": [
+            "E4",
+            "E5",
+            "E6"
+          ],
+          "review": [
+            "E7",
+            "E8"
+          ]
+        },
+        "rendered_answer_text_excerpt": "《伤寒论》中黄连汤方的条文载于‘辨太阳病脉证并治法第七’，包含药物组成、性味、剂量及配伍意义 [E1][E2][E3]。 1. 黄连汤由黄连、炙甘草、乾姜、桂枝（去皮）、人参、半夏、大枣七味药组成 [E1][E2]。 2. 各药剂量与性味明确标注，如黄连味苦寒，甘草炙、味甘平，乾姜与桂枝均味辛热、各三两，人参二两，半夏..."
+      },
+      "answer_text_analysis": {
+        "line_count": 4,
+        "summary_line": "《伤寒论》中黄连汤方的条文载于‘辨太阳病脉证并治法第七’，包含药物组成、性味、剂量及配伍意义 [E1][E2][E3]。",
+        "point_count": 3,
+        "point_lines": [
+          "1. 黄连汤由黄连、炙甘草、乾姜、桂枝（去皮）、人参、半夏、大枣七味药组成 [E1][E2]。",
+          "2. 各药剂量与性味明确标注，如黄连味苦寒，甘草炙、味甘平，乾姜与桂枝均味辛热、各三两，人参二两，半夏半升（洗），大枣十二枚（擘） [E1][E2]。",
+          "3. 条文指出其配伍原则为：黄连之苦以降上热，桂枝、乾姜、半夏之辛以散下寒，人参、甘草、大枣之甘以缓中益胃 [E3]。"
+        ],
+        "conclusion_has_refs": true,
+        "all_lines_have_refs": true,
+        "numbered_points_valid": true,
+        "evidence_refs": [
+          "E1",
+          "E2",
+          "E3"
+        ]
+      },
+      "checks": {
+        "payload_contract_kept": true,
+        "mode_kept": true,
+        "primary_unchanged": true,
+        "secondary_unchanged": true,
+        "review_unchanged": true,
+        "citations_unchanged": true,
+        "answer_text_changed": true,
+        "all_lines_have_refs": true,
+        "point_count_ok": true,
+        "numbered_points_valid": true,
+        "llm_attempted_when_expected": true
+      }
+    },
+    {
+      "case_id": "required_weak_shaozhen",
+      "label": "required",
+      "query": "烧针益阳而损阴是什么意思？",
+      "expected_mode": "weak_with_review_notice",
+      "baseline_response_body": {
+        "query": "烧针益阳而损阴是什么意思？",
+        "answer_mode": "weak_with_review_notice",
+        "answer_text": "正文强证据不足，以下内容需核对，暂不能视为确定答案。 当前可先参考辅助材料：卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+        "primary_evidence": [],
+        "secondary_evidence": [
+          {
+            "record_id": "full:annotations:ZJSHL-CH-003-P-0016",
+            "record_type": "annotations",
+            "display_role": "secondary",
+            "title": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+            "evidence_level": "B",
+            "chapter_id": "ZJSHL-CH-003",
+            "chapter_title": "辨脉法第一",
+            "snippet": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+            "risk_flags": [
+              "annotation_unlinked"
+            ]
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0295",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "烧针发汗则损阴血而惊动心气针处被寒气聚而成核心气因惊而虚肾气乘寒气而动发为奔豚金匮要略曰",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "snippet": "烧针发汗，则损阴血，而惊动心气。针处被寒，气聚而成核。心气因惊而虚，肾气乘寒气而动，发为奔豚。《金匮要略》曰：病有奔豚，从惊发得之。肾气欲上乘心，故其气从少腹上冲心也。先灸核上，以散其寒，与桂枝加桂汤，以泄奔豚之气。",
+            "risk_flags": [
+              "topic_mismatch_demoted"
+            ]
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0080",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "太阳病医发汗遂发热恶寒因复下之心下痞表里俱虚阴阳气并竭无阳则阴独复加烧针因胸烦面色青黄肤者难治今色微黄手足温者易愈",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "太阳病，医发汗，遂发热恶寒，因复下之，心下痞，表里俱虚，阴阳气并竭，无阳则阴独，复加烧针，因胸烦，面色青黄，肤 者，难治；今色微黄，手足温者，易愈。",
+            "risk_flags": [
+              "topic_mismatch_demoted"
+            ]
+          }
+        ],
+        "review_materials": [
+          {
+            "record_id": "full:passages:ZJSHL-CH-003-P-0016",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-003",
+            "chapter_title": "辨脉法第一",
+            "snippet": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+            "risk_flags": [
+              "ledger_mixed_roles",
+              "ambiguous_source"
+            ]
+          },
+          {
+            "record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0016",
+            "record_type": "ambiguous_passages",
+            "display_role": "review",
+            "title": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-003",
+            "chapter_title": "辨脉法第一",
+            "snippet": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+            "risk_flags": [
+              "ambiguous_source"
+            ]
+          }
+        ],
+        "disclaimer": "当前只输出弱表述与核对材料，不输出确定性答案。",
+        "review_notice": "正文强证据不足，以下内容需核对，不应视为确定答案。",
+        "refuse_reason": null,
+        "suggested_followup_questions": [],
+        "citations": [
+          {
+            "citation_id": "c1",
+            "record_id": "full:annotations:ZJSHL-CH-003-P-0016",
+            "record_type": "annotations",
+            "title": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+            "evidence_level": "B",
+            "snippet": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+            "chapter_id": "ZJSHL-CH-003",
+            "chapter_title": "辨脉法第一",
+            "citation_role": "secondary"
+          },
+          {
+            "citation_id": "c2",
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0295",
+            "record_type": "main_passages",
+            "title": "烧针发汗则损阴血而惊动心气针处被寒气聚而成核心气因惊而虚肾气乘寒气而动发为奔豚金匮要略曰",
+            "evidence_level": "A",
+            "snippet": "烧针发汗，则损阴血，而惊动心气。针处被寒，气聚而成核。心气因惊而虚，肾气乘寒气而动，发为奔豚。《金匮要略》曰：病有奔豚，从惊发得之。肾气欲上乘心，故其气从少腹上冲心也。先灸核上，以散其寒，与桂枝加桂汤，以泄奔豚之气。",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "citation_role": "secondary"
+          },
+          {
+            "citation_id": "c3",
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0080",
+            "record_type": "main_passages",
+            "title": "太阳病医发汗遂发热恶寒因复下之心下痞表里俱虚阴阳气并竭无阳则阴独复加烧针因胸烦面色青黄肤者难治今色微黄手足温者易愈",
+            "evidence_level": "A",
+            "snippet": "太阳病，医发汗，遂发热恶寒，因复下之，心下痞，表里俱虚，阴阳气并竭，无阳则阴独，复加烧针，因胸烦，面色青黄，肤 者，难治；今色微黄，手足温者，易愈。",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "citation_role": "secondary"
+          },
+          {
+            "citation_id": "c4",
+            "record_id": "full:passages:ZJSHL-CH-003-P-0016",
+            "record_type": "passages",
+            "title": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+            "evidence_level": "C",
+            "snippet": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+            "chapter_id": "ZJSHL-CH-003",
+            "chapter_title": "辨脉法第一",
+            "citation_role": "review"
+          },
+          {
+            "citation_id": "c5",
+            "record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0016",
+            "record_type": "ambiguous_passages",
+            "title": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+            "evidence_level": "C",
+            "snippet": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+            "chapter_id": "ZJSHL-CH-003",
+            "chapter_title": "辨脉法第一",
+            "citation_role": "review"
+          }
+        ],
+        "display_sections": [
+          {
+            "section_id": "answer",
+            "title": "回答",
+            "section_type": "text",
+            "visible": true,
+            "field": "answer_text",
+            "summary": "正文强证据不足，以下内容需核对，暂不能视为确定答案。 当前可先参考辅助材料：卫阳也，荣阴也。烧针..."
+          },
+          {
+            "section_id": "review_notice",
+            "title": "核对提示",
+            "section_type": "notice",
+            "visible": true,
+            "field": "review_notice",
+            "summary": "正文强证据不足，以下内容需核对，不应视为确定答案。"
+          },
+          {
+            "section_id": "primary_evidence",
+            "title": "主依据",
+            "section_type": "slot_ref",
+            "visible": false,
+            "field": "primary_evidence",
+            "item_count": 0
+          },
+          {
+            "section_id": "secondary_evidence",
+            "title": "补充依据",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "secondary_evidence",
+            "item_count": 3
+          },
+          {
+            "section_id": "review_materials",
+            "title": "核对材料",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "review_materials",
+            "item_count": 2
+          },
+          {
+            "section_id": "citations",
+            "title": "引用",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "citations",
+            "item_count": 5
+          },
+          {
+            "section_id": "refusal_guidance",
+            "title": "改问建议",
+            "section_type": "list",
+            "visible": false,
+            "field": "suggested_followup_questions",
+            "item_count": 0
+          }
+        ]
+      },
+      "llm_response_body": {
+        "query": "烧针益阳而损阴是什么意思？",
+        "answer_mode": "weak_with_review_notice",
+        "answer_text": "‘烧针益阳而损阴’指烧针疗法虽可温助卫阳，却易耗伤营阴或阴血 [E1]。\n1. 烧针属温热刺激，用以‘益阳’即扶助卫阳；但因其燥烈之性，反致营阴（荣阴）受损，故称‘损阴’ [E1][E4][E5]。\n2. 若患者本有阴虚内热，再施烧针，则内外热相合，营血运行不畅，可致内躁烦、外发热等表现，此为‘益阳损阴’的病机延伸 [E1][E4][E5]。\n3. 临床可见烧针后损阴血、惊动心气，甚则引动肾气上逆成奔豚；或于阴阳两虚基础上加烧针，加重胸烦、面色青黄等危重征象 [E2][E3]。\n4. 需核对：诸证据均未明确定义‘阳’‘阴’在此语境下的具体所指（如卫/营、气/血、表/里），亦未说明烧针操作规范与剂量阈值，相关解释存在术语模糊性 [E1][E2][E3][E4][E5]。",
+        "primary_evidence": [],
+        "secondary_evidence": [
+          {
+            "record_id": "full:annotations:ZJSHL-CH-003-P-0016",
+            "record_type": "annotations",
+            "display_role": "secondary",
+            "title": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+            "evidence_level": "B",
+            "chapter_id": "ZJSHL-CH-003",
+            "chapter_title": "辨脉法第一",
+            "snippet": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+            "risk_flags": [
+              "annotation_unlinked"
+            ]
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0295",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "烧针发汗则损阴血而惊动心气针处被寒气聚而成核心气因惊而虚肾气乘寒气而动发为奔豚金匮要略曰",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "snippet": "烧针发汗，则损阴血，而惊动心气。针处被寒，气聚而成核。心气因惊而虚，肾气乘寒气而动，发为奔豚。《金匮要略》曰：病有奔豚，从惊发得之。肾气欲上乘心，故其气从少腹上冲心也。先灸核上，以散其寒，与桂枝加桂汤，以泄奔豚之气。",
+            "risk_flags": [
+              "topic_mismatch_demoted"
+            ]
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0080",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "太阳病医发汗遂发热恶寒因复下之心下痞表里俱虚阴阳气并竭无阳则阴独复加烧针因胸烦面色青黄肤者难治今色微黄手足温者易愈",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "太阳病，医发汗，遂发热恶寒，因复下之，心下痞，表里俱虚，阴阳气并竭，无阳则阴独，复加烧针，因胸烦，面色青黄，肤 者，难治；今色微黄，手足温者，易愈。",
+            "risk_flags": [
+              "topic_mismatch_demoted"
+            ]
+          }
+        ],
+        "review_materials": [
+          {
+            "record_id": "full:passages:ZJSHL-CH-003-P-0016",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-003",
+            "chapter_title": "辨脉法第一",
+            "snippet": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+            "risk_flags": [
+              "ledger_mixed_roles",
+              "ambiguous_source"
+            ]
+          },
+          {
+            "record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0016",
+            "record_type": "ambiguous_passages",
+            "display_role": "review",
+            "title": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-003",
+            "chapter_title": "辨脉法第一",
+            "snippet": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+            "risk_flags": [
+              "ambiguous_source"
+            ]
+          }
+        ],
+        "disclaimer": "当前只输出弱表述与核对材料，不输出确定性答案。",
+        "review_notice": "正文强证据不足，以下内容需核对，不应视为确定答案。",
+        "refuse_reason": null,
+        "suggested_followup_questions": [],
+        "citations": [
+          {
+            "citation_id": "c1",
+            "record_id": "full:annotations:ZJSHL-CH-003-P-0016",
+            "record_type": "annotations",
+            "title": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+            "evidence_level": "B",
+            "snippet": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+            "chapter_id": "ZJSHL-CH-003",
+            "chapter_title": "辨脉法第一",
+            "citation_role": "secondary"
+          },
+          {
+            "citation_id": "c2",
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0295",
+            "record_type": "main_passages",
+            "title": "烧针发汗则损阴血而惊动心气针处被寒气聚而成核心气因惊而虚肾气乘寒气而动发为奔豚金匮要略曰",
+            "evidence_level": "A",
+            "snippet": "烧针发汗，则损阴血，而惊动心气。针处被寒，气聚而成核。心气因惊而虚，肾气乘寒气而动，发为奔豚。《金匮要略》曰：病有奔豚，从惊发得之。肾气欲上乘心，故其气从少腹上冲心也。先灸核上，以散其寒，与桂枝加桂汤，以泄奔豚之气。",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "citation_role": "secondary"
+          },
+          {
+            "citation_id": "c3",
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0080",
+            "record_type": "main_passages",
+            "title": "太阳病医发汗遂发热恶寒因复下之心下痞表里俱虚阴阳气并竭无阳则阴独复加烧针因胸烦面色青黄肤者难治今色微黄手足温者易愈",
+            "evidence_level": "A",
+            "snippet": "太阳病，医发汗，遂发热恶寒，因复下之，心下痞，表里俱虚，阴阳气并竭，无阳则阴独，复加烧针，因胸烦，面色青黄，肤 者，难治；今色微黄，手足温者，易愈。",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "citation_role": "secondary"
+          },
+          {
+            "citation_id": "c4",
+            "record_id": "full:passages:ZJSHL-CH-003-P-0016",
+            "record_type": "passages",
+            "title": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+            "evidence_level": "C",
+            "snippet": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+            "chapter_id": "ZJSHL-CH-003",
+            "chapter_title": "辨脉法第一",
+            "citation_role": "review"
+          },
+          {
+            "citation_id": "c5",
+            "record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0016",
+            "record_type": "ambiguous_passages",
+            "title": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+            "evidence_level": "C",
+            "snippet": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+            "chapter_id": "ZJSHL-CH-003",
+            "chapter_title": "辨脉法第一",
+            "citation_role": "review"
+          }
+        ],
+        "display_sections": [
+          {
+            "section_id": "answer",
+            "title": "回答",
+            "section_type": "text",
+            "visible": true,
+            "field": "answer_text",
+            "summary": "‘烧针益阳而损阴’指烧针疗法虽可温助卫阳，却易耗伤营阴或阴血 [E1]。 1. 烧针属温热刺激，..."
+          },
+          {
+            "section_id": "review_notice",
+            "title": "核对提示",
+            "section_type": "notice",
+            "visible": true,
+            "field": "review_notice",
+            "summary": "正文强证据不足，以下内容需核对，不应视为确定答案。"
+          },
+          {
+            "section_id": "primary_evidence",
+            "title": "主依据",
+            "section_type": "slot_ref",
+            "visible": false,
+            "field": "primary_evidence",
+            "item_count": 0
+          },
+          {
+            "section_id": "secondary_evidence",
+            "title": "补充依据",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "secondary_evidence",
+            "item_count": 3
+          },
+          {
+            "section_id": "review_materials",
+            "title": "核对材料",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "review_materials",
+            "item_count": 2
+          },
+          {
+            "section_id": "citations",
+            "title": "引用",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "citations",
+            "item_count": 5
+          },
+          {
+            "section_id": "refusal_guidance",
+            "title": "改问建议",
+            "section_type": "list",
+            "visible": false,
+            "field": "suggested_followup_questions",
+            "item_count": 0
+          }
+        ]
+      },
+      "llm_debug": {
+        "provider": "Alibaba Cloud Model Studio",
+        "enabled": true,
+        "model": "qwen-plus",
+        "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        "query_text": "烧针益阳而损阴是什么意思？",
+        "answer_mode": "weak_with_review_notice",
+        "attempted": true,
+        "used_llm": true,
+        "fallback_used": false,
+        "skipped_reason": null,
+        "fallback_reason": null,
+        "answer_source": "llm",
+        "baseline_answer_text_excerpt": "正文强证据不足，以下内容需核对，暂不能视为确定答案。 当前可先参考辅助材料：卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+        "attempts": [
+          {
+            "attempt": 1,
+            "strict_retry": false,
+            "status": "failed",
+            "error": "Rendered answer_text must contain 2-4 numbered points."
+          },
+          {
+            "attempt": 2,
+            "strict_retry": true,
+            "status": "passed",
+            "rendered_answer_text_excerpt": "‘烧针益阳而损阴’指烧针疗法虽可温助卫阳，却易耗伤营阴或阴血 [E1]。 1. 烧针属温热刺激，用以‘益阳’即扶助卫阳；但因其燥烈之性，反致营阴（荣阴）受损，故称‘损阴’ [E1][E4][E5]。 2. 若患者本有阴虚内热，再施烧针，则内外热相合，营血运行不畅，可致内躁烦、外发热等表现，此为‘益阳损阴’的病机延伸 [..."
+          }
+        ],
+        "evidence_pack_summary": {
+          "primary": [],
+          "secondary": [
+            "E1",
+            "E2",
+            "E3"
+          ],
+          "review": [
+            "E4",
+            "E5"
+          ]
+        },
+        "rendered_answer_text_excerpt": "‘烧针益阳而损阴’指烧针疗法虽可温助卫阳，却易耗伤营阴或阴血 [E1]。 1. 烧针属温热刺激，用以‘益阳’即扶助卫阳；但因其燥烈之性，反致营阴（荣阴）受损，故称‘损阴’ [E1][E4][E5]。 2. 若患者本有阴虚内热，再施烧针，则内外热相合，营血运行不畅，可致内躁烦、外发热等表现，此为‘益阳损阴’的病机延伸 [..."
+      },
+      "answer_text_analysis": {
+        "line_count": 5,
+        "summary_line": "‘烧针益阳而损阴’指烧针疗法虽可温助卫阳，却易耗伤营阴或阴血 [E1]。",
+        "point_count": 4,
+        "point_lines": [
+          "1. 烧针属温热刺激，用以‘益阳’即扶助卫阳；但因其燥烈之性，反致营阴（荣阴）受损，故称‘损阴’ [E1][E4][E5]。",
+          "2. 若患者本有阴虚内热，再施烧针，则内外热相合，营血运行不畅，可致内躁烦、外发热等表现，此为‘益阳损阴’的病机延伸 [E1][E4][E5]。",
+          "3. 临床可见烧针后损阴血、惊动心气，甚则引动肾气上逆成奔豚；或于阴阳两虚基础上加烧针，加重胸烦、面色青黄等危重征象 [E2][E3]。",
+          "4. 需核对：诸证据均未明确定义‘阳’‘阴’在此语境下的具体所指（如卫/营、气/血、表/里），亦未说明烧针操作规范与剂量阈值，相关解释存在术语模糊性 [E1][E2][E3][E4][E5]。"
+        ],
+        "conclusion_has_refs": true,
+        "all_lines_have_refs": true,
+        "numbered_points_valid": true,
+        "evidence_refs": [
+          "E1",
+          "E2",
+          "E3",
+          "E4",
+          "E5"
+        ]
+      },
+      "checks": {
+        "payload_contract_kept": true,
+        "mode_kept": true,
+        "primary_unchanged": true,
+        "secondary_unchanged": true,
+        "review_unchanged": true,
+        "citations_unchanged": true,
+        "answer_text_changed": true,
+        "all_lines_have_refs": true,
+        "point_count_ok": true,
+        "numbered_points_valid": true,
+        "llm_attempted_when_expected": true
+      }
+    },
+    {
+      "case_id": "required_refuse_quantum",
+      "label": "required",
+      "query": "书中有没有提到量子纠缠？",
+      "expected_mode": "refuse",
+      "baseline_response_body": {
+        "query": "书中有没有提到量子纠缠？",
+        "answer_mode": "refuse",
+        "answer_text": "当前未检索到足以支撑回答的依据，暂不提供答案。",
+        "primary_evidence": [],
+        "secondary_evidence": [],
+        "review_materials": [],
+        "disclaimer": "当前为统一拒答结构，不输出推测性答案。",
+        "review_notice": null,
+        "refuse_reason": "未检索到足以支撑回答的主证据、辅助证据或可供核对的风险材料。",
+        "suggested_followup_questions": [
+          "请改问具体条文，例如：某一条文的原文或含义是什么？",
+          "请改问具体方名，例如：黄连汤方的组成或条文是什么？",
+          "请改问书中某个明确术语或概念，例如：某句话出自哪一条？"
+        ],
+        "citations": [],
+        "display_sections": [
+          {
+            "section_id": "answer",
+            "title": "回答",
+            "section_type": "text",
+            "visible": true,
+            "field": "answer_text",
+            "summary": "当前未检索到足以支撑回答的依据，暂不提供答案。"
+          },
+          {
+            "section_id": "review_notice",
+            "title": "核对提示",
+            "section_type": "notice",
+            "visible": false,
+            "field": "review_notice",
+            "summary": ""
+          },
+          {
+            "section_id": "primary_evidence",
+            "title": "主依据",
+            "section_type": "slot_ref",
+            "visible": false,
+            "field": "primary_evidence",
+            "item_count": 0
+          },
+          {
+            "section_id": "secondary_evidence",
+            "title": "补充依据",
+            "section_type": "slot_ref",
+            "visible": false,
+            "field": "secondary_evidence",
+            "item_count": 0
+          },
+          {
+            "section_id": "review_materials",
+            "title": "核对材料",
+            "section_type": "slot_ref",
+            "visible": false,
+            "field": "review_materials",
+            "item_count": 0
+          },
+          {
+            "section_id": "citations",
+            "title": "引用",
+            "section_type": "slot_ref",
+            "visible": false,
+            "field": "citations",
+            "item_count": 0
+          },
+          {
+            "section_id": "refusal_guidance",
+            "title": "改问建议",
+            "section_type": "list",
+            "visible": true,
+            "field": "suggested_followup_questions",
+            "item_count": 3
+          }
+        ]
+      },
+      "llm_response_body": {
+        "query": "书中有没有提到量子纠缠？",
+        "answer_mode": "refuse",
+        "answer_text": "当前未检索到足以支撑回答的依据，暂不提供答案。",
+        "primary_evidence": [],
+        "secondary_evidence": [],
+        "review_materials": [],
+        "disclaimer": "当前为统一拒答结构，不输出推测性答案。",
+        "review_notice": null,
+        "refuse_reason": "未检索到足以支撑回答的主证据、辅助证据或可供核对的风险材料。",
+        "suggested_followup_questions": [
+          "请改问具体条文，例如：某一条文的原文或含义是什么？",
+          "请改问具体方名，例如：黄连汤方的组成或条文是什么？",
+          "请改问书中某个明确术语或概念，例如：某句话出自哪一条？"
+        ],
+        "citations": [],
+        "display_sections": [
+          {
+            "section_id": "answer",
+            "title": "回答",
+            "section_type": "text",
+            "visible": true,
+            "field": "answer_text",
+            "summary": "当前未检索到足以支撑回答的依据，暂不提供答案。"
+          },
+          {
+            "section_id": "review_notice",
+            "title": "核对提示",
+            "section_type": "notice",
+            "visible": false,
+            "field": "review_notice",
+            "summary": ""
+          },
+          {
+            "section_id": "primary_evidence",
+            "title": "主依据",
+            "section_type": "slot_ref",
+            "visible": false,
+            "field": "primary_evidence",
+            "item_count": 0
+          },
+          {
+            "section_id": "secondary_evidence",
+            "title": "补充依据",
+            "section_type": "slot_ref",
+            "visible": false,
+            "field": "secondary_evidence",
+            "item_count": 0
+          },
+          {
+            "section_id": "review_materials",
+            "title": "核对材料",
+            "section_type": "slot_ref",
+            "visible": false,
+            "field": "review_materials",
+            "item_count": 0
+          },
+          {
+            "section_id": "citations",
+            "title": "引用",
+            "section_type": "slot_ref",
+            "visible": false,
+            "field": "citations",
+            "item_count": 0
+          },
+          {
+            "section_id": "refusal_guidance",
+            "title": "改问建议",
+            "section_type": "list",
+            "visible": true,
+            "field": "suggested_followup_questions",
+            "item_count": 3
+          }
+        ]
+      },
+      "llm_debug": {
+        "provider": "Alibaba Cloud Model Studio",
+        "enabled": true,
+        "model": "qwen-plus",
+        "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        "query_text": "书中有没有提到量子纠缠？",
+        "answer_mode": "refuse",
+        "attempted": false,
+        "used_llm": false,
+        "fallback_used": false,
+        "skipped_reason": "refuse_mode",
+        "fallback_reason": null,
+        "answer_source": "baseline_refuse",
+        "baseline_answer_text_excerpt": "当前未检索到足以支撑回答的依据，暂不提供答案。",
+        "attempts": []
+      },
+      "answer_text_analysis": {
+        "line_count": 1,
+        "summary_line": "当前未检索到足以支撑回答的依据，暂不提供答案。",
+        "point_count": 0,
+        "point_lines": [],
+        "conclusion_has_refs": false,
+        "all_lines_have_refs": false,
+        "numbered_points_valid": true,
+        "evidence_refs": []
+      },
+      "checks": {
+        "payload_contract_kept": true,
+        "mode_kept": true,
+        "primary_unchanged": true,
+        "secondary_unchanged": true,
+        "review_unchanged": true,
+        "citations_unchanged": true,
+        "answer_text_changed": false,
+        "all_lines_have_refs": false,
+        "point_count_ok": true,
+        "numbered_points_valid": true,
+        "llm_attempted_when_expected": true
+      }
+    },
+    {
+      "case_id": "explainer_taiyang_management",
+      "label": "explainer",
+      "query": "太阳病应该怎么办？",
+      "expected_mode": "strong",
+      "baseline_response_body": {
+        "query": "太阳病应该怎么办？",
+        "answer_mode": "strong",
+        "answer_text": "这是一个总括性问题，书中谈“太阳病”并非只有一个固定治法，需要分情况看。\n以下先按当前能稳定抓到的典型分支整理：\n1. 先辨伤寒：先看或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，书中把它单列成一个分支，提示“太阳病”并非只有一种证候。 依据：太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名曰赵本作「为」伤寒。\n2. 葛根汤这一支：若见项背强几几，无汗，恶风，条文多归到“葛根汤”这一支。 依据：太阳病，项背强几几，无汗，恶风，葛根汤主之。\n3. 桂枝汤这一支：若见头痛发热，汗出恶风者，条文多归到“桂枝汤”这一支。 依据：太阳病，头痛发热，汗出恶风者，赵本无「者」字桂枝汤主之。\n当前回答只列若干典型分支，不等于穷尽全部“太阳病”处理。",
+        "primary_evidence": [
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-008-P-0195",
+            "record_type": "main_passages",
+            "display_role": "primary",
+            "title": "先辨伤寒",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-008",
+            "chapter_title": "辨太阳病脉证并治法上第五",
+            "snippet": "太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名曰赵本作「为」伤寒。",
+            "risk_flags": []
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0002",
+            "record_type": "main_passages",
+            "display_role": "primary",
+            "title": "葛根汤这一支",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "snippet": "太阳病，项背强几几，无汗，恶风，葛根汤主之。",
+            "risk_flags": []
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-008-P-0220",
+            "record_type": "main_passages",
+            "display_role": "primary",
+            "title": "桂枝汤这一支",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-008",
+            "chapter_title": "辨太阳病脉证并治法上第五",
+            "snippet": "太阳病，头痛发热，汗出恶风者，赵本无「者」字桂枝汤主之。",
+            "risk_flags": []
+          }
+        ],
+        "secondary_evidence": [
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0318",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "抵当汤这一支",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "snippet": "太阳病，身黄脉沉结，少腹硬，小便不利者，为无血也；小便自利，其人如狂者，血证谛也，抵当汤主之。",
+            "risk_flags": []
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-011-P-0175",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "调胃承气汤这一支",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-011",
+            "chapter_title": "辨阳明病脉证并治法第八",
+            "snippet": "太阳病三日，发汗不解，蒸蒸发热者，属胃也，调胃承气汤主之。",
+            "risk_flags": []
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-011-P-0179",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "小承气汤这一支",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-011",
+            "chapter_title": "辨阳明病脉证并治法第八",
+            "snippet": "太阳病，若吐、若下、若发汗，赵本有「后」字微烦，小便数，大便因硬者，与小承气汤和之愈。",
+            "risk_flags": []
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-008-P-0193",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "先辨中风",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-008",
+            "chapter_title": "辨太阳病脉证并治法上第五",
+            "snippet": "太阳病，发热，汗出，恶风，脉缓者，名为中风。",
+            "risk_flags": []
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-011-P-0161",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "五苓散这一支",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-011",
+            "chapter_title": "辨阳明病脉证并治法第八",
+            "snippet": "太阳病，寸缓、关浮、尺弱，其人发热汗出，复恶寒，不呕，但心下痞者，此以医下之也。如其不下者，病患不恶寒而渴者，此转属阳明也。小便数者，大便必硬，不更衣十日，无所苦也。渴欲饮水，少少与之，但以法救之。渴者，宜五苓散。赵本有「五苓散方」详见卷三",
+            "risk_flags": []
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0275",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "太阳病中风以火劫发汗邪风被火热血气流溢失其常度两阳相熏灼其身发黄阳盛则欲衄阴虚则小便难阴阳俱虚竭身体则枯燥但头汗出剂颈而还腹满微喘口乾咽烂或不大便久则谵语甚者至哕手足躁扰捻衣摸床小便利者其人可治",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "snippet": "太阳病中风，以火劫发汗，邪风被火热，血气流溢，失其常度，两阳相熏灼，其身发黄。阳盛则欲衄，阴虚则小便难，阴阳俱虚竭，身体则枯燥。但头汗出，剂颈而还，腹满微喘，口乾咽烂，或不大便，久则谵语，甚者至哕，手足躁扰，捻衣摸床，小便利者，其人可治。",
+            "risk_flags": [
+              "topic_mismatch_demoted"
+            ]
+          }
+        ],
+        "review_materials": [
+          {
+            "record_id": "full:passages:ZJSHL-CH-009-P-0306",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "太阳病吐之但太阳病当恶寒今反不恶寒不欲近衣此为吐之内烦也",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "snippet": "太阳病吐之，但太阳病当恶寒，今反不恶寒，不欲近衣，此为吐之内烦也。",
+            "risk_flags": [
+              "ledger_mixed_roles",
+              "ambiguous_source"
+            ]
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-007-P-0164",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "太阳病发汗太多因致痓",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-007",
+            "chapter_title": "辨痓湿暍脉证第四",
+            "snippet": "太阳病，发汗太多，因致痓。",
+            "risk_flags": [
+              "ledger_mixed_roles",
+              "ambiguous_source"
+            ]
+          }
+        ],
+        "disclaimer": "主证据优先；补充依据与核对材料不参与主结论判定。",
+        "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
+        "refuse_reason": null,
+        "suggested_followup_questions": [],
+        "citations": [
+          {
+            "citation_id": "c1",
+            "record_id": "safe:main_passages:ZJSHL-CH-008-P-0195",
+            "record_type": "main_passages",
+            "title": "先辨伤寒",
+            "evidence_level": "A",
+            "snippet": "太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名曰赵本作「为」伤寒。",
+            "chapter_id": "ZJSHL-CH-008",
+            "chapter_title": "辨太阳病脉证并治法上第五",
+            "citation_role": "primary"
+          },
+          {
+            "citation_id": "c2",
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0002",
+            "record_type": "main_passages",
+            "title": "葛根汤这一支",
+            "evidence_level": "A",
+            "snippet": "太阳病，项背强几几，无汗，恶风，葛根汤主之。",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "citation_role": "primary"
+          },
+          {
+            "citation_id": "c3",
+            "record_id": "safe:main_passages:ZJSHL-CH-008-P-0220",
+            "record_type": "main_passages",
+            "title": "桂枝汤这一支",
+            "evidence_level": "A",
+            "snippet": "太阳病，头痛发热，汗出恶风者，赵本无「者」字桂枝汤主之。",
+            "chapter_id": "ZJSHL-CH-008",
+            "chapter_title": "辨太阳病脉证并治法上第五",
+            "citation_role": "primary"
+          }
+        ],
+        "display_sections": [
+          {
+            "section_id": "answer",
+            "title": "回答",
+            "section_type": "text",
+            "visible": true,
+            "field": "answer_text",
+            "summary": "这是一个总括性问题，书中谈“太阳病”并非只有一个固定治法，需要分情况看。 以下先按当前能稳定抓到..."
+          },
+          {
+            "section_id": "review_notice",
+            "title": "核对提示",
+            "section_type": "notice",
+            "visible": true,
+            "field": "review_notice",
+            "summary": "以下补充依据与核对材料仅作说明，不作为主依据。"
+          },
+          {
+            "section_id": "primary_evidence",
+            "title": "主依据",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "primary_evidence",
+            "item_count": 3
+          },
+          {
+            "section_id": "secondary_evidence",
+            "title": "补充依据",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "secondary_evidence",
+            "item_count": 6
+          },
+          {
+            "section_id": "review_materials",
+            "title": "核对材料",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "review_materials",
+            "item_count": 2
+          },
+          {
+            "section_id": "citations",
+            "title": "引用",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "citations",
+            "item_count": 3
+          },
+          {
+            "section_id": "refusal_guidance",
+            "title": "改问建议",
+            "section_type": "list",
+            "visible": false,
+            "field": "suggested_followup_questions",
+            "item_count": 0
+          }
+        ]
+      },
+      "llm_response_body": {
+        "query": "太阳病应该怎么办？",
+        "answer_mode": "strong",
+        "answer_text": "太阳病的处理须据其具体脉证分型而定，不可一概而论 [E1]。\n1. 太阳病以必恶寒、体痛、呕逆、脉阴阳俱紧为基本识别要点，是伤寒之名的确立依据 [E1]。\n2. 若兼见项背强几几、无汗、恶风，则属太阳伤寒兼经气不利，当用葛根汤主治 [E2]。\n3. 若见头痛、发热、汗出、恶风，则属太阳中风证，当用桂枝汤主治 [E3]。",
+        "primary_evidence": [
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-008-P-0195",
+            "record_type": "main_passages",
+            "display_role": "primary",
+            "title": "先辨伤寒",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-008",
+            "chapter_title": "辨太阳病脉证并治法上第五",
+            "snippet": "太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名曰赵本作「为」伤寒。",
+            "risk_flags": []
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0002",
+            "record_type": "main_passages",
+            "display_role": "primary",
+            "title": "葛根汤这一支",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "snippet": "太阳病，项背强几几，无汗，恶风，葛根汤主之。",
+            "risk_flags": []
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-008-P-0220",
+            "record_type": "main_passages",
+            "display_role": "primary",
+            "title": "桂枝汤这一支",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-008",
+            "chapter_title": "辨太阳病脉证并治法上第五",
+            "snippet": "太阳病，头痛发热，汗出恶风者，赵本无「者」字桂枝汤主之。",
+            "risk_flags": []
+          }
+        ],
+        "secondary_evidence": [
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0318",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "抵当汤这一支",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "snippet": "太阳病，身黄脉沉结，少腹硬，小便不利者，为无血也；小便自利，其人如狂者，血证谛也，抵当汤主之。",
+            "risk_flags": []
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-011-P-0175",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "调胃承气汤这一支",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-011",
+            "chapter_title": "辨阳明病脉证并治法第八",
+            "snippet": "太阳病三日，发汗不解，蒸蒸发热者，属胃也，调胃承气汤主之。",
+            "risk_flags": []
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-011-P-0179",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "小承气汤这一支",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-011",
+            "chapter_title": "辨阳明病脉证并治法第八",
+            "snippet": "太阳病，若吐、若下、若发汗，赵本有「后」字微烦，小便数，大便因硬者，与小承气汤和之愈。",
+            "risk_flags": []
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-008-P-0193",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "先辨中风",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-008",
+            "chapter_title": "辨太阳病脉证并治法上第五",
+            "snippet": "太阳病，发热，汗出，恶风，脉缓者，名为中风。",
+            "risk_flags": []
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-011-P-0161",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "五苓散这一支",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-011",
+            "chapter_title": "辨阳明病脉证并治法第八",
+            "snippet": "太阳病，寸缓、关浮、尺弱，其人发热汗出，复恶寒，不呕，但心下痞者，此以医下之也。如其不下者，病患不恶寒而渴者，此转属阳明也。小便数者，大便必硬，不更衣十日，无所苦也。渴欲饮水，少少与之，但以法救之。渴者，宜五苓散。赵本有「五苓散方」详见卷三",
+            "risk_flags": []
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0275",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "太阳病中风以火劫发汗邪风被火热血气流溢失其常度两阳相熏灼其身发黄阳盛则欲衄阴虚则小便难阴阳俱虚竭身体则枯燥但头汗出剂颈而还腹满微喘口乾咽烂或不大便久则谵语甚者至哕手足躁扰捻衣摸床小便利者其人可治",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "snippet": "太阳病中风，以火劫发汗，邪风被火热，血气流溢，失其常度，两阳相熏灼，其身发黄。阳盛则欲衄，阴虚则小便难，阴阳俱虚竭，身体则枯燥。但头汗出，剂颈而还，腹满微喘，口乾咽烂，或不大便，久则谵语，甚者至哕，手足躁扰，捻衣摸床，小便利者，其人可治。",
+            "risk_flags": [
+              "topic_mismatch_demoted"
+            ]
+          }
+        ],
+        "review_materials": [
+          {
+            "record_id": "full:passages:ZJSHL-CH-009-P-0306",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "太阳病吐之但太阳病当恶寒今反不恶寒不欲近衣此为吐之内烦也",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "snippet": "太阳病吐之，但太阳病当恶寒，今反不恶寒，不欲近衣，此为吐之内烦也。",
+            "risk_flags": [
+              "ledger_mixed_roles",
+              "ambiguous_source"
+            ]
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-007-P-0164",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "太阳病发汗太多因致痓",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-007",
+            "chapter_title": "辨痓湿暍脉证第四",
+            "snippet": "太阳病，发汗太多，因致痓。",
+            "risk_flags": [
+              "ledger_mixed_roles",
+              "ambiguous_source"
+            ]
+          }
+        ],
+        "disclaimer": "主证据优先；补充依据与核对材料不参与主结论判定。",
+        "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
+        "refuse_reason": null,
+        "suggested_followup_questions": [],
+        "citations": [
+          {
+            "citation_id": "c1",
+            "record_id": "safe:main_passages:ZJSHL-CH-008-P-0195",
+            "record_type": "main_passages",
+            "title": "先辨伤寒",
+            "evidence_level": "A",
+            "snippet": "太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名曰赵本作「为」伤寒。",
+            "chapter_id": "ZJSHL-CH-008",
+            "chapter_title": "辨太阳病脉证并治法上第五",
+            "citation_role": "primary"
+          },
+          {
+            "citation_id": "c2",
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0002",
+            "record_type": "main_passages",
+            "title": "葛根汤这一支",
+            "evidence_level": "A",
+            "snippet": "太阳病，项背强几几，无汗，恶风，葛根汤主之。",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "citation_role": "primary"
+          },
+          {
+            "citation_id": "c3",
+            "record_id": "safe:main_passages:ZJSHL-CH-008-P-0220",
+            "record_type": "main_passages",
+            "title": "桂枝汤这一支",
+            "evidence_level": "A",
+            "snippet": "太阳病，头痛发热，汗出恶风者，赵本无「者」字桂枝汤主之。",
+            "chapter_id": "ZJSHL-CH-008",
+            "chapter_title": "辨太阳病脉证并治法上第五",
+            "citation_role": "primary"
+          }
+        ],
+        "display_sections": [
+          {
+            "section_id": "answer",
+            "title": "回答",
+            "section_type": "text",
+            "visible": true,
+            "field": "answer_text",
+            "summary": "太阳病的处理须据其具体脉证分型而定，不可一概而论 [E1]。 1. 太阳病以必恶寒、体痛、呕逆、..."
+          },
+          {
+            "section_id": "review_notice",
+            "title": "核对提示",
+            "section_type": "notice",
+            "visible": true,
+            "field": "review_notice",
+            "summary": "以下补充依据与核对材料仅作说明，不作为主依据。"
+          },
+          {
+            "section_id": "primary_evidence",
+            "title": "主依据",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "primary_evidence",
+            "item_count": 3
+          },
+          {
+            "section_id": "secondary_evidence",
+            "title": "补充依据",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "secondary_evidence",
+            "item_count": 6
+          },
+          {
+            "section_id": "review_materials",
+            "title": "核对材料",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "review_materials",
+            "item_count": 2
+          },
+          {
+            "section_id": "citations",
+            "title": "引用",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "citations",
+            "item_count": 3
+          },
+          {
+            "section_id": "refusal_guidance",
+            "title": "改问建议",
+            "section_type": "list",
+            "visible": false,
+            "field": "suggested_followup_questions",
+            "item_count": 0
+          }
+        ]
+      },
+      "llm_debug": {
+        "provider": "Alibaba Cloud Model Studio",
+        "enabled": true,
+        "model": "qwen-plus",
+        "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        "query_text": "太阳病应该怎么办？",
+        "answer_mode": "strong",
+        "attempted": true,
+        "used_llm": true,
+        "fallback_used": false,
+        "skipped_reason": null,
+        "fallback_reason": null,
+        "answer_source": "llm",
+        "baseline_answer_text_excerpt": "这是一个总括性问题，书中谈“太阳病”并非只有一个固定治法，需要分情况看。 以下先按当前能稳定抓到的典型分支整理： 1. 先辨伤寒：先看或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，书中把它单列成一个分支，提示“太阳病”并非只有一种证候。 依据：太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名曰赵...",
+        "attempts": [
+          {
+            "attempt": 1,
+            "strict_retry": false,
+            "status": "passed",
+            "rendered_answer_text_excerpt": "太阳病的处理须据其具体脉证分型而定，不可一概而论 [E1]。 1. 太阳病以必恶寒、体痛、呕逆、脉阴阳俱紧为基本识别要点，是伤寒之名的确立依据 [E1]。 2. 若兼见项背强几几、无汗、恶风，则属太阳伤寒兼经气不利，当用葛根汤主治 [E2]。 3. 若见头痛、发热、汗出、恶风，则属太阳中风证，当用桂枝汤主治 [E3]。"
+          }
+        ],
+        "evidence_pack_summary": {
+          "primary": [
+            "E1",
+            "E2",
+            "E3"
+          ],
+          "secondary": [
+            "E4",
+            "E5",
+            "E6"
+          ],
+          "review": [
+            "E7",
+            "E8"
+          ]
+        },
+        "rendered_answer_text_excerpt": "太阳病的处理须据其具体脉证分型而定，不可一概而论 [E1]。 1. 太阳病以必恶寒、体痛、呕逆、脉阴阳俱紧为基本识别要点，是伤寒之名的确立依据 [E1]。 2. 若兼见项背强几几、无汗、恶风，则属太阳伤寒兼经气不利，当用葛根汤主治 [E2]。 3. 若见头痛、发热、汗出、恶风，则属太阳中风证，当用桂枝汤主治 [E3]。"
+      },
+      "answer_text_analysis": {
+        "line_count": 4,
+        "summary_line": "太阳病的处理须据其具体脉证分型而定，不可一概而论 [E1]。",
+        "point_count": 3,
+        "point_lines": [
+          "1. 太阳病以必恶寒、体痛、呕逆、脉阴阳俱紧为基本识别要点，是伤寒之名的确立依据 [E1]。",
+          "2. 若兼见项背强几几、无汗、恶风，则属太阳伤寒兼经气不利，当用葛根汤主治 [E2]。",
+          "3. 若见头痛、发热、汗出、恶风，则属太阳中风证，当用桂枝汤主治 [E3]。"
+        ],
+        "conclusion_has_refs": true,
+        "all_lines_have_refs": true,
+        "numbered_points_valid": true,
+        "evidence_refs": [
+          "E1",
+          "E2",
+          "E3"
+        ]
+      },
+      "checks": {
+        "payload_contract_kept": true,
+        "mode_kept": true,
+        "primary_unchanged": true,
+        "secondary_unchanged": true,
+        "review_unchanged": true,
+        "citations_unchanged": true,
+        "answer_text_changed": true,
+        "all_lines_have_refs": true,
+        "point_count_ok": true,
+        "numbered_points_valid": true,
+        "llm_attempted_when_expected": true
+      }
+    },
+    {
+      "case_id": "explainer_huanglian_composition",
+      "label": "explainer",
+      "query": "黄连汤方由什么组成？",
+      "expected_mode": "strong",
+      "baseline_response_body": {
+        "query": "黄连汤方由什么组成？",
+        "answer_mode": "strong",
+        "answer_text": "根据当前主依据，黄连汤方的组成可先按方文直读：\n1. 黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。\n2. 味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温",
+        "primary_evidence": [
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
+            "record_type": "main_passages",
+            "display_role": "primary",
+            "title": "黄连汤方 · 方文组成",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。",
+            "risk_flags": []
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0146",
+            "record_type": "main_passages",
+            "display_role": "primary",
+            "title": "黄连汤方 · 方文组成",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温",
+            "risk_flags": []
+          }
+        ],
+        "secondary_evidence": [],
+        "review_materials": [
+          {
+            "record_id": "full:passages:ZJSHL-CH-010-P-0145",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "黄连汤方",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。",
+            "risk_flags": [
+              "ledger_mixed_roles"
+            ]
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-010-P-0146",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "味甘温半夏半升洗味辛医统本作甘温大枣十二枚擘味甘温",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温",
+            "risk_flags": [
+              "ledger_mixed_roles"
+            ]
+          }
+        ],
+        "disclaimer": "主证据优先；补充依据与核对材料不参与主结论判定。",
+        "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
+        "refuse_reason": null,
+        "suggested_followup_questions": [],
+        "citations": [
+          {
+            "citation_id": "c1",
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
+            "record_type": "main_passages",
+            "title": "黄连汤方 · 方文组成",
+            "evidence_level": "A",
+            "snippet": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "citation_role": "primary"
+          },
+          {
+            "citation_id": "c2",
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0146",
+            "record_type": "main_passages",
+            "title": "黄连汤方 · 方文组成",
+            "evidence_level": "A",
+            "snippet": "味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "citation_role": "primary"
+          }
+        ],
+        "display_sections": [
+          {
+            "section_id": "answer",
+            "title": "回答",
+            "section_type": "text",
+            "visible": true,
+            "field": "answer_text",
+            "summary": "根据当前主依据，黄连汤方的组成可先按方文直读： 1. 黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜..."
+          },
+          {
+            "section_id": "review_notice",
+            "title": "核对提示",
+            "section_type": "notice",
+            "visible": true,
+            "field": "review_notice",
+            "summary": "以下补充依据与核对材料仅作说明，不作为主依据。"
+          },
+          {
+            "section_id": "primary_evidence",
+            "title": "主依据",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "primary_evidence",
+            "item_count": 2
+          },
+          {
+            "section_id": "secondary_evidence",
+            "title": "补充依据",
+            "section_type": "slot_ref",
+            "visible": false,
+            "field": "secondary_evidence",
+            "item_count": 0
+          },
+          {
+            "section_id": "review_materials",
+            "title": "核对材料",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "review_materials",
+            "item_count": 2
+          },
+          {
+            "section_id": "citations",
+            "title": "引用",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "citations",
+            "item_count": 2
+          },
+          {
+            "section_id": "refusal_guidance",
+            "title": "改问建议",
+            "section_type": "list",
+            "visible": false,
+            "field": "suggested_followup_questions",
+            "item_count": 0
+          }
+        ]
+      },
+      "llm_response_body": {
+        "query": "黄连汤方由什么组成？",
+        "answer_mode": "strong",
+        "answer_text": "黄连汤方由黄连、炙甘草、乾姜、桂枝、人参、半夏、大枣七味药组成 [E1][E2]。\n1. 黄连、炙甘草、乾姜、桂枝剂量均为三两，人参为二两 [E1]。\n2. 半夏用量为半升（洗），大枣为十二枚（擘） [E2]。\n3. 方中逐味标注性味，如黄连味苦寒，炙甘草味甘平，乾姜与桂枝均味辛热，人参味甘温，半夏味辛（医统本作甘温），大枣味甘温 [E1][E2]。",
+        "primary_evidence": [
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
+            "record_type": "main_passages",
+            "display_role": "primary",
+            "title": "黄连汤方 · 方文组成",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。",
+            "risk_flags": []
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0146",
+            "record_type": "main_passages",
+            "display_role": "primary",
+            "title": "黄连汤方 · 方文组成",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温",
+            "risk_flags": []
+          }
+        ],
+        "secondary_evidence": [],
+        "review_materials": [
+          {
+            "record_id": "full:passages:ZJSHL-CH-010-P-0145",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "黄连汤方",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。",
+            "risk_flags": [
+              "ledger_mixed_roles"
+            ]
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-010-P-0146",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "味甘温半夏半升洗味辛医统本作甘温大枣十二枚擘味甘温",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温",
+            "risk_flags": [
+              "ledger_mixed_roles"
+            ]
+          }
+        ],
+        "disclaimer": "主证据优先；补充依据与核对材料不参与主结论判定。",
+        "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
+        "refuse_reason": null,
+        "suggested_followup_questions": [],
+        "citations": [
+          {
+            "citation_id": "c1",
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
+            "record_type": "main_passages",
+            "title": "黄连汤方 · 方文组成",
+            "evidence_level": "A",
+            "snippet": "黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "citation_role": "primary"
+          },
+          {
+            "citation_id": "c2",
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0146",
+            "record_type": "main_passages",
+            "title": "黄连汤方 · 方文组成",
+            "evidence_level": "A",
+            "snippet": "味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "citation_role": "primary"
+          }
+        ],
+        "display_sections": [
+          {
+            "section_id": "answer",
+            "title": "回答",
+            "section_type": "text",
+            "visible": true,
+            "field": "answer_text",
+            "summary": "黄连汤方由黄连、炙甘草、乾姜、桂枝、人参、半夏、大枣七味药组成 [E1][E2]。 1. 黄连、..."
+          },
+          {
+            "section_id": "review_notice",
+            "title": "核对提示",
+            "section_type": "notice",
+            "visible": true,
+            "field": "review_notice",
+            "summary": "以下补充依据与核对材料仅作说明，不作为主依据。"
+          },
+          {
+            "section_id": "primary_evidence",
+            "title": "主依据",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "primary_evidence",
+            "item_count": 2
+          },
+          {
+            "section_id": "secondary_evidence",
+            "title": "补充依据",
+            "section_type": "slot_ref",
+            "visible": false,
+            "field": "secondary_evidence",
+            "item_count": 0
+          },
+          {
+            "section_id": "review_materials",
+            "title": "核对材料",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "review_materials",
+            "item_count": 2
+          },
+          {
+            "section_id": "citations",
+            "title": "引用",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "citations",
+            "item_count": 2
+          },
+          {
+            "section_id": "refusal_guidance",
+            "title": "改问建议",
+            "section_type": "list",
+            "visible": false,
+            "field": "suggested_followup_questions",
+            "item_count": 0
+          }
+        ]
+      },
+      "llm_debug": {
+        "provider": "Alibaba Cloud Model Studio",
+        "enabled": true,
+        "model": "qwen-plus",
+        "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        "query_text": "黄连汤方由什么组成？",
+        "answer_mode": "strong",
+        "attempted": true,
+        "used_llm": true,
+        "fallback_used": false,
+        "skipped_reason": null,
+        "fallback_reason": null,
+        "answer_source": "llm",
+        "baseline_answer_text_excerpt": "根据当前主依据，黄连汤方的组成可先按方文直读： 1. 黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。 2. 味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温",
+        "attempts": [
+          {
+            "attempt": 1,
+            "strict_retry": false,
+            "status": "passed",
+            "rendered_answer_text_excerpt": "黄连汤方由黄连、炙甘草、乾姜、桂枝、人参、半夏、大枣七味药组成 [E1][E2]。 1. 黄连、炙甘草、乾姜、桂枝剂量均为三两，人参为二两 [E1]。 2. 半夏用量为半升（洗），大枣为十二枚（擘） [E2]。 3. 方中逐味标注性味，如黄连味苦寒，炙甘草味甘平，乾姜与桂枝均味辛热，人参味甘温，半夏味辛（医统本作甘温）..."
+          }
+        ],
+        "evidence_pack_summary": {
+          "primary": [
+            "E1",
+            "E2"
+          ],
+          "secondary": [],
+          "review": [
+            "E3",
+            "E4"
+          ]
+        },
+        "rendered_answer_text_excerpt": "黄连汤方由黄连、炙甘草、乾姜、桂枝、人参、半夏、大枣七味药组成 [E1][E2]。 1. 黄连、炙甘草、乾姜、桂枝剂量均为三两，人参为二两 [E1]。 2. 半夏用量为半升（洗），大枣为十二枚（擘） [E2]。 3. 方中逐味标注性味，如黄连味苦寒，炙甘草味甘平，乾姜与桂枝均味辛热，人参味甘温，半夏味辛（医统本作甘温）..."
+      },
+      "answer_text_analysis": {
+        "line_count": 4,
+        "summary_line": "黄连汤方由黄连、炙甘草、乾姜、桂枝、人参、半夏、大枣七味药组成 [E1][E2]。",
+        "point_count": 3,
+        "point_lines": [
+          "1. 黄连、炙甘草、乾姜、桂枝剂量均为三两，人参为二两 [E1]。",
+          "2. 半夏用量为半升（洗），大枣为十二枚（擘） [E2]。",
+          "3. 方中逐味标注性味，如黄连味苦寒，炙甘草味甘平，乾姜与桂枝均味辛热，人参味甘温，半夏味辛（医统本作甘温），大枣味甘温 [E1][E2]。"
+        ],
+        "conclusion_has_refs": true,
+        "all_lines_have_refs": true,
+        "numbered_points_valid": true,
+        "evidence_refs": [
+          "E1",
+          "E2"
+        ]
+      },
+      "checks": {
+        "payload_contract_kept": true,
+        "mode_kept": true,
+        "primary_unchanged": true,
+        "secondary_unchanged": true,
+        "review_unchanged": true,
+        "citations_unchanged": true,
+        "answer_text_changed": true,
+        "all_lines_have_refs": true,
+        "point_count_ok": true,
+        "numbered_points_valid": true,
+        "llm_attempted_when_expected": true
+      }
+    },
+    {
+      "case_id": "explainer_guizhi_plus_fuzi_composition",
+      "label": "explainer",
+      "query": "桂枝加附子汤方由什么组成？",
+      "expected_mode": "strong",
+      "baseline_response_body": {
+        "query": "桂枝加附子汤方由什么组成？",
+        "answer_mode": "strong",
+        "answer_text": "根据当前主依据，桂枝加附子汤方的组成可先按方文直读：\n1. 桂枝加附子汤方：于桂枝汤方内，加附子一枚，炮，去皮，破八片，馀根据前法。术附汤方，附于此方内，去桂枝，加白术四两，根据前法。",
+        "primary_evidence": [
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-025-P-0004",
+            "record_type": "main_passages",
+            "display_role": "primary",
+            "title": "桂枝加附子汤方 · 方文组成",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "snippet": "桂枝加附子汤方：于桂枝汤方内，加附子一枚，炮，去皮，破八片，馀根据前法。术附汤方，附于此方内，去桂枝，加白术四两，根据前法。",
+            "risk_flags": []
+          }
+        ],
+        "secondary_evidence": [],
+        "review_materials": [
+          {
+            "record_id": "full:passages:ZJSHL-CH-025-P-0004",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "桂枝加附子汤方",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "snippet": "桂枝加附子汤方：于桂枝汤方内，加附子一枚，炮，去皮，破八片，馀根据前法。术附汤方，附于此方内，去桂枝，加白术四两，根据前法。",
+            "risk_flags": [
+              "ledger_mixed_roles"
+            ]
+          }
+        ],
+        "disclaimer": "主证据优先；补充依据与核对材料不参与主结论判定。",
+        "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
+        "refuse_reason": null,
+        "suggested_followup_questions": [],
+        "citations": [
+          {
+            "citation_id": "c1",
+            "record_id": "safe:main_passages:ZJSHL-CH-025-P-0004",
+            "record_type": "main_passages",
+            "title": "桂枝加附子汤方 · 方文组成",
+            "evidence_level": "A",
+            "snippet": "桂枝加附子汤方：于桂枝汤方内，加附子一枚，炮，去皮，破八片，馀根据前法。术附汤方，附于此方内，去桂枝，加白术四两，根据前法。",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "citation_role": "primary"
+          }
+        ],
+        "display_sections": [
+          {
+            "section_id": "answer",
+            "title": "回答",
+            "section_type": "text",
+            "visible": true,
+            "field": "answer_text",
+            "summary": "根据当前主依据，桂枝加附子汤方的组成可先按方文直读： 1. 桂枝加附子汤方：于桂枝汤方内，加附子..."
+          },
+          {
+            "section_id": "review_notice",
+            "title": "核对提示",
+            "section_type": "notice",
+            "visible": true,
+            "field": "review_notice",
+            "summary": "以下补充依据与核对材料仅作说明，不作为主依据。"
+          },
+          {
+            "section_id": "primary_evidence",
+            "title": "主依据",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "primary_evidence",
+            "item_count": 1
+          },
+          {
+            "section_id": "secondary_evidence",
+            "title": "补充依据",
+            "section_type": "slot_ref",
+            "visible": false,
+            "field": "secondary_evidence",
+            "item_count": 0
+          },
+          {
+            "section_id": "review_materials",
+            "title": "核对材料",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "review_materials",
+            "item_count": 1
+          },
+          {
+            "section_id": "citations",
+            "title": "引用",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "citations",
+            "item_count": 1
+          },
+          {
+            "section_id": "refusal_guidance",
+            "title": "改问建议",
+            "section_type": "list",
+            "visible": false,
+            "field": "suggested_followup_questions",
+            "item_count": 0
+          }
+        ]
+      },
+      "llm_response_body": {
+        "query": "桂枝加附子汤方由什么组成？",
+        "answer_mode": "strong",
+        "answer_text": "桂枝加附子汤由桂枝汤原方加附子一枚（炮，去皮，破八片）组成 [E1]。\n1. 该方以桂枝汤为基础方，未改变其原有药物结构 [E1]。\n2. 增加的药物仅为附子一枚，且明确要求炮制、去皮、破八片 [E1]。\n3. 其余药物配伍、用量及煎服方法均遵循桂枝汤原法 [E1]。",
+        "primary_evidence": [
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-025-P-0004",
+            "record_type": "main_passages",
+            "display_role": "primary",
+            "title": "桂枝加附子汤方 · 方文组成",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "snippet": "桂枝加附子汤方：于桂枝汤方内，加附子一枚，炮，去皮，破八片，馀根据前法。术附汤方，附于此方内，去桂枝，加白术四两，根据前法。",
+            "risk_flags": []
+          }
+        ],
+        "secondary_evidence": [],
+        "review_materials": [
+          {
+            "record_id": "full:passages:ZJSHL-CH-025-P-0004",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "桂枝加附子汤方",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "snippet": "桂枝加附子汤方：于桂枝汤方内，加附子一枚，炮，去皮，破八片，馀根据前法。术附汤方，附于此方内，去桂枝，加白术四两，根据前法。",
+            "risk_flags": [
+              "ledger_mixed_roles"
+            ]
+          }
+        ],
+        "disclaimer": "主证据优先；补充依据与核对材料不参与主结论判定。",
+        "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
+        "refuse_reason": null,
+        "suggested_followup_questions": [],
+        "citations": [
+          {
+            "citation_id": "c1",
+            "record_id": "safe:main_passages:ZJSHL-CH-025-P-0004",
+            "record_type": "main_passages",
+            "title": "桂枝加附子汤方 · 方文组成",
+            "evidence_level": "A",
+            "snippet": "桂枝加附子汤方：于桂枝汤方内，加附子一枚，炮，去皮，破八片，馀根据前法。术附汤方，附于此方内，去桂枝，加白术四两，根据前法。",
+            "chapter_id": "ZJSHL-CH-025",
+            "chapter_title": "《卷内音释，上卷已有。》",
+            "citation_role": "primary"
+          }
+        ],
+        "display_sections": [
+          {
+            "section_id": "answer",
+            "title": "回答",
+            "section_type": "text",
+            "visible": true,
+            "field": "answer_text",
+            "summary": "桂枝加附子汤由桂枝汤原方加附子一枚（炮，去皮，破八片）组成 [E1]。 1. 该方以桂枝汤为基础..."
+          },
+          {
+            "section_id": "review_notice",
+            "title": "核对提示",
+            "section_type": "notice",
+            "visible": true,
+            "field": "review_notice",
+            "summary": "以下补充依据与核对材料仅作说明，不作为主依据。"
+          },
+          {
+            "section_id": "primary_evidence",
+            "title": "主依据",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "primary_evidence",
+            "item_count": 1
+          },
+          {
+            "section_id": "secondary_evidence",
+            "title": "补充依据",
+            "section_type": "slot_ref",
+            "visible": false,
+            "field": "secondary_evidence",
+            "item_count": 0
+          },
+          {
+            "section_id": "review_materials",
+            "title": "核对材料",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "review_materials",
+            "item_count": 1
+          },
+          {
+            "section_id": "citations",
+            "title": "引用",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "citations",
+            "item_count": 1
+          },
+          {
+            "section_id": "refusal_guidance",
+            "title": "改问建议",
+            "section_type": "list",
+            "visible": false,
+            "field": "suggested_followup_questions",
+            "item_count": 0
+          }
+        ]
+      },
+      "llm_debug": {
+        "provider": "Alibaba Cloud Model Studio",
+        "enabled": true,
+        "model": "qwen-plus",
+        "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        "query_text": "桂枝加附子汤方由什么组成？",
+        "answer_mode": "strong",
+        "attempted": true,
+        "used_llm": true,
+        "fallback_used": false,
+        "skipped_reason": null,
+        "fallback_reason": null,
+        "answer_source": "llm",
+        "baseline_answer_text_excerpt": "根据当前主依据，桂枝加附子汤方的组成可先按方文直读： 1. 桂枝加附子汤方：于桂枝汤方内，加附子一枚，炮，去皮，破八片，馀根据前法。术附汤方，附于此方内，去桂枝，加白术四两，根据前法。",
+        "attempts": [
+          {
+            "attempt": 1,
+            "strict_retry": false,
+            "status": "passed",
+            "rendered_answer_text_excerpt": "桂枝加附子汤由桂枝汤原方加附子一枚（炮，去皮，破八片）组成 [E1]。 1. 该方以桂枝汤为基础方，未改变其原有药物结构 [E1]。 2. 增加的药物仅为附子一枚，且明确要求炮制、去皮、破八片 [E1]。 3. 其余药物配伍、用量及煎服方法均遵循桂枝汤原法 [E1]。"
+          }
+        ],
+        "evidence_pack_summary": {
+          "primary": [
+            "E1"
+          ],
+          "secondary": [],
+          "review": [
+            "E2"
+          ]
+        },
+        "rendered_answer_text_excerpt": "桂枝加附子汤由桂枝汤原方加附子一枚（炮，去皮，破八片）组成 [E1]。 1. 该方以桂枝汤为基础方，未改变其原有药物结构 [E1]。 2. 增加的药物仅为附子一枚，且明确要求炮制、去皮、破八片 [E1]。 3. 其余药物配伍、用量及煎服方法均遵循桂枝汤原法 [E1]。"
+      },
+      "answer_text_analysis": {
+        "line_count": 4,
+        "summary_line": "桂枝加附子汤由桂枝汤原方加附子一枚（炮，去皮，破八片）组成 [E1]。",
+        "point_count": 3,
+        "point_lines": [
+          "1. 该方以桂枝汤为基础方，未改变其原有药物结构 [E1]。",
+          "2. 增加的药物仅为附子一枚，且明确要求炮制、去皮、破八片 [E1]。",
+          "3. 其余药物配伍、用量及煎服方法均遵循桂枝汤原法 [E1]。"
+        ],
+        "conclusion_has_refs": true,
+        "all_lines_have_refs": true,
+        "numbered_points_valid": true,
+        "evidence_refs": [
+          "E1"
+        ]
+      },
+      "checks": {
+        "payload_contract_kept": true,
+        "mode_kept": true,
+        "primary_unchanged": true,
+        "secondary_unchanged": true,
+        "review_unchanged": true,
+        "citations_unchanged": true,
+        "answer_text_changed": true,
+        "all_lines_have_refs": true,
+        "point_count_ok": true,
+        "numbered_points_valid": true,
+        "llm_attempted_when_expected": true
+      }
+    }
+  ]
+}

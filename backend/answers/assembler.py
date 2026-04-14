@@ -53,6 +53,8 @@ DEFAULT_DEFINITION_QUERY_PRIORITY_RULES_PATH = "config/controlled_replay/definit
 FORMULA_EFFECT_PRIMARY_RULES_ENV_FLAG = "TCM_ENABLE_FORMULA_EFFECT_PRIMARY_RULES_V1"
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 SNIPPET_LIMIT = 120
+LLM_EVIDENCE_TEXT_LIMIT = 280
+LLM_FALLBACK_LINE_LIMIT = 72
 COMPARISON_ENTITY_LIMIT = 2
 COMPARISON_FORMULA_TITLE_LIMIT = 1
 COMPARISON_SUPPORT_LIMIT = 1
@@ -3771,6 +3773,7 @@ class AnswerAssembler:
             "fallback_reason": None,
             "answer_source": "baseline",
             "baseline_answer_text_excerpt": snippet_text(baseline_answer_text, limit=160),
+            "attempts": [],
         }
 
         if answer_mode == "refuse":
@@ -3784,44 +3787,221 @@ class AnswerAssembler:
             self._last_llm_debug = debug
             return baseline_answer_text
 
-        if not baseline_answer_text.strip():
-            debug["skipped_reason"] = "empty_baseline_answer"
+        evidence_pack = self._build_llm_evidence_pack(primary=primary, secondary=secondary, review=review)
+        debug["evidence_pack_summary"] = {
+            "primary": [item["evidence_id"] for item in evidence_pack["primary"]],
+            "secondary": [item["evidence_id"] for item in evidence_pack["secondary"]],
+            "review": [item["evidence_id"] for item in evidence_pack["review"]],
+        }
+        if not evidence_pack["all_items"]:
+            debug["skipped_reason"] = "empty_evidence_pack"
             self._last_llm_debug = debug
             return baseline_answer_text
 
-        prompt = build_answer_text_prompt(
-            config=self._llm_config,
-            query_text=query_text,
-            answer_mode=answer_mode,
-            baseline_answer_text=baseline_answer_text,
-            primary=primary,
-            secondary=secondary,
-            review=review,
-        )
         debug["attempted"] = True
+        candidate_answer_text: str | None = None
+        failure_reason: str | None = None
 
-        try:
-            raw_content = self._llm_client.render_answer_text(
-                system_instruction=prompt.system_instruction,
-                user_prompt=prompt.user_prompt,
-            )
-            candidate_answer_text = parse_answer_text_json(raw_content)
-            validate_rendered_answer_text(
+        for attempt_number in (1, 2):
+            strict_retry = attempt_number == 2
+            prompt = build_answer_text_prompt(
+                config=self._llm_config,
+                query_text=query_text,
                 answer_mode=answer_mode,
-                baseline_answer_text=baseline_answer_text,
-                candidate_answer_text=candidate_answer_text,
+                evidence_pack=evidence_pack,
+                strict_retry=strict_retry,
+                retry_reason=failure_reason,
             )
-        except (ModelStudioLLMError, LLMOutputValidationError) as exc:
+            attempt_debug: dict[str, Any] = {
+                "attempt": attempt_number,
+                "strict_retry": strict_retry,
+            }
+            try:
+                raw_content = self._llm_client.render_answer_text(
+                    system_instruction=prompt.system_instruction,
+                    user_prompt=prompt.user_prompt,
+                )
+                candidate_answer_text = parse_answer_text_json(raw_content)
+                validate_rendered_answer_text(
+                    answer_mode=answer_mode,
+                    candidate_answer_text=candidate_answer_text,
+                    evidence_pack=evidence_pack,
+                )
+            except (ModelStudioLLMError, LLMOutputValidationError) as exc:
+                failure_reason = str(exc)
+                attempt_debug["status"] = "failed"
+                attempt_debug["error"] = failure_reason
+                debug["attempts"].append(attempt_debug)
+                candidate_answer_text = None
+                continue
+
+            attempt_debug["status"] = "passed"
+            attempt_debug["rendered_answer_text_excerpt"] = snippet_text(candidate_answer_text, limit=160)
+            debug["attempts"].append(attempt_debug)
+            break
+
+        if candidate_answer_text is None:
+            fallback_answer_text = self._build_guardrail_fallback_answer_text(
+                query_text=query_text,
+                answer_mode=answer_mode,
+                evidence_pack=evidence_pack,
+            )
             debug["fallback_used"] = True
-            debug["fallback_reason"] = str(exc)
+            debug["fallback_reason"] = failure_reason or "llm_render_failed"
+            debug["answer_source"] = "guardrail_fallback"
+            debug["rendered_answer_text_excerpt"] = snippet_text(fallback_answer_text, limit=160)
             self._last_llm_debug = debug
-            return baseline_answer_text
+            return fallback_answer_text
 
         debug["used_llm"] = True
         debug["answer_source"] = "llm"
         debug["rendered_answer_text_excerpt"] = snippet_text(candidate_answer_text, limit=160)
         self._last_llm_debug = debug
         return candidate_answer_text
+
+    def _clip_llm_evidence_text(self, text: str | None, limit: int = LLM_EVIDENCE_TEXT_LIMIT) -> str:
+        compact = compact_whitespace(text)
+        if len(compact) <= limit:
+            return compact
+        return compact[:limit].rstrip("，,；;：: ") + "..."
+
+    def _build_llm_evidence_pack(
+        self,
+        *,
+        primary: list[dict[str, Any]],
+        secondary: list[dict[str, Any]],
+        review: list[dict[str, Any]],
+    ) -> dict[str, Any]:
+        grouped_rows = [
+            ("primary", primary[: self._llm_config.max_primary_items]),
+            ("secondary", secondary[: self._llm_config.max_secondary_items]),
+            ("review", review[: self._llm_config.max_review_items]),
+        ]
+        counters = {"value": 1}
+        pack: dict[str, Any] = {"primary": [], "secondary": [], "review": [], "all_items": [], "all_evidence_ids": []}
+
+        for group_name, rows in grouped_rows:
+            for item in rows:
+                meta = self._fetch_record_meta(item["record_id"])
+                content = self._clip_llm_evidence_text(meta.get("retrieval_text") or item.get("snippet") or "")
+                evidence_entry = {
+                    "evidence_id": f"E{counters['value']}",
+                    "record_id": item["record_id"],
+                    "source_type": item.get("record_type") or meta.get("source_object") or "unknown",
+                    "slot_name": group_name,
+                    "title": item.get("title") or self._derive_title(meta, content),
+                    "section_label": self._build_llm_section_label(item),
+                    "content": content,
+                }
+                counters["value"] += 1
+                pack[group_name].append(evidence_entry)
+                pack["all_items"].append(evidence_entry)
+                pack["all_evidence_ids"].append(evidence_entry["evidence_id"])
+
+        return pack
+
+    def _build_llm_section_label(self, item: dict[str, Any]) -> str:
+        chapter_title = compact_whitespace(item.get("chapter_title"))
+        chapter_id = compact_whitespace(item.get("chapter_id"))
+        if chapter_title and chapter_id:
+            return f"{chapter_title} ({chapter_id})"
+        if chapter_title:
+            return chapter_title
+        if chapter_id:
+            return chapter_id
+        return "未标明章节"
+
+    def _format_evidence_ref_suffix(self, evidence_ids: list[str]) -> str:
+        ordered_ids = dedupe_strings([evidence_id for evidence_id in evidence_ids if evidence_id])
+        return "".join(f"[{evidence_id}]" for evidence_id in ordered_ids)
+
+    def _extract_guardrail_fragments(self, content: str, *, max_fragments: int) -> list[str]:
+        segments = [segment.strip(" ，,；;：:。") for segment in re.split(r"[。；;]", content) if segment.strip(" ，,；;：:。")]
+        if not segments:
+            compact = compact_whitespace(content)
+            return [snippet_text(compact, limit=LLM_FALLBACK_LINE_LIMIT)] if compact else []
+
+        fragments: list[str] = []
+        for segment in segments:
+            fragments.append(snippet_text(segment, limit=LLM_FALLBACK_LINE_LIMIT))
+            if len(fragments) >= max_fragments:
+                break
+        return fragments
+
+    def _build_guardrail_point_candidates(self, evidence_pack: dict[str, Any]) -> list[dict[str, str]]:
+        candidates: list[dict[str, str]] = []
+        items = evidence_pack["all_items"]
+        for index, item in enumerate(items):
+            fragment_limit = 2 if len(items) == 1 and index == 0 else 1
+            for fragment in self._extract_guardrail_fragments(item["content"], max_fragments=fragment_limit):
+                candidates.append(
+                    {
+                        "slot_name": item["slot_name"],
+                        "evidence_id": item["evidence_id"],
+                        "fragment": fragment,
+                    }
+                )
+        if len(candidates) < 2 and items:
+            first_item = items[0]
+            seen_fragments = {candidate["fragment"] for candidate in candidates}
+            for fragment in self._extract_guardrail_fragments(first_item["content"], max_fragments=4):
+                if fragment in seen_fragments:
+                    continue
+                candidates.append(
+                    {
+                        "slot_name": first_item["slot_name"],
+                        "evidence_id": first_item["evidence_id"],
+                        "fragment": fragment,
+                    }
+                )
+                seen_fragments.add(fragment)
+                if len(candidates) >= 2:
+                    break
+        if len(candidates) == 1 and items:
+            first_item = items[0]
+            title_fragment = snippet_text(first_item["title"], limit=LLM_FALLBACK_LINE_LIMIT)
+            if title_fragment and title_fragment != candidates[0]["fragment"]:
+                candidates.append(
+                    {
+                        "slot_name": first_item["slot_name"],
+                        "evidence_id": first_item["evidence_id"],
+                        "fragment": title_fragment,
+                    }
+                )
+        return candidates[:3]
+
+    def _build_guardrail_fallback_answer_text(
+        self,
+        *,
+        query_text: str,
+        answer_mode: str,
+        evidence_pack: dict[str, Any],
+    ) -> str:
+        point_candidates = self._build_guardrail_point_candidates(evidence_pack)
+        if not point_candidates:
+            return "当前证据不足，暂只能提示继续核对原文。"
+
+        summary_refs = self._format_evidence_ref_suffix([candidate["evidence_id"] for candidate in point_candidates[:2]])
+        if answer_mode == "weak_with_review_notice":
+            lines = [f"基于当前辅助材料，只能先作保守解释，仍需结合原文继续核对。{summary_refs}"]
+        else:
+            query_anchor = snippet_text(query_text, limit=24)
+            lines = [f"为避免越出证据边界，先按现有主依据对“{query_anchor}”作保守整理，仍建议回看原文。{summary_refs}"]
+
+        slot_prefix = {
+            "primary": "主依据写到",
+            "secondary": "辅助材料提到",
+            "review": "核对材料也出现",
+        }
+        for index, candidate in enumerate(point_candidates, start=1):
+            prefix = slot_prefix.get(candidate["slot_name"], "证据写到")
+            suffix = self._format_evidence_ref_suffix([candidate["evidence_id"]])
+            point_text = candidate["fragment"]
+            if answer_mode == "weak_with_review_notice" and candidate["slot_name"] != "primary":
+                lines.append(f"{index}. {prefix}“{point_text}”，可先据此理解，但暂不能视为确定答案。{suffix}")
+            else:
+                lines.append(f"{index}. {prefix}“{point_text}”。{suffix}")
+        return "\n".join(lines)
 
     def _fetch_record_meta(self, record_id: str) -> dict[str, Any]:
         cached = self._record_cache.get(record_id)
