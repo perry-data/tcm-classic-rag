@@ -1,5 +1,5 @@
 {
-  "schema_name": "zjshl_database_schema_mvp_draft",
+  "schema_name": "zjshl_database_schema_v1_draft",
   "version": "2026-04-03",
   "policy_reference": {
     "policy_markdown": "docs/data/06_layered_enablement_policy.md",
@@ -8,7 +8,7 @@
   },
   "source_resolution": {
     "safe": {
-      "artifact": "dist/zjshl_dataset_v2_mvp_safe.zip",
+      "artifact": "dist/zjshl_dataset_v2_v1_safe.zip",
       "load_objects": [
         "main_passages",
         "chunks"
@@ -392,7 +392,7 @@
     {
       "name": "disabled_annotation_links",
       "required": false,
-      "recommended_for_mvp": false,
+      "recommended_for_v1": false,
       "primary_key": "record_id",
       "source_file": "full/annotation_links.json",
       "runtime_role": "audit-only quarantine table",

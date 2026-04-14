@@ -8,7 +8,7 @@ from pathlib import Path
 from threading import Lock
 from typing import Any
 
-DEFAULT_CONVERSATIONS_DB_PATH = "artifacts/chat_history_v1.db"
+DEFAULT_CONVERSATIONS_DB_PATH = "artifacts/runtime/chat_history_v1.db"
 DEFAULT_PLACEHOLDER_TITLE = "新对话"
 MAX_AUTO_TITLE_LENGTH = 24
 MAX_PREVIEW_LENGTH = 72

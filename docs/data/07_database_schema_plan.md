@@ -35,7 +35,7 @@
 - [06_layered_enablement_policy.md](/Users/man_ray/Projects/Python/tcm-classic-rag/docs/data/06_layered_enablement_policy.md)
 - [layered_enablement_policy.json](/Users/man_ray/Projects/Python/tcm-classic-rag/config/layered_enablement_policy.json)
 - [layered_field_mapping.md](/Users/man_ray/Projects/Python/tcm-classic-rag/docs/data/layered_field_mapping.md)
-- [zjshl_dataset_v2_mvp_safe.zip](/Users/man_ray/Projects/Python/tcm-classic-rag/dist/zjshl_dataset_v2_mvp_safe.zip)
+- [zjshl_dataset_v2_v1_safe.zip](/Users/man_ray/Projects/Python/tcm-classic-rag/dist/zjshl_dataset_v2_v1_safe.zip)
 - `zjshl_dataset_v2.zip` 对应内容在当前工作区未见原始 zip；字段审计使用 [data/processed/zjshl_dataset_v2](/Users/man_ray/Projects/Python/tcm-classic-rag/data/processed/zjshl_dataset_v2) 作为 full 数据等价来源。
 
 已核对到的关键事实：

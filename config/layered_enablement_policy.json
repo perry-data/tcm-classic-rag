@@ -3,7 +3,7 @@
   "version": "2026-04-02",
   "scope": "《伤寒论》研读支持系统的数据分层启用策略",
   "datasets": {
-    "safe": "zjshl_dataset_v2_mvp_safe.zip",
+    "safe": "zjshl_dataset_v2_v1_safe.zip",
     "full": "zjshl_dataset_v2.zip"
   },
   "level_definitions": {

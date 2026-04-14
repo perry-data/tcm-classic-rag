@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Any, Iterable
 
 
-DEFAULT_DB_PATH = "artifacts/zjshl_mvp.db"
+DEFAULT_DB_PATH = "artifacts/zjshl_v1.db"
 DEFAULT_POLICY_PATH = "config/layered_enablement_policy.json"
 DEFAULT_EXAMPLES_OUT = "artifacts/retrieval_examples.json"
 DEFAULT_SMOKE_OUT = "artifacts/retrieval_smoke_checks.md"
@@ -115,7 +115,7 @@ def resolve_project_path(path_value: str) -> Path:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Run minimal retrieval on zjshl_mvp.db.")
+    parser = argparse.ArgumentParser(description="Run minimal retrieval on zjshl_v1.db.")
     parser.add_argument("--db-path", default=DEFAULT_DB_PATH, help="Path to the MVP sqlite database.")
     parser.add_argument(
         "--policy-json",

@@ -12,7 +12,7 @@ from typing import Any
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 FULL_DATASET_DIR = PROJECT_ROOT / "data" / "processed" / "zjshl_dataset_v2"
-SAFE_ZIP_PATH = PROJECT_ROOT / "dist" / "zjshl_dataset_v2_mvp_safe.zip"
+SAFE_ZIP_PATH = PROJECT_ROOT / "dist" / "zjshl_dataset_v2_v1_safe.zip"
 MANIFEST_OUT = PROJECT_ROOT / "artifacts" / "review" / "ambiguous_annotation_sample_manifest_v1.csv"
 REVIEW_SHEET_OUT = PROJECT_ROOT / "artifacts" / "review" / "ambiguous_annotation_manual_review_sheet_v1.csv"
 

@@ -25,6 +25,9 @@ data/sqlite/*.sqlite
 data/sqlite/*.db
 data/indexes/
 artifacts/hf_cache/
+artifacts/*.db
+artifacts/*.db-shm
+artifacts/*.db-wal
 *.faiss
 *.index
 

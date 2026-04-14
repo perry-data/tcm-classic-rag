@@ -11,7 +11,7 @@ from pathlib import Path
 from typing import Any
 
 
-DEFAULT_DB_PATH = "artifacts/zjshl_mvp.db"
+DEFAULT_DB_PATH = "artifacts/zjshl_v1.db"
 DEFAULT_INDEX_DIR = "artifacts"
 DEFAULT_EMBED_MODEL = "BAAI/bge-small-zh-v1.5"
 DEFAULT_CACHE_DIR = "artifacts/hf_cache"
@@ -20,7 +20,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Build dense retrieval indexes for zjshl_mvp.db.")
+    parser = argparse.ArgumentParser(description="Build dense retrieval indexes for zjshl_v1.db.")
     parser.add_argument("--db-path", default=DEFAULT_DB_PATH, help="Path to the MVP sqlite database.")
     parser.add_argument("--index-dir", default=DEFAULT_INDEX_DIR, help="Directory to store FAISS indexes and meta.")
     parser.add_argument("--embed-model", default=DEFAULT_EMBED_MODEL, help="SentenceTransformer embedding model.")

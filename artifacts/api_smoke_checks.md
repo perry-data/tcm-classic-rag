@@ -2,7 +2,7 @@
 
 ## 运行命令
 
-`python app_minimal_api.py --smoke`
+`python -m backend.api.minimal_api --smoke`
 
 ## Endpoint
 

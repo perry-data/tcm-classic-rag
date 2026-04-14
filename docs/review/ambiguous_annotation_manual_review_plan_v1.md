@@ -16,7 +16,7 @@
 本轮只使用已冻结底座与必要回溯来源：
 
 - `data/processed/zjshl_dataset_v2/`
-- `dist/zjshl_dataset_v2_mvp_safe.zip`
+- `dist/zjshl_dataset_v2_v1_safe.zip`
 - `data/raw/《注解伤寒论》.zip`
 - 既有验收与分层策略文档
 

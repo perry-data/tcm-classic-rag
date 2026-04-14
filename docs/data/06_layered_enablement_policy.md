@@ -12,7 +12,7 @@
 
 本策略同时使用两份数据包的角色分工：
 
-- `zjshl_dataset_v2_mvp_safe.zip`：运行时默认基线；
+- `zjshl_dataset_v2_v1_safe.zip`：运行时默认基线；
 - `zjshl_dataset_v2.zip`：补充召回与风险回退层。
 
 ## 2. 为什么不能直接全量启用
@@ -61,13 +61,13 @@
 
 ### 6.1 Level A：可直接作为主证据展示
 
-- `zjshl_dataset_v2_mvp_safe.zip / main_passages`
+- `zjshl_dataset_v2_v1_safe.zip / main_passages`
   条件：`retrieval_primary = true`
   用法：最终主依据、回答引用、正文级证据展示。
 
 ### 6.2 Level B：可作为辅助证据展示
 
-- `zjshl_dataset_v2_mvp_safe.zip / main_passages`
+- `zjshl_dataset_v2_v1_safe.zip / main_passages`
   条件：`retrieval_primary = false`
   说明：这部分通常是 safe 版保留但降级的短主条。可作为辅助说明或补充引文，不作为默认主证据。
 
@@ -77,7 +77,7 @@
 
 ### 6.3 Level C：可参与召回，但默认不直接展示为主证据
 
-- `zjshl_dataset_v2_mvp_safe.zip / chunks`
+- `zjshl_dataset_v2_v1_safe.zip / chunks`
   角色：高质量召回骨架、命中片段预览。
   说明：虽然 safe `chunks` 质量较高，但它仍是检索单元而不是最终规范证据，因此归入 Level C 的“检索优先层”，命中后必须回指 `main_passages`。
 
@@ -254,7 +254,7 @@
 
 本项目后续实现应采用“双数据源、分层启用”的策略：
 
-- 运行时基线使用 `zjshl_dataset_v2_mvp_safe.zip`；
+- 运行时基线使用 `zjshl_dataset_v2_v1_safe.zip`；
 - 原始 `zjshl_dataset_v2.zip` 只承担补充召回与风险回退角色；
 - `chunks` 负责召回；
 - `main_passages` 负责最终主证据；

@@ -64,7 +64,7 @@ FTS5_COMPARISON_EXAMPLES = DEFAULT_EXAMPLES + [
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Run dense+sparse hybrid retrieval with rerank on zjshl_mvp.db.")
+    parser = argparse.ArgumentParser(description="Run dense+sparse hybrid retrieval with rerank on zjshl_v1.db.")
     parser.add_argument("--db-path", default=DEFAULT_DB_PATH, help="Path to the MVP sqlite database.")
     parser.add_argument(
         "--policy-json",
@@ -281,7 +281,7 @@ class HybridRetrievalEngine(RetrievalEngine):
         super().__init__(*args, **kwargs)
 
     def __post_init__(self) -> None:
-        ensure_runtime_file(self.db_path, "SQLite runtime database", "Run `python scripts/build_mvp_database.py`.")
+        ensure_runtime_file(self.db_path, "SQLite runtime database", "Run `python scripts/build_v1_database.py`.")
         ensure_runtime_file(
             self.dense_chunks_index_path,
             "dense chunks FAISS index",

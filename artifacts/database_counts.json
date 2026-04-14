@@ -3,7 +3,7 @@
   "policy_version": "2026-04-02",
   "input_sources": {
     "safe": {
-      "path": "/Users/man_ray/Projects/Python/tcm-classic-rag/dist/zjshl_dataset_v2_mvp_safe.zip",
+      "path": "/Users/man_ray/Projects/Python/tcm-classic-rag/dist/zjshl_dataset_v2_v1_safe.zip",
       "kind": "zip"
     },
     "full": {

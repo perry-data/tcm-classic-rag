@@ -32,24 +32,24 @@
    - inputs: `data/raw/《注解伤寒论》.zip, data/processed/zjshl_dataset_v2/`
    - outputs: `docs/03_dataset_acceptance_report.md, reports/dataset_acceptance_summary.json, reports/dataset_issue_list.csv`
 2. `safe_dataset_build`
-   - entry: `scripts/build_mvp_safe_dataset.py`
+   - entry: `scripts/build_v1_safe_dataset.py`
    - inputs: `data/processed/zjshl_dataset_v2/`
-   - outputs: `dist/zjshl_dataset_v2_mvp_safe.zip, docs/05_dataset_patch_note.md, reports/dataset_patch_summary.json`
+   - outputs: `dist/zjshl_dataset_v2_v1_safe.zip, docs/05_dataset_patch_note.md, reports/dataset_patch_summary.json`
 3. `database_build`
-   - entry: `build_mvp_database.py`
-   - inputs: `dist/zjshl_dataset_v2_mvp_safe.zip, data/processed/zjshl_dataset_v2/, database_schema_draft.json, layered_enablement_policy.json`
-   - outputs: `artifacts/zjshl_mvp.db, artifacts/database_build_report.md, artifacts/database_counts.json, artifacts/database_smoke_checks.md`
+   - entry: `build_v1_database.py`
+   - inputs: `dist/zjshl_dataset_v2_v1_safe.zip, data/processed/zjshl_dataset_v2/, database_schema_draft.json, layered_enablement_policy.json`
+   - outputs: `artifacts/zjshl_v1.db, artifacts/database_build_report.md, artifacts/database_counts.json, artifacts/database_smoke_checks.md`
 4. `dense_index_build`
    - entry: `build_dense_index.py`
-   - inputs: `artifacts/zjshl_mvp.db`
+   - inputs: `artifacts/zjshl_v1.db`
    - outputs: `artifacts/dense_chunks.faiss, artifacts/dense_chunks_meta.json, artifacts/dense_main_passages.faiss, artifacts/dense_main_passages_meta.json, artifacts/dense_index_build_report.md, artifacts/hf_cache/`
 5. `retrieval_baseline`
    - entry: `run_minimal_retrieval.py`
-   - inputs: `artifacts/zjshl_mvp.db, layered_enablement_policy.json`
+   - inputs: `artifacts/zjshl_v1.db, layered_enablement_policy.json`
    - outputs: `artifacts/retrieval_examples.json, artifacts/retrieval_smoke_checks.md`
 6. `retrieval_current`
    - entry: `run_hybrid_retrieval.py`
-   - inputs: `run_minimal_retrieval.py, artifacts/zjshl_mvp.db, artifacts/dense_chunks.faiss, artifacts/dense_main_passages.faiss, artifacts/hf_cache/`
+   - inputs: `run_minimal_retrieval.py, artifacts/zjshl_v1.db, artifacts/dense_chunks.faiss, artifacts/dense_main_passages.faiss, artifacts/hf_cache/`
    - outputs: `artifacts/hybrid_retrieval_examples.json, artifacts/hybrid_retrieval_smoke_checks.md`
 7. `answer_current`
    - entry: `run_answer_assembler.py`
@@ -71,7 +71,7 @@
 - `artifacts/hybrid_answer_examples.json` 相对于 `artifacts/answer_examples.json`：answer 产物已迁移到 hybrid 命名；旧 answer_* 文件只保留历史参考意义。
 - `dense_retrieval_plan.md` 相对于 `dense_retrieval_upgrade_spec.md`：spec 已落地为当前实现；plan + patch note 更接近现状。
 - `.venv` 相对于 `venv`：.venv/ 已被文档和脚本明确视为当前运行环境；venv/ 为旧环境残留。
-- `scripts/build_mvp_safe_dataset.py` 相对于 `docs/05_dataset_patch_note.md`：safe 包、补丁说明和 patch summary 都由该脚本生成。
+- `scripts/build_v1_safe_dataset.py` 相对于 `docs/05_dataset_patch_note.md`：safe 包、补丁说明和 patch summary 都由该脚本生成。
 - `scripts/check_dataset_acceptance.py` 相对于 `docs/03_dataset_acceptance_report.md`：验收报告和 issue list 都可由该脚本重建。
 
 ## Full Inventory By Directory
@@ -87,7 +87,7 @@
 | `__pycache__` | 165.6 KB | D | ignore_from_git | bundle:5 files<br>git:ignored | Python 编译缓存，可随时删除后重新生成。 |
 | `answer_payload_contract.md` | 4.4 KB | A | keep | git:tracked | 回答 payload 合同文件；当前 answer assembler 需要保持兼容。 |
 | `build_dense_index.py` | 8.9 KB | A | keep | git:tracked | 当前 dense index 构建入口。 |
-| `build_mvp_database.py` | 46.3 KB | A | keep | git:tracked | 当前 SQLite 落库入口。 |
+| `build_v1_database.py` | 46.3 KB | A | keep | git:tracked | 当前 SQLite 落库入口。 |
 | `database_schema_draft.json` | 15.5 KB | A | keep | git:tracked | 数据库构建脚本当前读取的 schema/source-resolution 配置。 |
 | `dense_retrieval_plan.md` | 2.5 KB | B | keep | git:tracked | 当前有效的说明、验证样例或报告。 |
 | `dense_retrieval_upgrade_spec.md` | 7.3 KB | E | archive | git:tracked<br>newer:dense_retrieval_plan.md, hybrid_retrieval_patch_note.md | 已有更新实现或更新命名文件；当前更适合作为历史参考。 |
@@ -140,7 +140,7 @@
 | `artifacts/hybrid_retrieval_smoke_checks.md` | 28.1 KB | B | keep | git:tracked | 当前有效的验证产物；可由脚本重建。 |
 | `artifacts/retrieval_examples.json` | 39.1 KB | E | archive | git:tracked<br>newer:artifacts/hybrid_retrieval_examples.json | 已有更新实现或更新命名文件；当前更适合作为历史参考。 |
 | `artifacts/retrieval_smoke_checks.md` | 8.6 KB | E | archive | git:tracked<br>newer:artifacts/hybrid_retrieval_smoke_checks.md | 已有更新实现或更新命名文件；当前更适合作为历史参考。 |
-| `artifacts/zjshl_mvp.db` | 3.8 MB | C | keep | git:tracked | 当前仍在使用的运行产物；可重建，但本轮不建议移除。 |
+| `artifacts/zjshl_v1.db` | 3.8 MB | C | keep | git:tracked | 当前仍在使用的运行产物；可重建，但本轮不建议移除。 |
 
 ### backend
 
@@ -200,7 +200,7 @@
 
 | 路径 | 大小 | 分类 | 建议 | 状态 | 说明 |
 | --- | --- | --- | --- | --- | --- |
-| `dist/zjshl_dataset_v2_mvp_safe.zip` | 415.6 KB | A | keep | git:tracked | 当前 safe 数据包基线。 |
+| `dist/zjshl_dataset_v2_v1_safe.zip` | 415.6 KB | A | keep | git:tracked | 当前 safe 数据包基线。 |
 
 ### docs
 
@@ -259,7 +259,7 @@
 | 路径 | 大小 | 分类 | 建议 | 状态 | 说明 |
 | --- | --- | --- | --- | --- | --- |
 | `scripts/__pycache__` | 66.0 KB | D | ignore_from_git | bundle:2 files<br>git:ignored | 脚本编译缓存，可随时删除后重新生成。 |
-| `scripts/build_mvp_safe_dataset.py` | 17.9 KB | A | keep | git:tracked | 当前 safe 数据包构建入口。 |
+| `scripts/build_v1_safe_dataset.py` | 17.9 KB | A | keep | git:tracked | 当前 safe 数据包构建入口。 |
 | `scripts/check_dataset_acceptance.py` | 42.1 KB | A | keep | git:tracked | 当前数据验收入口。 |
 
 ## Key Findings
@@ -270,4 +270,4 @@
 - `frontend/README.md` 为空，当前没有活跃前端实现。
 - `.venv/` 是当前文档和脚本指向的运行环境；`venv/` 是重复旧环境。
 - `artifacts/hf_cache/` 和 `.venv/` 是体积最大的本地目录，属于典型缓存/依赖对象。
-- `artifacts/zjshl_mvp.db`、`dist/zjshl_dataset_v2_mvp_safe.zip`、`artifacts/hybrid_*`、`artifacts/database_*` 都可重建，但当前仍承担运行或验证角色，不能粗暴当垃圾删。
+- `artifacts/zjshl_v1.db`、`dist/zjshl_dataset_v2_v1_safe.zip`、`artifacts/hybrid_*`、`artifacts/database_*` 都可重建，但当前仍承担运行或验证角色，不能粗暴当垃圾删。

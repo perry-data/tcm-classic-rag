@@ -1,0 +1,30 @@
+graph LR
+    subgraph Frontend [前端单页应用 SPA]
+        UI[聊天界面/Markdown渲染]
+        HistoryUI[历史会话列表]
+    end
+
+    subgraph Backend [后端 Minimal API v1.0]
+        API[HTTP 接口服务]
+        Assembler[Answer Assembler]
+        Retriever[Hybrid Engine]
+        Gating[Evidence Gating]
+        LLM[LLM 改写/Qwen]
+        History[Conversation Store]
+    end
+
+    subgraph Data [数据存储与索引层]
+        SQLite[(zjshl_v1.db / FTS5)]
+        FAISS[(FAISS 向量索引)]
+        ChatDB[(chat_history_v1.db)]
+    end
+
+    UI <--> API
+    API <--> Assembler
+    Assembler <--> Retriever
+    Retriever <--> SQLite
+    Retriever <--> FAISS
+    Assembler <--> Gating
+    Assembler <--> LLM
+    API <--> History
+    History <--> ChatDB

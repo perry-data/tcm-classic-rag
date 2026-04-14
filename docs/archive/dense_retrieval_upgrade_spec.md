@@ -4,7 +4,7 @@
 
 当前系统已经具备以下稳定基础：
 
-- SQLite 检索底座：[artifacts/zjshl_mvp.db](/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/zjshl_mvp.db)
+- SQLite 检索底座：[artifacts/zjshl_v1.db](/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/zjshl_v1.db)
 - 最小检索闭环：[run_minimal_retrieval.py](/Users/man_ray/Projects/Python/tcm-classic-rag/run_minimal_retrieval.py)
 - 三模式输出：`strong` / `weak_with_review_notice` / `refuse`
 - 主证据污染首轮修复：[retrieval_precision_patch_note.md](/Users/man_ray/Projects/Python/tcm-classic-rag/docs/notes/retrieval_precision_patch_note.md)

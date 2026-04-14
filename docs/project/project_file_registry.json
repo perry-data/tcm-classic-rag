@@ -44,13 +44,13 @@
     {
       "stage": "safe_dataset_build",
       "entry_files": [
-        "scripts/build_mvp_safe_dataset.py"
+        "scripts/build_v1_safe_dataset.py"
       ],
       "inputs": [
         "data/processed/zjshl_dataset_v2/"
       ],
       "outputs": [
-        "dist/zjshl_dataset_v2_mvp_safe.zip",
+        "dist/zjshl_dataset_v2_v1_safe.zip",
         "docs/05_dataset_patch_note.md",
         "reports/dataset_patch_summary.json"
       ]
@@ -58,16 +58,16 @@
     {
       "stage": "database_build",
       "entry_files": [
-        "build_mvp_database.py"
+        "build_v1_database.py"
       ],
       "inputs": [
-        "dist/zjshl_dataset_v2_mvp_safe.zip",
+        "dist/zjshl_dataset_v2_v1_safe.zip",
         "data/processed/zjshl_dataset_v2/",
         "database_schema_draft.json",
         "layered_enablement_policy.json"
       ],
       "outputs": [
-        "artifacts/zjshl_mvp.db",
+        "artifacts/zjshl_v1.db",
         "artifacts/database_build_report.md",
         "artifacts/database_counts.json",
         "artifacts/database_smoke_checks.md"
@@ -79,7 +79,7 @@
         "build_dense_index.py"
       ],
       "inputs": [
-        "artifacts/zjshl_mvp.db"
+        "artifacts/zjshl_v1.db"
       ],
       "outputs": [
         "artifacts/dense_chunks.faiss",
@@ -96,7 +96,7 @@
         "run_minimal_retrieval.py"
       ],
       "inputs": [
-        "artifacts/zjshl_mvp.db",
+        "artifacts/zjshl_v1.db",
         "layered_enablement_policy.json"
       ],
       "outputs": [
@@ -111,7 +111,7 @@
       ],
       "inputs": [
         "run_minimal_retrieval.py",
-        "artifacts/zjshl_mvp.db",
+        "artifacts/zjshl_v1.db",
         "artifacts/dense_chunks.faiss",
         "artifacts/dense_main_passages.faiss",
         "artifacts/hf_cache/"
@@ -170,7 +170,7 @@
       "note": ".venv/ 已被文档和脚本明确视为当前运行环境；venv/ 为旧环境残留。"
     },
     {
-      "current": "scripts/build_mvp_safe_dataset.py",
+      "current": "scripts/build_v1_safe_dataset.py",
       "older_or_related": "docs/05_dataset_patch_note.md",
       "note": "safe 包、补丁说明和 patch summary 都由该脚本生成。"
     },
@@ -264,7 +264,7 @@
       "notes": "当前 dense index 构建入口。"
     },
     {
-      "path": "build_mvp_database.py",
+      "path": "build_v1_database.py",
       "object_type": "file",
       "top_level": "ROOT",
       "extension": ".py",
@@ -737,7 +737,7 @@
       ],
       "current_role": "当前有效的验证产物；可由脚本重建。",
       "replacement_or_newer": null,
-      "generated_by": "build_mvp_database.py",
+      "generated_by": "build_v1_database.py",
       "notes": "当前有效的验证产物；可由脚本重建。"
     },
     {
@@ -759,7 +759,7 @@
       ],
       "current_role": "当前有效的验证产物；可由脚本重建。",
       "replacement_or_newer": null,
-      "generated_by": "build_mvp_database.py",
+      "generated_by": "build_v1_database.py",
       "notes": "当前有效的验证产物；可由脚本重建。"
     },
     {
@@ -781,7 +781,7 @@
       ],
       "current_role": "当前有效的验证产物；可由脚本重建。",
       "replacement_or_newer": null,
-      "generated_by": "build_mvp_database.py",
+      "generated_by": "build_v1_database.py",
       "notes": "当前有效的验证产物；可由脚本重建。"
     },
     {
@@ -1049,7 +1049,7 @@
       "notes": "已有更新实现或更新命名文件；当前更适合作为历史参考。"
     },
     {
-      "path": "artifacts/zjshl_mvp.db",
+      "path": "artifacts/zjshl_v1.db",
       "object_type": "file",
       "top_level": "artifacts",
       "extension": ".db",
@@ -1067,7 +1067,7 @@
       ],
       "current_role": "当前仍在使用的运行产物；可重建，但本轮不建议移除。",
       "replacement_or_newer": null,
-      "generated_by": "build_mvp_database.py",
+      "generated_by": "build_v1_database.py",
       "notes": "当前仍在使用的运行产物；可重建，但本轮不建议移除。"
     },
     {
@@ -1775,7 +1775,7 @@
       "notes": "零字节占位文件；当前仓库内没有实现内容，也没有被其他文件引用。"
     },
     {
-      "path": "dist/zjshl_dataset_v2_mvp_safe.zip",
+      "path": "dist/zjshl_dataset_v2_v1_safe.zip",
       "object_type": "file",
       "top_level": "dist",
       "extension": ".zip",
@@ -1793,7 +1793,7 @@
       ],
       "current_role": "当前 safe 数据包基线。",
       "replacement_or_newer": null,
-      "generated_by": "scripts/build_mvp_safe_dataset.py",
+      "generated_by": "scripts/build_v1_safe_dataset.py",
       "notes": "当前 safe 数据包基线。"
     },
     {
@@ -1857,7 +1857,7 @@
       ],
       "current_role": "当前有效的验证产物；可由脚本重建。",
       "replacement_or_newer": null,
-      "generated_by": "scripts/build_mvp_safe_dataset.py",
+      "generated_by": "scripts/build_v1_safe_dataset.py",
       "notes": "当前有效的验证产物；可由脚本重建。"
     },
     {
@@ -2143,7 +2143,7 @@
       ],
       "current_role": "当前有效的验证产物；可由脚本重建。",
       "replacement_or_newer": null,
-      "generated_by": "scripts/build_mvp_safe_dataset.py",
+      "generated_by": "scripts/build_v1_safe_dataset.py",
       "notes": "当前有效的验证产物；可由脚本重建。"
     },
     {
@@ -2169,7 +2169,7 @@
       "notes": "脚本编译缓存，可随时删除后重新生成。"
     },
     {
-      "path": "scripts/build_mvp_safe_dataset.py",
+      "path": "scripts/build_v1_safe_dataset.py",
       "object_type": "file",
       "top_level": "scripts",
       "extension": ".py",

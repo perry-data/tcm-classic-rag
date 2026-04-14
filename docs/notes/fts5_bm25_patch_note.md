@@ -10,7 +10,7 @@
 ## 关键文件
 
 - [hybrid.py](/Users/man_ray/Projects/Python/tcm-classic-rag/backend/retrieval/hybrid.py)
-- [build_mvp_database.py](/Users/man_ray/Projects/Python/tcm-classic-rag/scripts/build_mvp_database.py)
+- [build_v1_database.py](/Users/man_ray/Projects/Python/tcm-classic-rag/scripts/build_v1_database.py)
 - [technical_design_v1.md](/Users/man_ray/Projects/Python/tcm-classic-rag/docs/final/technical_design_v1.md)
 - [system_spec_v1.md](/Users/man_ray/Projects/Python/tcm-classic-rag/docs/final/system_spec_v1.md)
 
@@ -39,4 +39,4 @@
 ## 本地运行说明
 
 - `./.venv/bin/python -m backend.retrieval.hybrid`
-- `./.venv/bin/python scripts/build_mvp_database.py`
+- `./.venv/bin/python scripts/build_v1_database.py`

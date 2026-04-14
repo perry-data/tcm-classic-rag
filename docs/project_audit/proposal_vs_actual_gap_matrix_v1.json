@@ -87,7 +87,7 @@
       "evidence_files": [
         "docs/final/system_spec_v1.md",
         "artifacts/api_smoke_checks.md",
-        "artifacts/frontend_mvp_smoke_checks.md"
+        "artifacts/frontend_v1_smoke_checks.md"
       ],
       "recommended_action": "论文写成“证据分区与 citation 展示”，不要扩大为复杂联动 UI。",
       "priority": "P0",
@@ -135,7 +135,7 @@
       "evidence_files": [
         "docs/final/PRD_v1.md",
         "docs/final/technical_design_v1.md",
-        "artifacts/frontend_mvp_smoke_checks.md",
+        "artifacts/frontend_v1_smoke_checks.md",
         "frontend/index.html",
         "frontend/styles.css",
         "frontend/app.js"
@@ -153,7 +153,7 @@
       "gap": "功能 smoke 不覆盖响应速度、用户满意度和 200-250 goldset。",
       "evidence_files": [
         "artifacts/api_smoke_checks.md",
-        "artifacts/frontend_mvp_smoke_checks.md",
+        "artifacts/frontend_v1_smoke_checks.md",
         "artifacts/hybrid_retrieval_smoke_checks.md",
         "artifacts/hybrid_answer_smoke_checks.md",
         "artifacts/database_build_report.md"
@@ -189,7 +189,7 @@
         "docs/proposal/221030147张前_开题报告.docx",
         "docs/evaluation/evaluation_spec_v1.md",
         "artifacts/api_smoke_checks.md",
-        "artifacts/frontend_mvp_smoke_checks.md"
+        "artifacts/frontend_v1_smoke_checks.md"
       ],
       "recommended_action": "补最小性能测试报告：固定五类代表问题、多轮调用 /api/v1/answers，记录环境、命令、均值、p50、p95 和结论。",
       "priority": "P0",
@@ -235,7 +235,7 @@
       "gap_type": "未完成且必须补做",
       "gap": "运行证据分散，缺少第 3.4 可引用的环境、启动、页面入口、API 验证和结论说明。",
       "evidence_files": [
-        "artifacts/frontend_mvp_smoke_checks.md",
+        "artifacts/frontend_v1_smoke_checks.md",
         "artifacts/api_smoke_checks.md",
         "docs/final/system_spec_v1.md",
         "backend/api/minimal_api.py"
@@ -336,7 +336,7 @@
       "evidence_files": [
         "docs/final/PRD_v1.md",
         "docs/final/technical_design_v1.md",
-        "artifacts/frontend_mvp_smoke_checks.md",
+        "artifacts/frontend_v1_smoke_checks.md",
         "frontend/index.html",
         "frontend/styles.css",
         "frontend/app.js"
@@ -353,7 +353,7 @@
       "gap_type": "未完成但可通过缩范围/改论文表述解决",
       "gap": "高亮联动展示未达到开题报告原表述强度。",
       "evidence_files": [
-        "artifacts/frontend_mvp_smoke_checks.md",
+        "artifacts/frontend_v1_smoke_checks.md",
         "docs/final/system_spec_v1.md",
         "docs/final/PRD_v1.md"
       ],
@@ -405,7 +405,7 @@
       "evidence_files": [
         "docs/final/PRD_v1.md",
         "docs/final/system_spec_v1.md",
-        "artifacts/frontend_mvp_smoke_checks.md"
+        "artifacts/frontend_v1_smoke_checks.md"
       ],
       "recommended_action": "第 3.4 只写本地运行/演示部署，生产级部署作为限制与展望。",
       "priority": "P1",

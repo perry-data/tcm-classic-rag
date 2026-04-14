@@ -1,6 +1,6 @@
 {
   "source_label": "data/processed/zjshl_dataset_v2",
-  "safe_output_name": "zjshl_dataset_v2_mvp_safe.zip",
+  "safe_output_name": "zjshl_dataset_v2_v1_safe.zip",
   "annotation_links_policy": {
     "mode": "disabled",
     "annotation_links_kept": 0,
@@ -41,6 +41,6 @@
     "aliases": 46,
     "ambiguous_passages": 450
   },
-  "overall_ready_for_mvp": true,
+  "overall_ready_for_v1": true,
   "ready_for_database_stage": true
 }

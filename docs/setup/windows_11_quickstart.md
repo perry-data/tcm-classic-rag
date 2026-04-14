@@ -70,7 +70,7 @@ python -m pip install numpy==2.4.4 protobuf==7.34.1 sentence-transformers==5.3.0
 
 ## 5. 准备运行产物
 
-仓库已经包含 SQLite 数据库 `artifacts\zjshl_mvp.db`，但 FAISS `.faiss` 二进制索引默认不入库，需要在新机器上生成一次：
+仓库已经包含 SQLite 数据库 `artifacts\zjshl_v1.db`，但 FAISS `.faiss` 二进制索引默认不入库，需要在新机器上生成一次：
 
 ```powershell
 .\.venv\Scripts\python.exe scripts\build_dense_index.py
@@ -86,7 +86,7 @@ python -m pip install numpy==2.4.4 protobuf==7.34.1 sentence-transformers==5.3.0
 如果你删除了数据库，也可以重建：
 
 ```powershell
-.\.venv\Scripts\python.exe scripts\build_mvp_database.py --safe-source dist\zjshl_dataset_v2_mvp_safe.zip --full-source data\processed\zjshl_dataset_v2
+.\.venv\Scripts\python.exe scripts\build_v1_database.py --safe-source dist\zjshl_dataset_v2_v1_safe.zip --full-source data\processed\zjshl_dataset_v2
 ```
 
 ## 6. 运行 smoke check

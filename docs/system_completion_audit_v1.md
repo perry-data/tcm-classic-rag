@@ -22,7 +22,7 @@
   - `docs/final/system_spec_v1.md`
 - 范围冻结文档：`docs/foundation/01_scope_freeze.md`
 - 当前仓库代码与运行工件：
-  - 数据与数据库：`data/processed/zjshl_dataset_v2/`、`dist/zjshl_dataset_v2_mvp_safe.zip`、`artifacts/zjshl_mvp.db`
+  - 数据与数据库：`data/processed/zjshl_dataset_v2/`、`dist/zjshl_dataset_v2_v1_safe.zip`、`artifacts/zjshl_v1.db`
   - 检索与回答：`backend/retrieval/`、`backend/answers/`
   - API：`backend/api/minimal_api.py`
   - 前端：`frontend/`
@@ -99,14 +99,14 @@
 - 当前现状：
   - 主仓库存在原始底本 `data/raw/《注解伤寒论》.zip`。
   - 存在 full 结构化数据目录 `data/processed/zjshl_dataset_v2/`。
-  - 存在 safe 数据包 `dist/zjshl_dataset_v2_mvp_safe.zip`。
+  - 存在 safe 数据包 `dist/zjshl_dataset_v2_v1_safe.zip`。
   - 已有数据验收报告与解析说明，能解释为何 `annotation_links` 默认停用。
   - 数据库统计显示当前运行边界确认为单书，非双书。
 - 证据文件/代码位置：
   - `docs/data/03_dataset_acceptance_report.md`
   - `data/processed/zjshl_dataset_v2/README_parse_report_v2.md`
-  - `scripts/build_mvp_safe_dataset.py`
-  - `scripts/build_mvp_database.py`
+  - `scripts/build_v1_safe_dataset.py`
+  - `scripts/build_v1_database.py`
   - `artifacts/database_counts.json`
 - 分类结论：已完成
 - 对论文/答辩的影响：
@@ -116,7 +116,7 @@
 ### 4.2 检索链路
 
 - 当前现状：
-  - SQLite 主库 `artifacts/zjshl_mvp.db` 已存在。
+  - SQLite 主库 `artifacts/zjshl_v1.db` 已存在。
   - 数据库中已核验到 `retrieval_sparse_fts`、`vw_retrieval_records_unified` 等对象。
   - `backend/retrieval/hybrid.py` 已实现 SQLite FTS5/BM25 稀疏召回、FAISS 稠密召回、RRF 融合和 Cross-Encoder rerank。
   - `artifacts/dense_chunks.faiss`、`artifacts/dense_main_passages.faiss` 与 meta 文件已存在。
@@ -124,7 +124,7 @@
   - `backend/retrieval/hybrid.py`
   - `backend/retrieval/minimal.py`
   - `scripts/build_dense_index.py`
-  - `scripts/build_mvp_database.py`
+  - `scripts/build_v1_database.py`
   - `artifacts/database_counts.json`
   - `artifacts/hybrid_retrieval_smoke_checks.md`
   - `docs/final/technical_design_v1.md`
@@ -224,7 +224,7 @@
   - `frontend/app.js`
   - `frontend/styles.css`
   - `backend/api/minimal_api.py`
-  - `artifacts/frontend_mvp_smoke_checks.md`
+  - `artifacts/frontend_v1_smoke_checks.md`
   - `docs/notes/frontend_debug_report.md`
 - 分类结论：已完成
 - 对论文/答辩的影响：
@@ -267,7 +267,7 @@
   - `artifacts/evaluation/evaluator_v2_report.md`
   - `artifacts/evaluation/goldset_v2_working_150.json`
   - `artifacts/api_smoke_checks.md`
-  - `artifacts/frontend_mvp_smoke_checks.md`
+  - `artifacts/frontend_v1_smoke_checks.md`
 - 分类结论：部分完成
 - 对论文/答辩的影响：
   - 当前评估底座已经足够支撑第 4 章基础写作和答辩效果说明。
@@ -285,7 +285,7 @@
   - `docs/setup/windows_11_quickstart.md`
   - `backend/api/minimal_api.py`
   - `artifacts/api_smoke_checks.md`
-  - `artifacts/frontend_mvp_smoke_checks.md`
+  - `artifacts/frontend_v1_smoke_checks.md`
 - 分类结论：部分完成
 - 对论文/答辩的影响：
   - 第 3.4“系统部署与运行”可以写，但必须按“本地运行 / 同源演示部署”口径写。
@@ -297,17 +297,17 @@
   - 正式主文档整体完成度较高，但和当前实物存在几处关键偏差：
     - `docs/final/PRD_v1.md` 仍把“多轮会话记忆、历史记录”列为非目标，而主仓库代码已实现最小 history。
     - `docs/final/PRD_v1.md`、`docs/final/technical_design_v1.md`、`README.md` 仍将真实 LLM 生成写成“未接入”，但 `backend/llm/` 与 live artifact 已显示最小真实接入已落地。
-    - `docs/specs/frontend_mvp_spec.md` 仍写“不做历史记录”，与当前前端不一致。
+    - `docs/specs/frontend_v1_spec.md` 仍写“不做历史记录”，与当前前端不一致。
     - 部分 smoke artifact 仍引用不存在的 `app_minimal_api.py`。
   - 仓库中也未核验到正式系统结构图/架构图文件。
 - 证据文件/代码位置：
   - `docs/final/PRD_v1.md`
   - `docs/final/technical_design_v1.md`
   - `docs/final/system_spec_v1.md`
-  - `docs/specs/frontend_mvp_spec.md`
+  - `docs/specs/frontend_v1_spec.md`
   - `README.md`
   - `artifacts/api_smoke_checks.md`
-  - `artifacts/frontend_mvp_smoke_checks.md`
+  - `artifacts/frontend_v1_smoke_checks.md`
 - 分类结论：部分完成
 - 对论文/答辩的影响：
   - 这是当前最直接的论文/答辩风险点。
@@ -353,7 +353,7 @@
 2. 测试结果论文化整理
    - 当前评估 artifact 足够强，但还缺一份“可直接搬进论文第 4 章”的摘要表述。
 3. Frontend/API 规格同步
-   - 当前 `docs/specs/frontend_mvp_spec.md` 与实际 conversations UI 已不一致，建议同步为当前真实形态。
+   - 当前 `docs/specs/frontend_v1_spec.md` 与实际 conversations UI 已不一致，建议同步为当前真实形态。
 
 ### P2 可解释不补
 

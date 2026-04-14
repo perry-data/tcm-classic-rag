@@ -3,7 +3,7 @@
 ## 1. 本轮修复了什么
 
 - 修正了 `chapters.json.role_breakdown`，现已与 `chapter_stats.json.role_breakdown_v2` 和当前 `passages.json` 口径一致。
-- 生成了新的 safe 数据包：`dist/zjshl_dataset_v2_mvp_safe.zip`。
+- 生成了新的 safe 数据包：`dist/zjshl_dataset_v2_v1_safe.zip`。
 - `main_passages.json` 已从 1212 条收缩为 777 条，其中 `retrieval_primary = true` 的主条为 666 条。
 - `chunks.json` 已从 1119 条收缩为 583 条，默认仅保留适合 MVP 主检索层的切片。
 

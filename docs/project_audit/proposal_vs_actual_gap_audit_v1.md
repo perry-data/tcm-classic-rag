@@ -33,7 +33,7 @@
 | 引用与证据分层 | 答案附带原文依据，支持出处核验。 | 已有 `primary_evidence`、`secondary_evidence`、`review_materials`、`citations`、`display_sections`。 | 注解片段联动高亮不是完整论文级图示。 | 保留证据分层和 citation 口径，不夸大为复杂前端联动。 | API smoke、frontend smoke 和 system spec 都有字段与展示证据。 |
 | 拒答与幻觉控制 | 避免模型杜撰，确保答案基于证据。 | 通过 evidence gating 和 `strong / weak_with_review_notice / refuse` 三模式控制无证据强答。 | 未实现生成后 LLM verifier。 | 写成“门控式证据一致性控制”，不要写“LLM 生成后校验器”。 | `system_spec_v1.md` 和 evaluator v1 覆盖 refusal。 |
 | 最小 API | 设计接口与调用流程。 | `POST /api/v1/answers` 已冻结，请求体仅 `query`，三模式返回 `200` 业务结果。 | 非插件化 LLM API。 | 第 3 章按当前 Minimal API 写。 | `api_smoke_checks.md` 有三条冻结样例。 |
-| 前端 MVP 闭环 | Web 前端支持输入问题并返回答案和出处。 | 已有同源原生 SPA：`frontend/index.html`、`frontend/styles.css`、`frontend/app.js`，可消费 `/api/v1/answers`。 | 框架不是 React + Tailwind，另列为可改口径项。 | 写成“原生 HTML/CSS/JS 同源前端 MVP”。 | `frontend_mvp_smoke_checks.md` 证明页面、静态资源、fetch 和渲染规则。 |
+| 前端 MVP 闭环 | Web 前端支持输入问题并返回答案和出处。 | 已有同源原生 SPA：`frontend/index.html`、`frontend/styles.css`、`frontend/app.js`，可消费 `/api/v1/answers`。 | 框架不是 React + Tailwind，另列为可改口径项。 | 写成“原生 HTML/CSS/JS 同源前端 MVP”。 | `frontend_v1_smoke_checks.md` 证明页面、静态资源、fetch 和渲染规则。 |
 | 功能 smoke / 案例验证 | 对核心流程进行功能测试和案例测试。 | 已有 API smoke、frontend smoke、hybrid retrieval / answer smoke、数据库构建报告。 | 不等同于响应速度、满意度和 200-250 goldset。 | 第 4 章拆分为“已完成功能验证”和“未覆盖指标”。 | 多个 `artifacts/*smoke_checks.md` 可支撑。 |
 | 150 条 evaluator v1 | 自建 goldset 并人工核对引用。 | `goldset_v2_working_150.json` 已生成；evaluator v1 报告 `total_questions=150`、`mode_match=150/150`、`citation_basic_pass=120/120`、`failure_count=0`。 | 尚未达到开题报告 200-250 条。 | 论文改为“150 条阶段性评估集”，不要写 200-250 已完成。 | Batch C patch note 与 eval report 是直接证据。 |
 

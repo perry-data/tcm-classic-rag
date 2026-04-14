@@ -2,17 +2,17 @@
 
 ## 运行命令
 
-`python build_mvp_database.py --safe-source dist/zjshl_dataset_v2_mvp_safe.zip --full-source data/processed/zjshl_dataset_v2`
+`python build_v1_database.py --safe-source dist/zjshl_dataset_v2_v1_safe.zip --full-source data/processed/zjshl_dataset_v2`
 
 ## 输入源
 
-- safe 数据源：`/Users/man_ray/Projects/Python/tcm-classic-rag/dist/zjshl_dataset_v2_mvp_safe.zip`（zip）
+- safe 数据源：`/Users/man_ray/Projects/Python/tcm-classic-rag/dist/zjshl_dataset_v2_v1_safe.zip`（zip）
 - full 数据源：`/Users/man_ray/Projects/Python/tcm-classic-rag/data/processed/zjshl_dataset_v2`（directory）
 - 当前工作区未检测到 `dist/zjshl_dataset_v2.zip`；本次构建使用目录输入 `/Users/man_ray/Projects/Python/tcm-classic-rag/data/processed/zjshl_dataset_v2` 作为 full 数据源。
 
 ## 输出
 
-- 数据库文件：`/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/zjshl_mvp.db`
+- 数据库文件：`/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/zjshl_v1.db`
 - policy version：`2026-04-02`
 - schema draft version：`2026-04-03`
 

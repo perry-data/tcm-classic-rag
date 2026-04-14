@@ -70,6 +70,7 @@ const SOURCE_UNIT_LABELS = {
   chunks: "片段",
 };
 const HISTORY_SEARCH_DEBOUNCE_MS = 180;
+const SIDEBAR_PREFERENCE_KEY = "tcm-classic-rag.sidebar-collapsed";
 
 function requireElement(id) {
   const element = document.getElementById(id);
@@ -119,6 +120,8 @@ const state = {
   historyRequestSeq: 0,
   conversationRequestSeq: 0,
   historySearchTimer: null,
+  sidebarCollapsed: false,
+  overlaySidebarOpen: false,
 };
 
 function setStatus(message) {
@@ -143,6 +146,78 @@ function resetComposerState() {
   if (refs.sampleQueries) {
     refs.sampleQueries.open = false;
   }
+}
+
+function readSidebarCollapsedPreference() {
+  try {
+    return window.localStorage.getItem(SIDEBAR_PREFERENCE_KEY) === "1";
+  } catch (error) {
+    return false;
+  }
+}
+
+function persistSidebarCollapsedPreference(collapsed) {
+  try {
+    window.localStorage.setItem(SIDEBAR_PREFERENCE_KEY, collapsed ? "1" : "0");
+  } catch (error) {
+    // Ignore storage failures so the UI still works in private or restricted contexts.
+  }
+}
+
+function isOverlaySidebarViewport() {
+  return window.matchMedia("(max-width: 1180px)").matches;
+}
+
+function renderSidebarVisibility() {
+  if (!refs.pageShell || !refs.appShell || !refs.historySidebar || !refs.sidebarToggleButton) {
+    return;
+  }
+
+  const overlayMode = isOverlaySidebarViewport();
+  const sidebarOpen = overlayMode ? Boolean(state.overlaySidebarOpen) : !state.sidebarCollapsed;
+  const label = sidebarOpen ? "收起历史会话侧栏" : "展开历史会话侧栏";
+  refs.appShell.classList.toggle("sidebar-collapsed", !sidebarOpen);
+  refs.pageShell.classList.toggle("sidebar-overlay-open", overlayMode && sidebarOpen);
+  refs.historySidebar.setAttribute("aria-hidden", sidebarOpen ? "false" : "true");
+  refs.sidebarToggleButton.setAttribute("aria-expanded", sidebarOpen ? "true" : "false");
+  refs.sidebarToggleButton.setAttribute("aria-label", label);
+  refs.sidebarToggleButton.setAttribute("title", label);
+  if (refs.sidebarToggleLabel) {
+    refs.sidebarToggleLabel.textContent = label;
+  }
+  if (refs.sidebarBackdrop) {
+    refs.sidebarBackdrop.hidden = !(overlayMode && sidebarOpen);
+  }
+  document.body.classList.toggle("sidebar-overlay-active", overlayMode && sidebarOpen);
+
+  if ("inert" in refs.historySidebar) {
+    refs.historySidebar.inert = !sidebarOpen;
+  }
+}
+
+function toggleSidebarVisibility() {
+  if (isOverlaySidebarViewport()) {
+    state.overlaySidebarOpen = !state.overlaySidebarOpen;
+  } else {
+    state.sidebarCollapsed = !state.sidebarCollapsed;
+    persistSidebarCollapsedPreference(state.sidebarCollapsed);
+  }
+  renderSidebarVisibility();
+}
+
+function closeOverlaySidebar() {
+  if (!isOverlaySidebarViewport() || !state.overlaySidebarOpen) {
+    return;
+  }
+  state.overlaySidebarOpen = false;
+  renderSidebarVisibility();
+}
+
+function handleGlobalKeydown(event) {
+  if (event.key !== "Escape") {
+    return;
+  }
+  closeOverlaySidebar();
 }
 
 function formatSourceLabel(recordType) {
@@ -327,9 +402,92 @@ function formatDateTime(value) {
   }).format(date);
 }
 
+function parseDateValue(value) {
+  if (!value) {
+    return null;
+  }
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? null : date;
+}
+
+function getCalendarDayDiff(laterDate, earlierDate) {
+  const laterDay = new Date(laterDate.getFullYear(), laterDate.getMonth(), laterDate.getDate());
+  const earlierDay = new Date(earlierDate.getFullYear(), earlierDate.getMonth(), earlierDate.getDate());
+  return Math.round((laterDay.getTime() - earlierDay.getTime()) / 86400000);
+}
+
+function resolveHistoryGroupInfo(value) {
+  const date = parseDateValue(value);
+  if (!date) {
+    return { key: "older", label: "更早" };
+  }
+
+  const dayDiff = Math.max(0, getCalendarDayDiff(new Date(), date));
+  if (dayDiff === 0) {
+    return { key: "today", label: "今天" };
+  }
+  if (dayDiff === 1) {
+    return { key: "yesterday", label: "昨天" };
+  }
+  if (dayDiff < 7) {
+    return { key: "recent", label: "最近 7 天" };
+  }
+  return { key: "older", label: "更早" };
+}
+
+function formatHistoryTimestamp(value) {
+  const date = parseDateValue(value);
+  if (!date) {
+    return "时间未知";
+  }
+
+  const now = new Date();
+  const dayDiff = Math.max(0, getCalendarDayDiff(now, date));
+  if (dayDiff <= 1) {
+    return new Intl.DateTimeFormat("zh-CN", {
+      hour: "2-digit",
+      minute: "2-digit",
+    }).format(date);
+  }
+  if (dayDiff < 7) {
+    return new Intl.DateTimeFormat("zh-CN", {
+      weekday: "short",
+    }).format(date);
+  }
+  if (date.getFullYear() === now.getFullYear()) {
+    return new Intl.DateTimeFormat("zh-CN", {
+      month: "numeric",
+      day: "numeric",
+    }).format(date);
+  }
+  return new Intl.DateTimeFormat("zh-CN", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+  }).format(date);
+}
+
 function formatConversationTurns(messageCount) {
   const turns = Math.max(0, Math.floor(Number(messageCount || 0) / 2));
   return `${turns} 轮`;
+}
+
+function groupConversationsForHistory(conversations) {
+  const groups = [];
+  const groupMap = new Map();
+
+  conversations.forEach((conversation) => {
+    const info = resolveHistoryGroupInfo(conversation.updated_at || conversation.created_at);
+    let group = groupMap.get(info.key);
+    if (!group) {
+      group = { key: info.key, label: info.label, items: [] };
+      groupMap.set(info.key, group);
+      groups.push(group);
+    }
+    group.items.push(conversation);
+  });
+
+  return groups;
 }
 
 function buildConversationPath(conversationId) {
@@ -604,15 +762,8 @@ function buildSupportingHint(answerMode, slot) {
 function createUserMessageCard(message, options = {}) {
   const { pending = false } = options;
   const article = createTag("article", `message-card user-message${pending ? " pending-card" : ""}`);
-  const head = createTag("div", "message-head");
-  const copy = createTag("div", "message-head-copy");
-  copy.append(
-    createTag("p", "message-role", pending ? "当前发送中" : "本轮问题"),
-    createTag("h3", "", pending ? "用户消息（待写入）" : "用户提问"),
-    createTag("p", "message-time", formatDateTime(message.created_at)),
-  );
-  head.append(copy, createTag("span", "message-tag", "user"));
-  article.append(head, createTag("p", "user-bubble", message.content || ""));
+  article.setAttribute("aria-label", pending ? "当前发送中的用户消息" : "用户消息");
+  article.append(createTag("p", "user-bubble", message.content || ""));
   return article;
 }
 
@@ -770,79 +921,94 @@ function renderHistoryList() {
   refs.newChatButton.disabled = state.sending;
 
   const isSearching = Boolean(state.historySearch);
+  refs.historySectionTitle.textContent = isSearching ? "搜索结果" : "最近会话";
   showSection(refs.historyLoading, state.conversationsLoading);
   showSection(refs.historyEmpty, !state.conversationsLoading && state.conversations.length === 0 && !isSearching);
   showSection(refs.historyNoResults, !state.conversationsLoading && state.conversations.length === 0 && isSearching);
 
   if (state.conversationsLoading) {
-    refs.historyStatus.textContent = isSearching
-      ? `正在搜索“${state.historySearch}”…`
-      : "正在加载历史会话…";
+    refs.historyStatus.textContent = isSearching ? "搜索中…" : "加载中…";
     return;
   }
 
   if (state.conversations.length === 0) {
-    refs.historyStatus.textContent = isSearching ? `没有匹配“${state.historySearch}”的会话` : "还没有历史会话";
+    refs.historyStatus.textContent = "0 条";
     return;
   }
 
   refs.historyStatus.textContent = isSearching
-    ? `共找到 ${state.conversations.length} 条匹配会话`
-    : `共 ${state.conversations.length} 条历史会话`;
+    ? `${state.conversations.length} 条结果`
+    : `${state.conversations.length} 条`;
 
-  state.conversations.forEach((conversation) => {
-    const item = createTag(
-      "li",
-      `conversation-item${conversation.id === state.activeConversationId ? " is-active" : ""}`,
-    );
+  groupConversationsForHistory(state.conversations).forEach((group) => {
+    const groupItem = createTag("li", "conversation-group");
+    const groupHead = createTag("div", "conversation-group-head");
+    groupHead.append(createTag("p", "conversation-group-title", group.label));
+    groupItem.append(groupHead);
 
-    const button = createTag("button", "conversation-item-button");
-    button.type = "button";
-    button.disabled = state.sending;
-    button.addEventListener("click", () => {
-      void openConversation(conversation.id);
-    });
+    const groupList = createTag("ul", "conversation-group-list");
 
-    const title = createTag("p", "conversation-item-title", conversation.title || "新对话");
-    const meta = createTag("div", "conversation-item-meta");
-    meta.append(
-      createTag("span", "conversation-item-time", formatDateTime(conversation.updated_at || conversation.created_at)),
-      createTag("span", "conversation-item-count", formatConversationTurns(conversation.message_count)),
-    );
+    group.items.forEach((conversation) => {
+      const item = createTag(
+        "li",
+        `conversation-item${conversation.id === state.activeConversationId ? " is-active" : ""}`,
+      );
 
-    button.append(title, meta);
-    item.append(button);
+      const button = createTag("button", "conversation-item-button");
+      button.type = "button";
+      button.disabled = state.sending;
+      button.addEventListener("click", () => {
+        void openConversation(conversation.id);
+      });
 
-    const menu = createTag("details", "conversation-menu");
-    const summary = createTag("summary", "conversation-menu-summary", "⋯");
-    if (state.sending) {
-      summary.setAttribute("disabled", "disabled");
-    }
-    summary.addEventListener("click", (event) => {
+      const title = createTag("p", "conversation-item-title", conversation.title || "新对话");
+      const meta = createTag("div", "conversation-item-meta");
+      meta.append(
+        createTag(
+          "span",
+          "conversation-item-time",
+          formatHistoryTimestamp(conversation.updated_at || conversation.created_at),
+        ),
+        createTag("span", "conversation-item-count", formatConversationTurns(conversation.message_count)),
+      );
+
+      button.append(title, meta);
+      item.append(button);
+
+      const menu = createTag("details", "conversation-menu");
+      const summary = createTag("summary", "conversation-menu-summary", "⋯");
       if (state.sending) {
-        event.preventDefault();
+        summary.setAttribute("disabled", "disabled");
       }
-    });
-    menu.append(summary);
+      summary.addEventListener("click", (event) => {
+        if (state.sending) {
+          event.preventDefault();
+        }
+      });
+      menu.append(summary);
 
-    const panel = createTag("div", "conversation-menu-panel");
-    const deleteButton = createTag(
-      "button",
-      "conversation-menu-action",
-      state.deletingConversationId === conversation.id ? "Deleting…" : "Delete",
-    );
-    deleteButton.type = "button";
-    deleteButton.disabled = state.sending || state.deletingConversationId === conversation.id;
-    deleteButton.addEventListener("click", (event) => {
-      event.preventDefault();
-      menu.open = false;
-      void handleDeleteConversation(conversation.id);
-    });
-    panel.append(deleteButton);
-    menu.append(panel);
-    item.append(menu);
+      const panel = createTag("div", "conversation-menu-panel");
+      const deleteButton = createTag(
+        "button",
+        "conversation-menu-action",
+        state.deletingConversationId === conversation.id ? "删除中…" : "删除会话",
+      );
+      deleteButton.type = "button";
+      deleteButton.disabled = state.sending || state.deletingConversationId === conversation.id;
+      deleteButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        menu.open = false;
+        void handleDeleteConversation(conversation.id);
+      });
+      panel.append(deleteButton);
+      menu.append(panel);
+      item.append(menu);
 
-    refs.conversationList.append(item);
+      groupList.append(item);
+    });
+
+    groupItem.append(groupList);
+    refs.conversationList.append(groupItem);
   });
 }
 
@@ -851,20 +1017,19 @@ function renderConversationHeader() {
 
   if (state.conversationLoading) {
     refs.conversationTitle.textContent = "正在恢复会话…";
-    refs.conversationSubtitle.textContent = "正在读取当前会话的完整消息流，请稍候。";
+    refs.conversationSubtitle.textContent = "";
     return;
   }
 
   if (!conversation) {
     refs.conversationTitle.textContent = "新对话";
-    refs.conversationSubtitle.textContent =
-      "主区会展示当前会话的完整消息流；点击左侧历史项可恢复旧会话并继续发送。";
+    refs.conversationSubtitle.textContent = "";
     return;
   }
 
   refs.conversationTitle.textContent = conversation.title || "新对话";
   if ((state.activeConversation?.messages || []).length === 0 && !state.pendingTurn) {
-    refs.conversationSubtitle.textContent = "当前会话已创建，尚无消息。发送首轮问题后会自动生成标题并写入历史。";
+    refs.conversationSubtitle.textContent = "";
     return;
   }
 
@@ -890,20 +1055,14 @@ function renderConversationBody() {
   const hasMessages = confirmedMessages.length > 0 || Boolean(state.pendingTurn);
 
   if (!state.activeConversationId || !state.activeConversation) {
-    refs.conversationEmpty.querySelector(".state-title").textContent = "从下方输入框开始新会话，或打开左侧历史";
-    refs.conversationEmpty.querySelector(".state-copy").textContent =
-      "首轮发送后会自动生成会话标题；之后你可以从左侧搜索标题或消息内容，再点回对应会话继续聊天。";
-    showSection(refs.conversationEmpty, true);
+    showSection(refs.conversationEmpty, false);
     showSection(refs.messageFeed, false);
     clearList(refs.messageFeed);
     return;
   }
 
   if (!hasMessages) {
-    refs.conversationEmpty.querySelector(".state-title").textContent = "当前会话还没有消息";
-    refs.conversationEmpty.querySelector(".state-copy").textContent =
-      "现在就可以发送第一条问题。首轮完成后，左侧会话标题会自动改成首问摘要。";
-    showSection(refs.conversationEmpty, true);
+    showSection(refs.conversationEmpty, false);
     showSection(refs.messageFeed, false);
     clearList(refs.messageFeed);
     return;
@@ -1026,6 +1185,8 @@ async function openConversation(conversationId, options = {}) {
     return;
   }
 
+  closeOverlaySidebar();
+
   if (state.activeConversation?.conversation?.id === conversationId && !state.conversationLoading) {
     if (updateUrl) {
       updateBrowserLocation(conversationId, { replace: replaceUrl });
@@ -1113,6 +1274,8 @@ async function handleNewChat() {
   if (state.sending) {
     return;
   }
+
+  closeOverlaySidebar();
 
   try {
     const shouldRefreshHistory = state.conversationsLoading || Boolean(state.historySearch);
@@ -1271,8 +1434,15 @@ function handlePopState() {
 }
 
 async function boot() {
+  refs.pageShell = requireElement("page-shell");
+  refs.appShell = requireElement("app-shell");
+  refs.historySidebar = requireElement("history-sidebar");
+  refs.sidebarToggleButton = requireElement("sidebar-toggle-button");
+  refs.sidebarToggleLabel = requireElement("sidebar-toggle-label");
+  refs.sidebarBackdrop = requireElement("sidebar-backdrop");
   refs.newChatButton = requireElement("new-chat-button");
   refs.historySearch = requireElement("history-search");
+  refs.historySectionTitle = requireElement("history-section-title");
   refs.historyStatus = requireElement("history-status");
   refs.historyLoading = requireElement("history-loading");
   refs.historyEmpty = requireElement("history-empty");
@@ -1291,9 +1461,19 @@ async function boot() {
   refs.submitButton = requireElement("submit-button");
   refs.sampleQueries = document.querySelector(".sample-queries");
   refs.sampleButtons = Array.from(document.querySelectorAll(".sample-chip"));
+  state.sidebarCollapsed = readSidebarCollapsedPreference();
+  renderSidebarVisibility();
 
   refs.newChatButton.addEventListener("click", () => {
     void handleNewChat();
+  });
+
+  refs.sidebarToggleButton.addEventListener("click", () => {
+    toggleSidebarVisibility();
+  });
+
+  refs.sidebarBackdrop.addEventListener("click", () => {
+    closeOverlaySidebar();
   });
 
   refs.historySearch.addEventListener("input", () => {
@@ -1330,6 +1510,8 @@ async function boot() {
   });
 
   window.addEventListener("popstate", handlePopState);
+  window.addEventListener("resize", renderSidebarVisibility);
+  window.addEventListener("keydown", handleGlobalKeydown);
 
   renderHistoryList();
   renderConversationBody();
