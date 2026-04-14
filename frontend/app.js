@@ -780,6 +780,19 @@ function createAssistantMessageCard(message) {
     : [];
   const modeCopy = getModeCopy(payload.answer_mode);
 
+  const evidenceMap = new Map();
+  let eIndex = 1;
+  const assignEId = (items) => {
+    items.forEach((item) => {
+      const eId = `E${eIndex++}`;
+      item.e_id = eId;
+      evidenceMap.set(eId, item);
+    });
+  };
+  assignEId(primary);
+  assignEId(secondary);
+  assignEId(review);
+
   const article = createTag("article", "message-card assistant-message");
   const head = createTag("div", "message-head assistant-head");
   const copy = createTag("div", "message-head-copy");
@@ -793,9 +806,47 @@ function createAssistantMessageCard(message) {
   const main = createTag("div", "assistant-main");
 
   const answerBlock = createTag("section", "answer-block");
-  answerBlock.append(
-    createTag("p", "answer-text", payload.answer_text || ""),
-  );
+  const answerTextNode = createTag("p", "answer-text");
+  const text = payload.answer_text || "";
+  const regex = /\[(E\d+)\]/g;
+  let lastIndex = 0;
+  let match;
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      answerTextNode.append(document.createTextNode(text.substring(lastIndex, match.index)));
+    }
+    const eId = match[1];
+
+    const wrapper = createTag("span", "evidence-marker-wrap");
+    const raw = createTag("span", "evidence-marker-raw", `[${eId}]`);
+    const chip = createTag("button", "evidence-marker-chip", eId.replace('E', ''));
+    chip.type = "button";
+    chip.dataset.eId = eId;
+
+    const item = evidenceMap.get(eId);
+    if (item) {
+      const title = resolveRecordTitle(item);
+      chip.title = title + (item.snippet ? `\n${item.snippet}` : "");
+    }
+
+    chip.addEventListener("click", () => {
+      const card = article.querySelector(`.evidence-card[data-e-id="${eId}"]`);
+      if (card) {
+        card.scrollIntoView({ behavior: "smooth", block: "center" });
+        card.classList.add("highlight");
+        setTimeout(() => card.classList.remove("highlight"), 2000);
+      }
+    });
+
+    wrapper.append(raw, chip);
+    answerTextNode.append(wrapper);
+    lastIndex = regex.lastIndex;
+  }
+  if (lastIndex < text.length) {
+    answerTextNode.append(document.createTextNode(text.substring(lastIndex)));
+  }
+
+  answerBlock.append(answerTextNode);
   main.append(answerBlock);
 
   if (payload.disclaimer) {
@@ -1449,6 +1500,7 @@ async function boot() {
   refs.submitButton = requireElement("submit-button");
   refs.sampleQueries = document.querySelector(".sample-queries");
   refs.sampleButtons = Array.from(document.querySelectorAll(".sample-chip"));
+  refs.evidenceToggle = requireElement("evidence-toggle-checkbox");
   state.sidebarCollapsed = readSidebarCollapsedPreference();
   renderSidebarVisibility();
 
@@ -1458,6 +1510,10 @@ async function boot() {
 
   refs.sidebarToggleButton.addEventListener("click", () => {
     toggleSidebarVisibility();
+  });
+
+  refs.evidenceToggle.addEventListener("change", (event) => {
+    document.body.classList.toggle("show-raw-evidence", event.target.checked);
   });
 
   refs.sidebarBackdrop.addEventListener("click", () => {
