@@ -784,8 +784,6 @@ function createAssistantMessageCard(message) {
   const head = createTag("div", "message-head assistant-head");
   const copy = createTag("div", "message-head-copy");
   copy.append(
-    createTag("p", "message-role", "assistant response"),
-    createTag("h3", "", "研读助手"),
     createTag("p", "message-time", formatDateTime(message.created_at)),
   );
   const badge = createTag("span", `mode-badge mode-${payload.answer_mode || "idle"}`, modeCopy.badge);
@@ -793,11 +791,9 @@ function createAssistantMessageCard(message) {
   article.append(head);
 
   const main = createTag("div", "assistant-main");
-  main.append(createTag("p", "assistant-caption", getAnswerCaption(payload.answer_mode)));
 
   const answerBlock = createTag("section", "answer-block");
   answerBlock.append(
-    createTag("p", "answer-block-label", "回答正文"),
     createTag("p", "answer-text", payload.answer_text || ""),
   );
   main.append(answerBlock);
@@ -864,18 +860,14 @@ function createBrokenAssistantCard(message, error) {
   const head = createTag("div", "message-head");
   const copy = createTag("div", "message-head-copy");
   copy.append(
-    createTag("p", "message-role", "assistant response"),
-    createTag("h3", "", "研读助手"),
     createTag("p", "message-time", formatDateTime(message.created_at)),
   );
   head.append(copy, createTag("span", "mode-badge mode-error", "渲染失败"));
   article.append(head);
 
   const main = createTag("div", "assistant-main");
-  main.append(createTag("p", "assistant-caption", "这条历史消息已恢复，但其 answer payload 无法完整渲染。"));
   const answerBlock = createTag("section", "answer-block");
   answerBlock.append(
-    createTag("p", "answer-block-label", "已保存文本"),
     createTag("p", "answer-text", message.content || "无正文内容"),
   );
   main.append(answerBlock);
@@ -895,18 +887,14 @@ function createPendingAssistantCard() {
   const head = createTag("div", "message-head");
   const copy = createTag("div", "message-head-copy");
   copy.append(
-    createTag("p", "message-role", "assistant response"),
-    createTag("h3", "", "研读助手"),
     createTag("p", "message-time", "正在生成中"),
   );
   head.append(copy, createTag("span", "mode-badge mode-loading", MODE_COPY.loading.badge));
   article.append(head);
 
   const main = createTag("div", "assistant-main");
-  main.append(createTag("p", "assistant-caption", getAnswerCaption("loading")));
   const answerBlock = createTag("section", "answer-block");
   answerBlock.append(
-    createTag("p", "answer-block-label", "回答正文"),
     createTag("p", "answer-text pending-answer-copy", "正在检索依据并生成回答…"),
   );
   main.append(answerBlock);
