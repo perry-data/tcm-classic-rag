@@ -772,7 +772,9 @@ textarea {
 }
 
 .message-time {
+  margin: 0;
   font-size: 0.82rem;
+  line-height: 1;
   color: var(--muted);
 }
 
