@@ -38,3 +38,10 @@ artifacts/*.db-wal
 frontend/node_modules/
 frontend/dist/
 frontend/.next/
+
+# Thesis
+docs/thesis/
+thesis_drafts/
+*.docx
+*.pdf
+~$*.docx
