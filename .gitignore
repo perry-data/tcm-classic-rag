@@ -28,6 +28,9 @@ artifacts/hf_cache/
 artifacts/*.db
 artifacts/*.db-shm
 artifacts/*.db-wal
+artifacts/runtime/*.db
+artifacts/runtime/*.db-shm
+artifacts/runtime/*.db-wal
 *.faiss
 *.index
 
@@ -38,6 +41,7 @@ artifacts/*.db-wal
 frontend/node_modules/
 frontend/dist/
 frontend/.next/
+/package-lock.json
 
 # Thesis
 docs/thesis/
