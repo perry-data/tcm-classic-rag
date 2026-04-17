@@ -46,6 +46,9 @@ function buildConversationPath(conversationId: string | null): string {
   return conversationId ? `/chat/${encodeURIComponent(conversationId)}` : "/";
 }
 
+const TURN_START_SCROLL_OFFSET_PX = 12;
+const USER_MESSAGE_CARD_SELECTOR = "[data-message-role='user']";
+
 function getConversationSubtitle(detail: ConversationDetail | null, conversationLoading: boolean, pendingTurn: PendingTurn | null): string {
   if (conversationLoading) {
     return "";
@@ -81,6 +84,30 @@ function scrollElementToBottom(element: HTMLDivElement | null): void {
     element.scrollTo({
       top: element.scrollHeight,
       behavior: "smooth",
+    });
+  });
+}
+
+function scrollLatestUserMessageIntoView(element: HTMLDivElement | null, behavior: ScrollBehavior = "auto"): void {
+  if (!element) {
+    return;
+  }
+  window.requestAnimationFrame(() => {
+    const userCards = element.querySelectorAll<HTMLElement>(USER_MESSAGE_CARD_SELECTOR);
+    if (userCards.length === 0) {
+      return;
+    }
+
+    const latestUserCard = userCards[userCards.length - 1];
+    const nextTop =
+      element.scrollTop +
+      latestUserCard.getBoundingClientRect().top -
+      element.getBoundingClientRect().top -
+      TURN_START_SCROLL_OFFSET_PX;
+
+    element.scrollTo({
+      top: Math.max(0, nextTop),
+      behavior,
     });
   });
 }
@@ -311,7 +338,7 @@ export default function App() {
     });
     setErrorText("");
     setStatusText("正在为当前会话生成回答…");
-    scrollElementToBottom(chatBodyRef.current);
+    scrollLatestUserMessageIntoView(chatBodyRef.current, "smooth");
 
     try {
       const payload = await apiSendConversationMessage(conversationId, normalizedQuery);
@@ -323,10 +350,10 @@ export default function App() {
       setActiveConversationId(payload.conversation.id);
       setPendingTurn(null);
       setQueryText("");
+      scrollLatestUserMessageIntoView(chatBodyRef.current);
       await refreshConversationList(historySearchRef.current);
       setStatusText("回答已写入当前会话");
       queryInputRef.current?.focus();
-      scrollElementToBottom(chatBodyRef.current);
     } catch (error) {
       console.error(error);
       setPendingTurn(null);
@@ -846,7 +873,10 @@ function StateCard(props: { title: string; copy: string; large?: boolean }) {
 
 function UserMessageCard(props: { message: { content: string; created_at: string }; pending?: boolean }) {
   return (
-    <article className={cx(styles.messageCard, styles.userMessage, props.pending && styles.pendingCard)}>
+    <article
+      className={cx(styles.messageCard, styles.userMessage, props.pending && styles.pendingCard)}
+      data-message-role="user"
+    >
       <p className={styles.userBubble}>{props.message.content || ""}</p>
     </article>
   );
