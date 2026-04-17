@@ -962,7 +962,7 @@ class HybridRetrievalEngine(RetrievalEngine):
                 for row in reranked_candidates[:6]
             ],
         }
-        return selected
+        return self._dedupe_semantic_candidates(selected)
 
 
 def build_examples_payload(results: list[dict[str, Any]]) -> dict[str, Any]:

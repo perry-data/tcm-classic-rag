@@ -49,6 +49,14 @@ from backend.retrieval.minimal import extract_focus_text
 
 DEFAULT_ANSWER_EXAMPLES_OUT = "artifacts/hybrid_answer_examples.json"
 DEFAULT_ANSWER_SMOKE_OUT = "artifacts/hybrid_answer_smoke_checks.md"
+ANSWER_SMOKE_EXAMPLES = [
+    *DEFAULT_EXAMPLES,
+    {
+        "example_id": "general_ambiguous_dedup",
+        "query_text": "若噎者怎么办？",
+        "expected_mode": "weak_with_review_notice",
+    },
+]
 DEFAULT_DEFINITION_QUERY_PRIORITY_RULES_PATH = "config/controlled_replay/definition_query_priority_rules_v1.json"
 FORMULA_EFFECT_PRIMARY_RULES_ENV_FLAG = "TCM_ENABLE_FORMULA_EFFECT_PRIMARY_RULES_V1"
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -925,6 +933,129 @@ class AnswerAssembler:
                 seen.add(record_id)
             merged.append(item)
         return merged
+
+    def _supporting_material_key(self, record_id: str | None, record_type: str | None) -> str:
+        normalized_record_id = str(record_id or "")
+        if record_type in {"passages", "ambiguous_passages"}:
+            parts = normalized_record_id.split(":", 2)
+            if len(parts) == 3:
+                return f"{parts[0]}:risk_passage:{parts[2]}"
+        return normalized_record_id
+
+    def _evidence_item_preference(self, item: dict[str, Any]) -> tuple[int, int, int, str]:
+        record_type = item.get("record_type")
+        source_preference = 0
+        if record_type == "passages":
+            source_preference = 2
+        elif record_type == "ambiguous_passages":
+            source_preference = 1
+        return (
+            source_preference,
+            len(compact_whitespace(item.get("snippet"))),
+            len(compact_whitespace(item.get("title"))),
+            str(item.get("record_id") or ""),
+        )
+
+    def _merge_evidence_item_metadata(self, target: dict[str, Any], incoming: dict[str, Any]) -> None:
+        target["risk_flags"] = dedupe_strings(
+            list(target.get("risk_flags") or []) + list(incoming.get("risk_flags") or [])
+        )
+        if not target.get("snippet") and incoming.get("snippet"):
+            target["snippet"] = incoming["snippet"]
+        if not target.get("title") and incoming.get("title"):
+            target["title"] = incoming["title"]
+        if not target.get("chapter_title") and incoming.get("chapter_title"):
+            target["chapter_title"] = incoming["chapter_title"]
+        if not target.get("chapter_id") and incoming.get("chapter_id"):
+            target["chapter_id"] = incoming["chapter_id"]
+
+    def _normalize_evidence_slots(
+        self,
+        primary: list[dict[str, Any]],
+        secondary: list[dict[str, Any]],
+        review: list[dict[str, Any]],
+    ) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
+        normalized = {
+            "primary": [dict(item) for item in primary],
+            "secondary": [dict(item) for item in secondary],
+            "review": [dict(item) for item in review],
+        }
+        kept_by_key: dict[str, dict[str, Any]] = {}
+        location_by_key: dict[str, tuple[str, int]] = {}
+
+        for slot_name in ("primary", "secondary", "review"):
+            for index, item in enumerate(normalized[slot_name]):
+                semantic_key = self._supporting_material_key(item.get("record_id"), item.get("record_type"))
+                existing = kept_by_key.get(semantic_key)
+                if existing is None:
+                    kept_by_key[semantic_key] = item
+                    location_by_key[semantic_key] = (slot_name, index)
+                    continue
+
+                self._merge_evidence_item_metadata(existing, item)
+                existing_slot, existing_index = location_by_key[semantic_key]
+                if existing_slot != slot_name:
+                    normalized[slot_name][index] = None
+                    continue
+
+                if self._evidence_item_preference(item) > self._evidence_item_preference(existing):
+                    replacement = dict(item)
+                    self._merge_evidence_item_metadata(replacement, existing)
+                    normalized[slot_name][existing_index] = replacement
+                    kept_by_key[semantic_key] = replacement
+                normalized[slot_name][index] = None
+
+        return (
+            [item for item in normalized["primary"] if item is not None],
+            [item for item in normalized["secondary"] if item is not None],
+            [item for item in normalized["review"] if item is not None],
+        )
+
+    def _normalize_citations(
+        self,
+        citations: list[dict[str, Any]],
+        *,
+        primary: list[dict[str, Any]],
+        secondary: list[dict[str, Any]],
+        review: list[dict[str, Any]],
+    ) -> list[dict[str, Any]]:
+        evidence_by_key: dict[str, dict[str, Any]] = {}
+        for item in primary + secondary + review:
+            evidence_by_key[self._supporting_material_key(item.get("record_id"), item.get("record_type"))] = item
+
+        normalized: list[dict[str, Any]] = []
+        seen_keys: set[str] = set()
+        for citation in citations:
+            semantic_key = self._supporting_material_key(citation.get("record_id"), citation.get("record_type"))
+            if semantic_key in seen_keys:
+                continue
+            seen_keys.add(semantic_key)
+
+            evidence_item = evidence_by_key.get(semantic_key)
+            if evidence_item is None:
+                normalized.append(
+                    {
+                        **citation,
+                        "citation_id": f"c{len(normalized) + 1}",
+                    }
+                )
+                continue
+
+            normalized.append(
+                {
+                    "citation_id": f"c{len(normalized) + 1}",
+                    "record_id": evidence_item["record_id"],
+                    "record_type": evidence_item["record_type"],
+                    "title": evidence_item["title"],
+                    "evidence_level": evidence_item["evidence_level"],
+                    "snippet": evidence_item["snippet"],
+                    "chapter_id": evidence_item["chapter_id"],
+                    "chapter_title": evidence_item["chapter_title"],
+                    "citation_role": evidence_item["display_role"],
+                }
+            )
+
+        return normalized
 
     def _assemble_general_question(self, query_text: str, general_plan: GeneralQuestionPlan) -> dict[str, Any]:
         query_retrieval = self.engine.retrieve(query_text)
@@ -3717,6 +3848,13 @@ class AnswerAssembler:
         elif answer_mode == "refuse":
             generating_detail = "正在生成统一拒答说明。"
         self._emit_progress("generating_answer", generating_detail)
+        primary, secondary, review = self._normalize_evidence_slots(primary, secondary, review)
+        citations = self._normalize_citations(
+            citations,
+            primary=primary,
+            secondary=secondary,
+            review=review,
+        )
         final_answer_text = self._maybe_render_answer_text(
             query_text=query_text,
             answer_mode=answer_mode,
@@ -4329,7 +4467,7 @@ def build_smoke_markdown(command: str, results: list[dict[str, Any]]) -> str:
 
 def run_examples(assembler: AnswerAssembler) -> list[dict[str, Any]]:
     results: list[dict[str, Any]] = []
-    for example in DEFAULT_EXAMPLES:
+    for example in ANSWER_SMOKE_EXAMPLES:
         payload = assembler.assemble(example["query_text"])
         payload["example_id"] = example["example_id"]
         payload["expected_mode"] = example["expected_mode"]
@@ -4372,6 +4510,20 @@ def assert_smoke_expectations(results: list[dict[str, Any]]) -> None:
     if len(refuse["suggested_followup_questions"]) < 3:
         raise AssertionError("refuse missing follow-up guidance")
 
+    def assert_no_semantic_duplicates(items: list[dict[str, Any]], *, slot_name: str) -> None:
+        seen: set[str] = set()
+        for item in items:
+            record_type = item.get("record_type")
+            record_id = str(item.get("record_id") or "")
+            if record_type in {"passages", "ambiguous_passages"}:
+                parts = record_id.split(":", 2)
+                semantic_key = f"{parts[0]}:risk_passage:{parts[2]}" if len(parts) == 3 else record_id
+            else:
+                semantic_key = record_id
+            if semantic_key in seen:
+                raise AssertionError(f"{slot_name} contains semantic duplicate evidence: {record_id}")
+            seen.add(semantic_key)
+
     for result in results:
         if any(item["record_type"] == "annotation_links" for item in result["primary_evidence"]):
             raise AssertionError("annotation_links leaked into primary_evidence")
@@ -4379,6 +4531,14 @@ def assert_smoke_expectations(results: list[dict[str, Any]]) -> None:
             raise AssertionError("annotation_links leaked into secondary_evidence")
         if any(item["record_type"] == "annotation_links" for item in result["review_materials"]):
             raise AssertionError("annotation_links leaked into review_materials")
+        assert_no_semantic_duplicates(result["primary_evidence"], slot_name="primary_evidence")
+        assert_no_semantic_duplicates(result["secondary_evidence"], slot_name="secondary_evidence")
+        assert_no_semantic_duplicates(result["review_materials"], slot_name="review_materials")
+        assert_no_semantic_duplicates(
+            result["primary_evidence"] + result["secondary_evidence"] + result["review_materials"],
+            slot_name="all_evidence",
+        )
+        assert_no_semantic_duplicates(result["citations"], slot_name="citations")
 
 
 def main() -> int:

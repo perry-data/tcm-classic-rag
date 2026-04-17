@@ -465,7 +465,45 @@ class RetrievalEngine:
             if len(selected) >= self.candidate_limit:
                 break
 
-        return selected
+        return self._dedupe_semantic_candidates(selected)
+
+    def _semantic_candidate_key(self, candidate: dict[str, Any]) -> str:
+        record_table = candidate.get("record_table")
+        if record_table in {"records_passages", "risk_registry_ambiguous"}:
+            dataset_variant = str(candidate.get("dataset_variant") or "").strip()
+            source_record_id = str(candidate.get("source_record_id") or "").strip()
+            if dataset_variant and source_record_id:
+                return f"{dataset_variant}:risk_passage:{source_record_id}"
+        return str(candidate.get("record_id") or "")
+
+    def _semantic_candidate_preference(self, candidate: dict[str, Any]) -> tuple[int, float, float, str]:
+        source_object = candidate.get("source_object")
+        source_preference = 0
+        if source_object == "passages":
+            source_preference = 2
+        elif source_object == "ambiguous_passages":
+            source_preference = 1
+        return (
+            source_preference,
+            float(candidate.get("combined_score") or 0.0),
+            float(candidate.get("text_match_score") or 0.0),
+            str(candidate.get("record_id") or ""),
+        )
+
+    def _dedupe_semantic_candidates(self, candidates: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        deduped: list[dict[str, Any]] = []
+        index_by_key: dict[str, int] = {}
+        for candidate in candidates:
+            semantic_key = self._semantic_candidate_key(candidate)
+            existing_index = index_by_key.get(semantic_key)
+            if existing_index is None:
+                index_by_key[semantic_key] = len(deduped)
+                deduped.append(candidate)
+                continue
+            existing = deduped[existing_index]
+            if self._semantic_candidate_preference(candidate) > self._semantic_candidate_preference(existing):
+                deduped[existing_index] = candidate
+        return deduped
 
     def _fetch_chunk_backrefs(self, chunk_record_id: str) -> list[dict[str, Any]]:
         query = """
