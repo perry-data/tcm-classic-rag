@@ -33,8 +33,8 @@ npm install
 npm run build
 cd ..
 
-# 启动前后端同源服务 (开启 LLM 支持)
-python -m backend.api.minimal_api --host 127.0.0.1 --port 8000 --llm-enabled
+# 启动前后端同源服务 (默认开启 LLM 支持)
+python -m backend.api.minimal_api --host 127.0.0.1 --port 8000
 ```
 
 *说明：启动后，访问地址为 [http://127.0.0.1:8000](http://127.0.0.1:8000)*
@@ -65,7 +65,7 @@ npm run dev
    - 确保端口 `8000` 未被其他程序占用。
 2. **回答速度极慢**:
    - 检查网络连接（访问 LLM API 需要联网）。
-   - 若环境无网络，可去掉 `--llm-enabled` 参数启动，系统将切换至纯规则编排模式。
+   - 若环境无网络，可加 `--llm-disabled` 参数启动，系统将切换至纯规则编排模式。
 3. **报错 `FAISS index not found`**:
    - 请务必先运行一次 `scripts/build_dense_index.py`。
 4. **历史会话加载失败**:

@@ -132,7 +132,7 @@ http://127.0.0.1:5173/
 
 1. React 前端通过 Vite 提供热更新，改动保存后浏览器会自动刷新或局部热替换。
 2. Python 后端会在 `backend/` 和 `config/` 的代码或 JSON 改动后自动重启。
-3. 如果你需要给后端追加参数，可用 `.\.venv\Scripts\python.exe scripts\dev.py -- --llm-enabled` 这种写法。
+3. LLM 现在默认开启；如果你需要给后端追加参数，可用 `.\.venv\Scripts\python.exe scripts\dev.py -- --llm-disabled` 这种写法。
 
 ## 9. 最小接口测试
 

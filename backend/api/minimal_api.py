@@ -153,7 +153,16 @@ def parse_args() -> argparse.Namespace:
         default=DEFAULT_LLM_API_SMOKE_OUT,
         help="Where to write LLM smoke check markdown.",
     )
-    parser.add_argument("--llm-enabled", action="store_true", help="Enable Model Studio answer_text rendering.")
+    parser.add_argument(
+        "--llm-enabled",
+        action="store_true",
+        help="Enable Model Studio answer_text rendering. This is kept for backward compatibility; runtime now enables LLM by default.",
+    )
+    parser.add_argument(
+        "--llm-disabled",
+        action="store_true",
+        help="Disable Model Studio answer_text rendering and force rule-only answer_text generation.",
+    )
     parser.add_argument("--llm-model", default=None, help="Model Studio model override for this release.")
     parser.add_argument("--llm-base-url", default=None, help="Model Studio base URL override.")
     parser.add_argument("--llm-timeout-seconds", type=float, default=None, help="Model Studio request timeout.")
@@ -1042,7 +1051,7 @@ def resolve_runtime_paths(args: argparse.Namespace) -> dict[str, Path]:
 
 
 def create_llm_config(args: argparse.Namespace, *, force_enabled: bool | None = None) -> ModelStudioLLMConfig:
-    enabled_override = force_enabled if force_enabled is not None else (True if args.llm_enabled else None)
+    enabled_override = force_enabled if force_enabled is not None else (False if args.llm_disabled else None)
     return load_modelstudio_llm_config(
         enabled_override=enabled_override,
         model_override=args.llm_model,

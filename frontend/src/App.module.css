@@ -85,23 +85,6 @@
   line-height: 1;
 }
 
-.evidenceToggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 9px 12px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  color: var(--muted);
-  background: rgba(255, 255, 255, 0.72);
-  font-size: 0.9rem;
-  white-space: nowrap;
-}
-
-.evidenceToggle input {
-  margin: 0;
-}
-
 .toolbarCenter {
   min-width: 0;
 }
@@ -483,18 +466,12 @@
   font-weight: 600;
 }
 
-.rawEvidenceList,
 .evidenceChipList {
   display: inline-flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 6px;
   margin-left: 8px;
-}
-
-.rawEvidenceMarker {
-  color: var(--muted);
-  font-size: 0.82rem;
 }
 
 .evidenceChip {

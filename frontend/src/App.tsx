@@ -104,7 +104,6 @@ export default function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(() => readSidebarCollapsedPreference());
   const [overlaySidebarOpen, setOverlaySidebarOpen] = useState(false);
   const [overlayMode, setOverlayMode] = useState(() => isOverlaySidebarViewport());
-  const [showRawEvidence, setShowRawEvidence] = useState(false);
   const [bootstrapped, setBootstrapped] = useState(false);
 
   const chatBodyRef = useRef<HTMLDivElement | null>(null);
@@ -551,16 +550,6 @@ export default function App() {
           >
             <span className={styles.iconGlyph}>＋</span>
           </button>
-          <label className={styles.evidenceToggle} title="切换原始证据标记 [E#]">
-            <input
-              type="checkbox"
-              checked={showRawEvidence}
-              onChange={(event) => {
-                setShowRawEvidence(event.target.checked);
-              }}
-            />
-            <span>显示证据标记</span>
-          </label>
         </div>
 
         <div className={styles.toolbarCenter}>
@@ -723,7 +712,6 @@ export default function App() {
                     <AssistantMessageCard
                       key={message.id}
                       message={message}
-                      showRawEvidence={showRawEvidence}
                     />
                   ),
                 )}
@@ -848,14 +836,13 @@ function BrokenAssistantCard(props: { message: ConversationMessage; error: Error
   );
 }
 
-function AssistantMessageCard(props: { message: ConversationMessage; showRawEvidence: boolean }) {
+function AssistantMessageCard(props: { message: ConversationMessage }) {
   try {
     validatePayload(props.message.answer_payload);
     return (
       <AssistantMessageCardInner
         message={props.message}
         payload={props.message.answer_payload}
-        showRawEvidence={props.showRawEvidence}
       />
     );
   } catch (error) {
@@ -867,7 +854,6 @@ function AssistantMessageCard(props: { message: ConversationMessage; showRawEvid
 function AssistantMessageCardInner(props: {
   message: ConversationMessage;
   payload: AnswerPayload;
-  showRawEvidence: boolean;
 }) {
   const { primary, secondary, review, evidenceMap } = buildEvidenceIndex(props.payload);
   const citations = Array.isArray(props.payload.citations) ? props.payload.citations : [];
@@ -906,15 +892,6 @@ function AssistantMessageCardInner(props: {
           {lines.map((line, index) => (
             <p key={`${props.message.id}-${index}`} className={cx(styles.answerLine, index === 0 && styles.answerLead)}>
               <span>{line.text || line.rawLine}</span>
-              {props.showRawEvidence && line.evidenceIds.length > 0 ? (
-                <span className={styles.rawEvidenceList}>
-                  {line.evidenceIds.map((evidenceId) => (
-                    <span key={`${props.message.id}-${index}-${evidenceId}`} className={styles.rawEvidenceMarker}>
-                      [{evidenceId}]
-                    </span>
-                  ))}
-                </span>
-              ) : null}
               {line.evidenceIds.length > 0 ? (
                 <span className={styles.evidenceChipList}>
                   {line.evidenceIds.map((evidenceId) => {

@@ -84,7 +84,7 @@ cd ..
 
 - 前端通过 Vite 提供热更新，访问 `http://127.0.0.1:5173/`
 - 后端在 `backend/` 与 `config/` 变更后会自动重启
-- 如果你还要给后端传额外参数，可以写成 `python scripts/dev.py -- --llm-enabled`
+- LLM 现在默认开启；如果你还要给后端传额外参数，可以写成 `python scripts/dev.py -- --llm-disabled`
 
 ## 部署建议
 

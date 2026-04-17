@@ -1,0 +1,15 @@
+[Unit]
+Description=TCM Classic RAG web service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/tcm-classic-rag
+EnvironmentFile=/opt/tcm-classic-rag/.env
+ExecStart=/opt/tcm-classic-rag/.venv/bin/python -m backend.api.minimal_api --host 127.0.0.1 --port 8000
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

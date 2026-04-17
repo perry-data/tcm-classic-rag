@@ -126,7 +126,7 @@ def load_modelstudio_llm_config(
 ) -> ModelStudioLLMConfig:
     _load_local_env(PROJECT_ROOT / ".env")
 
-    enabled = enabled_override if enabled_override is not None else _parse_bool(os.environ.get(ENV_LLM_ENABLED), default=False)
+    enabled = enabled_override if enabled_override is not None else _parse_bool(os.environ.get(ENV_LLM_ENABLED), default=True)
     model = _clean_optional_text(model_override if model_override is not None else os.environ.get(ENV_MODEL))
     base_url = _clean_optional_text(
         base_url_override if base_url_override is not None else os.environ.get(ENV_BASE_URL, DEFAULT_MODEL_STUDIO_BASE_URL)
@@ -162,7 +162,8 @@ def load_modelstudio_llm_config(
 
     if not api_key:
         raise LLMConfigError(
-            f"LLM is enabled but {ENV_API_KEY} is missing. Populate .env or export the variable before starting the service."
+            f"LLM is enabled but {ENV_API_KEY} is missing. Populate .env or export the variable before starting the service. "
+            f"If you need an offline fallback, explicitly set {ENV_LLM_ENABLED}=false or start the API with --llm-disabled."
         )
 
     return ModelStudioLLMConfig(
