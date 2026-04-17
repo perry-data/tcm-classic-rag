@@ -710,10 +710,6 @@ export default function App() {
               <StateCard title="正在加载会话" copy="正在恢复完整聊天记录，请稍候。" large />
             ) : null}
 
-            {!conversationLoading && !activeConversationId && !hasMessages ? (
-              <EmptyConversationState />
-            ) : null}
-
             {!conversationLoading && activeConversationId && !hasMessages ? (
               <StateCard title="当前会话还没有消息" copy="直接在下方输入问题，发送后会自动写入这条会话。" large />
             ) : null}
@@ -796,19 +792,6 @@ function StateCard(props: { title: string; copy: string; large?: boolean }) {
     <section className={cx(styles.stateCard, props.large && styles.stateCardLarge)}>
       <p className={styles.stateTitle}>{props.title}</p>
       <p className={styles.stateCopy}>{props.copy}</p>
-    </section>
-  );
-}
-
-function EmptyConversationState() {
-  return (
-    <section className={cx(styles.stateCard, styles.stateCardLarge)}>
-      <p className={styles.stateEyebrow}>空白新对话</p>
-      <h2 className={styles.emptyTitle}>从问题开始，再回看依据。</h2>
-      <p className={styles.stateCopy}>
-        这个界面只保留最小链路：提问、回答、核对依据。发送后会按 strong / weak / refuse
-        自动切换展示状态。
-      </p>
     </section>
   );
 }

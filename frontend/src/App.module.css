@@ -378,16 +378,7 @@
   align-content: center;
 }
 
-.stateEyebrow {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.82rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.stateTitle,
-.emptyTitle {
+.stateTitle {
   margin: 0;
   font-size: 1.08rem;
   font-weight: 700;
@@ -802,11 +793,13 @@
 }
 
 .composerForm {
-  display: grid;
+  display: flex;
   gap: 12px;
+  align-items: flex-end;
 }
 
 .composerForm textarea {
+  flex: 1;
   min-height: 86px;
   padding: 12px 14px;
   resize: vertical;
@@ -815,7 +808,7 @@
 
 .composerActions {
   display: flex;
-  justify-content: flex-end;
+  flex-shrink: 0;
 }
 
 .composerActions button,
