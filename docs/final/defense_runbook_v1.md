@@ -27,11 +27,26 @@
 ```bash
 # 激活虚拟环境 (macOS/Linux)
 source .venv/bin/activate
+# 首次或前端代码更新后，先构建 React 前端
+cd frontend
+npm install
+npm run build
+cd ..
+
 # 启动前后端同源服务 (开启 LLM 支持)
 python -m backend.api.minimal_api --host 127.0.0.1 --port 8000 --llm-enabled
 ```
 
 *说明：启动后，访问地址为 [http://127.0.0.1:8000](http://127.0.0.1:8000)*
+
+如需前端开发调试，可额外开一个终端：
+
+```bash
+cd frontend
+npm run dev
+```
+
+此时前端地址为 [http://127.0.0.1:5173](http://127.0.0.1:5173)，并会自动代理 `/api` 到 `8000` 端口。
 
 ## 3. 演示路径 (Demo Queries)
 

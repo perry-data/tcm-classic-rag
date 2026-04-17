@@ -46,6 +46,7 @@ DEFAULT_API_SMOKE_OUT = "artifacts/api_smoke_checks.md"
 DEFAULT_LLM_API_EXAMPLES_OUT = "artifacts/llm_api_examples_modelstudio.json"
 DEFAULT_LLM_API_SMOKE_OUT = "artifacts/llm_api_smoke_checks_modelstudio.md"
 DEFAULT_FRONTEND_DIR = "frontend"
+DEFAULT_FRONTEND_DIST_SUBDIR = "dist"
 CHAT_ROUTE_PREFIX = "/chat"
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 EXPECTED_PAYLOAD_FIELDS = [
@@ -350,6 +351,25 @@ def is_frontend_shell_route(request_path: str) -> bool:
     )
 
 
+def is_frontend_asset_route(request_path: str) -> bool:
+    if request_path.startswith("/assets/"):
+        return True
+    suffix = Path(request_path).suffix
+    return bool(suffix) and not request_path.startswith("/api/")
+
+
+def resolve_frontend_asset_path(frontend_root: Path, request_path: str) -> Path | None:
+    relative_path = request_path.lstrip("/")
+    if not relative_path:
+        relative_path = "index.html"
+    target_path = (frontend_root / relative_path).resolve()
+    try:
+        target_path.relative_to(frontend_root.resolve())
+    except ValueError:
+        return None
+    return target_path
+
+
 def match_conversation_detail_route(request_path: str) -> str | None:
     prefix = f"{CONVERSATIONS_API_PATH}/"
     if not request_path.startswith(prefix):
@@ -484,18 +504,11 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
                 return
 
             if is_frontend_shell_route(request_path):
-                self._send_file(frontend_root / "index.html")
+                self._send_frontend_shell()
                 return
 
-            if request_path.startswith("/frontend/"):
-                relative_path = request_path.removeprefix("/frontend/")
-                target_path = (frontend_root / relative_path).resolve()
-                try:
-                    target_path.relative_to(frontend_root.resolve())
-                except ValueError:
-                    self._send_json(404, {"error": {"code": "not_found", "message": "Route not found."}})
-                    return
-                self._send_file(target_path)
+            if is_frontend_asset_route(request_path):
+                self._send_frontend_asset(request_path)
                 return
 
             self._send_json(404, {"error": {"code": "not_found", "message": "Route not found."}})
@@ -503,18 +516,11 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
         def do_HEAD(self) -> None:  # noqa: N802
             request_path = urlsplit(self.path).path
             if is_frontend_shell_route(request_path):
-                self._send_file(frontend_root / "index.html", include_body=False)
+                self._send_frontend_shell(include_body=False)
                 return
 
-            if request_path.startswith("/frontend/"):
-                relative_path = request_path.removeprefix("/frontend/")
-                target_path = (frontend_root / relative_path).resolve()
-                try:
-                    target_path.relative_to(frontend_root.resolve())
-                except ValueError:
-                    self._send_json(404, {"error": {"code": "not_found", "message": "Route not found."}})
-                    return
-                self._send_file(target_path, include_body=False)
+            if is_frontend_asset_route(request_path):
+                self._send_frontend_asset(request_path, include_body=False)
                 return
 
             if request_path in {API_PATH, API_STREAM_PATH, CONVERSATIONS_API_PATH} or match_conversation_detail_route(request_path) or match_conversation_messages_route(request_path):
@@ -590,6 +596,20 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
                     return
                 raise
 
+        def _send_frontend_shell(self, include_body: bool = True) -> None:
+            index_path = frontend_root / "index.html"
+            if index_path.exists() and index_path.is_file():
+                self._send_file(index_path, include_body=include_body)
+                return
+            self._send_frontend_missing(include_body=include_body)
+
+        def _send_frontend_asset(self, request_path: str, include_body: bool = True) -> None:
+            target_path = resolve_frontend_asset_path(frontend_root, request_path)
+            if target_path is None:
+                self._send_json(404, {"error": {"code": "not_found", "message": "Route not found."}})
+                return
+            self._send_file(target_path, include_body=include_body)
+
         def _send_file(self, file_path: Path, include_body: bool = True) -> None:
             if not file_path.exists() or not file_path.is_file():
                 self._send_json(404, {"error": {"code": "not_found", "message": "Route not found."}})
@@ -608,6 +628,37 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
                 self.end_headers()
                 if include_body:
                     self.wfile.write(body)
+            except BaseException as exc:
+                if self._is_client_disconnect(exc):
+                    self.close_connection = True
+                    return
+                raise
+
+        def _send_frontend_missing(self, include_body: bool = True) -> None:
+            message = (
+                "<!doctype html><html lang=\"zh-CN\"><head><meta charset=\"utf-8\" />"
+                "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />"
+                "<title>Frontend Build Required</title></head><body>"
+                "<main style=\"max-width:720px;margin:48px auto;padding:0 20px;"
+                "font:16px/1.7 -apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;"
+                "color:#241d15;\">"
+                "<h1 style=\"font-size:28px;line-height:1.3;\">前端构建产物不存在</h1>"
+                "<p>当前后端只托管 React 构建产物 <code>frontend/dist/</code>。</p>"
+                "<p>请先在项目根目录运行：</p>"
+                "<pre style=\"padding:14px 16px;border:1px solid #ddd;border-radius:12px;"
+                "background:#faf7f2;overflow:auto;\">cd frontend\nnpm install\nnpm run build</pre>"
+                "<p>构建完成后，重新刷新当前页面即可。</p>"
+                "</main></body></html>"
+            ).encode("utf-8")
+
+            self.send_response(503)
+            self._send_cache_headers()
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(message) if include_body else 0))
+            try:
+                self.end_headers()
+                if include_body:
+                    self.wfile.write(message)
             except BaseException as exc:
                 if self._is_client_disconnect(exc):
                     self.close_connection = True
@@ -970,6 +1021,7 @@ def run_http_examples(server: MinimalApiHTTPServer, host: str) -> tuple[str, lis
 
 
 def resolve_runtime_paths(args: argparse.Namespace) -> dict[str, Path]:
+    frontend_root = resolve_project_path(DEFAULT_FRONTEND_DIR)
     return {
         "db_path": resolve_project_path(args.db_path),
         "conversations_db_path": resolve_project_path(args.conversations_db_path),
@@ -979,7 +1031,7 @@ def resolve_runtime_paths(args: argparse.Namespace) -> dict[str, Path]:
         "dense_chunks_meta": resolve_project_path(args.dense_chunks_meta),
         "dense_main_index": resolve_project_path(args.dense_main_index),
         "dense_main_meta": resolve_project_path(args.dense_main_meta),
-        "frontend_root": resolve_project_path(DEFAULT_FRONTEND_DIR),
+        "frontend_root": frontend_root / DEFAULT_FRONTEND_DIST_SUBDIR,
         "examples_out": resolve_project_path(args.examples_out),
         "smoke_out": resolve_project_path(args.smoke_checks_out),
         "llm_examples_out": resolve_project_path(args.llm_examples_out),

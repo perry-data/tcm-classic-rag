@@ -1,0 +1,1175 @@
+import { type FormEvent, type KeyboardEvent as ReactKeyboardEvent, type MutableRefObject, useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  RequestError,
+  apiCreateConversation,
+  apiDeleteConversation,
+  apiGetConversation,
+  apiListConversations,
+  apiSendConversationMessage,
+} from "./api";
+import styles from "./App.module.css";
+import type {
+  AnswerMode,
+  AnswerPayload,
+  CitationItem,
+  ConversationDetail,
+  ConversationMessage,
+  ConversationSummary,
+  IndexedEvidenceItem,
+  PendingTurn,
+} from "./types";
+import {
+  HISTORY_SEARCH_DEBOUNCE_MS,
+  SAMPLE_QUERIES,
+  buildEvidenceIndex,
+  buildSupportingHint,
+  cx,
+  formatConversationTurns,
+  formatDateTime,
+  formatHistoryTimestamp,
+  formatRecordShort,
+  formatRoleLabel,
+  formatSourceLabel,
+  getModeCopy,
+  groupConversationsForHistory,
+  isOverlaySidebarViewport,
+  parseAnswerLines,
+  persistSidebarCollapsedPreference,
+  readSidebarCollapsedPreference,
+  resolveRecordTitle,
+  validatePayload,
+} from "./utils";
+
+function buildConversationPath(conversationId: string | null): string {
+  return conversationId ? `/chat/${encodeURIComponent(conversationId)}` : "/";
+}
+
+function getConversationSubtitle(detail: ConversationDetail | null, conversationLoading: boolean, pendingTurn: PendingTurn | null): string {
+  if (conversationLoading) {
+    return "";
+  }
+  if (!detail?.conversation) {
+    return "";
+  }
+  if (detail.messages.length === 0 && !pendingTurn) {
+    return "";
+  }
+  return `共 ${detail.conversation.message_count} 条消息 · 最近更新 ${formatDateTime(
+    detail.conversation.updated_at || detail.conversation.created_at,
+  )}`;
+}
+
+function scrollElementToTop(element: HTMLDivElement | null): void {
+  if (!element) {
+    return;
+  }
+  window.requestAnimationFrame(() => {
+    element.scrollTo({
+      top: 0,
+      behavior: "auto",
+    });
+  });
+}
+
+function scrollElementToBottom(element: HTMLDivElement | null): void {
+  if (!element) {
+    return;
+  }
+  window.requestAnimationFrame(() => {
+    element.scrollTo({
+      top: element.scrollHeight,
+      behavior: "smooth",
+    });
+  });
+}
+
+export default function App() {
+  const navigate = useNavigate();
+  const { conversationId: routeConversationId } = useParams();
+
+  const [conversations, setConversations] = useState<ConversationSummary[]>([]);
+  const [activeConversationId, setActiveConversationId] = useState<string | null>(null);
+  const [activeConversation, setActiveConversation] = useState<ConversationDetail | null>(null);
+  const [historySearchInput, setHistorySearchInput] = useState("");
+  const [historySearch, setHistorySearch] = useState("");
+  const [conversationsLoading, setConversationsLoading] = useState(true);
+  const [conversationLoading, setConversationLoading] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [pendingTurn, setPendingTurn] = useState<PendingTurn | null>(null);
+  const [deletingConversationId, setDeletingConversationId] = useState<string | null>(null);
+  const [statusText, setStatusText] = useState("正在初始化聊天界面…");
+  const [errorText, setErrorText] = useState("");
+  const [queryText, setQueryText] = useState("");
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(() => readSidebarCollapsedPreference());
+  const [overlaySidebarOpen, setOverlaySidebarOpen] = useState(false);
+  const [overlayMode, setOverlayMode] = useState(() => isOverlaySidebarViewport());
+  const [showRawEvidence, setShowRawEvidence] = useState(false);
+  const [bootstrapped, setBootstrapped] = useState(false);
+
+  const chatBodyRef = useRef<HTMLDivElement | null>(null);
+  const queryInputRef = useRef<HTMLTextAreaElement | null>(null);
+  const historyRequestSeqRef = useRef(0);
+  const conversationRequestSeqRef = useRef(0);
+  const skipSearchEffectRef = useRef(true);
+
+  const activeConversationRef = useRef<ConversationDetail | null>(activeConversation);
+  const activeConversationIdRef = useRef<string | null>(activeConversationId);
+  const historySearchRef = useRef(historySearch);
+  const sendingRef = useRef(sending);
+  const conversationLoadingRef = useRef(conversationLoading);
+
+  activeConversationRef.current = activeConversation;
+  activeConversationIdRef.current = activeConversationId;
+  historySearchRef.current = historySearch;
+  sendingRef.current = sending;
+  conversationLoadingRef.current = conversationLoading;
+
+  function closeOverlaySidebar(): void {
+    if (overlayMode) {
+      setOverlaySidebarOpen(false);
+    }
+  }
+
+  function clearActiveConversationState(): void {
+    conversationRequestSeqRef.current += 1;
+    setActiveConversationId(null);
+    setActiveConversation(null);
+    setPendingTurn(null);
+    setConversationLoading(false);
+  }
+
+  async function refreshConversationList(search = historySearchRef.current): Promise<void> {
+    const normalizedSearch = search.trim();
+    const requestSeq = historyRequestSeqRef.current + 1;
+    historyRequestSeqRef.current = requestSeq;
+    setHistorySearch(normalizedSearch);
+    setConversationsLoading(true);
+
+    try {
+      const payload = await apiListConversations(normalizedSearch);
+      if (requestSeq !== historyRequestSeqRef.current) {
+        return;
+      }
+
+      const nextItems = Array.isArray(payload.items) ? payload.items : [];
+      setConversations(nextItems);
+      setConversationsLoading(false);
+      setActiveConversation((current) => {
+        if (!current?.conversation) {
+          return current;
+        }
+        const updated = nextItems.find((item) => item.id === current.conversation.id);
+        if (!updated) {
+          return current;
+        }
+        return {
+          ...current,
+          conversation: {
+            ...current.conversation,
+            ...updated,
+          },
+        };
+      });
+    } catch (error) {
+      if (requestSeq !== historyRequestSeqRef.current) {
+        return;
+      }
+      console.error(error);
+      setConversations([]);
+      setConversationsLoading(false);
+      setErrorText(error instanceof Error ? error.message : "历史会话加载失败。");
+      setStatusText("历史会话加载失败");
+    }
+  }
+
+  async function openConversation(nextConversationId: string | null): Promise<void> {
+    if (!nextConversationId) {
+      clearActiveConversationState();
+      scrollElementToTop(chatBodyRef.current);
+      return;
+    }
+
+    if (sendingRef.current) {
+      return;
+    }
+
+    closeOverlaySidebar();
+
+    if (
+      activeConversationRef.current?.conversation.id === nextConversationId &&
+      !conversationLoadingRef.current
+    ) {
+      return;
+    }
+
+    const requestSeq = conversationRequestSeqRef.current + 1;
+    conversationRequestSeqRef.current = requestSeq;
+    setActiveConversationId(nextConversationId);
+    setConversationLoading(true);
+    setPendingTurn(null);
+    setErrorText("");
+    setStatusText("正在恢复历史会话…");
+
+    try {
+      const payload = await apiGetConversation(nextConversationId);
+      if (requestSeq !== conversationRequestSeqRef.current) {
+        return;
+      }
+
+      setActiveConversation({
+        conversation: payload.conversation,
+        messages: Array.isArray(payload.messages) ? payload.messages : [],
+      });
+      setActiveConversationId(payload.conversation.id);
+      setConversationLoading(false);
+      setStatusText("历史会话已恢复，可继续发送");
+      scrollElementToBottom(chatBodyRef.current);
+    } catch (error) {
+      if (requestSeq !== conversationRequestSeqRef.current) {
+        return;
+      }
+      console.error(error);
+      setConversationLoading(false);
+      if (error instanceof RequestError && error.status === 404) {
+        clearActiveConversationState();
+        navigate("/", { replace: true });
+        setErrorText("要打开的会话不存在，已返回空白会话页。");
+        setStatusText("会话不存在");
+        scrollElementToTop(chatBodyRef.current);
+        return;
+      }
+
+      setErrorText(error instanceof Error ? error.message : "会话恢复失败。");
+      setStatusText("会话恢复失败");
+    }
+  }
+
+  async function createAndActivateConversation(silent = false): Promise<ConversationSummary> {
+    if (!silent) {
+      setStatusText("正在创建新会话…");
+      setErrorText("");
+    }
+
+    const payload = await apiCreateConversation();
+    const conversation = payload.conversation;
+    skipSearchEffectRef.current = true;
+    setHistorySearchInput("");
+    setHistorySearch("");
+    setActiveConversationId(conversation.id);
+    setActiveConversation({
+      conversation,
+      messages: [],
+    });
+    navigate(buildConversationPath(conversation.id));
+    await refreshConversationList("");
+
+    if (!silent) {
+      setStatusText("已创建新会话，可以开始提问");
+    }
+
+    return conversation;
+  }
+
+  async function ensureConversationForSend(): Promise<string> {
+    if (activeConversationIdRef.current && activeConversationRef.current) {
+      return activeConversationIdRef.current;
+    }
+
+    const conversation = await createAndActivateConversation(true);
+    return conversation.id;
+  }
+
+  async function submitCurrentQuery(query: string): Promise<void> {
+    const normalizedQuery = query.trim();
+    if (!normalizedQuery) {
+      setErrorText("请输入问题后再发送。");
+      setStatusText("请先输入问题");
+      return;
+    }
+
+    if (sendingRef.current) {
+      return;
+    }
+
+    let conversationId: string;
+    try {
+      conversationId = await ensureConversationForSend();
+    } catch (error) {
+      console.error(error);
+      setErrorText(error instanceof Error ? error.message : "当前无法创建新会话。");
+      setStatusText("发送前创建会话失败");
+      return;
+    }
+
+    setSending(true);
+    setPendingTurn({
+      role: "user",
+      content: normalizedQuery,
+      created_at: new Date().toISOString(),
+    });
+    setErrorText("");
+    setStatusText("正在为当前会话生成回答…");
+    scrollElementToBottom(chatBodyRef.current);
+
+    try {
+      const payload = await apiSendConversationMessage(conversationId, normalizedQuery);
+      const existingMessages = activeConversationRef.current?.messages || [];
+      setActiveConversation({
+        conversation: payload.conversation,
+        messages: existingMessages.concat(Array.isArray(payload.messages) ? payload.messages : []),
+      });
+      setActiveConversationId(payload.conversation.id);
+      setPendingTurn(null);
+      setQueryText("");
+      await refreshConversationList(historySearchRef.current);
+      setStatusText("回答已写入当前会话");
+      queryInputRef.current?.focus();
+      scrollElementToBottom(chatBodyRef.current);
+    } catch (error) {
+      console.error(error);
+      setPendingTurn(null);
+      setErrorText(error instanceof Error ? error.message : "本次消息未能成功写入会话。");
+      setStatusText("本次消息未发送成功");
+    } finally {
+      setSending(false);
+    }
+  }
+
+  async function handleNewChat(): Promise<void> {
+    if (sendingRef.current) {
+      return;
+    }
+
+    closeOverlaySidebar();
+    const shouldRefreshHistory = conversationsLoading || Boolean(historySearchRef.current);
+    skipSearchEffectRef.current = true;
+    setHistorySearchInput("");
+    setHistorySearch("");
+    clearActiveConversationState();
+    setQueryText("");
+    setErrorText("");
+    setStatusText("已回到空白新对话，可直接输入第一条问题");
+    navigate("/");
+    scrollElementToTop(chatBodyRef.current);
+    if (shouldRefreshHistory) {
+      await refreshConversationList("");
+    }
+    queryInputRef.current?.focus();
+  }
+
+  async function handleDeleteConversation(conversationId: string): Promise<void> {
+    if (sendingRef.current || deletingConversationId) {
+      return;
+    }
+
+    const conversation =
+      conversations.find((item) => item.id === conversationId) || activeConversationRef.current?.conversation;
+    const confirmed = window.confirm(`确定删除“${conversation?.title || "当前会话"}”吗？此操作不可撤销。`);
+    if (!confirmed) {
+      return;
+    }
+
+    setDeletingConversationId(conversationId);
+    setErrorText("");
+    setStatusText("正在删除会话…");
+
+    try {
+      await apiDeleteConversation(conversationId);
+      const deletedActive = activeConversationIdRef.current === conversationId;
+
+      if (deletedActive) {
+        clearActiveConversationState();
+        navigate("/", { replace: true });
+      }
+
+      await refreshConversationList(historySearchRef.current);
+      if (deletedActive) {
+        scrollElementToTop(chatBodyRef.current);
+      }
+
+      setStatusText("会话已删除");
+    } catch (error) {
+      console.error(error);
+      setErrorText(error instanceof Error ? error.message : "会话删除失败。");
+      setStatusText("会话删除失败");
+    } finally {
+      setDeletingConversationId(null);
+    }
+  }
+
+  function handleSidebarToggle(): void {
+    if (overlayMode) {
+      setOverlaySidebarOpen((current) => !current);
+      return;
+    }
+
+    setSidebarCollapsed((current) => {
+      const next = !current;
+      persistSidebarCollapsedPreference(next);
+      return next;
+    });
+  }
+
+  function handleSampleQueryFill(query: string): void {
+    setQueryText(query);
+    setErrorText("");
+    setStatusText("样例已填充，可继续发送到当前会话");
+    window.requestAnimationFrame(() => {
+      queryInputRef.current?.focus();
+      queryInputRef.current?.setSelectionRange(query.length, query.length);
+    });
+  }
+
+  function handleFormSubmit(event: FormEvent<HTMLFormElement>): void {
+    event.preventDefault();
+    void submitCurrentQuery(queryText);
+  }
+
+  function handleTextareaKeyDown(event: ReactKeyboardEvent<HTMLTextAreaElement>): void {
+    const shouldSubmit = event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing;
+    if (!shouldSubmit || sendingRef.current) {
+      return;
+    }
+    event.preventDefault();
+    void submitCurrentQuery(queryText);
+  }
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function initialize(): Promise<void> {
+      setStatusText("正在加载历史会话…");
+      await refreshConversationList("");
+      if (cancelled) {
+        return;
+      }
+      setBootstrapped(true);
+      if (!routeConversationId) {
+        setStatusText("前端脚本已加载，可从空白会话开始，也可打开左侧历史");
+      }
+    }
+
+    void initialize();
+
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (!bootstrapped) {
+      return;
+    }
+
+    if (skipSearchEffectRef.current) {
+      skipSearchEffectRef.current = false;
+      return;
+    }
+
+    const timer = window.setTimeout(() => {
+      void refreshConversationList(historySearchInput);
+    }, HISTORY_SEARCH_DEBOUNCE_MS);
+
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, [bootstrapped, historySearchInput]);
+
+  useEffect(() => {
+    if (!bootstrapped) {
+      return;
+    }
+
+    if (sendingRef.current) {
+      navigate(buildConversationPath(activeConversationIdRef.current), { replace: true });
+      return;
+    }
+
+    void openConversation(routeConversationId || null);
+  }, [bootstrapped, navigate, routeConversationId]);
+
+  useEffect(() => {
+    function handleResize(): void {
+      const nextOverlayMode = isOverlaySidebarViewport();
+      setOverlayMode(nextOverlayMode);
+      if (!nextOverlayMode) {
+        setOverlaySidebarOpen(false);
+      }
+    }
+
+    function handleGlobalKeydown(event: globalThis.KeyboardEvent): void {
+      if (event.key === "Escape") {
+        setOverlaySidebarOpen(false);
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("keydown", handleGlobalKeydown);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("keydown", handleGlobalKeydown);
+    };
+  }, []);
+
+  const sidebarOpen = overlayMode ? overlaySidebarOpen : !sidebarCollapsed;
+  const isSearching = Boolean(historySearch);
+  const confirmedMessages = activeConversation?.messages || [];
+  const hasMessages = confirmedMessages.length > 0 || Boolean(pendingTurn);
+
+  return (
+    <div
+      className={cx(
+        styles.page,
+        overlayMode && sidebarOpen && styles.pageSidebarOverlayOpen,
+      )}
+    >
+      <header className={styles.toolbar}>
+        <div className={styles.toolbarActions}>
+          <button
+            className={styles.iconButton}
+            type="button"
+            onClick={handleSidebarToggle}
+            aria-controls="history-sidebar"
+            aria-expanded={sidebarOpen}
+            aria-label={sidebarOpen ? "收起历史会话侧栏" : "展开历史会话侧栏"}
+            title={sidebarOpen ? "收起历史会话侧栏" : "展开历史会话侧栏"}
+          >
+            <span className={styles.iconGlyph}>☰</span>
+          </button>
+          <button
+            className={styles.iconButton}
+            type="button"
+            onClick={() => {
+              void handleNewChat();
+            }}
+            disabled={sending}
+            aria-label="新建对话"
+            title="新建对话"
+          >
+            <span className={styles.iconGlyph}>＋</span>
+          </button>
+          <label className={styles.evidenceToggle} title="切换原始证据标记 [E#]">
+            <input
+              type="checkbox"
+              checked={showRawEvidence}
+              onChange={(event) => {
+                setShowRawEvidence(event.target.checked);
+              }}
+            />
+            <span>显示证据标记</span>
+          </label>
+        </div>
+
+        <div className={styles.toolbarCenter}>
+          <h1 className={styles.toolbarTitle}>{activeConversation?.conversation.title || "新对话"}</h1>
+          <p className={styles.toolbarSubtitle}>
+            {getConversationSubtitle(activeConversation, conversationLoading, pendingTurn)}
+          </p>
+        </div>
+
+        <div className={styles.toolbarFeedback}>
+          <p className={styles.statusText} aria-live="polite">
+            {statusText}
+          </p>
+          <p className={styles.errorText} aria-live="polite">
+            {errorText}
+          </p>
+        </div>
+      </header>
+
+      <button
+        className={styles.sidebarBackdrop}
+        type="button"
+        hidden={!(overlayMode && sidebarOpen)}
+        aria-label="关闭历史会话侧栏"
+        onClick={closeOverlaySidebar}
+      />
+
+      <div
+        className={cx(
+          styles.shell,
+          !sidebarOpen && styles.shellSidebarCollapsed,
+        )}
+      >
+        <aside
+          id="history-sidebar"
+          className={styles.sidebar}
+          aria-hidden={!sidebarOpen}
+        >
+          <div className={styles.sidebarHead}>
+            <h2 className={styles.sidebarTitle}>历史对话</h2>
+          </div>
+
+          <div className={styles.sidebarSearch}>
+            <input
+              type="search"
+              value={historySearchInput}
+              onChange={(event) => {
+                setHistorySearchInput(event.target.value);
+              }}
+              disabled={sending}
+              aria-label="搜索历史对话"
+              placeholder="搜索标题或消息内容"
+              autoComplete="off"
+            />
+
+            <div className={styles.sidebarMeta}>
+              <p>{isSearching ? "搜索结果" : "最近会话"}</p>
+              <p aria-live="polite">
+                {conversationsLoading
+                  ? isSearching
+                    ? "搜索中…"
+                    : "加载中…"
+                  : `${conversations.length} 条${isSearching ? "结果" : ""}`}
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.sidebarListShell}>
+            {conversationsLoading ? (
+              <StateCard
+                title="正在加载历史会话"
+                copy="列表载入后，你可以从左侧直接恢复旧会话并继续聊天。"
+              />
+            ) : null}
+
+            {!conversationsLoading && conversations.length === 0 && !isSearching ? (
+              <StateCard
+                title="还没有历史会话"
+                copy="点击上方“新建对话”，或者直接在右侧输入问题开始第一轮会话。"
+              />
+            ) : null}
+
+            {!conversationsLoading && conversations.length === 0 && isSearching ? (
+              <StateCard
+                title="没有匹配结果"
+                copy="当前搜索没有命中标题或消息内容，可以尝试缩短关键词后重试。"
+              />
+            ) : null}
+
+            {!conversationsLoading && conversations.length > 0 ? (
+              <ul className={styles.conversationList}>
+                {groupConversationsForHistory(conversations).map((group) => (
+                  <li key={group.key} className={styles.conversationGroup}>
+                    <div className={styles.conversationGroupHead}>
+                      <p className={styles.conversationGroupTitle}>{group.label}</p>
+                    </div>
+                    <ul className={styles.conversationGroupList}>
+                      {group.items.map((conversation) => {
+                        const isActive = conversation.id === activeConversationId;
+                        return (
+                          <li
+                            key={conversation.id}
+                            className={cx(styles.conversationItem, isActive && styles.conversationItemActive)}
+                          >
+                            <button
+                              className={styles.conversationButton}
+                              type="button"
+                              disabled={sending}
+                              onClick={() => {
+                                navigate(buildConversationPath(conversation.id));
+                                closeOverlaySidebar();
+                              }}
+                            >
+                              <p className={styles.conversationItemTitle}>{conversation.title || "新对话"}</p>
+                              <div className={styles.conversationItemMeta}>
+                                <span>{formatHistoryTimestamp(conversation.updated_at || conversation.created_at)}</span>
+                                <span>{formatConversationTurns(conversation.message_count)}</span>
+                              </div>
+                            </button>
+
+                            <button
+                              className={styles.menuButton}
+                              type="button"
+                              disabled={sending || deletingConversationId === conversation.id}
+                              aria-label={`删除会话 ${conversation.title || "新对话"}`}
+                              title={deletingConversationId === conversation.id ? "删除中…" : "删除会话"}
+                              onClick={() => {
+                                void handleDeleteConversation(conversation.id);
+                              }}
+                            >
+                              {deletingConversationId === conversation.id ? "…" : "×"}
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
+        </aside>
+
+        <main className={styles.chatPanel}>
+          <div ref={chatBodyRef} className={styles.chatBody}>
+            {conversationLoading ? (
+              <StateCard title="正在加载会话" copy="正在恢复完整聊天记录，请稍候。" large />
+            ) : null}
+
+            {!conversationLoading && !activeConversationId && !hasMessages ? (
+              <EmptyConversationState />
+            ) : null}
+
+            {!conversationLoading && activeConversationId && !hasMessages ? (
+              <StateCard title="当前会话还没有消息" copy="直接在下方输入问题，发送后会自动写入这条会话。" large />
+            ) : null}
+
+            {!conversationLoading && hasMessages ? (
+              <section className={styles.messageFeed} aria-label="当前会话">
+                {confirmedMessages.map((message) =>
+                  message.role === "user" ? (
+                    <UserMessageCard key={message.id} message={message} />
+                  ) : (
+                    <AssistantMessageCard
+                      key={message.id}
+                      message={message}
+                      showRawEvidence={showRawEvidence}
+                    />
+                  ),
+                )}
+
+                {pendingTurn ? <UserMessageCard message={pendingTurn} pending /> : null}
+                {pendingTurn ? <PendingAssistantCard /> : null}
+              </section>
+            ) : null}
+          </div>
+
+          <footer className={styles.composerShell}>
+            <section className={styles.composerPanel} aria-label="底部输入区">
+              <form className={styles.composerForm} onSubmit={handleFormSubmit}>
+                <textarea
+                  ref={queryInputRef}
+                  value={queryText}
+                  onChange={(event) => {
+                    setQueryText(event.target.value);
+                  }}
+                  onKeyDown={handleTextareaKeyDown}
+                  disabled={sending || conversationLoading}
+                  aria-label="当前问题"
+                  rows={2}
+                  placeholder="输入问题"
+                />
+
+                <div className={styles.composerActions}>
+                  <button type="submit" disabled={sending || conversationLoading}>
+                    {sending ? "发送中…" : "发送"}
+                  </button>
+                </div>
+              </form>
+
+              <details className={styles.sampleQueries}>
+                <summary>查看示例问题</summary>
+                <div className={styles.sampleDrawer}>
+                  <p className={styles.sampleTitle}>可快速填充的示例问题</p>
+                  <div className={styles.sampleList}>
+                    {SAMPLE_QUERIES.map((query) => (
+                      <button
+                        key={query}
+                        className={styles.sampleChip}
+                        type="button"
+                        disabled={sending || conversationLoading}
+                        onClick={() => {
+                          handleSampleQueryFill(query);
+                        }}
+                      >
+                        {query.replace("？", "")}
+                      </button>
+                    ))}
+                  </div>
+                  <p className={styles.sampleNote}>点击后只填充输入框，不会自动发送。</p>
+                </div>
+              </details>
+            </section>
+          </footer>
+        </main>
+      </div>
+    </div>
+  );
+}
+
+function StateCard(props: { title: string; copy: string; large?: boolean }) {
+  return (
+    <section className={cx(styles.stateCard, props.large && styles.stateCardLarge)}>
+      <p className={styles.stateTitle}>{props.title}</p>
+      <p className={styles.stateCopy}>{props.copy}</p>
+    </section>
+  );
+}
+
+function EmptyConversationState() {
+  return (
+    <section className={cx(styles.stateCard, styles.stateCardLarge)}>
+      <p className={styles.stateEyebrow}>空白新对话</p>
+      <h2 className={styles.emptyTitle}>从问题开始，再回看依据。</h2>
+      <p className={styles.stateCopy}>
+        这个界面只保留最小链路：提问、回答、核对依据。发送后会按 strong / weak / refuse
+        自动切换展示状态。
+      </p>
+    </section>
+  );
+}
+
+function UserMessageCard(props: { message: { content: string; created_at: string }; pending?: boolean }) {
+  return (
+    <article className={cx(styles.messageCard, styles.userMessage, props.pending && styles.pendingCard)}>
+      <p className={styles.userBubble}>{props.message.content || ""}</p>
+    </article>
+  );
+}
+
+function PendingAssistantCard() {
+  const modeCopy = getModeCopy("loading");
+  return (
+    <article className={cx(styles.messageCard, styles.assistantMessage, styles.pendingCard)}>
+      <div className={styles.messageHead}>
+        <p className={styles.messageTime}>正在生成中</p>
+        <span className={styles.modeBadge} data-mode="loading">
+          {modeCopy.badge}
+        </span>
+      </div>
+      <div className={styles.assistantMain}>
+        <section className={styles.answerBlock}>
+          <p className={styles.answerLine}>正在检索依据并生成回答…</p>
+        </section>
+        <ModeSummary mode="loading" />
+      </div>
+    </article>
+  );
+}
+
+function BrokenAssistantCard(props: { message: ConversationMessage; error: Error }) {
+  return (
+    <article className={cx(styles.messageCard, styles.assistantMessage)}>
+      <div className={styles.messageHead}>
+        <p className={styles.messageTime}>{formatDateTime(props.message.created_at)}</p>
+        <span className={styles.modeBadge} data-mode="error">
+          渲染失败
+        </span>
+      </div>
+
+      <div className={styles.assistantMain}>
+        <section className={styles.answerBlock}>
+          <p className={styles.answerLine}>{props.message.content || "无正文内容"}</p>
+        </section>
+        <ModeSummary mode="error" />
+      </div>
+
+      <div className={styles.calloutList}>
+        <Callout title="渲染异常" body={props.error.message || "这条历史消息的结构不完整。"} tone="refuse" />
+      </div>
+    </article>
+  );
+}
+
+function AssistantMessageCard(props: { message: ConversationMessage; showRawEvidence: boolean }) {
+  try {
+    validatePayload(props.message.answer_payload);
+    return (
+      <AssistantMessageCardInner
+        message={props.message}
+        payload={props.message.answer_payload}
+        showRawEvidence={props.showRawEvidence}
+      />
+    );
+  } catch (error) {
+    console.error(error);
+    return <BrokenAssistantCard message={props.message} error={error instanceof Error ? error : new Error("渲染失败")} />;
+  }
+}
+
+function AssistantMessageCardInner(props: {
+  message: ConversationMessage;
+  payload: AnswerPayload;
+  showRawEvidence: boolean;
+}) {
+  const { primary, secondary, review, evidenceMap } = buildEvidenceIndex(props.payload);
+  const citations = Array.isArray(props.payload.citations) ? props.payload.citations : [];
+  const followups = Array.isArray(props.payload.suggested_followup_questions)
+    ? props.payload.suggested_followup_questions
+    : [];
+  const lines = parseAnswerLines(props.payload.answer_text);
+  const modeCopy = getModeCopy(props.payload.answer_mode);
+  const [highlightedEvidenceId, setHighlightedEvidenceId] = useState<string | null>(null);
+  const evidenceRefs = useRef<Record<string, HTMLElement | null>>({});
+
+  function jumpToEvidence(evidenceId: string): void {
+    const card = evidenceRefs.current[evidenceId];
+    if (!card) {
+      return;
+    }
+
+    card.scrollIntoView({ behavior: "smooth", block: "center" });
+    setHighlightedEvidenceId(evidenceId);
+    window.setTimeout(() => {
+      setHighlightedEvidenceId((current) => (current === evidenceId ? null : current));
+    }, 2000);
+  }
+
+  return (
+    <article className={cx(styles.messageCard, styles.assistantMessage)}>
+      <div className={styles.messageHead}>
+        <p className={styles.messageTime}>{formatDateTime(props.message.created_at)}</p>
+        <span className={styles.modeBadge} data-mode={props.payload.answer_mode}>
+          {modeCopy.badge}
+        </span>
+      </div>
+
+      <div className={styles.assistantMain}>
+        <section className={styles.answerBlock}>
+          {lines.map((line, index) => (
+            <p key={`${props.message.id}-${index}`} className={cx(styles.answerLine, index === 0 && styles.answerLead)}>
+              <span>{line.text || line.rawLine}</span>
+              {props.showRawEvidence && line.evidenceIds.length > 0 ? (
+                <span className={styles.rawEvidenceList}>
+                  {line.evidenceIds.map((evidenceId) => (
+                    <span key={`${props.message.id}-${index}-${evidenceId}`} className={styles.rawEvidenceMarker}>
+                      [{evidenceId}]
+                    </span>
+                  ))}
+                </span>
+              ) : null}
+              {line.evidenceIds.length > 0 ? (
+                <span className={styles.evidenceChipList}>
+                  {line.evidenceIds.map((evidenceId) => {
+                    const evidence = evidenceMap.get(evidenceId);
+                    const title = evidence ? resolveRecordTitle(evidence) : "";
+                    const tooltip = [title, evidence?.snippet || ""].filter(Boolean).join("\n");
+                    return (
+                      <button
+                        key={`${props.message.id}-${index}-${evidenceId}-chip`}
+                        type="button"
+                        className={styles.evidenceChip}
+                        title={tooltip}
+                        onClick={() => {
+                          jumpToEvidence(evidenceId);
+                        }}
+                      >
+                        {evidenceId}
+                      </button>
+                    );
+                  })}
+                </span>
+              ) : null}
+            </p>
+          ))}
+        </section>
+
+        {props.payload.disclaimer ? <p className={styles.disclaimerText}>{props.payload.disclaimer}</p> : null}
+        <ModeSummary mode={props.payload.answer_mode} />
+      </div>
+
+      {props.payload.review_notice || props.payload.refuse_reason ? (
+        <div className={styles.calloutList}>
+          {props.payload.review_notice ? (
+            <Callout title="核对提示" body={props.payload.review_notice} tone="review" />
+          ) : null}
+          {props.payload.refuse_reason ? (
+            <Callout title="拒答原因" body={props.payload.refuse_reason} tone="refuse" />
+          ) : null}
+        </div>
+      ) : null}
+
+      <section className={styles.supporting}>
+        <div className={styles.supportingHead}>
+          <p className={styles.supportingKicker}>依据与附加信息</p>
+          <p className={styles.supportingNote}>这些信息会随当前 assistant 消息一起恢复。</p>
+        </div>
+
+        {primary.length === 0 &&
+        secondary.length === 0 &&
+        review.length === 0 &&
+        citations.length === 0 &&
+        followups.length === 0 ? (
+          <section className={styles.supportPanel}>
+            <p className={styles.stateCopy}>当前结果没有可展示证据。若为拒答模式，这是预期行为。</p>
+          </section>
+        ) : null}
+
+        {primary.length > 0 ? (
+          <EvidencePanel
+            title="主依据"
+            hint={buildSupportingHint(props.payload.answer_mode, "primary")}
+            items={primary}
+            highlightedEvidenceId={highlightedEvidenceId}
+            evidenceRefs={evidenceRefs}
+            tone="primary"
+          />
+        ) : null}
+
+        {secondary.length > 0 ? (
+          <EvidencePanel
+            title="补充依据"
+            hint={buildSupportingHint(props.payload.answer_mode, "secondary")}
+            items={secondary}
+            highlightedEvidenceId={highlightedEvidenceId}
+            evidenceRefs={evidenceRefs}
+          />
+        ) : null}
+
+        {review.length > 0 ? (
+          <EvidencePanel
+            title="核对材料"
+            hint={buildSupportingHint(props.payload.answer_mode, "review")}
+            items={review}
+            highlightedEvidenceId={highlightedEvidenceId}
+            evidenceRefs={evidenceRefs}
+            tone="review"
+          />
+        ) : null}
+
+        {citations.length > 0 ? (
+          <CitationsPanel
+            items={citations}
+            hint={buildSupportingHint(props.payload.answer_mode, "citations")}
+          />
+        ) : null}
+
+        {followups.length > 0 ? (
+          <FollowupsPanel
+            items={followups}
+            hint={buildSupportingHint(props.payload.answer_mode, "followups")}
+          />
+        ) : null}
+      </section>
+    </article>
+  );
+}
+
+function ModeSummary(props: { mode: AnswerMode | "loading" | "error" }) {
+  const copy = getModeCopy(props.mode);
+  return (
+    <section className={styles.modeSummary} data-mode={props.mode}>
+      <div>
+        <p className={styles.modeKicker}>结果状态</p>
+        <h3 className={styles.modeTitle}>{copy.title}</h3>
+        <p className={styles.modeDescription}>{copy.description}</p>
+      </div>
+      <p className={styles.modeHint}>{copy.hint}</p>
+    </section>
+  );
+}
+
+function Callout(props: { title: string; body: string; tone: "review" | "refuse" }) {
+  return (
+    <section className={styles.callout} data-tone={props.tone}>
+      <div className={styles.panelHead}>
+        <h3>{props.title}</h3>
+      </div>
+      <p>{props.body}</p>
+    </section>
+  );
+}
+
+function PanelHead(props: { title: string; hint: string; count: number }) {
+  return (
+    <div className={styles.panelHead}>
+      <div>
+        <h3>
+          {props.title}
+          {props.count > 0 ? <span className={styles.sectionCount}>{props.count}条</span> : null}
+        </h3>
+        <p>{props.hint}</p>
+      </div>
+    </div>
+  );
+}
+
+function EvidencePanel(props: {
+  title: string;
+  hint: string;
+  items: IndexedEvidenceItem[];
+  highlightedEvidenceId: string | null;
+  evidenceRefs: MutableRefObject<Record<string, HTMLElement | null>>;
+  tone?: "primary" | "review";
+}) {
+  return (
+    <section className={styles.supportPanel} data-tone={props.tone || "default"}>
+      <PanelHead title={props.title} hint={props.hint} count={props.items.length} />
+      <div className={styles.evidenceList}>
+        {props.items.map((item) => (
+          <article
+            key={`${props.title}-${item.record_id}-${item.eId}`}
+            ref={(node) => {
+              props.evidenceRefs.current[item.eId] = node;
+            }}
+            className={cx(
+              styles.evidenceCard,
+              props.highlightedEvidenceId === item.eId && styles.evidenceCardHighlighted,
+            )}
+            data-evidence-id={item.eId}
+          >
+            <div className={styles.evidenceTop}>
+              <h4>{resolveRecordTitle(item) || item.title || formatRecordShort(item.record_id)}</h4>
+              <span className={styles.evidenceIndex}>{item.eId}</span>
+            </div>
+
+            <div className={styles.evidenceMeta}>
+              <span className={styles.roleChip} data-role={item.display_role}>
+                {formatRoleLabel(item.display_role)}
+              </span>
+              <span className={styles.metaChip}>等级 {item.evidence_level}</span>
+              <span className={styles.metaChip}>{formatSourceLabel(item.record_type)}</span>
+              <span className={styles.metaChip}>记录 {formatRecordShort(item.record_id)}</span>
+              {item.chapter_title ? <span className={styles.metaChip}>{item.chapter_title}</span> : null}
+            </div>
+
+            {item.snippet ? <p className={styles.evidenceSnippet}>{item.snippet}</p> : null}
+
+            {Array.isArray(item.risk_flags) && item.risk_flags.length > 0 ? (
+              <ul className={styles.riskFlags}>
+                {item.risk_flags.map((flag) => (
+                  <li key={`${item.record_id}-${flag}`}>{flag}</li>
+                ))}
+              </ul>
+            ) : null}
+
+            <p className={styles.recordFootnote}>record_id: {item.record_id}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function CitationsPanel(props: { items: CitationItem[]; hint: string }) {
+  return (
+    <section className={styles.supportPanel}>
+      <PanelHead title="回答引用" hint={props.hint} count={props.items.length} />
+      <ol className={styles.citationList}>
+        {props.items.map((citation) => (
+          <li key={`${citation.citation_id}-${citation.record_id}`} className={styles.citationItem}>
+            <h4>{resolveRecordTitle(citation, { prefix: citation.citation_id || "引用" })}</h4>
+            <div className={styles.evidenceMeta}>
+              <span className={styles.roleChip} data-role={citation.citation_role}>
+                {formatRoleLabel(citation.citation_role)}
+              </span>
+              <span className={styles.metaChip}>等级 {citation.evidence_level}</span>
+              <span className={styles.metaChip}>{formatSourceLabel(citation.record_type)}</span>
+              <span className={styles.metaChip}>记录 {formatRecordShort(citation.record_id)}</span>
+              {citation.chapter_title ? <span className={styles.metaChip}>{citation.chapter_title}</span> : null}
+            </div>
+            {citation.snippet ? <p className={styles.evidenceSnippet}>{citation.snippet}</p> : null}
+            <p className={styles.recordFootnote}>record_id: {citation.record_id}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
+
+function FollowupsPanel(props: { items: string[]; hint: string }) {
+  return (
+    <section className={styles.supportPanel}>
+      <PanelHead title="改问建议" hint={props.hint} count={props.items.length} />
+      <ul className={styles.followupsList}>
+        {props.items.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+    </section>
+  );
+}
