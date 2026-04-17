@@ -777,6 +777,7 @@
 
 .composerForm textarea {
   flex: 1;
+  min-width: 0;
   min-height: 86px;
   padding: 12px 14px;
   resize: vertical;
@@ -786,6 +787,22 @@
 .composerActions {
   display: flex;
   flex-shrink: 0;
+}
+
+.submitButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submitButtonText {
+  display: inline;
+}
+
+.submitButtonIcon {
+  display: none;
+  font-size: 1rem;
+  line-height: 1;
 }
 
 .composerActions button,
@@ -903,11 +920,26 @@
   }
 
   .toolbar {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
     padding: 12px;
   }
 
   .toolbarActions {
-    flex-wrap: wrap;
+    grid-column: 1 / -1;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+
+  .toolbarActions .iconButton {
+    width: 36px;
+    height: 36px;
+  }
+
+  .toolbarCenter,
+  .toolbarFeedback {
+    grid-column: 1 / -1;
   }
 
   .toolbarTitle {
@@ -932,6 +964,31 @@
 
   .menuButton {
     justify-self: end;
+  }
+
+  .composerForm {
+    gap: 8px;
+  }
+
+  .composerForm textarea {
+    min-height: 74px;
+    padding: 10px 12px;
+  }
+
+  .submitButton {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 999px;
+  }
+
+  .submitButtonText {
+    display: none;
+  }
+
+  .submitButtonIcon {
+    display: inline;
   }
 
   .composerPanel,

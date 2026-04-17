@@ -739,8 +739,16 @@ export default function App() {
                 />
 
                 <div className={styles.composerActions}>
-                  <button type="submit" disabled={sending || conversationLoading}>
-                    {sending ? "发送中…" : "发送"}
+                  <button
+                    className={styles.submitButton}
+                    type="submit"
+                    disabled={sending || conversationLoading}
+                    aria-label={sending ? "发送中" : "发送"}
+                  >
+                    <span className={styles.submitButtonText}>{sending ? "发送中…" : "发送"}</span>
+                    <span className={styles.submitButtonIcon} aria-hidden="true">
+                      {sending ? "…" : "↑"}
+                    </span>
                   </button>
                 </div>
               </form>
