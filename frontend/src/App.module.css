@@ -775,10 +775,12 @@
 .composerForm textarea {
   flex: 1;
   min-width: 0;
-  min-height: 86px;
-  padding: 12px 14px;
-  resize: vertical;
-  line-height: 1.7;
+  height: 40px;
+  min-height: 40px;
+  max-height: 200px;
+  padding: 8px 14px;
+  resize: none;
+  line-height: 1.5;
 }
 
 .composerActions {
@@ -973,8 +975,9 @@
   }
 
   .composerForm textarea {
-    min-height: 74px;
-    padding: 10px 12px;
+    height: 40px;
+    min-height: 40px;
+    padding: 8px 12px;
   }
 
   .submitButton {

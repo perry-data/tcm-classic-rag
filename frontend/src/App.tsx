@@ -435,6 +435,15 @@ export default function App() {
   }
 
   useEffect(() => {
+    if (queryInputRef.current) {
+      // Reset height to allow shrinking
+      queryInputRef.current.style.height = "40px";
+      // Set height based on scrollHeight, CSS max-height will constrain it
+      queryInputRef.current.style.height = `${queryInputRef.current.scrollHeight}px`;
+    }
+  }, [queryText]);
+
+  useEffect(() => {
     let cancelled = false;
 
     async function initialize(): Promise<void> {
@@ -727,10 +736,9 @@ export default function App() {
                   onKeyDown={handleTextareaKeyDown}
                   disabled={sending || conversationLoading}
                   aria-label="当前问题"
-                  rows={2}
+                  rows={1}
                   placeholder="输入问题"
                 />
-
                 <div className={styles.composerActions}>
                   <button
                     className={styles.submitButton}
