@@ -60,6 +60,7 @@ class ConversationStore:
                 """
                 CREATE TABLE IF NOT EXISTS conversations (
                     id TEXT PRIMARY KEY,
+                    client_id TEXT NOT NULL,
                     title TEXT NOT NULL,
                     title_source TEXT NOT NULL,
                     created_at TEXT NOT NULL,
@@ -70,6 +71,14 @@ class ConversationStore:
                 )
                 """
             )
+            columns = {
+                str(row["name"])
+                for row in self.conn.execute("PRAGMA table_info(conversations)").fetchall()
+            }
+            if "client_id" not in columns:
+                self.conn.execute(
+                    "ALTER TABLE conversations ADD COLUMN client_id TEXT NOT NULL DEFAULT ''"
+                )
             self.conn.execute(
                 """
                 CREATE TABLE IF NOT EXISTS messages (
@@ -88,10 +97,13 @@ class ConversationStore:
                 "CREATE INDEX IF NOT EXISTS idx_conversations_updated_at ON conversations(updated_at DESC)"
             )
             self.conn.execute(
+                "CREATE INDEX IF NOT EXISTS idx_conversations_client_updated_at ON conversations(client_id, updated_at DESC)"
+            )
+            self.conn.execute(
                 "CREATE INDEX IF NOT EXISTS idx_messages_conversation_position ON messages(conversation_id, position)"
             )
 
-    def create_conversation(self, title: str | None = None) -> dict[str, Any]:
+    def create_conversation(self, client_id: str, title: str | None = None) -> dict[str, Any]:
         now = utc_now_iso()
         title_value = collapse_whitespace(title or "")
         conversation_id = f"conv_{uuid.uuid4().hex}"
@@ -103,6 +115,7 @@ class ConversationStore:
                 """
                 INSERT INTO conversations (
                     id,
+                    client_id,
                     title,
                     title_source,
                     created_at,
@@ -111,10 +124,11 @@ class ConversationStore:
                     message_count,
                     preview_text
                 )
-                VALUES (?, ?, ?, ?, ?, ?, 0, '')
+                VALUES (?, ?, ?, ?, ?, ?, ?, 0, '')
                 """,
                 (
                     conversation_id,
+                    client_id,
                     stored_title,
                     title_source,
                     now,
@@ -122,11 +136,17 @@ class ConversationStore:
                     None,
                 ),
             )
-            row = self._fetch_conversation_row(conversation_id)
+            row = self._fetch_conversation_row(client_id, conversation_id)
 
         return self._conversation_row_to_dict(row)
 
-    def list_conversations(self, search: str | None = None, *, limit: int = 200) -> list[dict[str, Any]]:
+    def list_conversations(
+        self,
+        client_id: str,
+        search: str | None = None,
+        *,
+        limit: int = 200,
+    ) -> list[dict[str, Any]]:
         search_text = collapse_whitespace(search or "").lower()
 
         with self.lock:
@@ -136,41 +156,45 @@ class ConversationStore:
                     """
                     SELECT c.*
                     FROM conversations AS c
-                    WHERE lower(c.title) LIKE ?
-                        OR EXISTS (
-                            SELECT 1
-                            FROM messages AS m
-                            WHERE m.conversation_id = c.id
-                                AND lower(m.content) LIKE ?
+                    WHERE c.client_id = ?
+                        AND (
+                            lower(c.title) LIKE ?
+                            OR EXISTS (
+                                SELECT 1
+                                FROM messages AS m
+                                WHERE m.conversation_id = c.id
+                                    AND lower(m.content) LIKE ?
+                            )
                         )
                     ORDER BY c.updated_at DESC
                     LIMIT ?
                     """,
-                    (like_term, like_term, limit),
+                    (client_id, like_term, like_term, limit),
                 ).fetchall()
             else:
                 rows = self.conn.execute(
                     """
                     SELECT c.*
                     FROM conversations AS c
+                    WHERE c.client_id = ?
                     ORDER BY c.updated_at DESC
                     LIMIT ?
                     """,
-                    (limit,),
+                    (client_id, limit),
                 ).fetchall()
 
         return [self._conversation_row_to_dict(row) for row in rows]
 
-    def get_conversation_summary(self, conversation_id: str) -> dict[str, Any] | None:
+    def get_conversation_summary(self, client_id: str, conversation_id: str) -> dict[str, Any] | None:
         with self.lock:
-            row = self._fetch_conversation_row(conversation_id)
+            row = self._fetch_conversation_row(client_id, conversation_id)
         if row is None:
             return None
         return self._conversation_row_to_dict(row)
 
-    def get_conversation_detail(self, conversation_id: str) -> dict[str, Any] | None:
+    def get_conversation_detail(self, client_id: str, conversation_id: str) -> dict[str, Any] | None:
         with self.lock:
-            conversation_row = self._fetch_conversation_row(conversation_id)
+            conversation_row = self._fetch_conversation_row(client_id, conversation_id)
             if conversation_row is None:
                 return None
             message_rows = self.conn.execute(
@@ -190,6 +214,7 @@ class ConversationStore:
 
     def append_exchange(
         self,
+        client_id: str,
         conversation_id: str,
         query: str,
         answer_payload: dict[str, Any],
@@ -204,7 +229,7 @@ class ConversationStore:
         serialized_payload = json.dumps(answer_payload, ensure_ascii=False)
 
         with self.lock, self.conn:
-            conversation_row = self._fetch_conversation_row(conversation_id)
+            conversation_row = self._fetch_conversation_row(client_id, conversation_id)
             if conversation_row is None:
                 return None
 
@@ -291,6 +316,7 @@ class ConversationStore:
                     message_count = ?,
                     preview_text = ?
                 WHERE id = ?
+                    AND client_id = ?
                 """,
                 (
                     title,
@@ -300,9 +326,10 @@ class ConversationStore:
                     next_position + 1,
                     build_preview_text(user_content),
                     conversation_id,
+                    client_id,
                 ),
             )
-            updated_row = self._fetch_conversation_row(conversation_id)
+            updated_row = self._fetch_conversation_row(client_id, conversation_id)
 
         return {
             "conversation": self._conversation_row_to_dict(updated_row),
@@ -312,16 +339,28 @@ class ConversationStore:
             ],
         }
 
-    def delete_conversation(self, conversation_id: str) -> bool:
+    def delete_conversation(self, client_id: str, conversation_id: str) -> bool:
         with self.lock, self.conn:
-            result = self.conn.execute("DELETE FROM conversations WHERE id = ?", (conversation_id,))
+            result = self.conn.execute(
+                "DELETE FROM conversations WHERE id = ? AND client_id = ?",
+                (conversation_id, client_id),
+            )
         return result.rowcount > 0
 
-    def _fetch_conversation_row(self, conversation_id: str) -> sqlite3.Row | None:
+    def delete_all_conversations(self, client_id: str) -> int:
+        with self.lock, self.conn:
+            result = self.conn.execute(
+                "DELETE FROM conversations WHERE client_id = ?",
+                (client_id,),
+            )
+        return int(result.rowcount)
+
+    def _fetch_conversation_row(self, client_id: str, conversation_id: str) -> sqlite3.Row | None:
         return self.conn.execute(
             """
             SELECT
                 id,
+                client_id,
                 title,
                 title_source,
                 created_at,
@@ -331,8 +370,9 @@ class ConversationStore:
                 preview_text
             FROM conversations
             WHERE id = ?
+                AND client_id = ?
             """,
-            (conversation_id,),
+            (conversation_id, client_id),
         ).fetchone()
 
     def _conversation_row_to_dict(self, row: sqlite3.Row | None) -> dict[str, Any]:

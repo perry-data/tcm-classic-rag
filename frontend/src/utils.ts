@@ -24,6 +24,10 @@ export const REQUIRED_TOP_FIELDS: Array<keyof AnswerPayload> = [
 
 export const HISTORY_SEARCH_DEBOUNCE_MS = 180;
 export const SIDEBAR_PREFERENCE_KEY = "tcm-classic-rag.sidebar-collapsed";
+export const CLIENT_ID_STORAGE_KEY = "tcm_rag_client_id";
+const CLIENT_ID_RE = /^[A-Za-z0-9][A-Za-z0-9_-]{7,127}$/;
+const CLIENT_ID_PREFIX = "anon_";
+let cachedClientId: string | null = null;
 
 export const SAMPLE_QUERIES = [
   "黄连汤方的条文是什么？",
@@ -231,6 +235,43 @@ export function persistSidebarCollapsedPreference(collapsed: boolean): void {
   } catch {
     // Ignore persistence failures so the UI still works in restricted environments.
   }
+}
+
+function buildAnonymousClientId(): string {
+  if (typeof globalThis.crypto?.randomUUID === "function") {
+    return `${CLIENT_ID_PREFIX}${globalThis.crypto.randomUUID().replace(/-/g, "")}`;
+  }
+
+  const timestamp = Date.now().toString(36);
+  const randomPart = Math.random().toString(36).slice(2, 18);
+  return `${CLIENT_ID_PREFIX}${timestamp}${randomPart}`;
+}
+
+export function getOrCreateAnonymousClientId(): string {
+  if (cachedClientId && CLIENT_ID_RE.test(cachedClientId)) {
+    return cachedClientId;
+  }
+
+  try {
+    const stored = window.localStorage.getItem(CLIENT_ID_STORAGE_KEY);
+    if (stored && CLIENT_ID_RE.test(stored)) {
+      cachedClientId = stored;
+      return stored;
+    }
+  } catch {
+    // Fall back to an in-memory id when storage is unavailable.
+  }
+
+  const clientId = buildAnonymousClientId();
+  cachedClientId = clientId;
+
+  try {
+    window.localStorage.setItem(CLIENT_ID_STORAGE_KEY, clientId);
+  } catch {
+    // Ignore persistence failures so the current page session can still work.
+  }
+
+  return clientId;
 }
 
 export function isOverlaySidebarViewport(): boolean {

@@ -179,6 +179,33 @@
   font-size: 1rem;
 }
 
+.sidebarActionButton {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.78rem;
+  line-height: 1;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.sidebarActionButton:hover:not(:disabled) {
+  border-color: rgba(162, 85, 56, 0.28);
+  background: rgba(255, 248, 245, 0.98);
+  color: var(--danger);
+}
+
+.sidebarActionButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
 .sidebarSearch {
   display: grid;
   gap: 10px;

@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import json
 import mimetypes
+import re
 import shlex
 import sys
 import threading
@@ -38,6 +39,8 @@ from backend.llm import LLMConfigError, ModelStudioLLMConfig, load_modelstudio_l
 API_PATH = "/api/v1/answers"
 API_STREAM_PATH = "/api/v1/answers/stream"
 CONVERSATIONS_API_PATH = "/api/v1/conversations"
+CLIENT_ID_HEADER = "X-TCM-Client-Id"
+CLIENT_ID_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_-]{7,127}$")
 DEFAULT_HOST = "127.0.0.1"
 DEFAULT_PORT = 8000
 BENIGN_DISCONNECT_ERRNOS = {32, 53, 54, 104}
@@ -188,6 +191,15 @@ class ApiRequestError(Exception):
         self.message = message
 
 
+def normalize_client_id(raw_client_id: Any) -> str:
+    client_id = str(raw_client_id or "").strip()
+    if not client_id:
+        raise ApiRequestError(400, "missing_client_id", "Missing anonymous client id.")
+    if not CLIENT_ID_RE.fullmatch(client_id):
+        raise ApiRequestError(400, "invalid_client_id", "Anonymous client id is invalid.")
+    return client_id
+
+
 @dataclass
 class MinimalApiService:
     db_path: Path
@@ -252,7 +264,7 @@ class MinimalApiService:
         query = self._normalize_query_payload(payload)
         return self.answer_query(query, progress_callback=progress_callback)
 
-    def create_conversation(self, payload: Any) -> dict[str, Any]:
+    def create_conversation(self, client_id: str, payload: Any) -> dict[str, Any]:
         if payload is None:
             payload = {}
         if not isinstance(payload, dict):
@@ -262,34 +274,38 @@ class MinimalApiService:
         if raw_title is not None and not isinstance(raw_title, str):
             raise ApiRequestError(400, "invalid_request", "Field 'title' must be a string when provided.")
 
-        return self.conversation_store.create_conversation(raw_title)
+        return self.conversation_store.create_conversation(client_id, raw_title)
 
-    def list_conversations(self, search: str | None = None) -> dict[str, Any]:
+    def list_conversations(self, client_id: str, search: str | None = None) -> dict[str, Any]:
         normalized_search = search.strip() if isinstance(search, str) else ""
         return {
-            "items": self.conversation_store.list_conversations(normalized_search),
+            "items": self.conversation_store.list_conversations(client_id, normalized_search),
             "search": normalized_search,
         }
 
-    def get_conversation(self, conversation_id: str) -> dict[str, Any]:
-        conversation = self.conversation_store.get_conversation_detail(conversation_id)
+    def get_conversation(self, client_id: str, conversation_id: str) -> dict[str, Any]:
+        conversation = self.conversation_store.get_conversation_detail(client_id, conversation_id)
         if conversation is None:
             raise ApiRequestError(404, "not_found", "Conversation not found.")
         return conversation
 
-    def delete_conversation(self, conversation_id: str) -> dict[str, Any]:
-        deleted = self.conversation_store.delete_conversation(conversation_id)
+    def delete_conversation(self, client_id: str, conversation_id: str) -> dict[str, Any]:
+        deleted = self.conversation_store.delete_conversation(client_id, conversation_id)
         if not deleted:
             raise ApiRequestError(404, "not_found", "Conversation not found.")
         return {"id": conversation_id, "deleted": True}
 
-    def append_conversation_message(self, conversation_id: str, payload: Any) -> dict[str, Any]:
-        if self.conversation_store.get_conversation_summary(conversation_id) is None:
+    def delete_all_conversations(self, client_id: str) -> dict[str, Any]:
+        deleted_count = self.conversation_store.delete_all_conversations(client_id)
+        return {"deleted": True, "deleted_count": deleted_count}
+
+    def append_conversation_message(self, client_id: str, conversation_id: str, payload: Any) -> dict[str, Any]:
+        if self.conversation_store.get_conversation_summary(client_id, conversation_id) is None:
             raise ApiRequestError(404, "not_found", "Conversation not found.")
 
         query = self._normalize_query_payload(payload)
         answer_payload = self.answer_query(query)
-        conversation_update = self.conversation_store.append_exchange(conversation_id, query, answer_payload)
+        conversation_update = self.conversation_store.append_exchange(client_id, conversation_id, query, answer_payload)
         if conversation_update is None:
             raise ApiRequestError(404, "not_found", "Conversation not found.")
         return conversation_update
@@ -431,8 +447,9 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
 
             if request_path == CONVERSATIONS_API_PATH:
                 try:
+                    client_id = self._read_client_id_header()
                     payload = self._read_json_body()
-                    response_payload = {"conversation": service.create_conversation(payload)}
+                    response_payload = {"conversation": service.create_conversation(client_id, payload)}
                 except ApiRequestError as exc:
                     self._send_json(exc.status_code, {"error": {"code": exc.code, "message": exc.message}})
                     return
@@ -450,8 +467,9 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
             conversation_id = match_conversation_messages_route(request_path)
             if conversation_id is not None:
                 try:
+                    client_id = self._read_client_id_header()
                     payload = self._read_json_body()
-                    response_payload = service.append_conversation_message(conversation_id, payload)
+                    response_payload = service.append_conversation_message(client_id, conversation_id, payload)
                 except ApiRequestError as exc:
                     self._send_json(exc.status_code, {"error": {"code": exc.code, "message": exc.message}})
                     return
@@ -495,7 +513,8 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
                 query_params = parse_qs(parsed.query)
                 search = query_params.get("search", [""])[0]
                 try:
-                    response_payload = service.list_conversations(search)
+                    client_id = self._read_client_id_header()
+                    response_payload = service.list_conversations(client_id, search)
                 except ApiRequestError as exc:
                     self._send_json(exc.status_code, {"error": {"code": exc.code, "message": exc.message}})
                     return
@@ -505,7 +524,8 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
             conversation_id = match_conversation_detail_route(request_path)
             if conversation_id is not None:
                 try:
-                    response_payload = service.get_conversation(conversation_id)
+                    client_id = self._read_client_id_header()
+                    response_payload = service.get_conversation(client_id, conversation_id)
                 except ApiRequestError as exc:
                     self._send_json(exc.status_code, {"error": {"code": exc.code, "message": exc.message}})
                     return
@@ -544,13 +564,32 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
 
         def do_DELETE(self) -> None:  # noqa: N802
             request_path = urlsplit(self.path).path
+            if request_path == CONVERSATIONS_API_PATH:
+                try:
+                    client_id = self._read_client_id_header()
+                    response_payload = service.delete_all_conversations(client_id)
+                except ApiRequestError as exc:
+                    self._send_json(exc.status_code, {"error": {"code": exc.code, "message": exc.message}})
+                    return
+                except Exception as exc:  # pragma: no cover - defensive transport guard
+                    log(f"[api:error] {exc}")
+                    self._send_json(
+                        500,
+                        {"error": {"code": "internal_error", "message": "Internal server error."}},
+                    )
+                    return
+
+                self._send_json(200, response_payload)
+                return
+
             conversation_id = match_conversation_detail_route(request_path)
             if conversation_id is None:
                 self._send_json(404, {"error": {"code": "not_found", "message": "Route not found."}})
                 return
 
             try:
-                response_payload = service.delete_conversation(conversation_id)
+                client_id = self._read_client_id_header()
+                response_payload = service.delete_conversation(client_id, conversation_id)
             except ApiRequestError as exc:
                 self._send_json(exc.status_code, {"error": {"code": exc.code, "message": exc.message}})
                 return
@@ -585,6 +624,9 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
                 return json.loads(raw_body.decode("utf-8"))
             except (UnicodeDecodeError, json.JSONDecodeError) as exc:
                 raise ApiRequestError(400, "invalid_json", "Request body must be valid JSON.") from exc
+
+        def _read_client_id_header(self) -> str:
+            return normalize_client_id(self.headers.get(CLIENT_ID_HEADER))
 
         @staticmethod
         def _is_client_disconnect(exc: BaseException) -> bool:

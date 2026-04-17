@@ -1,14 +1,17 @@
 import type {
   ApiErrorPayload,
   AnswerPayload,
+  ConversationClearResponse,
   ConversationCreateResponse,
   ConversationDetail,
   ConversationListResponse,
   ConversationMessageResponse,
 } from "./types";
+import { getOrCreateAnonymousClientId } from "./utils";
 
 const CONVERSATIONS_API_PATH = "/api/v1/conversations";
 const ANSWERS_API_PATH = "/api/v1/answers";
+const CLIENT_ID_HEADER = "X-TCM-Client-Id";
 
 export class RequestError extends Error {
   kind: string;
@@ -56,29 +59,50 @@ async function fetchJson<T>(url: string, options: RequestInit = {}): Promise<T> 
   return payload;
 }
 
+function withConversationClient(options: RequestInit = {}): RequestInit {
+  const headers = new Headers(options.headers);
+  headers.set(CLIENT_ID_HEADER, getOrCreateAnonymousClientId());
+  return {
+    ...options,
+    headers,
+  };
+}
+
 export function apiListConversations(search: string): Promise<ConversationListResponse> {
   const query = search ? `?search=${encodeURIComponent(search)}` : "";
-  return fetchJson<ConversationListResponse>(`${CONVERSATIONS_API_PATH}${query}`);
+  return fetchJson<ConversationListResponse>(`${CONVERSATIONS_API_PATH}${query}`, withConversationClient());
 }
 
 export function apiCreateConversation(): Promise<ConversationCreateResponse> {
-  return fetchJson<ConversationCreateResponse>(CONVERSATIONS_API_PATH, {
+  return fetchJson<ConversationCreateResponse>(CONVERSATIONS_API_PATH, withConversationClient({
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({}),
-  });
+  }));
 }
 
 export function apiGetConversation(conversationId: string): Promise<ConversationDetail> {
-  return fetchJson<ConversationDetail>(`${CONVERSATIONS_API_PATH}/${encodeURIComponent(conversationId)}`);
+  return fetchJson<ConversationDetail>(
+    `${CONVERSATIONS_API_PATH}/${encodeURIComponent(conversationId)}`,
+    withConversationClient(),
+  );
 }
 
 export function apiDeleteConversation(conversationId: string): Promise<{ id: string; deleted: boolean }> {
-  return fetchJson<{ id: string; deleted: boolean }>(`${CONVERSATIONS_API_PATH}/${encodeURIComponent(conversationId)}`, {
+  return fetchJson<{ id: string; deleted: boolean }>(
+    `${CONVERSATIONS_API_PATH}/${encodeURIComponent(conversationId)}`,
+    withConversationClient({
+      method: "DELETE",
+    }),
+  );
+}
+
+export function apiClearConversations(): Promise<ConversationClearResponse> {
+  return fetchJson<ConversationClearResponse>(CONVERSATIONS_API_PATH, withConversationClient({
     method: "DELETE",
-  });
+  }));
 }
 
 export function apiSendConversationMessage(
@@ -87,13 +111,13 @@ export function apiSendConversationMessage(
 ): Promise<ConversationMessageResponse> {
   return fetchJson<ConversationMessageResponse>(
     `${CONVERSATIONS_API_PATH}/${encodeURIComponent(conversationId)}/messages`,
-    {
+    withConversationClient({
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ query }),
-    },
+    }),
   );
 }
 

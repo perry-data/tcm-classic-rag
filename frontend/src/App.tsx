@@ -2,6 +2,7 @@ import { type FormEvent, type KeyboardEvent as ReactKeyboardEvent, type MutableR
 import { useNavigate, useParams } from "react-router-dom";
 import {
   RequestError,
+  apiClearConversations,
   apiCreateConversation,
   apiDeleteConversation,
   apiGetConversation,
@@ -98,6 +99,7 @@ export default function App() {
   const [sending, setSending] = useState(false);
   const [pendingTurn, setPendingTurn] = useState<PendingTurn | null>(null);
   const [deletingConversationId, setDeletingConversationId] = useState<string | null>(null);
+  const [clearingHistory, setClearingHistory] = useState(false);
   const [statusText, setStatusText] = useState("正在初始化聊天界面…");
   const [errorText, setErrorText] = useState("");
   const [queryText, setQueryText] = useState("");
@@ -358,7 +360,7 @@ export default function App() {
   }
 
   async function handleDeleteConversation(conversationId: string): Promise<void> {
-    if (sendingRef.current || deletingConversationId) {
+    if (sendingRef.current || deletingConversationId || clearingHistory) {
       return;
     }
 
@@ -394,6 +396,44 @@ export default function App() {
       setStatusText("会话删除失败");
     } finally {
       setDeletingConversationId(null);
+    }
+  }
+
+  async function handleClearHistory(): Promise<void> {
+    if (sendingRef.current || deletingConversationId || clearingHistory) {
+      return;
+    }
+
+    const confirmed = window.confirm("确定清空当前浏览器中的全部历史对话吗？此操作不会影响其他设备或其他浏览器。");
+    if (!confirmed) {
+      return;
+    }
+
+    setClearingHistory(true);
+    setErrorText("");
+    setStatusText("正在清空当前浏览器历史…");
+
+    try {
+      const payload = await apiClearConversations();
+      skipSearchEffectRef.current = true;
+      setHistorySearchInput("");
+      setHistorySearch("");
+      clearActiveConversationState();
+      setQueryText("");
+      navigate("/", { replace: true });
+      await refreshConversationList("");
+      scrollElementToTop(chatBodyRef.current);
+      if (payload.deleted_count > 0) {
+        setStatusText(`已清空当前浏览器历史（${payload.deleted_count} 条会话）`);
+      } else {
+        setStatusText("当前浏览器没有可清空的历史会话");
+      }
+    } catch (error) {
+      console.error(error);
+      setErrorText(error instanceof Error ? error.message : "清空历史失败。");
+      setStatusText("清空历史失败");
+    } finally {
+      setClearingHistory(false);
     }
   }
 
@@ -553,7 +593,7 @@ export default function App() {
             onClick={() => {
               void handleNewChat();
             }}
-            disabled={sending}
+            disabled={sending || clearingHistory}
             aria-label="新建对话"
             title="新建对话"
           >
@@ -592,6 +632,17 @@ export default function App() {
         >
           <div className={styles.sidebarHead}>
             <h2 className={styles.sidebarTitle}>历史对话</h2>
+            <button
+              className={styles.sidebarActionButton}
+              type="button"
+              onClick={() => {
+                void handleClearHistory();
+              }}
+              disabled={sending || Boolean(deletingConversationId) || clearingHistory}
+              title={clearingHistory ? "清空中…" : "清空当前浏览器历史"}
+            >
+              {clearingHistory ? "清空中…" : "清空历史"}
+            </button>
           </div>
 
           <div className={styles.sidebarSearch}>
@@ -601,7 +652,7 @@ export default function App() {
               onChange={(event) => {
                 setHistorySearchInput(event.target.value);
               }}
-              disabled={sending}
+              disabled={sending || clearingHistory}
               aria-label="搜索历史对话"
               placeholder="搜索标题或消息内容"
               autoComplete="off"
@@ -659,7 +710,7 @@ export default function App() {
                             <button
                               className={styles.conversationButton}
                               type="button"
-                              disabled={sending}
+                              disabled={sending || clearingHistory}
                               onClick={() => {
                                 navigate(buildConversationPath(conversation.id));
                                 closeOverlaySidebar();
@@ -675,7 +726,7 @@ export default function App() {
                             <button
                               className={styles.menuButton}
                               type="button"
-                              disabled={sending || deletingConversationId === conversation.id}
+                              disabled={sending || clearingHistory || deletingConversationId === conversation.id}
                               aria-label={`删除会话 ${conversation.title || "新对话"}`}
                               title={deletingConversationId === conversation.id ? "删除中…" : "删除会话"}
                               onClick={() => {
@@ -734,7 +785,7 @@ export default function App() {
                     setQueryText(event.target.value);
                   }}
                   onKeyDown={handleTextareaKeyDown}
-                  disabled={sending || conversationLoading}
+                  disabled={sending || conversationLoading || clearingHistory}
                   aria-label="当前问题"
                   rows={1}
                   placeholder="输入问题"
@@ -743,7 +794,7 @@ export default function App() {
                   <button
                     className={styles.submitButton}
                     type="submit"
-                    disabled={sending || conversationLoading}
+                    disabled={sending || conversationLoading || clearingHistory}
                     aria-label={sending ? "发送中" : "发送"}
                   >
                     <span className={styles.submitButtonText}>{sending ? "发送中…" : "发送"}</span>
@@ -764,7 +815,7 @@ export default function App() {
                         key={query}
                         className={styles.sampleChip}
                         type="button"
-                        disabled={sending || conversationLoading}
+                        disabled={sending || conversationLoading || clearingHistory}
                         onClick={() => {
                           handleSampleQueryFill(query);
                         }}

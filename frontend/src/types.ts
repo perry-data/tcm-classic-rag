@@ -90,6 +90,11 @@ export interface ConversationMessageResponse {
   messages: ConversationMessage[];
 }
 
+export interface ConversationClearResponse {
+  deleted: boolean;
+  deleted_count: number;
+}
+
 export interface ApiErrorPayload {
   error?: {
     code?: string;
