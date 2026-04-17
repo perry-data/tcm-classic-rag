@@ -437,7 +437,7 @@ export default function App() {
   useEffect(() => {
     if (queryInputRef.current) {
       // Reset height to allow shrinking
-      queryInputRef.current.style.height = "40px";
+      queryInputRef.current.style.height = "auto";
       // Set height based on scrollHeight, CSS max-height will constrain it
       queryInputRef.current.style.height = `${queryInputRef.current.scrollHeight}px`;
     }
