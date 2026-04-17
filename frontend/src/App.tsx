@@ -559,14 +559,7 @@ export default function App() {
           </p>
         </div>
 
-        <div className={styles.toolbarFeedback}>
-          <p className={styles.statusText} aria-live="polite">
-            {statusText}
-          </p>
-          <p className={styles.errorText} aria-live="polite">
-            {errorText}
-          </p>
-        </div>
+
       </header>
 
       <button

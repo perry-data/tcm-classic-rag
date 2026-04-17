@@ -18,9 +18,9 @@
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
   gap: 14px;
-  width: min(1560px, 100vw);
+  width: 100%;
   height: 100vh;
-  margin: 0 auto;
+  margin: 0;
   padding: 18px;
   color: var(--ink);
 }
@@ -226,9 +226,6 @@
 .sidebarListShell {
   min-height: 0;
   padding: 10px 8px 10px 10px;
-  border: 1px solid rgba(54, 41, 30, 0.06);
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.42);
   overflow: hidden;
 }
 
@@ -793,15 +790,20 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 40px !important;
+  min-width: 40px !important;
+  height: 40px;
+  padding: 0 !important;
+  border-radius: 999px !important;
 }
 
 .submitButtonText {
-  display: inline;
+  display: none;
 }
 
 .submitButtonIcon {
-  display: none;
-  font-size: 1rem;
+  display: inline;
+  font-size: 1.2rem;
   line-height: 1;
 }
 
