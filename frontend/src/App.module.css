@@ -258,6 +258,7 @@
 
 .conversationList {
   display: grid;
+  align-content: start;
   gap: 14px;
   min-height: 0;
   height: 100%;
@@ -270,6 +271,7 @@
 .conversationGroup,
 .conversationGroupList {
   display: grid;
+  align-content: start;
   gap: 6px;
   margin: 0;
   padding: 0;
@@ -803,9 +805,9 @@
   flex: 1;
   min-width: 0;
   max-height: 200px;
-  padding: 6px 14px;
+  padding: 8px 14px;
   resize: none;
-  line-height: 1.35;
+  line-height: 1.5;
 }
 
 .composerActions {
@@ -1000,7 +1002,7 @@
   }
 
   .composerForm textarea {
-    padding: 6px 12px;
+    padding: 8px 12px;
   }
 
   .submitButton {
