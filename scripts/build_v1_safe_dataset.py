@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import copy
 import json
+import os
 import zipfile
 from pathlib import Path
 from typing import Any
@@ -24,6 +25,15 @@ REQUIRED_FILES = [
 ]
 
 SHORT_TEXT_THRESHOLD = 20
+
+
+def env_candidate_paths(*env_names: str) -> list[Path]:
+    paths: list[Path] = []
+    for env_name in env_names:
+        raw_value = os.environ.get(env_name, "").strip()
+        if raw_value:
+            paths.append(Path(raw_value).expanduser())
+    return paths
 
 
 def locate_source(explicit: str | None, candidates: list[Path], description: str) -> Path:
@@ -345,15 +355,12 @@ def main() -> None:
     args = parser.parse_args()
 
     repo_root = Path(__file__).resolve().parents[1]
-    source = locate_source(
-        args.source,
-        [
-            repo_root / "data" / "processed" / "zjshl_dataset_v2",
-            repo_root / "data" / "raw" / "zjshl_dataset_v2.zip",
-            Path("/Users/man_ray/大四毕业论文/数据/zjshl_dataset_v2.zip"),
-        ],
-        "source dataset",
-    )
+    source_candidates = [
+        repo_root / "data" / "processed" / "zjshl_dataset_v2",
+        repo_root / "data" / "raw" / "zjshl_dataset_v2.zip",
+    ]
+    source_candidates.extend(env_candidate_paths("TCM_CLASSIC_RAG_DATASET_SOURCE", "TCM_CLASSIC_RAG_DATASET_ZIP"))
+    source = locate_source(args.source, source_candidates, "source dataset")
     output_zip = Path(args.output).expanduser() if args.output else repo_root / "dist" / "zjshl_dataset_v2_v1_safe.zip"
 
     dataset = load_dataset(source)

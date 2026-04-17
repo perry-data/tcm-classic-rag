@@ -647,6 +647,8 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
                 "<p>请先在项目根目录运行：</p>"
                 "<pre style=\"padding:14px 16px;border:1px solid #ddd;border-radius:12px;"
                 "background:#faf7f2;overflow:auto;\">cd frontend\nnpm install\nnpm run build</pre>"
+                "<p>若你正在开发并想要热更新，请运行 <code>python scripts/dev.py</code>，"
+                "然后访问 <code>http://127.0.0.1:5173/</code>。</p>"
                 "<p>构建完成后，重新刷新当前页面即可。</p>"
                 "</main></body></html>"
             ).encode("utf-8")

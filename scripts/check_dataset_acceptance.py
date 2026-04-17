@@ -5,6 +5,7 @@ import argparse
 import csv
 import json
 import math
+import os
 import re
 import statistics
 import zipfile
@@ -13,6 +14,15 @@ from dataclasses import dataclass
 from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any
+
+
+def env_candidate_paths(*env_names: str) -> list[Path]:
+    paths: list[Path] = []
+    for env_name in env_names:
+        raw_value = os.environ.get(env_name, "").strip()
+        if raw_value:
+            paths.append(Path(raw_value).expanduser())
+    return paths
 
 
 REQUIRED_FILES = [
@@ -317,24 +327,16 @@ def main() -> None:
     docs_dir.mkdir(parents=True, exist_ok=True)
     reports_dir.mkdir(parents=True, exist_ok=True)
 
-    dataset_zip = locate_path(
-        args.dataset_zip,
-        [
-            repo_root / "data" / "raw" / "zjshl_dataset_v2.zip",
-            Path("/Users/man_ray/大四毕业论文/数据/zjshl_dataset_v2.zip"),
-            repo_root / "data" / "processed" / "zjshl_dataset_v2.zip",
-        ],
-        "dataset zip",
-    )
-    raw_zip = locate_path(
-        args.raw_zip,
-        [
-            repo_root / "data" / "raw" / "《注解伤寒论》.zip",
-            Path("/Users/man_ray/Documents/GitHub/perry_vault/毕业设计/数据/《注解伤寒论》.zip"),
-            Path("/Users/man_ray/大四毕业论文/数据/《注解伤寒论》.zip"),
-        ],
-        "raw markdown zip",
-    )
+    dataset_candidates = [
+        repo_root / "data" / "raw" / "zjshl_dataset_v2.zip",
+        repo_root / "data" / "processed" / "zjshl_dataset_v2.zip",
+    ]
+    dataset_candidates.extend(env_candidate_paths("TCM_CLASSIC_RAG_DATASET_ZIP"))
+    dataset_zip = locate_path(args.dataset_zip, dataset_candidates, "dataset zip")
+
+    raw_candidates = [repo_root / "data" / "raw" / "《注解伤寒论》.zip"]
+    raw_candidates.extend(env_candidate_paths("TCM_CLASSIC_RAG_RAW_ZIP"))
+    raw_zip = locate_path(args.raw_zip, raw_candidates, "raw markdown zip")
 
     dataset = load_dataset_zip(dataset_zip)
     raw_files = parse_raw_zip(raw_zip)
