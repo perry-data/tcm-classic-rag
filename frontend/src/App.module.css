@@ -776,9 +776,9 @@
   flex: 1;
   min-width: 0;
   max-height: 200px;
-  padding: 8px 14px;
+  padding: 6px 14px;
   resize: none;
-  line-height: 1.5;
+  line-height: 1.35;
 }
 
 .composerActions {
@@ -973,7 +973,7 @@
   }
 
   .composerForm textarea {
-    padding: 8px 12px;
+    padding: 6px 12px;
   }
 
   .submitButton {
