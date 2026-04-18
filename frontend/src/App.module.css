@@ -584,8 +584,7 @@
 }
 
 .modeDescription,
-.modeHint,
-.supportingNote {
+.modeHint {
   margin: 0;
   color: var(--muted);
   line-height: 1.6;
@@ -622,10 +621,6 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: 12px;
-}
-
-.supportingNote {
-  font-size: 0.88rem;
 }
 
 .supportPanel {

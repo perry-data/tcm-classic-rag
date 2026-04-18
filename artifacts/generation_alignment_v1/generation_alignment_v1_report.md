@@ -27,8 +27,8 @@
 - mode_kept_all: `True`
 - evidence_slots_kept_all: `True`
 - citations_kept_all: `True`
-- llm_used_all_non_refuse: `True`
-- evidence_ref_alignment_all_non_refuse: `True`
+- llm_used_all_non_refuse: `False`
+- answer_text_style_all_non_refuse: `True`
 - refuse_skips_llm: `True`
 
 ## Case: required_strong_huanglian_tang
@@ -37,25 +37,26 @@
 - query: `黄连汤方的条文是什么？`
 - expected_mode: `strong`
 - actual_mode: `strong`
-- answer_source: `llm`
+- answer_source: `guardrail_fallback`
 - attempted: `True`
-- used_llm: `True`
-- fallback_used: `False`
+- used_llm: `False`
+- fallback_used: `True`
 - payload_contract_kept: `True`
 - evidence_slots_kept: `True`
 - citations_kept: `True`
-- refs_on_all_lines: `True`
-- point_count: `3`
-- numbered_points_valid: `True`
+- paragraph_count: `3`
+- inline_refs_present: `True`
+- no_standalone_refs: `True`
+- no_report_labels: `True`
+- no_internal_meta: `True`
 - llm_attempted_when_expected: `True`
 
 ### Answer Text
 
 ```text
-《伤寒论》中黄连汤方的条文载于‘辨太阳病脉证并治法第七’，包含药物组成、性味、剂量及配伍意义 [E1][E2][E3]。
-1. 黄连汤由黄连、炙甘草、乾姜、桂枝（去皮）、人参、半夏、大枣七味药组成 [E1][E2]。
-2. 各药剂量与性味明确标注，如黄连味苦寒，甘草炙、味甘平，乾姜与桂枝均味辛热、各三两，人参二两，半夏半升（洗），大枣十二枚（擘） [E1][E2]。
-3. 条文指出其配伍原则为：黄连之苦以降上热，桂枝、乾姜、半夏之辛以散下寒，人参、甘草、大枣之甘以缓中益胃 [E3]。
+可以先把“黄连汤方的条文是什么”理解成和“黄连汤方：黄连味苦寒 甘草炙”、“味甘温 半夏半升，洗”直接相关的书内内容。[E1][E2]
+从现有片段看，重点落在这些明写信息上，超出这层就不宜硬补。[E1][E2]
+依据主要来自当前命中的条文或片段；如果要逐字确认语境，继续回看引用会更稳妥。[E1][E2]
 ```
 
 ### LLM Debug
@@ -68,24 +69,24 @@
   "query_text": "黄连汤方的条文是什么？",
   "answer_mode": "strong",
   "attempted": true,
-  "used_llm": true,
-  "fallback_used": false,
+  "used_llm": false,
+  "fallback_used": true,
   "skipped_reason": null,
-  "fallback_reason": null,
-  "answer_source": "llm",
-  "baseline_answer_text_excerpt": "根据主依据，与“黄连汤方”直接对应的条文主要有： 1. 黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。 2. 味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温 3. 上热者，泄之以苦，黄连之苦以降阳；下寒者，散之以辛，桂、姜、半夏之辛以升阴；脾欲缓，急食甘以缓之...",
+  "fallback_reason": "Rendered answer_text contains a claim that cannot be aligned to its cited evidence.",
+  "answer_source": "guardrail_fallback",
+  "baseline_answer_text_excerpt": "和“黄连汤方”直接相关的主条，当前主要落在这些方文或条文片段里。 黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。 味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温 上热者，泄之以苦，黄连之苦以降阳；下寒者，散之以辛，桂、姜、半夏之辛以升阴；脾欲缓，急食甘以缓之，...",
   "attempts": [
     {
       "attempt": 1,
       "strict_retry": false,
       "status": "failed",
-      "error": "Rendered answer_text contains forbidden marker: ZJSHL-CH-"
+      "error": "Each paragraph must include at least one inline [E#] reference."
     },
     {
       "attempt": 2,
       "strict_retry": true,
-      "status": "passed",
-      "rendered_answer_text_excerpt": "《伤寒论》中黄连汤方的条文载于‘辨太阳病脉证并治法第七’，包含药物组成、性味、剂量及配伍意义 [E1][E2][E3]。 1. 黄连汤由黄连、炙甘草、乾姜、桂枝（去皮）、人参、半夏、大枣七味药组成 [E1][E2]。 2. 各药剂量与性味明确标注，如黄连味苦寒，甘草炙、味甘平，乾姜与桂枝均味辛热、各三两，人参二两，半夏..."
+      "status": "failed",
+      "error": "Rendered answer_text contains a claim that cannot be aligned to its cited evidence."
     }
   ],
   "evidence_pack_summary": {
@@ -104,7 +105,7 @@
       "E8"
     ]
   },
-  "rendered_answer_text_excerpt": "《伤寒论》中黄连汤方的条文载于‘辨太阳病脉证并治法第七’，包含药物组成、性味、剂量及配伍意义 [E1][E2][E3]。 1. 黄连汤由黄连、炙甘草、乾姜、桂枝（去皮）、人参、半夏、大枣七味药组成 [E1][E2]。 2. 各药剂量与性味明确标注，如黄连味苦寒，甘草炙、味甘平，乾姜与桂枝均味辛热、各三两，人参二两，半夏..."
+  "rendered_answer_text_excerpt": "可以先把“黄连汤方的条文是什么”理解成和“黄连汤方：黄连味苦寒 甘草炙”、“味甘温 半夏半升，洗”直接相关的书内内容。[E1][E2] 从现有片段看，重点落在这些明写信息上，超出这层就不宜硬补。[E1][E2] 依据主要来自当前命中的条文或片段；如果要逐字确认语境，继续回看引用会更稳妥。[E1][E2]"
 }`
 
 ## Case: required_weak_shaozhen
@@ -120,19 +121,21 @@
 - payload_contract_kept: `True`
 - evidence_slots_kept: `True`
 - citations_kept: `True`
-- refs_on_all_lines: `True`
-- point_count: `4`
-- numbered_points_valid: `True`
+- paragraph_count: `3`
+- inline_refs_present: `True`
+- no_standalone_refs: `True`
+- no_report_labels: `True`
+- no_internal_meta: `True`
 - llm_attempted_when_expected: `True`
 
 ### Answer Text
 
 ```text
-‘烧针益阳而损阴’指烧针疗法虽可温助卫阳，却易耗伤营阴或阴血 [E1]。
-1. 烧针属温热刺激，用以‘益阳’即扶助卫阳；但因其燥烈之性，反致营阴（荣阴）受损，故称‘损阴’ [E1][E4][E5]。
-2. 若患者本有阴虚内热，再施烧针，则内外热相合，营血运行不畅，可致内躁烦、外发热等表现，此为‘益阳损阴’的病机延伸 [E1][E4][E5]。
-3. 临床可见烧针后损阴血、惊动心气，甚则引动肾气上逆成奔豚；或于阴阳两虚基础上加烧针，加重胸烦、面色青黄等危重征象 [E2][E3]。
-4. 需核对：诸证据均未明确定义‘阳’‘阴’在此语境下的具体所指（如卫/营、气/血、表/里），亦未说明烧针操作规范与剂量阈值，相关解释存在术语模糊性 [E1][E2][E3][E4][E5]。
+‘烧针益阳而损阴’可以先理解为：用烧针这种温热刺激的方法，虽能振奋卫阳之气，却也容易耗伤荣阴（即营血、阴液），是一种利弊并存的干预方式。它提醒医者注意治法的偏性，尤其当患者本有阴虚时，强行助阳反会加重内热与躁烦。[E1][E4]
+
+目前只能作此保守解释，是因为所见材料均为后世注文或夹注引述（如‘卫阳也，荣阴也’属释义性短语），未提供原始条文完整语境，也未说明该句出自哪一具体病证的治疗讨论。[E1][E4]
+
+建议回看《辨脉法第一》中紧接其后的句子：‘荣气微者，谓阴虚也’，并对照《内经》原句‘阴虚而生内热’的逻辑链条，核对‘烧针’在此处是作为误治举例，还是特定条件下的权宜之法。[E1][E4]
 ```
 
 ### LLM Debug
@@ -150,19 +153,13 @@
   "skipped_reason": null,
   "fallback_reason": null,
   "answer_source": "llm",
-  "baseline_answer_text_excerpt": "正文强证据不足，以下内容需核对，暂不能视为确定答案。 当前可先参考辅助材料：卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+  "baseline_answer_text_excerpt": "这个问题目前只能先保守地理解到这里：卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。。 之所以只能先这样说，是因为当前缺少更稳定的正文主证据。 建议先回看这条命中片段所在原句，再核对前后文。",
   "attempts": [
     {
       "attempt": 1,
       "strict_retry": false,
-      "status": "failed",
-      "error": "Rendered answer_text must contain 2-4 numbered points."
-    },
-    {
-      "attempt": 2,
-      "strict_retry": true,
       "status": "passed",
-      "rendered_answer_text_excerpt": "‘烧针益阳而损阴’指烧针疗法虽可温助卫阳，却易耗伤营阴或阴血 [E1]。 1. 烧针属温热刺激，用以‘益阳’即扶助卫阳；但因其燥烈之性，反致营阴（荣阴）受损，故称‘损阴’ [E1][E4][E5]。 2. 若患者本有阴虚内热，再施烧针，则内外热相合，营血运行不畅，可致内躁烦、外发热等表现，此为‘益阳损阴’的病机延伸 [..."
+      "rendered_answer_text_excerpt": "‘烧针益阳而损阴’可以先理解为：用烧针这种温热刺激的方法，虽能振奋卫阳之气，却也容易耗伤荣阴（即营血、阴液），是一种利弊并存的干预方式。它提醒医者注意治法的偏性，尤其当患者本有阴虚时，强行助阳反会加重内热与躁烦。[E1][E4] 目前只能作此保守解释，是因为所见材料均为后世注文或夹注引述（如‘卫阳也，荣阴也’属释义性短..."
     }
   ],
   "evidence_pack_summary": {
@@ -173,11 +170,10 @@
       "E3"
     ],
     "review": [
-      "E4",
-      "E5"
+      "E4"
     ]
   },
-  "rendered_answer_text_excerpt": "‘烧针益阳而损阴’指烧针疗法虽可温助卫阳，却易耗伤营阴或阴血 [E1]。 1. 烧针属温热刺激，用以‘益阳’即扶助卫阳；但因其燥烈之性，反致营阴（荣阴）受损，故称‘损阴’ [E1][E4][E5]。 2. 若患者本有阴虚内热，再施烧针，则内外热相合，营血运行不畅，可致内躁烦、外发热等表现，此为‘益阳损阴’的病机延伸 [..."
+  "rendered_answer_text_excerpt": "‘烧针益阳而损阴’可以先理解为：用烧针这种温热刺激的方法，虽能振奋卫阳之气，却也容易耗伤荣阴（即营血、阴液），是一种利弊并存的干预方式。它提醒医者注意治法的偏性，尤其当患者本有阴虚时，强行助阳反会加重内热与躁烦。[E1][E4] 目前只能作此保守解释，是因为所见材料均为后世注文或夹注引述（如‘卫阳也，荣阴也’属释义性短..."
 }`
 
 ## Case: required_refuse_quantum
@@ -193,15 +189,17 @@
 - payload_contract_kept: `True`
 - evidence_slots_kept: `True`
 - citations_kept: `True`
-- refs_on_all_lines: `False`
-- point_count: `0`
-- numbered_points_valid: `True`
+- paragraph_count: `1`
+- inline_refs_present: `True`
+- no_standalone_refs: `True`
+- no_report_labels: `True`
+- no_internal_meta: `True`
 - llm_attempted_when_expected: `True`
 
 ### Answer Text
 
 ```text
-当前未检索到足以支撑回答的依据，暂不提供答案。
+目前还没有检索到足以支撑回答的书内依据，所以这里先不硬答。可以改问更具体的条文、方名，或某一句话在书里是什么意思。
 ```
 
 ### LLM Debug
@@ -219,7 +217,7 @@
   "skipped_reason": "refuse_mode",
   "fallback_reason": null,
   "answer_source": "baseline_refuse",
-  "baseline_answer_text_excerpt": "当前未检索到足以支撑回答的依据，暂不提供答案。",
+  "baseline_answer_text_excerpt": "目前还没有检索到足以支撑回答的书内依据，所以这里先不硬答。可以改问更具体的条文、方名，或某一句话在书里是什么意思。",
   "attempts": []
 }`
 
@@ -236,18 +234,21 @@
 - payload_contract_kept: `True`
 - evidence_slots_kept: `True`
 - citations_kept: `True`
-- refs_on_all_lines: `True`
-- point_count: `3`
-- numbered_points_valid: `True`
+- paragraph_count: `3`
+- inline_refs_present: `True`
+- no_standalone_refs: `True`
+- no_report_labels: `True`
+- no_internal_meta: `True`
 - llm_attempted_when_expected: `True`
 
 ### Answer Text
 
 ```text
-太阳病的处理须据其具体脉证分型而定，不可一概而论 [E1]。
-1. 太阳病以必恶寒、体痛、呕逆、脉阴阳俱紧为基本识别要点，是伤寒之名的确立依据 [E1]。
-2. 若兼见项背强几几、无汗、恶风，则属太阳伤寒兼经气不利，当用葛根汤主治 [E2]。
-3. 若见头痛、发热、汗出、恶风，则属太阳中风证，当用桂枝汤主治 [E3]。
+太阳病不是单指一个病，而是外感病初起阶段的一类证候，关键在于身体正在抵抗外邪，所以必有恶寒，还常伴身体疼痛、恶心呕吐、脉象绷紧。[E1]
+
+它又分不同情况：比如后颈和背部僵硬发紧、不出汗、怕风，就是寒邪束表又影响到太阳经脉，这时用葛根汤；而如果已经出汗、怕风、头痛发热，说明肌表不固、营卫不和，就该用桂枝汤。[E2][E3]
+
+这些判断和对应方剂都出自《伤寒论》辨太阳病脉证并治部分的原始条文。[E1][E2][E3]
 ```
 
 ### LLM Debug
@@ -271,7 +272,7 @@
       "attempt": 1,
       "strict_retry": false,
       "status": "passed",
-      "rendered_answer_text_excerpt": "太阳病的处理须据其具体脉证分型而定，不可一概而论 [E1]。 1. 太阳病以必恶寒、体痛、呕逆、脉阴阳俱紧为基本识别要点，是伤寒之名的确立依据 [E1]。 2. 若兼见项背强几几、无汗、恶风，则属太阳伤寒兼经气不利，当用葛根汤主治 [E2]。 3. 若见头痛、发热、汗出、恶风，则属太阳中风证，当用桂枝汤主治 [E3]。"
+      "rendered_answer_text_excerpt": "太阳病不是单指一个病，而是外感病初起阶段的一类证候，关键在于身体正在抵抗外邪，所以必有恶寒，还常伴身体疼痛、恶心呕吐、脉象绷紧。[E1] 它又分不同情况：比如后颈和背部僵硬发紧、不出汗、怕风，就是寒邪束表又影响到太阳经脉，这时用葛根汤；而如果已经出汗、怕风、头痛发热，说明肌表不固、营卫不和，就该用桂枝汤。[E2][E3..."
     }
   ],
   "evidence_pack_summary": {
@@ -290,7 +291,7 @@
       "E8"
     ]
   },
-  "rendered_answer_text_excerpt": "太阳病的处理须据其具体脉证分型而定，不可一概而论 [E1]。 1. 太阳病以必恶寒、体痛、呕逆、脉阴阳俱紧为基本识别要点，是伤寒之名的确立依据 [E1]。 2. 若兼见项背强几几、无汗、恶风，则属太阳伤寒兼经气不利，当用葛根汤主治 [E2]。 3. 若见头痛、发热、汗出、恶风，则属太阳中风证，当用桂枝汤主治 [E3]。"
+  "rendered_answer_text_excerpt": "太阳病不是单指一个病，而是外感病初起阶段的一类证候，关键在于身体正在抵抗外邪，所以必有恶寒，还常伴身体疼痛、恶心呕吐、脉象绷紧。[E1] 它又分不同情况：比如后颈和背部僵硬发紧、不出汗、怕风，就是寒邪束表又影响到太阳经脉，这时用葛根汤；而如果已经出汗、怕风、头痛发热，说明肌表不固、营卫不和，就该用桂枝汤。[E2][E3..."
 }`
 
 ## Case: explainer_huanglian_composition
@@ -306,18 +307,21 @@
 - payload_contract_kept: `True`
 - evidence_slots_kept: `True`
 - citations_kept: `True`
-- refs_on_all_lines: `True`
-- point_count: `3`
-- numbered_points_valid: `True`
+- paragraph_count: `3`
+- inline_refs_present: `True`
+- no_standalone_refs: `True`
+- no_report_labels: `True`
+- no_internal_meta: `True`
 - llm_attempted_when_expected: `True`
 
 ### Answer Text
 
 ```text
-黄连汤方由黄连、炙甘草、乾姜、桂枝、人参、半夏、大枣七味药组成 [E1][E2]。
-1. 黄连、炙甘草、乾姜、桂枝剂量均为三两，人参为二两 [E1]。
-2. 半夏用量为半升（洗），大枣为十二枚（擘） [E2]。
-3. 方中逐味标注性味，如黄连味苦寒，炙甘草味甘平，乾姜与桂枝均味辛热，人参味甘温，半夏味辛（医统本作甘温），大枣味甘温 [E1][E2]。
+黄连汤是一个由七味药组成的复方，核心配伍以黄连清上热、乾姜温下寒，配合桂枝通阳、人参补虚、半夏降逆、甘草与大枣调和诸药并顾护中气。[E1][E2]
+
+方中每味药都标注了性味，如黄连苦寒、乾姜辛热、桂枝辛热、甘草甘平、人参甘温、半夏辛、大枣甘温，这些性味描述不是泛泛而谈，而是紧扣该药在此方中的作用定位。[E1][E2]
+
+全方药物组成及剂量信息集中见于《辨太阳病脉证并治法第七》中‘黄连汤方’条下的方文组成部分。[E1][E2]
 ```
 
 ### LLM Debug
@@ -341,7 +345,7 @@
       "attempt": 1,
       "strict_retry": false,
       "status": "passed",
-      "rendered_answer_text_excerpt": "黄连汤方由黄连、炙甘草、乾姜、桂枝、人参、半夏、大枣七味药组成 [E1][E2]。 1. 黄连、炙甘草、乾姜、桂枝剂量均为三两，人参为二两 [E1]。 2. 半夏用量为半升（洗），大枣为十二枚（擘） [E2]。 3. 方中逐味标注性味，如黄连味苦寒，炙甘草味甘平，乾姜与桂枝均味辛热，人参味甘温，半夏味辛（医统本作甘温）..."
+      "rendered_answer_text_excerpt": "黄连汤是一个由七味药组成的复方，核心配伍以黄连清上热、乾姜温下寒，配合桂枝通阳、人参补虚、半夏降逆、甘草与大枣调和诸药并顾护中气。[E1][E2] 方中每味药都标注了性味，如黄连苦寒、乾姜辛热、桂枝辛热、甘草甘平、人参甘温、半夏辛、大枣甘温，这些性味描述不是泛泛而谈，而是紧扣该药在此方中的作用定位。[E1][E2] 全..."
     }
   ],
   "evidence_pack_summary": {
@@ -355,7 +359,7 @@
       "E4"
     ]
   },
-  "rendered_answer_text_excerpt": "黄连汤方由黄连、炙甘草、乾姜、桂枝、人参、半夏、大枣七味药组成 [E1][E2]。 1. 黄连、炙甘草、乾姜、桂枝剂量均为三两，人参为二两 [E1]。 2. 半夏用量为半升（洗），大枣为十二枚（擘） [E2]。 3. 方中逐味标注性味，如黄连味苦寒，炙甘草味甘平，乾姜与桂枝均味辛热，人参味甘温，半夏味辛（医统本作甘温）..."
+  "rendered_answer_text_excerpt": "黄连汤是一个由七味药组成的复方，核心配伍以黄连清上热、乾姜温下寒，配合桂枝通阳、人参补虚、半夏降逆、甘草与大枣调和诸药并顾护中气。[E1][E2] 方中每味药都标注了性味，如黄连苦寒、乾姜辛热、桂枝辛热、甘草甘平、人参甘温、半夏辛、大枣甘温，这些性味描述不是泛泛而谈，而是紧扣该药在此方中的作用定位。[E1][E2] 全..."
 }`
 
 ## Case: explainer_guizhi_plus_fuzi_composition
@@ -371,18 +375,21 @@
 - payload_contract_kept: `True`
 - evidence_slots_kept: `True`
 - citations_kept: `True`
-- refs_on_all_lines: `True`
-- point_count: `3`
-- numbered_points_valid: `True`
+- paragraph_count: `3`
+- inline_refs_present: `True`
+- no_standalone_refs: `True`
+- no_report_labels: `True`
+- no_internal_meta: `True`
 - llm_attempted_when_expected: `True`
 
 ### Answer Text
 
 ```text
-桂枝加附子汤由桂枝汤原方加附子一枚（炮，去皮，破八片）组成 [E1]。
-1. 该方以桂枝汤为基础方，未改变其原有药物结构 [E1]。
-2. 增加的药物仅为附子一枚，且明确要求炮制、去皮、破八片 [E1]。
-3. 其余药物配伍、用量及煎服方法均遵循桂枝汤原法 [E1]。
+桂枝加附子汤不是全新创制的方子，而是以桂枝汤为基础，额外加入一味炮附子所形成的加减方。[E1]
+
+这个‘加’字很关键：它说明除附子外，其他药物种类、剂量和煎服方法都完全遵循桂枝汤的原有规定，没有改动。[E1]
+
+需要特别注意的是，原文虽将术附汤一并列出，并称其‘附于此方内’，但这只是文本编排上的相邻关系，并不表示术附汤的成分属于桂枝加附子汤的组成部分。[E1]
 ```
 
 ### LLM Debug
@@ -405,8 +412,14 @@
     {
       "attempt": 1,
       "strict_retry": false,
+      "status": "failed",
+      "error": "Each paragraph must include at least one inline [E#] reference."
+    },
+    {
+      "attempt": 2,
+      "strict_retry": true,
       "status": "passed",
-      "rendered_answer_text_excerpt": "桂枝加附子汤由桂枝汤原方加附子一枚（炮，去皮，破八片）组成 [E1]。 1. 该方以桂枝汤为基础方，未改变其原有药物结构 [E1]。 2. 增加的药物仅为附子一枚，且明确要求炮制、去皮、破八片 [E1]。 3. 其余药物配伍、用量及煎服方法均遵循桂枝汤原法 [E1]。"
+      "rendered_answer_text_excerpt": "桂枝加附子汤不是全新创制的方子，而是以桂枝汤为基础，额外加入一味炮附子所形成的加减方。[E1] 这个‘加’字很关键：它说明除附子外，其他药物种类、剂量和煎服方法都完全遵循桂枝汤的原有规定，没有改动。[E1] 需要特别注意的是，原文虽将术附汤一并列出，并称其‘附于此方内’，但这只是文本编排上的相邻关系，并不表示术附汤的成..."
     }
   ],
   "evidence_pack_summary": {
@@ -418,5 +431,5 @@
       "E2"
     ]
   },
-  "rendered_answer_text_excerpt": "桂枝加附子汤由桂枝汤原方加附子一枚（炮，去皮，破八片）组成 [E1]。 1. 该方以桂枝汤为基础方，未改变其原有药物结构 [E1]。 2. 增加的药物仅为附子一枚，且明确要求炮制、去皮、破八片 [E1]。 3. 其余药物配伍、用量及煎服方法均遵循桂枝汤原法 [E1]。"
+  "rendered_answer_text_excerpt": "桂枝加附子汤不是全新创制的方子，而是以桂枝汤为基础，额外加入一味炮附子所形成的加减方。[E1] 这个‘加’字很关键：它说明除附子外，其他药物种类、剂量和煎服方法都完全遵循桂枝汤的原有规定，没有改动。[E1] 需要特别注意的是，原文虽将术附汤一并列出，并称其‘附于此方内’，但这只是文本编排上的相邻关系，并不表示术附汤的成..."
 }`

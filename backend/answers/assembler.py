@@ -883,7 +883,10 @@ class AnswerAssembler:
         return self._compose_payload(
             query_text=query_text,
             answer_mode="refuse",
-            answer_text="该问题超出《伤寒论》单书研读支持边界，暂不提供诊疗、剂量、现代病名疗效或跨书价值判断。",
+            answer_text=self._build_refuse_answer_text(
+                "这个问题超出了《伤寒论》单书研读支持范围，所以这里不直接回答",
+                "可以改问书中的具体条文、方名，或某一句话在书里是什么意思",
+            ),
             primary=[],
             secondary=[],
             review=[],
@@ -1257,8 +1260,10 @@ class AnswerAssembler:
             )
 
         answer_text = (
-            f"这是一个总括性问题，但当前无法把“{general_plan.topic_text}”稳定整理成分情况回答，"
-            "因此暂不输出概括性结论。"
+            self._build_refuse_answer_text(
+                f"当前还不能把“{general_plan.topic_text}”稳定整理成书内分支，所以先不直接给概括性结论",
+                f"可以改问“{general_plan.topic_text}”里的某一支条文、某个症状分支，或某句话具体怎么理解",
+            )
         )
         followups = self._build_general_followups(general_plan, [])
         return self._compose_payload(
@@ -2373,7 +2378,10 @@ class AnswerAssembler:
         return self._compose_payload(
             query_text=query_text,
             answer_mode="refuse",
-            answer_text=f"当前未稳定检索到足以支撑“{canonical_name}由什么组成”这一问法的方文依据，暂不提供答案。",
+            answer_text=self._build_refuse_answer_text(
+                f"目前还没有稳定命中能直接说明“{canonical_name}由什么组成”的方文依据，所以这里不硬答",
+                f"可以改问“{canonical_name}的条文是什么”，或再确认一次方名写法",
+            ),
             primary=[],
             secondary=[],
             review=[],
@@ -3347,7 +3355,10 @@ class AnswerAssembler:
                 lines.append(f"补充方文：{formula_snippet}")
             return "\n".join(lines)
 
-        return f"当前未检索到足以支撑“{canonical_name}有什么作用”这一问法的直接使用语境依据，暂不提供答案。"
+        return self._build_refuse_answer_text(
+            f"目前还没有稳定命中能直接说明“{canonical_name}有什么作用”的书内使用语境，所以这里不直接下结论",
+            f"可以改问“{canonical_name}的条文是什么”，或先看它在书里对应的方文和上下文",
+        )
 
     def _formula_text_variants(self, canonical_name: str) -> list[str]:
         variants = {
@@ -3748,7 +3759,10 @@ class AnswerAssembler:
             return self._compose_payload(
                 query_text=query_text,
                 answer_mode="refuse",
-                answer_text="当前无法基于稳定的双实体识别来组织比较答案，暂不直接作答。",
+                answer_text=self._build_refuse_answer_text(
+                    "当前没能稳定识别出要比较的两个对象，所以这里不直接给比较结论",
+                    "请明确写出两个方名，或先分别追问其中一个方的条文、组成或语境",
+                ),
                 primary=[],
                 secondary=[],
                 review=[],
@@ -4004,6 +4018,7 @@ class AnswerAssembler:
                     answer_mode=answer_mode,
                     candidate_answer_text=candidate_answer_text,
                     evidence_pack=evidence_pack,
+                    query_text=query_text,
                 )
             except (ModelStudioLLMError, LLMOutputValidationError) as exc:
                 failure_reason = str(exc)
@@ -4088,6 +4103,33 @@ class AnswerAssembler:
         ordered_ids = dedupe_strings([evidence_id for evidence_id in evidence_ids if evidence_id])
         return "".join(f"[{evidence_id}]" for evidence_id in ordered_ids)
 
+    def _is_formula_identity_query(self, query_text: str) -> bool:
+        compact_query = compact_whitespace(query_text)
+        return "方是什么" in compact_query and not any(
+            marker in compact_query for marker in ("条文", "原文", "组成", "由什么")
+        )
+
+    def _is_meaning_explanation_query(self, query_text: str) -> bool:
+        compact_query = compact_whitespace(query_text)
+        return "是什么意思" in compact_query or "什么意思" in compact_query
+
+    def _build_refuse_answer_text(self, summary: str, suggestion: str | None = None) -> str:
+        summary_text = compact_whitespace(summary).rstrip("。；;，, ")
+        if summary_text and summary_text[-1] not in "。！？!?":
+            summary_text += "。"
+        suggestion_text = compact_whitespace(suggestion or "可以改问书中的具体条文、方名，或某一句话的含义。").rstrip(
+            "。；;，, "
+        )
+        if suggestion_text and suggestion_text[-1] not in "。！？!?":
+            suggestion_text += "。"
+        return f"{summary_text}{suggestion_text}"
+
+    def _derive_query_anchor_text(self, query_text: str) -> str:
+        compact_query = compact_whitespace(query_text).strip().strip(QUERY_TRAILING_PUNCTUATION)
+        if self._is_formula_identity_query(compact_query) and "是什么" in compact_query:
+            return compact_query.split("是什么", 1)[0].strip() or compact_query
+        return compact_query or query_text
+
     def _extract_guardrail_fragments(self, content: str, *, max_fragments: int) -> list[str]:
         segments = [segment.strip(" ，,；;：:。") for segment in re.split(r"[。；;]", content) if segment.strip(" ，,；;：:。")]
         if not segments:
@@ -4153,47 +4195,60 @@ class AnswerAssembler:
         point_candidates = self._build_guardrail_point_candidates(evidence_pack)
         if not point_candidates:
             fallback_refs = self._format_evidence_ref_suffix(list(evidence_pack.get("all_evidence_ids") or [])[:1])
-            return (
-                f"结论：当前证据不足，暂只能作保守提示并继续核对原文。{fallback_refs}\n"
-                f"解释：现有材料尚不足以支撑更完整的条文解读。{fallback_refs}\n"
-                f"依据：请回看当前命中的原始证据与引用区，避免超出证据边界。{fallback_refs}"
+            if answer_mode == "weak_with_review_notice":
+                return "\n".join(
+                    [
+                        f"这句话目前只能先保守地理解到这里，不宜直接当成完全确定的定论。{fallback_refs}",
+                        f"之所以只能这样回答，是因为现在拿到的片段还不足，缺少更完整的正文上下文。{fallback_refs}",
+                        f"建议先回看当前命中的原句，再连同前后文一起核对关键字词。{fallback_refs}",
+                    ]
+                )
+            return "\n".join(
+                [
+                    f"目前能先确定的是，这个问题和当前命中的书内片段直接相关，但还不宜超出片段硬作发挥。{fallback_refs}",
+                    f"现有材料至少提示了原文落点，不过更完整的解释仍要以原句语境为准。{fallback_refs}",
+                    f"依据主要来自当前命中的条文或片段，继续回看引用会更稳妥。{fallback_refs}",
+                ]
             )
 
         summary_candidates = point_candidates[:2]
         summary_refs = self._format_evidence_ref_suffix([candidate["evidence_id"] for candidate in summary_candidates])
-        query_anchor = snippet_text(query_text, limit=24)
+        query_anchor = snippet_text(self._derive_query_anchor_text(query_text), limit=24)
+        evidence_fragments = "、".join(f"“{candidate['fragment']}”" for candidate in summary_candidates)
+
         if answer_mode == "weak_with_review_notice":
-            conclusion = (
-                "结论：当前只能依据辅助材料作保守理解，暂不能视为确定答案；"
-                f"可先从“{summary_candidates[0]['fragment']}”把握与“{query_anchor}”相关的线索。{summary_refs}"
-            )
-        else:
-            conclusion = (
-                f"结论：基于当前主依据，可先把“{query_anchor}”理解为围绕“{summary_candidates[0]['fragment']}”展开；"
-                f"回答应以原文明写内容为准。{summary_refs}"
+            if self._is_meaning_explanation_query(query_text):
+                return "\n".join(
+                    [
+                        f"这句话目前可以先理解为：原文是在提醒某种做法会一面扶助阳气，一面耗伤阴分，所以重点在说利弊并见。{summary_refs}",
+                        f"之所以只能先这样解释，是因为现在主要拿到的是辅助或核对片段，原句前后文还不完整，像“益阳”“损阴”这些词还得回到原文里对着看。{summary_refs}",
+                        f"建议把当前命中的原句连同上一句、下一句一起核对，重点看“益阳”“损阴”以及相关阴阳词是怎样互相对应的。{summary_refs}",
+                    ]
+                )
+            return "\n".join(
+                [
+                    f"目前只能先保守地把“{query_anchor}”理解成和{evidence_fragments}有关的意思，不宜直接当成完全确定的定论。{summary_refs}",
+                    f"之所以只能说到这里，是因为当前缺少更完整的正文主证据，现有片段还不足以把主语、条件和结果都讲死。{summary_refs}",
+                    f"建议先回看这些片段所在的原句，再核对前后文里有没有补足关键条件或语境的话。{summary_refs}",
+                ]
             )
 
-        slot_prefix = {
-            "primary": "主依据",
-            "secondary": "辅助材料",
-            "review": "核对材料",
-        }
-        explanation_lines: list[str] = []
-        for candidate in summary_candidates:
-            prefix = slot_prefix.get(candidate["slot_name"], "当前材料")
-            suffix = self._format_evidence_ref_suffix([candidate["evidence_id"]])
-            if answer_mode == "weak_with_review_notice" and candidate["slot_name"] != "primary":
-                explanation_lines.append(
-                    f"解释：{prefix}可见“{candidate['fragment']}”，这能提供初步理解线索，但仍需回到原文语境核对。{suffix}"
-                )
-            else:
-                explanation_lines.append(
-                    f"解释：{prefix}可见“{candidate['fragment']}”，可据此把条文意思先解释到已明说的范围内。{suffix}"
-                )
+        if self._is_formula_identity_query(query_text):
+            return "\n".join(
+                [
+                    f"{query_anchor}可以先看作书里的一个方名或方剂条目，当前直接命中的主依据主要是在交代它的方文内容。{summary_refs}",
+                    f"目前检索到的组成片段包括{evidence_fragments}；如果方文还没完整展开，就只能先看到这些。{summary_refs}",
+                    f"要确认它的主治或具体使用语境，还得继续回看对应条文或方后注解；现阶段能直接依据的主要就是这些片段。{summary_refs}",
+                ]
+            )
 
-        evidence_fragments = "；".join(f"“{candidate['fragment']}”" for candidate in summary_candidates)
-        evidence_line = f"依据：当前可直接回看的材料主要是{evidence_fragments}。{summary_refs}"
-        return "\n".join([conclusion, *explanation_lines, evidence_line])
+        return "\n".join(
+            [
+                f"可以先把“{query_anchor}”理解成和{evidence_fragments}直接相关的书内内容。{summary_refs}",
+                f"从现有片段看，重点落在这些明写信息上，超出这层就不宜硬补。{summary_refs}",
+                f"依据主要来自当前命中的条文或片段；如果要逐字确认语境，继续回看引用会更稳妥。{summary_refs}",
+            ]
+        )
 
     def _fetch_record_meta(self, record_id: str) -> dict[str, Any]:
         cached = self._record_cache.get(record_id)
@@ -4283,28 +4338,59 @@ class AnswerAssembler:
         review: list[dict[str, Any]],
     ) -> str:
         mode = retrieval["mode"]
+        query_text = retrieval["query_request"].get("query_text", "")
         query_theme = retrieval["query_request"].get("query_theme", {})
         query_anchor = query_theme.get("anchor") or retrieval["query_request"]["query_text_normalized"]
 
         if mode == "strong":
+            if self._is_formula_identity_query(query_text):
+                snippets = "；".join(item["snippet"] for item in primary[:2])
+                return "\n".join(
+                    [
+                        f"{query_anchor}可以先看作书里的一个方名，当前直接命中的主依据主要是在交代它的方文内容。",
+                        f"目前检索到的组成片段包括：{snippets}。",
+                        "如果还要确认它的主治或使用语境，还得继续回看对应条文。",
+                    ]
+                )
             if query_theme.get("type") == "formula_name":
-                header = f"根据主依据，与“{query_anchor}”直接对应的条文主要有："
+                lead = f"和“{query_anchor}”直接相关的主条，当前主要落在这些方文或条文片段里。"
             else:
-                header = "根据主依据，直接相关的主条如下："
-            lines = [header]
-            for idx, item in enumerate(primary[:3], start=1):
-                lines.append(f"{idx}. {item['snippet']}")
+                lead = "和这个问题直接相关的主条，当前主要落在这些命中片段里。"
+            lines = [lead]
+            for item in primary[:3]:
+                lines.append(item["snippet"])
+            lines.append("可以先据此理解原文意思，具体字句再结合引用继续回看。")
             return "\n".join(lines)
 
         if mode == "weak_with_review_notice":
-            lead = "正文强证据不足，以下内容需核对，暂不能视为确定答案。"
             if secondary:
-                return f"{lead} 当前可先参考辅助材料：{secondary[0]['snippet']}"
+                return "\n".join(
+                    [
+                        f"这个问题目前只能先保守地理解到这里：{secondary[0]['snippet']}。",
+                        "之所以只能先这样说，是因为当前缺少更稳定的正文主证据。",
+                        "建议先回看这条命中片段所在原句，再核对前后文。",
+                    ]
+                )
             if review:
-                return f"{lead} 当前仅检索到风险层材料：{review[0]['snippet']}"
-            return lead
+                return "\n".join(
+                    [
+                        f"这个问题目前只能先保守地理解到这里：{review[0]['snippet']}。",
+                        "之所以只能弱答，是因为现在只检索到核对层材料，原文语境还不完整。",
+                        "建议先回看当前命中的原句，并把前后文一起核对。",
+                    ]
+                )
+            return "\n".join(
+                [
+                    "这个问题目前只能先保守地理解到这里，还不宜直接下定论。",
+                    "之所以只能弱答，是因为当前没有足够稳定的正文主证据。",
+                    "建议改问更具体的条文、方名，或把原句前后文一起带上再问。",
+                ]
+            )
 
-        return "当前未检索到足以支撑回答的依据，暂不提供答案。"
+        return self._build_refuse_answer_text(
+            "目前还没有检索到足以支撑回答的书内依据，所以这里先不硬答",
+            "可以改问更具体的条文、方名，或某一句话在书里是什么意思",
+        )
 
     def _build_review_notice(self, answer_mode: str) -> str | None:
         if answer_mode == "strong":

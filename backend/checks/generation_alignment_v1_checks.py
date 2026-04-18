@@ -31,7 +31,14 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_REPORT_OUT = "artifacts/generation_alignment_v1/generation_alignment_v1_report.md"
 DEFAULT_EXAMPLES_OUT = "artifacts/generation_alignment_v1/generation_alignment_v1_examples.json"
 EVIDENCE_REF_RE = re.compile(r"\[(E\d+)\]")
-NUMBERED_LINE_RE = re.compile(r"^\s*\d+\.\s+")
+STANDALONE_REF_LINE_RE = re.compile(r"^(?:\s*\[(E\d+)\]\s*)+$")
+REPORT_STYLE_RE = re.compile(r"^\s*(?:结论|解释|解读|依据)[:：]")
+INTERNAL_META_PATTERNS = (
+    "当前只输出弱表述",
+    "主证据优先",
+    "统一拒答结构",
+    "正文强证据不足，以下内容需核对",
+)
 PROPOSAL_ALIGNMENT_POINTS = [
     "开题要求生成式回答充分利用检索证据，并给出可核验的出处依据。",
     "开题要求通过 Prompt 约束与结果校验降低幻觉，避免杜撰出处。",
@@ -117,18 +124,17 @@ def _citation_pairs(payload: dict[str, Any]) -> list[tuple[str, str]]:
 
 
 def _analyze_answer_text(answer_text: str) -> dict[str, Any]:
-    lines = [line.strip() for line in answer_text.splitlines() if line.strip()]
-    point_lines = lines[1:] if len(lines) > 1 else []
-    refs_by_line = [EVIDENCE_REF_RE.findall(line) for line in lines]
+    paragraphs = [line.strip() for line in answer_text.splitlines() if line.strip()]
+    refs_by_paragraph = [EVIDENCE_REF_RE.findall(paragraph) for paragraph in paragraphs]
     return {
-        "line_count": len(lines),
-        "summary_line": lines[0] if lines else "",
-        "point_count": len(point_lines),
-        "point_lines": point_lines,
-        "conclusion_has_refs": bool(refs_by_line and refs_by_line[0]),
-        "all_lines_have_refs": bool(lines) and all(bool(refs) for refs in refs_by_line),
-        "numbered_points_valid": all(NUMBERED_LINE_RE.match(line) for line in point_lines),
-        "evidence_refs": sorted({ref for refs in refs_by_line for ref in refs}),
+        "paragraph_count": len(paragraphs),
+        "paragraphs": paragraphs,
+        "summary_line": paragraphs[0] if paragraphs else "",
+        "ref_paragraph_count": sum(1 for refs in refs_by_paragraph if refs),
+        "evidence_refs": sorted({ref for refs in refs_by_paragraph for ref in refs}),
+        "has_standalone_ref_line": any(STANDALONE_REF_LINE_RE.fullmatch(paragraph) for paragraph in paragraphs),
+        "has_report_labels": any(REPORT_STYLE_RE.match(paragraph) for paragraph in paragraphs),
+        "has_internal_meta": any(pattern in answer_text for pattern in INTERNAL_META_PATTERNS),
     }
 
 
@@ -184,9 +190,13 @@ def run_cases(args: argparse.Namespace) -> tuple[dict[str, Any], str]:
                     == _slot_record_ids(llm_payload, "review_materials"),
                     "citations_unchanged": _citation_pairs(baseline_payload) == _citation_pairs(llm_payload),
                     "answer_text_changed": baseline_payload["answer_text"] != llm_payload["answer_text"],
-                    "all_lines_have_refs": answer_analysis["all_lines_have_refs"],
-                    "point_count_ok": 2 <= answer_analysis["point_count"] <= 4 if case["expected_mode"] != "refuse" else True,
-                    "numbered_points_valid": answer_analysis["numbered_points_valid"] if case["expected_mode"] != "refuse" else True,
+                    "inline_refs_present": bool(answer_analysis["evidence_refs"]) if case["expected_mode"] != "refuse" else True,
+                    "paragraph_count_ok": 3 <= answer_analysis["paragraph_count"] <= 4
+                    if case["expected_mode"] != "refuse"
+                    else answer_analysis["paragraph_count"] <= 3,
+                    "no_standalone_refs": not answer_analysis["has_standalone_ref_line"],
+                    "no_report_labels": not answer_analysis["has_report_labels"],
+                    "no_internal_meta": not answer_analysis["has_internal_meta"],
                     "llm_attempted_when_expected": (
                         llm_debug.get("attempted") if case["expected_mode"] != "refuse" else llm_debug.get("skipped_reason") == "refuse_mode"
                     ),
@@ -244,7 +254,7 @@ def build_report_markdown(command: str, payload: dict[str, Any]) -> str:
             f"- evidence_slots_kept_all: `{all(case['checks']['primary_unchanged'] and case['checks']['secondary_unchanged'] and case['checks']['review_unchanged'] for case in cases)}`",
             f"- citations_kept_all: `{all(case['checks']['citations_unchanged'] for case in cases)}`",
             f"- llm_used_all_non_refuse: `{all(case['llm_debug'].get('used_llm') for case in cases if case['expected_mode'] != 'refuse')}`",
-            f"- evidence_ref_alignment_all_non_refuse: `{all(case['checks']['all_lines_have_refs'] and case['checks']['point_count_ok'] and case['checks']['numbered_points_valid'] for case in cases if case['expected_mode'] != 'refuse')}`",
+            f"- answer_text_style_all_non_refuse: `{all(case['checks']['inline_refs_present'] and case['checks']['paragraph_count_ok'] and case['checks']['no_standalone_refs'] and case['checks']['no_report_labels'] and case['checks']['no_internal_meta'] for case in cases if case['expected_mode'] != 'refuse')}`",
             f"- refuse_skips_llm: `{all(case['llm_debug'].get('skipped_reason') == 'refuse_mode' for case in cases if case['expected_mode'] == 'refuse')}`",
         ]
     )
@@ -270,9 +280,11 @@ def build_report_markdown(command: str, payload: dict[str, Any]) -> str:
                 f"- payload_contract_kept: `{checks['payload_contract_kept']}`",
                 f"- evidence_slots_kept: `{checks['primary_unchanged'] and checks['secondary_unchanged'] and checks['review_unchanged']}`",
                 f"- citations_kept: `{checks['citations_unchanged']}`",
-                f"- refs_on_all_lines: `{checks['all_lines_have_refs']}`",
-                f"- point_count: `{analysis['point_count']}`",
-                f"- numbered_points_valid: `{checks['numbered_points_valid']}`",
+                f"- paragraph_count: `{analysis['paragraph_count']}`",
+                f"- inline_refs_present: `{checks['inline_refs_present']}`",
+                f"- no_standalone_refs: `{checks['no_standalone_refs']}`",
+                f"- no_report_labels: `{checks['no_report_labels']}`",
+                f"- no_internal_meta: `{checks['no_internal_meta']}`",
                 f"- llm_attempted_when_expected: `{checks['llm_attempted_when_expected']}`",
                 "",
                 "### Answer Text",
@@ -302,9 +314,14 @@ def assert_results(payload: dict[str, Any]) -> None:
         if not checks["citations_unchanged"]:
             raise AssertionError(f"citations changed for {case['case_id']}")
         if case["expected_mode"] != "refuse":
-            if not checks["all_lines_have_refs"]:
+            if not checks["inline_refs_present"]:
                 raise AssertionError(f"answer_text lost evidence refs for {case['case_id']}")
-            if not checks["point_count_ok"] or not checks["numbered_points_valid"]:
+            if (
+                not checks["paragraph_count_ok"]
+                or not checks["no_standalone_refs"]
+                or not checks["no_report_labels"]
+                or not checks["no_internal_meta"]
+            ):
                 raise AssertionError(f"answer_text structure regressed for {case['case_id']}")
             if not checks["llm_attempted_when_expected"]:
                 raise AssertionError(f"LLM was not attempted for {case['case_id']}")

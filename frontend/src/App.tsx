@@ -1017,11 +1017,8 @@ function AssistantMessageCardInner(props: {
         <ModeSummary mode={props.payload.answer_mode} />
       </div>
 
-      {props.payload.review_notice || props.payload.refuse_reason ? (
+      {props.payload.refuse_reason ? (
         <div className={styles.calloutList}>
-          {props.payload.review_notice ? (
-            <Callout title="核对提示" body={props.payload.review_notice} tone="review" />
-          ) : null}
           {props.payload.refuse_reason ? (
             <Callout title="拒答原因" body={props.payload.refuse_reason} tone="refuse" />
           ) : null}
@@ -1031,7 +1028,6 @@ function AssistantMessageCardInner(props: {
       <section className={styles.supporting}>
         <div className={styles.supportingHead}>
           <p className={styles.supportingKicker}>依据与附加信息</p>
-          <p className={styles.supportingNote}>这些信息会随当前 assistant 消息一起恢复。</p>
         </div>
 
         {primary.length === 0 &&
@@ -1053,6 +1049,10 @@ function AssistantMessageCardInner(props: {
             evidenceRefs={evidenceRefs}
             tone="primary"
           />
+        ) : null}
+
+        {props.payload.review_notice ? (
+          <Callout title="核对提示" body={props.payload.review_notice} tone="review" />
         ) : null}
 
         {secondary.length > 0 ? (

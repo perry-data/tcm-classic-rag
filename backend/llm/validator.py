@@ -11,13 +11,51 @@ class LLMOutputValidationError(RuntimeError):
 
 JSON_BLOCK_RE = re.compile(r"\{.*\}", re.DOTALL)
 EVIDENCE_REF_RE = re.compile(r"\[(E\d+)\]")
+STANDALONE_REF_LINE_RE = re.compile(r"^(?:\s*\[(E\d+)\]\s*)+$")
+REPORT_STYLE_RE = re.compile(r"(^|\n)\s*(?:结论|解释|解读|依据)[:：]")
 WEAK_MARKERS = (
     "需核对",
-    "不应视为确定答案",
-    "暂不能视为确定答案",
     "证据不足",
-    "仅作参考",
     "待核对",
+    "只能先",
+    "可以先理解为",
+    "保守理解",
+    "可能是",
+    "倾向于",
+)
+WEAK_REASON_HINTS = (
+    "因为",
+    "由于",
+    "缺少",
+    "缺原文",
+    "上下文不完整",
+    "上下文不足",
+    "片段不完整",
+    "只命中辅助材料",
+    "正文主证据不足",
+    "原文上下文还不完整",
+)
+VERIFY_HINTS = (
+    "回看",
+    "核对",
+    "上一句",
+    "下一句",
+    "同段",
+    "原文",
+    "上下文",
+    "方后注解",
+    "关键字",
+)
+FORMULA_IDENTITY_FORBIDDEN_MARKERS = (
+    "主治",
+    "作用",
+    "功效",
+    "配伍",
+    "适用于",
+    "用于",
+    "偏向用于",
+    "寒热并调",
+    "升降相因",
 )
 FORBIDDEN_PATTERNS = (
     "record_id",
@@ -32,6 +70,13 @@ FORBIDDEN_PATTERNS = (
     "每日服",
     "每天服",
     "现代病名疗效",
+)
+INTERNAL_META_PATTERNS = (
+    "当前只输出弱表述",
+    "主证据优先",
+    "统一拒答结构",
+    "主依据优先",
+    "以下内容需核对，不应视为确定答案",
 )
 OVERLAP_STOPWORDS = {
     "根据",
@@ -78,11 +123,6 @@ ASSERTION_MARKERS = (
     "所以",
     "可理解为",
 )
-SECTION_PREFIX_GROUPS = {
-    "conclusion": ("结论：", "结论:"),
-    "explanation": ("解释：", "解释:", "解读：", "解读:"),
-    "evidence": ("依据：", "依据:"),
-}
 
 
 def _strip_code_fence(text: str) -> str:
@@ -163,11 +203,22 @@ def _collect_evidence_lookup(evidence_pack: dict[str, Any]) -> tuple[set[str], s
     return all_ids, primary_ids, evidence_lookup
 
 
-def _detect_line_section(line: str) -> str | None:
-    for section, prefixes in SECTION_PREFIX_GROUPS.items():
-        if any(line.startswith(prefix) for prefix in prefixes):
-            return section
-    return None
+def _split_paragraphs(text: str) -> list[str]:
+    return [line.strip() for line in text.splitlines() if line.strip()]
+
+
+def _sentence_count(text: str) -> int:
+    marks = re.findall(r"[。！？!?]", EVIDENCE_REF_RE.sub("", text))
+    return max(len(marks), 1)
+
+
+def _contains_any(text: str, hints: tuple[str, ...]) -> bool:
+    return any(hint in text for hint in hints)
+
+
+def _is_formula_identity_query(query_text: str | None) -> bool:
+    compact = re.sub(r"\s+", "", str(query_text or ""))
+    return "方是什么" in compact and not any(marker in compact for marker in ("条文", "原文", "组成", "由什么"))
 
 
 def _ensure_line_has_grounding(line: str, refs: set[str], evidence_lookup: dict[str, str]) -> None:
@@ -195,6 +246,7 @@ def validate_rendered_answer_text(
     answer_mode: str,
     candidate_answer_text: str,
     evidence_pack: dict[str, Any],
+    query_text: str | None = None,
 ) -> None:
     normalized = candidate_answer_text.strip()
     if not normalized:
@@ -203,43 +255,53 @@ def validate_rendered_answer_text(
     if len(normalized) < 40 or len(normalized) > 1600:
         raise LLMOutputValidationError("Rendered answer_text length is outside the accepted range.")
 
+    if REPORT_STYLE_RE.search(normalized):
+        raise LLMOutputValidationError("Rendered answer_text must not use report-style labels such as 结论 / 解释 / 依据.")
+
     for marker in FORBIDDEN_PATTERNS:
         if marker in normalized:
             raise LLMOutputValidationError(f"Rendered answer_text contains forbidden marker: {marker}")
+
+    for marker in INTERNAL_META_PATTERNS:
+        if marker in normalized:
+            raise LLMOutputValidationError(f"Rendered answer_text contains internal meta phrasing: {marker}")
 
     all_ids, primary_ids, evidence_lookup = _collect_evidence_lookup(evidence_pack)
     if not all_ids:
         raise LLMOutputValidationError("Evidence pack is empty.")
 
-    if answer_mode == "weak_with_review_notice" and not any(marker in normalized for marker in WEAK_MARKERS):
+    if answer_mode == "weak_with_review_notice" and not _contains_any(normalized, WEAK_MARKERS):
         raise LLMOutputValidationError("Weak answer lost the required review / uncertainty cue.")
+    if answer_mode == "weak_with_review_notice" and not _contains_any(normalized, WEAK_REASON_HINTS):
+        raise LLMOutputValidationError("Weak answer must explain why the answer remains uncertain.")
+    if answer_mode == "weak_with_review_notice" and not _contains_any(normalized, VERIFY_HINTS):
+        raise LLMOutputValidationError("Weak answer must tell the user what to verify next.")
 
-    lines = [line.strip() for line in normalized.splitlines() if line.strip()]
-    if len(lines) < 3:
-        raise LLMOutputValidationError("Rendered answer_text must contain conclusion, explanation, and evidence lines.")
-    if len(lines) > 5:
-        raise LLMOutputValidationError("Rendered answer_text must stay within 3-5 short lines.")
+    paragraphs = _split_paragraphs(normalized)
+    if answer_mode in {"strong", "weak_with_review_notice"} and len(paragraphs) < 3:
+        raise LLMOutputValidationError("Rendered answer_text must contain at least 3 short paragraphs.")
+    if len(paragraphs) > 4:
+        raise LLMOutputValidationError("Rendered answer_text must stay within 2-4 short paragraphs.")
+    if answer_mode == "strong" and _is_formula_identity_query(query_text):
+        if len(paragraphs) != 3:
+            raise LLMOutputValidationError("Formula identity answers must stay within exactly 3 short paragraphs.")
+        if _contains_any(normalized, FORMULA_IDENTITY_FORBIDDEN_MARKERS):
+            raise LLMOutputValidationError("Formula identity answers must stay focused on 方名与组成，不应扩写作用或配伍发挥。")
 
-    sections = [_detect_line_section(line) for line in lines]
-    if any(section is None for section in sections):
-        raise LLMOutputValidationError("Rendered answer_text lines must use 结论 / 解释 / 依据 labels.")
-    if sections[0] != "conclusion":
-        raise LLMOutputValidationError("Rendered answer_text must start with a 结论 line.")
-    if sections[-1] != "evidence":
-        raise LLMOutputValidationError("Rendered answer_text must end with an 依据 line.")
-    if "explanation" not in sections[1:-1]:
-        raise LLMOutputValidationError("Rendered answer_text must include at least one 解释 line between conclusion and evidence.")
-    if any(section != "explanation" for section in sections[1:-1]):
-        raise LLMOutputValidationError("Only 解释 lines may appear between the conclusion and evidence lines.")
+    for paragraph in paragraphs:
+        if STANDALONE_REF_LINE_RE.fullmatch(paragraph):
+            raise LLMOutputValidationError("Rendered answer_text must not place citations on a standalone line.")
+        if _sentence_count(paragraph) > 3:
+            raise LLMOutputValidationError("Rendered answer_text paragraphs must stay within 3 sentences.")
 
-    for line in lines:
-        refs = set(EVIDENCE_REF_RE.findall(line))
+    for paragraph in paragraphs:
+        refs = set(EVIDENCE_REF_RE.findall(paragraph))
         if not refs:
-            raise LLMOutputValidationError("Each conclusion, explanation, and evidence line must include at least one [E#] reference.")
+            raise LLMOutputValidationError("Each paragraph must include at least one inline [E#] reference.")
         unknown_refs = refs - all_ids
         if unknown_refs:
             unknown_value = ",".join(sorted(unknown_refs))
             raise LLMOutputValidationError(f"Rendered answer_text referenced unknown evidence ids: {unknown_value}")
         if answer_mode == "strong" and any(ref not in primary_ids for ref in refs):
             raise LLMOutputValidationError("Strong answer cited non-primary evidence in answer_text.")
-        _ensure_line_has_grounding(line, refs, evidence_lookup)
+        _ensure_line_has_grounding(paragraph, refs, evidence_lookup)
