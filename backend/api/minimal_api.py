@@ -975,6 +975,7 @@ def build_llm_smoke_markdown(command: str, config: ModelStudioLLMConfig, results
             f"- citations_unchanged: `{all(result['citations_unchanged'] for result in results)}`",
             f"- refuse_skips_llm: `{all(result['refuse_skipped'] for result in results if result['expected_mode'] == 'refuse')}`",
             f"- llm_attempted_for_non_refuse: `{all(result['llm_attempted'] for result in results if result['expected_mode'] != 'refuse')}`",
+            f"- at_least_one_non_refuse_llm_used: `{any(result['llm_used'] for result in results if result['expected_mode'] != 'refuse')}`",
             f"- answer_text_non_empty: `{all(bool(result['llm_response_body']['answer_text']) for result in results)}`",
         ]
     )
@@ -1041,6 +1042,8 @@ def assert_llm_smoke_expectations(results: list[dict[str, Any]]) -> None:
     if len(results) != len(LLM_SMOKE_EXAMPLES):
         raise AssertionError("LLM smoke results count does not match expected examples")
 
+    non_refuse_results = [result for result in results if result["expected_mode"] != "refuse"]
+
     for result in results:
         if result["llm_response_keys"] != EXPECTED_PAYLOAD_FIELDS:
             raise AssertionError(f"payload contract drift detected for {result['example_id']}")
@@ -1060,6 +1063,8 @@ def assert_llm_smoke_expectations(results: list[dict[str, Any]]) -> None:
     refuse = next(result for result in results if result["expected_mode"] == "refuse")
     if not refuse["refuse_skipped"]:
         raise AssertionError("refuse path should skip LLM rendering")
+    if non_refuse_results and not any(result["llm_used"] for result in non_refuse_results):
+        raise AssertionError("at least one non-refuse LLM sample must render successfully without fallback")
 
 
 def post_json(url: str, payload: dict[str, Any]) -> tuple[int, dict[str, Any]]:

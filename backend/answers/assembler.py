@@ -619,12 +619,52 @@ def clean_formula_title_anchor(title: str | None) -> str:
     return compact_text(cleaned)
 
 
+def _replace_title_suffix(prefix: str, variant_text: str) -> str:
+    normalized_prefix = compact_whitespace(prefix)
+    normalized_variant = compact_whitespace(variant_text)
+    if not normalized_variant:
+        return normalized_prefix
+    if len(normalized_prefix) >= len(normalized_variant):
+        return normalized_prefix[: -len(normalized_variant)] + normalized_variant
+    return normalized_variant
+
+
+def _remove_title_suffix(prefix: str, removed_text: str) -> str:
+    normalized_prefix = compact_whitespace(prefix)
+    normalized_removed = compact_whitespace(removed_text)
+    if not normalized_removed:
+        return normalized_prefix
+    if len(normalized_prefix) >= len(normalized_removed):
+        return normalized_prefix[: -len(normalized_removed)]
+    return ""
+
+
+def _inline_formula_title_variants(raw_title: str) -> set[str]:
+    variants: set[str] = set()
+    rewritten = compact_whitespace(raw_title)
+
+    replace_match = re.search(r"^(.*?)(?:赵本|医统本)+作「([^」]+)」(.*)$", rewritten)
+    if replace_match:
+        prefix, variant_text, suffix = replace_match.groups()
+        variants.add(_replace_title_suffix(prefix, variant_text) + compact_whitespace(suffix))
+
+    delete_match = re.search(r"^(.*?)(?:赵本|医统本)+无「([^」]+)」字?(.*)$", rewritten)
+    if delete_match:
+        prefix, removed_text, suffix = delete_match.groups()
+        variants.add(_remove_title_suffix(prefix, removed_text) + compact_whitespace(suffix))
+
+    add_match = re.search(r"^(.*?)(?:赵本|医统本)+并有「([^」]+)」字(.*)$", rewritten)
+    if add_match:
+        prefix, added_text, suffix = add_match.groups()
+        variants.add(compact_whitespace(prefix) + compact_whitespace(added_text) + compact_whitespace(suffix))
+
+    return {variant for variant in variants if variant}
+
+
 def formula_title_alias_variants(raw_title: str, canonical_title: str) -> set[str]:
     variants = {raw_title, canonical_title}
     variants.add(clean_formula_title_anchor(raw_title))
-    variants.add(
-        clean_formula_title_anchor(re.sub(r"([一-龥])(?:赵本|医统本)+作「([^」]+)」", r"\2", raw_title))
-    )
+    variants.update(clean_formula_title_anchor(variant) for variant in _inline_formula_title_variants(raw_title))
     variants.add(clean_formula_title_anchor(re.sub(r"(?:赵本|医统本)+并有「([^」]+)」字", "", raw_title)))
     return {variant for variant in variants if variant}
 
