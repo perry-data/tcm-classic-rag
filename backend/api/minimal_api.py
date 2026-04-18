@@ -34,6 +34,15 @@ from backend.answers.assembler import (
 )
 from backend.chat_history import ConversationStore, DEFAULT_CONVERSATIONS_DB_PATH
 from backend.llm import LLMConfigError, ModelStudioLLMConfig, load_modelstudio_llm_config
+from backend.perf import (
+    current_trace,
+    load_perf_settings,
+    new_request_trace,
+    persist_request_log,
+    reset_current_trace,
+    set_current_trace,
+    stage_timer,
+)
 
 
 API_PATH = "/api/v1/answers"
@@ -362,8 +371,10 @@ def log_answer_diagnostics(
 ) -> None:
     debug = dict(llm_debug or {})
     fallback_reason = debug.get("fallback_reason") or debug.get("skipped_reason")
+    request_id = current_trace().request_id if current_trace() is not None else "n/a"
     log(
         "[api:answer] "
+        f"request_id={request_id} "
         f"path={request_path} "
         f"mode={response_payload.get('answer_mode')} "
         f"answer_source={debug.get('answer_source') or 'unknown'} "
@@ -518,28 +529,60 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
                 self._send_json(404, {"error": {"code": "not_found", "message": "Route not found."}})
                 return
 
+            perf_trace = new_request_trace(request_path=request_path)
+            perf_trace.set_metadata(
+                "perf_flags",
+                {
+                    "disable_llm": load_perf_settings().disable_llm,
+                    "disable_rerank": load_perf_settings().disable_rerank,
+                    "retrieval_mode": load_perf_settings().retrieval_mode,
+                    "rerank_top_n": load_perf_settings().rerank_top_n,
+                    "enable_query_embed_cache": load_perf_settings().enable_query_embed_cache,
+                    "enable_llm_keepalive": load_perf_settings().enable_llm_keepalive,
+                },
+            )
+            trace_token = set_current_trace(perf_trace)
+            status_code = 500
+            response_payload: dict[str, Any] | None = None
+            error_payload: dict[str, Any] | None = None
             try:
-                payload = self._read_json_body()
-                query = service._normalize_query_payload(payload)
+                with stage_timer("request_parse"):
+                    payload = self._read_json_body()
+                    query = service._normalize_query_payload(payload)
+                perf_trace.query = query
                 response_payload = service.answer_query(query)
+                perf_trace.set_metadata("answer_mode", response_payload.get("answer_mode"))
+                perf_trace.set_metadata("answer_text_length", len(response_payload.get("answer_text") or ""))
+                perf_trace.set_metadata("citations_count", len(response_payload.get("citations") or []))
+                perf_trace.set_metadata("llm_debug", service.last_llm_debug or {})
                 log_answer_diagnostics(
                     request_path=request_path,
                     query=query,
                     response_payload=response_payload,
                     llm_debug=service.last_llm_debug,
                 )
+                status_code = 200
             except ApiRequestError as exc:
-                self._send_json(exc.status_code, {"error": {"code": exc.code, "message": exc.message}})
-                return
+                perf_trace.set_metadata("error", {"code": exc.code, "message": exc.message})
+                status_code = exc.status_code
+                error_payload = {"error": {"code": exc.code, "message": exc.message}}
             except Exception as exc:  # pragma: no cover - defensive transport guard
                 log(f"[api:error] {exc}")
-                self._send_json(
-                    500,
-                    {"error": {"code": "internal_error", "message": "Internal server error."}},
-                )
-                return
+                perf_trace.set_metadata("error", {"code": "internal_error", "message": str(exc)})
+                status_code = 500
+                error_payload = {"error": {"code": "internal_error", "message": "Internal server error."}}
 
-            self._send_json(200, response_payload)
+            try:
+                if error_payload is not None:
+                    self._send_json(status_code, error_payload)
+                    return
+                self._send_json(200, response_payload or {})
+            finally:
+                perf_trace.status_code = status_code
+                record = perf_trace.to_log_record()
+                persist_request_log(record, log_path=load_perf_settings().log_path)
+                log(json.dumps(record, ensure_ascii=False))
+                reset_current_trace(trace_token)
 
         def do_GET(self) -> None:  # noqa: N802
             parsed = urlsplit(self.path)
@@ -667,20 +710,36 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
         def _is_client_disconnect(exc: BaseException) -> bool:
             return is_benign_disconnect_exception(exc)
 
-        def _send_json(self, status_code: int, payload: dict[str, Any]) -> None:
-            body = (json.dumps(payload, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
+        def _send_json(
+            self,
+            status_code: int,
+            payload: dict[str, Any],
+            extra_headers: dict[str, str] | None = None,
+        ) -> None:
             try:
-                self.send_response(status_code)
-                self._send_cache_headers()
-                self.send_header("Content-Type", "application/json; charset=utf-8")
-                self.send_header("Content-Length", str(len(body)))
-                self.end_headers()
-                self.wfile.write(body)
+                with stage_timer("response_build/serialize"):
+                    body = (json.dumps(payload, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
+                    self.send_response(status_code)
+                    self._send_cache_headers()
+                    self.send_header("Content-Type", "application/json; charset=utf-8")
+                    self.send_header("Content-Length", str(len(body)))
+                    for header_name, header_value in self._build_request_perf_headers(extra_headers).items():
+                        self.send_header(header_name, header_value)
+                    self.end_headers()
+                    self.wfile.write(body)
             except BaseException as exc:
                 if self._is_client_disconnect(exc):
                     self.close_connection = True
                     return
                 raise
+
+        def _build_request_perf_headers(self, extra_headers: dict[str, str] | None = None) -> dict[str, str]:
+            headers = dict(extra_headers or {})
+            trace = current_trace()
+            if trace is not None:
+                headers.setdefault("X-Request-Id", trace.request_id)
+                headers.setdefault("Server-Timing", trace.server_timing_value())
+            return headers
 
         def _send_frontend_shell(self, include_body: bool = True) -> None:
             index_path = frontend_root / "index.html"

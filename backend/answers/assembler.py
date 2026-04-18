@@ -19,9 +19,11 @@ from backend.llm import (
     ModelStudioLLMConfig,
     ModelStudioLLMError,
     build_answer_text_prompt,
+    normalize_answer_text_paragraphs,
     parse_answer_text_json,
     validate_rendered_answer_text,
 )
+from backend.perf import load_perf_settings, record_metadata, stage_timer
 from backend.strategies.general_question import (
     GeneralBranchMeta,
     GeneralQuestionPlan,
@@ -767,6 +769,8 @@ class AnswerAssembler:
         self._llm_client = ModelStudioLLMClient(self._llm_config) if self._llm_config.enabled else None
 
     def close(self) -> None:
+        if self._llm_client is not None:
+            self._llm_client.close()
         self.engine.close()
 
     def _load_definition_query_priority_config(self) -> dict[str, Any]:
@@ -4022,29 +4026,30 @@ class AnswerAssembler:
             secondary=secondary,
             review=review,
         )
-        display_sections = self._build_display_sections(
-            answer_text=final_answer_text,
-            primary=primary,
-            secondary=secondary,
-            review=review,
-            citations=citations,
-            review_notice=review_notice,
-            suggested_followup_questions=suggested_followup_questions,
-        )
-        return {
-            "query": query_text,
-            "answer_mode": answer_mode,
-            "answer_text": final_answer_text,
-            "primary_evidence": primary,
-            "secondary_evidence": secondary,
-            "review_materials": review,
-            "disclaimer": disclaimer,
-            "review_notice": review_notice,
-            "refuse_reason": refuse_reason,
-            "suggested_followup_questions": suggested_followup_questions,
-            "citations": citations,
-            "display_sections": display_sections,
-        }
+        with stage_timer("response_build/serialize"):
+            display_sections = self._build_display_sections(
+                answer_text=final_answer_text,
+                primary=primary,
+                secondary=secondary,
+                review=review,
+                citations=citations,
+                review_notice=review_notice,
+                suggested_followup_questions=suggested_followup_questions,
+            )
+            return {
+                "query": query_text,
+                "answer_mode": answer_mode,
+                "answer_text": final_answer_text,
+                "primary_evidence": primary,
+                "secondary_evidence": secondary,
+                "review_materials": review,
+                "disclaimer": disclaimer,
+                "review_notice": review_notice,
+                "refuse_reason": refuse_reason,
+                "suggested_followup_questions": suggested_followup_questions,
+                "citations": citations,
+                "display_sections": display_sections,
+            }
 
     def _maybe_render_answer_text(
         self,
@@ -4056,6 +4061,7 @@ class AnswerAssembler:
         secondary: list[dict[str, Any]],
         review: list[dict[str, Any]],
     ) -> str:
+        perf_settings = load_perf_settings()
         debug: dict[str, Any] = {
             "provider": self._llm_config.provider_name,
             "enabled": self._llm_config.enabled,
@@ -4077,11 +4083,20 @@ class AnswerAssembler:
             debug["skipped_reason"] = "refuse_mode"
             debug["answer_source"] = "baseline_refuse"
             self._last_llm_debug = debug
+            record_metadata("llm_debug", debug)
+            return baseline_answer_text
+
+        if perf_settings.disable_llm:
+            debug["skipped_reason"] = "perf_disable_llm"
+            debug["answer_source"] = "baseline_perf_disable_llm"
+            self._last_llm_debug = debug
+            record_metadata("llm_debug", debug)
             return baseline_answer_text
 
         if not self._llm_client:
             debug["skipped_reason"] = "llm_disabled"
             self._last_llm_debug = debug
+            record_metadata("llm_debug", debug)
             return baseline_answer_text
 
         evidence_pack = self._build_llm_evidence_pack(primary=primary, secondary=secondary, review=review)
@@ -4093,50 +4108,54 @@ class AnswerAssembler:
         if not evidence_pack["all_items"]:
             debug["skipped_reason"] = "empty_evidence_pack"
             self._last_llm_debug = debug
+            record_metadata("llm_debug", debug)
             return baseline_answer_text
 
         debug["attempted"] = True
         candidate_answer_text: str | None = None
         failure_reason: str | None = None
 
-        for attempt_number in (1, 2):
-            strict_retry = attempt_number == 2
-            prompt = build_answer_text_prompt(
-                config=self._llm_config,
-                query_text=query_text,
-                answer_mode=answer_mode,
-                evidence_pack=evidence_pack,
-                strict_retry=strict_retry,
-                retry_reason=failure_reason,
-            )
-            attempt_debug: dict[str, Any] = {
-                "attempt": attempt_number,
-                "strict_retry": strict_retry,
-            }
-            try:
-                raw_content = self._llm_client.render_answer_text(
-                    system_instruction=prompt.system_instruction,
-                    user_prompt=prompt.user_prompt,
-                )
-                candidate_answer_text = parse_answer_text_json(raw_content)
-                validate_rendered_answer_text(
-                    answer_mode=answer_mode,
-                    candidate_answer_text=candidate_answer_text,
-                    evidence_pack=evidence_pack,
+        with stage_timer("llm_generate"):
+            for attempt_number in (1, 2):
+                strict_retry = attempt_number == 2
+                prompt = build_answer_text_prompt(
+                    config=self._llm_config,
                     query_text=query_text,
+                    answer_mode=answer_mode,
+                    evidence_pack=evidence_pack,
+                    strict_retry=strict_retry,
+                    retry_reason=failure_reason,
                 )
-            except (ModelStudioLLMError, LLMOutputValidationError) as exc:
-                failure_reason = str(exc)
-                attempt_debug["status"] = "failed"
-                attempt_debug["error"] = failure_reason
-                debug["attempts"].append(attempt_debug)
-                candidate_answer_text = None
-                continue
+                attempt_debug: dict[str, Any] = {
+                    "attempt": attempt_number,
+                    "strict_retry": strict_retry,
+                }
+                try:
+                    raw_content = self._llm_client.render_answer_text(
+                        system_instruction=prompt.system_instruction,
+                        user_prompt=prompt.user_prompt,
+                    )
+                    attempt_debug["request_metrics"] = self._llm_client.get_last_request_metrics()
+                    candidate_answer_text = normalize_answer_text_paragraphs(parse_answer_text_json(raw_content))
+                    validate_rendered_answer_text(
+                        answer_mode=answer_mode,
+                        candidate_answer_text=candidate_answer_text,
+                        evidence_pack=evidence_pack,
+                        query_text=query_text,
+                    )
+                except (ModelStudioLLMError, LLMOutputValidationError) as exc:
+                    failure_reason = str(exc)
+                    attempt_debug["status"] = "failed"
+                    attempt_debug["error"] = failure_reason
+                    attempt_debug["request_metrics"] = self._llm_client.get_last_request_metrics()
+                    debug["attempts"].append(attempt_debug)
+                    candidate_answer_text = None
+                    continue
 
-            attempt_debug["status"] = "passed"
-            attempt_debug["rendered_answer_text_excerpt"] = snippet_text(candidate_answer_text, limit=160)
-            debug["attempts"].append(attempt_debug)
-            break
+                attempt_debug["status"] = "passed"
+                attempt_debug["rendered_answer_text_excerpt"] = snippet_text(candidate_answer_text, limit=160)
+                debug["attempts"].append(attempt_debug)
+                break
 
         if candidate_answer_text is None:
             fallback_answer_text = self._build_guardrail_fallback_answer_text(
@@ -4149,12 +4168,14 @@ class AnswerAssembler:
             debug["answer_source"] = "guardrail_fallback"
             debug["rendered_answer_text_excerpt"] = snippet_text(fallback_answer_text, limit=160)
             self._last_llm_debug = debug
+            record_metadata("llm_debug", debug)
             return fallback_answer_text
 
         debug["used_llm"] = True
         debug["answer_source"] = "llm"
         debug["rendered_answer_text_excerpt"] = snippet_text(candidate_answer_text, limit=160)
         self._last_llm_debug = debug
+        record_metadata("llm_debug", debug)
         return candidate_answer_text
 
     def _clip_llm_evidence_text(self, text: str | None, limit: int = LLM_EVIDENCE_TEXT_LIMIT) -> str:

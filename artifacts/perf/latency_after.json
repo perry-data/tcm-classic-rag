@@ -1,0 +1,836 @@
+{
+  "generated_at_utc": "2026-04-18T09:15:07.149616+00:00",
+  "label": "after",
+  "base_url": "http://127.0.0.1:8012",
+  "endpoint_path": "/api/v1/answers",
+  "rounds": 5,
+  "query_count": 6,
+  "total_requests": 30,
+  "overall_latency_ms": {
+    "count": 30,
+    "p50": 8567.036,
+    "p90": 12856.826,
+    "p95": 12925.0,
+    "max": 13521.619,
+    "avg": 6858.859
+  },
+  "by_category_latency_ms": {
+    "strong": {
+      "count": 10,
+      "p50": 8567.036,
+      "p90": 9043.188,
+      "p95": 9182.944,
+      "max": 9322.7,
+      "avg": 8515.576
+    },
+    "weak": {
+      "count": 10,
+      "p50": 11753.423,
+      "p90": 12986.657,
+      "p95": 13254.138,
+      "max": 13521.619,
+      "avg": 11857.485
+    },
+    "refuse": {
+      "count": 10,
+      "p50": 183.523,
+      "p90": 390.693,
+      "p95": 470.885,
+      "max": 551.076,
+      "avg": 203.515
+    }
+  },
+  "by_query_latency_ms": {
+    "strong_formula_lookup": {
+      "count": 5,
+      "p50": 8212.48,
+      "p90": 8273.424,
+      "p95": 8274.259,
+      "max": 8275.094,
+      "avg": 8020.364
+    },
+    "strong_general_management": {
+      "count": 5,
+      "p50": 8963.104,
+      "p90": 9198.472,
+      "p95": 9260.586,
+      "max": 9322.7,
+      "avg": 9010.787
+    },
+    "weak_meaning_explanation": {
+      "count": 5,
+      "p50": 12922.29,
+      "p90": 13283.858,
+      "p95": 13402.739,
+      "max": 13521.619,
+      "avg": 12965.11
+    },
+    "weak_fragment_guidance": {
+      "count": 5,
+      "p50": 10853.281,
+      "p90": 10898.067,
+      "p95": 10900.02,
+      "max": 10901.972,
+      "avg": 10749.86
+    },
+    "refuse_out_of_book": {
+      "count": 5,
+      "p50": 372.666,
+      "p90": 479.795,
+      "p95": 515.435,
+      "max": 551.076,
+      "avg": 405.539
+    },
+    "refuse_personalized_treatment": {
+      "count": 5,
+      "p50": 1.501,
+      "p90": 1.544,
+      "p95": 1.555,
+      "max": 1.565,
+      "avg": 1.491
+    }
+  },
+  "server_timing_summary": {
+    "dense_embed": {
+      "avg_ms": 17.58,
+      "p95_ms": 23.821
+    },
+    "dense_search_faiss": {
+      "avg_ms": 0.426,
+      "p95_ms": 0.87
+    },
+    "evidence_gating": {
+      "avg_ms": 0.477,
+      "p95_ms": 1.241
+    },
+    "fusion_rrf": {
+      "avg_ms": 0.109,
+      "p95_ms": 0.222
+    },
+    "llm_generate": {
+      "avg_ms": 9623.476,
+      "p95_ms": 12379.763
+    },
+    "request_parse": {
+      "avg_ms": 0.032,
+      "p95_ms": 0.067
+    },
+    "rerank_cross_encoder": {
+      "avg_ms": 514.648,
+      "p95_ms": 774.083
+    },
+    "response_build_serialize": {
+      "avg_ms": 0.011,
+      "p95_ms": 0.021
+    },
+    "sparse_retrieval": {
+      "avg_ms": 4.178,
+      "p95_ms": 15.764
+    },
+    "total": {
+      "avg_ms": 6855.763,
+      "p95_ms": 12921.985
+    }
+  },
+  "mode_mismatch_count": 0,
+  "mode_mismatches": [],
+  "queries": [
+    {
+      "query_id": "strong_formula_lookup",
+      "category": "strong",
+      "expected_mode": "strong",
+      "query": "黄连汤方的条文是什么？"
+    },
+    {
+      "query_id": "strong_general_management",
+      "category": "strong",
+      "expected_mode": "strong",
+      "query": "太阳病应该怎么办？"
+    },
+    {
+      "query_id": "weak_meaning_explanation",
+      "category": "weak",
+      "expected_mode": "weak_with_review_notice",
+      "query": "烧针益阳而损阴是什么意思？"
+    },
+    {
+      "query_id": "weak_fragment_guidance",
+      "category": "weak",
+      "expected_mode": "weak_with_review_notice",
+      "query": "若噎者怎么办？"
+    },
+    {
+      "query_id": "refuse_out_of_book",
+      "category": "refuse",
+      "expected_mode": "refuse",
+      "query": "书中有没有提到量子纠缠？"
+    },
+    {
+      "query_id": "refuse_personalized_treatment",
+      "category": "refuse",
+      "expected_mode": "refuse",
+      "query": "我发烧了能不能用麻黄汤？"
+    }
+  ],
+  "results": [
+    {
+      "round": 1,
+      "query_id": "strong_formula_lookup",
+      "category": "strong",
+      "query": "黄连汤方的条文是什么？",
+      "expected_mode": "strong",
+      "status_code": 200,
+      "actual_mode": "strong",
+      "mode_match": true,
+      "elapsed_ms": 8275.094,
+      "request_id": "c7054a8fc2f8441f8f24cff326a7c209",
+      "server_timing": {
+        "total": 8261.219,
+        "request_parse": 0.067,
+        "sparse_retrieval": 1.339,
+        "dense_search_faiss": 0.613,
+        "fusion_rrf": 0.037,
+        "rerank_cross_encoder": 500.701,
+        "evidence_gating": 0.206,
+        "llm_generate": 7756.215,
+        "response_build_serialize": 0.01
+      }
+    },
+    {
+      "round": 1,
+      "query_id": "strong_general_management",
+      "category": "strong",
+      "query": "太阳病应该怎么办？",
+      "expected_mode": "strong",
+      "status_code": 200,
+      "actual_mode": "strong",
+      "mode_match": true,
+      "elapsed_ms": 9322.7,
+      "request_id": "4db80e7f1e5d4ddfa7eb422fa6e28aeb",
+      "server_timing": {
+        "total": 9319.23,
+        "request_parse": 0.054,
+        "sparse_retrieval": 15.597,
+        "dense_embed": 16.216,
+        "dense_search_faiss": 0.251,
+        "fusion_rrf": 0.129,
+        "rerank_cross_encoder": 799.074,
+        "evidence_gating": 1.306,
+        "llm_generate": 8477.796,
+        "response_build_serialize": 0.02
+      }
+    },
+    {
+      "round": 1,
+      "query_id": "weak_meaning_explanation",
+      "category": "weak",
+      "query": "烧针益阳而损阴是什么意思？",
+      "expected_mode": "weak_with_review_notice",
+      "status_code": 200,
+      "actual_mode": "weak_with_review_notice",
+      "mode_match": true,
+      "elapsed_ms": 13521.619,
+      "request_id": "f27e529f348f4c099bc2e917040168c3",
+      "server_timing": {
+        "total": 13517.629,
+        "request_parse": 0.032,
+        "sparse_retrieval": 4.399,
+        "dense_embed": 18.146,
+        "dense_search_faiss": 0.199,
+        "fusion_rrf": 0.066,
+        "rerank_cross_encoder": 674.119,
+        "evidence_gating": 0.235,
+        "llm_generate": 12810.039,
+        "response_build_serialize": 0.022
+      }
+    },
+    {
+      "round": 1,
+      "query_id": "weak_fragment_guidance",
+      "category": "weak",
+      "query": "若噎者怎么办？",
+      "expected_mode": "weak_with_review_notice",
+      "status_code": 200,
+      "actual_mode": "weak_with_review_notice",
+      "mode_match": true,
+      "elapsed_ms": 10375.422,
+      "request_id": "fc8a53f558e246a68a322c351feb96c4",
+      "server_timing": {
+        "total": 10371.103,
+        "request_parse": 0.037,
+        "sparse_retrieval": 4.221,
+        "dense_embed": 24.823,
+        "dense_search_faiss": 1.294,
+        "fusion_rrf": 0.077,
+        "rerank_cross_encoder": 1278.641,
+        "evidence_gating": 0.699,
+        "llm_generate": 9052.732,
+        "response_build_serialize": 0.01
+      }
+    },
+    {
+      "round": 1,
+      "query_id": "refuse_out_of_book",
+      "category": "refuse",
+      "query": "书中有没有提到量子纠缠？",
+      "expected_mode": "refuse",
+      "status_code": 200,
+      "actual_mode": "refuse",
+      "mode_match": true,
+      "elapsed_ms": 551.076,
+      "request_id": "a0b64e93ac2d4a65a11f1d85121cd921",
+      "server_timing": {
+        "total": 548.357,
+        "request_parse": 0.04,
+        "sparse_retrieval": 1.165,
+        "dense_embed": 11.135,
+        "dense_search_faiss": 0.143,
+        "fusion_rrf": 0.043,
+        "rerank_cross_encoder": 533.569,
+        "evidence_gating": 0.011,
+        "response_build_serialize": 0.005
+      }
+    },
+    {
+      "round": 1,
+      "query_id": "refuse_personalized_treatment",
+      "category": "refuse",
+      "query": "我发烧了能不能用麻黄汤？",
+      "expected_mode": "refuse",
+      "status_code": 200,
+      "actual_mode": "refuse",
+      "mode_match": true,
+      "elapsed_ms": 1.4,
+      "request_id": "801112765c1e4313a5168285af13860f",
+      "server_timing": {
+        "total": 0.167,
+        "request_parse": 0.009,
+        "response_build_serialize": 0.004
+      }
+    },
+    {
+      "round": 2,
+      "query_id": "strong_formula_lookup",
+      "category": "strong",
+      "query": "黄连汤方的条文是什么？",
+      "expected_mode": "strong",
+      "status_code": 200,
+      "actual_mode": "strong",
+      "mode_match": true,
+      "elapsed_ms": 8212.48,
+      "request_id": "eee05b8ff9654c9ca6662e957d36b58f",
+      "server_timing": {
+        "total": 8210.525,
+        "request_parse": 0.007,
+        "sparse_retrieval": 0.656,
+        "dense_search_faiss": 0.08,
+        "fusion_rrf": 0.033,
+        "rerank_cross_encoder": 369.042,
+        "evidence_gating": 0.395,
+        "llm_generate": 7838.395,
+        "response_build_serialize": 0.014
+      }
+    },
+    {
+      "round": 2,
+      "query_id": "strong_general_management",
+      "category": "strong",
+      "query": "太阳病应该怎么办？",
+      "expected_mode": "strong",
+      "status_code": 200,
+      "actual_mode": "strong",
+      "mode_match": true,
+      "elapsed_ms": 8963.104,
+      "request_id": "79e8bf8be47241799727660283b85ffc",
+      "server_timing": {
+        "total": 8959.588,
+        "request_parse": 0.031,
+        "sparse_retrieval": 16.171,
+        "dense_search_faiss": 0.536,
+        "fusion_rrf": 0.178,
+        "rerank_cross_encoder": 446.025,
+        "evidence_gating": 0.983,
+        "llm_generate": 8487.287,
+        "response_build_serialize": 0.017
+      }
+    },
+    {
+      "round": 2,
+      "query_id": "weak_meaning_explanation",
+      "category": "weak",
+      "query": "烧针益阳而损阴是什么意思？",
+      "expected_mode": "weak_with_review_notice",
+      "status_code": 200,
+      "actual_mode": "weak_with_review_notice",
+      "mode_match": true,
+      "elapsed_ms": 12604.874,
+      "request_id": "2a39619d2f364b21b88f3d1b37c84e34",
+      "server_timing": {
+        "total": 12601.877,
+        "request_parse": 0.041,
+        "sparse_retrieval": 2.396,
+        "dense_search_faiss": 0.767,
+        "fusion_rrf": 0.133,
+        "rerank_cross_encoder": 580.977,
+        "evidence_gating": 0.789,
+        "llm_generate": 12010.591,
+        "response_build_serialize": 0.014
+      }
+    },
+    {
+      "round": 2,
+      "query_id": "weak_fragment_guidance",
+      "category": "weak",
+      "query": "若噎者怎么办？",
+      "expected_mode": "weak_with_review_notice",
+      "status_code": 200,
+      "actual_mode": "weak_with_review_notice",
+      "mode_match": true,
+      "elapsed_ms": 10892.21,
+      "request_id": "714702a3da324957a29a8644e4b52228",
+      "server_timing": {
+        "total": 10889.044,
+        "request_parse": 0.055,
+        "sparse_retrieval": 1.458,
+        "dense_search_faiss": 0.557,
+        "fusion_rrf": 0.2,
+        "rerank_cross_encoder": 541.867,
+        "evidence_gating": 0.083,
+        "llm_generate": 10336.966,
+        "response_build_serialize": 0.02
+      }
+    },
+    {
+      "round": 2,
+      "query_id": "refuse_out_of_book",
+      "category": "refuse",
+      "query": "书中有没有提到量子纠缠？",
+      "expected_mode": "refuse",
+      "status_code": 200,
+      "actual_mode": "refuse",
+      "mode_match": true,
+      "elapsed_ms": 372.873,
+      "request_id": "7bb2a4f7f0c84171906f591240dc234e",
+      "server_timing": {
+        "total": 370.0,
+        "request_parse": 0.052,
+        "sparse_retrieval": 0.637,
+        "dense_search_faiss": 0.387,
+        "fusion_rrf": 0.136,
+        "rerank_cross_encoder": 365.642,
+        "evidence_gating": 0.011,
+        "response_build_serialize": 0.005
+      }
+    },
+    {
+      "round": 2,
+      "query_id": "refuse_personalized_treatment",
+      "category": "refuse",
+      "query": "我发烧了能不能用麻黄汤？",
+      "expected_mode": "refuse",
+      "status_code": 200,
+      "actual_mode": "refuse",
+      "mode_match": true,
+      "elapsed_ms": 1.501,
+      "request_id": "1456fb6bcef4439a86187c834408a760",
+      "server_timing": {
+        "total": 0.204,
+        "request_parse": 0.014,
+        "response_build_serialize": 0.004
+      }
+    },
+    {
+      "round": 3,
+      "query_id": "strong_formula_lookup",
+      "category": "strong",
+      "query": "黄连汤方的条文是什么？",
+      "expected_mode": "strong",
+      "status_code": 200,
+      "actual_mode": "strong",
+      "mode_match": true,
+      "elapsed_ms": 7715.241,
+      "request_id": "9a7526b4c8d641f786f9cd504a01edad",
+      "server_timing": {
+        "total": 7713.82,
+        "request_parse": 0.009,
+        "sparse_retrieval": 0.744,
+        "dense_search_faiss": 0.179,
+        "fusion_rrf": 0.047,
+        "rerank_cross_encoder": 361.74,
+        "evidence_gating": 0.249,
+        "llm_generate": 7349.122,
+        "response_build_serialize": 0.011
+      }
+    },
+    {
+      "round": 3,
+      "query_id": "strong_general_management",
+      "category": "strong",
+      "query": "太阳病应该怎么办？",
+      "expected_mode": "strong",
+      "status_code": 200,
+      "actual_mode": "strong",
+      "mode_match": true,
+      "elapsed_ms": 9012.131,
+      "request_id": "15bfffa881ca4a96a876e84bac8db2cc",
+      "server_timing": {
+        "total": 9009.67,
+        "request_parse": 0.032,
+        "sparse_retrieval": 12.317,
+        "dense_search_faiss": 0.309,
+        "fusion_rrf": 0.135,
+        "rerank_cross_encoder": 447.151,
+        "evidence_gating": 0.727,
+        "llm_generate": 8541.632,
+        "response_build_serialize": 0.011
+      }
+    },
+    {
+      "round": 3,
+      "query_id": "weak_meaning_explanation",
+      "category": "weak",
+      "query": "烧针益阳而损阴是什么意思？",
+      "expected_mode": "weak_with_review_notice",
+      "status_code": 200,
+      "actual_mode": "weak_with_review_notice",
+      "mode_match": true,
+      "elapsed_ms": 12927.217,
+      "request_id": "8b48008382bd46a1bff998f64066f0ec",
+      "server_timing": {
+        "total": 12924.01,
+        "request_parse": 0.066,
+        "sparse_retrieval": 2.547,
+        "dense_search_faiss": 0.534,
+        "fusion_rrf": 0.144,
+        "rerank_cross_encoder": 557.908,
+        "evidence_gating": 0.378,
+        "llm_generate": 12357.117,
+        "response_build_serialize": 0.013
+      }
+    },
+    {
+      "round": 3,
+      "query_id": "weak_fragment_guidance",
+      "category": "weak",
+      "query": "若噎者怎么办？",
+      "expected_mode": "weak_with_review_notice",
+      "status_code": 200,
+      "actual_mode": "weak_with_review_notice",
+      "mode_match": true,
+      "elapsed_ms": 10726.417,
+      "request_id": "177c74b24f6743a4ba9b51ed8a40ca7f",
+      "server_timing": {
+        "total": 10722.183,
+        "request_parse": 0.037,
+        "sparse_retrieval": 1.0,
+        "dense_search_faiss": 0.486,
+        "fusion_rrf": 0.112,
+        "rerank_cross_encoder": 536.758,
+        "evidence_gating": 0.073,
+        "llm_generate": 10176.67,
+        "response_build_serialize": 0.017
+      }
+    },
+    {
+      "round": 3,
+      "query_id": "refuse_out_of_book",
+      "category": "refuse",
+      "query": "书中有没有提到量子纠缠？",
+      "expected_mode": "refuse",
+      "status_code": 200,
+      "actual_mode": "refuse",
+      "mode_match": true,
+      "elapsed_ms": 365.6,
+      "request_id": "c7298e37e5954bc4ab392b6338ef4285",
+      "server_timing": {
+        "total": 362.62,
+        "request_parse": 0.039,
+        "sparse_retrieval": 0.665,
+        "dense_search_faiss": 0.325,
+        "fusion_rrf": 0.081,
+        "rerank_cross_encoder": 358.652,
+        "evidence_gating": 0.008,
+        "response_build_serialize": 0.003
+      }
+    },
+    {
+      "round": 3,
+      "query_id": "refuse_personalized_treatment",
+      "category": "refuse",
+      "query": "我发烧了能不能用麻黄汤？",
+      "expected_mode": "refuse",
+      "status_code": 200,
+      "actual_mode": "refuse",
+      "mode_match": true,
+      "elapsed_ms": 1.513,
+      "request_id": "de793a98f4504f6bb5380e84d3c1f896",
+      "server_timing": {
+        "total": 0.257,
+        "request_parse": 0.016,
+        "response_build_serialize": 0.005
+      }
+    },
+    {
+      "round": 4,
+      "query_id": "strong_formula_lookup",
+      "category": "strong",
+      "query": "黄连汤方的条文是什么？",
+      "expected_mode": "strong",
+      "status_code": 200,
+      "actual_mode": "strong",
+      "mode_match": true,
+      "elapsed_ms": 8270.919,
+      "request_id": "969592e289f848aa89aa7a90de911240",
+      "server_timing": {
+        "total": 8269.435,
+        "request_parse": 0.009,
+        "sparse_retrieval": 0.809,
+        "dense_search_faiss": 0.159,
+        "fusion_rrf": 0.052,
+        "rerank_cross_encoder": 359.279,
+        "evidence_gating": 0.245,
+        "llm_generate": 7906.572,
+        "response_build_serialize": 0.017
+      }
+    },
+    {
+      "round": 4,
+      "query_id": "strong_general_management",
+      "category": "strong",
+      "query": "太阳病应该怎么办？",
+      "expected_mode": "strong",
+      "status_code": 200,
+      "actual_mode": "strong",
+      "mode_match": true,
+      "elapsed_ms": 8897.023,
+      "request_id": "3acac04fe71842d38fd361299b4134b7",
+      "server_timing": {
+        "total": 8892.744,
+        "request_parse": 0.049,
+        "sparse_retrieval": 15.806,
+        "dense_search_faiss": 0.355,
+        "fusion_rrf": 0.267,
+        "rerank_cross_encoder": 446.475,
+        "evidence_gating": 0.714,
+        "llm_generate": 8420.756,
+        "response_build_serialize": 0.01
+      }
+    },
+    {
+      "round": 4,
+      "query_id": "weak_meaning_explanation",
+      "category": "weak",
+      "query": "烧针益阳而损阴是什么意思？",
+      "expected_mode": "weak_with_review_notice",
+      "status_code": 200,
+      "actual_mode": "weak_with_review_notice",
+      "mode_match": true,
+      "elapsed_ms": 12922.29,
+      "request_id": "a3919acc14f94f1386b82f0071412582",
+      "server_timing": {
+        "total": 12919.511,
+        "request_parse": 0.039,
+        "sparse_retrieval": 2.641,
+        "dense_search_faiss": 0.526,
+        "fusion_rrf": 0.116,
+        "rerank_cross_encoder": 560.622,
+        "evidence_gating": 2.394,
+        "llm_generate": 12347.391,
+        "response_build_serialize": 0.011
+      }
+    },
+    {
+      "round": 4,
+      "query_id": "weak_fragment_guidance",
+      "category": "weak",
+      "query": "若噎者怎么办？",
+      "expected_mode": "weak_with_review_notice",
+      "status_code": 200,
+      "actual_mode": "weak_with_review_notice",
+      "mode_match": true,
+      "elapsed_ms": 10901.972,
+      "request_id": "be300c9e38444e25ae7bbbe80ec8aef3",
+      "server_timing": {
+        "total": 10899.424,
+        "request_parse": 0.017,
+        "sparse_retrieval": 0.947,
+        "dense_search_faiss": 0.375,
+        "fusion_rrf": 0.077,
+        "rerank_cross_encoder": 531.728,
+        "evidence_gating": 0.087,
+        "llm_generate": 10359.382,
+        "response_build_serialize": 0.021
+      }
+    },
+    {
+      "round": 4,
+      "query_id": "refuse_out_of_book",
+      "category": "refuse",
+      "query": "书中有没有提到量子纠缠？",
+      "expected_mode": "refuse",
+      "status_code": 200,
+      "actual_mode": "refuse",
+      "mode_match": true,
+      "elapsed_ms": 365.481,
+      "request_id": "38dee6e5704b4753a7030d6635157f5a",
+      "server_timing": {
+        "total": 362.456,
+        "request_parse": 0.033,
+        "sparse_retrieval": 0.611,
+        "dense_search_faiss": 0.896,
+        "fusion_rrf": 0.077,
+        "rerank_cross_encoder": 357.782,
+        "evidence_gating": 0.012,
+        "response_build_serialize": 0.012
+      }
+    },
+    {
+      "round": 4,
+      "query_id": "refuse_personalized_treatment",
+      "category": "refuse",
+      "query": "我发烧了能不能用麻黄汤？",
+      "expected_mode": "refuse",
+      "status_code": 200,
+      "actual_mode": "refuse",
+      "mode_match": true,
+      "elapsed_ms": 1.476,
+      "request_id": "1fb6c4bbbc9f4c598a273286dd7c7e38",
+      "server_timing": {
+        "total": 0.228,
+        "request_parse": 0.014,
+        "response_build_serialize": 0.005
+      }
+    },
+    {
+      "round": 5,
+      "query_id": "strong_formula_lookup",
+      "category": "strong",
+      "query": "黄连汤方的条文是什么？",
+      "expected_mode": "strong",
+      "status_code": 200,
+      "actual_mode": "strong",
+      "mode_match": true,
+      "elapsed_ms": 7628.085,
+      "request_id": "38d0eda32f1443428561e1902fa5cd48",
+      "server_timing": {
+        "total": 7626.339,
+        "request_parse": 0.009,
+        "sparse_retrieval": 0.67,
+        "dense_search_faiss": 0.091,
+        "fusion_rrf": 0.039,
+        "rerank_cross_encoder": 351.379,
+        "evidence_gating": 0.947,
+        "llm_generate": 7271.279,
+        "response_build_serialize": 0.016
+      }
+    },
+    {
+      "round": 5,
+      "query_id": "strong_general_management",
+      "category": "strong",
+      "query": "太阳病应该怎么办？",
+      "expected_mode": "strong",
+      "status_code": 200,
+      "actual_mode": "strong",
+      "mode_match": true,
+      "elapsed_ms": 8858.979,
+      "request_id": "1c41be643c3b4710bf2501e990e38315",
+      "server_timing": {
+        "total": 8853.676,
+        "request_parse": 0.068,
+        "sparse_retrieval": 14.182,
+        "dense_search_faiss": 0.333,
+        "fusion_rrf": 0.227,
+        "rerank_cross_encoder": 452.206,
+        "evidence_gating": 0.826,
+        "llm_generate": 8377.927,
+        "response_build_serialize": 0.008
+      }
+    },
+    {
+      "round": 5,
+      "query_id": "weak_meaning_explanation",
+      "category": "weak",
+      "query": "烧针益阳而损阴是什么意思？",
+      "expected_mode": "weak_with_review_notice",
+      "status_code": 200,
+      "actual_mode": "weak_with_review_notice",
+      "mode_match": true,
+      "elapsed_ms": 12849.552,
+      "request_id": "263d17462e914f279305d32f9bfe0da8",
+      "server_timing": {
+        "total": 12847.325,
+        "request_parse": 0.018,
+        "sparse_retrieval": 1.822,
+        "dense_search_faiss": 0.355,
+        "fusion_rrf": 0.084,
+        "rerank_cross_encoder": 548.532,
+        "evidence_gating": 0.464,
+        "llm_generate": 12291.673,
+        "response_build_serialize": 0.011
+      }
+    },
+    {
+      "round": 5,
+      "query_id": "weak_fragment_guidance",
+      "category": "weak",
+      "query": "若噎者怎么办？",
+      "expected_mode": "weak_with_review_notice",
+      "status_code": 200,
+      "actual_mode": "weak_with_review_notice",
+      "mode_match": true,
+      "elapsed_ms": 10853.281,
+      "request_id": "453f37d74b23418a915789efdc4dc4c7",
+      "server_timing": {
+        "total": 10850.297,
+        "request_parse": 0.034,
+        "sparse_retrieval": 0.952,
+        "dense_search_faiss": 0.517,
+        "fusion_rrf": 0.139,
+        "rerank_cross_encoder": 541.034,
+        "evidence_gating": 0.054,
+        "llm_generate": 10299.973,
+        "response_build_serialize": 0.013
+      }
+    },
+    {
+      "round": 5,
+      "query_id": "refuse_out_of_book",
+      "category": "refuse",
+      "query": "书中有没有提到量子纠缠？",
+      "expected_mode": "refuse",
+      "status_code": 200,
+      "actual_mode": "refuse",
+      "mode_match": true,
+      "elapsed_ms": 372.666,
+      "request_id": "3abd86288fe849b8aa2b6d5374b166de",
+      "server_timing": {
+        "total": 369.7,
+        "request_parse": 0.029,
+        "sparse_retrieval": 0.7,
+        "dense_search_faiss": 0.39,
+        "fusion_rrf": 0.097,
+        "rerank_cross_encoder": 365.288,
+        "evidence_gating": 0.018,
+        "response_build_serialize": 0.005
+      }
+    },
+    {
+      "round": 5,
+      "query_id": "refuse_personalized_treatment",
+      "category": "refuse",
+      "query": "我发烧了能不能用麻黄汤？",
+      "expected_mode": "refuse",
+      "status_code": 200,
+      "actual_mode": "refuse",
+      "mode_match": true,
+      "elapsed_ms": 1.565,
+      "request_id": "bb0f1cb5f7f74b7d8909b690d9b94427",
+      "server_timing": {
+        "total": 0.247,
+        "request_parse": 0.015,
+        "response_build_serialize": 0.005
+      }
+    }
+  ]
+}

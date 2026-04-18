@@ -6,10 +6,12 @@ import json
 import math
 import os
 import sys
+import threading
 from collections import Counter
 from pathlib import Path
 from typing import Any
 
+from backend.perf import load_perf_settings, record_metadata, stage_timer
 from backend.retrieval.minimal import (
     DEFAULT_DB_PATH,
     DEFAULT_EXAMPLES,
@@ -278,6 +280,8 @@ class HybridRetrievalEngine(RetrievalEngine):
         self.dense_main_index_path = dense_main_index
         self.dense_main_meta_path = dense_main_meta
         self._stage_trace: dict[str, Any] = {}
+        self._query_vector_cache: dict[str, Any] = {}
+        self._query_vector_cache_lock = threading.Lock()
         super().__init__(*args, **kwargs)
 
     def __post_init__(self) -> None:
@@ -422,6 +426,7 @@ class HybridRetrievalEngine(RetrievalEngine):
         return replay_rows
 
     def build_request(self, query_text: str, tight_primary_precision: bool = True) -> dict[str, Any]:
+        perf_settings = load_perf_settings()
         request = super().build_request(query_text, tight_primary_precision=tight_primary_precision)
         request["retrieval_strategy"] = {
             "type": "hybrid_rrf_rerank",
@@ -429,24 +434,27 @@ class HybridRetrievalEngine(RetrievalEngine):
             "dense_chunk_top_k": DENSE_CHUNK_TOP_K,
             "dense_main_top_k": DENSE_MAIN_TOP_K,
             "fusion_top_k": FUSION_TOP_K,
-            "rerank_top_n": RERANK_TOP_N,
+            "rerank_top_n": perf_settings.rerank_top_n,
             "rrf_k": RRF_K,
             "embed_model": self.embed_model_name,
             "rerank_model": self.rerank_model_name,
             "rerank_device": self.rerank_device,
+            "retrieval_mode": perf_settings.retrieval_mode,
+            "perf_disable_rerank": perf_settings.disable_rerank,
         }
         return request
 
     def retrieve(self, query_text: str, tight_primary_precision: bool = True) -> dict[str, Any]:
         request = self.build_request(query_text, tight_primary_precision=tight_primary_precision)
         raw_candidates = self._collect_raw_candidates(request)
-        resolved = self._resolve_candidates(raw_candidates, request)
-        resolved["retrieval_trace"] = {
-            **resolved["retrieval_trace"],
-            **self._stage_trace,
-        }
-        slots = self._assemble_slots(resolved)
-        mode_info = self._determine_mode(slots)
+        with stage_timer("evidence_gating"):
+            resolved = self._resolve_candidates(raw_candidates, request)
+            resolved["retrieval_trace"] = {
+                **resolved["retrieval_trace"],
+                **self._stage_trace,
+            }
+            slots = self._assemble_slots(resolved)
+            mode_info = self._determine_mode(slots)
         return {
             "query_request": request,
             "raw_candidates": raw_candidates,
@@ -704,20 +712,15 @@ class HybridRetrievalEngine(RetrievalEngine):
     def _collect_dense_candidates(
         self,
         request: dict[str, Any],
+        query_vector: Any,
         *,
         index: Any,
         meta: dict[str, Any],
         top_k: int,
         stage_name: str,
     ) -> list[dict[str, Any]]:
-        query_vector = self.embedder.encode(
-            [request["query_text"]],
-            convert_to_numpy=True,
-            normalize_embeddings=True,
-            show_progress_bar=False,
-        )
-        query_vector = self.np.asarray(query_vector, dtype="float32")
-        scores, positions = index.search(query_vector, top_k)
+        with stage_timer("dense_search_faiss"):
+            scores, positions = index.search(query_vector, top_k)
 
         dense_candidates: list[dict[str, Any]] = []
         raw_scores = [float(score) for score in scores[0].tolist()]
@@ -750,6 +753,39 @@ class HybridRetrievalEngine(RetrievalEngine):
         for rank, candidate in enumerate(dense_candidates, start=1):
             candidate["stage_ranks"][stage_name] = rank
         return dense_candidates
+
+    def _encode_query_vector(self, request: dict[str, Any]) -> Any:
+        perf_settings = load_perf_settings()
+        cache_key = request["query_text"]
+        cached_vector = None
+
+        if perf_settings.enable_query_embed_cache:
+            with self._query_vector_cache_lock:
+                cached_vector = self._query_vector_cache.pop(cache_key, None)
+                if cached_vector is not None:
+                    self._query_vector_cache[cache_key] = cached_vector
+
+        if cached_vector is not None:
+            record_metadata("dense_embed_cache_hit", True)
+            return self.np.asarray(cached_vector, dtype="float32")
+
+        record_metadata("dense_embed_cache_hit", False)
+        with stage_timer("dense_embed"):
+            query_vector = self.embedder.encode(
+                [request["query_text"]],
+                convert_to_numpy=True,
+                normalize_embeddings=True,
+                show_progress_bar=False,
+            )
+            query_vector = self.np.asarray(query_vector, dtype="float32")
+
+        if perf_settings.enable_query_embed_cache:
+            with self._query_vector_cache_lock:
+                self._query_vector_cache[cache_key] = query_vector.copy()
+                while len(self._query_vector_cache) > perf_settings.query_embed_cache_size:
+                    oldest_key = next(iter(self._query_vector_cache))
+                    self._query_vector_cache.pop(oldest_key, None)
+        return query_vector
 
     def _collect_controlled_replay_candidates(self, request: dict[str, Any]) -> list[dict[str, Any]]:
         if not self.controlled_replay_rows:
@@ -822,12 +858,26 @@ class HybridRetrievalEngine(RetrievalEngine):
         return fused[:FUSION_TOP_K]
 
     def _rerank_candidates(self, request: dict[str, Any], fused_candidates: list[dict[str, Any]]) -> list[dict[str, Any]]:
-        rerank_slice = fused_candidates[:RERANK_TOP_N]
+        perf_settings = load_perf_settings()
+        rerank_top_n = min(perf_settings.rerank_top_n, len(fused_candidates))
+        rerank_slice = fused_candidates[:rerank_top_n]
         if not rerank_slice:
             return []
 
+        if perf_settings.disable_rerank:
+            for candidate in fused_candidates:
+                candidate["combined_score"] = round(
+                    candidate["rrf_score"] * 100.0
+                    + candidate["sparse_score"]
+                    + candidate["dense_rank_score"] * 10.0
+                    + candidate["weight_bonus"],
+                    6,
+                )
+            return fused_candidates
+
         pairs = [(request["query_text"], candidate["retrieval_text"]) for candidate in rerank_slice]
-        raw_scores = self.reranker.predict(pairs, batch_size=8, show_progress_bar=False)
+        with stage_timer("rerank_cross_encoder"):
+            raw_scores = self.reranker.predict(pairs, batch_size=8, show_progress_bar=False)
 
         for candidate, raw_score in zip(rerank_slice, raw_scores.tolist(), strict=False):
             candidate["rerank_raw_score"] = round(float(raw_score), 6)
@@ -852,7 +902,7 @@ class HybridRetrievalEngine(RetrievalEngine):
             ),
         )
 
-        remainder = fused_candidates[RERANK_TOP_N:]
+        remainder = fused_candidates[rerank_top_n:]
         for candidate in remainder:
             candidate["combined_score"] = round(
                 candidate["rrf_score"] * 100.0
@@ -865,38 +915,57 @@ class HybridRetrievalEngine(RetrievalEngine):
         return ordered_reranked + remainder
 
     def _passes_final_candidate_gate(self, request: dict[str, Any], candidate: dict[str, Any]) -> bool:
+        perf_settings = load_perf_settings()
         if not is_dense_only_candidate(candidate):
             return True
 
         if request["query_theme"]["type"] == "formula_name":
             return candidate["topic_consistency"] == "exact_formula_anchor"
 
+        if perf_settings.disable_rerank:
+            return candidate["dense_score"] >= 0.58
         return candidate["dense_score"] >= 0.58 and (candidate["rerank_score"] or 0.0) >= 0.62
 
     def _collect_raw_candidates(self, request: dict[str, Any]) -> list[dict[str, Any]]:
+        perf_settings = load_perf_settings()
+        record_metadata("retrieval_mode_effective", perf_settings.retrieval_mode)
         sparse_query = build_sparse_fts_match_expression(request["query_text_normalized"])
-        sparse_candidates = self._collect_sparse_candidates(request)
-        dense_chunk_candidates = self._collect_dense_candidates(
-            request,
-            index=self.dense_chunks_index,
-            meta=self.dense_chunks_meta,
-            top_k=DENSE_CHUNK_TOP_K,
-            stage_name="dense_chunks",
-        )
-        dense_main_candidates = self._collect_dense_candidates(
-            request,
-            index=self.dense_main_index,
-            meta=self.dense_main_meta,
-            top_k=DENSE_MAIN_TOP_K,
-            stage_name="dense_main_passages",
-        )
-        controlled_replay_candidates = self._collect_controlled_replay_candidates(request)
-        fused_candidates = self._fuse_candidates(
-            ("sparse", sparse_candidates),
-            ("dense_chunks", dense_chunk_candidates),
-            ("dense_main_passages", dense_main_candidates),
-            ("controlled_replay_recall", controlled_replay_candidates),
-        )
+        sparse_candidates: list[dict[str, Any]] = []
+        dense_chunk_candidates: list[dict[str, Any]] = []
+        dense_main_candidates: list[dict[str, Any]] = []
+        controlled_replay_candidates: list[dict[str, Any]] = []
+
+        if perf_settings.retrieval_mode in {"hybrid", "sparse"}:
+            with stage_timer("sparse_retrieval"):
+                sparse_candidates = self._collect_sparse_candidates(request)
+            controlled_replay_candidates = self._collect_controlled_replay_candidates(request)
+
+        if perf_settings.retrieval_mode in {"hybrid", "dense"}:
+            query_vector = self._encode_query_vector(request)
+            dense_chunk_candidates = self._collect_dense_candidates(
+                request,
+                query_vector,
+                index=self.dense_chunks_index,
+                meta=self.dense_chunks_meta,
+                top_k=DENSE_CHUNK_TOP_K,
+                stage_name="dense_chunks",
+            )
+            dense_main_candidates = self._collect_dense_candidates(
+                request,
+                query_vector,
+                index=self.dense_main_index,
+                meta=self.dense_main_meta,
+                top_k=DENSE_MAIN_TOP_K,
+                stage_name="dense_main_passages",
+            )
+
+        with stage_timer("fusion_rrf"):
+            fused_candidates = self._fuse_candidates(
+                ("sparse", sparse_candidates),
+                ("dense_chunks", dense_chunk_candidates),
+                ("dense_main_passages", dense_main_candidates),
+                ("controlled_replay_recall", controlled_replay_candidates),
+            )
         reranked_candidates = self._rerank_candidates(request, fused_candidates)
 
         selected: list[dict[str, Any]] = []
@@ -919,6 +988,7 @@ class HybridRetrievalEngine(RetrievalEngine):
                 "embed_model": self.embed_model_name,
                 "rerank_model": self.rerank_model_name,
                 "rerank_device": self.rerank_device,
+                "perf_rerank_top_n": perf_settings.rerank_top_n,
             },
             "sparse_backend": {
                 "type": "sqlite_fts5_bm25" if sparse_query["match_expression"] else "lexical_fallback_short_query",
@@ -940,6 +1010,11 @@ class HybridRetrievalEngine(RetrievalEngine):
                 "target_layers": self.controlled_replay_config.get("target_layers", {}),
                 "allowed_main_passage_ids": self.controlled_replay_config.get("allowed_main_passage_ids", []),
                 "top_candidates": sparse_candidate_view(controlled_replay_candidates),
+            },
+            "perf_flags": {
+                "retrieval_mode": perf_settings.retrieval_mode,
+                "disable_rerank": perf_settings.disable_rerank,
+                "enable_query_embed_cache": perf_settings.enable_query_embed_cache,
             },
             "fusion_top_candidates": [
                 {

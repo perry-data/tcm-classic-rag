@@ -10,6 +10,7 @@ from .client import (
 from .prompt_builder import build_answer_text_prompt
 from .validator import (
     LLMOutputValidationError,
+    normalize_answer_text_paragraphs,
     parse_answer_text_json,
     validate_rendered_answer_text,
 )
@@ -24,6 +25,7 @@ __all__ = [
     "ModelStudioLLMError",
     "build_answer_text_prompt",
     "load_modelstudio_llm_config",
+    "normalize_answer_text_paragraphs",
     "parse_answer_text_json",
     "validate_rendered_answer_text",
 ]

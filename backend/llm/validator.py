@@ -123,6 +123,7 @@ ASSERTION_MARKERS = (
     "所以",
     "可理解为",
 )
+SENTENCE_WITH_REFS_RE = re.compile(r".*?(?:[。！？!?](?:\[(?:E\d+)\])*)|.+$", re.DOTALL)
 
 
 def _strip_code_fence(text: str) -> str:
@@ -205,6 +206,39 @@ def _collect_evidence_lookup(evidence_pack: dict[str, Any]) -> tuple[set[str], s
 
 def _split_paragraphs(text: str) -> list[str]:
     return [line.strip() for line in text.splitlines() if line.strip()]
+
+
+def normalize_answer_text_paragraphs(answer_text: str) -> str:
+    normalized = answer_text.strip()
+    paragraphs = _split_paragraphs(normalized)
+    if len(paragraphs) >= 2:
+        return normalized
+
+    sentences = [item.strip() for item in SENTENCE_WITH_REFS_RE.findall(normalized) if item.strip()]
+    if len(sentences) < 2:
+        return normalized
+
+    if len(sentences) <= 3:
+        split_plan = (1, len(sentences) - 1)
+    elif len(sentences) <= 4:
+        split_plan = (2, len(sentences) - 2)
+    elif len(sentences) <= 6:
+        split_plan = (2, 2, len(sentences) - 4)
+    else:
+        split_plan = (2, 2, 2, len(sentences) - 6)
+
+    rebuilt: list[str] = []
+    cursor = 0
+    for count in split_plan:
+        if count <= 0:
+            continue
+        rebuilt.append("".join(sentences[cursor : cursor + count]).strip())
+        cursor += count
+
+    rebuilt = [paragraph for paragraph in rebuilt if paragraph]
+    if len(rebuilt) < 2:
+        return normalized
+    return "\n\n".join(rebuilt)
 
 
 def _sentence_count(text: str) -> int:

@@ -1,13 +1,17 @@
 from __future__ import annotations
 
+import http.client
 import json
 import os
+import socket
+import threading
+import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
-from urllib import error as urllib_error
-from urllib import request as urllib_request
 from urllib.parse import urlsplit
+
+from backend.perf import load_perf_settings
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -193,18 +197,79 @@ def _extract_content_from_choice(message_content: Any) -> str:
 class ModelStudioLLMClient:
     def __init__(self, config: ModelStudioLLMConfig) -> None:
         self.config = config
+        self._perf_settings = load_perf_settings()
+        self._base_url_parts = urlsplit(self.config.base_url)
+        self._base_path = self._base_url_parts.path.rstrip("/")
+        self._connections: dict[int, http.client.HTTPConnection] = {}
+        self._connections_lock = threading.Lock()
+        self._thread_local = threading.local()
 
-    def _build_headers(self) -> dict[str, str]:
-        return {
+    def close(self) -> None:
+        with self._connections_lock:
+            connections = list(self._connections.values())
+            self._connections.clear()
+        for connection in connections:
+            try:
+                connection.close()
+            except OSError:
+                continue
+
+    def get_last_request_metrics(self) -> dict[str, Any] | None:
+        metrics = getattr(self._thread_local, "last_request_metrics", None)
+        if not isinstance(metrics, dict):
+            return None
+        return dict(metrics)
+
+    def _set_last_request_metrics(self, metrics: dict[str, Any]) -> None:
+        self._thread_local.last_request_metrics = metrics
+
+    def _build_headers(self, *, keepalive_enabled: bool) -> dict[str, str]:
+        headers = {
             "Content-Type": "application/json",
             "Authorization": f"Bearer {self.config.api_key}",
         }
+        headers["Connection"] = "keep-alive" if keepalive_enabled else "close"
+        return headers
+
+    def _endpoint_path(self) -> str:
+        if not self._base_path:
+            return "/chat/completions"
+        return f"{self._base_path}/chat/completions"
+
+    def _create_connection(self) -> http.client.HTTPConnection:
+        connection_cls = http.client.HTTPSConnection if self._base_url_parts.scheme == "https" else http.client.HTTPConnection
+        host = self._base_url_parts.hostname
+        if not host:
+            raise ModelStudioLLMError(f"Invalid Model Studio base URL: {self.config.base_url}")
+        return connection_cls(
+            host,
+            self._base_url_parts.port,
+            timeout=self.config.timeout_seconds,
+        )
+
+    def _get_pooled_connection(self) -> tuple[int, http.client.HTTPConnection]:
+        thread_id = threading.get_ident()
+        with self._connections_lock:
+            connection = self._connections.get(thread_id)
+            if connection is None:
+                connection = self._create_connection()
+                self._connections[thread_id] = connection
+        return thread_id, connection
+
+    def _discard_connection(self, thread_id: int, connection: http.client.HTTPConnection) -> None:
+        with self._connections_lock:
+            current = self._connections.get(thread_id)
+            if current is connection:
+                self._connections.pop(thread_id, None)
+        try:
+            connection.close()
+        except OSError:
+            return
 
     def render_answer_text(self, *, system_instruction: str, user_prompt: str) -> str:
         if not self.config.enabled:
             raise ModelStudioLLMError("ModelStudioLLMClient called while disabled.")
 
-        endpoint = f"{self.config.base_url}/chat/completions"
         body = {
             "model": self.config.model,
             "messages": [
@@ -215,26 +280,78 @@ class ModelStudioLLMClient:
             "max_tokens": self.config.max_output_tokens,
             "enable_thinking": self.config.enable_thinking,
         }
+        request_body = json.dumps(body, ensure_ascii=False).encode("utf-8")
+        keepalive_enabled = self._perf_settings.enable_llm_keepalive
+        endpoint_path = self._endpoint_path()
 
-        request = urllib_request.Request(
-            endpoint,
-            data=json.dumps(body, ensure_ascii=False).encode("utf-8"),
-            headers=self._build_headers(),
-            method="POST",
-        )
+        for attempt_number in (1, 2):
+            pooled_connection = False
+            thread_id = threading.get_ident()
+            connection: http.client.HTTPConnection | None = None
+            started_at = time.perf_counter()
+            try:
+                if keepalive_enabled:
+                    pooled_connection = True
+                    thread_id, connection = self._get_pooled_connection()
+                else:
+                    connection = self._create_connection()
 
-        try:
-            with urllib_request.urlopen(request, timeout=self.config.timeout_seconds) as response:
-                payload = json.loads(response.read().decode("utf-8"))
-        except urllib_error.HTTPError as exc:
-            response_text = exc.read().decode("utf-8", errors="replace")
-            raise ModelStudioLLMError(f"Model Studio returned HTTP {exc.code}: {response_text}") from exc
-        except urllib_error.URLError as exc:
-            raise ModelStudioLLMError(f"Model Studio request failed: {exc.reason}") from exc
-        except TimeoutError as exc:
-            raise ModelStudioLLMError("Model Studio request timed out.") from exc
-        except json.JSONDecodeError as exc:
-            raise ModelStudioLLMError("Model Studio returned invalid JSON.") from exc
+                connection.request(
+                    "POST",
+                    endpoint_path,
+                    body=request_body,
+                    headers=self._build_headers(keepalive_enabled=keepalive_enabled),
+                )
+                response = connection.getresponse()
+                ttfb_ms = round((time.perf_counter() - started_at) * 1000.0, 3)
+                response_bytes = response.read()
+                total_ms = round((time.perf_counter() - started_at) * 1000.0, 3)
+                metrics = {
+                    "attempt": attempt_number,
+                    "keepalive_enabled": keepalive_enabled,
+                    "status_code": response.status,
+                    "ttfb_ms": ttfb_ms,
+                    "total_ms": total_ms,
+                }
+                self._set_last_request_metrics(metrics)
+
+                if response.will_close and pooled_connection:
+                    self._discard_connection(thread_id, connection)
+                elif not pooled_connection:
+                    connection.close()
+
+                if response.status >= 400:
+                    response_text = response_bytes.decode("utf-8", errors="replace")
+                    raise ModelStudioLLMError(f"Model Studio returned HTTP {response.status}: {response_text}")
+
+                try:
+                    payload = json.loads(response_bytes.decode("utf-8"))
+                except json.JSONDecodeError as exc:
+                    raise ModelStudioLLMError("Model Studio returned invalid JSON.") from exc
+                break
+            except (http.client.HTTPException, OSError, socket.timeout, TimeoutError) as exc:
+                if connection is not None:
+                    if pooled_connection:
+                        self._discard_connection(thread_id, connection)
+                    else:
+                        try:
+                            connection.close()
+                        except OSError:
+                            pass
+                self._set_last_request_metrics(
+                    {
+                        "attempt": attempt_number,
+                        "keepalive_enabled": keepalive_enabled,
+                        "error": str(exc),
+                        "ttfb_ms": None,
+                        "total_ms": round((time.perf_counter() - started_at) * 1000.0, 3),
+                    }
+                )
+                if keepalive_enabled and attempt_number == 1:
+                    continue
+                raise ModelStudioLLMError(f"Model Studio request failed: {exc}") from exc
+        else:  # pragma: no cover - defensive loop guard
+            raise ModelStudioLLMError("Model Studio request failed after retries.")
 
         choices = payload.get("choices")
         if not isinstance(choices, list) or not choices:
