@@ -214,6 +214,18 @@ UNSUPPORTED_COMPARISON_HINTS = (
 MEANING_EXPLANATION_QUERY_HINTS = (
     "是什么意思",
     "什么意思",
+    "怎么理解",
+    "含义",
+    "为何",
+    "为什么",
+    "指什么",
+    "如何理解",
+    "这句话",
+    "这段话",
+    "此言",
+    "何谓",
+    "何解",
+    "提醒什么",
 )
 
 FORMULA_EFFECT_QUERY_HINTS = tuple(
@@ -897,6 +909,66 @@ class AnswerAssembler:
             citations=[],
         )
 
+    def _fetch_adjacent_passages(self, record_id: str) -> list[dict[str, Any]]:
+        row = self.engine.conn.execute(
+            """
+            SELECT record_table, chapter_id, backref_target_ids_json 
+            FROM vw_retrieval_records_unified 
+            WHERE record_id = ?
+            """, (record_id,)
+        ).fetchone()
+        if not row:
+            return []
+            
+        record_table, chapter_id, target_ids_json = row
+        
+        passage_ids = []
+        if record_table == "records_chunks":
+            passage_ids = json.loads(target_ids_json)
+        elif record_table in ("records_main_passages", "records_passages", "records_annotations", "risk_registry_ambiguous"):
+            p_row = self.engine.conn.execute(
+                f"SELECT passage_id FROM {record_table} WHERE record_id = ?",
+                (record_id,)
+            ).fetchone()
+            if p_row:
+                passage_ids.append(p_row["passage_id"])
+                
+        if not passage_ids:
+            return []
+            
+        placeholders = ",".join(["?"] * len(passage_ids))
+        orders = self.engine.conn.execute(
+            f"SELECT passage_order_in_chapter FROM records_passages WHERE passage_id IN ({placeholders})",
+            tuple(passage_ids)
+        ).fetchall()
+        
+        if not orders:
+            return []
+            
+        order_nums = [o["passage_order_in_chapter"] for o in orders if o["passage_order_in_chapter"] is not None]
+        if not order_nums:
+            return []
+            
+        min_order = min(order_nums)
+        max_order = max(order_nums)
+        
+        adj_orders = [min_order - 1, max_order + 1]
+        results = []
+        for adj_order in adj_orders:
+            adj_row = self.engine.conn.execute(
+                """
+                SELECT p.record_id, p.text as retrieval_text, p.chapter_name, p.chapter_id, p.source_object, p.evidence_level, p.risk_flag 
+                FROM records_passages p 
+                WHERE p.chapter_id = ? AND p.passage_order_in_chapter = ?
+                """, (chapter_id, adj_order)
+            ).fetchone()
+            if adj_row:
+                item = dict(adj_row)
+                item["text_preview"] = item["retrieval_text"]
+                results.append(item)
+                
+        return results
+
     def _assemble_standard(self, query_text: str) -> dict[str, Any]:
         retrieval = self.engine.retrieve(query_text)
         self._emit_progress(
@@ -906,6 +978,20 @@ class AnswerAssembler:
         primary = [self._build_evidence_item(row, display_role="primary") for row in retrieval["primary_evidence"]]
         secondary = [self._build_evidence_item(row, display_role="secondary") for row in retrieval["secondary_evidence"]]
         review = [self._build_evidence_item(row, display_role="review") for row in retrieval["risk_materials"]]
+
+        is_meaning_explanation = any(hint in query_text for hint in MEANING_EXPLANATION_QUERY_HINTS)
+        if is_meaning_explanation:
+            padded_items = []
+            seen_ids = {item["record_id"] for item in primary + secondary}
+            # Limit padding to top 5 items to prevent evidence pack from exploding
+            for item in (primary + secondary)[:5]:
+                adj_rows = self._fetch_adjacent_passages(item["record_id"])
+                for adj_row in adj_rows:
+                    if adj_row["record_id"] not in seen_ids:
+                        adj_row["risk_flag"] = json_dumps(["context_padding"])
+                        padded_items.append(self._build_evidence_item(adj_row, display_role="secondary", title_override="上下文补充"))
+                        seen_ids.add(adj_row["record_id"])
+            secondary.extend(padded_items)
 
         answer_mode = retrieval["mode"]
         answer_retrieval = retrieval
@@ -917,6 +1003,18 @@ class AnswerAssembler:
             primary = []
             answer_mode = "weak_with_review_notice"
             answer_retrieval = {**retrieval, "mode": answer_mode}
+
+        if is_meaning_explanation and answer_mode == "weak_with_review_notice":
+            # If we successfully padded context and there are no high risk review materials,
+            # and we have primary or we demoted it but there is clear context now, promote to strong.
+            if padded_items and not review and retrieval["primary_evidence"]:
+                answer_mode = "strong"
+                answer_retrieval["mode"] = "strong"
+                # If primary was empty due to demotion but we promote it back, we need to restore primary.
+                # It is easier to just restore it.
+                primary = [self._build_evidence_item(row, display_role="primary") for row in retrieval["primary_evidence"]]
+                secondary = [self._build_evidence_item(row, display_role="secondary") for row in retrieval["secondary_evidence"]] + padded_items
+
         answer_text = self._build_answer_text(answer_retrieval, primary, secondary, review)
         review_notice = self._build_review_notice(answer_mode)
         disclaimer = self._build_disclaimer(answer_mode, bool(secondary), bool(review))
@@ -1628,10 +1726,17 @@ class AnswerAssembler:
             self._build_evidence_item(row, display_role="review")
             for row in review_rows[:DEFINITION_OUTLINE_REVIEW_LIMIT]
         ]
-        answer_text = self._build_definition_outline_answer_text(
-            definition_plan,
-            primary[0],
-            has_secondary=bool(secondary),
+        answer_text = self._build_answer_text(
+            {
+                "mode": "strong",
+                "primary_evidence": primary,
+                "secondary_evidence": secondary,
+                "risk_materials": review,
+                "all_evidence_ids": [item["record_id"] for item in primary + secondary + review],
+            },
+            primary,
+            secondary,
+            review,
         )
         citations = self._build_citations("strong", primary, secondary, review)
         return self._compose_payload(
