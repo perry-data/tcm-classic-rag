@@ -619,12 +619,52 @@ def clean_formula_title_anchor(title: str | None) -> str:
     return compact_text(cleaned)
 
 
+def _replace_title_suffix(prefix: str, variant_text: str) -> str:
+    normalized_prefix = compact_whitespace(prefix)
+    normalized_variant = compact_whitespace(variant_text)
+    if not normalized_variant:
+        return normalized_prefix
+    if len(normalized_prefix) >= len(normalized_variant):
+        return normalized_prefix[: -len(normalized_variant)] + normalized_variant
+    return normalized_variant
+
+
+def _remove_title_suffix(prefix: str, removed_text: str) -> str:
+    normalized_prefix = compact_whitespace(prefix)
+    normalized_removed = compact_whitespace(removed_text)
+    if not normalized_removed:
+        return normalized_prefix
+    if len(normalized_prefix) >= len(normalized_removed):
+        return normalized_prefix[: -len(normalized_removed)]
+    return ""
+
+
+def _inline_formula_title_variants(raw_title: str) -> set[str]:
+    variants: set[str] = set()
+    rewritten = compact_whitespace(raw_title)
+
+    replace_match = re.search(r"^(.*?)(?:赵本|医统本)+作「([^」]+)」(.*)$", rewritten)
+    if replace_match:
+        prefix, variant_text, suffix = replace_match.groups()
+        variants.add(_replace_title_suffix(prefix, variant_text) + compact_whitespace(suffix))
+
+    delete_match = re.search(r"^(.*?)(?:赵本|医统本)+无「([^」]+)」字?(.*)$", rewritten)
+    if delete_match:
+        prefix, removed_text, suffix = delete_match.groups()
+        variants.add(_remove_title_suffix(prefix, removed_text) + compact_whitespace(suffix))
+
+    add_match = re.search(r"^(.*?)(?:赵本|医统本)+并有「([^」]+)」字(.*)$", rewritten)
+    if add_match:
+        prefix, added_text, suffix = add_match.groups()
+        variants.add(compact_whitespace(prefix) + compact_whitespace(added_text) + compact_whitespace(suffix))
+
+    return {variant for variant in variants if variant}
+
+
 def formula_title_alias_variants(raw_title: str, canonical_title: str) -> set[str]:
     variants = {raw_title, canonical_title}
     variants.add(clean_formula_title_anchor(raw_title))
-    variants.add(
-        clean_formula_title_anchor(re.sub(r"([一-龥])(?:赵本|医统本)+作「([^」]+)」", r"\2", raw_title))
-    )
+    variants.update(clean_formula_title_anchor(variant) for variant in _inline_formula_title_variants(raw_title))
     variants.add(clean_formula_title_anchor(re.sub(r"(?:赵本|医统本)+并有「([^」]+)」字", "", raw_title)))
     return {variant for variant in variants if variant}
 
@@ -4040,13 +4080,8 @@ class AnswerAssembler:
 
     def _build_llm_section_label(self, item: dict[str, Any]) -> str:
         chapter_title = compact_whitespace(item.get("chapter_title"))
-        chapter_id = compact_whitespace(item.get("chapter_id"))
-        if chapter_title and chapter_id:
-            return f"{chapter_title} ({chapter_id})"
         if chapter_title:
             return chapter_title
-        if chapter_id:
-            return chapter_id
         return "未标明章节"
 
     def _format_evidence_ref_suffix(self, evidence_ids: list[str]) -> str:
@@ -4117,29 +4152,48 @@ class AnswerAssembler:
     ) -> str:
         point_candidates = self._build_guardrail_point_candidates(evidence_pack)
         if not point_candidates:
-            return "当前证据不足，暂只能提示继续核对原文。"
+            fallback_refs = self._format_evidence_ref_suffix(list(evidence_pack.get("all_evidence_ids") or [])[:1])
+            return (
+                f"结论：当前证据不足，暂只能作保守提示并继续核对原文。{fallback_refs}\n"
+                f"解释：现有材料尚不足以支撑更完整的条文解读。{fallback_refs}\n"
+                f"依据：请回看当前命中的原始证据与引用区，避免超出证据边界。{fallback_refs}"
+            )
 
-        summary_refs = self._format_evidence_ref_suffix([candidate["evidence_id"] for candidate in point_candidates[:2]])
+        summary_candidates = point_candidates[:2]
+        summary_refs = self._format_evidence_ref_suffix([candidate["evidence_id"] for candidate in summary_candidates])
+        query_anchor = snippet_text(query_text, limit=24)
         if answer_mode == "weak_with_review_notice":
-            lines = [f"基于当前辅助材料，只能先作保守解释，仍需结合原文继续核对。{summary_refs}"]
+            conclusion = (
+                "结论：当前只能依据辅助材料作保守理解，暂不能视为确定答案；"
+                f"可先从“{summary_candidates[0]['fragment']}”把握与“{query_anchor}”相关的线索。{summary_refs}"
+            )
         else:
-            query_anchor = snippet_text(query_text, limit=24)
-            lines = [f"为避免越出证据边界，先按现有主依据对“{query_anchor}”作保守整理，仍建议回看原文。{summary_refs}"]
+            conclusion = (
+                f"结论：基于当前主依据，可先把“{query_anchor}”理解为围绕“{summary_candidates[0]['fragment']}”展开；"
+                f"回答应以原文明写内容为准。{summary_refs}"
+            )
 
         slot_prefix = {
-            "primary": "主依据写到",
-            "secondary": "辅助材料提到",
-            "review": "核对材料也出现",
+            "primary": "主依据",
+            "secondary": "辅助材料",
+            "review": "核对材料",
         }
-        for index, candidate in enumerate(point_candidates, start=1):
-            prefix = slot_prefix.get(candidate["slot_name"], "证据写到")
+        explanation_lines: list[str] = []
+        for candidate in summary_candidates:
+            prefix = slot_prefix.get(candidate["slot_name"], "当前材料")
             suffix = self._format_evidence_ref_suffix([candidate["evidence_id"]])
-            point_text = candidate["fragment"]
             if answer_mode == "weak_with_review_notice" and candidate["slot_name"] != "primary":
-                lines.append(f"{index}. {prefix}“{point_text}”，可先据此理解，但暂不能视为确定答案。{suffix}")
+                explanation_lines.append(
+                    f"解释：{prefix}可见“{candidate['fragment']}”，这能提供初步理解线索，但仍需回到原文语境核对。{suffix}"
+                )
             else:
-                lines.append(f"{index}. {prefix}“{point_text}”。{suffix}")
-        return "\n".join(lines)
+                explanation_lines.append(
+                    f"解释：{prefix}可见“{candidate['fragment']}”，可据此把条文意思先解释到已明说的范围内。{suffix}"
+                )
+
+        evidence_fragments = "；".join(f"“{candidate['fragment']}”" for candidate in summary_candidates)
+        evidence_line = f"依据：当前可直接回看的材料主要是{evidence_fragments}。{summary_refs}"
+        return "\n".join([conclusion, *explanation_lines, evidence_line])
 
     def _fetch_record_meta(self, record_id: str) -> dict[str, Any]:
         cached = self._record_cache.get(record_id)

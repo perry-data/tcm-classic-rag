@@ -10,8 +10,6 @@ class LLMOutputValidationError(RuntimeError):
 
 
 JSON_BLOCK_RE = re.compile(r"\{.*\}", re.DOTALL)
-NUMBERED_LINE_RE = re.compile(r"(?m)^\s*\d+\.\s+")
-SINGLE_NUMBERED_LINE_RE = re.compile(r"^\s*\d+\.\s+")
 EVIDENCE_REF_RE = re.compile(r"\[(E\d+)\]")
 WEAK_MARKERS = (
     "需核对",
@@ -44,6 +42,8 @@ OVERLAP_STOPWORDS = {
     "辅助材料",
     "核对材料",
     "结论",
+    "解释",
+    "解读",
     "要点",
     "提示",
     "说明",
@@ -78,6 +78,11 @@ ASSERTION_MARKERS = (
     "所以",
     "可理解为",
 )
+SECTION_PREFIX_GROUPS = {
+    "conclusion": ("结论：", "结论:"),
+    "explanation": ("解释：", "解释:", "解读：", "解读:"),
+    "evidence": ("依据：", "依据:"),
+}
 
 
 def _strip_code_fence(text: str) -> str:
@@ -117,7 +122,7 @@ def parse_answer_text_json(raw_content: str) -> str:
 
 def _normalize_for_overlap(text: str) -> str:
     cleaned = EVIDENCE_REF_RE.sub("", text)
-    cleaned = re.sub(r"^\s*\d+\.\s*", "", cleaned)
+    cleaned = re.sub(r"^\s*(?:结论|解释|解读|依据)[:：]\s*", "", cleaned)
     cleaned = re.sub(r"[^\u4e00-\u9fffA-Za-z0-9]+", "", cleaned)
     return cleaned
 
@@ -156,6 +161,13 @@ def _collect_evidence_lookup(evidence_pack: dict[str, Any]) -> tuple[set[str], s
         evidence_lookup[evidence_id] = str(item.get("content") or "")
 
     return all_ids, primary_ids, evidence_lookup
+
+
+def _detect_line_section(line: str) -> str | None:
+    for section, prefixes in SECTION_PREFIX_GROUPS.items():
+        if any(line.startswith(prefix) for prefix in prefixes):
+            return section
+    return None
 
 
 def _ensure_line_has_grounding(line: str, refs: set[str], evidence_lookup: dict[str, str]) -> None:
@@ -204,21 +216,26 @@ def validate_rendered_answer_text(
 
     lines = [line.strip() for line in normalized.splitlines() if line.strip()]
     if len(lines) < 3:
-        raise LLMOutputValidationError("Rendered answer_text must contain one conclusion line plus at least two numbered points.")
+        raise LLMOutputValidationError("Rendered answer_text must contain conclusion, explanation, and evidence lines.")
+    if len(lines) > 5:
+        raise LLMOutputValidationError("Rendered answer_text must stay within 3-5 short lines.")
 
-    summary_line = lines[0]
-    point_lines = lines[1:]
-    if SINGLE_NUMBERED_LINE_RE.match(summary_line):
-        raise LLMOutputValidationError("Rendered answer_text must start with a one-sentence conclusion before numbered points.")
-    if len(point_lines) < 2 or len(point_lines) > 4:
-        raise LLMOutputValidationError("Rendered answer_text must contain 2-4 numbered points.")
-    if any(not SINGLE_NUMBERED_LINE_RE.match(line) for line in point_lines):
-        raise LLMOutputValidationError("Rendered answer_text points must use numbered lines.")
+    sections = [_detect_line_section(line) for line in lines]
+    if any(section is None for section in sections):
+        raise LLMOutputValidationError("Rendered answer_text lines must use 结论 / 解释 / 依据 labels.")
+    if sections[0] != "conclusion":
+        raise LLMOutputValidationError("Rendered answer_text must start with a 结论 line.")
+    if sections[-1] != "evidence":
+        raise LLMOutputValidationError("Rendered answer_text must end with an 依据 line.")
+    if "explanation" not in sections[1:-1]:
+        raise LLMOutputValidationError("Rendered answer_text must include at least one 解释 line between conclusion and evidence.")
+    if any(section != "explanation" for section in sections[1:-1]):
+        raise LLMOutputValidationError("Only 解释 lines may appear between the conclusion and evidence lines.")
 
     for line in lines:
         refs = set(EVIDENCE_REF_RE.findall(line))
         if not refs:
-            raise LLMOutputValidationError("Each conclusion or numbered point must include at least one [E#] reference.")
+            raise LLMOutputValidationError("Each conclusion, explanation, and evidence line must include at least one [E#] reference.")
         unknown_refs = refs - all_ids
         if unknown_refs:
             unknown_value = ",".join(sorted(unknown_refs))
