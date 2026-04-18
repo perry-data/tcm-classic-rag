@@ -593,6 +593,7 @@ export default function App() {
   const isSearching = Boolean(historySearch);
   const confirmedMessages = activeConversation?.messages || [];
   const hasMessages = confirmedMessages.length > 0 || Boolean(pendingTurn);
+  const showEmptyState = !conversationLoading && !hasMessages;
 
   return (
     <div
@@ -774,13 +775,17 @@ export default function App() {
         </aside>
 
         <main className={styles.chatPanel}>
-          <div ref={chatBodyRef} className={styles.chatBody}>
+          <div ref={chatBodyRef} className={cx(styles.chatBody, showEmptyState && styles.chatBodyEmpty)}>
             {conversationLoading ? (
               <StateCard title="正在加载会话" copy="正在恢复完整聊天记录，请稍候。" large />
             ) : null}
 
-            {!conversationLoading && activeConversationId && !hasMessages ? (
-              <StateCard title="当前会话还没有消息" copy="直接在下方输入问题，发送后会自动写入这条会话。" large />
+            {showEmptyState ? (
+              <EmptyChatStage
+                hasActiveConversation={Boolean(activeConversationId)}
+                disabled={sending || conversationLoading || clearingHistory}
+                onSelectSample={handleSampleQueryFill}
+              />
             ) : null}
 
             {!conversationLoading && hasMessages ? (
@@ -831,29 +836,6 @@ export default function App() {
                   </button>
                 </div>
               </form>
-
-              <details className={styles.sampleQueries}>
-                <summary>查看示例问题</summary>
-                <div className={styles.sampleDrawer}>
-                  <p className={styles.sampleTitle}>可快速填充的示例问题</p>
-                  <div className={styles.sampleList}>
-                    {SAMPLE_QUERIES.map((query) => (
-                      <button
-                        key={query}
-                        className={styles.sampleChip}
-                        type="button"
-                        disabled={sending || conversationLoading || clearingHistory}
-                        onClick={() => {
-                          handleSampleQueryFill(query);
-                        }}
-                      >
-                        {query.replace("？", "")}
-                      </button>
-                    ))}
-                  </div>
-                  <p className={styles.sampleNote}>点击后只填充输入框，不会自动发送。</p>
-                </div>
-              </details>
             </section>
           </footer>
         </main>
@@ -867,6 +849,46 @@ function StateCard(props: { title: string; copy: string; large?: boolean }) {
     <section className={cx(styles.stateCard, props.large && styles.stateCardLarge)}>
       <p className={styles.stateTitle}>{props.title}</p>
       <p className={styles.stateCopy}>{props.copy}</p>
+    </section>
+  );
+}
+
+function EmptyChatStage(props: {
+  hasActiveConversation: boolean;
+  disabled: boolean;
+  onSelectSample: (query: string) => void;
+}) {
+  return (
+    <section className={styles.emptyStage} aria-label="空白会话">
+      <div className={styles.emptyStageInner}>
+        <p className={styles.emptyEyebrow}>{props.hasActiveConversation ? "当前会话" : "新对话"}</p>
+        <h2 className={styles.emptyTitle}>
+          {props.hasActiveConversation ? "当前会话还没有消息" : "从一个示例问题开始"}
+        </h2>
+        <p className={styles.emptyCopy}>
+          {props.hasActiveConversation
+            ? "先从中间的示例问题里选一个，或直接在下方输入问题。"
+            : "示例问题会先填充到底部输入框，确认后再发送。"}
+        </p>
+
+        <div className={styles.emptySampleList}>
+          {SAMPLE_QUERIES.map((query) => (
+            <button
+              key={query}
+              className={styles.sampleChip}
+              type="button"
+              disabled={props.disabled}
+              onClick={() => {
+                props.onSelectSample(query);
+              }}
+            >
+              {query}
+            </button>
+          ))}
+        </div>
+
+        <p className={styles.emptyHint}>点击后只填充输入框，不会自动发送。</p>
+      </div>
     </section>
   );
 }
