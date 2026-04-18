@@ -458,8 +458,7 @@
     "safe:main_passages:ZJSHL-CH-010-P-0080"
   ],
   "review_materials": [
-    "full:passages:ZJSHL-CH-003-P-0016",
-    "full:ambiguous_passages:ZJSHL-CH-003-P-0016"
+    "full:passages:ZJSHL-CH-003-P-0016"
   ]
 }
 

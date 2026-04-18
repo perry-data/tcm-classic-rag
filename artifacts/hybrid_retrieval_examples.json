@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-04-06T13:02:52.783807+00:00",
+  "generated_at_utc": "2026-04-18T05:59:56.722873+00:00",
   "examples": [
     {
       "query_request": {
@@ -34,6 +34,7 @@
             "safe_chunks": 8,
             "safe_main_passages_primary": 6,
             "safe_main_passages_secondary": 4,
+            "controlled_replay_main_passages": 2,
             "full_annotations_raw": 3,
             "full_passages_ledger": 2,
             "ambiguous_related_material": 1
@@ -53,7 +54,7 @@
           "rrf_k": 60,
           "embed_model": "BAAI/bge-small-zh-v1.5",
           "rerank_model": "BAAI/bge-reranker-base",
-          "rerank_device": "cpu"
+          "rerank_device": "mps"
         }
       },
       "raw_candidates": [
@@ -748,7 +749,7 @@
         "dense_models": {
           "embed_model": "BAAI/bge-small-zh-v1.5",
           "rerank_model": "BAAI/bge-reranker-base",
-          "rerank_device": "cpu"
+          "rerank_device": "mps"
         },
         "sparse_backend": {
           "type": "sqlite_fts5_bm25",
@@ -980,6 +981,21 @@
             }
           ]
         },
+        "controlled_replay": {
+          "enabled": false,
+          "config_path": "/Users/man_ray/Projects/Python/tcm-classic-rag/config/controlled_replay/fahan_main_passages_allowlist_v1.json",
+          "env_flag": "TCM_ENABLE_FAHAN_CONTROLLED_REPLAY_V1",
+          "target_layers": {
+            "recall": true,
+            "vector": false,
+            "primary_candidate": false
+          },
+          "allowed_main_passage_ids": [
+            "ZJSHL-CH-006-P-0120",
+            "ZJSHL-CH-006-P-0127"
+          ],
+          "top_candidates": []
+        },
         "fusion_top_candidates": [
           {
             "record_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
@@ -1125,6 +1141,7 @@
             "safe_chunks": 8,
             "safe_main_passages_primary": 6,
             "safe_main_passages_secondary": 4,
+            "controlled_replay_main_passages": 2,
             "full_annotations_raw": 3,
             "full_passages_ledger": 2,
             "ambiguous_related_material": 1
@@ -1144,7 +1161,7 @@
           "rrf_k": 60,
           "embed_model": "BAAI/bge-small-zh-v1.5",
           "rerank_model": "BAAI/bge-reranker-base",
-          "rerank_device": "cpu"
+          "rerank_device": "mps"
         }
       },
       "raw_candidates": [
@@ -1262,64 +1279,6 @@
           ],
           "stage_ranks": {
             "sparse": 2
-          }
-        },
-        {
-          "retrieval_entry_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0016",
-          "record_table": "risk_registry_ambiguous",
-          "record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0016",
-          "source_record_id": "ZJSHL-CH-003-P-0016",
-          "dataset_variant": "full",
-          "source_object": "ambiguous_passages",
-          "source_type": "risk_registry",
-          "retrieval_text": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
-          "normalized_text": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
-          "book_id": "ZJSHL",
-          "chapter_id": "ZJSHL-CH-003",
-          "chapter_name": "辨脉法第一",
-          "evidence_level": "C",
-          "display_allowed": "risk_only",
-          "risk_flag": "[\"ambiguous_source\"]",
-          "requires_disclaimer": 1,
-          "default_weight_tier": "lowest",
-          "policy_source_id": "ambiguous_related_material",
-          "backref_target_type": "passages",
-          "backref_target_ids_json": "[\"ZJSHL-CH-003-P-0016\"]",
-          "text_match_score": 189.0,
-          "weight_bonus": 1.0,
-          "precision_adjustment": 0.0,
-          "matched_terms": [
-            "烧针益阳而损阴",
-            "烧针益阳",
-            "益阳而损",
-            "针益阳而",
-            "阳而损阴",
-            "烧针益",
-            "益阳而",
-            "而损阴",
-            "针益阳",
-            "阳而损",
-            "损阴",
-            "烧针"
-          ],
-          "topic_anchor": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
-          "topic_consistency": "neutral",
-          "primary_allowed": true,
-          "primary_block_reason": null,
-          "sparse_score": 214.0,
-          "sparse_bm25_raw": -62.430453,
-          "sparse_bm25_score": 62.430453,
-          "dense_score": 0.0,
-          "dense_rank_score": 0.0,
-          "rrf_score": 0.015873015873015872,
-          "rerank_raw_score": 0.998352,
-          "rerank_score": 0.730734,
-          "combined_score": 947.321302,
-          "stage_sources": [
-            "sparse"
-          ],
-          "stage_ranks": {
-            "sparse": 3
           }
         },
         {
@@ -1447,7 +1406,7 @@
           "dense_score": 0.588892,
           "dense_rank_score": 0.588892,
           "rrf_score": 0.015384615384615385,
-          "rerank_raw_score": 0.507345,
+          "rerank_raw_score": 0.507344,
           "rerank_score": 0.624184,
           "combined_score": 637.611382,
           "stage_sources": [
@@ -1492,7 +1451,7 @@
           "dense_score": 0.588892,
           "dense_rank_score": 0.588892,
           "rrf_score": 0.015151515151515152,
-          "rerank_raw_score": 0.507345,
+          "rerank_raw_score": 0.507344,
           "rerank_score": 0.624184,
           "combined_score": 636.588072,
           "stage_sources": [
@@ -1643,44 +1602,6 @@
               "type": "direct"
             }
           ]
-        },
-        {
-          "record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0016",
-          "source_object": "ambiguous_passages",
-          "evidence_level": "C",
-          "display_allowed": "risk_only",
-          "risk_flag": [
-            "ambiguous_source"
-          ],
-          "default_weight_tier": "lowest",
-          "combined_score": 947.321302,
-          "text_match_score": 189.0,
-          "matched_terms": [
-            "烧针益阳而损阴",
-            "烧针益阳",
-            "益阳而损",
-            "针益阳而",
-            "阳而损阴",
-            "烧针益",
-            "益阳而",
-            "而损阴",
-            "针益阳",
-            "阳而损",
-            "损阴",
-            "烧针"
-          ],
-          "text_preview": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也...",
-          "chapter_id": "ZJSHL-CH-003",
-          "chapter_name": "辨脉法第一",
-          "requires_disclaimer": true,
-          "policy_source_id": "ambiguous_related_material",
-          "topic_anchor": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
-          "topic_consistency": "neutral",
-          "retrieval_paths": [
-            {
-              "type": "direct"
-            }
-          ]
         }
       ],
       "retrieval_trace": {
@@ -1722,11 +1643,10 @@
         "used_sources": [
           "records_annotations",
           "records_passages",
-          "risk_registry_ambiguous",
           "records_chunks",
           "records_main_passages"
         ],
-        "raw_candidate_count": 7,
+        "raw_candidate_count": 6,
         "precision_profile": "tight_primary",
         "query_theme": {
           "type": "generic",
@@ -1737,7 +1657,7 @@
         "dense_models": {
           "embed_model": "BAAI/bge-small-zh-v1.5",
           "rerank_model": "BAAI/bge-reranker-base",
-          "rerank_device": "cpu"
+          "rerank_device": "mps"
         },
         "sparse_backend": {
           "type": "sqlite_fts5_bm25",
@@ -1937,6 +1857,21 @@
             }
           ]
         },
+        "controlled_replay": {
+          "enabled": false,
+          "config_path": "/Users/man_ray/Projects/Python/tcm-classic-rag/config/controlled_replay/fahan_main_passages_allowlist_v1.json",
+          "env_flag": "TCM_ENABLE_FAHAN_CONTROLLED_REPLAY_V1",
+          "target_layers": {
+            "recall": true,
+            "vector": false,
+            "primary_candidate": false
+          },
+          "allowed_main_passage_ids": [
+            "ZJSHL-CH-006-P-0120",
+            "ZJSHL-CH-006-P-0127"
+          ],
+          "top_candidates": []
+        },
         "fusion_top_candidates": [
           {
             "record_id": "full:annotations:ZJSHL-CH-003-P-0016",
@@ -2084,6 +2019,7 @@
             "safe_chunks": 8,
             "safe_main_passages_primary": 6,
             "safe_main_passages_secondary": 4,
+            "controlled_replay_main_passages": 2,
             "full_annotations_raw": 3,
             "full_passages_ledger": 2,
             "ambiguous_related_material": 1
@@ -2103,7 +2039,7 @@
           "rrf_k": 60,
           "embed_model": "BAAI/bge-small-zh-v1.5",
           "rerank_model": "BAAI/bge-reranker-base",
-          "rerank_device": "cpu"
+          "rerank_device": "mps"
         }
       },
       "raw_candidates": [],
@@ -2127,7 +2063,7 @@
         "dense_models": {
           "embed_model": "BAAI/bge-small-zh-v1.5",
           "rerank_model": "BAAI/bge-reranker-base",
-          "rerank_device": "cpu"
+          "rerank_device": "mps"
         },
         "sparse_backend": {
           "type": "sqlite_fts5_bm25",
@@ -2244,6 +2180,21 @@
             }
           ]
         },
+        "controlled_replay": {
+          "enabled": false,
+          "config_path": "/Users/man_ray/Projects/Python/tcm-classic-rag/config/controlled_replay/fahan_main_passages_allowlist_v1.json",
+          "env_flag": "TCM_ENABLE_FAHAN_CONTROLLED_REPLAY_V1",
+          "target_layers": {
+            "recall": true,
+            "vector": false,
+            "primary_candidate": false
+          },
+          "allowed_main_passage_ids": [
+            "ZJSHL-CH-006-P-0120",
+            "ZJSHL-CH-006-P-0127"
+          ],
+          "top_candidates": []
+        },
         "fusion_top_candidates": [
           {
             "record_id": "safe:chunks:ZJSHL-CK-M-0193",
@@ -2340,8 +2291,8 @@
             "record_id": "safe:chunks:ZJSHL-CK-M-0019",
             "source_object": "chunks",
             "topic_consistency": "neutral",
-            "rerank_score": 0.505037,
-            "combined_score": 517.008972
+            "rerank_score": 0.505038,
+            "combined_score": 517.009972
           }
         ]
       },

@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-04-06T13:02:55.503943+00:00",
+  "generated_at_utc": "2026-04-18T05:59:58.135813+00:00",
   "sparse_backend": {
     "type": "sqlite_fts5_bm25",
     "fts_table": "retrieval_sparse_fts",
@@ -39,6 +39,7 @@
             "safe_chunks": 8,
             "safe_main_passages_primary": 6,
             "safe_main_passages_secondary": 4,
+            "controlled_replay_main_passages": 2,
             "full_annotations_raw": 3,
             "full_passages_ledger": 2,
             "ambiguous_related_material": 1
@@ -58,7 +59,7 @@
           "rrf_k": 60,
           "embed_model": "BAAI/bge-small-zh-v1.5",
           "rerank_model": "BAAI/bge-reranker-base",
-          "rerank_device": "cpu"
+          "rerank_device": "mps"
         }
       },
       "legacy_sparse_top_candidates": [
@@ -359,6 +360,7 @@
             "safe_chunks": 8,
             "safe_main_passages_primary": 6,
             "safe_main_passages_secondary": 4,
+            "controlled_replay_main_passages": 2,
             "full_annotations_raw": 3,
             "full_passages_ledger": 2,
             "ambiguous_related_material": 1
@@ -378,7 +380,7 @@
           "rrf_k": 60,
           "embed_model": "BAAI/bge-small-zh-v1.5",
           "rerank_model": "BAAI/bge-reranker-base",
-          "rerank_device": "cpu"
+          "rerank_device": "mps"
         }
       },
       "legacy_sparse_top_candidates": [
@@ -564,8 +566,7 @@
           "safe:main_passages:ZJSHL-CH-010-P-0080"
         ],
         "review_materials": [
-          "full:passages:ZJSHL-CH-003-P-0016",
-          "full:ambiguous_passages:ZJSHL-CH-003-P-0016"
+          "full:passages:ZJSHL-CH-003-P-0016"
         ]
       },
       "example_id": "weak_with_review_notice",
@@ -604,6 +605,7 @@
             "safe_chunks": 8,
             "safe_main_passages_primary": 6,
             "safe_main_passages_secondary": 4,
+            "controlled_replay_main_passages": 2,
             "full_annotations_raw": 3,
             "full_passages_ledger": 2,
             "ambiguous_related_material": 1
@@ -623,7 +625,7 @@
           "rrf_k": 60,
           "embed_model": "BAAI/bge-small-zh-v1.5",
           "rerank_model": "BAAI/bge-reranker-base",
-          "rerank_device": "cpu"
+          "rerank_device": "mps"
         }
       },
       "legacy_sparse_top_candidates": [],
@@ -683,6 +685,7 @@
             "safe_chunks": 8,
             "safe_main_passages_primary": 6,
             "safe_main_passages_secondary": 4,
+            "controlled_replay_main_passages": 2,
             "full_annotations_raw": 3,
             "full_passages_ledger": 2,
             "ambiguous_related_material": 1
@@ -702,7 +705,7 @@
           "rrf_k": 60,
           "embed_model": "BAAI/bge-small-zh-v1.5",
           "rerank_model": "BAAI/bge-reranker-base",
-          "rerank_device": "cpu"
+          "rerank_device": "mps"
         }
       },
       "legacy_sparse_top_candidates": [

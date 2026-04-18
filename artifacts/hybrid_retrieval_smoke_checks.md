@@ -7,7 +7,7 @@
 ## 结论
 
 - `黄连汤方的条文是什么？` -> mode=`strong`, primary=3, secondary=3, review=2
-- `烧针益阳而损阴是什么意思？` -> mode=`weak_with_review_notice`, primary=0, secondary=3, review=2
+- `烧针益阳而损阴是什么意思？` -> mode=`weak_with_review_notice`, primary=0, secondary=3, review=1
 - `书中有没有提到量子纠缠？` -> mode=`refuse`, primary=0, secondary=0, review=0
 
 ## Validation
@@ -720,8 +720,7 @@
     "safe:main_passages:ZJSHL-CH-010-P-0080"
   ],
   "review_materials": [
-    "full:passages:ZJSHL-CH-003-P-0016",
-    "full:ambiguous_passages:ZJSHL-CH-003-P-0016"
+    "full:passages:ZJSHL-CH-003-P-0016"
   ]
 }
 
@@ -956,8 +955,8 @@ _no rows_
     "record_id": "safe:chunks:ZJSHL-CK-M-0019",
     "source_object": "chunks",
     "topic_consistency": "neutral",
-    "rerank_score": 0.505037,
-    "combined_score": 517.008972
+    "rerank_score": 0.505038,
+    "combined_score": 517.009972
   }
 ]
 
