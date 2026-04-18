@@ -782,7 +782,6 @@ export default function App() {
 
             {showEmptyState ? (
               <EmptyChatStage
-                hasActiveConversation={Boolean(activeConversationId)}
                 disabled={sending || conversationLoading || clearingHistory}
                 onSelectSample={handleSampleQueryFill}
               />
@@ -853,24 +852,10 @@ function StateCard(props: { title: string; copy: string; large?: boolean }) {
   );
 }
 
-function EmptyChatStage(props: {
-  hasActiveConversation: boolean;
-  disabled: boolean;
-  onSelectSample: (query: string) => void;
-}) {
+function EmptyChatStage(props: { disabled: boolean; onSelectSample: (query: string) => void }) {
   return (
     <section className={styles.emptyStage} aria-label="空白会话">
       <div className={styles.emptyStageInner}>
-        <p className={styles.emptyEyebrow}>{props.hasActiveConversation ? "当前会话" : "新对话"}</p>
-        <h2 className={styles.emptyTitle}>
-          {props.hasActiveConversation ? "当前会话还没有消息" : "从一个示例问题开始"}
-        </h2>
-        <p className={styles.emptyCopy}>
-          {props.hasActiveConversation
-            ? "先从中间的示例问题里选一个，或直接在下方输入问题。"
-            : "示例问题会先填充到底部输入框，确认后再发送。"}
-        </p>
-
         <div className={styles.emptySampleList}>
           {SAMPLE_QUERIES.map((query) => (
             <button
@@ -886,8 +871,6 @@ function EmptyChatStage(props: {
             </button>
           ))}
         </div>
-
-        <p className={styles.emptyHint}>点击后只填充输入框，不会自动发送。</p>
       </div>
     </section>
   );
