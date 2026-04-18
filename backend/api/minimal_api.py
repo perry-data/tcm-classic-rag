@@ -305,6 +305,12 @@ class MinimalApiService:
 
         query = self._normalize_query_payload(payload)
         answer_payload = self.answer_query(query)
+        log_answer_diagnostics(
+            request_path=f"{CONVERSATIONS_API_PATH}/:conversation_id/messages",
+            query=query,
+            response_payload=answer_payload,
+            llm_debug=self.last_llm_debug,
+        )
         conversation_update = self.conversation_store.append_exchange(client_id, conversation_id, query, answer_payload)
         if conversation_update is None:
             raise ApiRequestError(404, "not_found", "Conversation not found.")
@@ -345,6 +351,30 @@ def build_stream_phase_event(stage: str, detail: str | None = None) -> dict[str,
         "step_index": STREAM_STAGE_SEQUENCE.index(stage) + 1 if stage in STREAM_STAGE_SEQUENCE else None,
         "step_count": len(STREAM_STAGE_SEQUENCE),
     }
+
+
+def log_answer_diagnostics(
+    *,
+    request_path: str,
+    query: str,
+    response_payload: dict[str, Any],
+    llm_debug: dict[str, Any] | None,
+) -> None:
+    debug = dict(llm_debug or {})
+    fallback_reason = debug.get("fallback_reason") or debug.get("skipped_reason")
+    log(
+        "[api:answer] "
+        f"path={request_path} "
+        f"mode={response_payload.get('answer_mode')} "
+        f"answer_source={debug.get('answer_source') or 'unknown'} "
+        f"llm_attempted={bool(debug.get('attempted'))} "
+        f"llm_call_succeeded={bool(debug.get('used_llm'))} "
+        f"llm_provider={json_dumps(debug.get('provider') or 'unknown')} "
+        f"llm_model={json_dumps(debug.get('model') or 'unknown')} "
+        f"fallback_used={bool(debug.get('fallback_used'))} "
+        f"fallback_reason={json_dumps(fallback_reason)} "
+        f"query={json_dumps(query)}"
+    )
 
 
 def split_answer_text_for_stream(answer_text: str) -> list[str]:
@@ -492,7 +522,12 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
                 payload = self._read_json_body()
                 query = service._normalize_query_payload(payload)
                 response_payload = service.answer_query(query)
-                log(f"[api:request] path={request_path} mode={response_payload.get('answer_mode')} query={query}")
+                log_answer_diagnostics(
+                    request_path=request_path,
+                    query=query,
+                    response_payload=response_payload,
+                    llm_debug=service.last_llm_debug,
+                )
             except ApiRequestError as exc:
                 self._send_json(exc.status_code, {"error": {"code": exc.code, "message": exc.message}})
                 return
@@ -748,7 +783,12 @@ def make_handler(service: MinimalApiService, frontend_root: Path) -> type[BaseHT
                     )
 
                 response_payload = service.answer_query(query, progress_callback=progress_callback)
-                log(f"[api:request] path={API_STREAM_PATH} mode={response_payload.get('answer_mode')} query={query}")
+                log_answer_diagnostics(
+                    request_path=API_STREAM_PATH,
+                    query=query,
+                    response_payload=response_payload,
+                    llm_debug=service.last_llm_debug,
+                )
                 self._write_stream_event({"type": "evidence_ready", "payload": response_payload})
                 for chunk in split_answer_text_for_stream(response_payload.get("answer_text", "")):
                     self._write_stream_event({"type": "answer_delta", "delta": chunk})

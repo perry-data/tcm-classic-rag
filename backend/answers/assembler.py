@@ -4040,13 +4040,8 @@ class AnswerAssembler:
 
     def _build_llm_section_label(self, item: dict[str, Any]) -> str:
         chapter_title = compact_whitespace(item.get("chapter_title"))
-        chapter_id = compact_whitespace(item.get("chapter_id"))
-        if chapter_title and chapter_id:
-            return f"{chapter_title} ({chapter_id})"
         if chapter_title:
             return chapter_title
-        if chapter_id:
-            return chapter_id
         return "未标明章节"
 
     def _format_evidence_ref_suffix(self, evidence_ids: list[str]) -> str:
@@ -4117,29 +4112,48 @@ class AnswerAssembler:
     ) -> str:
         point_candidates = self._build_guardrail_point_candidates(evidence_pack)
         if not point_candidates:
-            return "当前证据不足，暂只能提示继续核对原文。"
+            fallback_refs = self._format_evidence_ref_suffix(list(evidence_pack.get("all_evidence_ids") or [])[:1])
+            return (
+                f"结论：当前证据不足，暂只能作保守提示并继续核对原文。{fallback_refs}\n"
+                f"解释：现有材料尚不足以支撑更完整的条文解读。{fallback_refs}\n"
+                f"依据：请回看当前命中的原始证据与引用区，避免超出证据边界。{fallback_refs}"
+            )
 
-        summary_refs = self._format_evidence_ref_suffix([candidate["evidence_id"] for candidate in point_candidates[:2]])
+        summary_candidates = point_candidates[:2]
+        summary_refs = self._format_evidence_ref_suffix([candidate["evidence_id"] for candidate in summary_candidates])
+        query_anchor = snippet_text(query_text, limit=24)
         if answer_mode == "weak_with_review_notice":
-            lines = [f"基于当前辅助材料，只能先作保守解释，仍需结合原文继续核对。{summary_refs}"]
+            conclusion = (
+                "结论：当前只能依据辅助材料作保守理解，暂不能视为确定答案；"
+                f"可先从“{summary_candidates[0]['fragment']}”把握与“{query_anchor}”相关的线索。{summary_refs}"
+            )
         else:
-            query_anchor = snippet_text(query_text, limit=24)
-            lines = [f"为避免越出证据边界，先按现有主依据对“{query_anchor}”作保守整理，仍建议回看原文。{summary_refs}"]
+            conclusion = (
+                f"结论：基于当前主依据，可先把“{query_anchor}”理解为围绕“{summary_candidates[0]['fragment']}”展开；"
+                f"回答应以原文明写内容为准。{summary_refs}"
+            )
 
         slot_prefix = {
-            "primary": "主依据写到",
-            "secondary": "辅助材料提到",
-            "review": "核对材料也出现",
+            "primary": "主依据",
+            "secondary": "辅助材料",
+            "review": "核对材料",
         }
-        for index, candidate in enumerate(point_candidates, start=1):
-            prefix = slot_prefix.get(candidate["slot_name"], "证据写到")
+        explanation_lines: list[str] = []
+        for candidate in summary_candidates:
+            prefix = slot_prefix.get(candidate["slot_name"], "当前材料")
             suffix = self._format_evidence_ref_suffix([candidate["evidence_id"]])
-            point_text = candidate["fragment"]
             if answer_mode == "weak_with_review_notice" and candidate["slot_name"] != "primary":
-                lines.append(f"{index}. {prefix}“{point_text}”，可先据此理解，但暂不能视为确定答案。{suffix}")
+                explanation_lines.append(
+                    f"解释：{prefix}可见“{candidate['fragment']}”，这能提供初步理解线索，但仍需回到原文语境核对。{suffix}"
+                )
             else:
-                lines.append(f"{index}. {prefix}“{point_text}”。{suffix}")
-        return "\n".join(lines)
+                explanation_lines.append(
+                    f"解释：{prefix}可见“{candidate['fragment']}”，可据此把条文意思先解释到已明说的范围内。{suffix}"
+                )
+
+        evidence_fragments = "；".join(f"“{candidate['fragment']}”" for candidate in summary_candidates)
+        evidence_line = f"依据：当前可直接回看的材料主要是{evidence_fragments}。{summary_refs}"
+        return "\n".join([conclusion, *explanation_lines, evidence_line])
 
     def _fetch_record_meta(self, record_id: str) -> dict[str, Any]:
         cached = self._record_cache.get(record_id)
