@@ -1,9 +1,9 @@
 {
   "runner_version": "evaluator_runner_v1",
-  "generated_at_utc": "2026-04-07T08:25:54.882552+00:00",
-  "started_at_utc": "2026-04-07T08:24:55.849214+00:00",
-  "finished_at_utc": "2026-04-07T08:25:54.882552+00:00",
-  "command": "python scripts/run_evaluator_v1.py --fail-on-evaluation-failure",
+  "generated_at_utc": "2026-04-18T06:02:22.940997+00:00",
+  "started_at_utc": "2026-04-18T06:01:51.252703+00:00",
+  "finished_at_utc": "2026-04-18T06:02:22.940997+00:00",
+  "command": "python scripts/run_evaluator_v1.py",
   "goldset": {
     "path": "/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/evaluation/goldset_v1_seed.json",
     "schema_version": "goldset_schema_v1",
@@ -17,8 +17,8 @@
   },
   "summary": {
     "total_questions": 72,
-    "mode_match_count": 72,
-    "mode_match_rate": 1.0,
+    "mode_match_count": 64,
+    "mode_match_rate": 0.8889,
     "type_counts": {
       "comparison": 12,
       "general_overview": 12,
@@ -33,8 +33,8 @@
     },
     "actual_mode_counts": {
       "refuse": 14,
-      "strong": 43,
-      "weak_with_review_notice": 15
+      "strong": 51,
+      "weak_with_review_notice": 7
     },
     "by_question_type": {
       "comparison": {
@@ -53,10 +53,10 @@
       },
       "meaning_explanation": {
         "total": 14,
-        "mode_match_count": 14,
+        "mode_match_count": 6,
         "citation_check_required_count": 14,
         "citation_basic_pass_count": 14,
-        "failure_count": 0
+        "failure_count": 8
       },
       "refusal": {
         "total": 14,
@@ -79,9 +79,138 @@
       "basic_pass_rate": 1.0,
       "failed_question_ids": []
     },
-    "failure_count": 0,
-    "failure_samples": [],
-    "all_checks_passed": true
+    "failure_count": 8,
+    "failure_samples": [
+      {
+        "question_id": "eval_seed_q029",
+        "query": "一阴一阳谓之道是什么意思？",
+        "question_type": "meaning_explanation",
+        "expected_mode": "weak_with_review_notice",
+        "actual_mode": "strong",
+        "failed_checks": [
+          "mode_match",
+          "primary_empty_check",
+          "unsupported_assertion_check"
+        ],
+        "unsupported_assertion_failure_reasons": [
+          "expected_weak_but_actual_mode_strong",
+          "primary_evidence_should_be_empty"
+        ]
+      },
+      {
+        "question_id": "eval_seed_q030",
+        "query": "阳为气，阴为血是什么意思？",
+        "question_type": "meaning_explanation",
+        "expected_mode": "weak_with_review_notice",
+        "actual_mode": "strong",
+        "failed_checks": [
+          "mode_match",
+          "primary_empty_check",
+          "unsupported_assertion_check"
+        ],
+        "unsupported_assertion_failure_reasons": [
+          "expected_weak_but_actual_mode_strong",
+          "primary_evidence_should_be_empty"
+        ]
+      },
+      {
+        "question_id": "eval_seed_q031",
+        "query": "脉沉者知荣血内微是什么意思？",
+        "question_type": "meaning_explanation",
+        "expected_mode": "weak_with_review_notice",
+        "actual_mode": "strong",
+        "failed_checks": [
+          "mode_match",
+          "primary_empty_check",
+          "unsupported_assertion_check"
+        ],
+        "unsupported_assertion_failure_reasons": [
+          "expected_weak_but_actual_mode_strong",
+          "primary_evidence_should_be_empty"
+        ]
+      },
+      {
+        "question_id": "eval_seed_q033",
+        "query": "荣气微者加烧针是什么意思？",
+        "question_type": "meaning_explanation",
+        "expected_mode": "weak_with_review_notice",
+        "actual_mode": "strong",
+        "failed_checks": [
+          "mode_match",
+          "primary_empty_check",
+          "unsupported_assertion_check"
+        ],
+        "unsupported_assertion_failure_reasons": [
+          "expected_weak_but_actual_mode_strong",
+          "primary_evidence_should_be_empty"
+        ]
+      },
+      {
+        "question_id": "eval_seed_q037",
+        "query": "绵绵者连绵而软是什么意思？",
+        "question_type": "meaning_explanation",
+        "expected_mode": "weak_with_review_notice",
+        "actual_mode": "strong",
+        "failed_checks": [
+          "mode_match",
+          "primary_empty_check",
+          "unsupported_assertion_check"
+        ],
+        "unsupported_assertion_failure_reasons": [
+          "expected_weak_but_actual_mode_strong",
+          "primary_evidence_should_be_empty"
+        ]
+      },
+      {
+        "question_id": "eval_seed_q039",
+        "query": "弦则为减减则为寒是什么意思？",
+        "question_type": "meaning_explanation",
+        "expected_mode": "weak_with_review_notice",
+        "actual_mode": "strong",
+        "failed_checks": [
+          "mode_match",
+          "primary_empty_check",
+          "unsupported_assertion_check"
+        ],
+        "unsupported_assertion_failure_reasons": [
+          "expected_weak_but_actual_mode_strong",
+          "primary_evidence_should_be_empty"
+        ]
+      },
+      {
+        "question_id": "eval_seed_q040",
+        "query": "浮为阳紧为阴是什么意思？",
+        "question_type": "meaning_explanation",
+        "expected_mode": "weak_with_review_notice",
+        "actual_mode": "strong",
+        "failed_checks": [
+          "mode_match",
+          "primary_empty_check",
+          "unsupported_assertion_check"
+        ],
+        "unsupported_assertion_failure_reasons": [
+          "expected_weak_but_actual_mode_strong",
+          "primary_evidence_should_be_empty"
+        ]
+      },
+      {
+        "question_id": "eval_seed_q041",
+        "query": "阳胜则热阴胜则寒是什么意思？",
+        "question_type": "meaning_explanation",
+        "expected_mode": "weak_with_review_notice",
+        "actual_mode": "strong",
+        "failed_checks": [
+          "mode_match",
+          "primary_empty_check",
+          "unsupported_assertion_check"
+        ],
+        "unsupported_assertion_failure_reasons": [
+          "expected_weak_but_actual_mode_strong",
+          "primary_evidence_should_be_empty"
+        ]
+      }
+    ],
+    "all_checks_passed": false
   },
   "items": [
     {
@@ -180,7 +309,7 @@
           "safe:main_passages:ZJSHL-CH-010-P-0147"
         ]
       },
-      "answer_text_excerpt": "根据主依据，与“黄连汤方”直接对应的条文主要有： 1. 黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。 2. 味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温 3. 上热者，泄之以苦，黄连之苦以降阳；下寒者，散之以辛，桂、姜、半夏之辛以升阴；脾欲缓，急食甘以缓之...",
+      "answer_text_excerpt": "和“黄连汤方”直接相关的主条，当前主要落在这些方文或条文片段里。 黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。 味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温 上热者，泄之以苦，黄连之苦以降阳；下寒者，散之以辛，桂、姜、半夏之辛以升阴；脾欲缓，急食甘以缓之，...",
       "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
       "failed_checks": []
@@ -202,18 +331,18 @@
       },
       "zero_evidence_check": {
         "required": false,
-        "observed_count": 5,
+        "observed_count": 10,
         "passed": true
       },
       "zero_citations_check": {
         "required": false,
-        "observed_count": 5,
+        "observed_count": 10,
         "passed": true
       },
       "gold_citation_check": {
         "required": true,
         "passed": true,
-        "matched_count": 5,
+        "matched_count": 4,
         "matched_citations": [
           {
             "citation_id": "c1",
@@ -246,17 +375,8 @@
             "citation_role": "secondary"
           },
           {
-            "citation_id": "c4",
+            "citation_id": "c10",
             "record_id": "full:passages:ZJSHL-CH-003-P-0016",
-            "passage_id": "ZJSHL-CH-003-P-0016",
-            "matched_by": [
-              "passage_id"
-            ],
-            "citation_role": "review"
-          },
-          {
-            "citation_id": "c5",
-            "record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0016",
             "passage_id": "ZJSHL-CH-003-P-0016",
             "matched_by": [
               "passage_id"
@@ -273,31 +393,41 @@
       },
       "actual_counts": {
         "primary_evidence": 0,
-        "secondary_evidence": 3,
-        "review_materials": 2,
-        "total_evidence": 5,
-        "citations": 5
+        "secondary_evidence": 9,
+        "review_materials": 1,
+        "total_evidence": 10,
+        "citations": 10
       },
       "actual_record_ids": {
         "primary_evidence": [],
         "secondary_evidence": [
           "full:annotations:ZJSHL-CH-003-P-0016",
           "safe:main_passages:ZJSHL-CH-009-P-0295",
-          "safe:main_passages:ZJSHL-CH-010-P-0080"
+          "safe:main_passages:ZJSHL-CH-010-P-0080",
+          "full:passages:ZJSHL-CH-003-P-0015",
+          "full:passages:ZJSHL-CH-003-P-0017",
+          "full:passages:ZJSHL-CH-009-P-0294",
+          "full:passages:ZJSHL-CH-009-P-0296",
+          "full:passages:ZJSHL-CH-010-P-0079",
+          "full:passages:ZJSHL-CH-010-P-0081"
         ],
         "review_materials": [
-          "full:passages:ZJSHL-CH-003-P-0016",
-          "full:ambiguous_passages:ZJSHL-CH-003-P-0016"
+          "full:passages:ZJSHL-CH-003-P-0016"
         ],
         "citations": [
           "full:annotations:ZJSHL-CH-003-P-0016",
           "safe:main_passages:ZJSHL-CH-009-P-0295",
           "safe:main_passages:ZJSHL-CH-010-P-0080",
-          "full:passages:ZJSHL-CH-003-P-0016",
-          "full:ambiguous_passages:ZJSHL-CH-003-P-0016"
+          "full:passages:ZJSHL-CH-003-P-0015",
+          "full:passages:ZJSHL-CH-003-P-0017",
+          "full:passages:ZJSHL-CH-009-P-0294",
+          "full:passages:ZJSHL-CH-009-P-0296",
+          "full:passages:ZJSHL-CH-010-P-0079",
+          "full:passages:ZJSHL-CH-010-P-0081",
+          "full:passages:ZJSHL-CH-003-P-0016"
         ]
       },
-      "answer_text_excerpt": "正文强证据不足，以下内容需核对，暂不能视为确定答案。 当前可先参考辅助材料：卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+      "answer_text_excerpt": "这个问题目前只能先保守地理解到这里：卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。。 之所以只能先这样说，是因为当前缺少更稳定的正文主证据。 建议先回看这条命中片段所在原句，再核对前后文。",
       "review_notice": "正文强证据不足，以下内容需核对，不应视为确定答案。",
       "refuse_reason": null,
       "failed_checks": []
@@ -386,9 +516,9 @@
         "secondary_evidence": [
           "safe:main_passages:ZJSHL-CH-009-P-0318",
           "safe:main_passages:ZJSHL-CH-011-P-0175",
+          "safe:main_passages:ZJSHL-CH-011-P-0179",
           "safe:main_passages:ZJSHL-CH-008-P-0193",
           "safe:main_passages:ZJSHL-CH-011-P-0161",
-          "safe:main_passages:ZJSHL-CH-008-P-0222",
           "safe:main_passages:ZJSHL-CH-009-P-0275"
         ],
         "review_materials": [
@@ -489,10 +619,10 @@
         ],
         "secondary_evidence": [
           "safe:main_passages:ZJSHL-CH-014-P-0072",
+          "safe:main_passages:ZJSHL-CH-014-P-0105",
           "safe:main_passages:ZJSHL-CH-014-P-0162",
           "safe:main_passages:ZJSHL-CH-014-P-0093",
           "safe:main_passages:ZJSHL-CH-014-P-0122",
-          "safe:main_passages:ZJSHL-CH-014-P-0117",
           "safe:main_passages:ZJSHL-CH-014-P-0054"
         ],
         "review_materials": [],
@@ -535,7 +665,7 @@
       "gold_citation_check": {
         "required": true,
         "passed": true,
-        "matched_count": 4,
+        "matched_count": 2,
         "matched_citations": [
           {
             "citation_id": "c1",
@@ -551,26 +681,6 @@
             "citation_id": "c2",
             "record_id": "safe:main_passages:ZJSHL-CH-016-P-0009",
             "passage_id": "ZJSHL-CH-016-P-0009",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c3",
-            "record_id": "safe:main_passages:ZJSHL-CH-014-P-0058",
-            "passage_id": "ZJSHL-CH-014-P-0058",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c4",
-            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0312",
-            "passage_id": "ZJSHL-CH-009-P-0312",
             "matched_by": [
               "record_id",
               "passage_id"
@@ -641,7 +751,7 @@
       "gold_citation_check": {
         "required": true,
         "passed": true,
-        "matched_count": 4,
+        "matched_count": 5,
         "matched_citations": [
           {
             "citation_id": "c1",
@@ -681,6 +791,15 @@
               "passage_id"
             ],
             "citation_role": "review"
+          },
+          {
+            "citation_id": "c5",
+            "record_id": "full:passages:ZJSHL-CH-009-P-0053",
+            "passage_id": "ZJSHL-CH-009-P-0053",
+            "matched_by": [
+              "passage_id"
+            ],
+            "citation_role": "review"
           }
         ]
       },
@@ -709,14 +828,14 @@
           "full:passages:ZJSHL-CH-025-P-0004",
           "full:passages:ZJSHL-CH-008-P-0236",
           "full:passages:ZJSHL-CH-025-P-0003",
-          "full:ambiguous_passages:ZJSHL-CH-009-P-0053"
+          "full:passages:ZJSHL-CH-009-P-0053"
         ],
         "citations": [
           "safe:main_passages:ZJSHL-CH-025-P-0004",
           "safe:main_passages:ZJSHL-CH-025-P-0003",
           "safe:main_passages:ZJSHL-CH-008-P-0236",
           "full:passages:ZJSHL-CH-025-P-0003",
-          "full:ambiguous_passages:ZJSHL-CH-009-P-0053"
+          "full:passages:ZJSHL-CH-009-P-0053"
         ]
       },
       "answer_text_excerpt": "从现有方文与相关条文看，桂枝加附子汤方与桂枝加浓朴杏子汤方都从桂枝汤方加减而来，但显式加味和对应语境不同。 1. 显式加减与药味差异：桂枝加附子汤方明写加附子；桂枝加浓朴杏子汤方明写加浓朴、杏仁。 2. 条文语境：桂枝加附子汤方相关条文可见“太阳病，发汗，遂漏不止，其人恶风，小便难，四支微急，难以屈伸者”；桂枝加浓朴杏...",
@@ -741,18 +860,18 @@
       },
       "zero_evidence_check": {
         "required": false,
-        "observed_count": 6,
+        "observed_count": 5,
         "passed": true
       },
       "zero_citations_check": {
         "required": false,
-        "observed_count": 6,
+        "observed_count": 5,
         "passed": true
       },
       "gold_citation_check": {
         "required": true,
         "passed": true,
-        "matched_count": 6,
+        "matched_count": 5,
         "matched_citations": [
           {
             "citation_id": "c1",
@@ -785,10 +904,9 @@
           },
           {
             "citation_id": "c4",
-            "record_id": "full:ambiguous_passages:ZJSHL-CH-008-P-0238",
+            "record_id": "full:passages:ZJSHL-CH-008-P-0238",
             "passage_id": "ZJSHL-CH-008-P-0238",
             "matched_by": [
-              "record_id",
               "passage_id"
             ],
             "citation_role": "review"
@@ -798,16 +916,6 @@
             "record_id": "full:passages:ZJSHL-CH-025-P-0006",
             "passage_id": "ZJSHL-CH-025-P-0006",
             "matched_by": [
-              "passage_id"
-            ],
-            "citation_role": "review"
-          },
-          {
-            "citation_id": "c6",
-            "record_id": "full:ambiguous_passages:ZJSHL-CH-008-P-0238",
-            "passage_id": "ZJSHL-CH-008-P-0238",
-            "matched_by": [
-              "record_id",
               "passage_id"
             ],
             "citation_role": "review"
@@ -823,9 +931,9 @@
       "actual_counts": {
         "primary_evidence": 0,
         "secondary_evidence": 2,
-        "review_materials": 4,
-        "total_evidence": 6,
-        "citations": 6
+        "review_materials": 3,
+        "total_evidence": 5,
+        "citations": 5
       },
       "actual_record_ids": {
         "primary_evidence": [],
@@ -835,17 +943,15 @@
         ],
         "review_materials": [
           "full:passages:ZJSHL-CH-025-P-0005",
-          "full:ambiguous_passages:ZJSHL-CH-008-P-0238",
-          "full:passages:ZJSHL-CH-025-P-0006",
-          "full:ambiguous_passages:ZJSHL-CH-008-P-0238"
+          "full:passages:ZJSHL-CH-008-P-0238",
+          "full:passages:ZJSHL-CH-025-P-0006"
         ],
         "citations": [
           "safe:main_passages:ZJSHL-CH-025-P-0005",
           "safe:main_passages:ZJSHL-CH-025-P-0006",
           "full:passages:ZJSHL-CH-025-P-0005",
-          "full:ambiguous_passages:ZJSHL-CH-008-P-0238",
-          "full:passages:ZJSHL-CH-025-P-0006",
-          "full:ambiguous_passages:ZJSHL-CH-008-P-0238"
+          "full:passages:ZJSHL-CH-008-P-0238",
+          "full:passages:ZJSHL-CH-025-P-0006"
         ]
       },
       "answer_text_excerpt": "两方都已识别，但当前比较仍有证据缺口，以下只按现有方文做弱整理：桂枝去芍药汤方 与 桂枝去芍药加附子汤方 的差异需要继续核对。 1. 显式加减与药味差异：桂枝去芍药加附子汤方明写加附子。 2. 语境证据缺口：当前未稳定找到 桂枝去芍药汤方和桂枝去芍药加附子汤方 的直接相关条文，因此语境差异只能暂缓判断。 3. 出处线索...",
@@ -903,7 +1009,7 @@
         "review_materials": [],
         "citations": []
       },
-      "answer_text_excerpt": "当前未检索到足以支撑回答的依据，暂不提供答案。",
+      "answer_text_excerpt": "目前还没有检索到足以支撑回答的书内依据，所以这里先不硬答。可以改问更具体的条文、方名，或某一句话在书里是什么意思。",
       "review_notice": null,
       "refuse_reason": "未检索到足以支撑回答的主证据、辅助证据或可供核对的风险材料。",
       "failed_checks": []
@@ -958,7 +1064,7 @@
         "review_materials": [],
         "citations": []
       },
-      "answer_text_excerpt": "当前无法基于稳定的双实体识别来组织比较答案，暂不直接作答。",
+      "answer_text_excerpt": "当前没能稳定识别出要比较的两个对象，所以这里不直接给比较结论。请明确写出两个方名，或先分别追问其中一个方的条文、组成或语境。",
       "review_notice": null,
       "refuse_reason": "当前只支持基于条文证据整理“区别 / 不同 / 异同 / 多了什么 / 少了什么”这类比较，不支持优劣判断。",
       "failed_checks": []
@@ -1048,7 +1154,7 @@
           "safe:main_passages:ZJSHL-CH-008-P-0219"
         ]
       },
-      "answer_text_excerpt": "根据主依据，与“桂枝汤方”直接对应的条文主要有： 1. 桂枝汤方：桂枝三两，去皮，味辛热，按：下药性，赵本无，以后并同 芍药三两。味苦酸，微寒 甘草二两，炙，味甘平 生姜三两，切，味辛温 大枣十二枚，擘，味甘温 2. 右伍味，㕮咀。赵本有「三味」二字以水柒升，微火煑取三升，去滓，适寒温，服壹升。服已须臾，歠热稀粥壹升馀...",
+      "answer_text_excerpt": "和“桂枝汤方”直接相关的主条，当前主要落在这些方文或条文片段里。 桂枝汤方：桂枝三两，去皮，味辛热，按：下药性，赵本无，以后并同 芍药三两。味苦酸，微寒 甘草二两，炙，味甘平 生姜三两，切，味辛温 大枣十二枚，擘，味甘温 右伍味，㕮咀。赵本有「三味」二字以水柒升，微火煑取三升，去滓，适寒温，服壹升。服已须臾，歠热稀粥壹...",
       "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
       "failed_checks": []
@@ -1136,7 +1242,7 @@
           "safe:main_passages:ZJSHL-CH-009-P-0006"
         ]
       },
-      "answer_text_excerpt": "根据主依据，与“葛根汤方”直接对应的条文主要有： 1. 葛根汤方：葛根四两麻黄三两，去节桂赵本有「枝」字，二两，去皮芍药二两，切。赵本无「切」字甘草二两，炙生姜三两，切 大枣十二枚，擘 2. 右柒味㕮咀，赵本无「㕮咀」二字以水一斗，先煑麻黄葛根，减二升，去赵本有「白」字沫，内诸药，煑取三升，去滓，温服一升，覆取微似汗，...",
+      "answer_text_excerpt": "和“葛根汤方”直接相关的主条，当前主要落在这些方文或条文片段里。 葛根汤方：葛根四两麻黄三两，去节桂赵本有「枝」字，二两，去皮芍药二两，切。赵本无「切」字甘草二两，炙生姜三两，切 大枣十二枚，擘 右柒味㕮咀，赵本无「㕮咀」二字以水一斗，先煑麻黄葛根，减二升，去赵本有「白」字沫，内诸药，煑取三升，去滓，温服一升，覆取微似...",
       "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
       "failed_checks": []
@@ -1158,7 +1264,7 @@
       },
       "zero_evidence_check": {
         "required": false,
-        "observed_count": 6,
+        "observed_count": 5,
         "passed": true
       },
       "zero_citations_check": {
@@ -1212,8 +1318,8 @@
       "actual_counts": {
         "primary_evidence": 3,
         "secondary_evidence": 0,
-        "review_materials": 3,
-        "total_evidence": 6,
+        "review_materials": 2,
+        "total_evidence": 5,
         "citations": 3
       },
       "actual_record_ids": {
@@ -1225,8 +1331,7 @@
         "secondary_evidence": [],
         "review_materials": [
           "full:passages:ZJSHL-CH-009-P-0022",
-          "full:passages:ZJSHL-CH-011-P-0128",
-          "full:ambiguous_passages:ZJSHL-CH-011-P-0128"
+          "full:passages:ZJSHL-CH-011-P-0128"
         ],
         "citations": [
           "safe:main_passages:ZJSHL-CH-009-P-0022",
@@ -1234,7 +1339,7 @@
           "safe:main_passages:ZJSHL-CH-009-P-0025"
         ]
       },
-      "answer_text_excerpt": "根据主依据，与“麻黄汤方”直接对应的条文主要有： 1. 麻黄汤方：麻黄三两，去节。味甘温 桂枝二，医统本作三两，去皮。味辛热 甘草一两，炙。味甘平 2. 杏仁七十个，汤，赵本无「汤」字，去皮尖。味辛温 3. 上四味，以水九升，先煮麻黄，减二升，去上沫，内诸药，煮取二升半，去滓，温服八合，覆取微似汗，不须啜粥，馀如桂枝法...",
+      "answer_text_excerpt": "和“麻黄汤方”直接相关的主条，当前主要落在这些方文或条文片段里。 麻黄汤方：麻黄三两，去节。味甘温 桂枝二，医统本作三两，去皮。味辛热 甘草一两，炙。味甘平 杏仁七十个，汤，赵本无「汤」字，去皮尖。味辛温 上四味，以水九升，先煮麻黄，减二升，去上沫，内诸药，煮取二升半，去滓，温服八合，覆取微似汗，不须啜粥，馀如桂枝法将...",
       "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
       "failed_checks": []
@@ -1256,7 +1361,7 @@
       },
       "zero_evidence_check": {
         "required": false,
-        "observed_count": 6,
+        "observed_count": 5,
         "passed": true
       },
       "zero_citations_check": {
@@ -1310,8 +1415,8 @@
       "actual_counts": {
         "primary_evidence": 3,
         "secondary_evidence": 0,
-        "review_materials": 3,
-        "total_evidence": 6,
+        "review_materials": 2,
+        "total_evidence": 5,
         "citations": 3
       },
       "actual_record_ids": {
@@ -1323,8 +1428,7 @@
         "secondary_evidence": [],
         "review_materials": [
           "full:passages:ZJSHL-CH-009-P-0033",
-          "full:passages:ZJSHL-CH-009-P-0031",
-          "full:ambiguous_passages:ZJSHL-CH-009-P-0031"
+          "full:passages:ZJSHL-CH-009-P-0031"
         ],
         "citations": [
           "safe:main_passages:ZJSHL-CH-009-P-0033",
@@ -1332,7 +1436,7 @@
           "safe:main_passages:ZJSHL-CH-009-P-0035"
         ]
       },
-      "answer_text_excerpt": "根据主依据，与“大青龙汤方”直接对应的条文主要有： 1. 大青龙汤方：麻黄六两，去节。味甘温 桂枝二两，去皮。味辛热 甘草二两，炙。味甘平 杏人赵本人作「仁」，四十个，赵本作「枚」，去皮尖。味苦，甘温 生姜三两，切。味辛温 大枣十二，赵本无「二」字，枚，擘。味甘温 石膏如鸡子大碎。味甘，微寒 2. 辛甘均为发散。然风宜...",
+      "answer_text_excerpt": "和“大青龙汤方”直接相关的主条，当前主要落在这些方文或条文片段里。 大青龙汤方：麻黄六两，去节。味甘温 桂枝二两，去皮。味辛热 甘草二两，炙。味甘平 杏人赵本人作「仁」，四十个，赵本作「枚」，去皮尖。味苦，甘温 生姜三两，切。味辛温 大枣十二，赵本无「二」字，枚，擘。味甘温 石膏如鸡子大碎。味甘，微寒 辛甘均为发散。然...",
       "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
       "failed_checks": []
@@ -1418,7 +1522,7 @@
           "safe:main_passages:ZJSHL-CH-009-P-0043"
         ]
       },
-      "answer_text_excerpt": "根据主依据，与“小青龙汤方”直接对应的条文主要有： 1. 小青龙汤方：麻黄三两：去节。味甘温 芍药三两。味酸微寒 五味子半升。味酸温 乾姜三两。味辛热 甘草三两，炙。味甘平 桂枝三两，去皮。味辛热 半夏半升，汤。赵本无「汤」字，洗。 2. 上八味，以水一斗，先煮麻黄，减二升，去上沫，内诸药，煮取三升，去滓，温服一升。",
+      "answer_text_excerpt": "和“小青龙汤方”直接相关的主条，当前主要落在这些方文或条文片段里。 小青龙汤方：麻黄三两：去节。味甘温 芍药三两。味酸微寒 五味子半升。味酸温 乾姜三两。味辛热 甘草三两，炙。味甘平 桂枝三两，去皮。味辛热 半夏半升，汤。赵本无「汤」字，洗。 上八味，以水一斗，先煮麻黄，减二升，去上沫，内诸药，煮取三升，去滓，温服一升...",
       "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
       "failed_checks": []
@@ -1509,7 +1613,7 @@
           "safe:main_passages:ZJSHL-CH-009-P-0213"
         ]
       },
-      "answer_text_excerpt": "根据主依据，与“小柴胡汤方”直接对应的条文主要有： 1. 小柴胡汤方：柴胡半斤。味苦，微寒 黄芩三两。味苦寒 人参三两。味甘温 甘草三两，赵本有「炙」字。味甘平 半夏半升，洗。味辛温 生姜三两，切。味辛温 大枣十三，赵本医统本并作「二」，枚，擘。味甘温 2. 上七味，以水一斗二升，煮取六升，去滓，再煎，取三升，温服一升...",
+      "answer_text_excerpt": "和“小柴胡汤方”直接相关的主条，当前主要落在这些方文或条文片段里。 小柴胡汤方：柴胡半斤。味苦，微寒 黄芩三两。味苦寒 人参三两。味甘温 甘草三两，赵本有「炙」字。味甘平 半夏半升，洗。味辛温 生姜三两，切。味辛温 大枣十三，赵本医统本并作「二」，枚，擘。味甘温 上七味，以水一斗二升，煮取六升，去滓，再煎，取三升，温服...",
       "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
       "failed_checks": []
@@ -1531,7 +1635,7 @@
       },
       "zero_evidence_check": {
         "required": false,
-        "observed_count": 4,
+        "observed_count": 3,
         "passed": true
       },
       "zero_citations_check": {
@@ -1565,8 +1669,8 @@
       "actual_counts": {
         "primary_evidence": 1,
         "secondary_evidence": 0,
-        "review_materials": 3,
-        "total_evidence": 4,
+        "review_materials": 2,
+        "total_evidence": 3,
         "citations": 1
       },
       "actual_record_ids": {
@@ -1576,14 +1680,13 @@
         "secondary_evidence": [],
         "review_materials": [
           "full:passages:ZJSHL-CH-009-P-0250",
-          "full:passages:ZJSHL-CH-010-P-0025",
-          "full:ambiguous_passages:ZJSHL-CH-010-P-0025"
+          "full:passages:ZJSHL-CH-010-P-0025"
         ],
         "citations": [
           "safe:main_passages:ZJSHL-CH-009-P-0250"
         ]
       },
-      "answer_text_excerpt": "根据主依据，与“大柴胡汤方”直接对应的条文主要有： 1. 大柴胡汤方：柴胡半斤。味甘平 黄芩三两。味苦寒 芍药三两。味酸，微寒 半夏半升，洗。味辛温 生姜五两，切。味辛温 枳实四枚，炙。味苦寒 大枣十二枚，擘。医统本有「味」字，甘温 大黄二两。味苦寒，赵本无「大黄」一药",
+      "answer_text_excerpt": "和“大柴胡汤方”直接相关的主条，当前主要落在这些方文或条文片段里。 大柴胡汤方：柴胡半斤。味甘平 黄芩三两。味苦寒 芍药三两。味酸，微寒 半夏半升，洗。味辛温 生姜五两，切。味辛温 枳实四枚，炙。味苦寒 大枣十二枚，擘。医统本有「味」字，甘温 大黄二两。味苦寒，赵本无「大黄」一药 可以先据此理解原文意思，具体字句再结合...",
       "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
       "failed_checks": []
@@ -1659,7 +1762,7 @@
           "safe:main_passages:ZJSHL-CH-009-P-0138"
         ]
       },
-      "answer_text_excerpt": "根据主依据，与“五苓散方”直接对应的条文主要有： 1. 五苓散方：猪苓十八铢，去皮。味甘平 泽泻一两六铢半，赵本无「半」字，味酸咸 茯苓十八铢。味甘平 桂赵本有「枝」字，半两，去皮。味辛热 白术十八铢。味甘平",
+      "answer_text_excerpt": "和“五苓散方”直接相关的主条，当前主要落在这些方文或条文片段里。 五苓散方：猪苓十八铢，去皮。味甘平 泽泻一两六铢半，赵本无「半」字，味酸咸 茯苓十八铢。味甘平 桂赵本有「枝」字，半两，去皮。味辛热 白术十八铢。味甘平 可以先据此理解原文意思，具体字句再结合引用继续回看。",
       "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
       "failed_checks": []
@@ -1681,7 +1784,7 @@
       },
       "zero_evidence_check": {
         "required": false,
-        "observed_count": 6,
+        "observed_count": 5,
         "passed": true
       },
       "zero_citations_check": {
@@ -1725,8 +1828,8 @@
       "actual_counts": {
         "primary_evidence": 2,
         "secondary_evidence": 1,
-        "review_materials": 3,
-        "total_evidence": 6,
+        "review_materials": 2,
+        "total_evidence": 5,
         "citations": 2
       },
       "actual_record_ids": {
@@ -1739,15 +1842,14 @@
         ],
         "review_materials": [
           "full:passages:ZJSHL-CH-010-P-0165",
-          "full:passages:ZJSHL-CH-015-P-0249",
-          "full:ambiguous_passages:ZJSHL-CH-015-P-0249"
+          "full:passages:ZJSHL-CH-015-P-0249"
         ],
         "citations": [
           "safe:main_passages:ZJSHL-CH-010-P-0165",
           "safe:main_passages:ZJSHL-CH-010-P-0167"
         ]
       },
-      "answer_text_excerpt": "根据主依据，与“白虎汤方”直接对应的条文主要有： 1. 白虎汤方：知母六两。味苦寒 石膏一斤，碎。味甘寒 甘草二两，赵本有「炙」字。味甘平 粳米六合。味甘平 2. 上四味，以水一斗，煮米熟，汤成，去滓，温服一升，日三服。",
+      "answer_text_excerpt": "和“白虎汤方”直接相关的主条，当前主要落在这些方文或条文片段里。 白虎汤方：知母六两。味苦寒 石膏一斤，碎。味甘寒 甘草二两，赵本有「炙」字。味甘平 粳米六合。味甘平 上四味，以水一斗，煮米熟，汤成，去滓，温服一升，日三服。 可以先据此理解原文意思，具体字句再结合引用继续回看。",
       "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
       "failed_checks": []
@@ -1769,7 +1871,7 @@
       },
       "zero_evidence_check": {
         "required": false,
-        "observed_count": 8,
+        "observed_count": 7,
         "passed": true
       },
       "zero_citations_check": {
@@ -1813,8 +1915,8 @@
       "actual_counts": {
         "primary_evidence": 2,
         "secondary_evidence": 3,
-        "review_materials": 3,
-        "total_evidence": 8,
+        "review_materials": 2,
+        "total_evidence": 7,
         "citations": 2
       },
       "actual_record_ids": {
@@ -1829,15 +1931,14 @@
         ],
         "review_materials": [
           "full:passages:ZJSHL-CH-011-P-0068",
-          "full:passages:ZJSHL-CH-014-P-0180",
-          "full:ambiguous_passages:ZJSHL-CH-014-P-0180"
+          "full:passages:ZJSHL-CH-014-P-0180"
         ],
         "citations": [
           "safe:main_passages:ZJSHL-CH-011-P-0068",
           "safe:main_passages:ZJSHL-CH-011-P-0070"
         ]
       },
-      "answer_text_excerpt": "根据主依据，与“大承气汤方”直接对应的条文主要有： 1. 大承气汤方：大黄四两，酒洗。苦寒 浓朴半斤，炙，去皮。苦温 枳实五枚，炙。苦寒 芒硝三合。咸寒 2. 上四味，以水一斗，先煮二物，取五升，去滓，内大黄，赵本有「更」字煮取二升，去滓，内芒硝，更上微火一两沸，分温再服。得下，馀勿服。",
+      "answer_text_excerpt": "和“大承气汤方”直接相关的主条，当前主要落在这些方文或条文片段里。 大承气汤方：大黄四两，酒洗。苦寒 浓朴半斤，炙，去皮。苦温 枳实五枚，炙。苦寒 芒硝三合。咸寒 上四味，以水一斗，先煮二物，取五升，去滓，内大黄，赵本有「更」字煮取二升，去滓，内芒硝，更上微火一两沸，分温再服。得下，馀勿服。 可以先据此理解原文意思，具...",
       "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
       "failed_checks": []
@@ -1937,7 +2038,7 @@
           "safe:main_passages:ZJSHL-CH-011-P-0073"
         ]
       },
-      "answer_text_excerpt": "根据主依据，与“小承气汤方”直接对应的条文主要有： 1. 小承气汤方：大黄四两。赵本有「酒洗」二字 浓朴二两，炙，去皮。 枳实三枚，大者，炙 2. 大热结实者，与大承气汤；小热微结者，与小承气汤。以热不大甚，故于大承气汤去芒硝；又以结不至坚，故不熊校记：故亦减浓朴、枳实也，汪本亦改不。按汪以方内仍有枳实，故云不减，殊不...",
+      "answer_text_excerpt": "和“小承气汤方”直接相关的主条，当前主要落在这些方文或条文片段里。 小承气汤方：大黄四两。赵本有「酒洗」二字 浓朴二两，炙，去皮。 枳实三枚，大者，炙 大热结实者，与大承气汤；小热微结者，与小承气汤。以热不大甚，故于大承气汤去芒硝；又以结不至坚，故不熊校记：故亦减浓朴、枳实也，汪本亦改不。按汪以方内仍有枳实，故云不减，...",
       "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
       "failed_checks": []
@@ -1959,7 +2060,7 @@
       },
       "zero_evidence_check": {
         "required": false,
-        "observed_count": 4,
+        "observed_count": 3,
         "passed": true
       },
       "zero_citations_check": {
@@ -1993,8 +2094,8 @@
       "actual_counts": {
         "primary_evidence": 1,
         "secondary_evidence": 0,
-        "review_materials": 3,
-        "total_evidence": 4,
+        "review_materials": 2,
+        "total_evidence": 3,
         "citations": 1
       },
       "actual_record_ids": {
@@ -2004,14 +2105,13 @@
         "secondary_evidence": [],
         "review_materials": [
           "full:passages:ZJSHL-CH-011-P-0109",
-          "full:passages:ZJSHL-CH-014-P-0179",
-          "full:ambiguous_passages:ZJSHL-CH-014-P-0179"
+          "full:passages:ZJSHL-CH-014-P-0179"
         ],
         "citations": [
           "safe:main_passages:ZJSHL-CH-011-P-0109"
         ]
       },
-      "answer_text_excerpt": "根据主依据，与“猪苓汤方”直接对应的条文主要有： 1. 猪苓汤方：猪苓去皮。甘平 茯苓甘平 阿胶甘平 滑石碎。甘寒 泽泻各一两。甘咸寒",
+      "answer_text_excerpt": "和“猪苓汤方”直接相关的主条，当前主要落在这些方文或条文片段里。 猪苓汤方：猪苓去皮。甘平 茯苓甘平 阿胶甘平 滑石碎。甘寒 泽泻各一两。甘咸寒 可以先据此理解原文意思，具体字句再结合引用继续回看。",
       "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
       "failed_checks": []
@@ -2083,7 +2183,7 @@
           "safe:main_passages:ZJSHL-CH-011-P-0141"
         ]
       },
-      "answer_text_excerpt": "根据主依据，与“茵陈蒿汤方”直接对应的条文主要有： 1. 茵陈蒿汤方：茵陈蒿六两。苦微寒 栀子十四枚，擘。苦寒 大黄二两，去皮。苦寒",
+      "answer_text_excerpt": "和“茵陈蒿汤方”直接相关的主条，当前主要落在这些方文或条文片段里。 茵陈蒿汤方：茵陈蒿六两。苦微寒 栀子十四枚，擘。苦寒 大黄二两，去皮。苦寒 可以先据此理解原文意思，具体字句再结合引用继续回看。",
       "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
       "failed_checks": []
@@ -2186,7 +2286,7 @@
           "safe:main_passages:ZJSHL-CH-008-P-0269"
         ]
       },
-      "answer_text_excerpt": "根据主依据，与“四逆汤方”直接对应的条文主要有： 1. 四逆汤方：甘草二两，炙。味甘平乾姜一两半。味辛热附子一枚，生用，去皮，破八片。辛，大热 2. 《内经》曰：寒淫于内，治以甘热；又曰：寒淫所胜，平以辛热。甘草姜附相合，为甘辛大热之剂，乃可发散阴阳之气。 3. 右三味㕮咀，赵本无「㕮咀」二字以水三升，煑取一升二合，去...",
+      "answer_text_excerpt": "和“四逆汤方”直接相关的主条，当前主要落在这些方文或条文片段里。 四逆汤方：甘草二两，炙。味甘平乾姜一两半。味辛热附子一枚，生用，去皮，破八片。辛，大热 《内经》曰：寒淫于内，治以甘热；又曰：寒淫所胜，平以辛热。甘草姜附相合，为甘辛大热之剂，乃可发散阴阳之气。 右三味㕮咀，赵本无「㕮咀」二字以水三升，煑取一升二合，去滓...",
       "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
       "failed_checks": []
@@ -2282,7 +2382,7 @@
           "safe:main_passages:ZJSHL-CH-008-P-0260"
         ]
       },
-      "answer_text_excerpt": "根据主依据，与“甘草乾姜汤方”直接对应的条文主要有： 1. 甘草乾姜汤方：甘草四两，炙，味甘平 乾姜二两，炮，味辛热 2. 《内经》曰：辛甘发散为阳，甘草乾姜相合，以复阳气。 3. 右㕮咀，赵本作「二味」以水叁升，煑取一升五合，去滓，分温再服。",
+      "answer_text_excerpt": "和“甘草乾姜汤方”直接相关的主条，当前主要落在这些方文或条文片段里。 甘草乾姜汤方：甘草四两，炙，味甘平 乾姜二两，炮，味辛热 《内经》曰：辛甘发散为阳，甘草乾姜相合，以复阳气。 右㕮咀，赵本作「二味」以水叁升，煑取一升五合，去滓，分温再服。 可以先据此理解原文意思，具体字句再结合引用继续回看。",
       "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
       "failed_checks": []
@@ -2378,7 +2478,7 @@
           "safe:main_passages:ZJSHL-CH-008-P-0263"
         ]
       },
-      "answer_text_excerpt": "根据主依据，与“芍药甘草汤方”直接对应的条文主要有： 1. 芍药甘草汤方：白芍药四两。味，医统本有「苦」字，酸，微寒 甘草四两，炙。甘平 2. 芍药，白补而赤泻，白收而赤散也。酸以收之，甘以缓之，酸甘相合，用补阴血。 3. 右二味㕮咀，赵本无「㕮咀」二字以水叁升，煑取一升半，赵本作「五合」去滓，分温再服之。赵本无「之」...",
+      "answer_text_excerpt": "和“芍药甘草汤方”直接相关的主条，当前主要落在这些方文或条文片段里。 芍药甘草汤方：白芍药四两。味，医统本有「苦」字，酸，微寒 甘草四两，炙。甘平 芍药，白补而赤泻，白收而赤散也。酸以收之，甘以缓之，酸甘相合，用补阴血。 右二味㕮咀，赵本无「㕮咀」二字以水叁升，煑取一升半，赵本作「五合」去滓，分温再服之。赵本无「之」字...",
       "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
       "failed_checks": []
@@ -2400,7 +2500,7 @@
       },
       "zero_evidence_check": {
         "required": false,
-        "observed_count": 6,
+        "observed_count": 5,
         "passed": true
       },
       "zero_citations_check": {
@@ -2444,8 +2544,8 @@
       "actual_counts": {
         "primary_evidence": 2,
         "secondary_evidence": 1,
-        "review_materials": 3,
-        "total_evidence": 6,
+        "review_materials": 2,
+        "total_evidence": 5,
         "citations": 2
       },
       "actual_record_ids": {
@@ -2458,15 +2558,14 @@
         ],
         "review_materials": [
           "full:passages:ZJSHL-CH-008-P-0264",
-          "full:passages:ZJSHL-CH-011-P-0064",
-          "full:ambiguous_passages:ZJSHL-CH-011-P-0064"
+          "full:passages:ZJSHL-CH-011-P-0064"
         ],
         "citations": [
           "safe:main_passages:ZJSHL-CH-008-P-0264",
           "safe:main_passages:ZJSHL-CH-008-P-0266"
         ]
       },
-      "answer_text_excerpt": "根据主依据，与“调胃承气汤方”直接对应的条文主要有： 1. 调胃承气汤方：大黄四两，去皮，清酒浸。赵本作「洗」 甘草二两，炙，味甘平 芒硝赵本医统本并作「消」，半斤，医统本作「升」，味咸苦，大寒 2. 右三味㕮咀，赵本无「㕮咀」二字以水三升，煑取一升，去滓，内芒硝更上火微煑，令沸，少少温服。赵本医统本并有「之」字",
+      "answer_text_excerpt": "和“调胃承气汤方”直接相关的主条，当前主要落在这些方文或条文片段里。 调胃承气汤方：大黄四两，去皮，清酒浸。赵本作「洗」 甘草二两，炙，味甘平 芒硝赵本医统本并作「消」，半斤，医统本作「升」，味咸苦，大寒 右三味㕮咀，赵本无「㕮咀」二字以水三升，煑取一升，去滓，内芒硝更上火微煑，令沸，少少温服。赵本医统本并有「之」字 ...",
       "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
       "failed_checks": []
@@ -2538,7 +2637,7 @@
           "safe:main_passages:ZJSHL-CH-009-P-0105"
         ]
       },
-      "answer_text_excerpt": "根据主依据，与“桂枝甘草汤方”直接对应的条文主要有： 1. 桂枝甘草汤方：桂枝四两，去皮。味辛热 甘草二两，炙。味甘平",
+      "answer_text_excerpt": "和“桂枝甘草汤方”直接相关的主条，当前主要落在这些方文或条文片段里。 桂枝甘草汤方：桂枝四两，去皮。味辛热 甘草二两，炙。味甘平 可以先据此理解原文意思，具体字句再结合引用继续回看。",
       "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
       "failed_checks": []
@@ -2610,7 +2709,7 @@
           "safe:main_passages:ZJSHL-CH-010-P-0068"
         ]
       },
-      "answer_text_excerpt": "根据主依据，与“半夏泻心汤方”直接对应的条文主要有： 1. 半夏泻心汤方：半夏半升。赵本注：「一方用半夏一升」，洗。味辛平 黄芩味苦寒 乾姜味辛热 人参以上各三两。味甘温 黄连一两。味苦寒 大枣十二枚，擘。味温甘。医统本作甘温 甘草三两，炙。味甘平",
+      "answer_text_excerpt": "和“半夏泻心汤方”直接相关的主条，当前主要落在这些方文或条文片段里。 半夏泻心汤方：半夏半升。赵本注：「一方用半夏一升」，洗。味辛平 黄芩味苦寒 乾姜味辛热 人参以上各三两。味甘温 黄连一两。味苦寒 大枣十二枚，擘。味温甘。医统本作甘温 甘草三两，炙。味甘平 可以先据此理解原文意思，具体字句再结合引用继续回看。",
       "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
       "failed_checks": []
@@ -2621,14 +2720,14 @@
       "question_type": "meaning_explanation",
       "question_type_label": "含义解释类",
       "expected_mode": "weak_with_review_notice",
-      "actual_mode": "weak_with_review_notice",
-      "mode_match": true,
+      "actual_mode": "strong",
+      "mode_match": false,
       "citation_check_required": true,
       "citations_present": true,
       "primary_empty_check": {
         "required": true,
-        "observed_count": 0,
-        "passed": true
+        "observed_count": 1,
+        "passed": false
       },
       "zero_evidence_check": {
         "required": false,
@@ -2637,78 +2736,62 @@
       },
       "zero_citations_check": {
         "required": false,
-        "observed_count": 3,
+        "observed_count": 1,
         "passed": true
       },
       "gold_citation_check": {
         "required": true,
         "passed": true,
-        "matched_count": 3,
+        "matched_count": 1,
         "matched_citations": [
           {
             "citation_id": "c1",
-            "record_id": "full:annotations:ZJSHL-CH-003-P-0007",
-            "passage_id": "ZJSHL-CH-003-P-0007",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c2",
-            "record_id": "safe:main_passages:ZJSHL-CH-006-P-0034",
-            "passage_id": "ZJSHL-CH-006-P-0034",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c3",
             "record_id": "full:passages:ZJSHL-CH-003-P-0007",
             "passage_id": "ZJSHL-CH-003-P-0007",
             "matched_by": [
-              "record_id",
               "passage_id"
             ],
-            "citation_role": "review"
+            "citation_role": "primary"
           }
         ]
       },
       "unsupported_assertion_check": {
         "required": true,
-        "passed": true,
+        "passed": false,
         "rule_version": "minimal_v1",
-        "failure_reasons": []
+        "failure_reasons": [
+          "expected_weak_but_actual_mode_strong",
+          "primary_evidence_should_be_empty"
+        ]
       },
       "actual_counts": {
-        "primary_evidence": 0,
+        "primary_evidence": 1,
         "secondary_evidence": 2,
-        "review_materials": 1,
+        "review_materials": 0,
         "total_evidence": 3,
-        "citations": 3
+        "citations": 1
       },
       "actual_record_ids": {
-        "primary_evidence": [],
+        "primary_evidence": [
+          "full:passages:ZJSHL-CH-003-P-0007"
+        ],
         "secondary_evidence": [
           "full:annotations:ZJSHL-CH-003-P-0007",
           "safe:main_passages:ZJSHL-CH-006-P-0034"
         ],
-        "review_materials": [
-          "full:passages:ZJSHL-CH-003-P-0007"
-        ],
+        "review_materials": [],
         "citations": [
-          "full:annotations:ZJSHL-CH-003-P-0007",
-          "safe:main_passages:ZJSHL-CH-006-P-0034",
           "full:passages:ZJSHL-CH-003-P-0007"
         ]
       },
-      "answer_text_excerpt": "正文强证据不足，以下内容需核对，暂不能视为确定答案。 当前可先参考辅助材料：一阴一阳谓之道，偏阴偏阳谓之疾。阴偏不足，则阳得而从之；阳偏不足，则阴得而乘之。阳不足，则阴气上入阳中，为恶寒者，阴胜则寒矣；阴不足，阳气下陷入阴中，为发热者，阳胜则热矣。",
-      "review_notice": "正文强证据不足，以下内容需核对，不应视为确定答案。",
+      "answer_text_excerpt": "从现有解释句看，“一阴一阳谓之道”可先参考“一阴一阳谓之道，偏阴偏阳谓之疾。”来理解。 直接依据：一阴一阳谓之道，偏阴偏阳谓之疾。",
+      "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
-      "failed_checks": []
+      "failed_checks": [
+        "mode_match",
+        "primary_empty_check",
+        "unsupported_assertion_check"
+      ]
     },
     {
       "question_id": "eval_seed_q030",
@@ -2716,14 +2799,14 @@
       "question_type": "meaning_explanation",
       "question_type_label": "含义解释类",
       "expected_mode": "weak_with_review_notice",
-      "actual_mode": "weak_with_review_notice",
-      "mode_match": true,
+      "actual_mode": "strong",
+      "mode_match": false,
       "citation_check_required": true,
       "citations_present": true,
       "primary_empty_check": {
         "required": true,
-        "observed_count": 0,
-        "passed": true
+        "observed_count": 1,
+        "passed": false
       },
       "zero_evidence_check": {
         "required": false,
@@ -2732,91 +2815,45 @@
       },
       "zero_citations_check": {
         "required": false,
-        "observed_count": 6,
+        "observed_count": 1,
         "passed": true
       },
       "gold_citation_check": {
         "required": true,
         "passed": true,
-        "matched_count": 6,
+        "matched_count": 1,
         "matched_citations": [
           {
             "citation_id": "c1",
-            "record_id": "full:annotations:ZJSHL-CH-003-P-0009",
-            "passage_id": "ZJSHL-CH-003-P-0009",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c2",
-            "record_id": "safe:main_passages:ZJSHL-CH-003-P-0080",
-            "passage_id": "ZJSHL-CH-003-P-0080",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c3",
-            "record_id": "safe:main_passages:ZJSHL-CH-016-P-0009",
-            "passage_id": "ZJSHL-CH-016-P-0009",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c4",
-            "record_id": "safe:main_passages:ZJSHL-CH-006-P-0067",
-            "passage_id": "ZJSHL-CH-006-P-0067",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c5",
-            "record_id": "safe:main_passages:ZJSHL-CH-003-P-0088",
-            "passage_id": "ZJSHL-CH-003-P-0088",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c6",
             "record_id": "full:passages:ZJSHL-CH-003-P-0009",
             "passage_id": "ZJSHL-CH-003-P-0009",
             "matched_by": [
-              "record_id",
               "passage_id"
             ],
-            "citation_role": "review"
+            "citation_role": "primary"
           }
         ]
       },
       "unsupported_assertion_check": {
         "required": true,
-        "passed": true,
+        "passed": false,
         "rule_version": "minimal_v1",
-        "failure_reasons": []
+        "failure_reasons": [
+          "expected_weak_but_actual_mode_strong",
+          "primary_evidence_should_be_empty"
+        ]
       },
       "actual_counts": {
-        "primary_evidence": 0,
+        "primary_evidence": 1,
         "secondary_evidence": 5,
-        "review_materials": 1,
+        "review_materials": 0,
         "total_evidence": 6,
-        "citations": 6
+        "citations": 1
       },
       "actual_record_ids": {
-        "primary_evidence": [],
+        "primary_evidence": [
+          "full:passages:ZJSHL-CH-003-P-0009"
+        ],
         "secondary_evidence": [
           "full:annotations:ZJSHL-CH-003-P-0009",
           "safe:main_passages:ZJSHL-CH-003-P-0080",
@@ -2824,22 +2861,19 @@
           "safe:main_passages:ZJSHL-CH-006-P-0067",
           "safe:main_passages:ZJSHL-CH-003-P-0088"
         ],
-        "review_materials": [
-          "full:passages:ZJSHL-CH-003-P-0009"
-        ],
+        "review_materials": [],
         "citations": [
-          "full:annotations:ZJSHL-CH-003-P-0009",
-          "safe:main_passages:ZJSHL-CH-003-P-0080",
-          "safe:main_passages:ZJSHL-CH-016-P-0009",
-          "safe:main_passages:ZJSHL-CH-006-P-0067",
-          "safe:main_passages:ZJSHL-CH-003-P-0088",
           "full:passages:ZJSHL-CH-003-P-0009"
         ]
       },
-      "answer_text_excerpt": "正文强证据不足，以下内容需核对，暂不能视为确定答案。 当前可先参考辅助材料：阳为气，阴为血。阳脉浮者，卫气强也；阴脉弱者，荣血弱也。《难经》曰：气主 之，血主濡之。血虚，则不能濡润筋络，故筋急也。",
-      "review_notice": "正文强证据不足，以下内容需核对，不应视为确定答案。",
+      "answer_text_excerpt": "从现有解释句看，“阳为气，阴为血”可先参考“阳为气，阴为血。”来理解。 直接依据：阳为气，阴为血。",
+      "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
-      "failed_checks": []
+      "failed_checks": [
+        "mode_match",
+        "primary_empty_check",
+        "unsupported_assertion_check"
+      ]
     },
     {
       "question_id": "eval_seed_q031",
@@ -2847,14 +2881,14 @@
       "question_type": "meaning_explanation",
       "question_type_label": "含义解释类",
       "expected_mode": "weak_with_review_notice",
-      "actual_mode": "weak_with_review_notice",
-      "mode_match": true,
+      "actual_mode": "strong",
+      "mode_match": false,
       "citation_check_required": true,
       "citations_present": true,
       "primary_empty_check": {
         "required": true,
-        "observed_count": 0,
-        "passed": true
+        "observed_count": 1,
+        "passed": false
       },
       "zero_evidence_check": {
         "required": false,
@@ -2863,91 +2897,45 @@
       },
       "zero_citations_check": {
         "required": false,
-        "observed_count": 6,
+        "observed_count": 1,
         "passed": true
       },
       "gold_citation_check": {
         "required": true,
         "passed": true,
-        "matched_count": 6,
+        "matched_count": 1,
         "matched_citations": [
           {
             "citation_id": "c1",
-            "record_id": "full:annotations:ZJSHL-CH-003-P-0011",
-            "passage_id": "ZJSHL-CH-003-P-0011",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c2",
-            "record_id": "safe:main_passages:ZJSHL-CH-003-P-0010",
-            "passage_id": "ZJSHL-CH-003-P-0010",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c3",
-            "record_id": "safe:main_passages:ZJSHL-CH-003-P-0067",
-            "passage_id": "ZJSHL-CH-003-P-0067",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c4",
-            "record_id": "safe:main_passages:ZJSHL-CH-015-P-0294",
-            "passage_id": "ZJSHL-CH-015-P-0294",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c5",
-            "record_id": "safe:main_passages:ZJSHL-CH-004-P-0257",
-            "passage_id": "ZJSHL-CH-004-P-0257",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c6",
             "record_id": "full:passages:ZJSHL-CH-003-P-0011",
             "passage_id": "ZJSHL-CH-003-P-0011",
             "matched_by": [
-              "record_id",
               "passage_id"
             ],
-            "citation_role": "review"
+            "citation_role": "primary"
           }
         ]
       },
       "unsupported_assertion_check": {
         "required": true,
-        "passed": true,
+        "passed": false,
         "rule_version": "minimal_v1",
-        "failure_reasons": []
+        "failure_reasons": [
+          "expected_weak_but_actual_mode_strong",
+          "primary_evidence_should_be_empty"
+        ]
       },
       "actual_counts": {
-        "primary_evidence": 0,
+        "primary_evidence": 1,
         "secondary_evidence": 5,
-        "review_materials": 1,
+        "review_materials": 0,
         "total_evidence": 6,
-        "citations": 6
+        "citations": 1
       },
       "actual_record_ids": {
-        "primary_evidence": [],
+        "primary_evidence": [
+          "full:passages:ZJSHL-CH-003-P-0011"
+        ],
         "secondary_evidence": [
           "full:annotations:ZJSHL-CH-003-P-0011",
           "safe:main_passages:ZJSHL-CH-003-P-0010",
@@ -2955,22 +2943,19 @@
           "safe:main_passages:ZJSHL-CH-015-P-0294",
           "safe:main_passages:ZJSHL-CH-004-P-0257"
         ],
-        "review_materials": [
-          "full:passages:ZJSHL-CH-003-P-0011"
-        ],
+        "review_materials": [],
         "citations": [
-          "full:annotations:ZJSHL-CH-003-P-0011",
-          "safe:main_passages:ZJSHL-CH-003-P-0010",
-          "safe:main_passages:ZJSHL-CH-003-P-0067",
-          "safe:main_passages:ZJSHL-CH-015-P-0294",
-          "safe:main_passages:ZJSHL-CH-004-P-0257",
           "full:passages:ZJSHL-CH-003-P-0011"
         ]
       },
-      "answer_text_excerpt": "正文强证据不足，以下内容需核对，暂不能视为确定答案。 当前可先参考辅助材料：《内经》云：脉者，血之府也。脉实则血实，脉虚则血虚，此其常也。脉沉者，知荣血内微也。",
-      "review_notice": "正文强证据不足，以下内容需核对，不应视为确定答案。",
+      "answer_text_excerpt": "从现有解释句看，“脉沉者知荣血内微”可先参考“”来理解。 直接依据：",
+      "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
-      "failed_checks": []
+      "failed_checks": [
+        "mode_match",
+        "primary_empty_check",
+        "unsupported_assertion_check"
+      ]
     },
     {
       "question_id": "eval_seed_q032",
@@ -2989,12 +2974,12 @@
       },
       "zero_evidence_check": {
         "required": false,
-        "observed_count": 4,
+        "observed_count": 8,
         "passed": true
       },
       "zero_citations_check": {
         "required": false,
-        "observed_count": 4,
+        "observed_count": 8,
         "passed": true
       },
       "gold_citation_check": {
@@ -3023,21 +3008,19 @@
             "citation_role": "secondary"
           },
           {
-            "citation_id": "c3",
+            "citation_id": "c7",
             "record_id": "full:passages:ZJSHL-CH-003-P-0013",
             "passage_id": "ZJSHL-CH-003-P-0013",
             "matched_by": [
-              "record_id",
               "passage_id"
             ],
             "citation_role": "review"
           },
           {
-            "citation_id": "c4",
+            "citation_id": "c8",
             "record_id": "full:passages:ZJSHL-CH-004-P-0209",
             "passage_id": "ZJSHL-CH-004-P-0209",
             "matched_by": [
-              "record_id",
               "passage_id"
             ],
             "citation_role": "review"
@@ -3052,16 +3035,20 @@
       },
       "actual_counts": {
         "primary_evidence": 0,
-        "secondary_evidence": 2,
+        "secondary_evidence": 6,
         "review_materials": 2,
-        "total_evidence": 4,
-        "citations": 4
+        "total_evidence": 8,
+        "citations": 8
       },
       "actual_record_ids": {
         "primary_evidence": [],
         "secondary_evidence": [
           "full:annotations:ZJSHL-CH-003-P-0013",
-          "full:annotations:ZJSHL-CH-004-P-0209"
+          "full:annotations:ZJSHL-CH-004-P-0209",
+          "full:passages:ZJSHL-CH-003-P-0012",
+          "full:passages:ZJSHL-CH-003-P-0014",
+          "full:passages:ZJSHL-CH-004-P-0208",
+          "full:passages:ZJSHL-CH-004-P-0210"
         ],
         "review_materials": [
           "full:passages:ZJSHL-CH-003-P-0013",
@@ -3070,11 +3057,15 @@
         "citations": [
           "full:annotations:ZJSHL-CH-003-P-0013",
           "full:annotations:ZJSHL-CH-004-P-0209",
+          "full:passages:ZJSHL-CH-003-P-0012",
+          "full:passages:ZJSHL-CH-003-P-0014",
+          "full:passages:ZJSHL-CH-004-P-0208",
+          "full:passages:ZJSHL-CH-004-P-0210",
           "full:passages:ZJSHL-CH-003-P-0013",
           "full:passages:ZJSHL-CH-004-P-0209"
         ]
       },
-      "answer_text_excerpt": "正文强证据不足，以下内容需核对，暂不能视为确定答案。 当前可先参考辅助材料：《针经》云：卫气者，所以温分肉、充皮毛、肥腠理、司开合者也。脉浮，汗出如流珠者，腠理不密，开合不司，为卫气外衰也。浮主候卫，沉主候荣，以浮沉别荣卫之衰微，理固然矣。",
+      "answer_text_excerpt": "这个问题目前只能先保守地理解到这里：《针经》云：卫气者，所以温分肉、充皮毛、肥腠理、司开合者也。脉浮，汗出如流珠者，腠理不密，开合不司，为卫气外衰也。浮主候卫，沉主候荣，以浮沉别荣卫之衰微，理固然矣。。 之所以只能先这样说，是因为当前缺少更稳定的正文主证据。 建议先回看这条命中片段所在原句，再核对前后文。",
       "review_notice": "正文强证据不足，以下内容需核对，不应视为确定答案。",
       "refuse_reason": null,
       "failed_checks": []
@@ -3085,14 +3076,14 @@
       "question_type": "meaning_explanation",
       "question_type_label": "含义解释类",
       "expected_mode": "weak_with_review_notice",
-      "actual_mode": "weak_with_review_notice",
-      "mode_match": true,
+      "actual_mode": "strong",
+      "mode_match": false,
       "citation_check_required": true,
       "citations_present": true,
       "primary_empty_check": {
         "required": true,
-        "observed_count": 0,
-        "passed": true
+        "observed_count": 1,
+        "passed": false
       },
       "zero_evidence_check": {
         "required": false,
@@ -3101,114 +3092,66 @@
       },
       "zero_citations_check": {
         "required": false,
-        "observed_count": 6,
+        "observed_count": 1,
         "passed": true
       },
       "gold_citation_check": {
         "required": true,
         "passed": true,
-        "matched_count": 6,
+        "matched_count": 1,
         "matched_citations": [
           {
             "citation_id": "c1",
-            "record_id": "full:annotations:ZJSHL-CH-003-P-0015",
-            "passage_id": "ZJSHL-CH-003-P-0015",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c2",
-            "record_id": "full:annotations:ZJSHL-CH-009-P-0302",
-            "passage_id": "ZJSHL-CH-009-P-0302",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c3",
-            "record_id": "full:annotations:ZJSHL-CH-011-P-0103",
-            "passage_id": "ZJSHL-CH-011-P-0103",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c4",
             "record_id": "full:passages:ZJSHL-CH-003-P-0015",
             "passage_id": "ZJSHL-CH-003-P-0015",
             "matched_by": [
-              "record_id",
               "passage_id"
             ],
-            "citation_role": "review"
-          },
-          {
-            "citation_id": "c5",
-            "record_id": "full:passages:ZJSHL-CH-009-P-0302",
-            "passage_id": "ZJSHL-CH-009-P-0302",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "review"
-          },
-          {
-            "citation_id": "c6",
-            "record_id": "full:ambiguous_passages:ZJSHL-CH-008-P-0257",
-            "passage_id": "ZJSHL-CH-008-P-0257",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "review"
+            "citation_role": "primary"
           }
         ]
       },
       "unsupported_assertion_check": {
         "required": true,
-        "passed": true,
+        "passed": false,
         "rule_version": "minimal_v1",
-        "failure_reasons": []
+        "failure_reasons": [
+          "expected_weak_but_actual_mode_strong",
+          "primary_evidence_should_be_empty"
+        ]
       },
       "actual_counts": {
-        "primary_evidence": 0,
+        "primary_evidence": 1,
         "secondary_evidence": 3,
-        "review_materials": 3,
+        "review_materials": 2,
         "total_evidence": 6,
-        "citations": 6
+        "citations": 1
       },
       "actual_record_ids": {
-        "primary_evidence": [],
+        "primary_evidence": [
+          "full:passages:ZJSHL-CH-003-P-0015"
+        ],
         "secondary_evidence": [
           "full:annotations:ZJSHL-CH-003-P-0015",
           "full:annotations:ZJSHL-CH-009-P-0302",
           "full:annotations:ZJSHL-CH-011-P-0103"
         ],
         "review_materials": [
-          "full:passages:ZJSHL-CH-003-P-0015",
           "full:passages:ZJSHL-CH-009-P-0302",
           "full:ambiguous_passages:ZJSHL-CH-008-P-0257"
         ],
         "citations": [
-          "full:annotations:ZJSHL-CH-003-P-0015",
-          "full:annotations:ZJSHL-CH-009-P-0302",
-          "full:annotations:ZJSHL-CH-011-P-0103",
-          "full:passages:ZJSHL-CH-003-P-0015",
-          "full:passages:ZJSHL-CH-009-P-0302",
-          "full:ambiguous_passages:ZJSHL-CH-008-P-0257"
+          "full:passages:ZJSHL-CH-003-P-0015"
         ]
       },
-      "answer_text_excerpt": "正文强证据不足，以下内容需核对，暂不能视为确定答案。 当前可先参考辅助材料：荣气微者，加烧针，则血流赵本作「留」不行，更发热而躁烦也。",
-      "review_notice": "正文强证据不足，以下内容需核对，不应视为确定答案。",
+      "answer_text_excerpt": "从现有解释句看，“荣气微者加烧针”可先参考“荣气微者，加烧针，则血流不行，更发热而躁烦也。”来理解。 直接依据：荣气微者，加烧针，则血流不行，更发热而躁烦也。",
+      "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
-      "failed_checks": []
+      "failed_checks": [
+        "mode_match",
+        "primary_empty_check",
+        "unsupported_assertion_check"
+      ]
     },
     {
       "question_id": "eval_seed_q034",
@@ -3242,10 +3185,9 @@
         "matched_citations": [
           {
             "citation_id": "c1",
-            "record_id": "safe:main_passages:ZJSHL-CH-003-P-0017",
-            "passage_id": "ZJSHL-CH-003-P-0017",
+            "record_id": "full:passages:ZJSHL-CH-003-P-0018",
+            "passage_id": "ZJSHL-CH-003-P-0018",
             "matched_by": [
-              "record_id",
               "passage_id"
             ],
             "citation_role": "primary"
@@ -3260,27 +3202,27 @@
       },
       "actual_counts": {
         "primary_evidence": 1,
-        "secondary_evidence": 1,
-        "review_materials": 2,
+        "secondary_evidence": 2,
+        "review_materials": 1,
         "total_evidence": 4,
         "citations": 1
       },
       "actual_record_ids": {
         "primary_evidence": [
-          "safe:main_passages:ZJSHL-CH-003-P-0017"
+          "full:passages:ZJSHL-CH-003-P-0018"
         ],
         "secondary_evidence": [
+          "safe:main_passages:ZJSHL-CH-003-P-0017",
           "full:annotations:ZJSHL-CH-003-P-0018"
         ],
         "review_materials": [
-          "full:passages:ZJSHL-CH-003-P-0017",
-          "full:passages:ZJSHL-CH-003-P-0018"
+          "full:passages:ZJSHL-CH-003-P-0017"
         ],
         "citations": [
-          "safe:main_passages:ZJSHL-CH-003-P-0017"
+          "full:passages:ZJSHL-CH-003-P-0018"
         ]
       },
-      "answer_text_excerpt": "根据主依据，直接相关的主条如下： 1. 脉赵本注：「一云秋脉」蔼蔼，如车盖者，名曰阳结也。",
+      "answer_text_excerpt": "从现有解释句看，“蔼蔼如车盖”可先参考“蔼蔼如车盖者，大而厌厌聂聂也。”来理解。 直接依据：蔼蔼如车盖者，大而厌厌聂聂也。",
       "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
       "failed_checks": []
@@ -3317,10 +3259,9 @@
         "matched_citations": [
           {
             "citation_id": "c1",
-            "record_id": "safe:main_passages:ZJSHL-CH-003-P-0019",
-            "passage_id": "ZJSHL-CH-003-P-0019",
+            "record_id": "full:passages:ZJSHL-CH-003-P-0020",
+            "passage_id": "ZJSHL-CH-003-P-0020",
             "matched_by": [
-              "record_id",
               "passage_id"
             ],
             "citation_role": "primary"
@@ -3335,27 +3276,27 @@
       },
       "actual_counts": {
         "primary_evidence": 1,
-        "secondary_evidence": 1,
-        "review_materials": 2,
+        "secondary_evidence": 2,
+        "review_materials": 1,
         "total_evidence": 4,
         "citations": 1
       },
       "actual_record_ids": {
         "primary_evidence": [
-          "safe:main_passages:ZJSHL-CH-003-P-0019"
+          "full:passages:ZJSHL-CH-003-P-0020"
         ],
         "secondary_evidence": [
+          "safe:main_passages:ZJSHL-CH-003-P-0019",
           "full:annotations:ZJSHL-CH-003-P-0020"
         ],
         "review_materials": [
-          "full:passages:ZJSHL-CH-003-P-0019",
-          "full:passages:ZJSHL-CH-003-P-0020"
+          "full:passages:ZJSHL-CH-003-P-0019"
         ],
         "citations": [
-          "safe:main_passages:ZJSHL-CH-003-P-0019"
+          "full:passages:ZJSHL-CH-003-P-0020"
         ]
       },
-      "answer_text_excerpt": "根据主依据，直接相关的主条如下： 1. 脉赵本注：「一云夏脉」 ，赵本作：「累累」如循长竿者，名曰阴结也。",
+      "answer_text_excerpt": "从现有解释句看，“累累如循长竿”可先参考“累累如循长竿者，连连而强直也。”来理解。 直接依据：累累如循长竿者，连连而强直也。",
       "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
       "failed_checks": []
@@ -3377,7 +3318,7 @@
       },
       "zero_evidence_check": {
         "required": false,
-        "observed_count": 4,
+        "observed_count": 6,
         "passed": true
       },
       "zero_citations_check": {
@@ -3410,9 +3351,9 @@
       },
       "actual_counts": {
         "primary_evidence": 1,
-        "secondary_evidence": 1,
-        "review_materials": 2,
-        "total_evidence": 4,
+        "secondary_evidence": 5,
+        "review_materials": 0,
+        "total_evidence": 6,
         "citations": 1
       },
       "actual_record_ids": {
@@ -3420,17 +3361,18 @@
           "safe:main_passages:ZJSHL-CH-003-P-0023"
         ],
         "secondary_evidence": [
-          "full:annotations:ZJSHL-CH-003-P-0024"
-        ],
-        "review_materials": [
+          "full:annotations:ZJSHL-CH-003-P-0024",
+          "full:passages:ZJSHL-CH-003-P-0022",
+          "full:passages:ZJSHL-CH-003-P-0024",
           "full:passages:ZJSHL-CH-003-P-0023",
-          "full:passages:ZJSHL-CH-003-P-0024"
+          "full:passages:ZJSHL-CH-003-P-0025"
         ],
+        "review_materials": [],
         "citations": [
           "safe:main_passages:ZJSHL-CH-003-P-0023"
         ]
       },
-      "answer_text_excerpt": "根据主依据，直接相关的主条如下： 1. 脉萦萦，如蜘蛛丝者，阳气赵本注：「一云阴气」衰也。",
+      "answer_text_excerpt": "和这个问题直接相关的主条，当前主要落在这些命中片段里。 脉萦萦，如蜘蛛丝者，阳气赵本注：「一云阴气」衰也。 可以先据此理解原文意思，具体字句再结合引用继续回看。",
       "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
       "failed_checks": []
@@ -3441,14 +3383,14 @@
       "question_type": "meaning_explanation",
       "question_type_label": "含义解释类",
       "expected_mode": "weak_with_review_notice",
-      "actual_mode": "weak_with_review_notice",
-      "mode_match": true,
+      "actual_mode": "strong",
+      "mode_match": false,
       "citation_check_required": true,
       "citations_present": true,
       "primary_empty_check": {
         "required": true,
-        "observed_count": 0,
-        "passed": true
+        "observed_count": 1,
+        "passed": false
       },
       "zero_evidence_check": {
         "required": false,
@@ -3457,66 +3399,61 @@
       },
       "zero_citations_check": {
         "required": false,
-        "observed_count": 2,
+        "observed_count": 1,
         "passed": true
       },
       "gold_citation_check": {
         "required": true,
         "passed": true,
-        "matched_count": 2,
+        "matched_count": 1,
         "matched_citations": [
           {
             "citation_id": "c1",
-            "record_id": "full:annotations:ZJSHL-CH-003-P-0027",
-            "passage_id": "ZJSHL-CH-003-P-0027",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c2",
             "record_id": "full:passages:ZJSHL-CH-003-P-0027",
             "passage_id": "ZJSHL-CH-003-P-0027",
             "matched_by": [
-              "record_id",
               "passage_id"
             ],
-            "citation_role": "review"
+            "citation_role": "primary"
           }
         ]
       },
       "unsupported_assertion_check": {
         "required": true,
-        "passed": true,
+        "passed": false,
         "rule_version": "minimal_v1",
-        "failure_reasons": []
+        "failure_reasons": [
+          "expected_weak_but_actual_mode_strong",
+          "primary_evidence_should_be_empty"
+        ]
       },
       "actual_counts": {
-        "primary_evidence": 0,
+        "primary_evidence": 1,
         "secondary_evidence": 1,
-        "review_materials": 1,
+        "review_materials": 0,
         "total_evidence": 2,
-        "citations": 2
+        "citations": 1
       },
       "actual_record_ids": {
-        "primary_evidence": [],
+        "primary_evidence": [
+          "full:passages:ZJSHL-CH-003-P-0027"
+        ],
         "secondary_evidence": [
           "full:annotations:ZJSHL-CH-003-P-0027"
         ],
-        "review_materials": [
-          "full:passages:ZJSHL-CH-003-P-0027"
-        ],
+        "review_materials": [],
         "citations": [
-          "full:annotations:ZJSHL-CH-003-P-0027",
           "full:passages:ZJSHL-CH-003-P-0027"
         ]
       },
-      "answer_text_excerpt": "正文强证据不足，以下内容需核对，暂不能视为确定答案。 当前可先参考辅助材料：绵绵者，连绵而软也。如泻漆之绝者，前大而后细也。《正理论》曰：天枢开发，精移气变，阴阳交会，胃和脉生，脉复生也。阳气前医统本作「先」至，阴气后至，则脉前为阳气，后为阴气。脉来，前大后细，为阳气有馀，而阴气不足，是知亡血。",
-      "review_notice": "正文强证据不足，以下内容需核对，不应视为确定答案。",
+      "answer_text_excerpt": "从现有解释句看，“绵绵者连绵而软”可先参考“绵绵者，连绵而软也。”来理解。 直接依据：绵绵者，连绵而软也。",
+      "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
-      "failed_checks": []
+      "failed_checks": [
+        "mode_match",
+        "primary_empty_check",
+        "unsupported_assertion_check"
+      ]
     },
     {
       "question_id": "eval_seed_q038",
@@ -3530,38 +3467,28 @@
       "citations_present": true,
       "primary_empty_check": {
         "required": false,
-        "observed_count": 2,
+        "observed_count": 1,
         "passed": true
       },
       "zero_evidence_check": {
         "required": false,
-        "observed_count": 9,
+        "observed_count": 7,
         "passed": true
       },
       "zero_citations_check": {
         "required": false,
-        "observed_count": 2,
+        "observed_count": 1,
         "passed": true
       },
       "gold_citation_check": {
         "required": true,
         "passed": true,
-        "matched_count": 2,
+        "matched_count": 1,
         "matched_citations": [
           {
             "citation_id": "c1",
             "record_id": "safe:main_passages:ZJSHL-CH-003-P-0031",
             "passage_id": "ZJSHL-CH-003-P-0031",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "primary"
-          },
-          {
-            "citation_id": "c2",
-            "record_id": "safe:main_passages:ZJSHL-CH-004-P-0130",
-            "passage_id": "ZJSHL-CH-004-P-0130",
             "matched_by": [
               "record_id",
               "passage_id"
@@ -3577,34 +3504,31 @@
         "failure_reasons": []
       },
       "actual_counts": {
-        "primary_evidence": 2,
+        "primary_evidence": 1,
         "secondary_evidence": 5,
-        "review_materials": 2,
-        "total_evidence": 9,
-        "citations": 2
+        "review_materials": 1,
+        "total_evidence": 7,
+        "citations": 1
       },
       "actual_record_ids": {
         "primary_evidence": [
-          "safe:main_passages:ZJSHL-CH-003-P-0031",
-          "safe:main_passages:ZJSHL-CH-004-P-0130"
+          "safe:main_passages:ZJSHL-CH-003-P-0031"
         ],
         "secondary_evidence": [
+          "full:passages:ZJSHL-CH-003-P-0031",
+          "safe:main_passages:ZJSHL-CH-004-P-0130",
           "full:annotations:ZJSHL-CH-003-P-0032",
           "full:annotations:ZJSHL-CH-003-P-0036",
-          "safe:main_passages:ZJSHL-CH-004-P-0227",
-          "safe:main_passages:ZJSHL-CH-004-P-0260",
-          "safe:main_passages:ZJSHL-CH-004-P-0218"
+          "safe:main_passages:ZJSHL-CH-004-P-0227"
         ],
         "review_materials": [
-          "full:passages:ZJSHL-CH-003-P-0031",
           "full:passages:ZJSHL-CH-003-P-0032"
         ],
         "citations": [
-          "safe:main_passages:ZJSHL-CH-003-P-0031",
-          "safe:main_passages:ZJSHL-CH-004-P-0130"
+          "safe:main_passages:ZJSHL-CH-003-P-0031"
         ]
       },
-      "answer_text_excerpt": "根据主依据，直接相关的主条如下： 1. 阴阳相搏，名曰动。阳动则汗出，阴动则发热。形冷、恶寒者，此三焦伤也。 2. 风伤阳，故脉浮虚；寒伤阴，故脉牢坚；蓄积于内者，谓之水蓄，故脉沉潜；支散于外者，谓之支饮，故脉急弦。动则阴阳相搏，相搏则痛生焉。数为阳邪气胜，阳胜则热烦焉。",
+      "answer_text_excerpt": "从现有解释句看，“阴阳相搏”可先参考“阴阳相搏，名曰动。”来理解。 直接依据：阴阳相搏，名曰动。 补充说明：阴阳相搏，名曰动。",
       "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
       "failed_checks": []
@@ -3615,14 +3539,14 @@
       "question_type": "meaning_explanation",
       "question_type_label": "含义解释类",
       "expected_mode": "weak_with_review_notice",
-      "actual_mode": "weak_with_review_notice",
-      "mode_match": true,
+      "actual_mode": "strong",
+      "mode_match": false,
       "citation_check_required": true,
       "citations_present": true,
       "primary_empty_check": {
         "required": true,
-        "observed_count": 0,
-        "passed": true
+        "observed_count": 1,
+        "passed": false
       },
       "zero_evidence_check": {
         "required": false,
@@ -3631,102 +3555,64 @@
       },
       "zero_citations_check": {
         "required": false,
-        "observed_count": 5,
+        "observed_count": 1,
         "passed": true
       },
       "gold_citation_check": {
         "required": true,
         "passed": true,
-        "matched_count": 5,
+        "matched_count": 1,
         "matched_citations": [
           {
             "citation_id": "c1",
-            "record_id": "full:annotations:ZJSHL-CH-003-P-0041",
-            "passage_id": "ZJSHL-CH-003-P-0041",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c2",
-            "record_id": "safe:main_passages:ZJSHL-CH-003-P-0039",
-            "passage_id": "ZJSHL-CH-003-P-0039",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c3",
-            "record_id": "safe:main_passages:ZJSHL-CH-023-P-0018",
-            "passage_id": "ZJSHL-CH-023-P-0018",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c4",
-            "record_id": "safe:main_passages:ZJSHL-CH-004-P-0260",
-            "passage_id": "ZJSHL-CH-004-P-0260",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c5",
             "record_id": "full:passages:ZJSHL-CH-003-P-0041",
             "passage_id": "ZJSHL-CH-003-P-0041",
             "matched_by": [
-              "record_id",
               "passage_id"
             ],
-            "citation_role": "review"
+            "citation_role": "primary"
           }
         ]
       },
       "unsupported_assertion_check": {
         "required": true,
-        "passed": true,
+        "passed": false,
         "rule_version": "minimal_v1",
-        "failure_reasons": []
+        "failure_reasons": [
+          "expected_weak_but_actual_mode_strong",
+          "primary_evidence_should_be_empty"
+        ]
       },
       "actual_counts": {
-        "primary_evidence": 0,
+        "primary_evidence": 1,
         "secondary_evidence": 4,
-        "review_materials": 1,
+        "review_materials": 0,
         "total_evidence": 5,
-        "citations": 5
+        "citations": 1
       },
       "actual_record_ids": {
-        "primary_evidence": [],
+        "primary_evidence": [
+          "full:passages:ZJSHL-CH-003-P-0041"
+        ],
         "secondary_evidence": [
           "full:annotations:ZJSHL-CH-003-P-0041",
           "safe:main_passages:ZJSHL-CH-003-P-0039",
           "safe:main_passages:ZJSHL-CH-023-P-0018",
           "safe:main_passages:ZJSHL-CH-004-P-0260"
         ],
-        "review_materials": [
-          "full:passages:ZJSHL-CH-003-P-0041"
-        ],
+        "review_materials": [],
         "citations": [
-          "full:annotations:ZJSHL-CH-003-P-0041",
-          "safe:main_passages:ZJSHL-CH-003-P-0039",
-          "safe:main_passages:ZJSHL-CH-023-P-0018",
-          "safe:main_passages:ZJSHL-CH-004-P-0260",
           "full:passages:ZJSHL-CH-003-P-0041"
         ]
       },
-      "answer_text_excerpt": "正文强证据不足，以下内容需核对，暂不能视为确定答案。 当前可先参考辅助材料：弦则为减，减则为寒。寒者谓阳气少也。大则为芤，芤则为虚，虚者谓血少不足也。熊校记：芤则为虚者，汪本虚下增虚字。按注义总释弦减寒气少，大芤虚为血少，非单言寒少气、虚少血也。元版上句误重寒字，谓血少不足也。旧钞与汪本同。按少即不足，于义为复，少.....",
-      "review_notice": "正文强证据不足，以下内容需核对，不应视为确定答案。",
+      "answer_text_excerpt": "从现有解释句看，“弦则为减减则为寒”可先参考“弦则为减，减则为寒。”来理解。 直接依据：弦则为减，减则为寒。",
+      "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
-      "failed_checks": []
+      "failed_checks": [
+        "mode_match",
+        "primary_empty_check",
+        "unsupported_assertion_check"
+      ]
     },
     {
       "question_id": "eval_seed_q040",
@@ -3734,14 +3620,14 @@
       "question_type": "meaning_explanation",
       "question_type_label": "含义解释类",
       "expected_mode": "weak_with_review_notice",
-      "actual_mode": "weak_with_review_notice",
-      "mode_match": true,
+      "actual_mode": "strong",
+      "mode_match": false,
       "citation_check_required": true,
       "citations_present": true,
       "primary_empty_check": {
         "required": true,
-        "observed_count": 0,
-        "passed": true
+        "observed_count": 1,
+        "passed": false
       },
       "zero_evidence_check": {
         "required": false,
@@ -3750,91 +3636,45 @@
       },
       "zero_citations_check": {
         "required": false,
-        "observed_count": 6,
+        "observed_count": 1,
         "passed": true
       },
       "gold_citation_check": {
         "required": true,
         "passed": true,
-        "matched_count": 6,
+        "matched_count": 1,
         "matched_citations": [
           {
             "citation_id": "c1",
-            "record_id": "full:annotations:ZJSHL-CH-003-P-0043",
-            "passage_id": "ZJSHL-CH-003-P-0043",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c2",
-            "record_id": "safe:main_passages:ZJSHL-CH-003-P-0099",
-            "passage_id": "ZJSHL-CH-003-P-0099",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c3",
-            "record_id": "safe:main_passages:ZJSHL-CH-003-P-0037",
-            "passage_id": "ZJSHL-CH-003-P-0037",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c4",
-            "record_id": "safe:main_passages:ZJSHL-CH-003-P-0035",
-            "passage_id": "ZJSHL-CH-003-P-0035",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c5",
-            "record_id": "safe:main_passages:ZJSHL-CH-004-P-0274",
-            "passage_id": "ZJSHL-CH-004-P-0274",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c6",
             "record_id": "full:passages:ZJSHL-CH-003-P-0043",
             "passage_id": "ZJSHL-CH-003-P-0043",
             "matched_by": [
-              "record_id",
               "passage_id"
             ],
-            "citation_role": "review"
+            "citation_role": "primary"
           }
         ]
       },
       "unsupported_assertion_check": {
         "required": true,
-        "passed": true,
+        "passed": false,
         "rule_version": "minimal_v1",
-        "failure_reasons": []
+        "failure_reasons": [
+          "expected_weak_but_actual_mode_strong",
+          "primary_evidence_should_be_empty"
+        ]
       },
       "actual_counts": {
-        "primary_evidence": 0,
+        "primary_evidence": 1,
         "secondary_evidence": 5,
-        "review_materials": 1,
+        "review_materials": 0,
         "total_evidence": 6,
-        "citations": 6
+        "citations": 1
       },
       "actual_record_ids": {
-        "primary_evidence": [],
+        "primary_evidence": [
+          "full:passages:ZJSHL-CH-003-P-0043"
+        ],
         "secondary_evidence": [
           "full:annotations:ZJSHL-CH-003-P-0043",
           "safe:main_passages:ZJSHL-CH-003-P-0099",
@@ -3842,22 +3682,19 @@
           "safe:main_passages:ZJSHL-CH-003-P-0035",
           "safe:main_passages:ZJSHL-CH-004-P-0274"
         ],
-        "review_materials": [
-          "full:passages:ZJSHL-CH-003-P-0043"
-        ],
+        "review_materials": [],
         "citations": [
-          "full:annotations:ZJSHL-CH-003-P-0043",
-          "safe:main_passages:ZJSHL-CH-003-P-0099",
-          "safe:main_passages:ZJSHL-CH-003-P-0037",
-          "safe:main_passages:ZJSHL-CH-003-P-0035",
-          "safe:main_passages:ZJSHL-CH-004-P-0274",
           "full:passages:ZJSHL-CH-003-P-0043"
         ]
       },
-      "answer_text_excerpt": "正文强证据不足，以下内容需核对，暂不能视为确定答案。 当前可先参考辅助材料：浮为阳，紧为阴，芤为虚。阴阳争则战，邪气将出，邪与正争，其人本虚，是以发战。正气胜则战，战已复发热而大汗解也。",
-      "review_notice": "正文强证据不足，以下内容需核对，不应视为确定答案。",
+      "answer_text_excerpt": "从现有解释句看，“浮为阳紧为阴”可先参考“浮为阳，紧为阴，芤为虚。”来理解。 直接依据：浮为阳，紧为阴，芤为虚。",
+      "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
-      "failed_checks": []
+      "failed_checks": [
+        "mode_match",
+        "primary_empty_check",
+        "unsupported_assertion_check"
+      ]
     },
     {
       "question_id": "eval_seed_q041",
@@ -3865,14 +3702,14 @@
       "question_type": "meaning_explanation",
       "question_type_label": "含义解释类",
       "expected_mode": "weak_with_review_notice",
-      "actual_mode": "weak_with_review_notice",
-      "mode_match": true,
+      "actual_mode": "strong",
+      "mode_match": false,
       "citation_check_required": true,
       "citations_present": true,
       "primary_empty_check": {
         "required": true,
-        "observed_count": 0,
-        "passed": true
+        "observed_count": 1,
+        "passed": false
       },
       "zero_evidence_check": {
         "required": false,
@@ -3881,102 +3718,64 @@
       },
       "zero_citations_check": {
         "required": false,
-        "observed_count": 5,
+        "observed_count": 1,
         "passed": true
       },
       "gold_citation_check": {
         "required": true,
         "passed": true,
-        "matched_count": 5,
+        "matched_count": 1,
         "matched_citations": [
           {
             "citation_id": "c1",
-            "record_id": "full:annotations:ZJSHL-CH-003-P-0047",
-            "passage_id": "ZJSHL-CH-003-P-0047",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c2",
-            "record_id": "safe:main_passages:ZJSHL-CH-003-P-0031",
-            "passage_id": "ZJSHL-CH-003-P-0031",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c3",
-            "record_id": "safe:main_passages:ZJSHL-CH-003-P-0088",
-            "passage_id": "ZJSHL-CH-003-P-0088",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c4",
-            "record_id": "safe:main_passages:ZJSHL-CH-023-P-0039",
-            "passage_id": "ZJSHL-CH-023-P-0039",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c5",
             "record_id": "full:passages:ZJSHL-CH-003-P-0047",
             "passage_id": "ZJSHL-CH-003-P-0047",
             "matched_by": [
-              "record_id",
               "passage_id"
             ],
-            "citation_role": "review"
+            "citation_role": "primary"
           }
         ]
       },
       "unsupported_assertion_check": {
         "required": true,
-        "passed": true,
+        "passed": false,
         "rule_version": "minimal_v1",
-        "failure_reasons": []
+        "failure_reasons": [
+          "expected_weak_but_actual_mode_strong",
+          "primary_evidence_should_be_empty"
+        ]
       },
       "actual_counts": {
-        "primary_evidence": 0,
+        "primary_evidence": 1,
         "secondary_evidence": 4,
-        "review_materials": 1,
+        "review_materials": 0,
         "total_evidence": 5,
-        "citations": 5
+        "citations": 1
       },
       "actual_record_ids": {
-        "primary_evidence": [],
+        "primary_evidence": [
+          "full:passages:ZJSHL-CH-003-P-0047"
+        ],
         "secondary_evidence": [
           "full:annotations:ZJSHL-CH-003-P-0047",
           "safe:main_passages:ZJSHL-CH-003-P-0031",
           "safe:main_passages:ZJSHL-CH-003-P-0088",
           "safe:main_passages:ZJSHL-CH-023-P-0039"
         ],
-        "review_materials": [
-          "full:passages:ZJSHL-CH-003-P-0047"
-        ],
+        "review_materials": [],
         "citations": [
-          "full:annotations:ZJSHL-CH-003-P-0047",
-          "safe:main_passages:ZJSHL-CH-003-P-0031",
-          "safe:main_passages:ZJSHL-CH-003-P-0088",
-          "safe:main_passages:ZJSHL-CH-023-P-0039",
           "full:passages:ZJSHL-CH-003-P-0047"
         ]
       },
-      "answer_text_excerpt": "正文强证据不足，以下内容需核对，暂不能视为确定答案。 当前可先参考辅助材料：阳胜则热，阴胜则寒，阴阳争则战。脉大而浮数皆阳也，阳气全胜，阴无所争，何战之有。",
-      "review_notice": "正文强证据不足，以下内容需核对，不应视为确定答案。",
+      "answer_text_excerpt": "从现有解释句看，“阳胜则热阴胜则寒”可先参考“阳胜则热，阴胜则寒，阴阳争则战。”来理解。 直接依据：阳胜则热，阴胜则寒，阴阳争则战。",
+      "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
       "refuse_reason": null,
-      "failed_checks": []
+      "failed_checks": [
+        "mode_match",
+        "primary_empty_check",
+        "unsupported_assertion_check"
+      ]
     },
     {
       "question_id": "eval_seed_q042",
@@ -4098,18 +3897,18 @@
       },
       "zero_evidence_check": {
         "required": false,
-        "observed_count": 8,
+        "observed_count": 7,
         "passed": true
       },
       "zero_citations_check": {
         "required": false,
-        "observed_count": 8,
+        "observed_count": 7,
         "passed": true
       },
       "gold_citation_check": {
         "required": true,
         "passed": true,
-        "matched_count": 8,
+        "matched_count": 4,
         "matched_citations": [
           {
             "citation_id": "c1",
@@ -4132,29 +3931,9 @@
             "citation_role": "secondary"
           },
           {
-            "citation_id": "c3",
-            "record_id": "safe:main_passages:ZJSHL-CH-014-P-0078",
-            "passage_id": "ZJSHL-CH-014-P-0078",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
             "citation_id": "c4",
             "record_id": "safe:main_passages:ZJSHL-CH-013-P-0002",
             "passage_id": "ZJSHL-CH-013-P-0002",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c5",
-            "record_id": "safe:main_passages:ZJSHL-CH-014-P-0072",
-            "passage_id": "ZJSHL-CH-014-P-0072",
             "matched_by": [
               "record_id",
               "passage_id"
@@ -4166,27 +3945,6 @@
             "record_id": "full:passages:ZJSHL-CH-013-P-0008",
             "passage_id": "ZJSHL-CH-013-P-0008",
             "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "review"
-          },
-          {
-            "citation_id": "c7",
-            "record_id": "full:passages:ZJSHL-CH-013-P-0006",
-            "passage_id": "ZJSHL-CH-013-P-0006",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "review"
-          },
-          {
-            "citation_id": "c8",
-            "record_id": "full:ambiguous_passages:ZJSHL-CH-013-P-0006",
-            "passage_id": "ZJSHL-CH-013-P-0006",
-            "matched_by": [
-              "record_id",
               "passage_id"
             ],
             "citation_role": "review"
@@ -4202,9 +3960,9 @@
       "actual_counts": {
         "primary_evidence": 0,
         "secondary_evidence": 5,
-        "review_materials": 3,
-        "total_evidence": 8,
-        "citations": 8
+        "review_materials": 2,
+        "total_evidence": 7,
+        "citations": 7
       },
       "actual_record_ids": {
         "primary_evidence": [],
@@ -4217,8 +3975,7 @@
         ],
         "review_materials": [
           "full:passages:ZJSHL-CH-013-P-0008",
-          "full:passages:ZJSHL-CH-013-P-0006",
-          "full:ambiguous_passages:ZJSHL-CH-013-P-0006"
+          "full:passages:ZJSHL-CH-013-P-0006"
         ],
         "citations": [
           "safe:main_passages:ZJSHL-CH-013-P-0008",
@@ -4227,8 +3984,7 @@
           "safe:main_passages:ZJSHL-CH-013-P-0002",
           "safe:main_passages:ZJSHL-CH-014-P-0072",
           "full:passages:ZJSHL-CH-013-P-0008",
-          "full:passages:ZJSHL-CH-013-P-0006",
-          "full:ambiguous_passages:ZJSHL-CH-013-P-0006"
+          "full:passages:ZJSHL-CH-013-P-0006"
         ]
       },
       "answer_text_excerpt": "这是一个总括性问题，书中谈“太阴病”并非只有一个固定治法，需要分情况看。 当前只能先整理出部分可核对的分支线索： 1. 桂枝汤这一支：若见脉浮者，条文多归到“桂枝汤”这一支。 依据：太阴病脉浮者，可发汗，宜桂枝汤。赵本有「桂枝汤方」详见卷二 分支组织仍不完整，建议继续收窄到某一支再问。",
@@ -4253,18 +4009,18 @@
       },
       "zero_evidence_check": {
         "required": false,
-        "observed_count": 8,
+        "observed_count": 7,
         "passed": true
       },
       "zero_citations_check": {
         "required": false,
-        "observed_count": 8,
+        "observed_count": 7,
         "passed": true
       },
       "gold_citation_check": {
         "required": true,
         "passed": true,
-        "matched_count": 8,
+        "matched_count": 4,
         "matched_citations": [
           {
             "citation_id": "c1",
@@ -4287,61 +4043,19 @@
             "citation_role": "secondary"
           },
           {
-            "citation_id": "c3",
-            "record_id": "safe:main_passages:ZJSHL-CH-006-P-0071",
-            "passage_id": "ZJSHL-CH-006-P-0071",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c4",
-            "record_id": "safe:main_passages:ZJSHL-CH-014-P-0097",
-            "passage_id": "ZJSHL-CH-014-P-0097",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c5",
-            "record_id": "safe:main_passages:ZJSHL-CH-014-P-0047",
-            "passage_id": "ZJSHL-CH-014-P-0047",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
             "citation_id": "c6",
             "record_id": "full:passages:ZJSHL-CH-015-P-0200",
             "passage_id": "ZJSHL-CH-015-P-0200",
             "matched_by": [
-              "record_id",
               "passage_id"
             ],
             "citation_role": "review"
           },
           {
             "citation_id": "c7",
-            "record_id": "full:ambiguous_passages:ZJSHL-CH-015-P-0200",
-            "passage_id": "ZJSHL-CH-015-P-0200",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "review"
-          },
-          {
-            "citation_id": "c8",
             "record_id": "full:passages:ZJSHL-CH-015-P-0198",
             "passage_id": "ZJSHL-CH-015-P-0198",
             "matched_by": [
-              "record_id",
               "passage_id"
             ],
             "citation_role": "review"
@@ -4357,9 +4071,9 @@
       "actual_counts": {
         "primary_evidence": 0,
         "secondary_evidence": 5,
-        "review_materials": 3,
-        "total_evidence": 8,
-        "citations": 8
+        "review_materials": 2,
+        "total_evidence": 7,
+        "citations": 7
       },
       "actual_record_ids": {
         "primary_evidence": [],
@@ -4372,7 +4086,6 @@
         ],
         "review_materials": [
           "full:passages:ZJSHL-CH-015-P-0200",
-          "full:ambiguous_passages:ZJSHL-CH-015-P-0200",
           "full:passages:ZJSHL-CH-015-P-0198"
         ],
         "citations": [
@@ -4382,7 +4095,6 @@
           "safe:main_passages:ZJSHL-CH-014-P-0097",
           "safe:main_passages:ZJSHL-CH-014-P-0047",
           "full:passages:ZJSHL-CH-015-P-0200",
-          "full:ambiguous_passages:ZJSHL-CH-015-P-0200",
           "full:passages:ZJSHL-CH-015-P-0198"
         ]
       },
@@ -4687,9 +4399,9 @@
         "secondary_evidence": [
           "safe:main_passages:ZJSHL-CH-009-P-0318",
           "safe:main_passages:ZJSHL-CH-011-P-0175",
+          "safe:main_passages:ZJSHL-CH-011-P-0179",
           "safe:main_passages:ZJSHL-CH-008-P-0222",
           "safe:main_passages:ZJSHL-CH-008-P-0236",
-          "safe:main_passages:ZJSHL-CH-008-P-0250",
           "safe:main_passages:ZJSHL-CH-007-P-0157"
         ],
         "review_materials": [
@@ -4916,11 +4628,11 @@
           "safe:main_passages:ZJSHL-CH-014-P-0072"
         ],
         "secondary_evidence": [
+          "safe:main_passages:ZJSHL-CH-014-P-0105",
           "safe:main_passages:ZJSHL-CH-014-P-0162",
           "safe:main_passages:ZJSHL-CH-014-P-0093",
           "safe:main_passages:ZJSHL-CH-014-P-0122",
           "safe:main_passages:ZJSHL-CH-014-P-0117",
-          "safe:main_passages:ZJSHL-CH-014-P-0097",
           "safe:main_passages:ZJSHL-CH-014-P-0052"
         ],
         "review_materials": [],
@@ -5046,7 +4758,7 @@
       "gold_citation_check": {
         "required": true,
         "passed": true,
-        "matched_count": 4,
+        "matched_count": 2,
         "matched_citations": [
           {
             "citation_id": "c1",
@@ -5067,26 +4779,6 @@
               "passage_id"
             ],
             "citation_role": "primary"
-          },
-          {
-            "citation_id": "c3",
-            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0098",
-            "passage_id": "ZJSHL-CH-009-P-0098",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c4",
-            "record_id": "safe:main_passages:ZJSHL-CH-008-P-0222",
-            "passage_id": "ZJSHL-CH-008-P-0222",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
           }
         ]
       },
@@ -5109,23 +4801,23 @@
           "safe:main_passages:ZJSHL-CH-009-P-0004"
         ],
         "secondary_evidence": [
-          "safe:main_passages:ZJSHL-CH-009-P-0098",
+          "safe:main_passages:ZJSHL-CH-009-P-0055",
           "safe:main_passages:ZJSHL-CH-008-P-0222"
         ],
         "review_materials": [
           "full:passages:ZJSHL-CH-008-P-0217",
-          "full:passages:ZJSHL-CH-009-P-0098",
+          "full:passages:ZJSHL-CH-009-P-0055",
           "full:passages:ZJSHL-CH-009-P-0004",
           "full:passages:ZJSHL-CH-008-P-0222"
         ],
         "citations": [
           "safe:main_passages:ZJSHL-CH-008-P-0217",
           "safe:main_passages:ZJSHL-CH-009-P-0004",
-          "safe:main_passages:ZJSHL-CH-009-P-0098",
+          "safe:main_passages:ZJSHL-CH-009-P-0055",
           "safe:main_passages:ZJSHL-CH-008-P-0222"
         ]
       },
-      "answer_text_excerpt": "从现有方文与相关条文看，桂枝汤方与葛根汤方在显式组成和相关条文语境上并不相同。 1. 显式加减与药味差异：葛根汤方另去节桂、皮芍药。 2. 条文语境：桂枝汤方相关条文可见“发汗后，不可更行”；葛根汤方相关条文可见“太阳病，项背强几几，反汗出恶风者，桂枝加”。 3. 出处线索：桂枝汤方的方文见“辨太阳病脉证并治法上第五”...",
+      "answer_text_excerpt": "从现有方文与相关条文看，桂枝汤方与葛根汤方在显式组成和相关条文语境上并不相同。 1. 显式加减与药味差异：葛根汤方另去节桂、皮芍药。 2. 条文语境：桂枝汤方相关条文可见“欲解外者，宜”；葛根汤方相关条文可见“太阳病，项背强几几，反汗出恶风者，桂枝加”。 3. 出处线索：桂枝汤方的方文见“辨太阳病脉证并治法上第五”；葛...",
       "review_notice": "以下补充依据与核对材料仅用于比较佐证，不作为主结论。",
       "refuse_reason": null,
       "failed_checks": []
@@ -5270,7 +4962,7 @@
       "gold_citation_check": {
         "required": true,
         "passed": true,
-        "matched_count": 4,
+        "matched_count": 2,
         "matched_citations": [
           {
             "citation_id": "c1",
@@ -5291,26 +4983,6 @@
               "passage_id"
             ],
             "citation_role": "primary"
-          },
-          {
-            "citation_id": "c3",
-            "record_id": "safe:main_passages:ZJSHL-CH-011-P-0005",
-            "passage_id": "ZJSHL-CH-011-P-0005",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c4",
-            "record_id": "safe:main_passages:ZJSHL-CH-015-P-0316",
-            "passage_id": "ZJSHL-CH-015-P-0316",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
           }
         ]
       },
@@ -5382,7 +5054,7 @@
       "gold_citation_check": {
         "required": true,
         "passed": true,
-        "matched_count": 4,
+        "matched_count": 2,
         "matched_citations": [
           {
             "citation_id": "c1",
@@ -5403,26 +5075,6 @@
               "passage_id"
             ],
             "citation_role": "primary"
-          },
-          {
-            "citation_id": "c3",
-            "record_id": "safe:main_passages:ZJSHL-CH-015-P-0326",
-            "passage_id": "ZJSHL-CH-015-P-0326",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c4",
-            "record_id": "safe:main_passages:ZJSHL-CH-024-P-0071",
-            "passage_id": "ZJSHL-CH-024-P-0071",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
           }
         ]
       },
@@ -5494,7 +5146,7 @@
       "gold_citation_check": {
         "required": true,
         "passed": true,
-        "matched_count": 4,
+        "matched_count": 2,
         "matched_citations": [
           {
             "citation_id": "c1",
@@ -5515,26 +5167,6 @@
               "passage_id"
             ],
             "citation_role": "primary"
-          },
-          {
-            "citation_id": "c3",
-            "record_id": "safe:main_passages:ZJSHL-CH-016-P-0014",
-            "passage_id": "ZJSHL-CH-016-P-0014",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c4",
-            "record_id": "safe:main_passages:ZJSHL-CH-011-P-0108",
-            "passage_id": "ZJSHL-CH-011-P-0108",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
           }
         ]
       },
@@ -5606,7 +5238,7 @@
       "gold_citation_check": {
         "required": true,
         "passed": true,
-        "matched_count": 5,
+        "matched_count": 4,
         "matched_citations": [
           {
             "citation_id": "c1",
@@ -5629,31 +5261,19 @@
             "citation_role": "primary"
           },
           {
-            "citation_id": "c3",
-            "record_id": "safe:main_passages:ZJSHL-CH-015-P-0305",
-            "passage_id": "ZJSHL-CH-015-P-0305",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
-          },
-          {
             "citation_id": "c4",
             "record_id": "full:passages:ZJSHL-CH-009-P-0130",
             "passage_id": "ZJSHL-CH-009-P-0130",
             "matched_by": [
-              "record_id",
               "passage_id"
             ],
             "citation_role": "review"
           },
           {
             "citation_id": "c5",
-            "record_id": "full:ambiguous_passages:ZJSHL-CH-009-P-0128",
+            "record_id": "full:passages:ZJSHL-CH-009-P-0128",
             "passage_id": "ZJSHL-CH-009-P-0128",
             "matched_by": [
-              "record_id",
               "passage_id"
             ],
             "citation_role": "review"
@@ -5685,14 +5305,14 @@
           "full:passages:ZJSHL-CH-008-P-0267",
           "full:passages:ZJSHL-CH-015-P-0305",
           "full:passages:ZJSHL-CH-009-P-0130",
-          "full:ambiguous_passages:ZJSHL-CH-009-P-0128"
+          "full:passages:ZJSHL-CH-009-P-0128"
         ],
         "citations": [
           "safe:main_passages:ZJSHL-CH-008-P-0267",
           "safe:main_passages:ZJSHL-CH-009-P-0130",
           "safe:main_passages:ZJSHL-CH-015-P-0305",
           "full:passages:ZJSHL-CH-009-P-0130",
-          "full:ambiguous_passages:ZJSHL-CH-009-P-0128"
+          "full:passages:ZJSHL-CH-009-P-0128"
         ]
       },
       "answer_text_excerpt": "从现有方文与相关条文看，四逆汤方与茯苓四逆汤方在显式组成和相关条文语境上并不相同。 1. 条文语境：四逆汤方相关条文可见“下利清谷，里寒外热，汗出而厥者，通脉”；茯苓四逆汤方核对材料可见“发汗若下之，病仍不解，烦躁者”。 2. 出处线索：四逆汤方的方文见“辨太阳病脉证并治法上第五”；茯苓四逆汤方的方文见“辨太阳病脉证并...",
@@ -5717,18 +5337,18 @@
       },
       "zero_evidence_check": {
         "required": false,
-        "observed_count": 8,
+        "observed_count": 6,
         "passed": true
       },
       "zero_citations_check": {
         "required": false,
-        "observed_count": 4,
+        "observed_count": 3,
         "passed": true
       },
       "gold_citation_check": {
         "required": true,
         "passed": true,
-        "matched_count": 4,
+        "matched_count": 3,
         "matched_citations": [
           {
             "citation_id": "c1",
@@ -5759,16 +5379,6 @@
               "passage_id"
             ],
             "citation_role": "secondary"
-          },
-          {
-            "citation_id": "c4",
-            "record_id": "safe:main_passages:ZJSHL-CH-008-P-0256",
-            "passage_id": "ZJSHL-CH-008-P-0256",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
           }
         ]
       },
@@ -5780,10 +5390,10 @@
       },
       "actual_counts": {
         "primary_evidence": 2,
-        "secondary_evidence": 2,
-        "review_materials": 4,
-        "total_evidence": 8,
-        "citations": 4
+        "secondary_evidence": 1,
+        "review_materials": 3,
+        "total_evidence": 6,
+        "citations": 3
       },
       "actual_record_ids": {
         "primary_evidence": [
@@ -5791,19 +5401,16 @@
           "safe:main_passages:ZJSHL-CH-008-P-0261"
         ],
         "secondary_evidence": [
-          "safe:main_passages:ZJSHL-CH-008-P-0256",
           "safe:main_passages:ZJSHL-CH-008-P-0256"
         ],
         "review_materials": [
           "full:passages:ZJSHL-CH-008-P-0258",
           "full:passages:ZJSHL-CH-008-P-0256",
-          "full:passages:ZJSHL-CH-008-P-0261",
-          "full:passages:ZJSHL-CH-008-P-0256"
+          "full:passages:ZJSHL-CH-008-P-0261"
         ],
         "citations": [
           "safe:main_passages:ZJSHL-CH-008-P-0258",
           "safe:main_passages:ZJSHL-CH-008-P-0261",
-          "safe:main_passages:ZJSHL-CH-008-P-0256",
           "safe:main_passages:ZJSHL-CH-008-P-0256"
         ]
       },
@@ -5840,7 +5447,7 @@
       "gold_citation_check": {
         "required": true,
         "passed": true,
-        "matched_count": 4,
+        "matched_count": 3,
         "matched_citations": [
           {
             "citation_id": "c1",
@@ -5861,16 +5468,6 @@
               "passage_id"
             ],
             "citation_role": "primary"
-          },
-          {
-            "citation_id": "c3",
-            "record_id": "safe:main_passages:ZJSHL-CH-011-P-0101",
-            "passage_id": "ZJSHL-CH-011-P-0101",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
           },
           {
             "citation_id": "c4",
@@ -5979,17 +5576,15 @@
             "record_id": "full:passages:ZJSHL-CH-010-P-0068",
             "passage_id": "ZJSHL-CH-010-P-0068",
             "matched_by": [
-              "record_id",
               "passage_id"
             ],
             "citation_role": "review"
           },
           {
             "citation_id": "c4",
-            "record_id": "full:ambiguous_passages:ZJSHL-CH-010-P-0066",
+            "record_id": "full:passages:ZJSHL-CH-010-P-0066",
             "passage_id": "ZJSHL-CH-010-P-0066",
             "matched_by": [
-              "record_id",
               "passage_id"
             ],
             "citation_role": "review"
@@ -5999,17 +5594,15 @@
             "record_id": "full:passages:ZJSHL-CH-027-P-0009",
             "passage_id": "ZJSHL-CH-027-P-0009",
             "matched_by": [
-              "record_id",
               "passage_id"
             ],
             "citation_role": "review"
           },
           {
             "citation_id": "c6",
-            "record_id": "full:ambiguous_passages:ZJSHL-CH-010-P-0095",
+            "record_id": "full:passages:ZJSHL-CH-010-P-0095",
             "passage_id": "ZJSHL-CH-010-P-0095",
             "matched_by": [
-              "record_id",
               "passage_id"
             ],
             "citation_role": "review"
@@ -6037,17 +5630,17 @@
         "secondary_evidence": [],
         "review_materials": [
           "full:passages:ZJSHL-CH-010-P-0068",
-          "full:ambiguous_passages:ZJSHL-CH-010-P-0066",
+          "full:passages:ZJSHL-CH-010-P-0066",
           "full:passages:ZJSHL-CH-027-P-0009",
-          "full:ambiguous_passages:ZJSHL-CH-010-P-0095"
+          "full:passages:ZJSHL-CH-010-P-0095"
         ],
         "citations": [
           "safe:main_passages:ZJSHL-CH-010-P-0068",
           "safe:main_passages:ZJSHL-CH-027-P-0009",
           "full:passages:ZJSHL-CH-010-P-0068",
-          "full:ambiguous_passages:ZJSHL-CH-010-P-0066",
+          "full:passages:ZJSHL-CH-010-P-0066",
           "full:passages:ZJSHL-CH-027-P-0009",
-          "full:ambiguous_passages:ZJSHL-CH-010-P-0095"
+          "full:passages:ZJSHL-CH-010-P-0095"
         ]
       },
       "answer_text_excerpt": "从现有方文与相关条文看，半夏泻心汤方与甘草泻心汤方在显式组成和相关条文语境上并不相同。 1. 条文语境：半夏泻心汤方核对材料可见“但满而不痛者，此为痞，柴胡不中与之，宜”；甘草泻心汤方核对材料可见“医见心下痞，谓病不尽，复下之，其痞益甚，此非结热，但以胃中虚，客气上逆，故使硬也”。 2. 出处线索：半夏泻心汤方的方文见...",
@@ -6083,7 +5676,7 @@
       "gold_citation_check": {
         "required": true,
         "passed": true,
-        "matched_count": 4,
+        "matched_count": 3,
         "matched_citations": [
           {
             "citation_id": "c1",
@@ -6104,16 +5697,6 @@
               "passage_id"
             ],
             "citation_role": "primary"
-          },
-          {
-            "citation_id": "c3",
-            "record_id": "safe:main_passages:ZJSHL-CH-025-P-0012",
-            "passage_id": "ZJSHL-CH-025-P-0012",
-            "matched_by": [
-              "record_id",
-              "passage_id"
-            ],
-            "citation_role": "secondary"
           },
           {
             "citation_id": "c4",
@@ -6146,23 +5729,23 @@
           "safe:main_passages:ZJSHL-CH-025-P-0012"
         ],
         "secondary_evidence": [
-          "safe:main_passages:ZJSHL-CH-025-P-0012",
+          "safe:main_passages:ZJSHL-CH-010-P-0132",
           "safe:main_passages:ZJSHL-CH-011-P-0104"
         ],
         "review_materials": [
           "full:passages:ZJSHL-CH-010-P-0165",
-          "full:passages:ZJSHL-CH-025-P-0012",
+          "full:passages:ZJSHL-CH-010-P-0132",
           "full:passages:ZJSHL-CH-025-P-0012",
           "full:passages:ZJSHL-CH-011-P-0104"
         ],
         "citations": [
           "safe:main_passages:ZJSHL-CH-010-P-0165",
           "safe:main_passages:ZJSHL-CH-025-P-0012",
-          "safe:main_passages:ZJSHL-CH-025-P-0012",
+          "safe:main_passages:ZJSHL-CH-010-P-0132",
           "safe:main_passages:ZJSHL-CH-011-P-0104"
         ]
       },
-      "answer_text_excerpt": "从现有方文与相关条文看，白虎汤方与白虎加人参汤方在显式组成和相关条文语境上并不相同。 1. 显式加减与药味差异：白虎加人参汤方明写加人参。 2. 条文语境：白虎汤方相关条文可见“白虎加人参汤方：于”；白虎加人参汤方相关条文可见“若渴欲饮水，口乾舌燥者”。 3. 出处线索：白虎汤方的方文见“辨太阳病脉证并治法第七”；白虎...",
+      "answer_text_excerpt": "从现有方文与相关条文看，白虎汤方与白虎加人参汤方在显式组成和相关条文语境上并不相同。 1. 显式加减与药味差异：白虎加人参汤方明写加人参。 2. 条文语境：白虎汤方相关条文可见“与”；白虎加人参汤方相关条文可见“若渴欲饮水，口乾舌燥者”。 3. 出处线索：白虎汤方的方文见“辨太阳病脉证并治法第七”；白虎加人参汤方的方文...",
       "review_notice": "以下补充依据与核对材料仅用于比较佐证，不作为主结论。",
       "refuse_reason": null,
       "failed_checks": []
@@ -6217,7 +5800,7 @@
         "review_materials": [],
         "citations": []
       },
-      "answer_text_excerpt": "当前未检索到足以支撑回答的依据，暂不提供答案。",
+      "answer_text_excerpt": "目前还没有检索到足以支撑回答的书内依据，所以这里先不硬答。可以改问更具体的条文、方名，或某一句话在书里是什么意思。",
       "review_notice": null,
       "refuse_reason": "未检索到足以支撑回答的主证据、辅助证据或可供核对的风险材料。",
       "failed_checks": []
@@ -6272,7 +5855,7 @@
         "review_materials": [],
         "citations": []
       },
-      "answer_text_excerpt": "当前未检索到足以支撑回答的依据，暂不提供答案。",
+      "answer_text_excerpt": "目前还没有检索到足以支撑回答的书内依据，所以这里先不硬答。可以改问更具体的条文、方名，或某一句话在书里是什么意思。",
       "review_notice": null,
       "refuse_reason": "未检索到足以支撑回答的主证据、辅助证据或可供核对的风险材料。",
       "failed_checks": []
@@ -6327,7 +5910,7 @@
         "review_materials": [],
         "citations": []
       },
-      "answer_text_excerpt": "当前未检索到足以支撑回答的依据，暂不提供答案。",
+      "answer_text_excerpt": "目前还没有检索到足以支撑回答的书内依据，所以这里先不硬答。可以改问更具体的条文、方名，或某一句话在书里是什么意思。",
       "review_notice": null,
       "refuse_reason": "未检索到足以支撑回答的主证据、辅助证据或可供核对的风险材料。",
       "failed_checks": []
@@ -6382,7 +5965,7 @@
         "review_materials": [],
         "citations": []
       },
-      "answer_text_excerpt": "当前未检索到足以支撑回答的依据，暂不提供答案。",
+      "answer_text_excerpt": "目前还没有检索到足以支撑回答的书内依据，所以这里先不硬答。可以改问更具体的条文、方名，或某一句话在书里是什么意思。",
       "review_notice": null,
       "refuse_reason": "未检索到足以支撑回答的主证据、辅助证据或可供核对的风险材料。",
       "failed_checks": []
@@ -6437,7 +6020,7 @@
         "review_materials": [],
         "citations": []
       },
-      "answer_text_excerpt": "当前未检索到足以支撑回答的依据，暂不提供答案。",
+      "answer_text_excerpt": "目前还没有检索到足以支撑回答的书内依据，所以这里先不硬答。可以改问更具体的条文、方名，或某一句话在书里是什么意思。",
       "review_notice": null,
       "refuse_reason": "未检索到足以支撑回答的主证据、辅助证据或可供核对的风险材料。",
       "failed_checks": []
@@ -6492,7 +6075,7 @@
         "review_materials": [],
         "citations": []
       },
-      "answer_text_excerpt": "当前无法基于稳定的双实体识别来组织比较答案，暂不直接作答。",
+      "answer_text_excerpt": "当前没能稳定识别出要比较的两个对象，所以这里不直接给比较结论。请明确写出两个方名，或先分别追问其中一个方的条文、组成或语境。",
       "review_notice": null,
       "refuse_reason": "当前只支持基于条文证据整理“区别 / 不同 / 异同 / 多了什么 / 少了什么”这类比较，不支持优劣判断。",
       "failed_checks": []
@@ -6547,7 +6130,7 @@
         "review_materials": [],
         "citations": []
       },
-      "answer_text_excerpt": "当前无法基于稳定的双实体识别来组织比较答案，暂不直接作答。",
+      "answer_text_excerpt": "当前没能稳定识别出要比较的两个对象，所以这里不直接给比较结论。请明确写出两个方名，或先分别追问其中一个方的条文、组成或语境。",
       "review_notice": null,
       "refuse_reason": "当前只支持基于条文证据整理“区别 / 不同 / 异同 / 多了什么 / 少了什么”这类比较，不支持优劣判断。",
       "failed_checks": []
@@ -6602,7 +6185,7 @@
         "review_materials": [],
         "citations": []
       },
-      "answer_text_excerpt": "当前无法基于稳定的双实体识别来组织比较答案，暂不直接作答。",
+      "answer_text_excerpt": "当前没能稳定识别出要比较的两个对象，所以这里不直接给比较结论。请明确写出两个方名，或先分别追问其中一个方的条文、组成或语境。",
       "review_notice": null,
       "refuse_reason": "当前只支持基于条文证据整理“区别 / 不同 / 异同 / 多了什么 / 少了什么”这类比较，不支持优劣判断。",
       "failed_checks": []
@@ -6657,7 +6240,7 @@
         "review_materials": [],
         "citations": []
       },
-      "answer_text_excerpt": "当前无法基于稳定的双实体识别来组织比较答案，暂不直接作答。",
+      "answer_text_excerpt": "当前没能稳定识别出要比较的两个对象，所以这里不直接给比较结论。请明确写出两个方名，或先分别追问其中一个方的条文、组成或语境。",
       "review_notice": null,
       "refuse_reason": "当前只支持基于条文证据整理“区别 / 不同 / 异同 / 多了什么 / 少了什么”这类比较，不支持优劣判断。",
       "failed_checks": []
@@ -6712,9 +6295,9 @@
         "review_materials": [],
         "citations": []
       },
-      "answer_text_excerpt": "当前未检索到足以支撑回答的依据，暂不提供答案。",
+      "answer_text_excerpt": "这个问题超出了《伤寒论》单书研读支持范围，所以这里不直接回答。可以改问书中的具体条文、方名，或某一句话在书里是什么意思。",
       "review_notice": null,
-      "refuse_reason": "未检索到足以支撑回答的主证据、辅助证据或可供核对的风险材料。",
+      "refuse_reason": "个人诊疗、服药或处方建议超出《伤寒论》研读支持边界。",
       "failed_checks": []
     },
     {
@@ -6767,9 +6350,9 @@
         "review_materials": [],
         "citations": []
       },
-      "answer_text_excerpt": "当前未检索到足以支撑回答的依据，暂不提供答案。",
+      "answer_text_excerpt": "这个问题超出了《伤寒论》单书研读支持范围，所以这里不直接回答。可以改问书中的具体条文、方名，或某一句话在书里是什么意思。",
       "review_notice": null,
-      "refuse_reason": "未检索到足以支撑回答的主证据、辅助证据或可供核对的风险材料。",
+      "refuse_reason": "个人诊疗、服药或处方建议超出《伤寒论》研读支持边界。",
       "failed_checks": []
     },
     {
@@ -6822,7 +6405,7 @@
         "review_materials": [],
         "citations": []
       },
-      "answer_text_excerpt": "当前无法基于稳定的双实体识别来组织比较答案，暂不直接作答。",
+      "answer_text_excerpt": "当前没能稳定识别出要比较的两个对象，所以这里不直接给比较结论。请明确写出两个方名，或先分别追问其中一个方的条文、组成或语境。",
       "review_notice": null,
       "refuse_reason": "当前只支持基于条文证据整理“区别 / 不同 / 异同 / 多了什么 / 少了什么”这类比较，不支持优劣判断。",
       "failed_checks": []
