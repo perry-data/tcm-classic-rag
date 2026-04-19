@@ -371,6 +371,7 @@ def log_answer_diagnostics(
 ) -> None:
     debug = dict(llm_debug or {})
     fallback_reason = debug.get("fallback_reason") or debug.get("skipped_reason")
+    evidence_pack_counts = debug.get("evidence_pack_counts") or {}
     request_id = current_trace().request_id if current_trace() is not None else "n/a"
     log(
         "[api:answer] "
@@ -384,6 +385,8 @@ def log_answer_diagnostics(
         f"llm_model={json_dumps(debug.get('model') or 'unknown')} "
         f"fallback_used={bool(debug.get('fallback_used'))} "
         f"fallback_reason={json_dumps(fallback_reason)} "
+        f"evidence_pack_counts={json_dumps(evidence_pack_counts)} "
+        f"context_padded_secondary_count={debug.get('context_padded_secondary_count') or 0} "
         f"query={json_dumps(query)}"
     )
 

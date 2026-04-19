@@ -45,8 +45,7 @@ from backend.retrieval.hybrid import (
     json_dumps,
     log,
 )
-from backend.retrieval.minimal import compact_text, extract_title_anchor
-from backend.retrieval.minimal import extract_focus_text
+from backend.retrieval.minimal import build_query_terms, compact_text, extract_focus_text, extract_title_anchor
 
 
 DEFAULT_ANSWER_EXAMPLES_OUT = "artifacts/hybrid_answer_examples.json"
@@ -524,6 +523,24 @@ DEFINITION_PRIORITY_EXPLANATION_MARKERS = (
     "可见",
 )
 QUERY_TRAILING_PUNCTUATION = "？?！!。；;，,：:"
+MEANING_CONTEXT_SEED_LIMIT = 5
+MEANING_CONTEXT_TOTAL_LIMIT = 6
+MEANING_LLM_SECONDARY_LIMIT = 5
+MEANING_CONTEXT_TERM_STOPWORDS = {
+    "这句话",
+    "这段话",
+    "什么意思",
+    "是什么意思",
+    "怎么理解",
+    "如何理解",
+    "为什么",
+    "为何",
+    "提醒什么",
+    "含义",
+    "何谓",
+    "何解",
+    "指什么",
+}
 
 
 def resolve_project_path(path_value: str) -> Path:
@@ -956,9 +973,9 @@ class AnswerAssembler:
         min_order = min(order_nums)
         max_order = max(order_nums)
         
-        adj_orders = [min_order - 1, max_order + 1]
+        adj_orders = [("previous", min_order - 1), ("next", max_order + 1)]
         results = []
-        for adj_order in adj_orders:
+        for direction, adj_order in adj_orders:
             adj_row = self.engine.conn.execute(
                 """
                 SELECT p.record_id, p.text as retrieval_text, p.chapter_name, p.chapter_id, p.source_object, p.evidence_level, p.risk_flag 
@@ -969,9 +986,118 @@ class AnswerAssembler:
             if adj_row:
                 item = dict(adj_row)
                 item["text_preview"] = item["retrieval_text"]
+                item["context_direction"] = direction
+                item["context_seed_record_id"] = record_id
                 results.append(item)
                 
         return results
+
+    def _extract_meaning_context_terms(
+        self,
+        query_text: str,
+        primary: list[dict[str, Any]],
+        secondary: list[dict[str, Any]],
+    ) -> list[str]:
+        seed_texts = [extract_focus_text(query_text)]
+        for item in (primary + secondary)[:MEANING_CONTEXT_SEED_LIMIT]:
+            seed_texts.extend([item.get("title") or "", item.get("snippet") or ""])
+
+        terms: set[str] = set()
+        for seed_text in seed_texts:
+            compact_seed = compact_text(seed_text)
+            if not compact_seed:
+                continue
+            for term in build_query_terms(compact_seed):
+                if len(term) < 2 or len(term) > 10:
+                    continue
+                if term in MEANING_CONTEXT_TERM_STOPWORDS:
+                    continue
+                if term.isdigit():
+                    continue
+                terms.add(term)
+            for segment in re.split(r"[，。；：:、\s]+", compact_whitespace(seed_text)):
+                compact_segment = compact_text(segment)
+                if 2 <= len(compact_segment) <= 12 and compact_segment not in MEANING_CONTEXT_TERM_STOPWORDS:
+                    terms.add(compact_segment)
+
+        return sorted(terms, key=lambda value: (-len(value), value))
+
+    def _score_meaning_context_row(self, row_text: str, context_terms: list[str]) -> int:
+        compact_row = compact_text(row_text)
+        if not compact_row:
+            return 0
+
+        matched_terms = [term for term in context_terms if term in compact_row]
+        if not matched_terms:
+            return 0
+
+        longest_match = max(len(term) for term in matched_terms)
+        score = longest_match * 4 + len(matched_terms)
+        if any(term in compact_row for term in ("烧针", "发汗", "损阴", "荣阴", "阴虚", "卫阳", "太阳病", "少阴病")):
+            score += 3
+        return score
+
+    def _build_meaning_explanation_context_items(
+        self,
+        query_text: str,
+        primary: list[dict[str, Any]],
+        secondary: list[dict[str, Any]],
+    ) -> list[dict[str, Any]]:
+        if not self._is_meaning_explanation_query(query_text):
+            return []
+
+        context_terms = self._extract_meaning_context_terms(query_text, primary, secondary)
+        if not context_terms:
+            return []
+
+        seen_ids = {item["record_id"] for item in primary + secondary}
+        candidate_map: dict[str, dict[str, Any]] = {}
+        for seed_index, item in enumerate((primary + secondary)[:MEANING_CONTEXT_SEED_LIMIT]):
+            record_id = item.get("record_id")
+            if not record_id:
+                continue
+            for adj_row in self._fetch_adjacent_passages(record_id):
+                adj_record_id = adj_row["record_id"]
+                if adj_record_id in seen_ids:
+                    continue
+                score = self._score_meaning_context_row(adj_row.get("retrieval_text") or "", context_terms)
+                if score <= 0:
+                    continue
+                direction = adj_row.get("context_direction") or ""
+                title_override = "同段前文" if direction == "previous" else "同段后文"
+                candidate = {
+                    "row": adj_row,
+                    "score": score,
+                    "seed_index": seed_index,
+                    "direction_rank": 0 if direction == "previous" else 1,
+                    "title_override": title_override,
+                    "risk_flags": dedupe_strings(self._extract_risk_flags(adj_row) + ["context_padding"]),
+                }
+                existing = candidate_map.get(adj_record_id)
+                if existing is None or (
+                    candidate["score"],
+                    -candidate["seed_index"],
+                    -candidate["direction_rank"],
+                ) > (
+                    existing["score"],
+                    -existing["seed_index"],
+                    -existing["direction_rank"],
+                ):
+                    candidate_map[adj_record_id] = candidate
+
+        ranked_candidates = sorted(
+            candidate_map.values(),
+            key=lambda candidate: (-candidate["score"], candidate["seed_index"], candidate["direction_rank"]),
+        )[:MEANING_CONTEXT_TOTAL_LIMIT]
+        return [
+            self._build_evidence_item(
+                candidate["row"],
+                display_role="secondary",
+                title_override=candidate["title_override"],
+                risk_flags_override=candidate["risk_flags"],
+            )
+            for candidate in ranked_candidates
+        ]
 
     def _assemble_standard(self, query_text: str) -> dict[str, Any]:
         retrieval = self.engine.retrieve(query_text)
@@ -983,19 +1109,10 @@ class AnswerAssembler:
         secondary = [self._build_evidence_item(row, display_role="secondary") for row in retrieval["secondary_evidence"]]
         review = [self._build_evidence_item(row, display_role="review") for row in retrieval["risk_materials"]]
 
-        is_meaning_explanation = any(hint in query_text for hint in MEANING_EXPLANATION_QUERY_HINTS)
-        if is_meaning_explanation:
-            padded_items = []
-            seen_ids = {item["record_id"] for item in primary + secondary}
-            # Limit padding to top 5 items to prevent evidence pack from exploding
-            for item in (primary + secondary)[:5]:
-                adj_rows = self._fetch_adjacent_passages(item["record_id"])
-                for adj_row in adj_rows:
-                    if adj_row["record_id"] not in seen_ids:
-                        adj_row["risk_flag"] = json_dumps(["context_padding"])
-                        padded_items.append(self._build_evidence_item(adj_row, display_role="secondary", title_override="上下文补充"))
-                        seen_ids.add(adj_row["record_id"])
-            secondary.extend(padded_items)
+        is_meaning_explanation = self._is_meaning_explanation_query(query_text)
+        padded_items = self._build_meaning_explanation_context_items(query_text, primary, secondary)
+        if padded_items:
+            secondary = self._merge_evidence_items(secondary, padded_items)
 
         answer_mode = retrieval["mode"]
         answer_retrieval = retrieval
@@ -1014,10 +1131,11 @@ class AnswerAssembler:
             if padded_items and not review and retrieval["primary_evidence"]:
                 answer_mode = "strong"
                 answer_retrieval["mode"] = "strong"
-                # If primary was empty due to demotion but we promote it back, we need to restore primary.
-                # It is easier to just restore it.
                 primary = [self._build_evidence_item(row, display_role="primary") for row in retrieval["primary_evidence"]]
-                secondary = [self._build_evidence_item(row, display_role="secondary") for row in retrieval["secondary_evidence"]] + padded_items
+                secondary = self._merge_evidence_items(
+                    [self._build_evidence_item(row, display_role="secondary") for row in retrieval["secondary_evidence"]],
+                    padded_items,
+                )
 
         answer_text = self._build_answer_text(answer_retrieval, primary, secondary, review)
         review_notice = self._build_review_notice(answer_mode)
@@ -4011,6 +4129,11 @@ class AnswerAssembler:
         elif answer_mode == "refuse":
             generating_detail = "正在生成统一拒答说明。"
         self._emit_progress("generating_answer", generating_detail)
+        if answer_mode != "refuse":
+            secondary = self._merge_evidence_items(
+                secondary,
+                self._build_meaning_explanation_context_items(query_text, primary, secondary),
+            )
         primary, secondary, review = self._normalize_evidence_slots(primary, secondary, review)
         citations = self._normalize_citations(
             citations,
@@ -4099,12 +4222,25 @@ class AnswerAssembler:
             record_metadata("llm_debug", debug)
             return baseline_answer_text
 
-        evidence_pack = self._build_llm_evidence_pack(primary=primary, secondary=secondary, review=review)
+        evidence_pack = self._build_llm_evidence_pack(
+            query_text=query_text,
+            primary=primary,
+            secondary=secondary,
+            review=review,
+        )
         debug["evidence_pack_summary"] = {
             "primary": [item["evidence_id"] for item in evidence_pack["primary"]],
             "secondary": [item["evidence_id"] for item in evidence_pack["secondary"]],
             "review": [item["evidence_id"] for item in evidence_pack["review"]],
         }
+        debug["evidence_pack_counts"] = {
+            "primary": len(evidence_pack["primary"]),
+            "secondary": len(evidence_pack["secondary"]),
+            "review": len(evidence_pack["review"]),
+        }
+        debug["context_padded_secondary_count"] = sum(
+            1 for item in secondary if "context_padding" in (item.get("risk_flags") or [])
+        )
         if not evidence_pack["all_items"]:
             debug["skipped_reason"] = "empty_evidence_pack"
             self._last_llm_debug = debug
@@ -4187,13 +4323,28 @@ class AnswerAssembler:
     def _build_llm_evidence_pack(
         self,
         *,
+        query_text: str,
         primary: list[dict[str, Any]],
         secondary: list[dict[str, Any]],
         review: list[dict[str, Any]],
     ) -> dict[str, Any]:
+        secondary_limit = self._llm_config.max_secondary_items
+        secondary_rows = list(secondary)
+        if self._is_meaning_explanation_query(query_text):
+            context_terms = self._extract_meaning_context_terms(query_text, primary, secondary)
+            secondary_rows = sorted(
+                secondary_rows,
+                key=lambda item: (
+                    "context_padding" not in (item.get("risk_flags") or []),
+                    -self._score_meaning_context_row(item.get("snippet") or item.get("title") or "", context_terms),
+                    -len(compact_whitespace(item.get("snippet"))),
+                ),
+            )
+            secondary_limit = max(secondary_limit, MEANING_LLM_SECONDARY_LIMIT)
+
         grouped_rows = [
             ("primary", primary[: self._llm_config.max_primary_items]),
-            ("secondary", secondary[: self._llm_config.max_secondary_items]),
+            ("secondary", secondary_rows[:secondary_limit]),
             ("review", review[: self._llm_config.max_review_items]),
         ]
         counters = {"value": 1}
@@ -4237,7 +4388,7 @@ class AnswerAssembler:
 
     def _is_meaning_explanation_query(self, query_text: str) -> bool:
         compact_query = compact_whitespace(query_text)
-        return "是什么意思" in compact_query or "什么意思" in compact_query
+        return any(hint in compact_query for hint in MEANING_EXPLANATION_QUERY_HINTS)
 
     def _build_refuse_answer_text(self, summary: str, suggestion: str | None = None) -> str:
         summary_text = compact_whitespace(summary).rstrip("。；;，, ")
