@@ -19,6 +19,9 @@ Thumbs.db
 outputs/
 logs/
 *.log
+artifacts/perf/request_timings.jsonl
+artifacts/route_a_before_results.json
+artifacts/route_a_after_results.json
 
 # Databases / indexes
 data/sqlite/*.sqlite
