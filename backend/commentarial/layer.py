@@ -226,8 +226,31 @@ FOCUS_NOISE_PATTERNS = (
     r"是",
 )
 
-FORMULA_QUERY_RE = re.compile(r"[\u4e00-\u9fff]{1,12}(?:汤方|散方|丸方|饮方|汤|散|丸|饮|方)")
+FORMULA_NAME_PATTERN = r"[\u4e00-\u9fff]{1,16}(?:汤方|散方|丸方|饮方|汤|散|丸|饮)"
+FORMULA_QUERY_RE = re.compile(FORMULA_NAME_PATTERN)
 DISEASE_TOPIC_RE = re.compile(r"[\u4e00-\u9fff]{1,12}(?:病|证)")
+FORMULA_CONTEXT_PATTERNS = (
+    re.compile(rf"(?:^|[，。、；：:（）()\s])(?P<formula>{FORMULA_NAME_PATTERN})(?=主之|主服|方[：:]|证)"),
+    re.compile(rf"论(?P<formula>{FORMULA_NAME_PATTERN})(?=证|的|可以|主)"),
+    re.compile(rf"【方剂】\s*(?P<formula>{FORMULA_NAME_PATTERN})"),
+    re.compile(rf"(?:^|[，。、；：:（）()\s])(?P<formula>{FORMULA_NAME_PATTERN})(?=方[：:])"),
+)
+FORMULA_POLLUTION_TITLE_HINTS = (
+    "附录",
+    "索引",
+    "目录",
+)
+FORMULA_POLLUTION_LEAD_HINTS = (
+    "方剂汉语拼音索引",
+    "方剂索引",
+    "方名索引",
+    "方名罗列",
+    "目录",
+    "附录",
+)
+FORMULA_SUMMARY_FOCUS_WINDOW = 240
+FORMULA_COMMENTARY_FOCUS_WINDOW = 360
+FORMULA_WIDE_SCAN_WINDOW = 900
 
 
 def resolve_project_path(path_value: str) -> Path:
@@ -386,6 +409,7 @@ class CommentarialRoutePlan:
     requested_anchor_keys: tuple[str, ...]
     focus_text: str
     explicit: bool
+    formula_topic: str | None = None
     meta_band: str | None = None
     debug: dict[str, Any] | None = None
 
@@ -406,6 +430,8 @@ class CommentarialLayer:
         self.source_meta: dict[str, dict[str, Any]] = {}
         self.units_by_id: dict[str, dict[str, Any]] = {}
         self.resolved_links_by_unit: dict[str, list[dict[str, Any]]] = defaultdict(list)
+        self.formula_alias_lookup: dict[str, str] = {}
+        self.formula_aliases: tuple[str, ...] = tuple()
         self._last_route_debug: dict[str, Any] | None = None
         if not self.config_path.exists():
             self.load_error = f"Missing commentarial config: {self.config_path}"
@@ -445,6 +471,7 @@ class CommentarialLayer:
             raw_units = load_jsonl(self.bundle_dir / "commentarial_units.jsonl")
             self.units = [self._hydrate_unit(row) for row in raw_units]
             self.units_by_id = {row["unit_id"]: row for row in self.units}
+            self.formula_alias_lookup, self.formula_aliases = self._build_formula_alias_lookup()
             self.enabled = True
         except Exception as exc:  # pragma: no cover - load-time diagnostics
             self.load_error = f"Failed to load commentarial layer: {exc}"
@@ -524,6 +551,253 @@ class CommentarialLayer:
             "original_anchor_text": extract_original_text(unit),
         }
         return hydrated
+
+    @staticmethod
+    def _normalize_formula_name(name: str | None) -> str:
+        raw = re.sub(r"\s+", "", str(name or ""))
+        if not raw:
+            return ""
+        if raw.endswith("方") and len(raw) >= 2 and raw[-2] in {"汤", "散", "丸", "饮"}:
+            raw = raw[:-1]
+        return raw
+
+    def _formula_aliases_for_name(self, name: str) -> tuple[str, ...]:
+        canonical_name = self._normalize_formula_name(name)
+        if not canonical_name:
+            return tuple()
+        aliases = {canonical_name}
+        if canonical_name[-1] in {"汤", "散", "丸", "饮"}:
+            aliases.add(f"{canonical_name}方")
+        return tuple(sorted(aliases, key=lambda item: (-len(item), item)))
+
+    def _extract_formula_names_from_context(self, text: str | None) -> tuple[str, ...]:
+        source = str(text or "")
+        if not source:
+            return tuple()
+
+        names: list[str] = []
+        seen: set[str] = set()
+        for pattern in FORMULA_CONTEXT_PATTERNS:
+            for match in pattern.finditer(source):
+                candidate = self._normalize_formula_name(match.group("formula"))
+                if not candidate or candidate in seen:
+                    continue
+                seen.add(candidate)
+                names.append(candidate)
+        return tuple(names)
+
+    def _build_formula_alias_lookup(self) -> tuple[dict[str, str], tuple[str, ...]]:
+        alias_lookup: dict[str, str] = {}
+        formulas: set[str] = set()
+        for unit in self.units:
+            for text in (
+                unit.get("title"),
+                unit.get("quoted_original_text") or unit.get("original_anchor_text"),
+            ):
+                formulas.update(self._extract_formula_names_from_context(text))
+
+        for formula in formulas:
+            for alias in self._formula_aliases_for_name(formula):
+                alias_lookup[compact_text(alias)] = formula
+
+        aliases = tuple(sorted(alias_lookup, key=lambda item: (-len(item), item)))
+        return alias_lookup, aliases
+
+    def _extract_formula_topics(self, text: str | None) -> tuple[str, ...]:
+        normalized_text = compact_text(text)
+        if not normalized_text:
+            return tuple()
+
+        topics: list[str] = []
+        seen: set[str] = set()
+        occupied_spans: list[tuple[int, int]] = []
+        for alias in self.formula_aliases:
+            search_start = 0
+            while True:
+                found_at = normalized_text.find(alias, search_start)
+                if found_at < 0:
+                    break
+                found_span = (found_at, found_at + len(alias))
+                if any(not (found_span[1] <= start or found_span[0] >= end) for start, end in occupied_spans):
+                    search_start = found_at + 1
+                    continue
+                canonical_name = self.formula_alias_lookup.get(alias)
+                if canonical_name and canonical_name not in seen:
+                    seen.add(canonical_name)
+                    topics.append(canonical_name)
+                    occupied_spans.append(found_span)
+                break
+
+        if topics:
+            return tuple(topics)
+
+        fallback_topics: list[str] = []
+        for match in FORMULA_QUERY_RE.finditer(str(text or "")):
+            candidate = self._normalize_formula_name(match.group(0))
+            if not candidate or candidate in seen:
+                continue
+            seen.add(candidate)
+            fallback_topics.append(candidate)
+        return tuple(fallback_topics)
+
+    @staticmethod
+    def _pick_formula_topic(formula_topics: tuple[str, ...]) -> str | None:
+        if len(formula_topics) != 1:
+            return None
+        topic = str(formula_topics[0]).strip()
+        return topic or None
+
+    def _find_formula_mentions(self, text: str | None) -> tuple[str, ...]:
+        normalized_text = compact_text(text)
+        if not normalized_text:
+            return tuple()
+
+        mentions: list[str] = []
+        seen: set[str] = set()
+        occupied_spans: list[tuple[int, int]] = []
+        for alias in self.formula_aliases:
+            search_start = 0
+            while True:
+                found_at = normalized_text.find(alias, search_start)
+                if found_at < 0:
+                    break
+                found_span = (found_at, found_at + len(alias))
+                if any(not (found_span[1] <= start or found_span[0] >= end) for start, end in occupied_spans):
+                    search_start = found_at + 1
+                    continue
+                canonical_name = self.formula_alias_lookup.get(alias)
+                if canonical_name and canonical_name not in seen:
+                    seen.add(canonical_name)
+                    mentions.append(canonical_name)
+                    occupied_spans.append(found_span)
+                break
+        return tuple(mentions)
+
+    def _title_has_formula_focus(self, title_text: str | None, formula_topic: str) -> bool:
+        normalized_title = compact_text(title_text)
+        normalized_topic = compact_text(formula_topic)
+        if not normalized_title or not normalized_topic:
+            return False
+
+        focus_patterns = (
+            rf"^论{normalized_topic}",
+            rf"{normalized_topic}(?:主之|宜|可与)",
+            rf"^{normalized_topic}$",
+        )
+        return any(re.search(pattern, normalized_title) for pattern in focus_patterns)
+
+    def _text_has_formula_focus(self, text: str | None, formula_topic: str) -> bool:
+        normalized_text = compact_text(text)
+        normalized_topic = compact_text(formula_topic)
+        if not normalized_text or not normalized_topic:
+            return False
+
+        if normalized_text.startswith(normalized_topic):
+            return True
+
+        focus_patterns = (
+            rf"论{normalized_topic}(?:证|的|可以|主|适应证|使用)",
+            rf"{normalized_topic}(?:方|证|主之)",
+            rf"(?:围绕|论述|讲解|讲|补述|讨论|解释|提示|说明).{{0,24}}{normalized_topic}",
+            rf"(?:是对|属于|针对).{{0,24}}{normalized_topic}",
+        )
+        return any(re.search(pattern, normalized_text) for pattern in focus_patterns)
+
+    def _quote_has_direct_formula_focus(self, quote_text: str | None, formula_topic: str) -> bool:
+        normalized_quote = compact_text(quote_text)
+        normalized_topic = compact_text(formula_topic)
+        if not normalized_quote or not normalized_topic:
+            return False
+
+        direct_patterns = (
+            rf"{normalized_topic}主之",
+            rf"宜{normalized_topic}",
+            rf"可与{normalized_topic}",
+        )
+        return any(re.search(pattern, normalized_quote) for pattern in direct_patterns)
+
+    def _assess_formula_consistency(self, unit: dict[str, Any], formula_topic: str | None) -> dict[str, Any]:
+        formula_name = self._normalize_formula_name(formula_topic)
+        if not formula_name:
+            return {
+                "formula_topic": None,
+                "passes": True,
+                "title_focus": False,
+                "summary_focus": False,
+                "commentary_focus": False,
+                "quote_direct_focus": False,
+                "pollution": False,
+                "broad_formula_sweep": False,
+                "title_mentions": tuple(),
+                "quote_mentions": tuple(),
+                "lead_mentions": tuple(),
+                "all_mentions": tuple(),
+            }
+
+        title_text = str(unit.get("title") or "")
+        quote_text = str(unit.get("quoted_original_text") or unit.get("original_anchor_text") or "")
+        summary_text = str(unit.get("summary_text") or "")[:FORMULA_SUMMARY_FOCUS_WINDOW]
+        commentary_text = str(unit.get("commentary_text") or "")[:FORMULA_COMMENTARY_FOCUS_WINDOW]
+        wide_scan_text = "\n".join(
+            part
+            for part in (
+                title_text,
+                quote_text,
+                str(unit.get("summary_text") or ""),
+                str(unit.get("commentary_text") or "")[:FORMULA_WIDE_SCAN_WINDOW],
+            )
+            if part
+        )
+
+        title_mentions = self._find_formula_mentions(title_text)
+        quote_mentions = self._find_formula_mentions(quote_text)
+        summary_mentions = self._find_formula_mentions(summary_text)
+        commentary_mentions = self._find_formula_mentions(commentary_text)
+        lead_mentions = tuple(dict.fromkeys((*title_mentions, *summary_mentions, *commentary_mentions)))
+        all_mentions = self._find_formula_mentions(wide_scan_text)
+
+        title_focus = self._title_has_formula_focus(title_text, formula_name)
+        summary_focus = self._text_has_formula_focus(summary_text, formula_name)
+        commentary_focus = self._text_has_formula_focus(commentary_text, formula_name)
+        quote_direct_focus = self._quote_has_direct_formula_focus(quote_text, formula_name)
+
+        competing_quote = any(name != formula_name for name in quote_mentions)
+        competing_lead = any(name != formula_name for name in lead_mentions)
+        pollution = any(hint in title_text for hint in FORMULA_POLLUTION_TITLE_HINTS) or any(
+            hint in summary_text or hint in commentary_text for hint in FORMULA_POLLUTION_LEAD_HINTS
+        )
+        broad_formula_sweep = len(all_mentions) >= 5 or len(lead_mentions) >= 3
+
+        passes = False
+        if not pollution:
+            if title_focus:
+                passes = True
+            elif quote_direct_focus and not competing_quote:
+                passes = True
+            elif (summary_focus or commentary_focus) and formula_name in lead_mentions:
+                passes = True
+
+        if passes and broad_formula_sweep and not (
+            title_focus or (quote_direct_focus and not competing_quote)
+        ):
+            passes = False
+        if passes and competing_lead and not title_focus and not (quote_direct_focus and not competing_quote):
+            passes = False
+
+        return {
+            "formula_topic": formula_name,
+            "passes": passes,
+            "title_focus": title_focus,
+            "summary_focus": summary_focus,
+            "commentary_focus": commentary_focus,
+            "quote_direct_focus": quote_direct_focus,
+            "pollution": pollution,
+            "broad_formula_sweep": broad_formula_sweep,
+            "title_mentions": title_mentions,
+            "quote_mentions": quote_mentions,
+            "lead_mentions": lead_mentions,
+            "all_mentions": all_mentions,
+        }
 
     def detect_route(self, query_text: str) -> CommentarialRoutePlan | None:
         if not self.enabled:
@@ -635,6 +909,7 @@ class CommentarialLayer:
                 add_signal(ROUTE_META, "disease_topic", detail, 6.0)
 
         formula_topics = topic_signals["formula_topics"]
+        formula_topic = self._pick_formula_topic(formula_topics)
         if formula_topics:
             detail = " / ".join(formula_topics[:3])
             add_signal(ROUTE_NAMED, "formula_topic", detail, 6.0)
@@ -693,6 +968,7 @@ class CommentarialLayer:
                 terms=focus_terms,
                 commentators=preview_targets[route_name],
                 meta_band=meta_band,
+                formula_topic=formula_topic if route_name == ROUTE_ASSISTIVE else None,
             )
             preview_hits[route_name] = preview
             if preview["count"] <= 0:
@@ -772,6 +1048,7 @@ class CommentarialLayer:
             "commentators": list(selected_commentators),
             "requested_anchor_keys": list(requested_anchor_keys),
             "topic_signals": topic_signals,
+            "formula_topic": formula_topic,
             "preview_hits": preview_hits,
             "explicit": explicit,
         }
@@ -782,6 +1059,7 @@ class CommentarialLayer:
             requested_anchor_keys=requested_anchor_keys,
             focus_text=focus_text,
             explicit=explicit,
+            formula_topic=formula_topic if chosen_route == ROUTE_ASSISTIVE else None,
             meta_band=meta_band if chosen_route == ROUTE_META else None,
             debug=debug,
         )
@@ -797,23 +1075,12 @@ class CommentarialLayer:
         focus_text: str,
         requested_anchor_keys: tuple[str, ...],
     ) -> dict[str, Any]:
-        formula_topics = []
-        seen_formula_topics: set[str] = set()
-        for match in FORMULA_QUERY_RE.finditer(query_text):
-            candidate = match.group(0)
-            candidate = re.sub(r"^(?:这个|这里|这块|这一块|关于)", "", candidate)
-            candidate = re.sub(r"^[^汤散丸饮方]*对", "", candidate)
-            candidate = re.sub(r"(?:的|这一块)+$", "", candidate)
-            candidate = candidate.strip()
-            if not candidate or candidate in seen_formula_topics:
-                continue
-            seen_formula_topics.add(candidate)
-            formula_topics.append(candidate)
+        formula_topics = self._extract_formula_topics(query_text)
         disease_topics = tuple(dict.fromkeys(match.group(0) for match in DISEASE_TOPIC_RE.finditer(query_text)))
         framework_topics = match_query_hints(query_text, normalized_query, FRAMEWORK_TOPIC_HINTS)
         book_topics = match_query_hints(query_text, normalized_query, BOOK_META_HINTS)
         return {
-            "formula_topics": tuple(formula_topics),
+            "formula_topics": formula_topics,
             "disease_topics": disease_topics,
             "framework_topics": framework_topics,
             "book_topics": book_topics,
@@ -864,6 +1131,7 @@ class CommentarialLayer:
         terms: list[str],
         commentators: tuple[str, ...],
         meta_band: str | None,
+        formula_topic: str | None,
     ) -> dict[str, Any]:
         if not terms:
             return {"count": 0, "best": 0, "top_unit_ids": []}
@@ -878,7 +1146,7 @@ class CommentarialLayer:
                 continue
             if route == ROUTE_META and not self._is_meta_unit_candidate(unit, meta_band):
                 continue
-            if route == ROUTE_ASSISTIVE and not self._is_assistive_unit_candidate(unit):
+            if route == ROUTE_ASSISTIVE and not self._is_assistive_unit_candidate(unit, formula_topic=formula_topic):
                 continue
             hit_count = self._count_query_term_hits(unit, terms)
             if hit_count <= 0:
@@ -941,6 +1209,7 @@ class CommentarialLayer:
                 requested_anchor_keys=extract_requested_anchor_keys(query_text),
                 focus_text=extract_focus_text(query_text) or compact_text(query_text),
                 explicit=False,
+                formula_topic=self._pick_formula_topic(self._extract_formula_topics(query_text)),
             )
 
         sections = self._build_sections(plan, query_text)
@@ -1049,6 +1318,7 @@ class CommentarialLayer:
                 requested_anchor_keys=plan.requested_anchor_keys,
                 focus_text=plan.focus_text,
                 explicit=plan.explicit,
+                formula_topic=plan.formula_topic,
                 meta_band=plan.meta_band,
                 debug=plan.debug,
             )
@@ -1127,13 +1397,21 @@ class CommentarialLayer:
             return False
         return True
 
-    def _is_assistive_unit_candidate(self, unit: dict[str, Any]) -> bool:
-        return (
+    def _is_assistive_unit_candidate(
+        self,
+        unit: dict[str, Any],
+        *,
+        formula_topic: str | None = None,
+    ) -> bool:
+        basic_candidate = (
             bool(unit.get("eligible_for_default_assistive_retrieval"))
             and bool(unit.get("never_use_in_primary", False))
             and not bool(unit.get("use_for_confidence_gate"))
             and unit.get("anchor_type") != "theme"
         )
+        if not basic_candidate or not formula_topic:
+            return basic_candidate
+        return bool(self._assess_formula_consistency(unit, formula_topic).get("passes"))
 
     def _is_meta_unit_candidate(self, unit: dict[str, Any], meta_band: str | None) -> bool:
         if meta_band is None:
@@ -1171,6 +1449,7 @@ class CommentarialLayer:
             if fallback_term:
                 terms = [fallback_term]
         for unit in self.units:
+            formula_assessment: dict[str, Any] | None = None
             if unit.get("low_confidence_commentarial_unit") and not (
                 plan.route == ROUTE_META
                 and unit.get("anchor_type") == "theme"
@@ -1187,10 +1466,12 @@ class CommentarialLayer:
                 continue
             if plan.route == ROUTE_NAMED and not self._is_named_unit_candidate(unit, plan.commentators):
                 continue
-            if plan.route == ROUTE_ASSISTIVE and not self._is_assistive_unit_candidate(unit):
-                continue
+            if plan.route == ROUTE_ASSISTIVE:
+                formula_assessment = self._assess_formula_consistency(unit, plan.formula_topic)
+                if not self._is_assistive_unit_candidate(unit, formula_topic=plan.formula_topic):
+                    continue
 
-            score = self._score_unit(unit, plan, terms)
+            score = self._score_unit(unit, plan, terms, formula_assessment=formula_assessment)
             if score <= 0:
                 continue
             scored.append((unit, score))
@@ -1209,6 +1490,8 @@ class CommentarialLayer:
         unit: dict[str, Any],
         plan: CommentarialRoutePlan,
         terms: list[str],
+        *,
+        formula_assessment: dict[str, Any] | None = None,
     ) -> float:
         search_text = unit.get("normalized_search_text") or ""
         if not search_text:
@@ -1266,6 +1549,19 @@ class CommentarialLayer:
 
         if plan.route == ROUTE_ASSISTIVE and unit.get("anchor_type") == "theme":
             score -= 100.0
+        if plan.route == ROUTE_ASSISTIVE and formula_assessment and plan.formula_topic:
+            if not formula_assessment.get("passes"):
+                return 0.0
+            if formula_assessment.get("title_focus"):
+                score += 36.0
+            if formula_assessment.get("quote_direct_focus"):
+                score += 30.0
+            if formula_assessment.get("summary_focus"):
+                score += 18.0
+            if formula_assessment.get("commentary_focus"):
+                score += 14.0
+            if formula_assessment.get("broad_formula_sweep") and not formula_assessment.get("title_focus"):
+                score -= 8.0
         if plan.route == ROUTE_META:
             theme_tier = unit.get("theme_display_tier")
             if anchor_type == "theme":

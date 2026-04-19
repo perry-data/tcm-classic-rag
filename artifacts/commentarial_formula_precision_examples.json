@@ -1,0 +1,177 @@
+{
+  "generated_on": "2026-04-19",
+  "examples": [
+    {
+      "query": "小青龙汤有哪些功效？",
+      "chosen_route": "assistive_view",
+      "formula_topic": "小青龙汤",
+      "commentarial_present": true,
+      "commentarial_item_count": 2,
+      "items": [
+        {
+          "unit_id": "cmu_liu_p041",
+          "title": "第041条 伤寒表不解，心下有水气，干呕发热而咳，或…",
+          "summary": "刘渡舟围绕“第041条 伤寒表不解，心下有水气，干呕发热而咳，或…”解读条文“伤寒表不解，心下有水气，干呕发热而咳”，重点涉及passage_explanation、pathogenesis、formula_analysis。小青龙汤方：麻黄三两，去节芍药三两五味子半升干姜三两甘草三两，炙",
+          "commentator": "刘渡舟",
+          "score": 95.2,
+          "formula_consistency_passed": true,
+          "formula_consistency_signals": {
+            "title_focus": false,
+            "summary_focus": true,
+            "commentary_focus": true,
+            "quote_direct_focus": true,
+            "pollution": false,
+            "broad_formula_sweep": false
+          }
+        },
+        {
+          "unit_id": "cmu_liu_p042",
+          "title": "第042条 伤寒，心下有水气，咳而微喘，发热不渴。服…",
+          "summary": "刘渡舟围绕“第042条 伤寒，心下有水气，咳而微喘，发热不渴。服…”解读条文“伤寒，心下有水气，咳而微喘，发热不渴”，重点涉及passage_explanation、pathogenesis、therapeutic_method。这一条承上条，补述小青龙汤证的主证及药后寒去欲解的机转。“小",
+          "commentator": "刘渡舟",
+          "score": 91.6,
+          "formula_consistency_passed": true,
+          "formula_consistency_signals": {
+            "title_focus": false,
+            "summary_focus": true,
+            "commentary_focus": true,
+            "quote_direct_focus": true,
+            "pollution": false,
+            "broad_formula_sweep": false
+          }
+        }
+      ]
+    },
+    {
+      "query": "桂枝汤有哪些功效？",
+      "chosen_route": "assistive_view",
+      "formula_topic": "桂枝汤",
+      "commentarial_present": true,
+      "commentarial_item_count": 2,
+      "items": [
+        {
+          "unit_id": "cmu_liu_p014",
+          "title": "第014条 太阳病，头痛发热，汗出恶风者，桂枝汤主之…",
+          "summary": "刘渡舟围绕“第014条 太阳病，头痛发热，汗出恶风者，桂枝汤主之…”解读条文“太阳病，头痛发热，汗出恶风者，桂枝汤”，重点涉及passage_explanation、pathogenesis、therapeutic_method。第14条的描述和第13条类似，但绝不是简单的重复，而是扩大了",
+          "commentator": "刘渡舟",
+          "score": 118.6,
+          "formula_consistency_passed": true,
+          "formula_consistency_signals": {
+            "title_focus": true,
+            "summary_focus": true,
+            "commentary_focus": true,
+            "quote_direct_focus": true,
+            "pollution": false,
+            "broad_formula_sweep": false
+          }
+        },
+        {
+          "unit_id": "cmu_liu_p013",
+          "title": "第013条 太阳中风，阳浮而阴弱，阳浮者，热自发，阴…",
+          "summary": "刘渡舟围绕“第013条 太阳中风，阳浮而阴弱，阳浮者，热自发，阴…”解读条文“太阳中风，阳浮而阴弱，阳浮者，热自发”，重点涉及passage_explanation、pathogenesis、formula_analysis。桂枝汤方：桂枝三两，去皮芍药三两甘草二两，炙生姜三两，切大枣十二",
+          "commentator": "刘渡舟",
+          "score": 95.2,
+          "formula_consistency_passed": true,
+          "formula_consistency_signals": {
+            "title_focus": false,
+            "summary_focus": true,
+            "commentary_focus": true,
+            "quote_direct_focus": true,
+            "pollution": false,
+            "broad_formula_sweep": false
+          }
+        }
+      ]
+    },
+    {
+      "query": "小柴胡汤有哪些功效？",
+      "chosen_route": "assistive_view",
+      "formula_topic": "小柴胡汤",
+      "commentarial_present": true,
+      "commentarial_item_count": 2,
+      "items": [
+        {
+          "unit_id": "cmu_hao_rw116",
+          "title": "论小柴胡汤可以治疗少阳不和兼阳明病不大便。",
+          "summary": "郝万山围绕“论小柴胡汤可以治疗少阳不和兼阳明病不大便。”解读条文“阳明病，胁下硬满，不大便而呕，舌上白”，重点涉及passage_explanation、pathogenesis、formula_analysis。论小柴胡汤可以治疗少阳不和兼阳明病不大便。本条虽冠名以“阳明病”且有“不大便",
+          "commentator": "郝万山",
+          "score": 140.2,
+          "formula_consistency_passed": true,
+          "formula_consistency_signals": {
+            "title_focus": true,
+            "summary_focus": true,
+            "commentary_focus": true,
+            "quote_direct_focus": true,
+            "pollution": false,
+            "broad_formula_sweep": true
+          }
+        },
+        {
+          "unit_id": "cmu_hao_rw117",
+          "title": "论小柴胡汤可以治疗三阳同病。",
+          "summary": "郝万山围绕“论小柴胡汤可以治疗三阳同病。”解读条文“伤寒四五日，身热恶风，颈项强，胁下满”，重点涉及passage_explanation、therapeutic_method、comparison。论小柴胡汤可以治疗三阳同病。伤寒四五日，身热而恶风，这显然是太阳表邪未罢的表现。手足温而渴",
+          "commentator": "郝万山",
+          "score": 127.6,
+          "formula_consistency_passed": true,
+          "formula_consistency_signals": {
+            "title_focus": true,
+            "summary_focus": true,
+            "commentary_focus": true,
+            "quote_direct_focus": true,
+            "pollution": false,
+            "broad_formula_sweep": false
+          }
+        }
+      ]
+    },
+    {
+      "query": "五苓散有哪些功效？",
+      "chosen_route": "assistive_view",
+      "formula_topic": "五苓散",
+      "commentarial_present": true,
+      "commentarial_item_count": 2,
+      "items": [
+        {
+          "unit_id": "cmu_liu_p073",
+          "title": "第073条 发汗已，脉浮数，烦渴者，五苓散主之。（7…",
+          "summary": "刘渡舟围绕“第073条 发汗已，脉浮数，烦渴者，五苓散主之。（7…”解读条文“发汗已，脉浮数，烦渴者，五苓散主之。”，重点涉及passage_explanation、therapeutic_method、textual_relation。这一条承上条补述五苓散的脉证。太阳病发汗后，表邪不尽",
+          "commentator": "刘渡舟",
+          "score": 115.0,
+          "formula_consistency_passed": true,
+          "formula_consistency_signals": {
+            "title_focus": true,
+            "summary_focus": true,
+            "commentary_focus": true,
+            "quote_direct_focus": true,
+            "pollution": false,
+            "broad_formula_sweep": false
+          }
+        },
+        {
+          "unit_id": "cmu_liu_p074",
+          "title": "第074条 伤寒汗出而渴者，五苓散主之。不渴者，茯苓…",
+          "summary": "刘渡舟围绕“第074条 伤寒汗出而渴者，五苓散主之。不渴者，茯苓…”解读条文“伤寒汗出而渴者，五苓散主之。不渴者，”，重点涉及passage_explanation、therapeutic_method、comparison。茯苓甘草汤方：茯苓二两桂枝二两，去皮生姜三两，切甘草一两，炙上四",
+          "commentator": "刘渡舟",
+          "score": 115.0,
+          "formula_consistency_passed": true,
+          "formula_consistency_signals": {
+            "title_focus": true,
+            "summary_focus": true,
+            "commentary_focus": true,
+            "quote_direct_focus": true,
+            "pollution": false,
+            "broad_formula_sweep": false
+          }
+        }
+      ]
+    },
+    {
+      "query": "白散方有哪些功效？",
+      "chosen_route": "assistive_view",
+      "formula_topic": "白散",
+      "commentarial_present": false,
+      "commentarial_item_count": 0,
+      "items": []
+    }
+  ]
+}
