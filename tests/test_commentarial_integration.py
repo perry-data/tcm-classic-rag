@@ -110,6 +110,20 @@ class CommentarialIntegrationTests(unittest.TestCase):
         self.assertTrue(all(item["never_use_in_primary"] for item in items))
         self.assertTrue(all(not item["use_for_confidence_gate"] for item in items))
 
+    def test_display_summary_hides_internal_commentary_function_tags(self) -> None:
+        payload = self.assembler.assemble("桂枝汤是什么？")
+        items = [item for section in payload["commentarial"]["sections"] for item in section["items"]]
+        tagged_units = [
+            (item, self.layer.units_by_id[item["unit_id"]])
+            for item in items
+            if "重点涉及" in str(self.layer.units_by_id[item["unit_id"]].get("summary_text") or "")
+        ]
+        self.assertTrue(tagged_units)
+        for item, raw_unit in tagged_units:
+            self.assertIn("重点涉及", raw_unit["summary_text"])
+            self.assertNotIn("重点涉及", item["summary_text"])
+            self.assertNotRegex(item["summary_text"], r"[a-z]+_[a-z_]+")
+
     def test_unresolved_multi_stays_folded(self) -> None:
         unresolved_multi_unit = next(
             unit for unit in self.layer.units if unit.get("anchor_priority_mode") == "unresolved_multi"

@@ -282,6 +282,22 @@ def snippet_text(text: str | None, limit: int = 180) -> str:
     return compact[: limit - 3].rstrip() + "..."
 
 
+def sanitize_commentarial_summary_text(summary_text: str | None, fallback_text: str | None = None) -> str:
+    compact = re.sub(r"\s+", " ", str(summary_text or "")).strip()
+    if not compact:
+        return snippet_text(fallback_text)
+
+    first_sentence_match = re.match(r"^(.+?[。！？!?])", compact)
+    first_sentence = first_sentence_match.group(1) if first_sentence_match else compact
+    looks_like_internal_tag_lead = "重点涉及" in first_sentence and bool(re.search(r"[a-z]+_[a-z_]+", first_sentence))
+    if looks_like_internal_tag_lead:
+        remainder = compact[len(first_sentence) :].strip()
+        if remainder:
+            return remainder
+        return snippet_text(fallback_text)
+    return compact
+
+
 def normalize_commentarial_anchor_text(text: str | None) -> str:
     if not text:
         return ""
@@ -1632,7 +1648,10 @@ class CommentarialLayer:
             "source_id": unit.get("source_id"),
             "work_title": unit.get("work_title"),
             "title": unit.get("title"),
-            "summary_text": unit.get("summary_text") or snippet_text(unit.get("commentary_text")),
+            "summary_text": sanitize_commentarial_summary_text(
+                unit.get("summary_text"),
+                unit.get("commentary_text"),
+            ),
             "quoted_original_text": unit.get("quoted_original_text") or unit.get("original_anchor_text"),
             "display_text": unit.get("display_text"),
             "anchor_type": unit.get("anchor_type"),
