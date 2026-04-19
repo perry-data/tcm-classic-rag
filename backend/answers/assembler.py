@@ -4197,6 +4197,7 @@ class AnswerAssembler:
         payload: dict[str, Any],
         route_plan: CommentarialRoutePlan | None,
     ) -> dict[str, Any]:
+        payload["query"] = query_text
         if payload.get("commentarial") is None and self.commentarial_layer.enabled:
             commentarial = self.commentarial_layer.build_extension(query_text, payload, route_plan=route_plan)
             if commentarial:

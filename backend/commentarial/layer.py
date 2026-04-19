@@ -23,6 +23,15 @@ COMMENTATOR_SOURCE_IDS = {
     "郝万山": "hao_wanshan_shanghan_lectures_2007",
 }
 
+COMMENTATOR_QUERY_ALIASES = {
+    "刘渡舟": "刘渡舟",
+    "刘老": "刘渡舟",
+    "刘老师": "刘渡舟",
+    "郝万山": "郝万山",
+    "郝老": "郝万山",
+    "郝老师": "郝万山",
+}
+
 PASSAGE_QUERY_RE = re.compile(r"(?:第\s*)?(\d{1,3})([上下AaBb]?)(?:\s*条)")
 
 NOTE_PATTERNS = (
@@ -38,6 +47,8 @@ META_LEARNING_HINTS = (
     "怎么学",
     "如何学",
     "学习方法",
+    "有什么方法",
+    "有何方法",
     "怎么读",
     "如何读",
     "怎么研读",
@@ -58,11 +69,54 @@ NAMED_HINTS = (
 
 COMPARISON_HINTS = (
     "两家",
+    "这两家",
+    "两位老师",
+    "两位名家",
     "比较",
     "区别",
     "不同",
     "异同",
     "相比",
+)
+
+GENERIC_COMMENTARIAL_HINTS = (
+    "名家",
+    "讲稿",
+    "两家",
+    "这两家",
+    "两位老师",
+    "两位名家",
+)
+
+FOCUS_NOISE_PATTERNS = (
+    r"老师",
+    r"老",
+    r"怎么看",
+    r"怎么讲",
+    r"怎么解释",
+    r"如何解释",
+    r"怎么理解",
+    r"比较",
+    r"区别",
+    r"不同",
+    r"异同",
+    r"相比",
+    r"怎么学",
+    r"如何学",
+    r"怎样学",
+    r"怎么读",
+    r"如何读",
+    r"怎么研读",
+    r"如何研读",
+    r"学习方法",
+    r"有什么方法",
+    r"有何方法",
+    r"名家",
+    r"两家",
+    r"两位老师",
+    r"两位名家",
+    r"这两家",
+    r"是",
 )
 
 
@@ -179,6 +233,26 @@ def extract_anchor_segment(anchor_key: str, quote: str) -> str:
         else len(normalized_quote)
     )
     return normalized_quote[start : marker_index + len(marker)].strip()
+
+
+def detect_commentators(query_text: str) -> tuple[str, ...]:
+    normalized_query = compact_text(query_text)
+    commentators: list[str] = []
+    seen: set[str] = set()
+    alias_items = sorted(COMMENTATOR_QUERY_ALIASES.items(), key=lambda item: len(item[0]), reverse=True)
+    for alias, canonical_name in alias_items:
+        normalized_alias = compact_text(alias)
+        if alias not in query_text and normalized_alias not in normalized_query:
+            continue
+        if canonical_name in seen:
+            continue
+        seen.add(canonical_name)
+        commentators.append(canonical_name)
+    return tuple(commentators)
+
+
+def query_has_any_hint(query_text: str, normalized_query: str, hints: tuple[str, ...]) -> bool:
+    return any(hint in query_text or compact_text(hint) in normalized_query for hint in hints)
 
 
 @dataclass(frozen=True)
@@ -332,11 +406,13 @@ class CommentarialLayer:
         if not normalized_query:
             return None
 
-        commentators = tuple(name for name in COMMENTATOR_SOURCE_IDS if name in query_text)
+        commentators = detect_commentators(query_text)
         requested_anchor_keys = extract_requested_anchor_keys(query_text)
         focus_text = self._build_focus_text(query_text, commentators, requested_anchor_keys)
 
-        if any(hint in query_text for hint in META_LEARNING_HINTS):
+        if query_has_any_hint(query_text, normalized_query, META_LEARNING_HINTS) or (
+            "学习" in normalized_query and "方法" in normalized_query
+        ):
             return CommentarialRoutePlan(
                 route=ROUTE_META,
                 commentators=commentators,
@@ -345,9 +421,9 @@ class CommentarialLayer:
                 explicit=True,
             )
 
-        has_named_hint = any(hint in query_text for hint in NAMED_HINTS)
-        has_comparison_hint = any(hint in query_text for hint in COMPARISON_HINTS)
-        has_generic_commentarial = "名家" in query_text or "讲稿" in query_text or "两家" in query_text
+        has_named_hint = query_has_any_hint(query_text, normalized_query, NAMED_HINTS)
+        has_comparison_hint = query_has_any_hint(query_text, normalized_query, COMPARISON_HINTS)
+        has_generic_commentarial = query_has_any_hint(query_text, normalized_query, GENERIC_COMMENTARIAL_HINTS)
 
         if has_comparison_hint and (commentators or has_generic_commentarial):
             effective_commentators = commentators or tuple(COMMENTATOR_SOURCE_IDS.keys())
@@ -380,8 +456,10 @@ class CommentarialLayer:
         focus = query_text
         for commentator in commentators:
             focus = focus.replace(commentator, " ")
-        focus = focus.replace("名家", " ").replace("两家", " ")
-        focus = re.sub(r"(怎么看|怎么讲|怎么解释|如何解释|怎么理解|比较|区别|不同|异同|如何学|怎么学|怎样学)", " ", focus)
+        for alias in COMMENTATOR_QUERY_ALIASES:
+            focus = focus.replace(alias, " ")
+        for noise_pattern in FOCUS_NOISE_PATTERNS:
+            focus = re.sub(noise_pattern, " ", focus)
         for anchor_key in requested_anchor_keys:
             raw = anchor_key.split(":", 1)[-1]
             number = re.match(r"(\d+)", raw)
@@ -389,6 +467,8 @@ class CommentarialLayer:
                 continue
             focus = re.sub(rf"(?:第\s*)?{int(number.group(1))}\s*[AaBb上下]?\s*条", " ", focus)
         compact_focus = compact_text(focus)
+        if compact_focus in {"的", "是的"}:
+            compact_focus = ""
         return compact_focus or extract_focus_text(query_text) or compact_text(query_text)
 
     def build_extension(

@@ -1,0 +1,1249 @@
+{
+  "generated_at_utc": "2026-04-19T08:30:52.143431+00:00",
+  "base_url": "http://127.0.0.1:51302",
+  "endpoint": "/api/v1/answers",
+  "method": "POST",
+  "examples": [
+    {
+      "example_id": "named_view",
+      "request_path": "/api/v1/answers",
+      "request_keys": [
+        "query"
+      ],
+      "request_body": {
+        "query": "刘渡舟怎么看第141条？"
+      },
+      "response_status": 200,
+      "response_keys": [
+        "query",
+        "answer_mode",
+        "answer_text",
+        "primary_evidence",
+        "secondary_evidence",
+        "review_materials",
+        "disclaimer",
+        "review_notice",
+        "refuse_reason",
+        "suggested_followup_questions",
+        "citations",
+        "commentarial",
+        "display_sections"
+      ],
+      "response_body_truncated": true,
+      "response_body": {
+        "query": "刘渡舟怎么看第141条？",
+        "answer_mode": "weak_with_review_notice",
+        "answer_text": "结胸证所有典型表现都已齐备，又出现烦躁，这种情形往往预示病情危笃，预后极差，可以先理解为邪气壅盛至极、正气濒临溃散的危象。[E1][E4] 之所以只能作此保守判断，是因为现有材料虽多次复述条文并给出简略注解，但未提供该条在原书中的完整上下文，如前后条文如何衔接、是否伴有其他危象征兆、或仲景本意所指的‘烦躁’具体形态与病程阶段等。[E2][E5] 若要深入把握，建议回看《辨太阳病脉证并治法第七》中‘结胸证悉具，烦躁者，亦死’这一原句本身，并特别注意‘悉具’所涵盖的症候范围与‘烦躁’在此处的病机定位，同时对照同节‘结胸证，其脉浮大者，不可下，下之则死’...",
+        "primary_evidence_count": 0,
+        "primary_evidence": [],
+        "secondary_evidence_count": 5,
+        "secondary_evidence": [
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0015",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "结胸证悉具烦躁者亦死",
+            "evidence_level": "B",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "结胸证悉具，烦躁者，亦死。",
+            "risk_flags": [
+              "short_text_demoted"
+            ]
+          },
+          {
+            "record_id": "full:annotations:ZJSHL-CH-010-P-0016",
+            "record_type": "annotations",
+            "display_role": "secondary",
+            "title": "结胸证悉具邪结已深也烦躁者正气散乱也邪气胜正病者必死",
+            "evidence_level": "B",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "结胸证悉具，邪结已深也。烦躁者，正气散乱也。邪气胜正，病者必死。",
+            "risk_flags": [
+              "annotation_unlinked"
+            ]
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0013",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "结胸证其脉浮大者不可下下之则死",
+            "evidence_level": "B",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "结胸证，其脉浮大者，不可下，下之则死。",
+            "risk_flags": [
+              "short_text_demoted"
+            ]
+          }
+        ],
+        "review_materials_count": 2,
+        "review_materials": [
+          {
+            "record_id": "full:passages:ZJSHL-CH-010-P-0015",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "结胸证悉具烦躁者亦死",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "结胸证悉具，烦躁者，亦死。",
+            "risk_flags": [
+              "ledger_mixed_roles"
+            ]
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-010-P-0016",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "结胸证悉具邪结已深也烦躁者正气散乱也邪气胜正病者必死",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "结胸证悉具，邪结已深也。烦躁者，正气散乱也。邪气胜正，病者必死。",
+            "risk_flags": [
+              "ledger_mixed_roles"
+            ]
+          }
+        ],
+        "disclaimer": "当前只输出弱表述与核对材料，不输出确定性答案。",
+        "review_notice": "正文强证据不足，以下内容需核对，不应视为确定答案。",
+        "refuse_reason": null,
+        "suggested_followup_questions": [],
+        "citations_count": 7,
+        "citations": [
+          {
+            "citation_id": "c1",
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0015",
+            "record_type": "main_passages",
+            "citation_role": "secondary",
+            "title": "结胸证悉具烦躁者亦死",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "结胸证悉具，烦躁者，亦死。"
+          },
+          {
+            "citation_id": "c2",
+            "record_id": "full:annotations:ZJSHL-CH-010-P-0016",
+            "record_type": "annotations",
+            "citation_role": "secondary",
+            "title": "结胸证悉具邪结已深也烦躁者正气散乱也邪气胜正病者必死",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "结胸证悉具，邪结已深也。烦躁者，正气散乱也。邪气胜正，病者必死。"
+          },
+          {
+            "citation_id": "c3",
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0013",
+            "record_type": "main_passages",
+            "citation_role": "secondary",
+            "title": "结胸证其脉浮大者不可下下之则死",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "结胸证，其脉浮大者，不可下，下之则死。"
+          },
+          {
+            "citation_id": "c4",
+            "record_id": "safe:main_passages:ZJSHL-CH-006-P-0114",
+            "record_type": "main_passages",
+            "citation_role": "secondary",
+            "title": "若不宜下而便攻之内虚热入协热遂利烦躁诸变不可胜数轻者困笃重者必死矣",
+            "chapter_id": "ZJSHL-CH-006",
+            "chapter_title": "伤寒例第三",
+            "snippet": "若不宜下，而便攻之，内虚热入，协热遂利，烦躁诸变，不可胜数，轻者困笃，重者必死矣。"
+          },
+          {
+            "citation_id": "c5",
+            "record_id": "safe:main_passages:ZJSHL-CH-010-P-0008",
+            "record_type": "main_passages",
+            "citation_role": "secondary",
+            "title": "结胸者项亦强如柔状下之则和宜大陷胸丸方",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "结胸者，项亦强，如柔 状。下之则和，宜大陷胸丸方。"
+          }
+        ],
+        "commentarial": {
+          "route": "named_view",
+          "source_aware": true,
+          "lead_note": "以下为点名名家视角；原典主依据与 canonical citation 仍保持独立。",
+          "sections": [
+            {
+              "section_id": "commentarial_named_view_刘渡舟_main",
+              "title": "刘渡舟视角",
+              "commentator": "刘渡舟",
+              "view_mode": "named_view",
+              "layout": "stacked",
+              "collapsed_by_default": false,
+              "item_count": 1,
+              "items": [
+                {
+                  "unit_id": "cmu_liu_p141",
+                  "commentator": "刘渡舟",
+                  "source_id": "liu_duzhou_shanghan_lectures_2007",
+                  "title": "第141条 结胸证悉具，烦躁者，亦死。（141）",
+                  "anchor_type": "exact",
+                  "anchor_priority_mode": "single_anchor",
+                  "theme_display_tier": null,
+                  "resolved_primary_anchor_passage_ids": [
+                    "ZJSHL-CH-010-P-0015"
+                  ],
+                  "unresolved_anchor_keys": [],
+                  "never_use_in_primary": true,
+                  "use_for_confidence_gate": false,
+                  "needs_manual_anchor_review": false,
+                  "needs_manual_content_review": false,
+                  "summary_text": "刘渡舟围绕“第141条 结胸证悉具，烦躁者，亦死。（141）”解读条文“结胸证悉具，烦躁者，亦死。（141）”，重点涉及passage_explanation、pathogenesis、therapeutic_method。这两条是讲结胸证的预后的问题，两条要合在一起体会，...",
+                  "score": 136.4
+                }
+              ]
+            }
+          ]
+        },
+        "commentarial_item_count": 1,
+        "display_sections": [
+          {
+            "section_id": "answer",
+            "title": "回答",
+            "section_type": "text",
+            "visible": true,
+            "field": "answer_text",
+            "item_count": null
+          },
+          {
+            "section_id": "review_notice",
+            "title": "核对提示",
+            "section_type": "notice",
+            "visible": true,
+            "field": "review_notice",
+            "item_count": null
+          },
+          {
+            "section_id": "primary_evidence",
+            "title": "主依据",
+            "section_type": "slot_ref",
+            "visible": false,
+            "field": "primary_evidence",
+            "item_count": 0
+          },
+          {
+            "section_id": "secondary_evidence",
+            "title": "补充依据",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "secondary_evidence",
+            "item_count": 5
+          },
+          {
+            "section_id": "review_materials",
+            "title": "核对材料",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "review_materials",
+            "item_count": 2
+          },
+          {
+            "section_id": "citations",
+            "title": "引用",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "citations",
+            "item_count": 7
+          },
+          {
+            "section_id": "refusal_guidance",
+            "title": "改问建议",
+            "section_type": "list",
+            "visible": false,
+            "field": "suggested_followup_questions",
+            "item_count": 0
+          },
+          {
+            "section_id": "commentarial",
+            "title": "名家视角",
+            "section_type": "extension",
+            "visible": true,
+            "field": "commentarial",
+            "item_count": 1
+          }
+        ]
+      }
+    },
+    {
+      "example_id": "comparison_view",
+      "request_path": "/api/v1/answers",
+      "request_keys": [
+        "query"
+      ],
+      "request_body": {
+        "query": "两家如何解释少阳病？"
+      },
+      "response_status": 200,
+      "response_keys": [
+        "query",
+        "answer_mode",
+        "answer_text",
+        "primary_evidence",
+        "secondary_evidence",
+        "review_materials",
+        "disclaimer",
+        "review_notice",
+        "refuse_reason",
+        "suggested_followup_questions",
+        "citations",
+        "commentarial",
+        "display_sections"
+      ],
+      "response_body_truncated": true,
+      "response_body": {
+        "query": "两家如何解释少阳病？",
+        "answer_mode": "strong",
+        "answer_text": "少阳病是《伤寒论》六经病之一，指病邪处于半表半里阶段所呈现的一类证候，在疾病自然发展过程中，其病势于第九日开始衰退，典型表现是耳聋减轻、听觉略微恢复。[E1] 这一‘九日少阳病衰’的说法，是放在太阳、阳明、太阴、少阴、厥阴等六经病依次衰减的整体节律中来理解的，说明古人观察到某些外感病存在相对稳定的病程演进规律，而少阳病居于阳明之后、太阴之前，具有承前启后的过渡性特点。[E1] 需要留意的是，少阳病虽有自身欲解之时（寅至辰），也参与三阳传变，但若病邪已入胃，则不再继续传入少阳或三阴，可见胃在六经传变中具有截断与稳定的作用。[E4][E6]",
+        "primary_evidence_count": 1,
+        "primary_evidence": [
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-006-P-0076",
+            "record_type": "main_passages",
+            "display_role": "primary",
+            "title": "其不两感于寒更不传经不加异气者至七日太阳病衰头痛少愈也八日阳明病衰身热少歇也九日少阳病衰耳聋微闻也十日太阴病衰腹减如故则思饮食十一日少阴病衰渴止舌乾已而嚏也十二日厥阴病衰囊纵少腹微下大气皆去病患精神爽慧也",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-006",
+            "chapter_title": "伤寒例第三",
+            "snippet": "其不两感于寒，更不传经，不加异气者，至七日太阳病衰，头痛少愈也；八日阳明病衰，身热少歇也；九日少阳病衰，耳聋微闻也；十日太阴病衰，腹减如故，则思饮食；十一日少阴病衰，渴止舌乾，已而嚏也；十二日厥阴病衰，囊纵，少腹微下，大气皆去，病患精...",
+            "risk_flags": []
+          }
+        ],
+        "secondary_evidence_count": 5,
+        "secondary_evidence": [
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-012-P-0231",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "少阳病欲解时从寅至辰上",
+            "evidence_level": "B",
+            "chapter_id": "ZJSHL-CH-012",
+            "chapter_title": "辨少阳病脉证并治法第九",
+            "snippet": "少阳病，欲解时，从寅至辰上。",
+            "risk_flags": [
+              "short_text_demoted"
+            ]
+          },
+          {
+            "record_id": "full:annotations:ZJSHL-CH-011-P-0098",
+            "record_type": "annotations",
+            "display_role": "secondary",
+            "title": "腹满身重难以反侧口不仁谵语者阳明也针经曰",
+            "evidence_level": "B",
+            "chapter_id": "ZJSHL-CH-011",
+            "chapter_title": "辨阳明病脉证并治法第八",
+            "snippet": "腹满身重，难以反侧，口不仁谵语者，阳明也。《针经》曰：少阳病甚则面微尘。此面垢者，少阳也；遗尿者，太阳也。三者以阳明证多，故出阳明篇中。三阳合病，为表里有邪，若发汗攻表，则燥热益甚，必愈谵语；若下之攻里，表热乘虚内陷，必额上汗出，手足...",
+            "risk_flags": [
+              "annotation_unlinked"
+            ]
+          },
+          {
+            "record_id": "full:annotations:ZJSHL-CH-011-P-0017",
+            "record_type": "annotations",
+            "display_role": "secondary",
+            "title": "胃为水谷之海主养四旁四旁有病皆能传入于胃入胃则更不复传如太阳病传之入胃则更不传阳明阳明病传之入胃则更不传少阳少阳病传之入胃则更不传三阴",
+            "evidence_level": "B",
+            "chapter_id": "ZJSHL-CH-011",
+            "chapter_title": "辨阳明病脉证并治法第八",
+            "snippet": "胃为水谷之海，主养四旁。四旁有病，皆能传入于胃。入胃则更不复传，如太阳医统本有「病」字传之入胃，则更不传阳明；阳明病传之入胃，则更不传少阳；少阳病传之入胃，则更不传三阴。",
+            "risk_flags": [
+              "annotation_unlinked"
+            ]
+          }
+        ],
+        "review_materials_count": 2,
+        "review_materials": [
+          {
+            "record_id": "full:passages:ZJSHL-CH-012-P-0231",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "少阳病欲解时从寅至辰上",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-012",
+            "chapter_title": "辨少阳病脉证并治法第九",
+            "snippet": "少阳病，欲解时，从寅至辰上。",
+            "risk_flags": [
+              "ledger_mixed_roles"
+            ]
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-011-P-0017",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "胃为水谷之海主养四旁四旁有病皆能传入于胃入胃则更不复传如太阳病传之入胃则更不传阳明阳明病传之入胃则更不传少阳少阳病传之入胃则更不传三阴",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-011",
+            "chapter_title": "辨阳明病脉证并治法第八",
+            "snippet": "胃为水谷之海，主养四旁。四旁有病，皆能传入于胃。入胃则更不复传，如太阳医统本有「病」字传之入胃，则更不传阳明；阳明病传之入胃，则更不传少阳；少阳病传之入胃，则更不传三阴。",
+            "risk_flags": [
+              "ledger_mixed_roles"
+            ]
+          }
+        ],
+        "disclaimer": "主证据优先；补充依据与核对材料不参与主结论判定。",
+        "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
+        "refuse_reason": null,
+        "suggested_followup_questions": [],
+        "citations_count": 1,
+        "citations": [
+          {
+            "citation_id": "c1",
+            "record_id": "safe:main_passages:ZJSHL-CH-006-P-0076",
+            "record_type": "main_passages",
+            "citation_role": "primary",
+            "title": "其不两感于寒更不传经不加异气者至七日太阳病衰头痛少愈也八日阳明病衰身热少歇也九日少阳病衰耳聋微闻也十日太阴病衰腹减如故则思饮食十一日少阴病衰渴止舌乾已而嚏也十二日厥阴病衰囊纵少腹微下大气皆去病患精神爽慧也",
+            "chapter_id": "ZJSHL-CH-006",
+            "chapter_title": "伤寒例第三",
+            "snippet": "其不两感于寒，更不传经，不加异气者，至七日太阳病衰，头痛少愈也；八日阳明病衰，身热少歇也；九日少阳病衰，耳聋微闻也；十日太阴病衰，腹减如故，则思饮食；十一日少阴病衰，渴止舌乾，已而嚏也；十二日厥阴病衰，囊纵，少腹微下，大气皆去，病患精..."
+          }
+        ],
+        "commentarial": {
+          "route": "comparison_view",
+          "source_aware": true,
+          "lead_note": "以下为名家比较视角；原典 citation 与主证据层仍保持 canonical 优先。",
+          "sections": [
+            {
+              "section_id": "commentarial_comparison_view_刘渡舟_main",
+              "title": "刘渡舟",
+              "commentator": "刘渡舟",
+              "view_mode": "comparison_view",
+              "layout": "comparison",
+              "collapsed_by_default": false,
+              "item_count": 3,
+              "items": [
+                {
+                  "unit_id": "cmu_liu_th024",
+                  "commentator": "刘渡舟",
+                  "source_id": "liu_duzhou_shanghan_lectures_2007",
+                  "title": "辨太阳病脉证并治法上",
+                  "anchor_type": "theme",
+                  "anchor_priority_mode": "theme_anchor",
+                  "theme_display_tier": "tier_1_named_view_ok",
+                  "resolved_primary_anchor_passage_ids": [],
+                  "unresolved_anchor_keys": [],
+                  "never_use_in_primary": true,
+                  "use_for_confidence_gate": false,
+                  "needs_manual_anchor_review": false,
+                  "needs_manual_content_review": false,
+                  "summary_text": "刘渡舟围绕“辨太阳病脉证并治法上”，重点涉及theory_overview、pathogenesis、formula_analysis。辨太阳病脉证并治法上［概说］现在我们讲太阳病上篇———《辨太阳病脉证并治法上第五》。在讲这一篇前，先把太阳病总的内容介绍一下，使大家有一个总",
+                  "score": 68.6
+                },
+                {
+                  "unit_id": "cmu_liu_th015",
+                  "commentator": "刘渡舟",
+                  "source_id": "liu_duzhou_shanghan_lectures_2007",
+                  "title": "（一）六经病证传变的条件",
+                  "anchor_type": "theme",
+                  "anchor_priority_mode": "theme_anchor",
+                  "theme_display_tier": "tier_1_named_view_ok",
+                  "resolved_primary_anchor_passage_ids": [],
+                  "unresolved_anchor_keys": [],
+                  "never_use_in_primary": true,
+                  "use_for_confidence_gate": false,
+                  "needs_manual_anchor_review": false,
+                  "needs_manual_content_review": false,
+                  "summary_text": "刘渡舟围绕“（一）六经病证传变的条件”，重点涉及theory_overview、pathogenesis、therapeutic_method。（一）六经病证传变的条件邪气的传变要取决于一个条件，就是正邪斗争双方的力量对比。其中，关键又在于正气。如果正气抗邪有力，疾病就不传...",
+                  "score": 63.2
+                },
+                {
+                  "unit_id": "cmu_liu_p005",
+                  "commentator": "刘渡舟",
+                  "source_id": "liu_duzhou_shanghan_lectures_2007",
+                  "title": "第005条 伤寒二三日，阳明少阳证不见者，为不传也。…",
+                  "anchor_type": "exact",
+                  "anchor_priority_mode": "single_anchor",
+                  "theme_display_tier": null,
+                  "resolved_primary_anchor_passage_ids": [
+                    "ZJSHL-CH-008-P-0199"
+                  ],
+                  "unresolved_anchor_keys": [],
+                  "never_use_in_primary": true,
+                  "use_for_confidence_gate": false,
+                  "needs_manual_anchor_review": false,
+                  "needs_manual_content_review": false,
+                  "summary_text": "刘渡舟围绕“第005条 伤寒二三日，阳明少阳证不见者，为不传也。…”解读条文“伤寒二三日，阳明少阳证不见者，为不传”，重点涉及passage_explanation、pathogenesis、therapeutic_method。以下介绍传经和不传经的辨证。邪气客表以后不是...",
+                  "score": 58.6
+                }
+              ]
+            },
+            {
+              "section_id": "commentarial_comparison_view_郝万山_main",
+              "title": "郝万山",
+              "commentator": "郝万山",
+              "view_mode": "comparison_view",
+              "layout": "comparison",
+              "collapsed_by_default": false,
+              "item_count": 3,
+              "items": [
+                {
+                  "unit_id": "cmu_hao_th047",
+                  "commentator": "郝万山",
+                  "source_id": "hao_wanshan_shanghan_lectures_2007",
+                  "title": "（一）少阳病的主要特点",
+                  "anchor_type": "theme",
+                  "anchor_priority_mode": "theme_anchor",
+                  "theme_display_tier": "tier_1_named_view_ok",
+                  "resolved_primary_anchor_passage_ids": [],
+                  "unresolved_anchor_keys": [],
+                  "never_use_in_primary": true,
+                  "use_for_confidence_gate": false,
+                  "needs_manual_anchor_review": false,
+                  "needs_manual_content_review": false,
+                  "summary_text": "郝万山围绕“（一）少阳病的主要特点”，重点涉及theory_overview、pathogenesis、therapeutic_method。（一）少阳病的主要特点一是容易经、腑同病。少阳病常常是少阳经脉受邪的证候和胆腑郁热、三焦不畅的证候同时存在，在治疗的时候，也皆以小柴...",
+                  "score": 68.6
+                },
+                {
+                  "unit_id": "cmu_hao_th049",
+                  "commentator": "郝万山",
+                  "source_id": "hao_wanshan_shanghan_lectures_2007",
+                  "title": "（三）少阳病的治疗禁忌",
+                  "anchor_type": "theme",
+                  "anchor_priority_mode": "theme_anchor",
+                  "theme_display_tier": "tier_1_named_view_ok",
+                  "resolved_primary_anchor_passage_ids": [],
+                  "unresolved_anchor_keys": [],
+                  "never_use_in_primary": true,
+                  "use_for_confidence_gate": false,
+                  "needs_manual_anchor_review": false,
+                  "needs_manual_content_review": false,
+                  "summary_text": "郝万山围绕“（三）少阳病的治疗禁忌”，重点涉及theory_overview、pathogenesis、therapeutic_method。（三）少阳病的治疗禁忌少阳病禁用汗、吐、下。因少阳为一阳，为小阳，其阳气抗邪的能力比较弱小，而汗吐下诸法不能驱除少阳的邪气，只能白白...",
+                  "score": 68.6
+                },
+                {
+                  "unit_id": "cmu_hao_th021",
+                  "commentator": "郝万山",
+                  "source_id": "hao_wanshan_shanghan_lectures_2007",
+                  "title": "（二）六经病的传经和变证",
+                  "anchor_type": "theme",
+                  "anchor_priority_mode": "theme_anchor",
+                  "theme_display_tier": "tier_1_named_view_ok",
+                  "resolved_primary_anchor_passage_ids": [],
+                  "unresolved_anchor_keys": [],
+                  "never_use_in_primary": true,
+                  "use_for_confidence_gate": false,
+                  "needs_manual_anchor_review": false,
+                  "needs_manual_content_review": false,
+                  "summary_text": "郝万山围绕“（二）六经病的传经和变证”，重点涉及theory_overview、pathogenesis、therapeutic_method。（二）六经病的传经和变证六经病的传经：邪气由此经进入彼经，则叫传经。《伤寒论》原文所提示的传经情况主要是：一般来说，正虚邪盛，则邪...",
+                  "score": 59.6
+                }
+              ]
+            }
+          ]
+        },
+        "commentarial_item_count": 6,
+        "display_sections": [
+          {
+            "section_id": "answer",
+            "title": "回答",
+            "section_type": "text",
+            "visible": true,
+            "field": "answer_text",
+            "item_count": null
+          },
+          {
+            "section_id": "review_notice",
+            "title": "核对提示",
+            "section_type": "notice",
+            "visible": true,
+            "field": "review_notice",
+            "item_count": null
+          },
+          {
+            "section_id": "primary_evidence",
+            "title": "主依据",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "primary_evidence",
+            "item_count": 1
+          },
+          {
+            "section_id": "secondary_evidence",
+            "title": "补充依据",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "secondary_evidence",
+            "item_count": 5
+          },
+          {
+            "section_id": "review_materials",
+            "title": "核对材料",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "review_materials",
+            "item_count": 2
+          },
+          {
+            "section_id": "citations",
+            "title": "引用",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "citations",
+            "item_count": 1
+          },
+          {
+            "section_id": "refusal_guidance",
+            "title": "改问建议",
+            "section_type": "list",
+            "visible": false,
+            "field": "suggested_followup_questions",
+            "item_count": 0
+          },
+          {
+            "section_id": "commentarial",
+            "title": "名家视角",
+            "section_type": "extension",
+            "visible": true,
+            "field": "commentarial",
+            "item_count": 6
+          }
+        ]
+      }
+    },
+    {
+      "example_id": "meta_learning_view",
+      "request_path": "/api/v1/answers",
+      "request_keys": [
+        "query"
+      ],
+      "request_body": {
+        "query": "怎么学《伤寒论》？"
+      },
+      "response_status": 200,
+      "response_keys": [
+        "query",
+        "answer_mode",
+        "answer_text",
+        "primary_evidence",
+        "secondary_evidence",
+        "review_materials",
+        "disclaimer",
+        "review_notice",
+        "refuse_reason",
+        "suggested_followup_questions",
+        "citations",
+        "commentarial",
+        "display_sections"
+      ],
+      "response_body_truncated": true,
+      "response_body": {
+        "query": "怎么学《伤寒论》？",
+        "answer_mode": "weak_with_review_notice",
+        "answer_text": "《伤寒论》可以先理解为一部以‘伤寒’为纲、统摄外感热病诊疗的奠基性经典，其内容不仅包括具体方证条文，还整合了四时八节、二十四气、七十二候等时间医学思想作为辨证前提。[E1][E4] 之所以只能作此倾向性理解，是因为当前提供的材料均为后世注家所撰的序文与题记，并未包含《伤寒论》原文正文或具体条文，缺乏直接语境支撑。 若要确认其核心体例与实质内容，需回看赵本《伤寒论》卷首‘四时八节……决病法’的完整段落，特别注意‘决病法’三字如何与后续六经分证发生关联；同时应核对《伤寒卒病论集》原序中‘论广汤液’‘十数卷’等关键表述的上下文，以厘清‘伤寒’与‘卒病’的...",
+        "primary_evidence_count": 0,
+        "primary_evidence": [],
+        "secondary_evidence_count": 5,
+        "secondary_evidence": [
+          {
+            "record_id": "full:annotations:ZJSHL-CH-005-P-0001",
+            "record_type": "annotations",
+            "display_role": "secondary",
+            "title": "注解伤寒论第二赵本论前有四时八节二十四气七十二候决病法",
+            "evidence_level": "B",
+            "chapter_id": "ZJSHL-CH-005",
+            "chapter_title": "卷题/题记",
+            "snippet": "注解伤寒论第二赵本论前有四时八节、二十四气、七十二候、决病法",
+            "risk_flags": [
+              "annotation_unlinked"
+            ]
+          },
+          {
+            "record_id": "full:annotations:ZJSHL-CH-002-P-0007",
+            "record_type": "annotations",
+            "display_role": "secondary",
+            "title": "夫伤寒论盖祖述大圣人之意诸家莫其伦拟故晋皇甫谧序甲乙针经云",
+            "evidence_level": "B",
+            "chapter_id": "ZJSHL-CH-002",
+            "chapter_title": "伤寒卒病论集",
+            "snippet": "夫伤寒论，盖祖述大圣人之意，诸家莫其伦拟，故晋·皇甫谧序《甲乙针经》云：伊芳尹以元圣之才，撰用神农本草，以为汤液；汉张仲景论广汤液，为十数卷，用之多验；近世太医令王叔和，撰次仲景遗论甚精，皆可施用。是仲景本伊芳尹之法，伊芳尹本神农之经...",
+            "risk_flags": [
+              "annotation_unlinked"
+            ]
+          },
+          {
+            "record_id": "full:annotations:ZJSHL-CH-001-P-0002",
+            "record_type": "annotations",
+            "display_role": "secondary",
+            "title": "夫前圣有作后必有继而述之者则其教乃得著于世矣医之道源自炎黄以至神之妙始兴经方继而伊芳尹以元圣之才撰成汤液俾黎庶之疾疚咸遂蠲除使万代之生灵普蒙拯济后汉张仲景又广汤液为伤寒卒病论十数卷然后医方大备兹先圣后圣若合符节至晋太医令王叔和以仲景之书撰次成叙得为完秩昔人以仲景方一部为众方之祖盖能继述先圣之所作迄今千有馀年不坠于地者又得王氏阐明之力也伤寒论十卷其言精而奥其法简而详非寡闻浅见所能赜究后虽有学人又各自名家未见发明仆忝医业自幼徂老耽味仲景之书五十馀年矣虽粗得其门而近升乎堂然未入于室常为之慊然昨者解后聊摄成公议论该博术业精通而有家学注成伤寒十卷出以示仆其三百九十七法之内分析异同彰明隐奥调陈脉理区别阴阳使表里以昭然俾汗下而灼见百一十二方之后通明名号之由彰显药性之主十剂轻重之攸分七精制用之斯见别气味之所宜明补泻之所适又皆引内经旁牵众说方法之辨莫不允当实前贤所未言后学所未识是得仲景之深意者也昔所谓慊然者今悉达其奥矣亲觌其书诚难默默不揆荒芜聊序其略",
+            "evidence_level": "B",
+            "chapter_id": "ZJSHL-CH-001",
+            "chapter_title": "序注解伤寒论　成无己",
+            "snippet": "夫前圣有作，后必有继而述之者，则其教乃得著于世矣。医之道源自炎黄，以至神之妙，始兴经方；继而伊芳尹以元圣之才，撰成汤液，俾黎庶之疾疚，咸遂蠲除，使万代之生灵，普蒙拯济；后汉张仲景，又广汤液为伤寒卒病论十数卷，然后医方大备，兹先圣后圣，...",
+            "risk_flags": [
+              "annotation_unlinked"
+            ]
+          }
+        ],
+        "review_materials_count": 2,
+        "review_materials": [
+          {
+            "record_id": "full:passages:ZJSHL-CH-005-P-0001",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "注解伤寒论第二赵本论前有四时八节二十四气七十二候决病法",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-005",
+            "chapter_title": "卷题/题记",
+            "snippet": "注解伤寒论第二赵本论前有四时八节、二十四气、七十二候、决病法",
+            "risk_flags": [
+              "ledger_mixed_roles"
+            ]
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-002-P-0007",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "夫伤寒论盖祖述大圣人之意诸家莫其伦拟故晋皇甫谧序甲乙针经云",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-002",
+            "chapter_title": "伤寒卒病论集",
+            "snippet": "夫伤寒论，盖祖述大圣人之意，诸家莫其伦拟，故晋·皇甫谧序《甲乙针经》云：伊芳尹以元圣之才，撰用神农本草，以为汤液；汉张仲景论广汤液，为十数卷，用之多验；近世太医令王叔和，撰次仲景遗论甚精，皆可施用。是仲景本伊芳尹之法，伊芳尹本神农之经...",
+            "risk_flags": [
+              "ledger_mixed_roles"
+            ]
+          }
+        ],
+        "disclaimer": "当前只输出弱表述与核对材料，不输出确定性答案。",
+        "review_notice": "正文强证据不足，以下内容需核对，不应视为确定答案。",
+        "refuse_reason": null,
+        "suggested_followup_questions": [],
+        "citations_count": 7,
+        "citations": [
+          {
+            "citation_id": "c1",
+            "record_id": "full:annotations:ZJSHL-CH-005-P-0001",
+            "record_type": "annotations",
+            "citation_role": "secondary",
+            "title": "注解伤寒论第二赵本论前有四时八节二十四气七十二候决病法",
+            "chapter_id": "ZJSHL-CH-005",
+            "chapter_title": "卷题/题记",
+            "snippet": "注解伤寒论第二赵本论前有四时八节、二十四气、七十二候、决病法"
+          },
+          {
+            "citation_id": "c2",
+            "record_id": "full:annotations:ZJSHL-CH-002-P-0007",
+            "record_type": "annotations",
+            "citation_role": "secondary",
+            "title": "夫伤寒论盖祖述大圣人之意诸家莫其伦拟故晋皇甫谧序甲乙针经云",
+            "chapter_id": "ZJSHL-CH-002",
+            "chapter_title": "伤寒卒病论集",
+            "snippet": "夫伤寒论，盖祖述大圣人之意，诸家莫其伦拟，故晋·皇甫谧序《甲乙针经》云：伊芳尹以元圣之才，撰用神农本草，以为汤液；汉张仲景论广汤液，为十数卷，用之多验；近世太医令王叔和，撰次仲景遗论甚精，皆可施用。是仲景本伊芳尹之法，伊芳尹本神农之经..."
+          },
+          {
+            "citation_id": "c3",
+            "record_id": "full:annotations:ZJSHL-CH-001-P-0002",
+            "record_type": "annotations",
+            "citation_role": "secondary",
+            "title": "夫前圣有作后必有继而述之者则其教乃得著于世矣医之道源自炎黄以至神之妙始兴经方继而伊芳尹以元圣之才撰成汤液俾黎庶之疾疚咸遂蠲除使万代之生灵普蒙拯济后汉张仲景又广汤液为伤寒卒病论十数卷然后医方大备兹先圣后圣若合符节至晋太医令王叔和以仲景之书撰次成叙得为完秩昔人以仲景方一部为众方之祖盖能继述先圣之所作迄今千有馀年不坠于地者又得王氏阐明之力也伤寒论十卷其言精而奥其法简而详非寡闻浅见所能赜究后虽有学人又各自名家未见发明仆忝医业自幼徂老耽味仲景之书五十馀年矣虽粗得其门而近升乎堂然未入于室常为之慊然昨者解后聊摄成公议论该博术业精通而有家学注成伤寒十卷出以示仆其三百九十七法之内分析异同彰明隐奥调陈脉理区别阴阳使表里以昭然俾汗下而灼见百一十二方之后通明名号之由彰显药性之主十剂轻重之攸分七精制用之斯见别气味之所宜明补泻之所适又皆引内经旁牵众说方法之辨莫不允当实前贤所未言后学所未识是得仲景之深意者也昔所谓慊然者今悉达其奥矣亲觌其书诚难默默不揆荒芜聊序其略",
+            "chapter_id": "ZJSHL-CH-001",
+            "chapter_title": "序注解伤寒论　成无己",
+            "snippet": "夫前圣有作，后必有继而述之者，则其教乃得著于世矣。医之道源自炎黄，以至神之妙，始兴经方；继而伊芳尹以元圣之才，撰成汤液，俾黎庶之疾疚，咸遂蠲除，使万代之生灵，普蒙拯济；后汉张仲景，又广汤液为伤寒卒病论十数卷，然后医方大备，兹先圣后圣，..."
+          },
+          {
+            "citation_id": "c4",
+            "record_id": "safe:main_passages:ZJSHL-CH-006-P-0141",
+            "record_type": "main_passages",
+            "citation_role": "secondary",
+            "title": "脉盛身寒得之伤寒脉虚身热得之伤暑",
+            "chapter_id": "ZJSHL-CH-006",
+            "chapter_title": "伤寒例第三",
+            "snippet": "脉盛身寒，得之伤寒；脉虚身热，得之伤暑。"
+          },
+          {
+            "citation_id": "c5",
+            "record_id": "safe:main_passages:ZJSHL-CH-011-P-0058",
+            "record_type": "main_passages",
+            "citation_role": "secondary",
+            "title": "伤寒呕多虽有阳明证不可攻之",
+            "chapter_id": "ZJSHL-CH-011",
+            "chapter_title": "辨阳明病脉证并治法第八",
+            "snippet": "伤寒呕多，虽有阳明证不可攻之。"
+          }
+        ],
+        "commentarial": {
+          "route": "meta_learning_view",
+          "source_aware": true,
+          "lead_note": "以下为名家学习方法与教学视角，仍与 canonical 主证据层分离展示。",
+          "sections": [
+            {
+              "section_id": "commentarial_meta_learning_view_刘渡舟_folded",
+              "title": "刘渡舟补充主题",
+              "commentator": "刘渡舟",
+              "view_mode": "meta_learning_view",
+              "layout": "stacked",
+              "collapsed_by_default": true,
+              "item_count": 2,
+              "items": [
+                {
+                  "unit_id": "cmu_liu_p001",
+                  "commentator": "刘渡舟",
+                  "source_id": "liu_duzhou_shanghan_lectures_2007",
+                  "title": "第001条 太阳之为病，脉浮，头项强痛而恶寒。（1）",
+                  "anchor_type": "exact",
+                  "anchor_priority_mode": "single_anchor",
+                  "theme_display_tier": null,
+                  "resolved_primary_anchor_passage_ids": [
+                    "ZJSHL-CH-008-P-0191"
+                  ],
+                  "unresolved_anchor_keys": [],
+                  "never_use_in_primary": true,
+                  "use_for_confidence_gate": false,
+                  "needs_manual_anchor_review": false,
+                  "needs_manual_content_review": false,
+                  "summary_text": "刘渡舟围绕“第001条 太阳之为病，脉浮，头项强痛而恶寒。（1）”解读条文“太阳之为病，脉浮，头项强痛而恶寒。（”，重点涉及passage_explanation、pathogenesis、formula_analysis。这一条是太阳病的提纲，也是表病的总纲。“太阳之为病...",
+                  "score": 54.6
+                },
+                {
+                  "unit_id": "cmu_liu_p005",
+                  "commentator": "刘渡舟",
+                  "source_id": "liu_duzhou_shanghan_lectures_2007",
+                  "title": "第005条 伤寒二三日，阳明少阳证不见者，为不传也。…",
+                  "anchor_type": "exact",
+                  "anchor_priority_mode": "single_anchor",
+                  "theme_display_tier": null,
+                  "resolved_primary_anchor_passage_ids": [
+                    "ZJSHL-CH-008-P-0199"
+                  ],
+                  "unresolved_anchor_keys": [],
+                  "never_use_in_primary": true,
+                  "use_for_confidence_gate": false,
+                  "needs_manual_anchor_review": false,
+                  "needs_manual_content_review": false,
+                  "summary_text": "刘渡舟围绕“第005条 伤寒二三日，阳明少阳证不见者，为不传也。…”解读条文“伤寒二三日，阳明少阳证不见者，为不传”，重点涉及passage_explanation、pathogenesis、therapeutic_method。以下介绍传经和不传经的辨证。邪气客表以后不是...",
+                  "score": 54.6
+                }
+              ]
+            },
+            {
+              "section_id": "commentarial_meta_learning_view_郝万山_main",
+              "title": "郝万山视角",
+              "commentator": "郝万山",
+              "view_mode": "meta_learning_view",
+              "layout": "stacked",
+              "collapsed_by_default": false,
+              "item_count": 1,
+              "items": [
+                {
+                  "unit_id": "cmu_hao_th025",
+                  "commentator": "郝万山",
+                  "source_id": "hao_wanshan_shanghan_lectures_2007",
+                  "title": "六、学习《伤寒论》的方法与要求",
+                  "anchor_type": "theme",
+                  "anchor_priority_mode": "theme_anchor",
+                  "theme_display_tier": "tier_3_meta_learning_only",
+                  "resolved_primary_anchor_passage_ids": [],
+                  "unresolved_anchor_keys": [],
+                  "never_use_in_primary": true,
+                  "use_for_confidence_gate": false,
+                  "needs_manual_anchor_review": true,
+                  "needs_manual_content_review": false,
+                  "summary_text": "郝万山围绕“六、学习《伤寒论》的方法与要求”，重点涉及theory_overview、pathogenesis、formula_analysis。六、学习《伤寒论》的方法与要求这里要谈的是怎样学、学什么的问题。毫无疑问学习其中理、法、方、药的基本内容和辨证论治的基本知识，这...",
+                  "score": 96.6
+                }
+              ]
+            },
+            {
+              "section_id": "commentarial_meta_learning_view_郝万山_folded",
+              "title": "郝万山补充主题",
+              "commentator": "郝万山",
+              "view_mode": "meta_learning_view",
+              "layout": "stacked",
+              "collapsed_by_default": true,
+              "item_count": 2,
+              "items": [
+                {
+                  "unit_id": "cmu_hao_rw053",
+                  "commentator": "郝万山",
+                  "source_id": "hao_wanshan_shanghan_lectures_2007",
+                  "title": "论汗出过多致心阳损伤的证治。",
+                  "anchor_type": "exact",
+                  "anchor_priority_mode": "single_anchor",
+                  "theme_display_tier": null,
+                  "resolved_primary_anchor_passage_ids": [
+                    "ZJSHL-CH-009-P-0103"
+                  ],
+                  "unresolved_anchor_keys": [],
+                  "never_use_in_primary": true,
+                  "use_for_confidence_gate": false,
+                  "needs_manual_anchor_review": false,
+                  "needs_manual_content_review": false,
+                  "summary_text": "郝万山围绕“论汗出过多致心阳损伤的证治。”解读条文“发汗过多，其人叉手自冒心［1］，心下”，重点涉及passage_explanation、pathogenesis、formula_analysis。论汗出过多致心阳损伤的证治。本证成因：发汗过多，导致心阳耗伤。多与素体心阳...",
+                  "score": 54.6
+                },
+                {
+                  "unit_id": "cmu_hao_rw056",
+                  "commentator": "郝万山",
+                  "source_id": "hao_wanshan_shanghan_lectures_2007",
+                  "title": "论火针汗后心阳虚损，下焦寒气上冲而发奔豚的证治。",
+                  "anchor_type": "exact",
+                  "anchor_priority_mode": "single_anchor",
+                  "theme_display_tier": null,
+                  "resolved_primary_anchor_passage_ids": [
+                    "ZJSHL-CH-009-P-0294"
+                  ],
+                  "unresolved_anchor_keys": [],
+                  "never_use_in_primary": true,
+                  "use_for_confidence_gate": false,
+                  "needs_manual_anchor_review": false,
+                  "needs_manual_content_review": false,
+                  "summary_text": "郝万山围绕“论火针汗后心阳虚损，下焦寒气上冲而发奔豚的证治。”解读条文“烧针令其汗，针处被寒，核起而赤者，必”，重点涉及passage_explanation、pathogenesis、formula_analysis。论火针汗后心阳虚损，下焦寒气上冲而发奔豚的证治。本证成...",
+                  "score": 54.6
+                }
+              ]
+            }
+          ]
+        },
+        "commentarial_item_count": 5,
+        "display_sections": [
+          {
+            "section_id": "answer",
+            "title": "回答",
+            "section_type": "text",
+            "visible": true,
+            "field": "answer_text",
+            "item_count": null
+          },
+          {
+            "section_id": "review_notice",
+            "title": "核对提示",
+            "section_type": "notice",
+            "visible": true,
+            "field": "review_notice",
+            "item_count": null
+          },
+          {
+            "section_id": "primary_evidence",
+            "title": "主依据",
+            "section_type": "slot_ref",
+            "visible": false,
+            "field": "primary_evidence",
+            "item_count": 0
+          },
+          {
+            "section_id": "secondary_evidence",
+            "title": "补充依据",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "secondary_evidence",
+            "item_count": 5
+          },
+          {
+            "section_id": "review_materials",
+            "title": "核对材料",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "review_materials",
+            "item_count": 2
+          },
+          {
+            "section_id": "citations",
+            "title": "引用",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "citations",
+            "item_count": 7
+          },
+          {
+            "section_id": "refusal_guidance",
+            "title": "改问建议",
+            "section_type": "list",
+            "visible": false,
+            "field": "suggested_followup_questions",
+            "item_count": 0
+          },
+          {
+            "section_id": "commentarial",
+            "title": "名家视角",
+            "section_type": "extension",
+            "visible": true,
+            "field": "commentarial",
+            "item_count": 5
+          }
+        ]
+      }
+    },
+    {
+      "example_id": "assistive_view",
+      "request_path": "/api/v1/answers",
+      "request_keys": [
+        "query"
+      ],
+      "request_body": {
+        "query": "桂枝汤是什么？"
+      },
+      "response_status": 200,
+      "response_keys": [
+        "query",
+        "answer_mode",
+        "answer_text",
+        "primary_evidence",
+        "secondary_evidence",
+        "review_materials",
+        "disclaimer",
+        "review_notice",
+        "refuse_reason",
+        "suggested_followup_questions",
+        "citations",
+        "commentarial",
+        "display_sections"
+      ],
+      "response_body_truncated": true,
+      "response_body": {
+        "query": "桂枝汤是什么？",
+        "answer_mode": "strong",
+        "answer_text": "桂枝汤是《伤寒论》所载的一首经典经方，主要用于太阳病表证尚未解除、脉象浮而偏弱的情形，核心作用在于通过调和营卫来促使机体微微出汗，从而解除在表之邪。[E1][E2] 它的药物组成固定为五味：桂枝三两（去皮）、芍药三两、炙甘草二两、生姜三两（切）、大枣十二枚（擘），每味药的性味与基本处理方式也在原文中一并注明。[E1] 服用方法有细致讲究：药液煎成后需适寒温服用，服后须喝热稀粥以助药力，再盖被保暖约一个时辰，务求遍身持续微汗，但不可大汗淋漓；若一服即汗出而病解，便应停服，不必服完全部药量。[E2]",
+        "primary_evidence_count": 2,
+        "primary_evidence": [
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-008-P-0217",
+            "record_type": "main_passages",
+            "display_role": "primary",
+            "title": "桂枝汤方",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-008",
+            "chapter_title": "辨太阳病脉证并治法上第五",
+            "snippet": "桂枝汤方：桂枝三两，去皮，味辛热，按：下药性，赵本无，以后并同 芍药三两。味苦酸，微寒 甘草二两，炙，味甘平 生姜三两，切，味辛温 大枣十二枚，擘，味甘温",
+            "risk_flags": []
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-008-P-0219",
+            "record_type": "main_passages",
+            "display_role": "primary",
+            "title": "桂枝汤方",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-008",
+            "chapter_title": "辨太阳病脉证并治法上第五",
+            "snippet": "右伍味，㕮咀。赵本有「三味」二字以水柒升，微火煑取三升，去滓，适寒温，服壹升。服已须臾，歠热稀粥壹升馀，以助药力，温覆令壹时许，遍身漐漐，微似有汗者益佳，不可令如水流漓，病必不除。若壹服汗出病差，停后服，不必尽剂；若不汗，更服，依前法...",
+            "risk_flags": []
+          }
+        ],
+        "secondary_evidence_count": 5,
+        "secondary_evidence": [
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0051",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "太阳赵本有桂枝汤方详见本书卷二病外证未解脉浮弱者当以汗解宜桂枝汤",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "snippet": "太阳赵本有「桂枝汤方」详见本书卷二病，外证未解，脉浮弱者，当以汗解，宜桂枝汤。",
+            "risk_flags": [
+              "topic_mismatch_demoted"
+            ]
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-013-P-0008",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "太阴病脉浮者可发汗宜桂枝汤赵本有桂枝汤方详见卷二",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-013",
+            "chapter_title": "辨太阴病脉证并治法第十",
+            "snippet": "太阴病脉浮者，可发汗，宜桂枝汤。赵本有「桂枝汤方」详见卷二",
+            "risk_flags": [
+              "topic_mismatch_demoted"
+            ]
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0281",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "上为末以水一斗二升先煮蜀漆减二升内诸药煮取三升去滓温服一升赵本有本云",
+            "evidence_level": "A",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "snippet": "上为末，赵本作「七味」以水一斗二升，先煮蜀漆，减二升，内诸药，煮取三升，去滓，温服一升。赵本有「本云：桂枝汤，今去芍药，加蜀漆牡蛎龙骨」十六字",
+            "risk_flags": [
+              "topic_mismatch_demoted"
+            ]
+          }
+        ],
+        "review_materials_count": 2,
+        "review_materials": [
+          {
+            "record_id": "full:passages:ZJSHL-CH-008-P-0217",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "桂枝汤方",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-008",
+            "chapter_title": "辨太阳病脉证并治法上第五",
+            "snippet": "桂枝汤方：桂枝三两，去皮，味辛热，按：下药性，赵本无，以后并同 芍药三两。味苦酸，微寒 甘草二两，炙，味甘平 生姜三两，切，味辛温 大枣十二枚，擘，味甘温",
+            "risk_flags": [
+              "ledger_mixed_roles"
+            ]
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-007-P-0163",
+            "record_type": "passages",
+            "display_role": "review",
+            "title": "金匮要略曰",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-007",
+            "chapter_title": "辨痓湿暍脉证第四",
+            "snippet": "《金匮要略》曰：太阳病，其证备，身体强，𠘧𠘧然，脉反沉迟，此为痓，栝蒌桂枝汤主之。",
+            "risk_flags": [
+              "ledger_mixed_roles",
+              "ambiguous_source"
+            ]
+          }
+        ],
+        "disclaimer": "主证据优先；补充依据与核对材料不参与主结论判定。",
+        "review_notice": "以下补充依据与核对材料仅作说明，不作为主依据。",
+        "refuse_reason": null,
+        "suggested_followup_questions": [],
+        "citations_count": 2,
+        "citations": [
+          {
+            "citation_id": "c1",
+            "record_id": "safe:main_passages:ZJSHL-CH-008-P-0217",
+            "record_type": "main_passages",
+            "citation_role": "primary",
+            "title": "桂枝汤方",
+            "chapter_id": "ZJSHL-CH-008",
+            "chapter_title": "辨太阳病脉证并治法上第五",
+            "snippet": "桂枝汤方：桂枝三两，去皮，味辛热，按：下药性，赵本无，以后并同 芍药三两。味苦酸，微寒 甘草二两，炙，味甘平 生姜三两，切，味辛温 大枣十二枚，擘，味甘温"
+          },
+          {
+            "citation_id": "c2",
+            "record_id": "safe:main_passages:ZJSHL-CH-008-P-0219",
+            "record_type": "main_passages",
+            "citation_role": "primary",
+            "title": "桂枝汤方",
+            "chapter_id": "ZJSHL-CH-008",
+            "chapter_title": "辨太阳病脉证并治法上第五",
+            "snippet": "右伍味，㕮咀。赵本有「三味」二字以水柒升，微火煑取三升，去滓，适寒温，服壹升。服已须臾，歠热稀粥壹升馀，以助药力，温覆令壹时许，遍身漐漐，微似有汗者益佳，不可令如水流漓，病必不除。若壹服汗出病差，停后服，不必尽剂；若不汗，更服，依前法..."
+          }
+        ],
+        "commentarial": {
+          "route": "assistive_view",
+          "source_aware": true,
+          "lead_note": "以下名家内容仅作补充解读，默认不进入 primary_evidence，也不参与 confidence gate。",
+          "sections": [
+            {
+              "section_id": "commentarial_assistive",
+              "title": "名家补充解读",
+              "commentator": null,
+              "view_mode": "assistive_view",
+              "layout": "stacked",
+              "collapsed_by_default": true,
+              "item_count": 2,
+              "items": [
+                {
+                  "unit_id": "cmu_hao_rw009",
+                  "commentator": "郝万山",
+                  "source_id": "hao_wanshan_shanghan_lectures_2007",
+                  "title": "（一）中风表虚证类 / PASSAGE_NO:013",
+                  "anchor_type": "exact",
+                  "anchor_priority_mode": "single_anchor",
+                  "theme_display_tier": null,
+                  "resolved_primary_anchor_passage_ids": [
+                    "ZJSHL-CH-008-P-0220"
+                  ],
+                  "unresolved_anchor_keys": [],
+                  "never_use_in_primary": true,
+                  "use_for_confidence_gate": false,
+                  "needs_manual_anchor_review": false,
+                  "needs_manual_content_review": false,
+                  "summary_text": "郝万山围绕“（一）中风表虚证类 / PASSAGE_NO:013”解读条文“太阳病，头痛，发热，汗出，恶风，桂枝”，重点涉及passage_explanation、therapeutic_method、clinical_application。本条所论，扩大了桂枝汤的应用范...",
+                  "score": 20.6
+                },
+                {
+                  "unit_id": "cmu_hao_rw010",
+                  "commentator": "郝万山",
+                  "source_id": "hao_wanshan_shanghan_lectures_2007",
+                  "title": "论太阳病脉见浮弱者宜桂枝汤。",
+                  "anchor_type": "exact",
+                  "anchor_priority_mode": "single_anchor",
+                  "theme_display_tier": null,
+                  "resolved_primary_anchor_passage_ids": [
+                    "ZJSHL-CH-009-P-0051"
+                  ],
+                  "unresolved_anchor_keys": [],
+                  "never_use_in_primary": true,
+                  "use_for_confidence_gate": false,
+                  "needs_manual_anchor_review": false,
+                  "needs_manual_content_review": false,
+                  "summary_text": "郝万山围绕“论太阳病脉见浮弱者宜桂枝汤。”解读条文“太阳病，外证［1］未解，脉浮弱者，当”，重点涉及passage_explanation、therapeutic_method、summary。论太阳病脉见浮弱者宜桂枝汤。太阳病外证未解，是指发热、恶寒、头痛等表证仍在，当发...",
+                  "score": 20.6
+                }
+              ]
+            }
+          ]
+        },
+        "commentarial_item_count": 2,
+        "display_sections": [
+          {
+            "section_id": "answer",
+            "title": "回答",
+            "section_type": "text",
+            "visible": true,
+            "field": "answer_text",
+            "item_count": null
+          },
+          {
+            "section_id": "review_notice",
+            "title": "核对提示",
+            "section_type": "notice",
+            "visible": true,
+            "field": "review_notice",
+            "item_count": null
+          },
+          {
+            "section_id": "primary_evidence",
+            "title": "主依据",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "primary_evidence",
+            "item_count": 2
+          },
+          {
+            "section_id": "secondary_evidence",
+            "title": "补充依据",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "secondary_evidence",
+            "item_count": 5
+          },
+          {
+            "section_id": "review_materials",
+            "title": "核对材料",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "review_materials",
+            "item_count": 2
+          },
+          {
+            "section_id": "citations",
+            "title": "引用",
+            "section_type": "slot_ref",
+            "visible": true,
+            "field": "citations",
+            "item_count": 2
+          },
+          {
+            "section_id": "refusal_guidance",
+            "title": "改问建议",
+            "section_type": "list",
+            "visible": false,
+            "field": "suggested_followup_questions",
+            "item_count": 0
+          },
+          {
+            "section_id": "commentarial",
+            "title": "名家视角",
+            "section_type": "extension",
+            "visible": true,
+            "field": "commentarial",
+            "item_count": 2
+          }
+        ]
+      }
+    }
+  ]
+}
