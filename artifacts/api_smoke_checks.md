@@ -6,14 +6,14 @@
 
 ## Endpoint
 
-- base_url: `http://127.0.0.1:51819`
+- base_url: `http://127.0.0.1:50014`
 - method: `POST`
 - path: `/api/v1/answers`
 
 ## 结论
 
 - `黄连汤方的条文是什么？` -> status=`200`, mode=`strong`, primary=3, secondary=3, review=2, citations=3
-- `烧针益阳而损阴是什么意思？` -> status=`200`, mode=`weak_with_review_notice`, primary=0, secondary=3, review=2, citations=5
+- `烧针益阳而损阴是什么意思？` -> status=`200`, mode=`weak_with_review_notice`, primary=0, secondary=11, review=0, citations=8
 - `书中有没有提到量子纠缠？` -> status=`200`, mode=`refuse`, primary=0, secondary=0, review=0, citations=0
 
 ## Validation
@@ -43,6 +43,7 @@
   "refuse_reason",
   "suggested_followup_questions",
   "citations",
+  "commentarial",
   "display_sections"
 ]`
 - answer_mode: `strong`
@@ -74,19 +75,23 @@
   "refuse_reason",
   "suggested_followup_questions",
   "citations",
+  "commentarial",
   "display_sections"
 ]`
 - answer_mode: `weak_with_review_notice`
 - disclaimer: 当前只输出弱表述与核对材料，不输出确定性答案。
 - review_notice: 正文强证据不足，以下内容需核对，不应视为确定答案。
 - refuse_reason: None
-- evidence_summary: primary=0, secondary=3, review=2
+- evidence_summary: primary=0, secondary=11, review=0
 - citations_summary: `[
   "full:annotations:ZJSHL-CH-003-P-0016",
   "safe:main_passages:ZJSHL-CH-009-P-0295",
   "safe:main_passages:ZJSHL-CH-010-P-0080",
-  "full:passages:ZJSHL-CH-003-P-0016",
-  "full:ambiguous_passages:ZJSHL-CH-003-P-0016"
+  "full:passages:ZJSHL-CH-009-P-0294",
+  "full:passages:ZJSHL-CH-003-P-0015",
+  "full:passages:ZJSHL-CH-010-P-0081",
+  "full:passages:ZJSHL-CH-009-P-0296",
+  "full:passages:ZJSHL-CH-003-P-0016"
 ]`
 
 ## Query: 书中有没有提到量子纠缠？
@@ -107,6 +112,7 @@
   "refuse_reason",
   "suggested_followup_questions",
   "citations",
+  "commentarial",
   "display_sections"
 ]`
 - answer_mode: `refuse`

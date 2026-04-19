@@ -1,0 +1,1310 @@
+{
+  "sample_requirements": {
+    "liu_exact_min": 30,
+    "hao_exact_min": 20,
+    "hao_multi_min": 20,
+    "hao_excerpt_all": true,
+    "theme_min": 20
+  },
+  "samples_by_group_count": {
+    "liu_exact": 32,
+    "hao_exact": 20,
+    "hao_multi": 20,
+    "hao_excerpt": 6,
+    "theme": 20
+  },
+  "audit_entries": [
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p001",
+      "commentator": "刘渡舟",
+      "title": "第001条 太阳之为病，脉浮，头项强痛而恶寒。（1）",
+      "current_anchors": [
+        "PASSAGE_NO:001"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p015",
+      "commentator": "刘渡舟",
+      "title": "第015条 太阳病，项背强，反汗出恶风者，桂枝加葛根…",
+      "current_anchors": [
+        "PASSAGE_NO:015"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p029",
+      "commentator": "刘渡舟",
+      "title": "第029条 服桂枝汤，或下之，仍头项强痛，翕翕发热，…",
+      "current_anchors": [
+        "PASSAGE_NO:029"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p044",
+      "commentator": "刘渡舟",
+      "title": "第044条 太阳病，下之微喘者，表未解故也。桂枝加厚…",
+      "current_anchors": [
+        "PASSAGE_NO:044"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p058",
+      "commentator": "刘渡舟",
+      "title": "第058条 伤寒发汗，解半日许，复烦，脉浮数者，可更…",
+      "current_anchors": [
+        "PASSAGE_NO:058"
+      ],
+      "anchor_type": "exact",
+      "judgement": "suspicious",
+      "reason": "该单元由跨行/同行连写 OCR 断裂修补得到，当前锚点关系可用，但仍建议人工抽核。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p072",
+      "commentator": "刘渡舟",
+      "title": "第072条 太阳病，发汗后，大汗出，胃中干，烦躁不得…",
+      "current_anchors": [
+        "PASSAGE_NO:072"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p086",
+      "commentator": "刘渡舟",
+      "title": "第086条 动，振振欲擗地者，真武汤主之。（86）",
+      "current_anchors": [
+        "PASSAGE_NO:086"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p101",
+      "commentator": "刘渡舟",
+      "title": "第101条 血弱气尽，腠理开，邪气因入，与正气相搏，…",
+      "current_anchors": [
+        "PASSAGE_NO:101"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p115",
+      "commentator": "刘渡舟",
+      "title": "第115条 伤寒发热，啬啬恶寒，大渴欲饮水，其腹必满…",
+      "current_anchors": [
+        "PASSAGE_NO:115"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p129",
+      "commentator": "刘渡舟",
+      "title": "第129条 太阳病吐之，但太阳病当恶寒，今反不恶寒，…",
+      "current_anchors": [
+        "PASSAGE_NO:129"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p143",
+      "commentator": "刘渡舟",
+      "title": "第143条 伤寒六七日，结胸热实，脉沉而紧，心下痛，…",
+      "current_anchors": [
+        "PASSAGE_NO:143"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p158",
+      "commentator": "刘渡舟",
+      "title": "第158条 太阳少阳并病，而反下之，成结胸，心下硬，…",
+      "current_anchors": [
+        "PASSAGE_NO:158"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p172",
+      "commentator": "刘渡舟",
+      "title": "第172条 伤寒大下后，复发汗，心下痞，恶寒者，表未…",
+      "current_anchors": [
+        "PASSAGE_NO:172"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p186",
+      "commentator": "刘渡舟",
+      "title": "第186条 伤寒脉结代，心动悸，炙甘草汤之。（186…",
+      "current_anchors": [
+        "PASSAGE_NO:186"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p200",
+      "commentator": "刘渡舟",
+      "title": "第200条 伤寒转系阳明者，其人然微汗出也。（200…",
+      "current_anchors": [
+        "PASSAGE_NO:200"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p215",
+      "commentator": "刘渡舟",
+      "title": "第215条 阳明病，本自汗出，医更重发汗，病已差，尚…",
+      "current_anchors": [
+        "PASSAGE_NO:215"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p229",
+      "commentator": "刘渡舟",
+      "title": "第229条 阳明病，下血语者，此为热入血室；但头汗出…",
+      "current_anchors": [
+        "PASSAGE_NO:229"
+      ],
+      "anchor_type": "exact",
+      "judgement": "suspicious",
+      "reason": "原文内容曾受跨行断裂影响，已做最小修补。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p243",
+      "commentator": "刘渡舟",
+      "title": "第243条 阳明病，胁下硬满，不大便而呕，舌上白胎者…",
+      "current_anchors": [
+        "PASSAGE_NO:243"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p257",
+      "commentator": "刘渡舟",
+      "title": "第257条 脉阳微而汗出少者，为自和也；汗出多者，为…",
+      "current_anchors": [
+        "PASSAGE_NO:257"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p272",
+      "commentator": "刘渡舟",
+      "title": "第272条 伤寒，发汗已，身目为黄，所以然者，以寒湿…",
+      "current_anchors": [
+        "PASSAGE_NO:272"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p286",
+      "commentator": "刘渡舟",
+      "title": "第286条 太阴之为病，腹满而吐，食不下，自利益甚，…",
+      "current_anchors": [
+        "PASSAGE_NO:286"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p300",
+      "commentator": "刘渡舟",
+      "title": "第300条 少阴病，脉微，不可发汗，亡阳故也。阳已虚…",
+      "current_anchors": [
+        "PASSAGE_NO:300"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p314",
+      "commentator": "刘渡舟",
+      "title": "第314条 少阴病，脉微细沉，但欲卧，汗出不烦，自欲…",
+      "current_anchors": [
+        "PASSAGE_NO:314"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p329",
+      "commentator": "刘渡舟",
+      "title": "第329条 少阴病，下利脉微者，与白通汤；利不止，厥…",
+      "current_anchors": [
+        "PASSAGE_NO:329"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p343",
+      "commentator": "刘渡舟",
+      "title": "第343条 厥阴病，渴欲饮水者，少少与之，愈。（34…",
+      "current_anchors": [
+        "PASSAGE_NO:343"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p357",
+      "commentator": "刘渡舟",
+      "title": "第357条 伤寒六七日，脉微，手足厥冷，烦躁，灸厥阴…",
+      "current_anchors": [
+        "PASSAGE_NO:357"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p371",
+      "commentator": "刘渡舟",
+      "title": "第371条 伤寒六七日，大下后，寸脉沉而迟，手足厥逆…",
+      "current_anchors": [
+        "PASSAGE_NO:371"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p386",
+      "commentator": "刘渡舟",
+      "title": "第386条 热利下重者，白头翁汤主之。（386）",
+      "current_anchors": [
+        "PASSAGE_NO:386"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p400",
+      "commentator": "刘渡舟",
+      "title": "第400条 下利后，当便硬，硬则能食者愈；今反不能食…",
+      "current_anchors": [
+        "PASSAGE_NO:400"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p414",
+      "commentator": "刘渡舟",
+      "title": "第414条 病人脉已解，而日暮微烦，以病新差，人强与…",
+      "current_anchors": [
+        "PASSAGE_NO:414"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p090",
+      "commentator": "刘渡舟",
+      "title": "第090条 衄家不可发汗，汗出必额上陷，脉急紧，直视…",
+      "current_anchors": [
+        "PASSAGE_NO:090"
+      ],
+      "anchor_type": "exact",
+      "judgement": "suspicious",
+      "reason": "该单元由跨行/同行连写 OCR 断裂修补得到，当前锚点关系可用，但仍建议人工抽核。 原文内容曾受跨行断裂影响，已做最小修补。"
+    },
+    {
+      "group": "liu_exact",
+      "unit_id": "cmu_liu_p230",
+      "commentator": "刘渡舟",
+      "title": "第230条 汗出语者，以有燥屎在胃中，此为风也，须下…",
+      "current_anchors": [
+        "PASSAGE_NO:230"
+      ],
+      "anchor_type": "exact",
+      "judgement": "suspicious",
+      "reason": "该单元由跨行/同行连写 OCR 断裂修补得到，当前锚点关系可用，但仍建议人工抽核。 原文内容曾受跨行断裂影响，已做最小修补。"
+    },
+    {
+      "group": "hao_exact",
+      "unit_id": "cmu_hao_rw001",
+      "commentator": "郝万山",
+      "title": "太阳病的脉证提纲。",
+      "current_anchors": [
+        "PASSAGE_NO:001"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_exact",
+      "unit_id": "cmu_hao_rw012",
+      "commentator": "郝万山",
+      "title": "论表证兼里实当先解表，宜用桂枝汤。",
+      "current_anchors": [
+        "PASSAGE_NO:044"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_exact",
+      "unit_id": "cmu_hao_rw025",
+      "commentator": "郝万山",
+      "title": "以淋家为例，提示下焦阴虚膀胱蓄热者，禁用辛温发汗。",
+      "current_anchors": [
+        "PASSAGE_NO:084"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_exact",
+      "unit_id": "cmu_hao_rw032",
+      "commentator": "郝万山",
+      "title": "论尺中脉迟营血不足者，禁用辛温发汗。",
+      "current_anchors": [
+        "PASSAGE_NO:050"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_exact",
+      "unit_id": "cmu_hao_rw047",
+      "commentator": "郝万山",
+      "title": "论热扰胸膈兼腹满的证治。",
+      "current_anchors": [
+        "PASSAGE_NO:079"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_exact",
+      "unit_id": "cmu_hao_rw055",
+      "commentator": "郝万山",
+      "title": "论心阳虚惊狂的证治。",
+      "current_anchors": [
+        "PASSAGE_NO:112"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_exact",
+      "unit_id": "cmu_hao_rw062",
+      "commentator": "郝万山",
+      "title": "论里虚伤寒的证治。",
+      "current_anchors": [
+        "PASSAGE_NO:102"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_exact",
+      "unit_id": "cmu_hao_rw073",
+      "commentator": "郝万山",
+      "title": "论小结胸病的证治。",
+      "current_anchors": [
+        "PASSAGE_NO:138"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_exact",
+      "unit_id": "cmu_hao_rw082",
+      "commentator": "郝万山",
+      "title": "论半夏泻心汤证的成因和证治。",
+      "current_anchors": [
+        "PASSAGE_NO:149"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_exact",
+      "unit_id": "cmu_hao_rw091",
+      "commentator": "郝万山",
+      "title": "阳明病提纲。",
+      "current_anchors": [
+        "PASSAGE_NO:180"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_exact",
+      "unit_id": "cmu_hao_rw111",
+      "commentator": "郝万山",
+      "title": "少阳病提纲证。",
+      "current_anchors": [
+        "PASSAGE_NO:263"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_exact",
+      "unit_id": "cmu_hao_rw120",
+      "commentator": "郝万山",
+      "title": "论中虚湿郁和中虚停饮皆禁用小柴胡汤。",
+      "current_anchors": [
+        "PASSAGE_NO:098"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_exact",
+      "unit_id": "cmu_hao_rw132",
+      "commentator": "郝万山",
+      "title": "论太阴寒湿发黄的证治。",
+      "current_anchors": [
+        "PASSAGE_NO:259"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_exact",
+      "unit_id": "cmu_hao_rw143",
+      "commentator": "郝万山",
+      "title": "论阳虚阴盛，吐利烦躁的证治。",
+      "current_anchors": [
+        "PASSAGE_NO:309"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_exact",
+      "unit_id": "cmu_hao_rw151",
+      "commentator": "郝万山",
+      "title": "论少阴病客寒咽痛的证治。",
+      "current_anchors": [
+        "PASSAGE_NO:313"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_exact",
+      "unit_id": "cmu_hao_rw162",
+      "commentator": "郝万山",
+      "title": "论肝寒犯胃，浊阴上逆的证治。",
+      "current_anchors": [
+        "PASSAGE_NO:378"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_exact",
+      "unit_id": "cmu_hao_rw172",
+      "commentator": "郝万山",
+      "title": "论痰食阻滞致厥的证治。",
+      "current_anchors": [
+        "PASSAGE_NO:355"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_exact",
+      "unit_id": "cmu_hao_rw183",
+      "commentator": "郝万山",
+      "title": "论上热下寒，正虚阳郁的证治。",
+      "current_anchors": [
+        "PASSAGE_NO:357"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_exact",
+      "unit_id": "cmu_hao_rw193",
+      "commentator": "郝万山",
+      "title": "论霍乱病初愈当注意饮食调养。",
+      "current_anchors": [
+        "PASSAGE_NO:391"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_exact",
+      "unit_id": "cmu_hao_rw200",
+      "commentator": "郝万山",
+      "title": "论差后微烦证的机制及调治方法。",
+      "current_anchors": [
+        "PASSAGE_NO:398"
+      ],
+      "anchor_type": "exact",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_multi",
+      "unit_id": "cmu_hao_rw006",
+      "commentator": "郝万山",
+      "title": "论太阳病的自愈日和欲解时。",
+      "current_anchors": [
+        "PASSAGE_NO:008",
+        "PASSAGE_NO:009",
+        "PASSAGE_NO:010"
+      ],
+      "anchor_type": "multi",
+      "judgement": "suspicious",
+      "reason": "multi 单元含三条及以上原文，路由时需防止过宽召回。"
+    },
+    {
+      "group": "hao_multi",
+      "unit_id": "cmu_hao_rw011",
+      "commentator": "郝万山",
+      "title": "论太阳病汗下后，正气受挫，表邪不解者，仍当解表，用桂枝汤。",
+      "current_anchors": [
+        "PASSAGE_NO:015",
+        "PASSAGE_NO:045",
+        "PASSAGE_NO:057"
+      ],
+      "anchor_type": "multi",
+      "judgement": "suspicious",
+      "reason": "multi 单元含三条及以上原文，路由时需防止过宽召回。"
+    },
+    {
+      "group": "hao_multi",
+      "unit_id": "cmu_hao_rw017",
+      "commentator": "郝万山",
+      "title": "中风兼喘的证治。",
+      "current_anchors": [
+        "PASSAGE_NO:043",
+        "PASSAGE_NO:018"
+      ],
+      "anchor_type": "multi",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_multi",
+      "unit_id": "cmu_hao_rw022",
+      "commentator": "郝万山",
+      "title": "论太阳伤寒和衄解的关系。",
+      "current_anchors": [
+        "PASSAGE_NO:046",
+        "PASSAGE_NO:047",
+        "PASSAGE_NO:055"
+      ],
+      "anchor_type": "multi",
+      "judgement": "suspicious",
+      "reason": "multi 单元含三条及以上原文，路由时需防止过宽召回。"
+    },
+    {
+      "group": "hao_multi",
+      "unit_id": "cmu_hao_rw035",
+      "commentator": "郝万山",
+      "title": "论太阳伤寒兼水饮的证治。",
+      "current_anchors": [
+        "PASSAGE_NO:040",
+        "PASSAGE_NO:041"
+      ],
+      "anchor_type": "multi",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_multi",
+      "unit_id": "cmu_hao_rw045",
+      "commentator": "郝万山",
+      "title": "论表里同病时表里先后的治疗原则。",
+      "current_anchors": [
+        "PASSAGE_NO:090",
+        "PASSAGE_NO:091",
+        "PASSAGE_NO:092"
+      ],
+      "anchor_type": "multi",
+      "judgement": "suspicious",
+      "reason": "multi 单元含三条及以上原文，路由时需防止过宽召回。"
+    },
+    {
+      "group": "hao_multi",
+      "unit_id": "cmu_hao_rw071",
+      "commentator": "郝万山",
+      "title": "论大陷胸汤的适应证及其与发黄证、大柴胡汤证、阳明腑实证的鉴别。",
+      "current_anchors": [
+        "PASSAGE_NO:134",
+        "PASSAGE_NO:135",
+        "PASSAGE_NO:136",
+        "PASSAGE_NO:137"
+      ],
+      "anchor_type": "multi",
+      "judgement": "suspicious",
+      "reason": "multi 单元含三条及以上原文，路由时需防止过宽召回。"
+    },
+    {
+      "group": "hao_multi",
+      "unit_id": "cmu_hao_rw090",
+      "commentator": "郝万山",
+      "title": "论误用火疗所导致的种种变证特征。",
+      "current_anchors": [
+        "PASSAGE_NO:110",
+        "PASSAGE_NO:111",
+        "PASSAGE_NO:113",
+        "PASSAGE_NO:114",
+        "PASSAGE_NO:115",
+        "PASSAGE_NO:116"
+      ],
+      "anchor_type": "multi",
+      "judgement": "suspicious",
+      "reason": "multi 单元含三条及以上原文，路由时需防止过宽召回。"
+    },
+    {
+      "group": "hao_multi",
+      "unit_id": "cmu_hao_rw094",
+      "commentator": "郝万山",
+      "title": "论阳明病里热、里实证的外证和阳明热证的脉象。",
+      "current_anchors": [
+        "PASSAGE_NO:182",
+        "PASSAGE_NO:186"
+      ],
+      "anchor_type": "multi",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_multi",
+      "unit_id": "cmu_hao_rw097",
+      "commentator": "郝万山",
+      "title": "论阳明胃热弥漫、津气两伤的证治。",
+      "current_anchors": [
+        "PASSAGE_NO:026",
+        "PASSAGE_NO:168",
+        "PASSAGE_NO:169",
+        "PASSAGE_NO:170",
+        "PASSAGE_NO:222"
+      ],
+      "anchor_type": "multi",
+      "judgement": "suspicious",
+      "reason": "multi 单元跨度较大，较像“主条文+支持条文”而非同权并列，后续宜区分 primary/supporting anchor。"
+    },
+    {
+      "group": "hao_multi",
+      "unit_id": "cmu_hao_rw101",
+      "commentator": "郝万山",
+      "title": "论阳明燥热实邪内结证治。",
+      "current_anchors": [
+        "PASSAGE_NO:238",
+        "PASSAGE_NO:239",
+        "PASSAGE_NO:215",
+        "PASSAGE_NO:241",
+        "PASSAGE_NO:242",
+        "PASSAGE_NO:212",
+        "PASSAGE_NO:252",
+        "PASSAGE_NO:253",
+        "PASSAGE_NO:254",
+        "PASSAGE_NO:255",
+        "PASSAGE_NO:220"
+      ],
+      "anchor_type": "multi",
+      "judgement": "suspicious",
+      "reason": "multi 单元含三条及以上原文，路由时需防止过宽召回。"
+    },
+    {
+      "group": "hao_multi",
+      "unit_id": "cmu_hao_rw112",
+      "commentator": "郝万山",
+      "title": "论少阳病常见临床表现、治疗禁忌及误治后的变证。",
+      "current_anchors": [
+        "PASSAGE_NO:264",
+        "PASSAGE_NO:265"
+      ],
+      "anchor_type": "multi",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_multi",
+      "unit_id": "cmu_hao_rw126",
+      "commentator": "郝万山",
+      "title": "辨少阳病及阳证的预后。",
+      "current_anchors": [
+        "PASSAGE_NO:269",
+        "PASSAGE_NO:270",
+        "PASSAGE_NO:271"
+      ],
+      "anchor_type": "multi",
+      "judgement": "suspicious",
+      "reason": "multi 单元含三条及以上原文，路由时需防止过宽召回。"
+    },
+    {
+      "group": "hao_multi",
+      "unit_id": "cmu_hao_rw131",
+      "commentator": "郝万山",
+      "title": "论太阴中风的脉证特点、治法和预后。",
+      "current_anchors": [
+        "PASSAGE_NO:274",
+        "PASSAGE_NO:275",
+        "PASSAGE_NO:276"
+      ],
+      "anchor_type": "multi",
+      "judgement": "suspicious",
+      "reason": "multi 单元含三条及以上原文，路由时需防止过宽召回。"
+    },
+    {
+      "group": "hao_multi",
+      "unit_id": "cmu_hao_rw140",
+      "commentator": "郝万山",
+      "title": "少阴病阴盛戴阳的证治和药后反应的处理。",
+      "current_anchors": [
+        "PASSAGE_NO:314",
+        "PASSAGE_NO:315"
+      ],
+      "anchor_type": "multi",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_multi",
+      "unit_id": "cmu_hao_rw152",
+      "commentator": "郝万山",
+      "title": "论太少两感证治。",
+      "current_anchors": [
+        "PASSAGE_NO:301",
+        "PASSAGE_NO:302"
+      ],
+      "anchor_type": "multi",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_multi",
+      "unit_id": "cmu_hao_rw158",
+      "commentator": "郝万山",
+      "title": "论少阴病危重证。",
+      "current_anchors": [
+        "PASSAGE_NO:295",
+        "PASSAGE_NO:296",
+        "PASSAGE_NO:297",
+        "PASSAGE_NO:298",
+        "PASSAGE_NO:299",
+        "PASSAGE_NO:300"
+      ],
+      "anchor_type": "multi",
+      "judgement": "suspicious",
+      "reason": "multi 单元含三条及以上原文，路由时需防止过宽召回。"
+    },
+    {
+      "group": "hao_multi",
+      "unit_id": "cmu_hao_rw174",
+      "commentator": "郝万山",
+      "title": "论虚寒厥证禁用下法。阳虚寒厥可用灸法。",
+      "current_anchors": [
+        "PASSAGE_NO:330",
+        "PASSAGE_NO:347",
+        "PASSAGE_NO:349"
+      ],
+      "anchor_type": "multi",
+      "judgement": "suspicious",
+      "reason": "multi 单元含三条及以上原文，路由时需防止过宽召回。"
+    },
+    {
+      "group": "hao_multi",
+      "unit_id": "cmu_hao_rw181",
+      "commentator": "郝万山",
+      "title": "辨湿热下利证。",
+      "current_anchors": [
+        "PASSAGE_NO:371",
+        "PASSAGE_NO:373"
+      ],
+      "anchor_type": "multi",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_multi",
+      "unit_id": "cmu_hao_rw186",
+      "commentator": "郝万山",
+      "title": "论霍乱的主症。",
+      "current_anchors": [
+        "PASSAGE_NO:382",
+        "PASSAGE_NO:383"
+      ],
+      "anchor_type": "multi",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_excerpt",
+      "unit_id": "cmu_hao_rw043",
+      "commentator": "郝万山",
+      "title": "坏病的含义和处理原则。",
+      "current_anchors": [
+        "PASSAGE_NO:016A"
+      ],
+      "anchor_type": "excerpt",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_excerpt",
+      "unit_id": "cmu_hao_rw069",
+      "commentator": "郝万山",
+      "title": "论结胸证的脉证特点。",
+      "current_anchors": [
+        "PASSAGE_NO:128A"
+      ],
+      "anchor_type": "excerpt",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_excerpt",
+      "unit_id": "cmu_hao_rw070",
+      "commentator": "郝万山",
+      "title": "辨结胸证与痞证的成因。",
+      "current_anchors": [
+        "PASSAGE_NO:131A"
+      ],
+      "anchor_type": "excerpt",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_excerpt",
+      "unit_id": "cmu_hao_rw072",
+      "commentator": "郝万山",
+      "title": "论热实结胸病位偏上的证治。",
+      "current_anchors": [
+        "PASSAGE_NO:131B"
+      ],
+      "anchor_type": "excerpt",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_excerpt",
+      "unit_id": "cmu_hao_rw074",
+      "commentator": "郝万山",
+      "title": "论寒实结胸病的证治。",
+      "current_anchors": [
+        "PASSAGE_NO:141B"
+      ],
+      "anchor_type": "excerpt",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "hao_excerpt",
+      "unit_id": "cmu_hao_rw164",
+      "commentator": "郝万山",
+      "title": "辨脏厥证。",
+      "current_anchors": [
+        "PASSAGE_NO:338A"
+      ],
+      "anchor_type": "excerpt",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "theme",
+      "unit_id": "cmu_hao_th001",
+      "commentator": "郝万山",
+      "title": "（一）张仲景生卒年代",
+      "current_anchors": [
+        "THEME:绪论 / 一、《伤寒论》的作者 / （一）张仲景生卒年代"
+      ],
+      "anchor_type": "theme",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "theme",
+      "unit_id": "cmu_hao_th006",
+      "commentator": "郝万山",
+      "title": "（八）张仲景的学生",
+      "current_anchors": [
+        "THEME:绪论 / 一、《伤寒论》的作者 / （八）张仲景的学生"
+      ],
+      "anchor_type": "theme",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "theme",
+      "unit_id": "cmu_hao_th011",
+      "commentator": "郝万山",
+      "title": "（四）宋本《伤寒论》",
+      "current_anchors": [
+        "THEME:绪论 / 三、《伤寒杂病论》的沿革和《伤寒论》的版本 / （四）宋本《伤寒论》"
+      ],
+      "anchor_type": "theme",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "theme",
+      "unit_id": "cmu_hao_th016",
+      "commentator": "郝万山",
+      "title": "（九）人卫本———《伤寒论校注》",
+      "current_anchors": [
+        "THEME:绪论 / 三、《伤寒杂病论》的沿革和《伤寒论》的版本 / （九）人卫本———《伤寒论校注》"
+      ],
+      "anchor_type": "theme",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "theme",
+      "unit_id": "cmu_hao_th021",
+      "commentator": "郝万山",
+      "title": "（二）六经病的传经和变证",
+      "current_anchors": [
+        "THEME:绪论 / 五、关于六经辨证 / （二）六经病的传经和变证"
+      ],
+      "anchor_type": "theme",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "theme",
+      "unit_id": "cmu_hao_th026",
+      "commentator": "郝万山",
+      "title": "一、太阳病的病位",
+      "current_anchors": [
+        "THEME:第一章 辨太阳病脉证并治 / 一、太阳病的病位"
+      ],
+      "anchor_type": "theme",
+      "judgement": "suspicious",
+      "reason": "主题单元颗粒度较粗，适合折叠展示，不宜直接参与默认辅助召回。 主题锚点可用，但粒度偏宽。"
+    },
+    {
+      "group": "theme",
+      "unit_id": "cmu_hao_th031",
+      "commentator": "郝万山",
+      "title": "（三）太阳阳气",
+      "current_anchors": [
+        "THEME:第一章 辨太阳病脉证并治 / 三、有关太阳的生理 / （三）太阳阳气"
+      ],
+      "anchor_type": "theme",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "theme",
+      "unit_id": "cmu_hao_th036",
+      "commentator": "郝万山",
+      "title": "八、痞证",
+      "current_anchors": [
+        "THEME:第一章 辨太阳病脉证并治 / 第三节 太阳病变证 / 八、痞证"
+      ],
+      "anchor_type": "theme",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "theme",
+      "unit_id": "cmu_hao_th041",
+      "commentator": "郝万山",
+      "title": "五、阳明病的证候分类和治法",
+      "current_anchors": [
+        "THEME:第二章 辨阳明病脉证并治 / 五、阳明病的证候分类和治法"
+      ],
+      "anchor_type": "theme",
+      "judgement": "suspicious",
+      "reason": "主题单元颗粒度较粗，适合折叠展示，不宜直接参与默认辅助召回。 主题锚点可用，但粒度偏宽。"
+    },
+    {
+      "group": "theme",
+      "unit_id": "cmu_hao_th046",
+      "commentator": "郝万山",
+      "title": "三、少阳的生理",
+      "current_anchors": [
+        "THEME:第三章 辨少阳病脉证并治 / 三、少阳的生理"
+      ],
+      "anchor_type": "theme",
+      "judgement": "suspicious",
+      "reason": "主题单元颗粒度较粗，适合折叠展示，不宜直接参与默认辅助召回。 主题锚点可用，但粒度偏宽。"
+    },
+    {
+      "group": "theme",
+      "unit_id": "cmu_hao_th052",
+      "commentator": "郝万山",
+      "title": "四、太阴病的证候分类和治疗",
+      "current_anchors": [
+        "THEME:第四章 辨太阴病脉证并治 / 四、太阴病的证候分类和治疗"
+      ],
+      "anchor_type": "theme",
+      "judgement": "suspicious",
+      "reason": "主题单元颗粒度较粗，适合折叠展示，不宜直接参与默认辅助召回。 主题锚点可用，但粒度偏宽。"
+    },
+    {
+      "group": "theme",
+      "unit_id": "cmu_hao_th057",
+      "commentator": "郝万山",
+      "title": "七、少阴病的预后",
+      "current_anchors": [
+        "THEME:第五章 辨少阴病脉证并治 / 七、少阴病的预后"
+      ],
+      "anchor_type": "theme",
+      "judgement": "suspicious",
+      "reason": "主题单元颗粒度较粗，适合折叠展示，不宜直接参与默认辅助召回。 主题锚点可用，但粒度偏宽。"
+    },
+    {
+      "group": "theme",
+      "unit_id": "cmu_hao_th062",
+      "commentator": "郝万山",
+      "title": "（一）厥阴寒证",
+      "current_anchors": [
+        "THEME:第六章 辨厥阴病脉证并治 / 四、厥阴病的成因、证候分类、治法和预后转归 / （一）厥阴寒证"
+      ],
+      "anchor_type": "theme",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "theme",
+      "unit_id": "cmu_hao_th067",
+      "commentator": "郝万山",
+      "title": "（三）呕证",
+      "current_anchors": [
+        "THEME:第六章 辨厥阴病脉证并治 / 五、“厥阴病篇”所涉及的厥利呕哕证 / （三）呕证"
+      ],
+      "anchor_type": "theme",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "theme",
+      "unit_id": "cmu_hao_th072",
+      "commentator": "郝万山",
+      "title": "概述",
+      "current_anchors": [
+        "THEME:第八章 辨阴阳易差后劳复病脉证并治 / 概述"
+      ],
+      "anchor_type": "theme",
+      "judgement": "suspicious",
+      "reason": "主题单元颗粒度较粗，适合折叠展示，不宜直接参与默认辅助召回。 主题锚点可用，但粒度偏宽。"
+    },
+    {
+      "group": "theme",
+      "unit_id": "cmu_liu_th004",
+      "commentator": "刘渡舟",
+      "title": "二 《伤寒论》是一部什么书",
+      "current_anchors": [
+        "THEME:绪论 / 二 《伤寒论》是一部什么书"
+      ],
+      "anchor_type": "theme",
+      "judgement": "suspicious",
+      "reason": "主题单元颗粒度较粗，适合折叠展示，不宜直接参与默认辅助召回。"
+    },
+    {
+      "group": "theme",
+      "unit_id": "cmu_liu_th009",
+      "commentator": "刘渡舟",
+      "title": "（五）《伤寒论》中的杂病",
+      "current_anchors": [
+        "THEME:绪论 / 二 《伤寒论》是一部什么书 / （五）《伤寒论》中的杂病"
+      ],
+      "anchor_type": "theme",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "theme",
+      "unit_id": "cmu_liu_th014",
+      "commentator": "刘渡舟",
+      "title": "四 六经病的传变",
+      "current_anchors": [
+        "THEME:绪论 / 四 六经病的传变"
+      ],
+      "anchor_type": "theme",
+      "judgement": "suspicious",
+      "reason": "主题单元颗粒度较粗，适合折叠展示，不宜直接参与默认辅助召回。"
+    },
+    {
+      "group": "theme",
+      "unit_id": "cmu_liu_th019",
+      "commentator": "刘渡舟",
+      "title": "（二）什么是兼证",
+      "current_anchors": [
+        "THEME:绪论 / 五 六经病的主证、兼证、变证和兼夹证 / （二）什么是兼证"
+      ],
+      "anchor_type": "theme",
+      "judgement": "correct",
+      "reason": "锚点与条号/节选/主题路径关系一致。"
+    },
+    {
+      "group": "theme",
+      "unit_id": "cmu_liu_th024",
+      "commentator": "刘渡舟",
+      "title": "辨太阳病脉证并治法上",
+      "current_anchors": [
+        "THEME:各论 / 辨太阳病脉证并治法上"
+      ],
+      "anchor_type": "theme",
+      "judgement": "suspicious",
+      "reason": "主题单元颗粒度较粗，适合折叠展示，不宜直接参与默认辅助召回。"
+    }
+  ],
+  "summary_by_commentator_and_type": {
+    "刘渡舟": {
+      "exact": {
+        "sample_size": 32,
+        "correct": 28,
+        "suspicious": 4,
+        "wrong": 0,
+        "correct_rate": 0.875
+      },
+      "theme": {
+        "sample_size": 5,
+        "correct": 2,
+        "suspicious": 3,
+        "wrong": 0,
+        "correct_rate": 0.4
+      }
+    },
+    "郝万山": {
+      "exact": {
+        "sample_size": 20,
+        "correct": 20,
+        "suspicious": 0,
+        "wrong": 0,
+        "correct_rate": 1.0
+      },
+      "multi": {
+        "sample_size": 20,
+        "correct": 8,
+        "suspicious": 12,
+        "wrong": 0,
+        "correct_rate": 0.4
+      },
+      "excerpt": {
+        "sample_size": 6,
+        "correct": 6,
+        "suspicious": 0,
+        "wrong": 0,
+        "correct_rate": 1.0
+      },
+      "theme": {
+        "sample_size": 15,
+        "correct": 9,
+        "suspicious": 6,
+        "wrong": 0,
+        "correct_rate": 0.6
+      }
+    }
+  },
+  "most_error_prone_patterns": [
+    "刘渡舟 exact 单元在 OCR 中出现“条号独占一行 / 条号后同一行直接接讲解 / 原文前半句落在上一行”的情况。",
+    "郝万山 multi 单元经常是“同主题多条归类”或“主条文+支持条文”，锚点关系成立，但接入时应避免把所有 anchors 当作同权主锚点。",
+    "theme 单元的 THEME:* 锚点与 section_path 一般一致，但颗粒度宽窄不一，概述类主题不宜默认展开。"
+  ],
+  "rules_to_patch_next": [
+    "下一轮接入前应在 commentarial retrieval 层引入 multi-anchor 主从权重。",
+    "对 repair 过的刘渡舟 exact 单元，后续若拿到更干净文本，应替换当前 OCR 修补版 quoted_original_text。",
+    "theme 命中时应优先折叠展示 summary_text，不直接作为 primary-like正文。"
+  ],
+  "must_manual_review_units": [
+    "cmu_liu_p058",
+    "cmu_liu_p089",
+    "cmu_liu_p090",
+    "cmu_liu_p091",
+    "cmu_liu_p229",
+    "cmu_liu_p230",
+    "cmu_liu_p231"
+  ]
+}

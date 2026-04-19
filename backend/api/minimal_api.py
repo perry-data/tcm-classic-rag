@@ -73,6 +73,7 @@ EXPECTED_PAYLOAD_FIELDS = [
     "refuse_reason",
     "suggested_followup_questions",
     "citations",
+    "commentarial",
     "display_sections",
 ]
 STREAM_STAGE_LABELS = {

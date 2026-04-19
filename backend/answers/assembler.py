@@ -11,6 +11,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
 
+from backend.commentarial import CommentarialLayer, CommentarialRoutePlan
 from backend.llm import (
     DEFAULT_MODEL_STUDIO_BASE_URL,
     DEFAULT_MODEL_STUDIO_MODEL,
@@ -784,6 +785,7 @@ class AnswerAssembler:
             base_url=DEFAULT_MODEL_STUDIO_BASE_URL,
         )
         self._llm_client = ModelStudioLLMClient(self._llm_config) if self._llm_config.enabled else None
+        self.commentarial_layer = CommentarialLayer()
 
     def close(self) -> None:
         if self._llm_client is not None:
@@ -833,26 +835,40 @@ class AnswerAssembler:
         try:
             policy_refusal = self._detect_policy_refusal(query_text)
             if policy_refusal is not None:
-                return self._assemble_policy_refusal(query_text, policy_refusal)
+                payload = self._assemble_policy_refusal(query_text, policy_refusal)
+                return self._finalize_commentarial_payload(query_text, payload, None)
+
+            commentarial_plan = self.commentarial_layer.detect_route(query_text)
+            if commentarial_plan is not None and commentarial_plan.explicit:
+                payload = self._assemble_standard(self._build_commentarial_shadow_query(query_text, commentarial_plan))
+                return self._finalize_commentarial_payload(query_text, payload, commentarial_plan)
+
             comparison_plan = self._detect_comparison_query(query_text)
             if comparison_plan is not None:
-                return self._assemble_comparison(query_text, comparison_plan)
+                payload = self._assemble_comparison(query_text, comparison_plan)
+                return self._finalize_commentarial_payload(query_text, payload, None)
             formula_composition_plan = self._detect_formula_composition_query(query_text)
             if formula_composition_plan is not None:
-                return self._assemble_formula_composition_query(query_text, formula_composition_plan)
+                payload = self._assemble_formula_composition_query(query_text, formula_composition_plan)
+                return self._finalize_commentarial_payload(query_text, payload, None)
             formula_effect_plan = self._detect_formula_effect_query(query_text)
             if formula_effect_plan is not None:
-                return self._assemble_formula_effect_query(query_text, formula_effect_plan)
+                payload = self._assemble_formula_effect_query(query_text, formula_effect_plan)
+                return self._finalize_commentarial_payload(query_text, payload, None)
             definition_outline_plan = self._detect_definition_outline_query(query_text)
             if definition_outline_plan is not None:
-                return self._assemble_definition_outline_query(query_text, definition_outline_plan)
+                payload = self._assemble_definition_outline_query(query_text, definition_outline_plan)
+                return self._finalize_commentarial_payload(query_text, payload, None)
             definition_priority_plan = self._detect_definition_priority_query(query_text)
             if definition_priority_plan is not None:
-                return self._assemble_definition_priority_query(query_text, definition_priority_plan)
+                payload = self._assemble_definition_priority_query(query_text, definition_priority_plan)
+                return self._finalize_commentarial_payload(query_text, payload, None)
             general_plan = detect_general_question(query_text)
             if general_plan is not None:
-                return self._assemble_general_question(query_text, general_plan)
-            return self._assemble_standard(query_text)
+                payload = self._assemble_general_question(query_text, general_plan)
+                return self._finalize_commentarial_payload(query_text, payload, None)
+            payload = self._assemble_standard(query_text)
+            return self._finalize_commentarial_payload(query_text, payload, None)
         finally:
             self._progress_callback = None
             self._last_progress_stage = None
@@ -4171,8 +4187,57 @@ class AnswerAssembler:
                 "refuse_reason": refuse_reason,
                 "suggested_followup_questions": suggested_followup_questions,
                 "citations": citations,
+                "commentarial": None,
                 "display_sections": display_sections,
             }
+
+    def _finalize_commentarial_payload(
+        self,
+        query_text: str,
+        payload: dict[str, Any],
+        route_plan: CommentarialRoutePlan | None,
+    ) -> dict[str, Any]:
+        if payload.get("commentarial") is None and self.commentarial_layer.enabled:
+            commentarial = self.commentarial_layer.build_extension(query_text, payload, route_plan=route_plan)
+            if commentarial:
+                payload["commentarial"] = commentarial
+                section_count = sum(len(section.get("items") or []) for section in commentarial.get("sections") or [])
+                payload.setdefault("display_sections", []).append(
+                    {
+                        "section_id": "commentarial",
+                        "title": "名家视角",
+                        "section_type": "extension",
+                        "visible": True,
+                        "field": "commentarial",
+                        "item_count": section_count,
+                    }
+                )
+        return payload
+
+    def _build_commentarial_shadow_query(
+        self,
+        query_text: str,
+        route_plan: CommentarialRoutePlan,
+    ) -> str:
+        if self.commentarial_layer.enabled:
+            shadow_query = self.commentarial_layer.build_shadow_query(route_plan, query_text)
+            if shadow_query and shadow_query != query_text:
+                return shadow_query
+        if route_plan.requested_anchor_keys:
+            anchor_key = route_plan.requested_anchor_keys[0]
+            raw_anchor = anchor_key.split(":", 1)[-1]
+            match = re.fullmatch(r"(\d+)([A-Za-z]?)", raw_anchor)
+            if match:
+                number, suffix = match.groups()
+                suffix_label = ""
+                if suffix.upper() == "A":
+                    suffix_label = "上"
+                elif suffix.upper() == "B":
+                    suffix_label = "下"
+                return f"第{int(number)}{suffix_label}条"
+        if route_plan.focus_text:
+            return route_plan.focus_text
+        return query_text
 
     def _maybe_render_answer_text(
         self,

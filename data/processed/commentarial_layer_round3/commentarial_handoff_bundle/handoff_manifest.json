@@ -1,0 +1,63 @@
+{
+  "bundle_version": "commentarial_handoff_bundle_v0.3_round3",
+  "unit_count_total": 711,
+  "unit_count_by_commentator": {
+    "刘渡舟": 438,
+    "郝万山": 273
+  },
+  "anchor_type_counts": {
+    "exact": 549,
+    "theme": 97,
+    "multi": 59,
+    "excerpt": 6
+  },
+  "multi_unit_count": 59,
+  "theme_unit_count": 97,
+  "manual_review_queue_count": 64,
+  "unresolved_multi_count": 10,
+  "theme_display_tier_counts": {
+    "tier_4_do_not_default_display": 21,
+    "tier_2_fold_only": 20,
+    "tier_1_named_view_ok": 55,
+    "tier_3_meta_learning_only": 1
+  },
+  "files_in_bundle": [
+    "commentarial_handoff_bundle/commentarial_sources.json",
+    "commentarial_handoff_bundle/commentarial_units.jsonl",
+    "commentarial_handoff_bundle/commentarial_anchor_links.jsonl",
+    "commentarial_handoff_bundle/acceptance_report.json",
+    "commentarial_handoff_bundle/commentarial_anchor_audit.json",
+    "commentarial_handoff_bundle/manual_review_queue.json",
+    "commentarial_handoff_bundle/commentarial_tag_schema.json",
+    "commentarial_handoff_bundle/commentarial_tag_guide.md",
+    "commentarial_handoff_bundle/commentarial_usecase_matrix.md",
+    "commentarial_handoff_bundle/commentarial_handoff_readme.md",
+    "commentarial_handoff_bundle/coding_agent_integration_constraints.md",
+    "commentarial_handoff_bundle/coding_agent_next_step.md",
+    "commentarial_handoff_bundle/commentarial_patch_round3_notes.md",
+    "commentarial_handoff_bundle/multi_anchor_rule_guide.md",
+    "commentarial_handoff_bundle/theme_tier_guide.md",
+    "commentarial_handoff_bundle/handoff_manifest.json",
+    "commentarial_handoff_bundle/test_commentarial_layer.py"
+  ],
+  "main_risks": [
+    "provisional anchor 仍未回填真实 canonical passage_id",
+    "unresolved_multi 仍需人工复核，不能在接入层强行视为唯一主锚",
+    "tier_4_do_not_default_display 主题若被直接展示会稀释 canonical layer 的主证据地位"
+  ],
+  "what_coding_agent_must_do_next": [
+    "先做 source-aware named view / comparison view / meta learning view 的旁路接入",
+    "尊重 multi 主辅锚与 theme display tier",
+    "后续再做 provisional anchor 到真实 canonical passage_id 的映射"
+  ],
+  "what_coding_agent_must_not_do": [
+    "不得让 commentarial layer 进入默认 primary_evidence",
+    "不得修改 answer_mode 或 strong/weak/refuse",
+    "不得把 unresolved_multi 强行简化为单主锚"
+  ],
+  "known_open_issues": [
+    "manual_review_queue 中仍有 OCR 修补痕迹与 unresolved_multi",
+    "theme 仍然是主题锚，不应被误当作条文级证据",
+    "default assistive retrieval 仍需在接入层做严格展示阈值控制"
+  ]
+}

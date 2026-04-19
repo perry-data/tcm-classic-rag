@@ -1,0 +1,10 @@
+{
+  "enabled": true,
+  "bundle_dir": "data/processed/commentarial_layer_round3/commentarial_handoff_bundle",
+  "resolution_file": "data/processed/commentarial_layer_round3/commentarial_handoff_bundle/commentarial_anchor_resolution.json",
+  "resolved_links_file": "data/processed/commentarial_layer_round3/commentarial_handoff_bundle/commentarial_anchor_links_resolved.jsonl",
+  "named_limit_per_commentator": 3,
+  "comparison_limit_per_commentator": 3,
+  "meta_limit_per_commentator": 3,
+  "assistive_limit": 2
+}

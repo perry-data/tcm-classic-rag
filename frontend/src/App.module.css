@@ -596,6 +596,180 @@
   gap: 12px;
 }
 
+.commentarialShell,
+.commentarialPanel,
+.commentarialFold {
+  border: 1px solid rgba(91, 113, 131, 0.16);
+  border-radius: 18px;
+  background: rgba(245, 249, 252, 0.92);
+  box-shadow: var(--shadow);
+}
+
+.commentarialShell {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+}
+
+.commentarialHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.commentarialTitle {
+  margin: 0;
+  font-size: 0.98rem;
+}
+
+.commentarialRouteBadge,
+.commentarialBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 24px;
+  padding: 0 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.commentarialRouteBadge {
+  border: 1px solid rgba(91, 113, 131, 0.2);
+  background: rgba(91, 113, 131, 0.08);
+  color: var(--info);
+  font-weight: 700;
+}
+
+.commentarialLead {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.commentarialSectionGrid {
+  display: grid;
+  gap: 12px;
+}
+
+.commentarialSectionGridComparison {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.commentarialPanel {
+  display: grid;
+  gap: 12px;
+  padding: 14px 16px;
+}
+
+.commentarialFold {
+  padding: 0;
+  overflow: hidden;
+}
+
+.commentarialFoldSummary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.commentarialCards,
+.commentarialCardsComparison {
+  display: grid;
+  gap: 10px;
+}
+
+.commentarialCard {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid rgba(54, 41, 30, 0.08);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.commentarialCardHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.commentarialCardHead h4 {
+  margin: 2px 0 0;
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+.commentarialCommentator {
+  margin: 0;
+  color: var(--info);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.commentarialBadgeList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.commentarialBadge {
+  border: 1px solid rgba(124, 95, 68, 0.14);
+  background: rgba(124, 95, 68, 0.06);
+  color: var(--muted);
+}
+
+.commentarialQuote,
+.commentarialSummary,
+.commentarialMeta,
+.commentarialWarning {
+  margin: 0;
+  line-height: 1.7;
+}
+
+.commentarialQuote {
+  color: var(--accent);
+}
+
+.commentarialSummary,
+.commentarialMeta {
+  color: var(--ink);
+}
+
+.commentarialWarning {
+  color: var(--warning);
+}
+
+.commentarialDetail {
+  border-top: 1px solid rgba(54, 41, 30, 0.08);
+  padding-top: 10px;
+}
+
+.commentarialDetail summary {
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.commentarialDetail pre {
+  margin: 10px 0 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font: inherit;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
 .callout {
   padding: 14px 16px;
   background: var(--panel-strong);
@@ -951,6 +1125,10 @@
   .userMessage {
     max-width: 100%;
   }
+
+  .commentarialSectionGridComparison {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 720px) {
@@ -993,7 +1171,9 @@
   }
 
   .panelHead,
-  .evidenceTop {
+  .evidenceTop,
+  .commentarialHead,
+  .commentarialCardHead {
     flex-direction: column;
     align-items: flex-start;
   }

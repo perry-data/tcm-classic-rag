@@ -1,0 +1,22 @@
+[
+  {
+    "source_id": "liu_duzhou_shanghan_lectures_2007",
+    "commentator": "刘渡舟",
+    "work_title": "刘渡舟伤寒论讲稿",
+    "layer": "commentarial",
+    "base_text_edition": "以金人成无己《注解伤寒论》为蓝本；整理说明称原文部分以人民卫生出版社1963年横排版《注解伤寒论》为准，并按原文顺序编号共414条。",
+    "editorial_mode": "逐条原文解释型；按原文排列顺序逐条讲解，解析内容可涵盖提要、词解、病机分析、临床意义、方药分析、临床应用、注家见解、上下条文联系、前后方证鉴别比较、医案举例。",
+    "notes": "默认不得进入primary_evidence；更适合做canonical条文的解释层与名家视角层；当前锚点键使用PASSAGE_NO:*的安全中间形态，待项目真实canonical passage_id回填。",
+    "round2_refinement_note": "已完成第二轮离线精修；仍保持commentarial layer默认不参与primary_evidence与confidence gate。"
+  },
+  {
+    "source_id": "hao_wanshan_shanghan_lectures_2007",
+    "commentator": "郝万山",
+    "work_title": "郝万山伤寒论讲稿",
+    "layer": "commentarial",
+    "base_text_edition": "讲稿原文遵照明·赵开美《仲景全书·翻刻宋版伤寒论》，并统一改用规范简化字体。",
+    "editorial_mode": "选条归类讲解型；从《伤寒论》中选择理论和临床意义较大的条文，按主题归类编排讲解；不是集注，强调个人研究心得、辨证思路、教学方法与临床体会。",
+    "notes": "默认不得进入primary_evidence；更适合做教学主题单元、解释主题单元与meta_learning单元；当前锚点键使用PASSAGE_NO:*与THEME:*的安全中间形态，待项目真实canonical passage_id回填。",
+    "round2_refinement_note": "已完成第二轮离线精修；仍保持commentarial layer默认不参与primary_evidence与confidence gate。"
+  }
+]

@@ -36,6 +36,48 @@ export interface DisplaySection {
   field: string;
 }
 
+export interface CommentarialItem {
+  unit_id: string;
+  commentator: string;
+  source_id: string;
+  work_title: string | null;
+  title: string;
+  summary_text: string;
+  quoted_original_text: string;
+  display_text: string;
+  anchor_type: string;
+  anchor_priority_mode: string;
+  theme_display_tier: string | null;
+  primary_anchor_candidates: string[];
+  supporting_anchor_candidates: string[];
+  resolved_primary_anchor_passage_ids: string[];
+  resolved_supporting_anchor_passage_ids: string[];
+  unresolved_anchor_keys: string[];
+  never_use_in_primary: boolean;
+  use_for_confidence_gate: boolean;
+  needs_manual_anchor_review: boolean;
+  needs_manual_content_review: boolean;
+  low_confidence_commentarial_unit: boolean;
+  score: number;
+}
+
+export interface CommentarialSection {
+  section_id: string;
+  title: string;
+  commentator?: string;
+  view_mode: string;
+  layout: string;
+  collapsed_by_default: boolean;
+  items: CommentarialItem[];
+}
+
+export interface CommentarialPayload {
+  route: string;
+  source_aware: boolean;
+  lead_note: string;
+  sections: CommentarialSection[];
+}
+
 export interface AnswerPayload {
   query: string;
   answer_mode: AnswerMode;
@@ -48,6 +90,7 @@ export interface AnswerPayload {
   refuse_reason: string | null;
   suggested_followup_questions: string[];
   citations: CitationItem[];
+  commentarial?: CommentarialPayload | null;
   display_sections: DisplaySection[];
 }
 

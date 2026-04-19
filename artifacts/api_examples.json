@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-04-04T12:51:30.383388+00:00",
-  "base_url": "http://127.0.0.1:51819",
+  "generated_at_utc": "2026-04-19T07:49:12.862445+00:00",
+  "base_url": "http://127.0.0.1:50014",
   "endpoint": "/api/v1/answers",
   "method": "POST",
   "examples": [
@@ -27,12 +27,13 @@
         "refuse_reason",
         "suggested_followup_questions",
         "citations",
+        "commentarial",
         "display_sections"
       ],
       "response_body": {
         "query": "黄连汤方的条文是什么？",
         "answer_mode": "strong",
-        "answer_text": "根据主依据，与“黄连汤方”直接对应的条文主要有：\n1. 黄连汤方：黄连味苦寒 甘草炙。味甘平 乾姜味辛热 桂枝去皮，各三两。味辛热 人参二两。\n2. 味甘温 半夏半升，洗。味辛。医统本作甘，温 大枣十二枚，擘。味甘温\n3. 上热者，泄之以苦，黄连之苦以降阳；下寒者，散之以辛，桂、姜、半夏之辛以升阴；脾欲缓，急食甘以缓之，人参、甘草、大枣之甘以益胃。",
+        "answer_text": "黄连汤方由黄连、炙甘草、乾姜、桂枝、人参、半夏、大枣七味药组成，其中黄连、炙甘草、乾姜、桂枝各三两，人参二两，半夏半升（洗），大枣十二枚（擘）。[E1][E2]\n\n此方用药讲究寒热并用、升降相因：黄连苦寒以清上热，桂枝、乾姜、半夏辛热以散下寒；又用人参、炙甘草、大枣之甘温以补益脾胃、缓急和中。[E3]\n\n这些内容均出自《伤寒论》辨太阳病脉证并治法第七篇中关于黄连汤方的条文记述。",
         "primary_evidence": [
           {
             "record_id": "safe:main_passages:ZJSHL-CH-010-P-0145",
@@ -70,6 +71,19 @@
         ],
         "secondary_evidence": [
           {
+            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0016",
+            "record_type": "main_passages",
+            "display_role": "secondary",
+            "title": "葛根黄芩黄连汤方",
+            "evidence_level": "B",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "snippet": "葛根黄芩黄连汤方：赵本芩、连互易",
+            "risk_flags": [
+              "short_text_demoted"
+            ]
+          },
+          {
             "record_id": "safe:main_passages:ZJSHL-CH-009-P-0017",
             "record_type": "main_passages",
             "display_role": "secondary",
@@ -93,19 +107,6 @@
             "snippet": "上四味，以水八升，先煮葛根，减二升，内诸药，煮取二升，去滓，分温再服。",
             "risk_flags": [
               "topic_mismatch_demoted"
-            ]
-          },
-          {
-            "record_id": "safe:main_passages:ZJSHL-CH-009-P-0016",
-            "record_type": "main_passages",
-            "display_role": "secondary",
-            "title": "葛根黄芩黄连汤方",
-            "evidence_level": "B",
-            "chapter_id": "ZJSHL-CH-009",
-            "chapter_title": "辨太阳病脉证并治第六",
-            "snippet": "葛根黄芩黄连汤方：赵本芩、连互易",
-            "risk_flags": [
-              "short_text_demoted"
             ]
           }
         ],
@@ -176,6 +177,78 @@
             "citation_role": "primary"
           }
         ],
+        "commentarial": {
+          "route": "assistive_view",
+          "source_aware": true,
+          "lead_note": "以下名家内容仅作补充解读，默认不进入 primary_evidence，也不参与 confidence gate。",
+          "sections": [
+            {
+              "section_id": "commentarial_assistive",
+              "title": "名家补充解读",
+              "view_mode": "assistive_view",
+              "layout": "stacked",
+              "collapsed_by_default": true,
+              "items": [
+                {
+                  "unit_id": "cmu_liu_p035",
+                  "commentator": "刘渡舟",
+                  "source_id": "liu_duzhou_shanghan_lectures_2007",
+                  "work_title": "刘渡舟伤寒论讲稿",
+                  "title": "第035条 太阳病，桂枝证，医反下之，利遂不止，脉促…",
+                  "summary_text": "刘渡舟围绕“第035条 太阳病，桂枝证，医反下之，利遂不止，脉促…”解读条文“太阳病，桂枝证，医反下之，利遂不止，”，重点涉及passage_explanation、pathogenesis、formula_analysis。葛根黄芩黄连汤方：葛根半斤甘草二两，炙黄芩二两黄连三两上四味，以",
+                  "quoted_original_text": "太阳病，桂枝证，医反下之，利遂不止，脉促者，表未解也；喘而汗出者，葛根黄连黄芩汤主之。（35）",
+                  "display_text": "【原文】\n太阳病，桂枝证，医反下之，利遂不止，脉促者，表未解也；喘而汗出者，葛根黄连黄芩汤主之。（35）\n\n【解读】\n葛根黄芩黄连汤方：\n葛根半斤 甘草二两 ，炙 黄芩二两 黄连三两\n上四味，以水八升，先煮葛根，减二升，内诸药，煮取二升，去滓，分温再服。\n这一条论述里热夹表邪下利的证治。\n太阳中风的桂枝汤证，由于医生误用下法，表邪内陷入里，出现腹泻不止的症状。“医反下之”，是病在表不当下而下，故加了一个“反”字，这应当看作是病机转折的一个条件，临证不要拘泥。表邪入里出现“利遂不止”，是属虚，属实，属寒，还是属热，应当凭脉辨证以作出诊断。\n“脉促者”，脉数而促迫，不是数而中止之促脉。脉数为里有热，同时反映人体阳气为盛。阳气盛，有抗邪外达之势，则表邪未能全部内陷，所以说“表未解也”。既有表邪未解，又有里热下利，可称为里热夹表邪而下利，或者叫“协热利”。表邪束肺，里热迫肺，肺气不利，故喘。里热逼迫津液外越，故汗出。表里皆热，故发热一证自是意在言外，不用多说了。既然是热利，那么大便粘秽、暴注下迫、下利肛热等证则在所难免。治疗应采用表里两解的方法以解表清里，用葛根黄芩黄连汤。\n葛根黄芩黄连汤是《伤寒论》中以葛根为主药的方剂之一，但是葛根用到半斤则是罕见的。葛根味辛性凉，既可解肌热，又可清肠热，还可升胃肠津气。先煎葛根，是取其解肌清肠为主；黄芩、黄连苦寒专清里热，坚阴以止利；甘草扶中护正，调补下利之虚，助正以祛邪。诸药相伍，表解里清则下利止，咳喘平。从本方用药可以看出，这个证是表邪少而里热多，可以说仅有三分表证，七分都是里证。\n总结以上四条，葛根汤既可用于风寒在表，太阳经输不利，项背强\n之证，也可用于太阳、阳明合病，正气抗邪于表而不能顾护于里，里气不和，升降失常，下利呕吐等证。葛根芩连汤则用于表里皆热的协热下利之证。以葛根为主药的这两个方子，在临床上都很常用，疗效也很好，应掌握其脉证。",
+                  "anchor_type": "exact",
+                  "anchor_priority_mode": "single_anchor",
+                  "theme_display_tier": null,
+                  "primary_anchor_candidates": [
+                    "PASSAGE_NO:035"
+                  ],
+                  "supporting_anchor_candidates": [],
+                  "resolved_primary_anchor_passage_ids": [
+                    "ZJSHL-CH-009-P-0014"
+                  ],
+                  "resolved_supporting_anchor_passage_ids": [],
+                  "unresolved_anchor_keys": [],
+                  "never_use_in_primary": true,
+                  "use_for_confidence_gate": false,
+                  "needs_manual_anchor_review": false,
+                  "needs_manual_content_review": false,
+                  "low_confidence_commentarial_unit": false,
+                  "score": 36.8
+                },
+                {
+                  "unit_id": "cmu_liu_p181",
+                  "commentator": "刘渡舟",
+                  "source_id": "liu_duzhou_shanghan_lectures_2007",
+                  "work_title": "刘渡舟伤寒论讲稿",
+                  "title": "第181条 伤寒胸中有热，胃中有邪气，腹中痛，欲呕吐…",
+                  "summary_text": "刘渡舟围绕“第181条 伤寒胸中有热，胃中有邪气，腹中痛，欲呕吐…”解读条文“伤寒胸中有热，胃中有邪气，腹中痛，欲”，重点涉及passage_explanation、pathogenesis、formula_analysis。黄连汤方：黄连甘草，炙干姜桂枝去皮，各三两人参二两半夏半升，洗大",
+                  "quoted_original_text": "伤寒胸中有热，胃中有邪气，腹中痛，欲呕吐者，黄连汤主之。（181）",
+                  "display_text": "【原文】\n伤寒胸中有热，胃中有邪气，腹中痛，欲呕吐者，黄连汤主之。（181）\n\n【解读】\n黄连汤方：\n黄连 甘草，炙 干姜 桂枝去皮 ，各三两 人参二两 半夏半升 ，洗 大枣十二 枚 ，擘\n上七味，以水一斗，煮取六升，去滓，温服一升，日三服，夜二服。\n这一条是讲上热下寒，腹痛欲呕的证治。\n这一条注意两个“有”字，“胸中有热”的“有”，“胃中有邪气”的“有”。有者，就是原来就有的意思。“胸中有热”是上热；“胃中有邪气”是胃里、中焦有邪气。\n什么邪气？这里指寒邪之气。就是上边有热，中焦还有寒，这样一个病理反映到证候上来，胃里有寒，所以肚子就疼痛；胸中有热，就是“欲呕吐者”，总想着要呕吐，但是又吐不出来，所以加个“欲呕吐”，这是上热而中寒。上热而中寒，这也是一个阴阳升降不利的关系。胸中之热不能下行，所以热在上而寒在中，凡是这样的寒热错杂之证都和阴阳的升降有关系。\n这条的特点和脾胃升降不利的心下痞硬不同。不同点在什么地方？一个它没有心下痞，一个它有腹中痛、肚子疼。说明如果寒热之邪痞塞于心下，它就作痞、心下痞，心下痞我们就用泻心汤。如果热在上而寒在下，肚子疼痛，寒凝于中，而不作痞的，不是塞于胸之下、腹之上的半上半下那个地方，它分开了，热就是在上边，寒就在腹中、下边。这样就是腹中痛，它虽然是补脾，它肚子一定要疼。为什么要疼？它有寒。为什么“欲呕吐”？它上边有热。热只在上，而寒只在下，未构成一个交通痞塞的病机，就不作痞。痞证往往从条文上来看，由于误下，“病在阴而反下之，则作痞也”，误下伤了脾胃，总之，脾胃它得受伤，然后作心下痞。这是胸中有热，胃中有邪气，原来就有，不是说是由于误下，来路不同，所以张仲景加上两个“有”字，有者是自身原有的，不是什么原因造成的。\n这样怎么办？“黄连汤主之”。我们在临床上看这个病，有大便腹泻的一面，这个条文上头没有写。“欲呕吐，腹中疼”，也有时候大便不调，大便不好，就是说夹有腹泻，这个腹泻不是下利，不是痢疾，就是大便不调，一天拉个两三次。所以“热病于上，而欲呕吐，寒病于下，而腹中作痛”，或者出现下利，是上热下寒，也属于阴阳升降的失调，但是没有形成心下痞，这是黄连汤证的一个特点。半夏泻心汤证、生姜泻心汤证、甘草泻心汤证都有心下痞。黄连泻心汤实际上就是半夏泻心汤，把黄芩减掉，再加上一味桂枝，同时黄连的剂量稍微大一点儿，和半夏泻心汤意思差不多。\n虽然这个方子以黄连为名，叫黄连汤，但是从药味的组成来看，热药重于寒药。苦寒下降之药只有一个黄连，干姜、桂枝、半夏、人参、大枣、炙甘草这些都是辛温之药。这样来看，虽然是一个热上寒下之变，但是从治疗来看是侧重于温，温补的作用要强烈一些。泻心汤的芩连是并用的，以解寒热错杂之邪，黄连汤把黄芩去掉，又加上一个桂枝，所以通阳去寒的作用就要强烈一些，泻热的力量就少一点儿。大家可以有这样的意见了，那不用黄连行不行？不用黄连可不行。古人有一个方子叫连理汤，就是理中汤里加上黄连。连理汤和理中汤的作用完全不一样，比如腹痛下利，看着像有寒，用理中汤止不住，用理中汤加上黄连后，马上就见好了，也不腹泻了，吃了药就挺舒服。\n为什么要加桂枝？干姜和桂枝，张仲景常配合在一起用，最典型的就是柴胡桂枝干姜汤。干姜是个守药，守而不行，补的力量很大。下利用干姜能补是守，桂枝能行，能温通，这两个药都是热性药，一个是守的，一个是行的，这一守一行，上下的寒热才能互相交通，这个意义就更好了。桂枝有温通的作用，温通上下，温通内外，同时它还有理气的作用。在临床的时候，上面想呕吐，下面还腹泻，寒热错杂的，黄连汤是一个很好的方子。",
+                  "anchor_type": "exact",
+                  "anchor_priority_mode": "single_anchor",
+                  "theme_display_tier": null,
+                  "primary_anchor_candidates": [
+                    "PASSAGE_NO:181"
+                  ],
+                  "supporting_anchor_candidates": [],
+                  "resolved_primary_anchor_passage_ids": [
+                    "ZJSHL-CH-010-P-0143"
+                  ],
+                  "resolved_supporting_anchor_passage_ids": [],
+                  "unresolved_anchor_keys": [],
+                  "never_use_in_primary": true,
+                  "use_for_confidence_gate": false,
+                  "needs_manual_anchor_review": false,
+                  "needs_manual_content_review": false,
+                  "low_confidence_commentarial_unit": false,
+                  "score": 36.8
+                }
+              ]
+            }
+          ]
+        },
         "display_sections": [
           {
             "section_id": "answer",
@@ -183,7 +256,7 @@
             "section_type": "text",
             "visible": true,
             "field": "answer_text",
-            "summary": "根据主依据，与“黄连汤方”直接对应的条文主要有： 1. 黄连汤方：黄连味苦寒 甘草炙。味甘平 乾..."
+            "summary": "黄连汤方由黄连、炙甘草、乾姜、桂枝、人参、半夏、大枣七味药组成，其中黄连、炙甘草、乾姜、桂枝各三..."
           },
           {
             "section_id": "review_notice",
@@ -232,6 +305,14 @@
             "visible": false,
             "field": "suggested_followup_questions",
             "item_count": 0
+          },
+          {
+            "section_id": "commentarial",
+            "title": "名家视角",
+            "section_type": "extension",
+            "visible": true,
+            "field": "commentarial",
+            "item_count": 2
           }
         ]
       }
@@ -259,12 +340,13 @@
         "refuse_reason",
         "suggested_followup_questions",
         "citations",
+        "commentarial",
         "display_sections"
       ],
       "response_body": {
         "query": "烧针益阳而损阴是什么意思？",
         "answer_mode": "weak_with_review_notice",
-        "answer_text": "正文强证据不足，以下内容需核对，暂不能视为确定答案。 当前可先参考辅助材料：卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+        "answer_text": "‘烧针益阳而损阴’可以先理解为：用烧针的方法虽能暂时激发卫阳之气，却容易耗损荣阴之血，尤其在阴血本就不足的情况下，反而加重失衡。[E1]\n\n这里‘卫阳’与‘荣阴’是相对而言的——卫气属阳，主外护；荣气属阴，主内养血脉。烧针本意是助阳发汗，但若阴血已微，强加温燥之法，就会使血流滞涩、内热更甚，继而出现躁烦等症。[E1][E2]\n\n目前这一解释主要依据《辨脉法第一》中零散出现的几句关联文字，但原句上下文未完整呈现，缺少前导判断与后出病机的连贯铺陈，建议回看‘荣气微者’起始的整段条文，特别注意‘阴虚而内热’与‘更发热而躁烦’之间的因果链条。[E1][E2]",
         "primary_evidence": [],
         "secondary_evidence": [
           {
@@ -305,37 +387,124 @@
             "risk_flags": [
               "topic_mismatch_demoted"
             ]
-          }
-        ],
-        "review_materials": [
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-009-P-0294",
+            "record_type": "passages",
+            "display_role": "secondary",
+            "title": "同段前文",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "snippet": "烧针令其汗，针处被寒，核起而赤者，必发奔豚。气从少腹上冲心者，灸其核上各一壮，与桂枝加桂汤，赵本有「桂枝加桂汤方」详见本书卷十更加桂二两。赵本有「也」字",
+            "risk_flags": [
+              "ledger_mixed_roles",
+              "context_padding"
+            ]
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-003-P-0015",
+            "record_type": "passages",
+            "display_role": "secondary",
+            "title": "同段前文",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-003",
+            "chapter_title": "辨脉法第一",
+            "snippet": "荣气微者，加烧针，则血流赵本作「留」不行，更发热而躁烦也。",
+            "risk_flags": [
+              "ledger_mixed_roles",
+              "context_padding"
+            ]
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-010-P-0081",
+            "record_type": "passages",
+            "display_role": "secondary",
+            "title": "同段后文",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "太阳病，因发汗，遂发热恶寒者，外虚阳气，邪复不除也，因复下之，又虚其里，表中虚，邪内陷，传于心下为痞。发汗表虚为竭阳，下之里虚为竭阴；表证罢为无阳，里有痞为阴独。",
+            "risk_flags": [
+              "ledger_mixed_roles",
+              "ambiguous_source",
+              "context_padding"
+            ]
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-009-P-0296",
+            "record_type": "passages",
+            "display_role": "secondary",
+            "title": "同段后文",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "snippet": "火逆，下之，因烧针烦躁者，桂枝甘草龙骨牡蛎汤主之。",
+            "risk_flags": [
+              "ledger_mixed_roles",
+              "ambiguous_source",
+              "context_padding"
+            ]
+          },
           {
             "record_id": "full:passages:ZJSHL-CH-003-P-0016",
             "record_type": "passages",
-            "display_role": "review",
-            "title": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+            "display_role": "secondary",
+            "title": "同段后文",
             "evidence_level": "C",
             "chapter_id": "ZJSHL-CH-003",
             "chapter_title": "辨脉法第一",
             "snippet": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
             "risk_flags": [
               "ledger_mixed_roles",
-              "ambiguous_source"
+              "ambiguous_source",
+              "context_padding"
             ]
           },
           {
-            "record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0016",
-            "record_type": "ambiguous_passages",
-            "display_role": "review",
-            "title": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+            "record_id": "full:passages:ZJSHL-CH-009-P-0295",
+            "record_type": "passages",
+            "display_role": "secondary",
+            "title": "同段后文",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "snippet": "烧针发汗，则损阴血，而惊动心气。针处被寒，气聚而成核。心气因惊而虚，肾气乘寒气而动，发为奔豚。《金匮要略》曰：病有奔豚，从惊发得之。肾气欲上乘心，故其气从少腹上冲心也。先灸核上，以散其寒，与桂枝加桂汤，以泄奔豚之气。",
+            "risk_flags": [
+              "ledger_mixed_roles",
+              "context_padding"
+            ]
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-003-P-0017",
+            "record_type": "passages",
+            "display_role": "secondary",
+            "title": "同段后文",
             "evidence_level": "C",
             "chapter_id": "ZJSHL-CH-003",
             "chapter_title": "辨脉法第一",
-            "snippet": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
+            "snippet": "脉赵本注：「一云秋脉」蔼蔼，如车盖者，名曰阳结也。",
             "risk_flags": [
-              "ambiguous_source"
+              "ledger_mixed_roles",
+              "context_padding"
+            ]
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-010-P-0079",
+            "record_type": "passages",
+            "display_role": "secondary",
+            "title": "同段前文",
+            "evidence_level": "C",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "snippet": "右上赵本无「上」字三味等分，各别捣为散。以水一升半，先煮大枣肥者十枚，取八合，去滓，内药末。强人服一钱匕，羸人服半钱，温服之，平旦服。若下少病不除者，明日更服，加半钱，得快下利后，糜粥自养。",
+            "risk_flags": [
+              "ledger_mixed_roles",
+              "context_padding"
             ]
           }
         ],
+        "review_materials": [],
         "disclaimer": "当前只输出弱表述与核对材料，不输出确定性答案。",
         "review_notice": "正文强证据不足，以下内容需核对，不应视为确定答案。",
         "refuse_reason": null,
@@ -376,27 +545,132 @@
           },
           {
             "citation_id": "c4",
-            "record_id": "full:passages:ZJSHL-CH-003-P-0016",
+            "record_id": "full:passages:ZJSHL-CH-009-P-0294",
             "record_type": "passages",
-            "title": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+            "title": "同段前文",
             "evidence_level": "C",
-            "snippet": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
-            "chapter_id": "ZJSHL-CH-003",
-            "chapter_title": "辨脉法第一",
-            "citation_role": "review"
+            "snippet": "烧针令其汗，针处被寒，核起而赤者，必发奔豚。气从少腹上冲心者，灸其核上各一壮，与桂枝加桂汤，赵本有「桂枝加桂汤方」详见本书卷十更加桂二两。赵本有「也」字",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "citation_role": "secondary"
           },
           {
             "citation_id": "c5",
-            "record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0016",
-            "record_type": "ambiguous_passages",
-            "title": "卫阳也荣阴也烧针益阳而损阴荣气微者谓阴虚也内经曰",
+            "record_id": "full:passages:ZJSHL-CH-003-P-0015",
+            "record_type": "passages",
+            "title": "同段前文",
+            "evidence_level": "C",
+            "snippet": "荣气微者，加烧针，则血流赵本作「留」不行，更发热而躁烦也。",
+            "chapter_id": "ZJSHL-CH-003",
+            "chapter_title": "辨脉法第一",
+            "citation_role": "secondary"
+          },
+          {
+            "citation_id": "c6",
+            "record_id": "full:passages:ZJSHL-CH-010-P-0081",
+            "record_type": "passages",
+            "title": "同段后文",
+            "evidence_level": "C",
+            "snippet": "太阳病，因发汗，遂发热恶寒者，外虚阳气，邪复不除也，因复下之，又虚其里，表中虚，邪内陷，传于心下为痞。发汗表虚为竭阳，下之里虚为竭阴；表证罢为无阳，里有痞为阴独。",
+            "chapter_id": "ZJSHL-CH-010",
+            "chapter_title": "辨太阳病脉证并治法第七",
+            "citation_role": "secondary"
+          },
+          {
+            "citation_id": "c7",
+            "record_id": "full:passages:ZJSHL-CH-009-P-0296",
+            "record_type": "passages",
+            "title": "同段后文",
+            "evidence_level": "C",
+            "snippet": "火逆，下之，因烧针烦躁者，桂枝甘草龙骨牡蛎汤主之。",
+            "chapter_id": "ZJSHL-CH-009",
+            "chapter_title": "辨太阳病脉证并治第六",
+            "citation_role": "secondary"
+          },
+          {
+            "citation_id": "c8",
+            "record_id": "full:passages:ZJSHL-CH-003-P-0016",
+            "record_type": "passages",
+            "title": "同段后文",
             "evidence_level": "C",
             "snippet": "卫阳也，荣阴也。烧针益阳而损阴。荣气微者，谓阴虚也。《内经》曰：阴虚而医统本作「生」内热，方其内热，又加烧针以补阳，不惟两热相合而荣血不行，必更外发然而内躁烦也。",
             "chapter_id": "ZJSHL-CH-003",
             "chapter_title": "辨脉法第一",
-            "citation_role": "review"
+            "citation_role": "secondary"
           }
         ],
+        "commentarial": {
+          "route": "assistive_view",
+          "source_aware": true,
+          "lead_note": "以下名家内容仅作补充解读，默认不进入 primary_evidence，也不参与 confidence gate。",
+          "sections": [
+            {
+              "section_id": "commentarial_assistive",
+              "title": "名家补充解读",
+              "view_mode": "assistive_view",
+              "layout": "stacked",
+              "collapsed_by_default": true,
+              "items": [
+                {
+                  "unit_id": "cmu_hao_rw003",
+                  "commentator": "郝万山",
+                  "source_id": "hao_wanshan_shanghan_lectures_2007",
+                  "work_title": "郝万山伤寒论讲稿",
+                  "title": "太阳伤寒证的脉证提纲。",
+                  "summary_text": "郝万山围绕“太阳伤寒证的脉证提纲。”解读条文“太阳病，或已发热，或未发热，必恶寒，”，重点涉及passage_explanation、pathogenesis、comparison。太阳伤寒证的脉证提纲。本证成因：寒邪袭表。主症和病机：必恶寒，强调恶寒必定先见而且比较严重。因为太阳伤寒是寒",
+                  "quoted_original_text": "太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧［1］ 者，名为伤寒［2］ 。（3）",
+                  "display_text": "【原文】\n太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧［1］ 者，名为伤寒［2］ 。（3）\n【注释】\n［1］脉阴阳俱紧：阴、阳，在此分别指尺脉和寸脉而言。脉阴阳俱紧，是泛指寸关尺三部之脉皆呈紧象。本条首言太阳病，故当有脉浮，也即其脉当是寸关尺三部皆浮紧。\n［2］伤寒：证候名，外感风寒，感而即发所引起的表证，即狭义伤寒。\n【提要】\n太阳伤寒证的脉证提纲。\n【讲解】\n本证成因：寒邪袭表。\n主症和病机：必恶寒，强调恶寒必定先见而且比较严重。因为太阳伤寒是寒邪伤人肌表的证候，寒为阴邪，最易伤人阳气，寒邪袭表，卫阳被伤，温煦失司，故必恶寒。\n或已发热，或未发热，有的人已经发热，是风寒袭表，卫阳能及时达表抗邪，故发热较早出现；有的人还没有见到发热，是感受风寒较重，卫阳郁遏，或体质素弱，卫阳不能及时达表抗邪，故发热较迟出现。但是不论迟早，总会有发热。也就是说，太阳伤寒证的发热可以有迟有早，但终究会出现。如无发热，就不可以称之为太阳伤寒，而属少阴伤寒了。\n体痛，周身疼痛，这是伤寒的主要症状之一。寒性凝涩，寒主收引，寒主痛，寒伤肌表，不仅外闭卫阳，而且内郁营阴，使营卫气血凝滞，筋脉拘挛，故见周身疼痛。\n呕逆，为寒邪束表，正气抗邪于表而不能顾护于里，里气升降失常所致。里气升降失常是表证常见的兼证，可以见呕逆，也可见食欲不振，或下利，或不大便等。\n脉阴阳俱紧，即寸关尺三部脉俱现浮紧之象。浮主邪在表，紧主寒邪盛，这是由于寒主收引，使筋脉拘挛所致。\n以上诸证反映了太阳伤寒证寒邪袭表，卫闭营郁的病机。既属卫闭营郁，必然无汗，这也是太阳伤寒证的主要特征之一。因其以无汗、脉紧为特征，故后世医学家又把太阳伤寒称为风寒表实证。\n太阳中风与太阳伤寒，是两种不同类型的太阳表证。太阳中风为风邪袭表，卫强营弱，营卫失和，以发热、汗出、恶风、脉浮缓为主症，属太阳病表虚证；太阳伤寒，为寒邪闭表，卫闭营郁，以恶寒、发热、无汗、身痛、脉浮紧为主症，属太阳病表实证。其中鉴别的关键在于有汗和无汗。\n（三）温病和风温提纲",
+                  "anchor_type": "exact",
+                  "anchor_priority_mode": "single_anchor",
+                  "theme_display_tier": null,
+                  "primary_anchor_candidates": [
+                    "PASSAGE_NO:003"
+                  ],
+                  "supporting_anchor_candidates": [],
+                  "resolved_primary_anchor_passage_ids": [
+                    "ZJSHL-CH-008-P-0195"
+                  ],
+                  "resolved_supporting_anchor_passage_ids": [],
+                  "unresolved_anchor_keys": [],
+                  "never_use_in_primary": true,
+                  "use_for_confidence_gate": false,
+                  "needs_manual_anchor_review": false,
+                  "needs_manual_content_review": false,
+                  "low_confidence_commentarial_unit": false,
+                  "score": 11.6
+                },
+                {
+                  "unit_id": "cmu_hao_rw004",
+                  "commentator": "郝万山",
+                  "source_id": "hao_wanshan_shanghan_lectures_2007",
+                  "work_title": "郝万山伤寒论讲稿",
+                  "title": "太阳温病和风温的脉证提纲及误治后的变证。",
+                  "summary_text": "郝万山围绕“太阳温病和风温的脉证提纲及误治后的变证。”解读条文“太阳病，发热而渴，不恶寒者，为温病［”，重点涉及passage_explanation、pathogenesis、therapeutic_method。太阳温病和风温的脉证提纲及误治后的变证。本证成因：温热邪气外袭。①温病主症",
+                  "quoted_original_text": "太阳病，发热而渴，不恶寒者，为温病［1］ 。若发汗已，身灼热者，名风温［2］ ，风温为病，脉阴阳俱浮［3］ ，自汗出，身重，多眠睡［4］ ，鼻息必鼾，语言难出。若被下者，小便不利，直视失溲［5］ ，若被火［6］ 者，微发黄色，剧则如惊痫［7］ ，时瘛疭［8］ 。若火熏之［9］ ，一逆［10］ 尚引日，再逆促命期。（6）",
+                  "display_text": "【原文】\n太阳病，发热而渴，不恶寒者，为温病［1］ 。若发汗已，身灼热者，名风温［2］ ，风温为病，脉阴阳俱浮［3］ ，自汗出，身重，多眠睡［4］ ，鼻息必鼾，语言难出。若被下者，小便不利，直视失溲［5］ ，若被火［6］ 者，微发黄色，剧则如惊痫［7］ ，时瘛疭［8］ 。若火熏之［9］ ，一逆［10］ 尚引日，再逆促命期。（6）\n【注释】\n［1］温病：外感热病中属温热性质的一类病证，与前述中风、伤寒同属广义伤寒范畴。\n［2］风温：一般认为是指温病误用辛温发汗引起的一种变证，但在《伤寒例》中，“风温”与伤寒、温病、暑病、瘟疫、温疟、温毒、冬温等并称，可见又是一个独立的病证名称。而本条又有“风温为病”之语，因此可以认为，将其作为一个独立的病证看待也是可以的。但无论是温病误治后的变证还是独立的病证，皆与后世温病学中的风温病含义不同。\n［3］脉阴阳俱浮：指寸关尺三部脉俱浮盛有力，为热邪鼓动气血，气盛血涌，血脉贲张所致。\n［4］多眠睡：指热盛扰神所致的昏睡状态。\n［5］失溲：小便失禁。单用“溲”字，仅指小便而言，言“后溲”、“大溲”，才可以指大便。此所言小便失禁是热盛神昏，膀胱失约所致，和下文的“小便不利”（即尿少，因热盛伤津所致）并不矛盾。\n［6］被火：指误用火针、火熏、火熨、火灸等一类的方法治疗。\n［7］惊痫：惊指惊风，痫即癫痫，皆是以抽搐为主症的一类病证。\n［8］瘛疭：瘛，chì，音赤，四肢收引。疭，zònɡ，音纵，四肢舒伸。瘛疭即四肢时收时伸，也就是抽搐。\n［9］若火熏之：如果再误用火熏疗法。\n［10］逆：《广雅·卷三》：逆，乱也。“乱”也是“错”、“误”的意思，此指错误的治疗，也就是误治。\n【提要】\n太阳温病和风温的脉证提纲及误治后的变证。\n【讲解】\n本证成因：温热邪气外袭。\n①温病主症和病机：发热，温热邪气侵袭肺卫，卫阳与温热相争而出现病理性亢奋状态，故见发热。渴，温为阳邪，最易伤津耗阴，故温热邪气伤人的初起，不经传经，就可以见到津液被伤的口渴。而伤寒证的初起阶段，不见口渴，只有当邪气入里化热伤津时，才出现口渴。不恶寒，温热邪气伤人，以伤阴液为主，与寒邪伤人阳气，温煦功能失司不同，故不恶寒。温病虽然证候百端，但“发热而渴，不恶寒”是其基本特征。提示温病与中风、伤寒在临床表现上是截然不同的。\n此外，由于风为百病之长，温热邪气伤人之初常常夹有风邪，从临床上看，温病在初期邪侵卫分的阶段，也可以见到轻微而短暂的恶风寒。这是由于风邪伤卫阳，卫阳温煦作用失司所致。不过这种恶风寒，程度较轻，为时暂短，而且会伴有口渴、舌红、脉数等热象，不难与伤寒、中风相区别。\n②风温的主症和病机：发汗已，身灼热，为邪热鸱张之象。邪热炽盛，误用辛温之剂发汗，以热助热，故热不退而身灼热。如果将“风温”看成是一个独立的病证，那么就可以把这句话理解为，高热汗出而热不退者，这就是风温病。邪热炽盛故见高热，热邪逼迫津液外越故见汗出。脉阴阳俱浮，邪热充斥于内外，鼓动气血，气血涌盛，血脉贲张，故寸关尺三部脉皆见浮数之象。在《伤寒论》中，浮脉主热见于多处，主热的浮脉，其特点是轻取即得，重按滑数有力，这是和主表的浮脉轻取即得，重按少力是不同的。自汗出为阳热逼迫津液外泄所致。身重，难以转侧：壮火食气，火热耗气，故见倦怠身重。而且热邪壅滞经脉，经脉气机不利，也是导致身重难以转侧的原因之一。多眠睡，鼻息必鼾，语言难出为热扰心神，病人呈困顿嗜睡状态；心主言，心神被扰，热盛神昏，故语言难出；热壅气机，肺窍不利，故鼻息必鼾。\n③风温误治变证的表现与病机：小便不利：此指小便少。热盛伤津，又误用下法，更损阴液，而致化源不足，故见小便短少。直视，温热邪气本易伤阴耗液，加之误下损伤阴液，致使肝肾阴精被伤，不能上荣于目，故见两目呆滞凝视无神。失溲，即小便失禁，是热盛神昏，关门不固，膀胱失约所致。小便失禁和小便不利（尿少）并不矛盾，而是可以同时存在的症状。发黄，风温误用火疗，以火助热，火热内伤营血，营气不布，故发身黄。如惊痫，时瘛疭，火邪内攻，或热极而风动；或火热伤津耗液，水不涵木而动风，犹如惊风或癫痫，而出现阵阵抽搐。若火熏之，一逆尚引日，再逆促命期，如果再用火熏疗法，那么一次的误治，病人的生命还可以延长几天，一而再再而三的误治，只能缩短病人的生命，促进病人的死亡。\n中风、伤寒、温病、风温皆属外邪所致的疾病，也皆有发热。其中发热，汗出，恶风，脉浮缓者为中风；恶寒，发热，身痛，无汗，脉浮紧者，为伤寒；发热而渴，不恶寒者，为温病；高热，汗出而热不退者，为风温。\n本条所举温病、风温以及风温误治以后的临床表现，提示了温热邪气伤人，容易出现伤津、耗液、扰神、动风、发黄等的病变规律，这对后世医学家极有启发。后世医学家在此基础上，根据温邪种类及所犯部位的不同，对温病的发生、发展及其演变，进行了深入的研究，逐步形成了以卫气营血辨证和三焦辨证等辨证论治体系为基础的温病学说，这完全可以看成是对伤寒学术的继承、发展、补充和创新。\n三、太阳病的自愈日和欲解时以及六经病的欲解时",
+                  "anchor_type": "exact",
+                  "anchor_priority_mode": "single_anchor",
+                  "theme_display_tier": null,
+                  "primary_anchor_candidates": [
+                    "PASSAGE_NO:006"
+                  ],
+                  "supporting_anchor_candidates": [],
+                  "resolved_primary_anchor_passage_ids": [],
+                  "resolved_supporting_anchor_passage_ids": [],
+                  "unresolved_anchor_keys": [
+                    "PASSAGE_NO:006"
+                  ],
+                  "never_use_in_primary": true,
+                  "use_for_confidence_gate": false,
+                  "needs_manual_anchor_review": false,
+                  "needs_manual_content_review": false,
+                  "low_confidence_commentarial_unit": false,
+                  "score": 11.6
+                }
+              ]
+            }
+          ]
+        },
         "display_sections": [
           {
             "section_id": "answer",
@@ -404,7 +678,7 @@
             "section_type": "text",
             "visible": true,
             "field": "answer_text",
-            "summary": "正文强证据不足，以下内容需核对，暂不能视为确定答案。 当前可先参考辅助材料：卫阳也，荣阴也。烧针..."
+            "summary": "‘烧针益阳而损阴’可以先理解为：用烧针的方法虽能暂时激发卫阳之气，却容易耗损荣阴之血，尤其在阴血..."
           },
           {
             "section_id": "review_notice",
@@ -428,15 +702,15 @@
             "section_type": "slot_ref",
             "visible": true,
             "field": "secondary_evidence",
-            "item_count": 3
+            "item_count": 11
           },
           {
             "section_id": "review_materials",
             "title": "核对材料",
             "section_type": "slot_ref",
-            "visible": true,
+            "visible": false,
             "field": "review_materials",
-            "item_count": 2
+            "item_count": 0
           },
           {
             "section_id": "citations",
@@ -444,7 +718,7 @@
             "section_type": "slot_ref",
             "visible": true,
             "field": "citations",
-            "item_count": 5
+            "item_count": 8
           },
           {
             "section_id": "refusal_guidance",
@@ -453,6 +727,14 @@
             "visible": false,
             "field": "suggested_followup_questions",
             "item_count": 0
+          },
+          {
+            "section_id": "commentarial",
+            "title": "名家视角",
+            "section_type": "extension",
+            "visible": true,
+            "field": "commentarial",
+            "item_count": 2
           }
         ]
       }
@@ -480,12 +762,13 @@
         "refuse_reason",
         "suggested_followup_questions",
         "citations",
+        "commentarial",
         "display_sections"
       ],
       "response_body": {
         "query": "书中有没有提到量子纠缠？",
         "answer_mode": "refuse",
-        "answer_text": "当前未检索到足以支撑回答的依据，暂不提供答案。",
+        "answer_text": "目前还没有检索到足以支撑回答的书内依据，所以这里先不硬答。可以改问更具体的条文、方名，或某一句话在书里是什么意思。",
         "primary_evidence": [],
         "secondary_evidence": [],
         "review_materials": [],
@@ -498,6 +781,7 @@
           "请改问书中某个明确术语或概念，例如：某句话出自哪一条？"
         ],
         "citations": [],
+        "commentarial": null,
         "display_sections": [
           {
             "section_id": "answer",
@@ -505,7 +789,7 @@
             "section_type": "text",
             "visible": true,
             "field": "answer_text",
-            "summary": "当前未检索到足以支撑回答的依据，暂不提供答案。"
+            "summary": "目前还没有检索到足以支撑回答的书内依据，所以这里先不硬答。可以改问更具体的条文、方名，或某一句话..."
           },
           {
             "section_id": "review_notice",

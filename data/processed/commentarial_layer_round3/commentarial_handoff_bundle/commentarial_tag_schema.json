@@ -1,0 +1,128 @@
+{
+  "passage_explanation": {
+    "definition": "围绕具体条文、节选条文或一组条文进行释义、分解与逐段说明。",
+    "typical_signals": [
+      "逐条讲解",
+      "【讲解】",
+      "条文原文",
+      "这一条"
+    ]
+  },
+  "pathogenesis": {
+    "definition": "强调病机、成因、邪正变化、证候形成机制。",
+    "typical_signals": [
+      "病机",
+      "成因",
+      "邪",
+      "机转",
+      "所以然"
+    ]
+  },
+  "formula_analysis": {
+    "definition": "围绕方义、方药组成、加减思路、方证对应展开说明。",
+    "typical_signals": [
+      "方义",
+      "方剂",
+      "药味",
+      "桂枝汤方",
+      "大承气汤"
+    ]
+  },
+  "therapeutic_method": {
+    "definition": "突出治法、处置原则、汗吐下和解温清补等策略。",
+    "typical_signals": [
+      "治法",
+      "当用",
+      "宜",
+      "不可发汗",
+      "随证治之"
+    ]
+  },
+  "comparison": {
+    "definition": "对条文、方证、证候、不同解释路径进行对比辨析。",
+    "typical_signals": [
+      "鉴别",
+      "比较",
+      "不同",
+      "对比",
+      "相呼应"
+    ]
+  },
+  "clinical_application": {
+    "definition": "将理法方药落到临床运用、辨证思路、病机迁移上。",
+    "typical_signals": [
+      "临床",
+      "应用",
+      "治疗",
+      "现代临床",
+      "常用"
+    ]
+  },
+  "clinical_case": {
+    "definition": "引用或讨论具体医案、病例、案头经验。",
+    "typical_signals": [
+      "医案",
+      "病例",
+      "《续名医类案》",
+      "案"
+    ]
+  },
+  "study_method": {
+    "definition": "面向学习者的方法指导、读原文方法、教学法与学习要求。",
+    "typical_signals": [
+      "学习",
+      "方法",
+      "要求",
+      "怎样学",
+      "读经典"
+    ]
+  },
+  "theory_overview": {
+    "definition": "绪论、总论、六经辨证框架、概述性理论说明。",
+    "typical_signals": [
+      "绪论",
+      "概述",
+      "六经辨证",
+      "是一部什么书"
+    ]
+  },
+  "edition_history": {
+    "definition": "涉及作者、版本、沿革、底本、成书与流传史。",
+    "typical_signals": [
+      "版本",
+      "沿革",
+      "赵开美",
+      "成无己",
+      "注解伤寒论"
+    ]
+  },
+  "textual_relation": {
+    "definition": "说明上下条、前后条、互文、条文之间承接或索引关系。",
+    "typical_signals": [
+      "上条",
+      "下条",
+      "前后",
+      "互文",
+      "联系"
+    ]
+  },
+  "commentator_views": {
+    "definition": "突出讲者本人判断，或交代注家异同与个人取舍。",
+    "typical_signals": [
+      "我认为",
+      "我个人认为",
+      "有的注家",
+      "历代注家",
+      "有人认为"
+    ]
+  },
+  "summary": {
+    "definition": "对单元核心结论进行提要、归纳或概括。",
+    "typical_signals": [
+      "提要",
+      "总结",
+      "这一条论述",
+      "要点"
+    ]
+  }
+}

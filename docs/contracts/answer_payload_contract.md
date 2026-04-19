@@ -29,6 +29,7 @@
 | `refuse_reason` | `string \| null` | yes | `refuse` 模式下的拒答原因 |
 | `suggested_followup_questions` | `array` | yes | `refuse` 模式下的改问建议 |
 | `citations` | `array` | yes | 用于展示与定位的引用对象 |
+| `commentarial` | `object \| null` | yes | 可选名家视角扩展；默认为 `null`，不得替代 canonical 主证据槽位 |
 | `display_sections` | `array` | yes | 面向展示层的稳定区块定义 |
 
 ## Evidence Item 结构
@@ -77,6 +78,7 @@
 | `secondary_evidence` | `secondary_evidence` | 补充依据区 |
 | `review_materials` | `review_materials` | 核对材料区 |
 | `citations` | `citations` | 引用区 |
+| `commentarial` | `commentarial` | 名家视角层扩展区 |
 | `refusal_guidance` | `suggested_followup_questions` | 拒答改问建议区 |
 
 每个 section 至少包含：
@@ -120,5 +122,6 @@
 - `chunks` 只允许召回，不直接进入 `primary_evidence`
 - `annotations` 只允许进入 `secondary_evidence`
 - `passages` / `ambiguous_passages` 只允许进入 `review_materials`
+- `commentarial` 只允许进入顶层扩展区，不得混入 `primary_evidence` / `citations`
 - 不得破坏现有 `strong / weak_with_review_notice / refuse` 三模式框架
 - 不得破坏“黄连汤方”主证据精度补丁

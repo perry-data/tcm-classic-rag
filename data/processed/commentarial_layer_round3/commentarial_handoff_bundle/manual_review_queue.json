@@ -1,0 +1,873 @@
+[
+  {
+    "unit_id": "cmu_hao_rw006",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "high",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。",
+      "multi 单元存在并列主题或多重比较关系，暂未稳定判断唯一 primary anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:008",
+      "PASSAGE_NO:009",
+      "PASSAGE_NO:010"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw039",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "high",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。",
+      "multi 单元存在并列主题或多重比较关系，暂未稳定判断唯一 primary anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:071",
+      "PASSAGE_NO:072",
+      "PASSAGE_NO:073",
+      "PASSAGE_NO:074",
+      "PASSAGE_NO:127",
+      "PASSAGE_NO:156"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw071",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "high",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。",
+      "multi 单元存在并列主题或多重比较关系，暂未稳定判断唯一 primary anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:134",
+      "PASSAGE_NO:135",
+      "PASSAGE_NO:136",
+      "PASSAGE_NO:137"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw090",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "high",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。",
+      "multi 单元存在并列主题或多重比较关系，暂未稳定判断唯一 primary anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:110",
+      "PASSAGE_NO:111",
+      "PASSAGE_NO:113",
+      "PASSAGE_NO:114",
+      "PASSAGE_NO:115",
+      "PASSAGE_NO:116"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw092",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "high",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。",
+      "multi 单元存在并列主题或多重比较关系，暂未稳定判断唯一 primary anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:179",
+      "PASSAGE_NO:181",
+      "PASSAGE_NO:185",
+      "PASSAGE_NO:188"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw095",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "high",
+    "reasons": [
+      "multi 单元存在并列主题或多重比较关系，暂未稳定判断唯一 primary anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:221",
+      "PASSAGE_NO:228"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw101",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "high",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。",
+      "multi 单元存在并列主题或多重比较关系，暂未稳定判断唯一 primary anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:238",
+      "PASSAGE_NO:239",
+      "PASSAGE_NO:215",
+      "PASSAGE_NO:241",
+      "PASSAGE_NO:242",
+      "PASSAGE_NO:212",
+      "PASSAGE_NO:252",
+      "PASSAGE_NO:253",
+      "PASSAGE_NO:254",
+      "PASSAGE_NO:255",
+      "PASSAGE_NO:220"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw165",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "high",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。",
+      "multi 单元存在并列主题或多重比较关系，暂未稳定判断唯一 primary anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:331",
+      "PASSAGE_NO:332",
+      "PASSAGE_NO:333",
+      "PASSAGE_NO:334",
+      "PASSAGE_NO:336",
+      "PASSAGE_NO:341",
+      "PASSAGE_NO:342"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw174",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "high",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。",
+      "multi 单元存在并列主题或多重比较关系，暂未稳定判断唯一 primary anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:330",
+      "PASSAGE_NO:347",
+      "PASSAGE_NO:349"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw185",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "high",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。",
+      "multi 单元存在并列主题或多重比较关系，暂未稳定判断唯一 primary anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:343",
+      "PASSAGE_NO:344",
+      "PASSAGE_NO:345",
+      "PASSAGE_NO:346",
+      "PASSAGE_NO:362",
+      "PASSAGE_NO:348"
+    ]
+  },
+  {
+    "unit_id": "cmu_liu_p058",
+    "commentator": "刘渡舟",
+    "anchor_type": "exact",
+    "priority": "high",
+    "reasons": [
+      "关键缺口单元，经跨行/同行连写修补，建议人工复核锚点。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:058"
+    ]
+  },
+  {
+    "unit_id": "cmu_liu_p090",
+    "commentator": "刘渡舟",
+    "anchor_type": "exact",
+    "priority": "high",
+    "reasons": [
+      "关键缺口单元，经跨行/同行连写修补，建议人工复核锚点。",
+      "原文或解读文本存在 OCR 断裂/跨行修补痕迹。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:090"
+    ]
+  },
+  {
+    "unit_id": "cmu_liu_p230",
+    "commentator": "刘渡舟",
+    "anchor_type": "exact",
+    "priority": "high",
+    "reasons": [
+      "关键缺口单元，经跨行/同行连写修补，建议人工复核锚点。",
+      "原文或解读文本存在 OCR 断裂/跨行修补痕迹。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:230"
+    ]
+  },
+  {
+    "unit_id": "cmu_liu_p089",
+    "commentator": "刘渡舟",
+    "anchor_type": "exact",
+    "priority": "medium",
+    "reasons": [
+      "原文或解读文本存在 OCR 断裂/跨行修补痕迹。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:089"
+    ]
+  },
+  {
+    "unit_id": "cmu_liu_p091",
+    "commentator": "刘渡舟",
+    "anchor_type": "exact",
+    "priority": "medium",
+    "reasons": [
+      "原文或解读文本存在 OCR 断裂/跨行修补痕迹。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:091"
+    ]
+  },
+  {
+    "unit_id": "cmu_liu_p229",
+    "commentator": "刘渡舟",
+    "anchor_type": "exact",
+    "priority": "medium",
+    "reasons": [
+      "原文或解读文本存在 OCR 断裂/跨行修补痕迹。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:229"
+    ]
+  },
+  {
+    "unit_id": "cmu_liu_p231",
+    "commentator": "刘渡舟",
+    "anchor_type": "exact",
+    "priority": "medium",
+    "reasons": [
+      "原文或解读文本存在 OCR 断裂/跨行修补痕迹。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:231"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw011",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "low",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:015",
+      "PASSAGE_NO:045",
+      "PASSAGE_NO:057"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw015",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "low",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:016B",
+      "PASSAGE_NO:017",
+      "PASSAGE_NO:019"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw021",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "low",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:035",
+      "PASSAGE_NO:037",
+      "PASSAGE_NO:051",
+      "PASSAGE_NO:052"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw022",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "low",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:046",
+      "PASSAGE_NO:047",
+      "PASSAGE_NO:055"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw033",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "low",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:031",
+      "PASSAGE_NO:032",
+      "PASSAGE_NO:033"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw045",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "low",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:090",
+      "PASSAGE_NO:091",
+      "PASSAGE_NO:092"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw046",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "low",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:076",
+      "PASSAGE_NO:077",
+      "PASSAGE_NO:078"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw097",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "low",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:026",
+      "PASSAGE_NO:168",
+      "PASSAGE_NO:169",
+      "PASSAGE_NO:170",
+      "PASSAGE_NO:222"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw099",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "low",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:207",
+      "PASSAGE_NO:248",
+      "PASSAGE_NO:249"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw100",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "low",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:213",
+      "PASSAGE_NO:214",
+      "PASSAGE_NO:250"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw105",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "low",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:204",
+      "PASSAGE_NO:205",
+      "PASSAGE_NO:206",
+      "PASSAGE_NO:194"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw107",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "low",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:199",
+      "PASSAGE_NO:236",
+      "PASSAGE_NO:260"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw113",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "low",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:096",
+      "PASSAGE_NO:097",
+      "PASSAGE_NO:266"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw122",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "low",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:103",
+      "PASSAGE_NO:165",
+      "PASSAGE_NO:136",
+      "PASSAGE_NO:104A"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw126",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "low",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:269",
+      "PASSAGE_NO:270",
+      "PASSAGE_NO:271"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw127",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "low",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:143",
+      "PASSAGE_NO:144",
+      "PASSAGE_NO:145"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw131",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "low",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:274",
+      "PASSAGE_NO:275",
+      "PASSAGE_NO:276"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw153",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "low",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:320",
+      "PASSAGE_NO:321",
+      "PASSAGE_NO:322"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw157",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "low",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:288",
+      "PASSAGE_NO:289",
+      "PASSAGE_NO:292"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw158",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "low",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:295",
+      "PASSAGE_NO:296",
+      "PASSAGE_NO:297",
+      "PASSAGE_NO:298",
+      "PASSAGE_NO:299",
+      "PASSAGE_NO:300"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_rw179",
+    "commentator": "郝万山",
+    "anchor_type": "multi",
+    "priority": "low",
+    "reasons": [
+      "multi 单元包含多条原文，后续接入宜区分 primary/supporting anchor。"
+    ],
+    "anchor_candidates": [
+      "PASSAGE_NO:364",
+      "PASSAGE_NO:370",
+      "PASSAGE_NO:372"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_th025",
+    "commentator": "郝万山",
+    "anchor_type": "theme",
+    "priority": "low",
+    "reasons": [
+      "theme 单元粒度较粗，适合折叠展示，不宜直接进入默认辅助检索。"
+    ],
+    "anchor_candidates": [
+      "THEME:绪论 / 六、学习《伤寒论》的方法与要求"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_th026",
+    "commentator": "郝万山",
+    "anchor_type": "theme",
+    "priority": "low",
+    "reasons": [
+      "theme 单元粒度较粗，适合折叠展示，不宜直接进入默认辅助检索。"
+    ],
+    "anchor_candidates": [
+      "THEME:第一章 辨太阳病脉证并治 / 一、太阳病的病位"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_th027",
+    "commentator": "郝万山",
+    "anchor_type": "theme",
+    "priority": "low",
+    "reasons": [
+      "theme 单元粒度较粗，适合折叠展示，不宜直接进入默认辅助检索。"
+    ],
+    "anchor_candidates": [
+      "THEME:第一章 辨太阳病脉证并治 / 二、太阳病的成因"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_th028",
+    "commentator": "郝万山",
+    "anchor_type": "theme",
+    "priority": "low",
+    "reasons": [
+      "theme 单元粒度较粗，适合折叠展示，不宜直接进入默认辅助检索。"
+    ],
+    "anchor_candidates": [
+      "THEME:第一章 辨太阳病脉证并治 / 三、有关太阳的生理"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_th034",
+    "commentator": "郝万山",
+    "anchor_type": "theme",
+    "priority": "low",
+    "reasons": [
+      "theme 单元粒度较粗，适合折叠展示，不宜直接进入默认辅助检索。"
+    ],
+    "anchor_candidates": [
+      "THEME:第一章 辨太阳病脉证并治 / 五、太阳病的自然病程和预后"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_th035",
+    "commentator": "郝万山",
+    "anchor_type": "theme",
+    "priority": "low",
+    "reasons": [
+      "theme 单元粒度较粗，适合折叠展示，不宜直接进入默认辅助检索。"
+    ],
+    "anchor_candidates": [
+      "THEME:第一章 辨太阳病脉证并治 / 第三节 太阳病变证"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_th038",
+    "commentator": "郝万山",
+    "anchor_type": "theme",
+    "priority": "low",
+    "reasons": [
+      "theme 单元粒度较粗，适合折叠展示，不宜直接进入默认辅助检索。"
+    ],
+    "anchor_candidates": [
+      "THEME:第二章 辨阳明病脉证并治 / 二、阳明病的病位"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_th039",
+    "commentator": "郝万山",
+    "anchor_type": "theme",
+    "priority": "low",
+    "reasons": [
+      "theme 单元粒度较粗，适合折叠展示，不宜直接进入默认辅助检索。"
+    ],
+    "anchor_candidates": [
+      "THEME:第二章 辨阳明病脉证并治 / 三、阳明病成因"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_th040",
+    "commentator": "郝万山",
+    "anchor_type": "theme",
+    "priority": "low",
+    "reasons": [
+      "theme 单元粒度较粗，适合折叠展示，不宜直接进入默认辅助检索。"
+    ],
+    "anchor_candidates": [
+      "THEME:第二章 辨阳明病脉证并治 / 四、阳明生理"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_th041",
+    "commentator": "郝万山",
+    "anchor_type": "theme",
+    "priority": "low",
+    "reasons": [
+      "theme 单元粒度较粗，适合折叠展示，不宜直接进入默认辅助检索。"
+    ],
+    "anchor_candidates": [
+      "THEME:第二章 辨阳明病脉证并治 / 五、阳明病的证候分类和治法"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_th045",
+    "commentator": "郝万山",
+    "anchor_type": "theme",
+    "priority": "low",
+    "reasons": [
+      "theme 单元粒度较粗，适合折叠展示，不宜直接进入默认辅助检索。"
+    ],
+    "anchor_candidates": [
+      "THEME:第二章 辨阳明病脉证并治 / 六、阳明邪气的传经和阳明病的预后"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_th046",
+    "commentator": "郝万山",
+    "anchor_type": "theme",
+    "priority": "low",
+    "reasons": [
+      "theme 单元粒度较粗，适合折叠展示，不宜直接进入默认辅助检索。"
+    ],
+    "anchor_candidates": [
+      "THEME:第三章 辨少阳病脉证并治 / 三、少阳的生理"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_th050",
+    "commentator": "郝万山",
+    "anchor_type": "theme",
+    "priority": "low",
+    "reasons": [
+      "theme 单元粒度较粗，适合折叠展示，不宜直接进入默认辅助检索。"
+    ],
+    "anchor_candidates": [
+      "THEME:第四章 辨太阴病脉证并治 / 一、太阴病病位"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_th051",
+    "commentator": "郝万山",
+    "anchor_type": "theme",
+    "priority": "low",
+    "reasons": [
+      "theme 单元粒度较粗，适合折叠展示，不宜直接进入默认辅助检索。"
+    ],
+    "anchor_candidates": [
+      "THEME:第四章 辨太阴病脉证并治 / 三、太阴生理"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_th052",
+    "commentator": "郝万山",
+    "anchor_type": "theme",
+    "priority": "low",
+    "reasons": [
+      "theme 单元粒度较粗，适合折叠展示，不宜直接进入默认辅助检索。"
+    ],
+    "anchor_candidates": [
+      "THEME:第四章 辨太阴病脉证并治 / 四、太阴病的证候分类和治疗"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_th053",
+    "commentator": "郝万山",
+    "anchor_type": "theme",
+    "priority": "low",
+    "reasons": [
+      "theme 单元粒度较粗，适合折叠展示，不宜直接进入默认辅助检索。"
+    ],
+    "anchor_candidates": [
+      "THEME:第四章 辨太阴病脉证并治 / 五、太阴病预后"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_th054",
+    "commentator": "郝万山",
+    "anchor_type": "theme",
+    "priority": "low",
+    "reasons": [
+      "theme 单元粒度较粗，适合折叠展示，不宜直接进入默认辅助检索。"
+    ],
+    "anchor_candidates": [
+      "THEME:第五章 辨少阴病脉证并治 / 三、少阴病的成因"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_th055",
+    "commentator": "郝万山",
+    "anchor_type": "theme",
+    "priority": "low",
+    "reasons": [
+      "theme 单元粒度较粗，适合折叠展示，不宜直接进入默认辅助检索。"
+    ],
+    "anchor_candidates": [
+      "THEME:第五章 辨少阴病脉证并治 / 四、少阴的生理"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_th057",
+    "commentator": "郝万山",
+    "anchor_type": "theme",
+    "priority": "low",
+    "reasons": [
+      "theme 单元粒度较粗，适合折叠展示，不宜直接进入默认辅助检索。"
+    ],
+    "anchor_candidates": [
+      "THEME:第五章 辨少阴病脉证并治 / 七、少阴病的预后"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_th059",
+    "commentator": "郝万山",
+    "anchor_type": "theme",
+    "priority": "low",
+    "reasons": [
+      "theme 单元粒度较粗，适合折叠展示，不宜直接进入默认辅助检索。"
+    ],
+    "anchor_candidates": [
+      "THEME:第六章 辨厥阴病脉证并治 / 一、厥阴病的性质和特点"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_th060",
+    "commentator": "郝万山",
+    "anchor_type": "theme",
+    "priority": "low",
+    "reasons": [
+      "theme 单元粒度较粗，适合折叠展示，不宜直接进入默认辅助检索。"
+    ],
+    "anchor_candidates": [
+      "THEME:第六章 辨厥阴病脉证并治 / 二、厥阴病的病位"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_th061",
+    "commentator": "郝万山",
+    "anchor_type": "theme",
+    "priority": "low",
+    "reasons": [
+      "theme 单元粒度较粗，适合折叠展示，不宜直接进入默认辅助检索。"
+    ],
+    "anchor_candidates": [
+      "THEME:第六章 辨厥阴病脉证并治 / 三、厥阴的生理"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_th069",
+    "commentator": "郝万山",
+    "anchor_type": "theme",
+    "priority": "low",
+    "reasons": [
+      "theme 单元粒度较粗，适合折叠展示，不宜直接进入默认辅助检索。"
+    ],
+    "anchor_candidates": [
+      "THEME:第七章 辨霍乱病脉证并治 / 一、霍乱的概念"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_th070",
+    "commentator": "郝万山",
+    "anchor_type": "theme",
+    "priority": "low",
+    "reasons": [
+      "theme 单元粒度较粗，适合折叠展示，不宜直接进入默认辅助检索。"
+    ],
+    "anchor_candidates": [
+      "THEME:第七章 辨霍乱病脉证并治 / 三、霍乱病的分类"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_th071",
+    "commentator": "郝万山",
+    "anchor_type": "theme",
+    "priority": "low",
+    "reasons": [
+      "theme 单元粒度较粗，适合折叠展示，不宜直接进入默认辅助检索。"
+    ],
+    "anchor_candidates": [
+      "THEME:第七章 辨霍乱病脉证并治 / 四、霍乱的治法"
+    ]
+  },
+  {
+    "unit_id": "cmu_hao_th072",
+    "commentator": "郝万山",
+    "anchor_type": "theme",
+    "priority": "low",
+    "reasons": [
+      "theme 单元粒度较粗，适合折叠展示，不宜直接进入默认辅助检索。"
+    ],
+    "anchor_candidates": [
+      "THEME:第八章 辨阴阳易差后劳复病脉证并治 / 概述"
+    ]
+  }
+]

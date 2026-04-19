@@ -14,6 +14,9 @@ import type {
   AnswerMode,
   AnswerPayload,
   CitationItem,
+  CommentarialItem,
+  CommentarialPayload,
+  CommentarialSection,
   ConversationDetail,
   ConversationMessage,
   ConversationSummary,
@@ -951,6 +954,7 @@ function AssistantMessageCardInner(props: {
   payload: AnswerPayload;
 }) {
   const { primary, secondary, review, evidenceMap } = buildEvidenceIndex(props.payload);
+  const commentarial = props.payload.commentarial || null;
   const citations = Array.isArray(props.payload.citations) ? props.payload.citations : [];
   const followups = Array.isArray(props.payload.suggested_followup_questions)
     ? props.payload.suggested_followup_questions
@@ -1024,6 +1028,8 @@ function AssistantMessageCardInner(props: {
           ) : null}
         </div>
       ) : null}
+
+      {commentarial ? <CommentarialPanels payload={commentarial} /> : null}
 
       <section className={styles.supporting}>
         <div className={styles.supportingHead}>
@@ -1119,6 +1125,129 @@ function Callout(props: { title: string; body: string; tone: "review" | "refuse"
       <p>{props.body}</p>
     </section>
   );
+}
+
+function CommentarialPanels(props: { payload: CommentarialPayload }) {
+  const sections = Array.isArray(props.payload.sections)
+    ? props.payload.sections.filter((section) => Array.isArray(section.items) && section.items.length > 0)
+    : [];
+  if (sections.length === 0) {
+    return null;
+  }
+
+  return (
+    <section className={styles.commentarialShell}>
+      <div className={styles.commentarialHead}>
+        <div>
+          <p className={styles.supportingKicker}>名家视角层</p>
+          <h3 className={styles.commentarialTitle}>{resolveCommentarialTitle(props.payload.route)}</h3>
+        </div>
+        <span className={styles.commentarialRouteBadge}>{resolveCommentarialBadge(props.payload.route)}</span>
+      </div>
+      {props.payload.lead_note ? <p className={styles.commentarialLead}>{props.payload.lead_note}</p> : null}
+      <div className={cx(styles.commentarialSectionGrid, props.payload.route === "comparison_view" && styles.commentarialSectionGridComparison)}>
+        {sections.map((section) =>
+          section.collapsed_by_default ? (
+            <details key={section.section_id} className={styles.commentarialFold}>
+              <summary className={styles.commentarialFoldSummary}>
+                <span>{section.title}</span>
+                <span className={styles.sectionCount}>{section.items.length}条</span>
+              </summary>
+              <CommentarialSectionCards section={section} />
+            </details>
+          ) : (
+            <section key={section.section_id} className={styles.commentarialPanel}>
+              <div className={styles.panelHead}>
+                <div>
+                  <h3>
+                    {section.title}
+                    <span className={styles.sectionCount}>{section.items.length}条</span>
+                  </h3>
+                  <p>{resolveCommentarialHint(section)}</p>
+                </div>
+              </div>
+              <CommentarialSectionCards section={section} />
+            </section>
+          ),
+        )}
+      </div>
+    </section>
+  );
+}
+
+function CommentarialSectionCards(props: { section: CommentarialSection }) {
+  return (
+    <div className={cx(styles.commentarialCards, props.section.layout === "comparison" && styles.commentarialCardsComparison)}>
+      {props.section.items.map((item) => (
+        <CommentarialCard key={item.unit_id} item={item} />
+      ))}
+    </div>
+  );
+}
+
+function CommentarialCard(props: { item: CommentarialItem }) {
+  return (
+    <article className={styles.commentarialCard}>
+      <div className={styles.commentarialCardHead}>
+        <div>
+          <p className={styles.commentarialCommentator}>{props.item.commentator}</p>
+          <h4>{props.item.title}</h4>
+        </div>
+        <div className={styles.commentarialBadgeList}>
+          <span className={styles.commentarialBadge}>{props.item.anchor_type}</span>
+          {props.item.theme_display_tier ? <span className={styles.commentarialBadge}>{props.item.theme_display_tier}</span> : null}
+        </div>
+      </div>
+      {props.item.quoted_original_text ? <p className={styles.commentarialQuote}>原文锚点：{props.item.quoted_original_text}</p> : null}
+      <p className={styles.commentarialSummary}>{props.item.summary_text}</p>
+      {props.item.resolved_primary_anchor_passage_ids.length > 0 ? (
+        <p className={styles.commentarialMeta}>
+          主锚：{props.item.resolved_primary_anchor_passage_ids.join("、")}
+        </p>
+      ) : null}
+      {props.item.resolved_supporting_anchor_passage_ids.length > 0 ? (
+        <p className={styles.commentarialMeta}>
+          辅锚：{props.item.resolved_supporting_anchor_passage_ids.join("、")}
+        </p>
+      ) : null}
+      {props.item.unresolved_anchor_keys.length > 0 ? (
+        <p className={styles.commentarialWarning}>
+          未回填锚点：{props.item.unresolved_anchor_keys.join("、")}
+        </p>
+      ) : null}
+      <details className={styles.commentarialDetail}>
+        <summary>展开讲稿原文</summary>
+        <pre>{props.item.display_text}</pre>
+      </details>
+    </article>
+  );
+}
+
+function resolveCommentarialTitle(route: string): string {
+  if (route === "named_view") return "点名名家";
+  if (route === "comparison_view") return "两家比较";
+  if (route === "meta_learning_view") return "学习方法";
+  return "补充解读";
+}
+
+function resolveCommentarialBadge(route: string): string {
+  if (route === "named_view") return "Named";
+  if (route === "comparison_view") return "Compare";
+  if (route === "meta_learning_view") return "Meta";
+  return "Assistive";
+}
+
+function resolveCommentarialHint(section: CommentarialSection): string {
+  if (section.view_mode === "comparison_view") {
+    return "该区块只展示名家比较材料，不替代 canonical 主依据。";
+  }
+  if (section.view_mode === "meta_learning_view") {
+    return "该区块用于学习方法与研读路径提示。";
+  }
+  if (section.view_mode === "assistive_view") {
+    return "该区块默认折叠，仅作辅助解读。";
+  }
+  return "该区块用于点名名家视角展示，仍与 canonical 证据层隔离。";
 }
 
 function PanelHead(props: { title: string; hint: string; count: number }) {

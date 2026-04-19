@@ -1,0 +1,60 @@
+{
+  "round": "commentarial_layer_round3_handoff_patch",
+  "base_round": "commentarial_layer_round2_offline_refinement",
+  "unit_count_total": 711,
+  "unit_count_by_commentator": {
+    "刘渡舟": 438,
+    "郝万山": 273
+  },
+  "anchor_type_counts": {
+    "exact": 549,
+    "theme": 97,
+    "multi": 59,
+    "excerpt": 6
+  },
+  "link_count_total": 831,
+  "link_count_by_commentator_and_type": {
+    "刘渡舟::exact": 414,
+    "刘渡舟::theme": 24,
+    "郝万山::exact": 135,
+    "郝万山::multi": 59,
+    "郝万山::excerpt": 6,
+    "郝万山::theme": 73
+  },
+  "liu_exact_anchor_count": 414,
+  "hao_exact_anchor_count": 135,
+  "hao_multi_anchor_count": 179,
+  "hao_excerpt_anchor_count": 6,
+  "hao_theme_anchor_count": 73,
+  "theme_anchor_count_total": 97,
+  "manual_review_queue_count": 64,
+  "unresolved_multi_count": 10,
+  "anchor_priority_mode_counts": {
+    "unresolved_multi": 10,
+    "title_focus_then_order": 42,
+    "formula_focus_then_order": 7
+  },
+  "theme_display_tier_counts": {
+    "tier_4_do_not_default_display": 21,
+    "tier_2_fold_only": 20,
+    "tier_1_named_view_ok": 55,
+    "tier_3_meta_learning_only": 1
+  },
+  "all_units_never_use_in_primary_true": true,
+  "all_units_use_for_confidence_gate_false": true,
+  "bundle_version": "commentarial_handoff_bundle_v0.3_round3",
+  "bundle_ready": true,
+  "main_open_risks": [
+    "provisional anchor 仍未回填真实 canonical passage_id",
+    "unresolved_multi 仍需人工复核，不能在接入层强行视为唯一主锚",
+    "tier_4_do_not_default_display 主题若被直接展示会稀释 canonical layer 的主证据地位"
+  ],
+  "current_stage_not_touched": [
+    "front_end",
+    "api",
+    "answer_mode",
+    "strong_weak_refuse",
+    "primary_evidence_default_layer",
+    "canonical_main_db"
+  ]
+}
