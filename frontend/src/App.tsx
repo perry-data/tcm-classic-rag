@@ -1144,7 +1144,6 @@ function CommentarialPanels(props: { payload: CommentarialPayload }) {
         </div>
         <span className={styles.commentarialRouteBadge}>{resolveCommentarialBadge(props.payload.route)}</span>
       </div>
-      {props.payload.lead_note ? <p className={styles.commentarialLead}>{props.payload.lead_note}</p> : null}
       <div className={cx(styles.commentarialSectionGrid, props.payload.route === "comparison_view" && styles.commentarialSectionGridComparison)}>
         {sections.map((section) =>
           section.collapsed_by_default ? (
