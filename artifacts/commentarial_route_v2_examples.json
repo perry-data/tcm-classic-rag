@@ -1,0 +1,690 @@
+{
+  "generated_on": "2026-04-19",
+  "example_count": 11,
+  "examples": [
+    {
+      "query": "刘老对141条怎么说？",
+      "chosen_route": "named_view",
+      "explicit": true,
+      "meta_band": null,
+      "commentators": [
+        "刘渡舟"
+      ],
+      "route_scores": {
+        "assistive_view": 18.0,
+        "named_view": 64.0,
+        "comparison_view": 22.0,
+        "meta_learning_view": 0.0
+      },
+      "matched_signals": [
+        {
+          "route": "named_view",
+          "signal": "commentator_alias",
+          "detail": "刘渡舟",
+          "weight": 28.0
+        },
+        {
+          "route": "named_view",
+          "signal": "named_hint",
+          "detail": "怎么说",
+          "weight": 12.0
+        },
+        {
+          "route": "named_view",
+          "signal": "passage_anchor",
+          "detail": "PASSAGE_NO:141",
+          "weight": 12.0
+        },
+        {
+          "route": "comparison_view",
+          "signal": "passage_anchor",
+          "detail": "PASSAGE_NO:141",
+          "weight": 10.0
+        },
+        {
+          "route": "assistive_view",
+          "signal": "normalized_query_hit",
+          "detail": "100 hits / best=6",
+          "weight": 6.0
+        },
+        {
+          "route": "named_view",
+          "signal": "normalized_query_hit",
+          "detail": "91 hits / best=6",
+          "weight": 12.0
+        }
+      ],
+      "rejected_signals": [],
+      "answer_mode": "weak_with_review_notice",
+      "primary_evidence_count": 0,
+      "commentarial_item_count": 1,
+      "theme_tiers": []
+    },
+    {
+      "query": "郝万山对桂枝汤的看法是什么？",
+      "chosen_route": "named_view",
+      "explicit": true,
+      "meta_band": null,
+      "commentators": [
+        "郝万山"
+      ],
+      "route_scores": {
+        "assistive_view": 32.0,
+        "named_view": 56.0,
+        "comparison_view": 14.0,
+        "meta_learning_view": 0.0
+      },
+      "matched_signals": [
+        {
+          "route": "named_view",
+          "signal": "commentator_alias",
+          "detail": "郝万山",
+          "weight": 28.0
+        },
+        {
+          "route": "named_view",
+          "signal": "named_hint",
+          "detail": "看法",
+          "weight": 12.0
+        },
+        {
+          "route": "named_view",
+          "signal": "formula_topic",
+          "detail": "桂枝汤",
+          "weight": 6.0
+        },
+        {
+          "route": "comparison_view",
+          "signal": "formula_topic",
+          "detail": "桂枝汤",
+          "weight": 4.0
+        },
+        {
+          "route": "assistive_view",
+          "signal": "definition_hint",
+          "detail": "是什么",
+          "weight": 14.0
+        },
+        {
+          "route": "assistive_view",
+          "signal": "normalized_query_hit",
+          "detail": "165 hits / best=3",
+          "weight": 6.0
+        }
+      ],
+      "rejected_signals": [
+        {
+          "route": "meta_learning_view",
+          "signal": "definition_hint",
+          "reason": "plain_definition_prefers_canonical_or_assistive",
+          "detail": "是什么"
+        }
+      ],
+      "answer_mode": "strong",
+      "primary_evidence_count": 2,
+      "commentarial_item_count": 3,
+      "theme_tiers": [
+        "tier_1_named_view_ok"
+      ]
+    },
+    {
+      "query": "刘渡舟和郝万山对少阳病的看法有什么不同？",
+      "chosen_route": "comparison_view",
+      "explicit": true,
+      "meta_band": null,
+      "commentators": [
+        "刘渡舟",
+        "郝万山"
+      ],
+      "route_scores": {
+        "assistive_view": 18.0,
+        "named_view": 39.0,
+        "comparison_view": 62.0,
+        "meta_learning_view": 0.0
+      },
+      "matched_signals": [
+        {
+          "route": "comparison_view",
+          "signal": "dual_commentator_alias",
+          "detail": "刘渡舟 / 郝万山",
+          "weight": 24.0
+        },
+        {
+          "route": "named_view",
+          "signal": "multi_commentator_context",
+          "detail": "刘渡舟 / 郝万山",
+          "weight": 10.0
+        },
+        {
+          "route": "named_view",
+          "signal": "named_hint",
+          "detail": "看法",
+          "weight": 12.0
+        },
+        {
+          "route": "comparison_view",
+          "signal": "comparison_hint",
+          "detail": "不同",
+          "weight": 20.0
+        },
+        {
+          "route": "named_view",
+          "signal": "framework_topic",
+          "detail": "少阳病 / 少阳",
+          "weight": 5.0
+        },
+        {
+          "route": "comparison_view",
+          "signal": "framework_topic",
+          "detail": "少阳病 / 少阳",
+          "weight": 6.0
+        }
+      ],
+      "rejected_signals": [
+        {
+          "route": "named_view",
+          "signal": "route_competition",
+          "reason": "comparison_outscored_named",
+          "detail": "comparison=62.0, named=39.0"
+        }
+      ],
+      "answer_mode": "strong",
+      "primary_evidence_count": 1,
+      "commentarial_item_count": 6,
+      "theme_tiers": [
+        "tier_1_named_view_ok"
+      ]
+    },
+    {
+      "query": "两位老师怎么看少阳病？",
+      "chosen_route": "comparison_view",
+      "explicit": true,
+      "meta_band": null,
+      "commentators": [
+        "刘渡舟",
+        "郝万山"
+      ],
+      "route_scores": {
+        "assistive_view": 18.0,
+        "named_view": 29.0,
+        "comparison_view": 48.0,
+        "meta_learning_view": 0.0
+      },
+      "matched_signals": [
+        {
+          "route": "named_view",
+          "signal": "named_hint",
+          "detail": "怎么看",
+          "weight": 12.0
+        },
+        {
+          "route": "comparison_view",
+          "signal": "comparison_hint",
+          "detail": "两位老师",
+          "weight": 20.0
+        },
+        {
+          "route": "comparison_view",
+          "signal": "generic_comparison_frame",
+          "detail": "两位老师",
+          "weight": 10.0
+        },
+        {
+          "route": "named_view",
+          "signal": "framework_topic",
+          "detail": "少阳病 / 少阳",
+          "weight": 5.0
+        },
+        {
+          "route": "comparison_view",
+          "signal": "framework_topic",
+          "detail": "少阳病 / 少阳",
+          "weight": 6.0
+        },
+        {
+          "route": "assistive_view",
+          "signal": "normalized_query_hit",
+          "detail": "215 hits / best=6",
+          "weight": 6.0
+        }
+      ],
+      "rejected_signals": [
+        {
+          "route": "named_view",
+          "signal": "route_competition",
+          "reason": "comparison_outscored_named",
+          "detail": "comparison=48.0, named=29.0"
+        }
+      ],
+      "answer_mode": "strong",
+      "primary_evidence_count": 1,
+      "commentarial_item_count": 6,
+      "theme_tiers": [
+        "tier_1_named_view_ok"
+      ]
+    },
+    {
+      "query": "初学者应该怎么理解少阳病？",
+      "chosen_route": "meta_learning_view",
+      "explicit": true,
+      "meta_band": "layer_2_learning_understanding",
+      "commentators": [],
+      "route_scores": {
+        "assistive_view": 18.0,
+        "named_view": 29.0,
+        "comparison_view": 18.0,
+        "meta_learning_view": 44.0
+      },
+      "matched_signals": [
+        {
+          "route": "named_view",
+          "signal": "named_hint",
+          "detail": "怎么理解",
+          "weight": 12.0
+        },
+        {
+          "route": "meta_learning_view",
+          "signal": "meta_band_topic",
+          "detail": "应该怎么理解 / 该怎么理解 / 怎么理解",
+          "weight": 20.0
+        },
+        {
+          "route": "named_view",
+          "signal": "framework_topic",
+          "detail": "少阳病 / 少阳",
+          "weight": 5.0
+        },
+        {
+          "route": "comparison_view",
+          "signal": "framework_topic",
+          "detail": "少阳病 / 少阳",
+          "weight": 6.0
+        },
+        {
+          "route": "meta_learning_view",
+          "signal": "framework_topic",
+          "detail": "少阳病 / 少阳",
+          "weight": 12.0
+        },
+        {
+          "route": "assistive_view",
+          "signal": "normalized_query_hit",
+          "detail": "222 hits / best=5",
+          "weight": 6.0
+        }
+      ],
+      "rejected_signals": [],
+      "answer_mode": "strong",
+      "primary_evidence_count": 1,
+      "commentarial_item_count": 10,
+      "theme_tiers": [
+        "tier_1_named_view_ok",
+        "tier_2_fold_only",
+        "tier_3_meta_learning_only"
+      ]
+    },
+    {
+      "query": "六经辨证入门应该先抓什么？",
+      "chosen_route": "meta_learning_view",
+      "explicit": true,
+      "meta_band": "layer_1_strong_meta",
+      "commentators": [],
+      "route_scores": {
+        "assistive_view": 18.0,
+        "named_view": 17.0,
+        "comparison_view": 18.0,
+        "meta_learning_view": 50.0
+      },
+      "matched_signals": [
+        {
+          "route": "meta_learning_view",
+          "signal": "meta_band_strong",
+          "detail": "入门",
+          "weight": 30.0
+        },
+        {
+          "route": "named_view",
+          "signal": "framework_topic",
+          "detail": "六经 / 六经辨证",
+          "weight": 5.0
+        },
+        {
+          "route": "comparison_view",
+          "signal": "framework_topic",
+          "detail": "六经 / 六经辨证",
+          "weight": 6.0
+        },
+        {
+          "route": "meta_learning_view",
+          "signal": "framework_topic",
+          "detail": "六经 / 六经辨证",
+          "weight": 8.0
+        },
+        {
+          "route": "assistive_view",
+          "signal": "normalized_query_hit",
+          "detail": "113 hits / best=6",
+          "weight": 6.0
+        },
+        {
+          "route": "named_view",
+          "signal": "normalized_query_hit",
+          "detail": "142 hits / best=6",
+          "weight": 12.0
+        }
+      ],
+      "rejected_signals": [],
+      "answer_mode": "refuse",
+      "primary_evidence_count": 0,
+      "commentarial_item_count": 10,
+      "theme_tiers": [
+        "tier_1_named_view_ok",
+        "tier_2_fold_only",
+        "tier_3_meta_learning_only"
+      ]
+    },
+    {
+      "query": "读伤寒论应该先抓框架还是先背条文？",
+      "chosen_route": "meta_learning_view",
+      "explicit": true,
+      "meta_band": "layer_1_strong_meta",
+      "commentators": [],
+      "route_scores": {
+        "assistive_view": 18.0,
+        "named_view": 12.0,
+        "comparison_view": 12.0,
+        "meta_learning_view": 42.0
+      },
+      "matched_signals": [
+        {
+          "route": "meta_learning_view",
+          "signal": "meta_band_strong",
+          "detail": "读伤寒论 / 读《伤寒论》",
+          "weight": 30.0
+        },
+        {
+          "route": "assistive_view",
+          "signal": "normalized_query_hit",
+          "detail": "305 hits / best=6",
+          "weight": 6.0
+        },
+        {
+          "route": "named_view",
+          "signal": "normalized_query_hit",
+          "detail": "368 hits / best=6",
+          "weight": 12.0
+        },
+        {
+          "route": "comparison_view",
+          "signal": "normalized_query_hit",
+          "detail": "249 hits / best=6",
+          "weight": 12.0
+        },
+        {
+          "route": "meta_learning_view",
+          "signal": "normalized_query_hit",
+          "detail": "155 hits / best=6",
+          "weight": 12.0
+        }
+      ],
+      "rejected_signals": [],
+      "answer_mode": "weak_with_review_notice",
+      "primary_evidence_count": 0,
+      "commentarial_item_count": 10,
+      "theme_tiers": [
+        "tier_1_named_view_ok",
+        "tier_2_fold_only",
+        "tier_3_meta_learning_only"
+      ]
+    },
+    {
+      "query": "学习伤寒论时少阳病这一块应该怎么把握？",
+      "chosen_route": "meta_learning_view",
+      "explicit": true,
+      "meta_band": "layer_2_learning_understanding",
+      "commentators": [],
+      "route_scores": {
+        "assistive_view": 18.0,
+        "named_view": 17.0,
+        "comparison_view": 18.0,
+        "meta_learning_view": 44.0
+      },
+      "matched_signals": [
+        {
+          "route": "meta_learning_view",
+          "signal": "meta_band_topic",
+          "detail": "怎么把握",
+          "weight": 20.0
+        },
+        {
+          "route": "named_view",
+          "signal": "framework_topic",
+          "detail": "少阳病 / 少阳",
+          "weight": 5.0
+        },
+        {
+          "route": "comparison_view",
+          "signal": "framework_topic",
+          "detail": "少阳病 / 少阳",
+          "weight": 6.0
+        },
+        {
+          "route": "meta_learning_view",
+          "signal": "framework_topic",
+          "detail": "少阳病 / 少阳",
+          "weight": 12.0
+        },
+        {
+          "route": "assistive_view",
+          "signal": "normalized_query_hit",
+          "detail": "317 hits / best=11",
+          "weight": 6.0
+        },
+        {
+          "route": "named_view",
+          "signal": "normalized_query_hit",
+          "detail": "386 hits / best=11",
+          "weight": 12.0
+        }
+      ],
+      "rejected_signals": [],
+      "answer_mode": "strong",
+      "primary_evidence_count": 1,
+      "commentarial_item_count": 10,
+      "theme_tiers": [
+        "tier_1_named_view_ok",
+        "tier_2_fold_only",
+        "tier_3_meta_learning_only"
+      ]
+    },
+    {
+      "query": "少阳病是什么意思？",
+      "chosen_route": "assistive_view",
+      "explicit": false,
+      "meta_band": null,
+      "commentators": [],
+      "route_scores": {
+        "assistive_view": 32.0,
+        "named_view": 17.0,
+        "comparison_view": 18.0,
+        "meta_learning_view": 0.0
+      },
+      "matched_signals": [
+        {
+          "route": "named_view",
+          "signal": "framework_topic",
+          "detail": "少阳病 / 少阳",
+          "weight": 5.0
+        },
+        {
+          "route": "comparison_view",
+          "signal": "framework_topic",
+          "detail": "少阳病 / 少阳",
+          "weight": 6.0
+        },
+        {
+          "route": "assistive_view",
+          "signal": "definition_hint",
+          "detail": "是什么 / 是什么意思 / 什么意思",
+          "weight": 14.0
+        },
+        {
+          "route": "assistive_view",
+          "signal": "normalized_query_hit",
+          "detail": "267 hits / best=4",
+          "weight": 6.0
+        },
+        {
+          "route": "named_view",
+          "signal": "normalized_query_hit",
+          "detail": "327 hits / best=4",
+          "weight": 12.0
+        },
+        {
+          "route": "comparison_view",
+          "signal": "normalized_query_hit",
+          "detail": "232 hits / best=4",
+          "weight": 12.0
+        }
+      ],
+      "rejected_signals": [
+        {
+          "route": "meta_learning_view",
+          "signal": "definition_hint",
+          "reason": "plain_definition_prefers_canonical_or_assistive",
+          "detail": "是什么 / 是什么意思 / 什么意思"
+        }
+      ],
+      "answer_mode": "strong",
+      "primary_evidence_count": 1,
+      "commentarial_item_count": 2,
+      "theme_tiers": []
+    },
+    {
+      "query": "桂枝汤是什么？",
+      "chosen_route": "assistive_view",
+      "explicit": false,
+      "meta_band": null,
+      "commentators": [],
+      "route_scores": {
+        "assistive_view": 32.0,
+        "named_view": 16.0,
+        "comparison_view": 14.0,
+        "meta_learning_view": 0.0
+      },
+      "matched_signals": [
+        {
+          "route": "named_view",
+          "signal": "formula_topic",
+          "detail": "桂枝汤",
+          "weight": 6.0
+        },
+        {
+          "route": "comparison_view",
+          "signal": "formula_topic",
+          "detail": "桂枝汤",
+          "weight": 4.0
+        },
+        {
+          "route": "assistive_view",
+          "signal": "definition_hint",
+          "detail": "是什么",
+          "weight": 14.0
+        },
+        {
+          "route": "assistive_view",
+          "signal": "normalized_query_hit",
+          "detail": "165 hits / best=3",
+          "weight": 6.0
+        },
+        {
+          "route": "named_view",
+          "signal": "normalized_query_hit",
+          "detail": "199 hits / best=3",
+          "weight": 10.0
+        },
+        {
+          "route": "comparison_view",
+          "signal": "normalized_query_hit",
+          "detail": "135 hits / best=3",
+          "weight": 10.0
+        }
+      ],
+      "rejected_signals": [
+        {
+          "route": "meta_learning_view",
+          "signal": "definition_hint",
+          "reason": "plain_definition_prefers_canonical_or_assistive",
+          "detail": "是什么"
+        }
+      ],
+      "answer_mode": "strong",
+      "primary_evidence_count": 2,
+      "commentarial_item_count": 2,
+      "theme_tiers": []
+    },
+    {
+      "query": "黄连汤方的条文是什么？",
+      "chosen_route": "assistive_view",
+      "explicit": false,
+      "meta_band": null,
+      "commentators": [],
+      "route_scores": {
+        "assistive_view": 32.0,
+        "named_view": 18.0,
+        "comparison_view": 16.0,
+        "meta_learning_view": 0.0
+      },
+      "matched_signals": [
+        {
+          "route": "named_view",
+          "signal": "formula_topic",
+          "detail": "黄连汤方",
+          "weight": 6.0
+        },
+        {
+          "route": "comparison_view",
+          "signal": "formula_topic",
+          "detail": "黄连汤方",
+          "weight": 4.0
+        },
+        {
+          "route": "assistive_view",
+          "signal": "definition_hint",
+          "detail": "是什么 / 条文是什么",
+          "weight": 14.0
+        },
+        {
+          "route": "assistive_view",
+          "signal": "normalized_query_hit",
+          "detail": "548 hits / best=7",
+          "weight": 6.0
+        },
+        {
+          "route": "named_view",
+          "signal": "normalized_query_hit",
+          "detail": "609 hits / best=7",
+          "weight": 12.0
+        },
+        {
+          "route": "comparison_view",
+          "signal": "normalized_query_hit",
+          "detail": "372 hits / best=7",
+          "weight": 12.0
+        }
+      ],
+      "rejected_signals": [
+        {
+          "route": "meta_learning_view",
+          "signal": "definition_hint",
+          "reason": "plain_definition_prefers_canonical_or_assistive",
+          "detail": "是什么 / 条文是什么"
+        }
+      ],
+      "answer_mode": "strong",
+      "primary_evidence_count": 3,
+      "commentarial_item_count": 2,
+      "theme_tiers": []
+    }
+  ]
+}

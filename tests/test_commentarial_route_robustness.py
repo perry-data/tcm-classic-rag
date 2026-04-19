@@ -55,6 +55,13 @@ class CommentarialRouteRobustnessTests(unittest.TestCase):
         assert plan is not None
         self.assertEqual(plan.route, expected_route, query)
         self.assertEqual(plan.commentators, expected_commentators, query)
+        self.assertTrue(plan.explicit, query)
+        self.assertIsNotNone(plan.debug, query)
+        assert plan.debug is not None
+        self.assertEqual(plan.debug["chosen_route"], expected_route, query)
+        self.assertIn("route_scores", plan.debug, query)
+        self.assertIn("matched_signals", plan.debug, query)
+        self.assertIn("rejected_signals", plan.debug, query)
 
     @staticmethod
     def _commentarial_items(payload: dict) -> list[dict]:
@@ -100,7 +107,14 @@ class CommentarialRouteRobustnessTests(unittest.TestCase):
         ]
         for query in cases:
             with self.subTest(query=query):
-                self.assertIsNone(self.layer.detect_route(query))
+                plan = self.layer.detect_route(query)
+                self.assertIsNotNone(plan)
+                assert plan is not None
+                self.assertEqual(plan.route, ROUTE_ASSISTIVE)
+                self.assertFalse(plan.explicit)
+                self.assertIsNotNone(plan.debug)
+                assert plan.debug is not None
+                self.assertEqual(plan.debug["chosen_route"], ROUTE_ASSISTIVE)
                 payload = self.assembler.assemble(query)
                 self.assertEqual(payload["query"], query)
                 commentarial = payload.get("commentarial")

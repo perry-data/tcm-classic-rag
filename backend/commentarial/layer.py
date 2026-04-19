@@ -18,6 +18,9 @@ ROUTE_NAMED = "named_view"
 ROUTE_COMPARISON = "comparison_view"
 ROUTE_META = "meta_learning_view"
 
+META_BAND_STRONG = "layer_1_strong_meta"
+META_BAND_TOPIC = "layer_2_learning_understanding"
+
 COMMENTATOR_SOURCE_IDS = {
     "刘渡舟": "liu_duzhou_shanghan_lectures_2007",
     "郝万山": "hao_wanshan_shanghan_lectures_2007",
@@ -57,12 +60,47 @@ META_LEARNING_HINTS = (
     "入门",
 )
 
+META_TOPIC_HINTS = (
+    "怎么把握",
+    "如何把握",
+    "应该怎么理解",
+    "该怎么理解",
+    "怎么理解",
+    "如何理解",
+    "先抓什么",
+    "先抓",
+    "框架",
+    "提纲",
+    "理解路径",
+    "读法",
+    "先背条文",
+    "背条文",
+)
+
+META_LEARNING_CONTEXT_HINTS = (
+    "初学者",
+    "入门",
+    "学习伤寒论",
+    "学习《伤寒论》",
+    "读伤寒论",
+    "读《伤寒论》",
+    "研读伤寒论",
+    "研读《伤寒论》",
+    "学习",
+    "读经典",
+)
+
 NAMED_HINTS = (
     "怎么看",
     "怎么讲",
+    "怎么说",
     "怎么解释",
     "如何解释",
     "怎么理解",
+    "如何理解",
+    "看法",
+    "观点",
+    "认识",
     "名家",
     "解读",
 )
@@ -77,6 +115,8 @@ COMPARISON_HINTS = (
     "不同",
     "异同",
     "相比",
+    "分歧",
+    "差异",
 )
 
 GENERIC_COMMENTARIAL_HINTS = (
@@ -88,19 +128,64 @@ GENERIC_COMMENTARIAL_HINTS = (
     "两位名家",
 )
 
+DEFINITION_HINTS = (
+    "是什么",
+    "是什么意思",
+    "什么意思",
+    "何谓",
+    "条文是什么",
+    "原文是什么",
+)
+
+FRAMEWORK_TOPIC_HINTS = (
+    "六经",
+    "六经辨证",
+    "六经病",
+    "传经",
+    "传变",
+    "变证",
+    "坏病",
+    "合病",
+    "并病",
+    "主证",
+    "兼证",
+    "夹杂证",
+    "太阳病",
+    "阳明病",
+    "少阳病",
+    "太阴病",
+    "少阴病",
+    "厥阴病",
+    "太阳",
+    "阳明",
+    "少阳",
+    "太阴",
+    "少阴",
+    "厥阴",
+)
+
+BOOK_META_HINTS = (
+    "伤寒论",
+    "《伤寒论》",
+)
+
 FOCUS_NOISE_PATTERNS = (
     r"老师",
     r"老",
     r"怎么看",
     r"怎么讲",
+    r"怎么说",
     r"怎么解释",
     r"如何解释",
     r"怎么理解",
+    r"如何理解",
     r"比较",
     r"区别",
     r"不同",
     r"异同",
     r"相比",
+    r"分歧",
+    r"差异",
     r"怎么学",
     r"如何学",
     r"怎样学",
@@ -111,13 +196,38 @@ FOCUS_NOISE_PATTERNS = (
     r"学习方法",
     r"有什么方法",
     r"有何方法",
+    r"怎么把握",
+    r"如何把握",
+    r"先抓什么",
+    r"先抓",
+    r"框架",
+    r"提纲",
+    r"读法",
+    r"理解路径",
+    r"先背条文",
+    r"背条文",
     r"名家",
     r"两家",
     r"两位老师",
     r"两位名家",
     r"这两家",
+    r"看法",
+    r"观点",
+    r"认识",
+    r"是什么",
+    r"是什么意思",
+    r"什么意思",
+    r"何谓",
+    r"这里",
+    r"这块",
+    r"这一块",
+    r"应该",
+    r"对",
     r"是",
 )
+
+FORMULA_QUERY_RE = re.compile(r"[\u4e00-\u9fff]{1,12}(?:汤方|散方|丸方|饮方|汤|散|丸|饮|方)")
+DISEASE_TOPIC_RE = re.compile(r"[\u4e00-\u9fff]{1,12}(?:病|证)")
 
 
 def resolve_project_path(path_value: str) -> Path:
@@ -255,6 +365,20 @@ def query_has_any_hint(query_text: str, normalized_query: str, hints: tuple[str,
     return any(hint in query_text or compact_text(hint) in normalized_query for hint in hints)
 
 
+def match_query_hints(query_text: str, normalized_query: str, hints: tuple[str, ...]) -> tuple[str, ...]:
+    matched: list[str] = []
+    seen: set[str] = set()
+    for hint in hints:
+        normalized_hint = compact_text(hint)
+        if hint not in query_text and normalized_hint not in normalized_query:
+            continue
+        if hint in seen:
+            continue
+        seen.add(hint)
+        matched.append(hint)
+    return tuple(matched)
+
+
 @dataclass(frozen=True)
 class CommentarialRoutePlan:
     route: str
@@ -262,6 +386,8 @@ class CommentarialRoutePlan:
     requested_anchor_keys: tuple[str, ...]
     focus_text: str
     explicit: bool
+    meta_band: str | None = None
+    debug: dict[str, Any] | None = None
 
 
 class CommentarialLayer:
@@ -280,6 +406,7 @@ class CommentarialLayer:
         self.source_meta: dict[str, dict[str, Any]] = {}
         self.units_by_id: dict[str, dict[str, Any]] = {}
         self.resolved_links_by_unit: dict[str, list[dict[str, Any]]] = defaultdict(list)
+        self._last_route_debug: dict[str, Any] | None = None
         if not self.config_path.exists():
             self.load_error = f"Missing commentarial config: {self.config_path}"
             return
@@ -409,43 +536,362 @@ class CommentarialLayer:
         commentators = detect_commentators(query_text)
         requested_anchor_keys = extract_requested_anchor_keys(query_text)
         focus_text = self._build_focus_text(query_text, commentators, requested_anchor_keys)
+        named_hints = match_query_hints(query_text, normalized_query, NAMED_HINTS)
+        comparison_hints = match_query_hints(query_text, normalized_query, COMPARISON_HINTS)
+        generic_commentarial_hints = match_query_hints(query_text, normalized_query, GENERIC_COMMENTARIAL_HINTS)
+        meta_learning_hints = match_query_hints(query_text, normalized_query, META_LEARNING_HINTS)
+        meta_topic_hints = match_query_hints(query_text, normalized_query, META_TOPIC_HINTS)
+        learning_context_hints = match_query_hints(query_text, normalized_query, META_LEARNING_CONTEXT_HINTS)
+        definition_hints = match_query_hints(query_text, normalized_query, DEFINITION_HINTS)
+        topic_signals = self._collect_topic_signals(
+            query_text=query_text,
+            normalized_query=normalized_query,
+            focus_text=focus_text,
+            requested_anchor_keys=requested_anchor_keys,
+        )
+        meta_band = self._classify_meta_band(
+            meta_learning_hints=meta_learning_hints,
+            meta_topic_hints=meta_topic_hints,
+            learning_context_hints=learning_context_hints,
+            requested_anchor_keys=requested_anchor_keys,
+            topic_signals=topic_signals,
+        )
 
-        if query_has_any_hint(query_text, normalized_query, META_LEARNING_HINTS) or (
-            "学习" in normalized_query and "方法" in normalized_query
+        route_scores: dict[str, float] = {
+            ROUTE_ASSISTIVE: 12.0,
+            ROUTE_NAMED: 0.0,
+            ROUTE_COMPARISON: 0.0,
+            ROUTE_META: 0.0,
+        }
+        matched_signals: list[dict[str, Any]] = []
+        rejected_signals: list[dict[str, Any]] = []
+
+        def add_signal(route: str, signal: str, detail: str, weight: float) -> None:
+            route_scores[route] += weight
+            matched_signals.append(
+                {
+                    "route": route,
+                    "signal": signal,
+                    "detail": detail,
+                    "weight": round(weight, 3),
+                }
+            )
+
+        if len(commentators) == 1:
+            add_signal(ROUTE_NAMED, "commentator_alias", commentators[0], 28.0)
+        elif len(commentators) >= 2:
+            add_signal(ROUTE_COMPARISON, "dual_commentator_alias", " / ".join(commentators), 24.0)
+            add_signal(ROUTE_NAMED, "multi_commentator_context", " / ".join(commentators), 10.0)
+
+        if named_hints:
+            add_signal(ROUTE_NAMED, "named_hint", " / ".join(named_hints), 10.0 + min(6.0, len(named_hints) * 2.0))
+        if comparison_hints:
+            add_signal(
+                ROUTE_COMPARISON,
+                "comparison_hint",
+                " / ".join(comparison_hints),
+                18.0 + min(8.0, len(comparison_hints) * 2.0),
+            )
+        if generic_commentarial_hints:
+            detail = " / ".join(generic_commentarial_hints)
+            if comparison_hints:
+                add_signal(ROUTE_COMPARISON, "generic_comparison_frame", detail, 10.0)
+            else:
+                add_signal(ROUTE_NAMED, "generic_commentarial_frame", detail, 8.0)
+
+        if meta_band == META_BAND_STRONG:
+            detail = " / ".join(meta_learning_hints or learning_context_hints or meta_topic_hints)
+            add_signal(ROUTE_META, "meta_band_strong", detail, 30.0)
+        elif meta_band == META_BAND_TOPIC:
+            detail = " / ".join(meta_topic_hints or learning_context_hints or meta_learning_hints)
+            add_signal(ROUTE_META, "meta_band_topic", detail, 20.0)
+
+        if requested_anchor_keys:
+            detail = " / ".join(requested_anchor_keys)
+            add_signal(ROUTE_NAMED, "passage_anchor", detail, 12.0)
+            add_signal(ROUTE_COMPARISON, "passage_anchor", detail, 10.0)
+            if meta_band is not None:
+                add_signal(ROUTE_META, "passage_anchor", detail, 6.0)
+
+        framework_topics = topic_signals["framework_topics"]
+        if framework_topics:
+            detail = " / ".join(framework_topics)
+            add_signal(ROUTE_NAMED, "framework_topic", detail, 5.0)
+            add_signal(ROUTE_COMPARISON, "framework_topic", detail, 6.0)
+            if meta_band is not None:
+                add_signal(
+                    ROUTE_META,
+                    "framework_topic",
+                    detail,
+                    12.0 if meta_band == META_BAND_TOPIC else 8.0,
+                )
+
+        disease_topics = topic_signals["disease_topics"]
+        if disease_topics and not framework_topics:
+            detail = " / ".join(disease_topics[:3])
+            add_signal(ROUTE_NAMED, "disease_topic", detail, 4.0)
+            add_signal(ROUTE_COMPARISON, "disease_topic", detail, 4.0)
+            if meta_band is not None and learning_context_hints:
+                add_signal(ROUTE_META, "disease_topic", detail, 6.0)
+
+        formula_topics = topic_signals["formula_topics"]
+        if formula_topics:
+            detail = " / ".join(formula_topics[:3])
+            add_signal(ROUTE_NAMED, "formula_topic", detail, 6.0)
+            add_signal(ROUTE_COMPARISON, "formula_topic", detail, 4.0)
+            if meta_band == META_BAND_STRONG and learning_context_hints:
+                add_signal(ROUTE_META, "formula_topic", detail, 4.0)
+
+        if definition_hints:
+            add_signal(ROUTE_ASSISTIVE, "definition_hint", " / ".join(definition_hints), 14.0)
+            rejected_signals.append(
+                {
+                    "route": ROUTE_META,
+                    "signal": "definition_hint",
+                    "reason": "plain_definition_prefers_canonical_or_assistive",
+                    "detail": " / ".join(definition_hints),
+                }
+            )
+
+        if commentators and meta_band is not None:
+            route_scores[ROUTE_META] -= 12.0
+            rejected_signals.append(
+                {
+                    "route": ROUTE_META,
+                    "signal": "commentator_alias",
+                    "reason": "single_commentator_query_should_prefer_named_or_comparison",
+                    "detail": " / ".join(commentators),
+                }
+            )
+
+        if comparison_hints and len(commentators) == 1 and not generic_commentarial_hints:
+            route_scores[ROUTE_COMPARISON] -= 10.0
+            rejected_signals.append(
+                {
+                    "route": ROUTE_COMPARISON,
+                    "signal": "single_commentator_comparison_conflict",
+                    "reason": "comparison_requires_dual_view_signal",
+                    "detail": commentators[0],
+                }
+            )
+
+        focus_terms = [
+            term
+            for term in build_query_terms(focus_text or normalized_query)
+            if 2 <= len(term) <= 12
+        ][:18]
+        preview_targets = {
+            ROUTE_ASSISTIVE: tuple(),
+            ROUTE_NAMED: commentators or tuple(COMMENTATOR_SOURCE_IDS.keys()),
+            ROUTE_COMPARISON: tuple(COMMENTATOR_SOURCE_IDS.keys()),
+            ROUTE_META: tuple(COMMENTATOR_SOURCE_IDS.keys()),
+        }
+        preview_hits: dict[str, dict[str, Any]] = {}
+        for route_name in route_scores:
+            preview = self._preview_route_hits(
+                route=route_name,
+                terms=focus_terms,
+                commentators=preview_targets[route_name],
+                meta_band=meta_band,
+            )
+            preview_hits[route_name] = preview
+            if preview["count"] <= 0:
+                continue
+            if route_name == ROUTE_META and meta_band is None:
+                continue
+            weight = min(12.0, preview["best"] * 2.0 + min(4.0, preview["count"]))
+            if route_name == ROUTE_ASSISTIVE:
+                weight = min(weight, 6.0)
+            add_signal(
+                route_name,
+                "normalized_query_hit",
+                f"{preview['count']} hits / best={preview['best']}",
+                weight,
+            )
+
+        route_priority = {
+            ROUTE_COMPARISON: 4,
+            ROUTE_NAMED: 3,
+            ROUTE_META: 2,
+            ROUTE_ASSISTIVE: 1,
+        }
+        best_route = max(route_scores, key=lambda route: (route_scores[route], route_priority[route]))
+        explicit_thresholds = {
+            ROUTE_NAMED: 24.0,
+            ROUTE_COMPARISON: 26.0,
+            ROUTE_META: 24.0,
+        }
+        assistive_score = route_scores[ROUTE_ASSISTIVE]
+        explicit = best_route != ROUTE_ASSISTIVE and (
+            route_scores[best_route] >= explicit_thresholds[best_route]
+            and route_scores[best_route] - assistive_score >= 6.0
+        )
+        chosen_route = best_route if explicit else ROUTE_ASSISTIVE
+
+        if chosen_route == ROUTE_COMPARISON and route_scores[ROUTE_NAMED] >= explicit_thresholds[ROUTE_NAMED]:
+            rejected_signals.append(
+                {
+                    "route": ROUTE_NAMED,
+                    "signal": "route_competition",
+                    "reason": "comparison_outscored_named",
+                    "detail": f"comparison={route_scores[ROUTE_COMPARISON]:.1f}, named={route_scores[ROUTE_NAMED]:.1f}",
+                }
+            )
+        if chosen_route == ROUTE_NAMED and route_scores[ROUTE_META] >= 18.0:
+            rejected_signals.append(
+                {
+                    "route": ROUTE_META,
+                    "signal": "route_competition",
+                    "reason": "named_outscored_meta",
+                    "detail": f"named={route_scores[ROUTE_NAMED]:.1f}, meta={route_scores[ROUTE_META]:.1f}",
+                }
+            )
+        if chosen_route == ROUTE_ASSISTIVE and best_route != ROUTE_ASSISTIVE:
+            rejected_signals.append(
+                {
+                    "route": best_route,
+                    "signal": "explicit_threshold",
+                    "reason": "signal_not_strong_enough_for_explicit_commentarial_route",
+                    "detail": f"{best_route}={route_scores[best_route]:.1f}, assistive={assistive_score:.1f}",
+                }
+            )
+
+        selected_commentators = tuple()
+        if chosen_route == ROUTE_NAMED:
+            selected_commentators = commentators or tuple(COMMENTATOR_SOURCE_IDS.keys())
+        elif chosen_route == ROUTE_COMPARISON:
+            selected_commentators = commentators if len(commentators) >= 2 else tuple(COMMENTATOR_SOURCE_IDS.keys())
+
+        debug = {
+            "chosen_route": chosen_route,
+            "route_scores": {route: round(score, 3) for route, score in route_scores.items()},
+            "matched_signals": matched_signals,
+            "rejected_signals": rejected_signals,
+            "meta_band": meta_band,
+            "focus_text": focus_text,
+            "commentators": list(selected_commentators),
+            "requested_anchor_keys": list(requested_anchor_keys),
+            "topic_signals": topic_signals,
+            "preview_hits": preview_hits,
+            "explicit": explicit,
+        }
+        self._last_route_debug = debug
+        return CommentarialRoutePlan(
+            route=chosen_route,
+            commentators=selected_commentators,
+            requested_anchor_keys=requested_anchor_keys,
+            focus_text=focus_text,
+            explicit=explicit,
+            meta_band=meta_band if chosen_route == ROUTE_META else None,
+            debug=debug,
+        )
+
+    def get_last_route_debug(self) -> dict[str, Any] | None:
+        return self._last_route_debug
+
+    def _collect_topic_signals(
+        self,
+        *,
+        query_text: str,
+        normalized_query: str,
+        focus_text: str,
+        requested_anchor_keys: tuple[str, ...],
+    ) -> dict[str, Any]:
+        formula_topics = []
+        seen_formula_topics: set[str] = set()
+        for match in FORMULA_QUERY_RE.finditer(query_text):
+            candidate = match.group(0)
+            candidate = re.sub(r"^(?:这个|这里|这块|这一块|关于)", "", candidate)
+            candidate = re.sub(r"^[^汤散丸饮方]*对", "", candidate)
+            candidate = re.sub(r"(?:的|这一块)+$", "", candidate)
+            candidate = candidate.strip()
+            if not candidate or candidate in seen_formula_topics:
+                continue
+            seen_formula_topics.add(candidate)
+            formula_topics.append(candidate)
+        disease_topics = tuple(dict.fromkeys(match.group(0) for match in DISEASE_TOPIC_RE.finditer(query_text)))
+        framework_topics = match_query_hints(query_text, normalized_query, FRAMEWORK_TOPIC_HINTS)
+        book_topics = match_query_hints(query_text, normalized_query, BOOK_META_HINTS)
+        return {
+            "formula_topics": tuple(formula_topics),
+            "disease_topics": disease_topics,
+            "framework_topics": framework_topics,
+            "book_topics": book_topics,
+            "has_requested_anchor": bool(requested_anchor_keys),
+            "focus_text": focus_text,
+        }
+
+    def _classify_meta_band(
+        self,
+        *,
+        meta_learning_hints: tuple[str, ...],
+        meta_topic_hints: tuple[str, ...],
+        learning_context_hints: tuple[str, ...],
+        requested_anchor_keys: tuple[str, ...],
+        topic_signals: dict[str, Any],
+    ) -> str | None:
+        framework_topics = topic_signals["framework_topics"]
+        book_topics = topic_signals["book_topics"]
+        disease_topics = topic_signals["disease_topics"]
+        formula_topics = topic_signals["formula_topics"]
+
+        if meta_learning_hints:
+            return META_BAND_STRONG
+
+        if learning_context_hints and book_topics and not (framework_topics or disease_topics or formula_topics or requested_anchor_keys):
+            return META_BAND_STRONG
+
+        has_book_method_scope = bool(book_topics) and bool(meta_topic_hints) and not (
+            disease_topics or formula_topics or requested_anchor_keys
+        )
+        if has_book_method_scope:
+            return META_BAND_STRONG
+
+        if meta_topic_hints and (
+            framework_topics
+            or disease_topics
+            or requested_anchor_keys
+            or (learning_context_hints and (book_topics or formula_topics))
         ):
-            return CommentarialRoutePlan(
-                route=ROUTE_META,
-                commentators=commentators,
-                requested_anchor_keys=requested_anchor_keys,
-                focus_text=focus_text,
-                explicit=True,
-            )
-
-        has_named_hint = query_has_any_hint(query_text, normalized_query, NAMED_HINTS)
-        has_comparison_hint = query_has_any_hint(query_text, normalized_query, COMPARISON_HINTS)
-        has_generic_commentarial = query_has_any_hint(query_text, normalized_query, GENERIC_COMMENTARIAL_HINTS)
-
-        if has_comparison_hint and (commentators or has_generic_commentarial):
-            effective_commentators = commentators or tuple(COMMENTATOR_SOURCE_IDS.keys())
-            return CommentarialRoutePlan(
-                route=ROUTE_COMPARISON,
-                commentators=effective_commentators,
-                requested_anchor_keys=requested_anchor_keys,
-                focus_text=focus_text,
-                explicit=True,
-            )
-
-        if commentators or (has_named_hint and has_generic_commentarial):
-            effective_commentators = commentators or tuple(COMMENTATOR_SOURCE_IDS.keys())
-            return CommentarialRoutePlan(
-                route=ROUTE_NAMED,
-                commentators=effective_commentators,
-                requested_anchor_keys=requested_anchor_keys,
-                focus_text=focus_text,
-                explicit=True,
-            )
+            return META_BAND_TOPIC
 
         return None
+
+    def _preview_route_hits(
+        self,
+        *,
+        route: str,
+        terms: list[str],
+        commentators: tuple[str, ...],
+        meta_band: str | None,
+    ) -> dict[str, Any]:
+        if not terms:
+            return {"count": 0, "best": 0, "top_unit_ids": []}
+
+        count = 0
+        best = 0
+        top_units: list[str] = []
+        for unit in self.units:
+            if route == ROUTE_NAMED and not self._is_named_unit_candidate(unit, commentators):
+                continue
+            if route == ROUTE_COMPARISON and not self._is_comparison_unit_candidate(unit, commentators):
+                continue
+            if route == ROUTE_META and not self._is_meta_unit_candidate(unit, meta_band):
+                continue
+            if route == ROUTE_ASSISTIVE and not self._is_assistive_unit_candidate(unit):
+                continue
+            hit_count = self._count_query_term_hits(unit, terms)
+            if hit_count <= 0:
+                continue
+            count += 1
+            best = max(best, hit_count)
+            if len(top_units) < 3:
+                top_units.append(str(unit.get("unit_id")))
+        return {
+            "count": count,
+            "best": best,
+            "top_unit_ids": top_units,
+        }
 
     def _build_focus_text(
         self,
@@ -456,7 +902,11 @@ class CommentarialLayer:
         focus = query_text
         for commentator in commentators:
             focus = focus.replace(commentator, " ")
-        for alias in COMMENTATOR_QUERY_ALIASES:
+        for alias, _canonical_name in sorted(
+            COMMENTATOR_QUERY_ALIASES.items(),
+            key=lambda item: len(item[0]),
+            reverse=True,
+        ):
             focus = focus.replace(alias, " ")
         for noise_pattern in FOCUS_NOISE_PATTERNS:
             focus = re.sub(noise_pattern, " ", focus)
@@ -467,7 +917,8 @@ class CommentarialLayer:
                 continue
             focus = re.sub(rf"(?:第\s*)?{int(number.group(1))}\s*[AaBb上下]?\s*条", " ", focus)
         compact_focus = compact_text(focus)
-        if compact_focus in {"的", "是的"}:
+        compact_focus = re.sub(r"(?:的|这一块)+$", "", compact_focus)
+        if compact_focus in {"的", "是的", "对", "这里", "这块", "这一块"}:
             compact_focus = ""
         return compact_focus or extract_focus_text(query_text) or compact_text(query_text)
 
@@ -481,9 +932,9 @@ class CommentarialLayer:
             return None
 
         plan = route_plan
+        if payload.get("answer_mode") == "refuse" and (plan is None or not plan.explicit):
+            return None
         if plan is None:
-            if payload.get("answer_mode") == "refuse":
-                return None
             plan = CommentarialRoutePlan(
                 route=ROUTE_ASSISTIVE,
                 commentators=tuple(),
@@ -598,6 +1049,8 @@ class CommentarialLayer:
                 requested_anchor_keys=plan.requested_anchor_keys,
                 focus_text=plan.focus_text,
                 explicit=plan.explicit,
+                meta_band=plan.meta_band,
+                debug=plan.debug,
             )
             ranked = self._rank_units(scoped_plan, scoped_plan.focus_text)
             main_items: list[dict[str, Any]] = []
@@ -605,12 +1058,6 @@ class CommentarialLayer:
             for unit, score in ranked:
                 bucket = self._classify_display_bucket(unit, plan.route)
                 if bucket == "exclude":
-                    continue
-                if plan.route == ROUTE_META and not unit.get("eligible_for_meta_learning_view"):
-                    continue
-                if plan.route == ROUTE_COMPARISON and not unit.get("eligible_for_comparison_retrieval"):
-                    continue
-                if plan.route == ROUTE_NAMED and not unit.get("eligible_for_named_view"):
                     continue
                 target = folded_items if bucket == "folded" else main_items
                 target.append(self._build_item(unit, score))
@@ -644,6 +1091,74 @@ class CommentarialLayer:
                 )
         return sections
 
+    def _count_query_term_hits(self, unit: dict[str, Any], terms: list[str]) -> int:
+        search_text = str(unit.get("normalized_search_text") or "")
+        title_text = str(unit.get("normalized_title") or "")
+        if not search_text and not title_text:
+            return 0
+
+        hit_count = 0
+        for term in terms[:18]:
+            if term in search_text:
+                hit_count += 1
+            elif len(term) >= 4 and term in title_text:
+                hit_count += 1
+        return hit_count
+
+    def _is_named_unit_candidate(
+        self,
+        unit: dict[str, Any],
+        commentators: tuple[str, ...],
+    ) -> bool:
+        if not unit.get("eligible_for_named_view"):
+            return False
+        if commentators and unit.get("commentator") not in commentators:
+            return False
+        return True
+
+    def _is_comparison_unit_candidate(
+        self,
+        unit: dict[str, Any],
+        commentators: tuple[str, ...],
+    ) -> bool:
+        if not unit.get("eligible_for_comparison_retrieval"):
+            return False
+        if commentators and unit.get("commentator") not in commentators:
+            return False
+        return True
+
+    def _is_assistive_unit_candidate(self, unit: dict[str, Any]) -> bool:
+        return (
+            bool(unit.get("eligible_for_default_assistive_retrieval"))
+            and bool(unit.get("never_use_in_primary", False))
+            and not bool(unit.get("use_for_confidence_gate"))
+            and unit.get("anchor_type") != "theme"
+        )
+
+    def _is_meta_unit_candidate(self, unit: dict[str, Any], meta_band: str | None) -> bool:
+        if meta_band is None:
+            return False
+
+        commentary_functions = set(unit.get("commentary_functions") or [])
+        if not commentary_functions.intersection({"study_method", "theory_overview", "summary"}):
+            return False
+
+        anchor_type = unit.get("anchor_type")
+        theme_tier = unit.get("theme_display_tier")
+        if anchor_type == "theme":
+            return theme_tier in {
+                "tier_1_named_view_ok",
+                "tier_2_fold_only",
+                "tier_3_meta_learning_only",
+            }
+
+        if meta_band == META_BAND_STRONG:
+            return bool(commentary_functions.intersection({"study_method", "theory_overview"})) and (
+                unit.get("eligible_for_meta_learning_view") or "study_method" in commentary_functions
+            )
+
+        return bool(unit.get("eligible_for_meta_learning_view"))
+
     def _rank_units(
         self,
         plan: CommentarialRoutePlan,
@@ -656,8 +1171,6 @@ class CommentarialLayer:
             if fallback_term:
                 terms = [fallback_term]
         for unit in self.units:
-            if plan.commentators and unit.get("commentator") not in plan.commentators:
-                continue
             if unit.get("low_confidence_commentarial_unit") and not (
                 plan.route == ROUTE_META
                 and unit.get("anchor_type") == "theme"
@@ -668,18 +1181,14 @@ class CommentarialLayer:
                 anchor_pool = set(unit.get("anchor_candidates") or [])
                 if not anchor_pool.intersection(plan.requested_anchor_keys):
                     continue
-            if plan.route == ROUTE_META and not unit.get("eligible_for_meta_learning_view"):
+            if plan.route == ROUTE_META and not self._is_meta_unit_candidate(unit, plan.meta_band):
                 continue
-            if plan.route == ROUTE_COMPARISON and not unit.get("eligible_for_comparison_retrieval"):
+            if plan.route == ROUTE_COMPARISON and not self._is_comparison_unit_candidate(unit, plan.commentators):
                 continue
-            if plan.route == ROUTE_NAMED and not unit.get("eligible_for_named_view"):
+            if plan.route == ROUTE_NAMED and not self._is_named_unit_candidate(unit, plan.commentators):
                 continue
-            if plan.route == ROUTE_ASSISTIVE and not unit.get("eligible_for_default_assistive_retrieval"):
+            if plan.route == ROUTE_ASSISTIVE and not self._is_assistive_unit_candidate(unit):
                 continue
-            if plan.route == ROUTE_META:
-                commentary_functions = set(unit.get("commentary_functions") or [])
-                if unit.get("anchor_type") != "theme" and "study_method" not in commentary_functions:
-                    continue
 
             score = self._score_unit(unit, plan, terms)
             if score <= 0:
@@ -732,10 +1241,13 @@ class CommentarialLayer:
             {"comparison", "formula_analysis", "pathogenesis", "therapeutic_method"}
         ):
             score += 10.0
-        if plan.route == ROUTE_META and commentary_functions.intersection(
-            {"study_method", "theory_overview", "summary"}
-        ):
-            score += 14.0
+        if plan.route == ROUTE_META:
+            if "study_method" in commentary_functions:
+                score += 16.0
+            if "theory_overview" in commentary_functions:
+                score += 12.0
+            if "summary" in commentary_functions:
+                score += 8.0
 
         anchor_type = unit.get("anchor_type")
         if anchor_type == "exact":
@@ -757,13 +1269,25 @@ class CommentarialLayer:
         if plan.route == ROUTE_META:
             theme_tier = unit.get("theme_display_tier")
             if anchor_type == "theme":
-                score += 12.0
+                score += 14.0
             else:
-                score -= 8.0
+                score -= 4.0
+            if plan.meta_band == META_BAND_STRONG:
+                if "study_method" in commentary_functions:
+                    score += 12.0
+                if anchor_type == "theme":
+                    score += 6.0
+            elif plan.meta_band == META_BAND_TOPIC:
+                if "theory_overview" in commentary_functions:
+                    score += 8.0
+                if "summary" in commentary_functions:
+                    score += 6.0
             if theme_tier == "tier_3_meta_learning_only":
                 score += 28.0
             elif theme_tier == "tier_2_fold_only":
-                score += 6.0
+                score += 10.0
+            elif theme_tier == "tier_1_named_view_ok":
+                score += 8.0
         if plan.route == ROUTE_COMPARISON and anchor_type == "theme":
             score += 8.0
         return score

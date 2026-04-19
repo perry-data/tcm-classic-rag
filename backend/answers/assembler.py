@@ -846,29 +846,29 @@ class AnswerAssembler:
             comparison_plan = self._detect_comparison_query(query_text)
             if comparison_plan is not None:
                 payload = self._assemble_comparison(query_text, comparison_plan)
-                return self._finalize_commentarial_payload(query_text, payload, None)
+                return self._finalize_commentarial_payload(query_text, payload, commentarial_plan)
             formula_composition_plan = self._detect_formula_composition_query(query_text)
             if formula_composition_plan is not None:
                 payload = self._assemble_formula_composition_query(query_text, formula_composition_plan)
-                return self._finalize_commentarial_payload(query_text, payload, None)
+                return self._finalize_commentarial_payload(query_text, payload, commentarial_plan)
             formula_effect_plan = self._detect_formula_effect_query(query_text)
             if formula_effect_plan is not None:
                 payload = self._assemble_formula_effect_query(query_text, formula_effect_plan)
-                return self._finalize_commentarial_payload(query_text, payload, None)
+                return self._finalize_commentarial_payload(query_text, payload, commentarial_plan)
             definition_outline_plan = self._detect_definition_outline_query(query_text)
             if definition_outline_plan is not None:
                 payload = self._assemble_definition_outline_query(query_text, definition_outline_plan)
-                return self._finalize_commentarial_payload(query_text, payload, None)
+                return self._finalize_commentarial_payload(query_text, payload, commentarial_plan)
             definition_priority_plan = self._detect_definition_priority_query(query_text)
             if definition_priority_plan is not None:
                 payload = self._assemble_definition_priority_query(query_text, definition_priority_plan)
-                return self._finalize_commentarial_payload(query_text, payload, None)
+                return self._finalize_commentarial_payload(query_text, payload, commentarial_plan)
             general_plan = detect_general_question(query_text)
             if general_plan is not None:
                 payload = self._assemble_general_question(query_text, general_plan)
-                return self._finalize_commentarial_payload(query_text, payload, None)
+                return self._finalize_commentarial_payload(query_text, payload, commentarial_plan)
             payload = self._assemble_standard(query_text)
-            return self._finalize_commentarial_payload(query_text, payload, None)
+            return self._finalize_commentarial_payload(query_text, payload, commentarial_plan)
         finally:
             self._progress_callback = None
             self._last_progress_stage = None
