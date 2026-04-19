@@ -1101,7 +1101,7 @@ function AssistantMessageCardInner(props: {
 }
 
 function ModeSummary(props: { mode: AnswerMode | "loading" | "error" }) {
-  if (props.mode === "weak_with_review_notice") return null;
+  if (props.mode === "weak_with_review_notice" || props.mode === "strong") return null;
 
   const copy = getModeCopy(props.mode);
   return (
