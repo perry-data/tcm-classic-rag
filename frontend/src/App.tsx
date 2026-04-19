@@ -1312,8 +1312,6 @@ function EvidencePanel(props: {
                 ))}
               </ul>
             ) : null}
-
-            <p className={styles.recordFootnote}>record_id: {item.record_id}</p>
           </article>
         ))}
       </div>
@@ -1339,7 +1337,6 @@ function CitationsPanel(props: { items: CitationItem[]; hint: string }) {
               {citation.chapter_title ? <span className={styles.metaChip}>{citation.chapter_title}</span> : null}
             </div>
             {citation.snippet ? <p className={styles.evidenceSnippet}>{citation.snippet}</p> : null}
-            <p className={styles.recordFootnote}>record_id: {citation.record_id}</p>
           </li>
         ))}
       </ol>
