@@ -1136,41 +1136,32 @@ function CommentarialPanels(props: { payload: CommentarialPayload }) {
   }
 
   return (
-    <section className={styles.commentarialShell}>
-      <div className={styles.commentarialHead}>
-        <div>
-          <p className={styles.supportingKicker}>名家视角层</p>
-          <h3 className={styles.commentarialTitle}>{resolveCommentarialTitle(props.payload.route)}</h3>
-        </div>
-        <span className={styles.commentarialRouteBadge}>{resolveCommentarialBadge(props.payload.route)}</span>
-      </div>
-      <div className={cx(styles.commentarialSectionGrid, props.payload.route === "comparison_view" && styles.commentarialSectionGridComparison)}>
-        {sections.map((section) =>
-          section.collapsed_by_default ? (
-            <details key={section.section_id} className={styles.commentarialFold}>
-              <summary className={styles.commentarialFoldSummary}>
-                <span>{section.title}</span>
-                <span className={styles.sectionCount}>{section.items.length}条</span>
-              </summary>
-              <CommentarialSectionCards section={section} />
-            </details>
-          ) : (
-            <section key={section.section_id} className={styles.commentarialPanel}>
-              <div className={styles.panelHead}>
-                <div>
-                  <h3>
-                    {section.title}
-                    <span className={styles.sectionCount}>{section.items.length}条</span>
-                  </h3>
-                  <p>{resolveCommentarialHint(section)}</p>
-                </div>
+    <div className={cx(styles.commentarialSectionGrid, props.payload.route === "comparison_view" && styles.commentarialSectionGridComparison)}>
+      {sections.map((section) =>
+        section.collapsed_by_default ? (
+          <details key={section.section_id} className={styles.commentarialFold}>
+            <summary className={styles.commentarialFoldSummary}>
+              <span>{section.title}</span>
+              <span className={styles.sectionCount}>{section.items.length}条</span>
+            </summary>
+            <CommentarialSectionCards section={section} />
+          </details>
+        ) : (
+          <section key={section.section_id} className={styles.commentarialPanel}>
+            <div className={styles.panelHead}>
+              <div>
+                <h3>
+                  {section.title}
+                  <span className={styles.sectionCount}>{section.items.length}条</span>
+                </h3>
+                <p>{resolveCommentarialHint(section)}</p>
               </div>
-              <CommentarialSectionCards section={section} />
-            </section>
-          ),
-        )}
-      </div>
-    </section>
+            </div>
+            <CommentarialSectionCards section={section} />
+          </section>
+        ),
+      )}
+    </div>
   );
 }
 
@@ -1220,20 +1211,6 @@ function CommentarialCard(props: { item: CommentarialItem }) {
       </details>
     </article>
   );
-}
-
-function resolveCommentarialTitle(route: string): string {
-  if (route === "named_view") return "点名名家";
-  if (route === "comparison_view") return "两家比较";
-  if (route === "meta_learning_view") return "学习方法";
-  return "补充解读";
-}
-
-function resolveCommentarialBadge(route: string): string {
-  if (route === "named_view") return "Named";
-  if (route === "comparison_view") return "Compare";
-  if (route === "meta_learning_view") return "Meta";
-  return "Assistive";
 }
 
 function resolveCommentarialHint(section: CommentarialSection): string {
