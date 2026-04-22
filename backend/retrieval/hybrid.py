@@ -481,8 +481,13 @@ class HybridRetrievalEngine(RetrievalEngine):
         text_match_score: float = 0.0,
         matched_terms: list[str] | None = None,
     ) -> dict[str, Any]:
-        topic_meta = self._topic_meta(request, row["retrieval_text"])
+        if request["precision_profile"] == "tight_primary":
+            topic_meta = self._row_topic_meta(request, row)
+        else:
+            topic_meta = baseline_topic_consistency(row["retrieval_text"])
         primary_supports_strong = text_match_score > 0 or topic_meta["topic_consistency"] == "exact_formula_anchor"
+        if row.get("record_table") == "retrieval_ready_formula_view":
+            primary_supports_strong = True
         primary_allowed = topic_meta["primary_allowed"] and primary_supports_strong
         candidate = dict(row)
         candidate.update(
@@ -494,6 +499,8 @@ class HybridRetrievalEngine(RetrievalEngine):
                 "topic_anchor": topic_meta["topic_anchor"],
                 "topic_consistency": topic_meta["topic_consistency"],
                 "primary_allowed": primary_allowed,
+                "formula_candidate_ids": topic_meta.get("formula_candidate_ids", []),
+                "formula_scope": topic_meta.get("formula_scope"),
                 "primary_block_reason": (
                     None
                     if primary_allowed
@@ -915,12 +922,21 @@ class HybridRetrievalEngine(RetrievalEngine):
         return ordered_reranked + remainder
 
     def _passes_final_candidate_gate(self, request: dict[str, Any], candidate: dict[str, Any]) -> bool:
+        if not self._passes_formula_scope_gate(request, candidate):
+            return False
+
         perf_settings = load_perf_settings()
         if not is_dense_only_candidate(candidate):
             return True
 
-        if request["query_theme"]["type"] == "formula_name":
-            return candidate["topic_consistency"] == "exact_formula_anchor"
+        if request["query_theme"]["type"] in {"formula_name", "formula_comparison"}:
+            return candidate["topic_consistency"] in {
+                "exact_formula_anchor",
+                "formula_object_exact",
+                "same_formula_span",
+                "comparison_formula_object",
+                "comparison_formula_span",
+            }
 
         if perf_settings.disable_rerank:
             return candidate["dense_score"] >= 0.58
@@ -930,6 +946,7 @@ class HybridRetrievalEngine(RetrievalEngine):
         perf_settings = load_perf_settings()
         record_metadata("retrieval_mode_effective", perf_settings.retrieval_mode)
         sparse_query = build_sparse_fts_match_expression(request["query_text_normalized"])
+        formula_object_candidates = self._collect_formula_object_candidates(request)
         sparse_candidates: list[dict[str, Any]] = []
         dense_chunk_candidates: list[dict[str, Any]] = []
         dense_main_candidates: list[dict[str, Any]] = []
@@ -961,6 +978,7 @@ class HybridRetrievalEngine(RetrievalEngine):
 
         with stage_timer("fusion_rrf"):
             fused_candidates = self._fuse_candidates(
+                ("formula_object", formula_object_candidates),
                 ("sparse", sparse_candidates),
                 ("dense_chunks", dense_chunk_candidates),
                 ("dense_main_passages", dense_main_candidates),
@@ -999,6 +1017,7 @@ class HybridRetrievalEngine(RetrievalEngine):
                 "match_expression": sparse_query["match_expression"],
             },
             "sparse_top_candidates": sparse_candidate_view(sparse_candidates),
+            "formula_object_top_candidates": sparse_candidate_view(formula_object_candidates),
             "dense_top_candidates": {
                 "dense_chunks": short_candidate_view(dense_chunk_candidates, "dense_score"),
                 "dense_main_passages": short_candidate_view(dense_main_candidates, "dense_score"),

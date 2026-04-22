@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sqlite3
 import sys
@@ -38,6 +39,7 @@ DEFAULT_EXAMPLES = [
 ]
 
 SOURCE_BUDGETS = {
+    "formula_object_view": 4,
     "safe_chunks": 8,
     "safe_main_passages_primary": 6,
     "safe_main_passages_secondary": 4,
@@ -105,6 +107,14 @@ FORMULA_ANCHOR_VARIANT_REPLACEMENTS = (
     ("杏仁", "杏子"),
     ("杏人", "杏子"),
 )
+FORMULA_OBJECT_DISABLE_ENV = "TCM_DISABLE_FORMULA_OBJECT_RETRIEVAL"
+FORMULA_OBJECT_SOURCE_ID = "formula_object_view"
+FORMULA_RUNTIME_TABLES = (
+    "formula_canonical_registry",
+    "formula_alias_registry",
+    "retrieval_ready_formula_view",
+)
+FORMULA_COMPARISON_HINTS = ("区别", "不同", "比较", "对比", "异同", "有什么不一样", "和", "与")
 
 
 def resolve_project_path(path_value: str) -> Path:
@@ -211,6 +221,286 @@ def normalize_formula_anchor(text: str | None) -> str:
     if anchor.endswith("方") and len(anchor) > 1:
         return anchor[:-1]
     return anchor
+
+
+def normalize_formula_runtime_text(text: str | None) -> str:
+    normalized = compact_text(text)
+    for source, target in FORMULA_ANCHOR_VARIANT_REPLACEMENTS:
+        normalized = normalized.replace(compact_text(source), compact_text(target))
+    return normalized
+
+
+def runtime_env_flag_enabled(value: str | None) -> bool:
+    return str(value or "").strip().lower() in {"1", "true", "yes", "on"}
+
+
+class FormulaRuntimeIndex:
+    def __init__(
+        self,
+        *,
+        enabled: bool,
+        formulas_by_id: dict[str, dict[str, Any]] | None = None,
+        aliases: list[dict[str, Any]] | None = None,
+        formula_rows: list[dict[str, Any]] | None = None,
+        passage_to_formula_ids: dict[str, list[str]] | None = None,
+        disabled_reason: str | None = None,
+    ) -> None:
+        self.enabled = enabled
+        self.formulas_by_id = formulas_by_id or {}
+        self.aliases = aliases or []
+        self.formula_rows = formula_rows or []
+        self.formula_row_by_formula_id = {row["formula_id"]: row for row in self.formula_rows}
+        self.passage_to_formula_ids = passage_to_formula_ids or {}
+        self.disabled_reason = disabled_reason
+
+    @classmethod
+    def disabled(cls, reason: str) -> "FormulaRuntimeIndex":
+        return cls(enabled=False, disabled_reason=reason)
+
+    @classmethod
+    def from_db(cls, conn: sqlite3.Connection) -> "FormulaRuntimeIndex":
+        if runtime_env_flag_enabled(os.getenv(FORMULA_OBJECT_DISABLE_ENV)):
+            return cls.disabled(f"{FORMULA_OBJECT_DISABLE_ENV}=1")
+
+        existing = {
+            row[0]
+            for row in conn.execute(
+                "SELECT name FROM sqlite_master WHERE name IN ({})".format(
+                    ",".join("?" for _ in FORMULA_RUNTIME_TABLES)
+                ),
+                FORMULA_RUNTIME_TABLES,
+            )
+        }
+        missing = [name for name in FORMULA_RUNTIME_TABLES if name not in existing]
+        if missing:
+            return cls.disabled("missing:" + ",".join(missing))
+
+        formulas_by_id = {
+            row["formula_id"]: dict(row)
+            for row in conn.execute(
+                """
+                SELECT *
+                FROM formula_canonical_registry
+                WHERE is_active = 1
+                """
+            )
+        }
+        if not formulas_by_id:
+            return cls.disabled("empty formula_canonical_registry")
+
+        alias_rows = [
+            dict(row)
+            for row in conn.execute(
+                """
+                SELECT
+                    alias,
+                    normalized_alias,
+                    formula_id,
+                    alias_type,
+                    confidence,
+                    is_auto_generated,
+                    needs_manual_review
+                FROM formula_alias_registry
+                WHERE is_active = 1
+                  AND formula_id IN (
+                      SELECT formula_id FROM formula_canonical_registry WHERE is_active = 1
+                  )
+                """
+            )
+        ]
+        alias_formula_ids: dict[str, set[str]] = {}
+        for row in alias_rows:
+            alias_formula_ids.setdefault(row["normalized_alias"], set()).add(row["formula_id"])
+        aliases = []
+        for row in alias_rows:
+            normalized_alias = normalize_formula_runtime_text(row.get("normalized_alias") or row.get("alias"))
+            if len(normalized_alias) < 3:
+                continue
+            if len(alias_formula_ids.get(row["normalized_alias"], set())) > 1:
+                continue
+            confidence = float(row.get("confidence") or 0.0)
+            if confidence < 0.72:
+                continue
+            if int(row.get("needs_manual_review") or 0) and confidence < 0.95:
+                continue
+            row["normalized_alias"] = normalized_alias
+            row["confidence"] = confidence
+            aliases.append(row)
+        aliases.sort(key=lambda row: (-len(row["normalized_alias"]), -float(row["confidence"]), row["normalized_alias"]))
+
+        formula_rows: list[dict[str, Any]] = []
+        passage_to_formula_ids: dict[str, list[str]] = {}
+        view_rows = [
+            dict(row)
+            for row in conn.execute(
+                """
+                SELECT
+                    v.*,
+                    COALESCE(m.chapter_name, '') AS chapter_name
+                FROM retrieval_ready_formula_view AS v
+                LEFT JOIN records_main_passages AS m
+                  ON m.passage_id = v.primary_formula_passage_id
+                """
+            )
+        ]
+        for row in view_rows:
+            formula_id = row["formula_id"]
+            if formula_id not in formulas_by_id:
+                continue
+            source_ids = safe_json_list(row.get("source_passage_ids_json"))
+            for passage_id in source_ids:
+                passage_to_formula_ids.setdefault(passage_id, [])
+                if formula_id not in passage_to_formula_ids[passage_id]:
+                    passage_to_formula_ids[passage_id].append(formula_id)
+            record_id = f"formula:{formula_id}"
+            formula_rows.append(
+                {
+                    "retrieval_entry_id": record_id,
+                    "record_table": "retrieval_ready_formula_view",
+                    "record_id": record_id,
+                    "source_record_id": formula_id,
+                    "dataset_variant": "safe",
+                    "source_object": "formulas",
+                    "source_type": "formula_object",
+                    "retrieval_text": row.get("retrieval_text") or "",
+                    "normalized_text": normalize_formula_runtime_text(row.get("retrieval_text") or ""),
+                    "book_id": "ZJSHL",
+                    "chapter_id": first_json_value(row.get("chapter_ids_json")) or row.get("chapter_id"),
+                    "chapter_name": row.get("chapter_name") or "",
+                    "evidence_level": row.get("allowed_evidence_level") or "A",
+                    "display_allowed": "primary",
+                    "risk_flag": "[]",
+                    "requires_disclaimer": 0,
+                    "default_weight_tier": "highest",
+                    "policy_source_id": FORMULA_OBJECT_SOURCE_ID,
+                    "backref_target_type": "formula_span",
+                    "backref_target_ids_json": row.get("source_passage_ids_json") or "[]",
+                    "formula_id": formula_id,
+                    "canonical_name": row.get("canonical_name") or formulas_by_id[formula_id].get("canonical_name"),
+                    "primary_formula_passage_id": row.get("primary_formula_passage_id"),
+                    "source_passage_ids_json": row.get("source_passage_ids_json") or "[]",
+                    "source_confidence": row.get("source_confidence") or formulas_by_id[formula_id].get("source_confidence"),
+                }
+            )
+
+        return cls(
+            enabled=bool(formula_rows and aliases),
+            formulas_by_id=formulas_by_id,
+            aliases=aliases,
+            formula_rows=formula_rows,
+            passage_to_formula_ids=passage_to_formula_ids,
+            disabled_reason=None if formula_rows and aliases else "empty formula runtime rows or aliases",
+        )
+
+    def resolve(self, query_text: str) -> dict[str, Any]:
+        empty = {
+            "enabled": self.enabled,
+            "type": "none",
+            "formula_ids": [],
+            "matches": [],
+            "disabled_reason": self.disabled_reason,
+        }
+        if not self.enabled:
+            return empty
+
+        normalized_query = normalize_formula_runtime_text(query_text)
+        if not normalized_query:
+            return empty
+
+        occupied: list[tuple[int, int]] = []
+        matches: list[dict[str, Any]] = []
+        for alias in self.aliases:
+            normalized_alias = alias["normalized_alias"]
+            start = normalized_query.find(normalized_alias)
+            while start >= 0:
+                end = start + len(normalized_alias)
+                overlaps = any(not (end <= used_start or start >= used_end) for used_start, used_end in occupied)
+                if not overlaps:
+                    occupied.append((start, end))
+                    formula = self.formulas_by_id.get(alias["formula_id"], {})
+                    matches.append(
+                        {
+                            "formula_id": alias["formula_id"],
+                            "canonical_name": formula.get("canonical_name"),
+                            "alias": alias.get("alias"),
+                            "normalized_alias": normalized_alias,
+                            "alias_type": alias.get("alias_type"),
+                            "confidence": alias.get("confidence"),
+                            "span": [start, end],
+                        }
+                    )
+                    break
+                start = normalized_query.find(normalized_alias, start + 1)
+
+        if not matches:
+            return empty
+
+        matches.sort(key=lambda item: (item["span"][0], -(item["span"][1] - item["span"][0])))
+        formula_ids = unique_preserve_order(match["formula_id"] for match in matches)
+        query_has_comparison_hint = any(compact_text(hint) in normalized_query for hint in FORMULA_COMPARISON_HINTS)
+        if len(formula_ids) >= 2:
+            return {
+                "enabled": True,
+                "type": "comparison",
+                "formula_ids": formula_ids,
+                "left_formula_id": formula_ids[0],
+                "right_formula_id": formula_ids[1],
+                "matches": matches,
+                "disabled_reason": None,
+            }
+        if query_has_comparison_hint and len(matches) >= 2:
+            return {
+                "enabled": True,
+                "type": "comparison",
+                "formula_ids": formula_ids,
+                "left_formula_id": formula_ids[0],
+                "right_formula_id": formula_ids[0],
+                "matches": matches,
+                "disabled_reason": None,
+            }
+        return {
+            "enabled": True,
+            "type": "exact",
+            "formula_ids": formula_ids,
+            "target_formula_id": formula_ids[0],
+            "matches": matches,
+            "disabled_reason": None,
+        }
+
+    def formula_ids_for_row(self, row: dict[str, Any]) -> list[str]:
+        formula_id = row.get("formula_id")
+        if formula_id:
+            return [str(formula_id)]
+
+        passage_ids: list[str] = []
+        source_record_id = str(row.get("source_record_id") or "")
+        if source_record_id:
+            passage_ids.append(source_record_id)
+        passage_ids.extend(safe_json_list(row.get("backref_target_ids_json")))
+
+        formula_ids: list[str] = []
+        for passage_id in unique_preserve_order(passage_ids):
+            formula_ids.extend(self.passage_to_formula_ids.get(passage_id) or [])
+        return unique_preserve_order(formula_ids)
+
+
+def safe_json_list(value: Any) -> list[str]:
+    if not value:
+        return []
+    if isinstance(value, list):
+        return [str(item) for item in value if item]
+    try:
+        loaded = json.loads(str(value))
+    except Exception:
+        return []
+    if not isinstance(loaded, list):
+        return []
+    return [str(item) for item in loaded if item]
+
+
+def first_json_value(value: Any) -> str | None:
+    values = safe_json_list(value)
+    return values[0] if values else None
 
 
 def infer_query_theme(query_focus: str) -> dict[str, Any]:
@@ -353,7 +643,9 @@ class RetrievalEngine:
         self.conn = sqlite3.connect(self.db_path, check_same_thread=False)
         self.conn.row_factory = sqlite3.Row
         self._assert_policy_guards()
-        self.unified_rows = [dict(row) for row in self.conn.execute("SELECT * FROM vw_retrieval_records_unified")]
+        self.formula_runtime = FormulaRuntimeIndex.from_db(self.conn)
+        base_rows = [dict(row) for row in self.conn.execute("SELECT * FROM vw_retrieval_records_unified")]
+        self.unified_rows = self.formula_runtime.formula_rows + base_rows
 
     def close(self) -> None:
         self.conn.close()
@@ -368,10 +660,29 @@ class RetrievalEngine:
     def build_request(self, query_text: str, tight_primary_precision: bool = True) -> dict[str, Any]:
         query_focus = extract_focus_text(query_text)
         query_theme = infer_query_theme(query_focus)
+        formula_normalization = self.formula_runtime.resolve(query_text)
+        if formula_normalization["type"] == "exact":
+            formula_id = formula_normalization["formula_ids"][0]
+            formula = self.formula_runtime.formulas_by_id.get(formula_id) or {}
+            query_theme = {
+                "type": "formula_name",
+                "anchor": formula.get("canonical_name") or query_theme.get("anchor"),
+                "normalized_anchor": formula.get("normalized_name") or query_theme.get("normalized_anchor"),
+                "formula_id": formula_id,
+                "formula_object_normalized": True,
+            }
+        elif formula_normalization["type"] == "comparison":
+            query_theme = {
+                **query_theme,
+                "type": "formula_comparison",
+                "formula_ids": formula_normalization["formula_ids"],
+                "formula_object_normalized": True,
+            }
         return {
             "query_text": query_text,
             "query_text_normalized": query_focus,
             "query_theme": query_theme,
+            "formula_normalization": formula_normalization,
             "target_mode": "strong_first",
             "precision_profile": "tight_primary" if tight_primary_precision else "baseline",
             "allow_levels": ["A", "B", "C"],
@@ -407,7 +718,7 @@ class RetrievalEngine:
         query_focus = request["query_text_normalized"]
         query_theme = request["query_theme"]
         query_terms = build_query_terms(query_focus)
-        scored: list[dict[str, Any]] = []
+        scored: list[dict[str, Any]] = self._collect_formula_object_candidates(request)
         tight_primary_precision = request["precision_profile"] == "tight_primary"
 
         for row in self.unified_rows:
@@ -417,7 +728,7 @@ class RetrievalEngine:
             if text_score <= 0:
                 continue
             if tight_primary_precision:
-                topic_meta = evaluate_topic_consistency(query_theme, row["retrieval_text"])
+                topic_meta = self._row_topic_meta(request, row)
             else:
                 topic_meta = baseline_topic_consistency(row["retrieval_text"])
             weight_bonus = WEIGHT_BONUS.get(row["default_weight_tier"], 0.0)
@@ -433,8 +744,12 @@ class RetrievalEngine:
                     "topic_anchor": topic_meta["topic_anchor"],
                     "topic_consistency": topic_meta["topic_consistency"],
                     "primary_allowed": topic_meta["primary_allowed"],
+                    "formula_candidate_ids": topic_meta.get("formula_candidate_ids", []),
+                    "formula_scope": topic_meta.get("formula_scope"),
                 }
             )
+            if not self._passes_formula_scope_gate(request, candidate):
+                continue
             scored.append(candidate)
 
         if not scored:
@@ -466,6 +781,128 @@ class RetrievalEngine:
                 break
 
         return self._dedupe_semantic_candidates(selected)
+
+    def _collect_formula_object_candidates(self, request: dict[str, Any]) -> list[dict[str, Any]]:
+        normalization = request.get("formula_normalization") or {}
+        formula_ids = normalization.get("formula_ids") or []
+        if not self.formula_runtime.enabled or normalization.get("type") not in {"exact", "comparison"}:
+            return []
+
+        candidates: list[dict[str, Any]] = []
+        for rank, formula_id in enumerate(formula_ids[:4], start=1):
+            row = self.formula_runtime.formula_row_by_formula_id.get(formula_id)
+            if not row:
+                continue
+            matched_aliases = [
+                match.get("alias") or match.get("normalized_alias")
+                for match in normalization.get("matches") or []
+                if match.get("formula_id") == formula_id
+            ]
+            alias_lengths = [
+                len(str(match.get("normalized_alias") or ""))
+                for match in normalization.get("matches") or []
+                if match.get("formula_id") == formula_id
+            ]
+            text_score = 180.0 + (max(alias_lengths) * 6.0 if alias_lengths else 0.0)
+            topic_meta = self._row_topic_meta(request, row)
+            weight_bonus = WEIGHT_BONUS.get(row["default_weight_tier"], 0.0)
+            combined_score = text_score + weight_bonus + topic_meta["precision_adjustment"] + (8.0 / rank)
+            candidate = dict(row)
+            candidate.update(
+                {
+                    "text_match_score": round(text_score, 6),
+                    "weight_bonus": weight_bonus,
+                    "precision_adjustment": topic_meta["precision_adjustment"],
+                    "combined_score": round(combined_score, 6),
+                    "matched_terms": unique_preserve_order([term for term in matched_aliases if term]),
+                    "topic_anchor": topic_meta["topic_anchor"],
+                    "topic_consistency": topic_meta["topic_consistency"],
+                    "primary_allowed": topic_meta["primary_allowed"],
+                    "formula_candidate_ids": topic_meta.get("formula_candidate_ids", []),
+                    "formula_scope": topic_meta.get("formula_scope"),
+                    "primary_block_reason": None if topic_meta["primary_allowed"] else topic_meta["topic_consistency"],
+                    "sparse_score": round(combined_score, 6),
+                    "sparse_bm25_raw": None,
+                    "sparse_bm25_score": None,
+                    "dense_score": 0.0,
+                    "dense_rank_score": 0.0,
+                    "rrf_score": 0.0,
+                    "rerank_raw_score": None,
+                    "rerank_score": None,
+                    "stage_sources": ["formula_object"],
+                    "stage_ranks": {"formula_object": rank},
+                }
+            )
+            if self._passes_formula_scope_gate(request, candidate):
+                candidates.append(candidate)
+        return candidates
+
+    def _row_topic_meta(self, request: dict[str, Any], row: dict[str, Any]) -> dict[str, Any]:
+        base_meta = evaluate_topic_consistency(request["query_theme"], row["retrieval_text"])
+        formula_meta = self._formula_topic_meta(request, row)
+        if not formula_meta:
+            return base_meta
+        return {**base_meta, **formula_meta}
+
+    def _formula_topic_meta(self, request: dict[str, Any], row: dict[str, Any]) -> dict[str, Any] | None:
+        normalization = request.get("formula_normalization") or {}
+        query_type = normalization.get("type")
+        target_formula_ids = set(normalization.get("formula_ids") or [])
+        if query_type not in {"exact", "comparison"} or not target_formula_ids or not self.formula_runtime.enabled:
+            return None
+
+        candidate_formula_ids = self.formula_runtime.formula_ids_for_row(row)
+        if not candidate_formula_ids:
+            return None
+
+        matching_formula_ids = [formula_id for formula_id in candidate_formula_ids if formula_id in target_formula_ids]
+        is_formula_object = row.get("record_table") == "retrieval_ready_formula_view"
+        if matching_formula_ids:
+            formula_id = matching_formula_ids[0]
+            formula = self.formula_runtime.formulas_by_id.get(formula_id) or {}
+            if is_formula_object:
+                topic_consistency = "formula_object_exact" if query_type == "exact" else "comparison_formula_object"
+                precision_adjustment = 72.0 if query_type == "exact" else 56.0
+                formula_scope = "target_formula_object"
+            else:
+                topic_consistency = "same_formula_span" if query_type == "exact" else "comparison_formula_span"
+                precision_adjustment = 36.0 if query_type == "exact" else 30.0
+                formula_scope = "target_formula_span"
+            return {
+                "topic_anchor": formula.get("canonical_name") or row.get("topic_anchor") or "",
+                "topic_consistency": topic_consistency,
+                "precision_adjustment": precision_adjustment,
+                "primary_allowed": True,
+                "formula_candidate_ids": candidate_formula_ids,
+                "formula_scope": formula_scope,
+            }
+
+        first_formula = self.formula_runtime.formulas_by_id.get(candidate_formula_ids[0]) or {}
+        return {
+            "topic_anchor": first_formula.get("canonical_name") or row.get("topic_anchor") or "",
+            "topic_consistency": "different_formula_anchor"
+            if query_type == "exact"
+            else "comparison_out_of_scope_formula_anchor",
+            "precision_adjustment": -72.0 if is_formula_object else -52.0,
+            "primary_allowed": False,
+            "formula_candidate_ids": candidate_formula_ids,
+            "formula_scope": "different_formula_object" if is_formula_object else "different_formula_span",
+        }
+
+    def _passes_formula_scope_gate(self, request: dict[str, Any], candidate: dict[str, Any]) -> bool:
+        normalization = request.get("formula_normalization") or {}
+        if normalization.get("type") not in {"exact", "comparison"}:
+            return True
+        if candidate.get("formula_scope") in {"target_formula_object", "target_formula_span"}:
+            return True
+        if candidate.get("formula_scope") in {"different_formula_object", "different_formula_span"}:
+            return False
+        return candidate.get("topic_consistency") not in {
+            "different_formula_anchor",
+            "expanded_formula_anchor",
+            "comparison_out_of_scope_formula_anchor",
+            "formula_query_off_topic",
+        }
 
     def _semantic_candidate_key(self, candidate: dict[str, Any]) -> str:
         record_table = candidate.get("record_table")
@@ -540,6 +977,15 @@ class RetrievalEngine:
 
         for candidate in raw_candidates:
             used_sources.append(candidate["record_table"])
+            if candidate["record_table"] == "retrieval_ready_formula_view":
+                formula_entries = self._build_formula_object_entries(candidate, request)
+                for index, entry in enumerate(formula_entries):
+                    if index == 0 and candidate["primary_allowed"] and entry["evidence_level"] == "A":
+                        self._merge_evidence_entry(primary_pool, entry)
+                    else:
+                        self._merge_evidence_entry(secondary_pool, entry)
+                continue
+
             if candidate["record_table"] == "records_chunks":
                 backrefs = self._fetch_chunk_backrefs(candidate["record_id"])
                 chunk_hit = {
@@ -636,6 +1082,87 @@ class RetrievalEngine:
                 }
             ],
         }
+
+    def _build_formula_object_entries(
+        self,
+        formula_candidate: dict[str, Any],
+        request: dict[str, Any],
+    ) -> list[dict[str, Any]]:
+        passage_ids = safe_json_list(formula_candidate.get("source_passage_ids_json"))
+        primary_passage_id = formula_candidate.get("primary_formula_passage_id")
+        ordered_passage_ids = unique_preserve_order(
+            [str(primary_passage_id)] if primary_passage_id else [] + passage_ids
+        )
+        if primary_passage_id:
+            ordered_passage_ids = unique_preserve_order([str(primary_passage_id)] + passage_ids)
+        if not ordered_passage_ids:
+            return []
+
+        placeholders = ",".join("?" for _ in ordered_passage_ids)
+        rows = [
+            dict(row)
+            for row in self.conn.execute(
+                f"""
+                SELECT
+                    record_id,
+                    passage_id,
+                    chapter_id,
+                    chapter_name,
+                    text,
+                    normalized_text,
+                    evidence_level,
+                    display_allowed,
+                    risk_flag,
+                    default_weight_tier,
+                    policy_source_id,
+                    requires_disclaimer
+                FROM records_main_passages
+                WHERE passage_id IN ({placeholders})
+                """,
+                ordered_passage_ids,
+            )
+        ]
+        row_by_passage_id = {row["passage_id"]: row for row in rows}
+        entries: list[dict[str, Any]] = []
+        for index, passage_id in enumerate(ordered_passage_ids):
+            main_row = row_by_passage_id.get(passage_id)
+            if not main_row:
+                continue
+            score_adjustment = 1.25 if passage_id == primary_passage_id else max(0.1, 0.75 - index * 0.1)
+            entries.append(
+                {
+                    "record_id": main_row["record_id"],
+                    "source_object": "main_passages",
+                    "evidence_level": main_row["evidence_level"],
+                    "display_allowed": main_row["display_allowed"],
+                    "risk_flag": json.loads(main_row["risk_flag"]),
+                    "default_weight_tier": main_row["default_weight_tier"],
+                    "combined_score": round(float(formula_candidate["combined_score"]) + score_adjustment, 3),
+                    "text_match_score": formula_candidate["text_match_score"],
+                    "matched_terms": list(formula_candidate["matched_terms"]),
+                    "text_preview": preview_text(main_row["text"]),
+                    "chapter_id": main_row["chapter_id"],
+                    "chapter_name": main_row["chapter_name"],
+                    "requires_disclaimer": bool(main_row["requires_disclaimer"]),
+                    "policy_source_id": main_row["policy_source_id"],
+                    "topic_anchor": formula_candidate["topic_anchor"],
+                    "topic_consistency": formula_candidate["topic_consistency"],
+                    "formula_candidate_ids": formula_candidate.get("formula_candidate_ids", []),
+                    "formula_scope": formula_candidate.get("formula_scope"),
+                    "retrieval_paths": [
+                        {
+                            "type": "formula_object_backref",
+                            "formula_record_id": formula_candidate["record_id"],
+                            "formula_id": formula_candidate.get("formula_id"),
+                            "formula_score": formula_candidate["combined_score"],
+                            "source_passage_role": "primary_formula_passage"
+                            if passage_id == primary_passage_id
+                            else "formula_support_passage",
+                        }
+                    ],
+                }
+            )
+        return entries
 
     def _build_direct_entry(self, candidate: dict[str, Any], retrieval_path: str) -> dict[str, Any]:
         return {
