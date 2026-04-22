@@ -480,6 +480,18 @@ VALUE_JUDGMENT_HINTS = (
     "更强",
 )
 
+GREETING_HINTS = (
+    "你好",
+    "您好",
+    "在吗",
+    "你是谁",
+    "你叫什么",
+    "介绍一下你自己",
+    "hello",
+    "hi",
+    "who are you",
+)
+
 REFUSE_GUIDANCE_TEMPLATES = [
     "请改问具体条文，例如：某一条文的原文或含义是什么？",
     "请改问具体方名，例如：黄连汤方的组成或条文是什么？",
@@ -833,6 +845,10 @@ class AnswerAssembler:
             "已提交问题，正在检索可用依据并判断是否命中稳定边界。",
         )
         try:
+            if self._detect_greeting(query_text):
+                payload = self._assemble_greeting(query_text)
+                return self._finalize_commentarial_payload(query_text, payload, None)
+
             policy_refusal = self._detect_policy_refusal(query_text)
             if policy_refusal is not None:
                 payload = self._assemble_policy_refusal(query_text, policy_refusal)
@@ -888,6 +904,29 @@ class AnswerAssembler:
         self._last_progress_stage = stage
         if self._progress_callback:
             self._progress_callback({"stage": stage, "detail": detail})
+
+    def _detect_greeting(self, query_text: str) -> bool:
+        compact_query = compact_whitespace(query_text).lower()
+        return len(compact_query) < 20 and self._has_any_hint(compact_query, GREETING_HINTS)
+
+    def _assemble_greeting(self, query_text: str) -> dict[str, Any]:
+        self._emit_progress(
+            "organizing_evidence",
+            "识别到问候或身份询问，正在生成介绍回复。",
+        )
+        return self._compose_payload(
+            query_text=query_text,
+            answer_mode="strong",
+            answer_text="你好！我是 TCM 经典研读 RAG 系统（《伤寒论》单书研读助手）。你可以向我提问关于《伤寒论》的条文、方剂组成、主治功效以及名家注解等问题，我将基于经典的原文和依据为你解答。",
+            primary=[],
+            secondary=[],
+            review=[],
+            review_notice=None,
+            disclaimer=self._build_disclaimer("strong", False, False),
+            refuse_reason=None,
+            suggested_followup_questions=["《伤寒论》第一条是什么？", "桂枝汤的组成是什么？"],
+            citations=[],
+        )
 
     def _detect_policy_refusal(self, query_text: str) -> str | None:
         compact_query = compact_whitespace(query_text)

@@ -14,6 +14,7 @@ __pycache__/
 Thumbs.db
 .vscode/
 .idea/
+.playwright-cli/
 
 # Runtime outputs
 outputs/
