@@ -35,6 +35,7 @@
   "primary_limit": 1,
   "secondary_limit": 5,
   "source_object_bonus": {
+    "definition_terms": 14.0,
     "main_passages": 8.0,
     "passages": 6.0
   },
@@ -58,6 +59,18 @@
           "extract_as": "topic"
         },
         {
+          "pattern_id": "what_is_prefix_colloquial",
+          "match_mode": "prefix",
+          "value": "什么叫",
+          "extract_as": "topic"
+        },
+        {
+          "pattern_id": "what_is_prefix_classic",
+          "match_mode": "prefix",
+          "value": "何谓",
+          "extract_as": "topic"
+        },
+        {
           "pattern_id": "what_is_suffix",
           "match_mode": "suffix",
           "value": "是什么",
@@ -70,7 +83,10 @@
         "term_membership_sentence"
       ],
       "primary_source_allowlist": [
-        "main_passages",
+        "definition_terms",
+        "main_passages"
+      ],
+      "secondary_source_allowlist": [
         "passages"
       ],
       "blocked_source_objects": [
@@ -94,6 +110,36 @@
           "match_mode": "suffix",
           "value": "什么意思",
           "extract_as": "topic"
+        },
+        {
+          "pattern_id": "what_means_understand_suffix",
+          "match_mode": "suffix",
+          "value": "怎么理解",
+          "extract_as": "topic"
+        },
+        {
+          "pattern_id": "what_means_function_suffix",
+          "match_mode": "suffix",
+          "value": "是干什么的",
+          "extract_as": "topic"
+        },
+        {
+          "pattern_id": "what_means_function_suffix_variant",
+          "match_mode": "suffix",
+          "value": "是做什么的",
+          "extract_as": "topic"
+        },
+        {
+          "pattern_id": "what_means_usefulness_suffix",
+          "match_mode": "suffix",
+          "value": "有什么用",
+          "extract_as": "topic"
+        },
+        {
+          "pattern_id": "what_means_usefulness_suffix_short",
+          "match_mode": "suffix",
+          "value": "有啥用",
+          "extract_as": "topic"
         }
       ],
       "preferred_evidence_types": [
@@ -102,7 +148,10 @@
         "term_membership_sentence"
       ],
       "primary_source_allowlist": [
-        "main_passages",
+        "definition_terms",
+        "main_passages"
+      ],
+      "secondary_source_allowlist": [
         "passages"
       ],
       "blocked_source_objects": [
@@ -127,7 +176,10 @@
         "subject_category_definition"
       ],
       "primary_source_allowlist": [
-        "main_passages",
+        "definition_terms",
+        "main_passages"
+      ],
+      "secondary_source_allowlist": [
         "passages"
       ],
       "blocked_source_objects": [
@@ -149,6 +201,11 @@
           "pattern_id": "what_kind_of_drug",
           "match_mode": "regex",
           "value": "^(?P<subject>.+?)是什么药$"
+        },
+        {
+          "pattern_id": "what_kind_of_drug_short",
+          "match_mode": "regex",
+          "value": "^(?P<subject>.+?)是啥药$"
         }
       ],
       "preferred_evidence_types": [
@@ -157,7 +214,10 @@
         "subject_predicate_explanation"
       ],
       "primary_source_allowlist": [
-        "main_passages",
+        "definition_terms",
+        "main_passages"
+      ],
+      "secondary_source_allowlist": [
         "passages"
       ],
       "blocked_source_objects": [

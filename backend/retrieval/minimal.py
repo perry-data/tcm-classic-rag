@@ -39,6 +39,7 @@ DEFAULT_EXAMPLES = [
 ]
 
 SOURCE_BUDGETS = {
+    "definition_term_object_view": 4,
     "formula_object_view": 4,
     "safe_chunks": 8,
     "safe_main_passages_primary": 6,
@@ -109,10 +110,20 @@ FORMULA_ANCHOR_VARIANT_REPLACEMENTS = (
 )
 FORMULA_OBJECT_DISABLE_ENV = "TCM_DISABLE_FORMULA_OBJECT_RETRIEVAL"
 FORMULA_OBJECT_SOURCE_ID = "formula_object_view"
+DEFINITION_OBJECT_DISABLE_ENV = "TCM_DISABLE_DEFINITION_OBJECT_RETRIEVAL"
+DEFINITION_OBJECT_SOURCE_ID = "definition_term_object_view"
 FORMULA_RUNTIME_TABLES = (
     "formula_canonical_registry",
     "formula_alias_registry",
     "retrieval_ready_formula_view",
+)
+DEFINITION_RUNTIME_TABLES = (
+    "definition_term_registry",
+    "retrieval_ready_definition_view",
+)
+DEFINITION_RUNTIME_OPTIONAL_TABLES = (
+    "term_alias_registry",
+    "learner_query_normalization_lexicon",
 )
 FORMULA_COMPARISON_HINTS = ("区别", "不同", "比较", "对比", "异同", "有什么不一样", "和", "与")
 
@@ -484,6 +495,367 @@ class FormulaRuntimeIndex:
         return unique_preserve_order(formula_ids)
 
 
+class DefinitionRuntimeIndex:
+    def __init__(
+        self,
+        *,
+        enabled: bool,
+        definition_rows: list[dict[str, Any]] | None = None,
+        concepts_by_id: dict[str, dict[str, Any]] | None = None,
+        alias_rows: list[dict[str, Any]] | None = None,
+        query_family_rows: list[dict[str, Any]] | None = None,
+        passage_to_concept_ids: dict[str, list[str]] | None = None,
+        disabled_reason: str | None = None,
+    ) -> None:
+        self.enabled = enabled
+        self.definition_rows = definition_rows or []
+        self.definition_row_by_concept_id = {
+            row["concept_id"]: row for row in self.definition_rows if row.get("concept_id")
+        }
+        self.concepts_by_id = concepts_by_id or {}
+        self.alias_rows = alias_rows or []
+        self.query_family_rows = query_family_rows or []
+        self.passage_to_concept_ids = passage_to_concept_ids or {}
+        self.disabled_reason = disabled_reason
+
+    @classmethod
+    def disabled(cls, reason: str) -> "DefinitionRuntimeIndex":
+        return cls(enabled=False, disabled_reason=reason)
+
+    def empty_resolution(self) -> dict[str, Any]:
+        return {
+            "enabled": self.enabled,
+            "type": "none",
+            "concept_ids": [],
+            "matches": [],
+            "matched_query_family": None,
+            "normalized_target_term": None,
+            "canonical_target_term": None,
+            "canonical_query": None,
+            "disabled_reason": self.disabled_reason,
+        }
+
+    @classmethod
+    def from_db(cls, conn: sqlite3.Connection) -> "DefinitionRuntimeIndex":
+        if runtime_env_flag_enabled(os.getenv(DEFINITION_OBJECT_DISABLE_ENV)):
+            return cls.disabled(f"{DEFINITION_OBJECT_DISABLE_ENV}=1")
+
+        existing = {
+            row[0]
+            for row in conn.execute(
+                "SELECT name FROM sqlite_master WHERE name IN ({})".format(
+                    ",".join("?" for _ in DEFINITION_RUNTIME_TABLES)
+                ),
+                DEFINITION_RUNTIME_TABLES,
+            )
+        }
+        missing = [name for name in DEFINITION_RUNTIME_TABLES if name not in existing]
+        if missing:
+            return cls.disabled("missing:" + ",".join(missing))
+
+        optional_existing = {
+            row[0]
+            for row in conn.execute(
+                "SELECT name FROM sqlite_master WHERE name IN ({})".format(
+                    ",".join("?" for _ in DEFINITION_RUNTIME_OPTIONAL_TABLES)
+                ),
+                DEFINITION_RUNTIME_OPTIONAL_TABLES,
+            )
+        }
+
+        concepts_by_id = {
+            row["concept_id"]: dict(row)
+            for row in conn.execute(
+                """
+                SELECT *
+                FROM definition_term_registry
+                WHERE is_active = 1
+                """
+            )
+        }
+        view_rows = [dict(row) for row in conn.execute("SELECT * FROM retrieval_ready_definition_view")]
+        definition_rows: list[dict[str, Any]] = []
+        passage_to_concept_ids: dict[str, list[str]] = {}
+        for row in view_rows:
+            concept_id = row["concept_id"]
+            record_id = f"safe:definition_terms:{concept_id}"
+            for passage_id in safe_json_list(row.get("source_passage_ids_json")):
+                passage_to_concept_ids.setdefault(passage_id, [])
+                if concept_id not in passage_to_concept_ids[passage_id]:
+                    passage_to_concept_ids[passage_id].append(concept_id)
+            definition_rows.append(
+                {
+                    "retrieval_entry_id": record_id,
+                    "record_table": "retrieval_ready_definition_view",
+                    "record_id": record_id,
+                    "source_record_id": concept_id,
+                    "dataset_variant": "safe",
+                    "source_object": "definition_terms",
+                    "source_type": "definition_evidence_object",
+                    "retrieval_text": row.get("retrieval_text") or row.get("primary_evidence_text") or "",
+                    "normalized_text": compact_text(row.get("retrieval_text") or row.get("primary_evidence_text")),
+                    "book_id": "ZJSHL",
+                    "chapter_id": first_json_value(row.get("chapter_ids_json")),
+                    "chapter_name": "",
+                    "evidence_level": row.get("allowed_evidence_level") or "A",
+                    "display_allowed": "primary",
+                    "risk_flag": "[]",
+                    "requires_disclaimer": 0,
+                    "default_weight_tier": "highest",
+                    "policy_source_id": DEFINITION_OBJECT_SOURCE_ID,
+                    "backref_target_type": "definition_source_passages",
+                    "backref_target_ids_json": row.get("source_passage_ids_json") or "[]",
+                    "concept_id": concept_id,
+                    "canonical_term": row.get("canonical_term"),
+                    "normalized_term": row.get("normalized_term"),
+                    "concept_type": row.get("concept_type"),
+                    "query_aliases_json": row.get("query_aliases_json") or "[]",
+                    "primary_evidence_type": row.get("primary_evidence_type"),
+                    "primary_evidence_text": row.get("primary_evidence_text"),
+                    "primary_support_passage_id": row.get("primary_support_passage_id"),
+                    "source_passage_ids_json": row.get("source_passage_ids_json") or "[]",
+                    "source_confidence": row.get("source_confidence"),
+                    "primary_source_table": row.get("primary_source_table") or "",
+                    "promotion_state": row.get("promotion_state") or "",
+                    "promotion_source_layer": row.get("promotion_source_layer") or "",
+                    "promotion_reason": row.get("promotion_reason") or "",
+                    "review_only_reason": row.get("review_only_reason") or "",
+                    "notes": row.get("notes") or "",
+                }
+            )
+
+        alias_rows: list[dict[str, Any]] = []
+        if "term_alias_registry" in optional_existing:
+            raw_alias_rows = [
+                dict(row)
+                for row in conn.execute(
+                    """
+                    SELECT
+                        alias,
+                        normalized_alias,
+                        concept_id,
+                        canonical_term,
+                        alias_type,
+                        confidence,
+                        source
+                    FROM term_alias_registry
+                    WHERE is_active = 1
+                    """
+                )
+            ]
+            for row in raw_alias_rows:
+                if row["concept_id"] not in {item["concept_id"] for item in definition_rows}:
+                    continue
+                normalized_alias = compact_text(row.get("normalized_alias") or row.get("alias"))
+                if len(normalized_alias) < 2:
+                    continue
+                row["normalized_alias"] = normalized_alias
+                row["confidence"] = float(row.get("confidence") or 0.0)
+                alias_rows.append(row)
+
+        if "learner_query_normalization_lexicon" in optional_existing:
+            lexicon_rows = [
+                dict(row)
+                for row in conn.execute(
+                    """
+                    SELECT
+                        entry_type,
+                        match_mode,
+                        surface_form,
+                        normalized_surface_form,
+                        target_type,
+                        target_id,
+                        target_term,
+                        intent_hint,
+                        canonical_query_template,
+                        confidence,
+                        source,
+                        notes
+                    FROM learner_query_normalization_lexicon
+                    WHERE is_active = 1
+                    """
+                )
+            ]
+        else:
+            lexicon_rows = []
+
+        query_family_rows = [
+            {
+                **row,
+                "normalized_surface_form": compact_text(row.get("normalized_surface_form") or row.get("surface_form")),
+                "confidence": float(row.get("confidence") or 0.0),
+            }
+            for row in lexicon_rows
+            if row.get("entry_type") == "query_family"
+        ]
+        query_family_rows.sort(
+            key=lambda row: (-len(row["normalized_surface_form"]), -row["confidence"], row["surface_form"])
+        )
+
+        for row in lexicon_rows:
+            if row.get("entry_type") != "term_surface":
+                continue
+            concept_id = str(row.get("target_id") or "")
+            if concept_id not in {item["concept_id"] for item in definition_rows}:
+                continue
+            normalized_alias = compact_text(row.get("normalized_surface_form") or row.get("surface_form"))
+            if len(normalized_alias) < 2:
+                continue
+            alias_rows.append(
+                {
+                    "alias": row.get("surface_form") or row.get("target_term") or "",
+                    "normalized_alias": normalized_alias,
+                    "concept_id": concept_id,
+                    "canonical_term": row.get("target_term") or "",
+                    "alias_type": "learner_term_surface",
+                    "confidence": float(row.get("confidence") or 0.0),
+                    "source": row.get("source") or "learner_query_normalization_lexicon",
+                }
+            )
+
+        deduped_aliases: dict[tuple[str, str], dict[str, Any]] = {}
+        for row in alias_rows:
+            key = (row["concept_id"], row["normalized_alias"])
+            existing = deduped_aliases.get(key)
+            if existing is None or float(row["confidence"]) > float(existing["confidence"]):
+                deduped_aliases[key] = row
+        alias_rows = sorted(
+            deduped_aliases.values(),
+            key=lambda row: (-len(row["normalized_alias"]), -float(row["confidence"]), row["normalized_alias"]),
+        )
+
+        return cls(
+            enabled=bool(definition_rows),
+            definition_rows=definition_rows,
+            concepts_by_id=concepts_by_id,
+            alias_rows=alias_rows,
+            query_family_rows=query_family_rows,
+            passage_to_concept_ids=passage_to_concept_ids,
+            disabled_reason=None if definition_rows else "empty definition runtime rows",
+        )
+
+    def _match_aliases(self, normalized_query: str) -> list[dict[str, Any]]:
+        occupied: list[tuple[int, int]] = []
+        matches: list[dict[str, Any]] = []
+        for alias in self.alias_rows:
+            normalized_alias = alias["normalized_alias"]
+            start = normalized_query.find(normalized_alias)
+            while start >= 0:
+                end = start + len(normalized_alias)
+                overlaps = any(not (end <= used_start or start >= used_end) for used_start, used_end in occupied)
+                if not overlaps:
+                    occupied.append((start, end))
+                    matches.append(
+                        {
+                            "concept_id": alias["concept_id"],
+                            "canonical_term": alias.get("canonical_term"),
+                            "alias": alias.get("alias"),
+                            "normalized_alias": normalized_alias,
+                            "alias_type": alias.get("alias_type"),
+                            "confidence": alias.get("confidence"),
+                            "source": alias.get("source"),
+                            "span": [start, end],
+                        }
+                    )
+                    break
+                start = normalized_query.find(normalized_alias, start + 1)
+        matches.sort(key=lambda item: (item["span"][0], -(item["span"][1] - item["span"][0])))
+        return matches
+
+    def resolve(self, query_text: str) -> dict[str, Any]:
+        empty = self.empty_resolution()
+        if not self.enabled:
+            return empty
+
+        normalized_query = compact_text(query_text)
+        if not normalized_query:
+            return empty
+
+        matched_family: dict[str, Any] | None = None
+        stripped_query = normalized_query
+        for row in self.query_family_rows:
+            surface = row["normalized_surface_form"]
+            if not surface:
+                continue
+            residual = None
+            if row["match_mode"] == "prefix" and normalized_query.startswith(surface):
+                residual = normalized_query[len(surface) :]
+            elif row["match_mode"] == "suffix" and normalized_query.endswith(surface):
+                residual = normalized_query[: -len(surface)]
+            elif row["match_mode"] == "exact" and normalized_query == surface:
+                residual = ""
+            if residual is None:
+                continue
+            residual = residual.strip()
+            if row["match_mode"] != "exact" and not residual:
+                continue
+            matched_family = row
+            stripped_query = residual or normalized_query
+            break
+
+        matches = self._match_aliases(stripped_query) if stripped_query else []
+        if not matches and stripped_query != normalized_query:
+            matches = self._match_aliases(normalized_query)
+        if matched_family and stripped_query:
+            exact_topic_matches = [
+                match
+                for match in matches
+                if match.get("span") == [0, len(stripped_query)]
+            ]
+            if exact_topic_matches:
+                matches = exact_topic_matches
+            else:
+                return empty
+        if not matches:
+            return empty
+
+        concept_ids = unique_preserve_order(match["concept_id"] for match in matches)
+        canonical_target_term = matches[0].get("canonical_term") or self.concepts_by_id.get(
+            concept_ids[0], {}
+        ).get("canonical_term")
+        canonical_query = None
+        if matched_family and canonical_target_term:
+            canonical_query = str(matched_family.get("canonical_query_template") or "").replace(
+                "{topic}",
+                canonical_target_term,
+            )
+
+        return {
+            "enabled": True,
+            "type": "normalized_query" if matched_family else "exact_term",
+            "concept_ids": concept_ids,
+            "matches": matches,
+            "matched_query_family": None
+            if matched_family is None
+            else {
+                "surface_form": matched_family.get("surface_form"),
+                "match_mode": matched_family.get("match_mode"),
+                "intent_hint": matched_family.get("intent_hint"),
+                "canonical_query_template": matched_family.get("canonical_query_template"),
+            },
+            "normalized_target_term": compact_text(canonical_target_term),
+            "canonical_target_term": canonical_target_term,
+            "canonical_query": canonical_query,
+            "disabled_reason": None,
+        }
+
+    def concept_ids_for_row(self, row: dict[str, Any]) -> list[str]:
+        concept_id = row.get("concept_id")
+        if concept_id:
+            return [str(concept_id)]
+
+        passage_ids: list[str] = []
+        source_record_id = str(row.get("source_record_id") or "")
+        if source_record_id:
+            passage_ids.append(source_record_id)
+        passage_ids.extend(safe_json_list(row.get("backref_target_ids_json")))
+
+        concept_ids: list[str] = []
+        for passage_id in unique_preserve_order(passage_ids):
+            concept_ids.extend(self.passage_to_concept_ids.get(passage_id) or [])
+        return unique_preserve_order(concept_ids)
+
+
 def safe_json_list(value: Any) -> list[str]:
     if not value:
         return []
@@ -643,9 +1015,11 @@ class RetrievalEngine:
         self.conn = sqlite3.connect(self.db_path, check_same_thread=False)
         self.conn.row_factory = sqlite3.Row
         self._assert_policy_guards()
+        self.definition_runtime = DefinitionRuntimeIndex.from_db(self.conn)
         self.formula_runtime = FormulaRuntimeIndex.from_db(self.conn)
         base_rows = [dict(row) for row in self.conn.execute("SELECT * FROM vw_retrieval_records_unified")]
-        self.unified_rows = self.formula_runtime.formula_rows + base_rows
+        self.unified_rows = self.definition_runtime.definition_rows + self.formula_runtime.formula_rows + base_rows
+        self.record_by_id = {row["record_id"]: row for row in self.unified_rows}
 
     def close(self) -> None:
         self.conn.close()
@@ -659,8 +1033,18 @@ class RetrievalEngine:
 
     def build_request(self, query_text: str, tight_primary_precision: bool = True) -> dict[str, Any]:
         query_focus = extract_focus_text(query_text)
-        query_theme = infer_query_theme(query_focus)
         formula_normalization = self.formula_runtime.resolve(query_text)
+        term_normalization = (
+            self.definition_runtime.resolve(query_text)
+            if formula_normalization.get("type") == "none"
+            else self.definition_runtime.empty_resolution()
+        )
+        query_focus_source = "noise_stripped_query"
+        normalized_target_term = term_normalization.get("normalized_target_term")
+        if normalized_target_term and formula_normalization.get("type") == "none":
+            query_focus = normalized_target_term
+            query_focus_source = "term_normalization"
+        query_theme = infer_query_theme(query_focus)
         if formula_normalization["type"] == "exact":
             formula_id = formula_normalization["formula_ids"][0]
             formula = self.formula_runtime.formulas_by_id.get(formula_id) or {}
@@ -681,8 +1065,10 @@ class RetrievalEngine:
         return {
             "query_text": query_text,
             "query_text_normalized": query_focus,
+            "query_focus_source": query_focus_source,
             "query_theme": query_theme,
             "formula_normalization": formula_normalization,
+            "term_normalization": term_normalization,
             "target_mode": "strong_first",
             "precision_profile": "tight_primary" if tight_primary_precision else "baseline",
             "allow_levels": ["A", "B", "C"],
@@ -718,7 +1104,9 @@ class RetrievalEngine:
         query_focus = request["query_text_normalized"]
         query_theme = request["query_theme"]
         query_terms = build_query_terms(query_focus)
-        scored: list[dict[str, Any]] = self._collect_formula_object_candidates(request)
+        scored: list[dict[str, Any]] = (
+            self._collect_definition_object_candidates(request) + self._collect_formula_object_candidates(request)
+        )
         tight_primary_precision = request["precision_profile"] == "tight_primary"
 
         for row in self.unified_rows:
@@ -837,12 +1225,69 @@ class RetrievalEngine:
                 candidates.append(candidate)
         return candidates
 
+    def _collect_definition_object_candidates(self, request: dict[str, Any]) -> list[dict[str, Any]]:
+        normalization = request.get("term_normalization") or {}
+        concept_ids = normalization.get("concept_ids") or []
+        if not self.definition_runtime.enabled or normalization.get("type") not in {"exact_term", "normalized_query"}:
+            return []
+
+        candidates: list[dict[str, Any]] = []
+        for rank, concept_id in enumerate(concept_ids[:4], start=1):
+            row = self.definition_runtime.definition_row_by_concept_id.get(concept_id)
+            if not row:
+                continue
+            matched_aliases = [
+                match.get("alias") or match.get("normalized_alias")
+                for match in normalization.get("matches") or []
+                if match.get("concept_id") == concept_id
+            ]
+            alias_lengths = [
+                len(str(match.get("normalized_alias") or ""))
+                for match in normalization.get("matches") or []
+                if match.get("concept_id") == concept_id
+            ]
+            text_score = 170.0 + (max(alias_lengths) * 7.0 if alias_lengths else 0.0)
+            topic_meta = self._row_topic_meta(request, row)
+            weight_bonus = WEIGHT_BONUS.get(row["default_weight_tier"], 0.0)
+            combined_score = text_score + weight_bonus + topic_meta["precision_adjustment"] + (8.0 / rank)
+            candidate = dict(row)
+            candidate.update(
+                {
+                    "text_match_score": round(text_score, 6),
+                    "weight_bonus": weight_bonus,
+                    "precision_adjustment": topic_meta["precision_adjustment"],
+                    "combined_score": round(combined_score, 6),
+                    "matched_terms": unique_preserve_order([term for term in matched_aliases if term]),
+                    "topic_anchor": topic_meta["topic_anchor"],
+                    "topic_consistency": topic_meta["topic_consistency"],
+                    "primary_allowed": topic_meta["primary_allowed"],
+                    "definition_candidate_ids": topic_meta.get("definition_candidate_ids", []),
+                    "definition_scope": topic_meta.get("definition_scope"),
+                    "primary_block_reason": None if topic_meta["primary_allowed"] else topic_meta["topic_consistency"],
+                    "sparse_score": round(combined_score, 6),
+                    "sparse_bm25_raw": None,
+                    "sparse_bm25_score": None,
+                    "dense_score": 0.0,
+                    "dense_rank_score": 0.0,
+                    "rrf_score": 0.0,
+                    "rerank_raw_score": None,
+                    "rerank_score": None,
+                    "stage_sources": ["definition_object"],
+                    "stage_ranks": {"definition_object": rank},
+                }
+            )
+            candidates.append(candidate)
+        return candidates
+
     def _row_topic_meta(self, request: dict[str, Any], row: dict[str, Any]) -> dict[str, Any]:
         base_meta = evaluate_topic_consistency(request["query_theme"], row["retrieval_text"])
         formula_meta = self._formula_topic_meta(request, row)
-        if not formula_meta:
-            return base_meta
-        return {**base_meta, **formula_meta}
+        if formula_meta:
+            return {**base_meta, **formula_meta}
+        definition_meta = self._definition_topic_meta(request, row)
+        if definition_meta:
+            return {**base_meta, **definition_meta}
+        return base_meta
 
     def _formula_topic_meta(self, request: dict[str, Any], row: dict[str, Any]) -> dict[str, Any] | None:
         normalization = request.get("formula_normalization") or {}
@@ -887,6 +1332,43 @@ class RetrievalEngine:
             "primary_allowed": False,
             "formula_candidate_ids": candidate_formula_ids,
             "formula_scope": "different_formula_object" if is_formula_object else "different_formula_span",
+        }
+
+    def _definition_topic_meta(self, request: dict[str, Any], row: dict[str, Any]) -> dict[str, Any] | None:
+        normalization = request.get("term_normalization") or {}
+        target_concept_ids = set(normalization.get("concept_ids") or [])
+        if normalization.get("type") not in {"exact_term", "normalized_query"} or not target_concept_ids:
+            return None
+
+        candidate_concept_ids = self.definition_runtime.concept_ids_for_row(row)
+        if not candidate_concept_ids:
+            return None
+
+        matching_concept_ids = [concept_id for concept_id in candidate_concept_ids if concept_id in target_concept_ids]
+        is_definition_object = row.get("record_table") == "retrieval_ready_definition_view"
+        if matching_concept_ids:
+            concept_id = matching_concept_ids[0]
+            concept = self.definition_runtime.concepts_by_id.get(concept_id) or {}
+            return {
+                "topic_anchor": concept.get("canonical_term") or row.get("canonical_term") or "",
+                "topic_consistency": "definition_object_exact" if is_definition_object else "definition_source_span",
+                "precision_adjustment": 64.0 if is_definition_object else 28.0,
+                "primary_allowed": True,
+                "definition_candidate_ids": candidate_concept_ids,
+                "definition_scope": "target_definition_object" if is_definition_object else "target_definition_span",
+            }
+
+        if not is_definition_object:
+            return None
+
+        concept = self.definition_runtime.concepts_by_id.get(candidate_concept_ids[0]) or {}
+        return {
+            "topic_anchor": concept.get("canonical_term") or row.get("canonical_term") or "",
+            "topic_consistency": "different_definition_object",
+            "precision_adjustment": -24.0,
+            "primary_allowed": False,
+            "definition_candidate_ids": candidate_concept_ids,
+            "definition_scope": "different_definition_object",
         }
 
     def _passes_formula_scope_gate(self, request: dict[str, Any], candidate: dict[str, Any]) -> bool:

@@ -1,0 +1,173 @@
+{
+  "generated_at_utc": "2026-04-23T01:12:04.679074+00:00",
+  "name": "small_gold_audit_set_v1",
+  "selection_policy": {
+    "definition_medium": "关键 learner 高频、support-only 升格、risk-layer promotion、上下文/编校/alias 边界争议对象。",
+    "formula_medium": "当前 formula_canonical_registry 中 source_confidence=medium 的全部剩余对象。",
+    "review_only": "当前 definition_term_registry 中 source_confidence=review_only 的全部边界对象。"
+  },
+  "summary": {
+    "object_count": 26,
+    "definition_medium_count": 16,
+    "formula_medium_count": 6,
+    "review_only_count": 4
+  },
+  "objects": [
+    {
+      "object_type": "definition_term",
+      "object_id": "DPO-033fc08d3b2a",
+      "canonical_name": "下药",
+      "audit_focus": "short therapeutic-category term promoted from mixed full passage"
+    },
+    {
+      "object_type": "definition_term",
+      "object_id": "DPO-3883d70fcc3a",
+      "canonical_name": "两感",
+      "audit_focus": "compact disease-state definition from risk-layer passage"
+    },
+    {
+      "object_type": "definition_term",
+      "object_id": "DPO-0523d28f4e23",
+      "canonical_name": "代阴",
+      "audit_focus": "pulse-pattern term with inline variant note in source row"
+    },
+    {
+      "object_type": "definition_term",
+      "object_id": "DPO-d1cbcfc0c2e2",
+      "canonical_name": "伏气",
+      "audit_focus": "support-only concept promoted from full passage"
+    },
+    {
+      "object_type": "definition_term",
+      "object_id": "DPO-f3bab230a1db",
+      "canonical_name": "内烦",
+      "audit_focus": "context-dependent symptom naming sentence"
+    },
+    {
+      "object_type": "definition_term",
+      "object_id": "DPO-c8ac10b5ac88",
+      "canonical_name": "发汗药",
+      "audit_focus": "therapeutic category where current primary is explanatory rather than definitional"
+    },
+    {
+      "object_type": "definition_term",
+      "object_id": "DPO-ce8ffb681e3f",
+      "canonical_name": "四逆",
+      "audit_focus": "learner high-frequency symptom/syndrome term"
+    },
+    {
+      "object_type": "definition_term",
+      "object_id": "DPO-f2fb5cd46de2",
+      "canonical_name": "坏病",
+      "audit_focus": "context-heavy disease-state definition promoted from full passage"
+    },
+    {
+      "object_type": "definition_term",
+      "object_id": "DPO-2436635882e1",
+      "canonical_name": "时行之气",
+      "audit_focus": "learner alias 时气 mapped to canonical term"
+    },
+    {
+      "object_type": "definition_term",
+      "object_id": "DPO-e8f5807c114a",
+      "canonical_name": "水结胸",
+      "audit_focus": "compound disease-state term with formula context nearby"
+    },
+    {
+      "object_type": "definition_term",
+      "object_id": "DPO-b5650615b93f",
+      "canonical_name": "湿痹",
+      "audit_focus": "definition sentence with inline variant contamination"
+    },
+    {
+      "object_type": "definition_term",
+      "object_id": "DPO-246b6bf4c029",
+      "canonical_name": "盗汗",
+      "audit_focus": "high-frequency learner symptom term"
+    },
+    {
+      "object_type": "definition_term",
+      "object_id": "DPO-35a45498ed5c",
+      "canonical_name": "结阴",
+      "audit_focus": "pulse-pattern term paired with 代阴"
+    },
+    {
+      "object_type": "definition_term",
+      "object_id": "DPO-04bc5587d5f4",
+      "canonical_name": "虚烦",
+      "audit_focus": "longer explanatory definition sentence from full layer"
+    },
+    {
+      "object_type": "definition_term",
+      "object_id": "DPO-93241fa8b8b3",
+      "canonical_name": "阳易",
+      "audit_focus": "paired concept after ambiguous alias cleanup"
+    },
+    {
+      "object_type": "definition_term",
+      "object_id": "DPO-3ad2f907adfa",
+      "canonical_name": "阴易",
+      "audit_focus": "paired concept after ambiguous alias cleanup"
+    },
+    {
+      "object_type": "formula",
+      "object_id": "FML-21567be0171c",
+      "canonical_name": "乌梅丸",
+      "audit_focus": "remaining formula medium object"
+    },
+    {
+      "object_type": "formula",
+      "object_id": "FML-ac1d63fd6039",
+      "canonical_name": "旋复代赭石汤",
+      "audit_focus": "remaining formula medium object"
+    },
+    {
+      "object_type": "formula",
+      "object_id": "FML-f581e51c0cb7",
+      "canonical_name": "栀子浓朴汤",
+      "audit_focus": "remaining formula medium object"
+    },
+    {
+      "object_type": "formula",
+      "object_id": "FML-0196ae607c39",
+      "canonical_name": "桂枝甘草龙骨牡蛎汤",
+      "audit_focus": "remaining formula medium object"
+    },
+    {
+      "object_type": "formula",
+      "object_id": "FML-c7b169a846ab",
+      "canonical_name": "茵陈蒿汤",
+      "audit_focus": "remaining formula medium object"
+    },
+    {
+      "object_type": "formula",
+      "object_id": "FML-659e19219c98",
+      "canonical_name": "麻黄附子甘草汤",
+      "audit_focus": "remaining formula medium object"
+    },
+    {
+      "object_type": "review_only_term",
+      "object_id": "DPO-f3846d781793",
+      "canonical_name": "神丹",
+      "audit_focus": "review-only boundary object"
+    },
+    {
+      "object_type": "review_only_term",
+      "object_id": "DPO-c0f3a7cb9d16",
+      "canonical_name": "将军",
+      "audit_focus": "review-only boundary object"
+    },
+    {
+      "object_type": "review_only_term",
+      "object_id": "DPO-07e3ce66b82e",
+      "canonical_name": "两阳",
+      "audit_focus": "review-only boundary object"
+    },
+    {
+      "object_type": "review_only_term",
+      "object_id": "DPO-3239213192a3",
+      "canonical_name": "胆瘅",
+      "audit_focus": "review-only boundary object"
+    }
+  ]
+}

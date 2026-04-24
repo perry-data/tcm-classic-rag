@@ -140,36 +140,52 @@ def env_flag_enabled(value: str | None) -> bool:
 def short_candidate_view(rows: list[dict[str, Any]], stage_score_field: str, limit: int = 6) -> list[dict[str, Any]]:
     summary: list[dict[str, Any]] = []
     for row in rows[:limit]:
-        summary.append(
-            {
-                "record_id": row["record_id"],
-                "source_object": row["source_object"],
-                "chapter_id": row["chapter_id"],
-                "topic_consistency": row["topic_consistency"],
-                stage_score_field: round(float(row.get(stage_score_field, 0.0)), 6),
-                "text_preview": preview_text(row["retrieval_text"]),
-            }
-        )
+        item = {
+            "record_id": row["record_id"],
+            "source_object": row["source_object"],
+            "chapter_id": row["chapter_id"],
+            "topic_consistency": row["topic_consistency"],
+            stage_score_field: round(float(row.get(stage_score_field, 0.0)), 6),
+            "text_preview": preview_text(row["retrieval_text"]),
+        }
+        if row.get("concept_id"):
+            item.update(
+                {
+                    "concept_id": row.get("concept_id"),
+                    "canonical_term": row.get("canonical_term"),
+                    "promotion_source_layer": row.get("promotion_source_layer"),
+                    "primary_support_passage_id": row.get("primary_support_passage_id"),
+                }
+            )
+        summary.append(item)
     return summary
 
 
 def sparse_candidate_view(rows: list[dict[str, Any]], limit: int = 6) -> list[dict[str, Any]]:
     summary: list[dict[str, Any]] = []
     for row in rows[:limit]:
-        summary.append(
-            {
-                "record_id": row["record_id"],
-                "source_object": row["source_object"],
-                "chapter_id": row["chapter_id"],
-                "topic_consistency": row["topic_consistency"],
-                "text_match_score": round(float(row.get("text_match_score", 0.0)), 6),
-                "sparse_score": round(float(row.get("sparse_score", 0.0)), 6),
-                "sparse_bm25_raw": row.get("sparse_bm25_raw"),
-                "sparse_bm25_score": row.get("sparse_bm25_score"),
-                "matched_terms": list(row.get("matched_terms", [])),
-                "text_preview": preview_text(row["retrieval_text"]),
-            }
-        )
+        item = {
+            "record_id": row["record_id"],
+            "source_object": row["source_object"],
+            "chapter_id": row["chapter_id"],
+            "topic_consistency": row["topic_consistency"],
+            "text_match_score": round(float(row.get("text_match_score", 0.0)), 6),
+            "sparse_score": round(float(row.get("sparse_score", 0.0)), 6),
+            "sparse_bm25_raw": row.get("sparse_bm25_raw"),
+            "sparse_bm25_score": row.get("sparse_bm25_score"),
+            "matched_terms": list(row.get("matched_terms", [])),
+            "text_preview": preview_text(row["retrieval_text"]),
+        }
+        if row.get("concept_id"):
+            item.update(
+                {
+                    "concept_id": row.get("concept_id"),
+                    "canonical_term": row.get("canonical_term"),
+                    "promotion_source_layer": row.get("promotion_source_layer"),
+                    "primary_support_passage_id": row.get("primary_support_passage_id"),
+                }
+            )
+        summary.append(item)
     return summary
 
 
@@ -486,7 +502,7 @@ class HybridRetrievalEngine(RetrievalEngine):
         else:
             topic_meta = baseline_topic_consistency(row["retrieval_text"])
         primary_supports_strong = text_match_score > 0 or topic_meta["topic_consistency"] == "exact_formula_anchor"
-        if row.get("record_table") == "retrieval_ready_formula_view":
+        if row.get("record_table") in {"retrieval_ready_formula_view", "retrieval_ready_definition_view"}:
             primary_supports_strong = True
         primary_allowed = topic_meta["primary_allowed"] and primary_supports_strong
         candidate = dict(row)
@@ -947,6 +963,7 @@ class HybridRetrievalEngine(RetrievalEngine):
         record_metadata("retrieval_mode_effective", perf_settings.retrieval_mode)
         sparse_query = build_sparse_fts_match_expression(request["query_text_normalized"])
         formula_object_candidates = self._collect_formula_object_candidates(request)
+        definition_object_candidates = self._collect_definition_object_candidates(request)
         sparse_candidates: list[dict[str, Any]] = []
         dense_chunk_candidates: list[dict[str, Any]] = []
         dense_main_candidates: list[dict[str, Any]] = []
@@ -978,6 +995,7 @@ class HybridRetrievalEngine(RetrievalEngine):
 
         with stage_timer("fusion_rrf"):
             fused_candidates = self._fuse_candidates(
+                ("definition_object", definition_object_candidates),
                 ("formula_object", formula_object_candidates),
                 ("sparse", sparse_candidates),
                 ("dense_chunks", dense_chunk_candidates),
@@ -1017,11 +1035,13 @@ class HybridRetrievalEngine(RetrievalEngine):
                 "match_expression": sparse_query["match_expression"],
             },
             "sparse_top_candidates": sparse_candidate_view(sparse_candidates),
+            "definition_object_top_candidates": sparse_candidate_view(definition_object_candidates),
             "formula_object_top_candidates": sparse_candidate_view(formula_object_candidates),
             "dense_top_candidates": {
                 "dense_chunks": short_candidate_view(dense_chunk_candidates, "dense_score"),
                 "dense_main_passages": short_candidate_view(dense_main_candidates, "dense_score"),
             },
+            "term_normalization": request.get("term_normalization") or {},
             "controlled_replay": {
                 "enabled": self.controlled_replay_enabled,
                 "config_path": self.controlled_replay_config.get("_config_path"),

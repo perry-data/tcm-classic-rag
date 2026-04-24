@@ -1,0 +1,2565 @@
+{
+  "generated_at_utc": "2026-04-24T00:17:15.554261+00:00",
+  "before_db": "/tmp/zjshl_v1_before_gold_audit_minimal_fix_v1.db",
+  "after_db": "/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/zjshl_v1.db",
+  "before": {
+    "snapshot": {
+      "definition_rows": {
+        "发汗药": {
+          "concept_id": "DPO-c8ac10b5ac88",
+          "canonical_term": "发汗药",
+          "normalized_term": "发汗药",
+          "concept_type": "therapeutic_category",
+          "definition_evidence_passage_ids_json": "[]",
+          "explanation_evidence_passage_ids_json": "[\"ZJSHL-CH-006-P-0127\"]",
+          "membership_evidence_passage_ids_json": "[\"ZJSHL-CH-006-P-0120\"]",
+          "primary_support_passage_id": "ZJSHL-CH-006-P-0127",
+          "primary_source_table": "records_passages",
+          "primary_source_object": "passages",
+          "primary_source_record_id": "full:passages:ZJSHL-CH-006-P-0127",
+          "primary_source_evidence_level": "C",
+          "source_passage_ids_json": "[\"ZJSHL-CH-006-P-0127\",\"ZJSHL-CH-006-P-0120\"]",
+          "chapter_ids_json": "[\"ZJSHL-CH-006\"]",
+          "query_aliases_json": "[\"发汗的药\",\"发汗类药\"]",
+          "learner_surface_forms_json": "[\"发汗的药\",\"发汗类药\"]",
+          "primary_evidence_type": "exact_term_explanation",
+          "primary_evidence_text": "发汗药，须温暖服者，易为发散也",
+          "retrieval_text": "发汗药，须温暖服者，易为发散也\n桂枝汤者，发汗药也\n发汗药\n发汗的药\n发汗类药",
+          "normalized_retrieval_text": "发汗药须温暖服者易为发散也桂枝汤者发汗药也发汗药发汗的药发汗类药",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "promotion_source_layer": "promoted_from_full_risk_layer",
+          "promotion_reason": "exact sentence promoted out of mixed full passage",
+          "review_only_reason": "",
+          "notes": "从 risk_only full passage 中抽出解释句与类属句，避免整段混入《金匮玉函》警示材料。",
+          "is_safe_primary_candidate": 1,
+          "is_active": 1,
+          "definition_evidence_passage_ids": [],
+          "explanation_evidence_passage_ids": [
+            "ZJSHL-CH-006-P-0127"
+          ],
+          "membership_evidence_passage_ids": [
+            "ZJSHL-CH-006-P-0120"
+          ],
+          "source_passage_ids": [
+            "ZJSHL-CH-006-P-0127",
+            "ZJSHL-CH-006-P-0120"
+          ],
+          "chapter_ids": [
+            "ZJSHL-CH-006"
+          ],
+          "query_aliases": [
+            "发汗的药",
+            "发汗类药"
+          ],
+          "learner_surface_forms": [
+            "发汗的药",
+            "发汗类药"
+          ]
+        },
+        "胆瘅": {
+          "concept_id": "DPO-3239213192a3",
+          "canonical_term": "胆瘅",
+          "normalized_term": "胆瘅",
+          "concept_type": "disease_state_term",
+          "definition_evidence_passage_ids_json": "[\"ZJSHL-CH-012-P-0214\"]",
+          "explanation_evidence_passage_ids_json": "[]",
+          "membership_evidence_passage_ids_json": "[]",
+          "primary_support_passage_id": "ZJSHL-CH-012-P-0214",
+          "primary_source_table": "records_passages",
+          "primary_source_object": "passages",
+          "primary_source_record_id": "full:passages:ZJSHL-CH-012-P-0214",
+          "primary_source_evidence_level": "C",
+          "source_passage_ids_json": "[\"ZJSHL-CH-012-P-0214\"]",
+          "chapter_ids_json": "[\"ZJSHL-CH-012\"]",
+          "query_aliases_json": "[\"口苦病\"]",
+          "learner_surface_forms_json": "[]",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "有病口苦者，名曰胆瘅",
+          "retrieval_text": "有病口苦者，名曰胆瘅\n胆瘅\n口苦病",
+          "normalized_retrieval_text": "有病口苦者名曰胆瘅胆瘅口苦病",
+          "source_confidence": "review_only",
+          "promotion_state": "review_only",
+          "promotion_source_layer": "promoted_from_full_risk_layer",
+          "promotion_reason": "exact sentence promoted out of mixed full passage",
+          "review_only_reason": "primary sentence directly depends on commentary citation《内经》曰，当前不宜作为 learner-facing safe primary。",
+          "notes": "从 full passage 中抽出明确命名句，避免整段经络解释压成 support-only。 audit_v1: downgraded from safe_primary because the primary sentence is commentarial.",
+          "is_safe_primary_candidate": 0,
+          "is_active": 1,
+          "definition_evidence_passage_ids": [
+            "ZJSHL-CH-012-P-0214"
+          ],
+          "explanation_evidence_passage_ids": [],
+          "membership_evidence_passage_ids": [],
+          "source_passage_ids": [
+            "ZJSHL-CH-012-P-0214"
+          ],
+          "chapter_ids": [
+            "ZJSHL-CH-012"
+          ],
+          "query_aliases": [
+            "口苦病"
+          ],
+          "learner_surface_forms": []
+        },
+        "下药": {
+          "concept_id": "DPO-033fc08d3b2a",
+          "canonical_term": "下药",
+          "normalized_term": "下药",
+          "concept_type": "therapeutic_category",
+          "definition_evidence_passage_ids_json": "[]",
+          "explanation_evidence_passage_ids_json": "[]",
+          "membership_evidence_passage_ids_json": "[\"ZJSHL-CH-006-P-0120\"]",
+          "primary_support_passage_id": "ZJSHL-CH-006-P-0120",
+          "primary_source_table": "records_passages",
+          "primary_source_object": "passages",
+          "primary_source_record_id": "full:passages:ZJSHL-CH-006-P-0120",
+          "primary_source_evidence_level": "C",
+          "source_passage_ids_json": "[\"ZJSHL-CH-006-P-0120\"]",
+          "chapter_ids_json": "[\"ZJSHL-CH-006\"]",
+          "query_aliases_json": "[\"泻下药\",\"通下药\",\"下法用药\"]",
+          "learner_surface_forms_json": "[\"泻下药\",\"通下药\",\"下法用药\"]",
+          "primary_evidence_type": "term_membership_sentence",
+          "primary_evidence_text": "承气汤者，下药也",
+          "retrieval_text": "承气汤者，下药也\n下药\n泻下药\n通下药\n下法用药",
+          "normalized_retrieval_text": "承气汤者下药也下药泻下药通下药下法用药",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "promotion_source_layer": "promoted_from_full_risk_layer",
+          "promotion_reason": "exact sentence promoted out of mixed full passage",
+          "review_only_reason": "",
+          "notes": "优先提升直接类属句，解决二字短术语 definition query 缺少稳定锚点的问题。",
+          "is_safe_primary_candidate": 1,
+          "is_active": 1,
+          "definition_evidence_passage_ids": [],
+          "explanation_evidence_passage_ids": [],
+          "membership_evidence_passage_ids": [
+            "ZJSHL-CH-006-P-0120"
+          ],
+          "source_passage_ids": [
+            "ZJSHL-CH-006-P-0120"
+          ],
+          "chapter_ids": [
+            "ZJSHL-CH-006"
+          ],
+          "query_aliases": [
+            "泻下药",
+            "通下药",
+            "下法用药"
+          ],
+          "learner_surface_forms": [
+            "泻下药",
+            "通下药",
+            "下法用药"
+          ]
+        },
+        "四逆": {
+          "concept_id": "DPO-ce8ffb681e3f",
+          "canonical_term": "四逆",
+          "normalized_term": "四逆",
+          "concept_type": "syndrome_term",
+          "definition_evidence_passage_ids_json": "[\"ZJSHL-CH-015-P-0203\"]",
+          "explanation_evidence_passage_ids_json": "[]",
+          "membership_evidence_passage_ids_json": "[]",
+          "primary_support_passage_id": "ZJSHL-CH-015-P-0203",
+          "primary_source_table": "records_passages",
+          "primary_source_object": "passages",
+          "primary_source_record_id": "full:passages:ZJSHL-CH-015-P-0203",
+          "primary_source_evidence_level": "C",
+          "source_passage_ids_json": "[\"ZJSHL-CH-015-P-0203\"]",
+          "chapter_ids_json": "[\"ZJSHL-CH-015\"]",
+          "query_aliases_json": "[\"四肢不温\",\"手足不温\"]",
+          "learner_surface_forms_json": "[\"四肢不温\",\"手足不温\"]",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "四逆者，四肢不温也",
+          "retrieval_text": "四逆者，四肢不温也\n四逆\n四肢不温\n手足不温",
+          "normalized_retrieval_text": "四逆者四肢不温也四逆四肢不温手足不温",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "promotion_source_layer": "promoted_from_full_risk_layer",
+          "promotion_reason": "exact sentence promoted out of mixed full passage",
+          "review_only_reason": "",
+          "notes": "补齐普通学习者常见口语入口，解决‘四肢不温是什么’这类问法的归一化缺口。",
+          "is_safe_primary_candidate": 1,
+          "is_active": 1,
+          "definition_evidence_passage_ids": [
+            "ZJSHL-CH-015-P-0203"
+          ],
+          "explanation_evidence_passage_ids": [],
+          "membership_evidence_passage_ids": [],
+          "source_passage_ids": [
+            "ZJSHL-CH-015-P-0203"
+          ],
+          "chapter_ids": [
+            "ZJSHL-CH-015"
+          ],
+          "query_aliases": [
+            "四肢不温",
+            "手足不温"
+          ],
+          "learner_surface_forms": [
+            "四肢不温",
+            "手足不温"
+          ]
+        }
+      },
+      "dandan_aliases": [
+        {
+          "alias": "口苦病",
+          "normalized_alias": "口苦病",
+          "alias_type": "learner_surface",
+          "confidence": 0.9,
+          "source": "data_plane_optimization_v1",
+          "notes": "learner-facing term surface",
+          "is_active": 1
+        },
+        {
+          "alias": "胆瘅",
+          "normalized_alias": "胆瘅",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "data_plane_optimization_v1",
+          "notes": "canonical term alias",
+          "is_active": 1
+        },
+        {
+          "alias": "胆瘅病",
+          "normalized_alias": "胆瘅病",
+          "alias_type": "learner_surface",
+          "confidence": 0.9,
+          "source": "data_plane_optimization_v1",
+          "notes": "learner-facing term surface",
+          "is_active": 1
+        }
+      ],
+      "dandan_learner_entries": [],
+      "dandan_risk_alias_count": 2,
+      "dandan_risk_learner_entry_count": 0
+    },
+    "rows": [
+      {
+        "category": "fahan",
+        "query": "什么是发汗药",
+        "target": "发汗药",
+        "target_concept_id": "DPO-c8ac10b5ac88",
+        "answer_mode": "strong",
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-c8ac10b5ac88"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-c8ac10b5ac88",
+              "canonical_term": "发汗药",
+              "alias": "发汗药",
+              "normalized_alias": "发汗药",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                3
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "什么是",
+            "match_mode": "prefix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "什么是{topic}"
+          },
+          "normalized_target_term": "发汗药",
+          "canonical_target_term": "发汗药",
+          "canonical_query": "什么是发汗药",
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:definition_terms:DPO-c8ac10b5ac88"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": true,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      {
+        "category": "fahan",
+        "query": "发汗药是什么意思",
+        "target": "发汗药",
+        "target_concept_id": "DPO-c8ac10b5ac88",
+        "answer_mode": "strong",
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-c8ac10b5ac88"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-c8ac10b5ac88",
+              "canonical_term": "发汗药",
+              "alias": "发汗药",
+              "normalized_alias": "发汗药",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                3
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "发汗药",
+          "canonical_target_term": "发汗药",
+          "canonical_query": "发汗药是什么意思",
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:definition_terms:DPO-c8ac10b5ac88"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": true,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      {
+        "category": "fahan",
+        "query": "发汗药是干什么的",
+        "target": "发汗药",
+        "target_concept_id": "DPO-c8ac10b5ac88",
+        "answer_mode": "strong",
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-c8ac10b5ac88"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-c8ac10b5ac88",
+              "canonical_term": "发汗药",
+              "alias": "发汗药",
+              "normalized_alias": "发汗药",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                3
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是干什么的",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "发汗药",
+          "canonical_target_term": "发汗药",
+          "canonical_query": "发汗药是什么意思",
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:definition_terms:DPO-c8ac10b5ac88"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": true,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      {
+        "category": "fahan",
+        "query": "发汗的药是什么意思",
+        "target": "发汗药",
+        "target_concept_id": "DPO-c8ac10b5ac88",
+        "answer_mode": "strong",
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-c8ac10b5ac88"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-c8ac10b5ac88",
+              "canonical_term": "发汗药",
+              "alias": "发汗的药",
+              "normalized_alias": "发汗的药",
+              "alias_type": "learner_surface",
+              "confidence": 0.9,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                4
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "发汗药",
+          "canonical_target_term": "发汗药",
+          "canonical_query": "发汗药是什么意思",
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:definition_terms:DPO-c8ac10b5ac88"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": true,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      {
+        "category": "dandan",
+        "query": "什么是胆瘅",
+        "target": "胆瘅",
+        "target_concept_id": "DPO-3239213192a3",
+        "answer_mode": "refuse",
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "primary_ids": [],
+        "primary_record_types": [],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": false,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      {
+        "category": "dandan",
+        "query": "胆瘅是什么意思",
+        "target": "胆瘅",
+        "target_concept_id": "DPO-3239213192a3",
+        "answer_mode": "weak_with_review_notice",
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "primary_ids": [],
+        "primary_record_types": [],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": false,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      {
+        "category": "dandan_alias",
+        "query": "口苦病是什么意思",
+        "target": "胆瘅",
+        "target_concept_id": "DPO-3239213192a3",
+        "answer_mode": "refuse",
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "primary_ids": [],
+        "primary_record_types": [],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": false,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      {
+        "category": "dandan_alias",
+        "query": "胆瘅病是什么意思",
+        "target": "胆瘅",
+        "target_concept_id": "DPO-3239213192a3",
+        "answer_mode": "refuse",
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "primary_ids": [],
+        "primary_record_types": [],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": false,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      {
+        "category": "formula",
+        "query": "桂枝汤方的条文是什么？",
+        "target": "",
+        "target_concept_id": "",
+        "answer_mode": "strong",
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-008-P-0217",
+          "safe:main_passages:ZJSHL-CH-016-P-0034",
+          "safe:main_passages:ZJSHL-CH-008-P-0219"
+        ],
+        "primary_record_types": [
+          "main_passages",
+          "main_passages",
+          "main_passages"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": false,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      {
+        "category": "formula",
+        "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+        "target": "",
+        "target_concept_id": "",
+        "answer_mode": "strong",
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-025-P-0004",
+          "safe:main_passages:ZJSHL-CH-025-P-0003"
+        ],
+        "primary_record_types": [
+          "main_passages",
+          "main_passages"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": false,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      {
+        "category": "gold_safe_definition",
+        "query": "什么是下药",
+        "target": "下药",
+        "target_concept_id": "DPO-033fc08d3b2a",
+        "answer_mode": "strong",
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-033fc08d3b2a"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-033fc08d3b2a",
+              "canonical_term": "下药",
+              "alias": "下药",
+              "normalized_alias": "下药",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "什么是",
+            "match_mode": "prefix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "什么是{topic}"
+          },
+          "normalized_target_term": "下药",
+          "canonical_target_term": "下药",
+          "canonical_query": "什么是下药",
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:definition_terms:DPO-033fc08d3b2a"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": true,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      {
+        "category": "gold_safe_definition",
+        "query": "什么是四逆",
+        "target": "四逆",
+        "target_concept_id": "DPO-ce8ffb681e3f",
+        "answer_mode": "strong",
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-ce8ffb681e3f"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-ce8ffb681e3f",
+              "canonical_term": "四逆",
+              "alias": "四逆",
+              "normalized_alias": "四逆",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "什么是",
+            "match_mode": "prefix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "什么是{topic}"
+          },
+          "normalized_target_term": "四逆",
+          "canonical_target_term": "四逆",
+          "canonical_query": "什么是四逆",
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:definition_terms:DPO-ce8ffb681e3f"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": true,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      }
+    ],
+    "summary": {
+      "query_count": 12,
+      "mode_counts": {
+        "refuse": 3,
+        "strong": 8,
+        "weak_with_review_notice": 1
+      },
+      "category_mode_counts": {
+        "dandan": {
+          "refuse": 1,
+          "weak_with_review_notice": 1
+        },
+        "dandan_alias": {
+          "refuse": 2
+        },
+        "fahan": {
+          "strong": 4
+        },
+        "formula": {
+          "strong": 2
+        },
+        "gold_safe_definition": {
+          "strong": 2
+        }
+      },
+      "forbidden_primary_total": 0,
+      "formula_query_count": 2,
+      "formula_strong_count": 2,
+      "formula_bad_anchor_top5_total": 0,
+      "dandan_definition_primary_conflict_total": 0,
+      "dandan_risk_alias_count": 2,
+      "dandan_risk_learner_entry_count": 0,
+      "gold_safe_definition_target_hit_count": 2,
+      "fahan_target_hit_count": 4
+    }
+  },
+  "after": {
+    "snapshot": {
+      "definition_rows": {
+        "发汗药": {
+          "concept_id": "DPO-c8ac10b5ac88",
+          "canonical_term": "发汗药",
+          "normalized_term": "发汗药",
+          "concept_type": "therapeutic_category",
+          "definition_evidence_passage_ids_json": "[]",
+          "explanation_evidence_passage_ids_json": "[\"ZJSHL-CH-006-P-0127\"]",
+          "membership_evidence_passage_ids_json": "[\"ZJSHL-CH-006-P-0120\"]",
+          "primary_support_passage_id": "ZJSHL-CH-006-P-0127",
+          "primary_source_table": "records_passages",
+          "primary_source_object": "passages",
+          "primary_source_record_id": "full:passages:ZJSHL-CH-006-P-0127",
+          "primary_source_evidence_level": "C",
+          "source_passage_ids_json": "[\"ZJSHL-CH-006-P-0127\",\"ZJSHL-CH-006-P-0120\"]",
+          "chapter_ids_json": "[\"ZJSHL-CH-006\"]",
+          "query_aliases_json": "[\"发汗的药\",\"发汗类药\"]",
+          "learner_surface_forms_json": "[\"发汗的药\",\"发汗类药\"]",
+          "primary_evidence_type": "exact_term_explanation",
+          "primary_evidence_text": "发汗药，须温暖服者，易为发散也",
+          "retrieval_text": "发汗药，须温暖服者，易为发散也\n桂枝汤者，发汗药也\n发汗药\n发汗的药\n发汗类药",
+          "normalized_retrieval_text": "发汗药须温暖服者易为发散也桂枝汤者发汗药也发汗药发汗的药发汗类药",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "promotion_source_layer": "promoted_from_full_risk_layer",
+          "promotion_reason": "gold_fix_v1_explanation_primary_not_strict_definition",
+          "review_only_reason": "",
+          "notes": "从 risk_only full passage 中抽出解释句与类属句，避免整段混入《金匮玉函》警示材料。 gold_fix_v1: no safer standalone membership/definition sentence was selected; keep the current sentence as explanation-primary, not definition-primary. ZJSHL-CH-006-P-0120 remains support membership evidence only.",
+          "is_safe_primary_candidate": 1,
+          "is_active": 1,
+          "definition_evidence_passage_ids": [],
+          "explanation_evidence_passage_ids": [
+            "ZJSHL-CH-006-P-0127"
+          ],
+          "membership_evidence_passage_ids": [
+            "ZJSHL-CH-006-P-0120"
+          ],
+          "source_passage_ids": [
+            "ZJSHL-CH-006-P-0127",
+            "ZJSHL-CH-006-P-0120"
+          ],
+          "chapter_ids": [
+            "ZJSHL-CH-006"
+          ],
+          "query_aliases": [
+            "发汗的药",
+            "发汗类药"
+          ],
+          "learner_surface_forms": [
+            "发汗的药",
+            "发汗类药"
+          ]
+        },
+        "胆瘅": {
+          "concept_id": "DPO-3239213192a3",
+          "canonical_term": "胆瘅",
+          "normalized_term": "胆瘅",
+          "concept_type": "disease_state_term",
+          "definition_evidence_passage_ids_json": "[\"ZJSHL-CH-012-P-0214\"]",
+          "explanation_evidence_passage_ids_json": "[]",
+          "membership_evidence_passage_ids_json": "[]",
+          "primary_support_passage_id": "ZJSHL-CH-012-P-0214",
+          "primary_source_table": "records_passages",
+          "primary_source_object": "passages",
+          "primary_source_record_id": "full:passages:ZJSHL-CH-012-P-0214",
+          "primary_source_evidence_level": "C",
+          "source_passage_ids_json": "[\"ZJSHL-CH-012-P-0214\"]",
+          "chapter_ids_json": "[\"ZJSHL-CH-012\"]",
+          "query_aliases_json": "[]",
+          "learner_surface_forms_json": "[]",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "有病口苦者，名曰胆瘅",
+          "retrieval_text": "有病口苦者，名曰胆瘅\n胆瘅",
+          "normalized_retrieval_text": "有病口苦者名曰胆瘅胆瘅",
+          "source_confidence": "review_only",
+          "promotion_state": "review_only",
+          "promotion_source_layer": "promoted_from_full_risk_layer",
+          "promotion_reason": "exact sentence promoted out of mixed full passage",
+          "review_only_reason": "primary sentence directly depends on commentary citation《内经》曰，当前不宜作为 learner-facing safe primary。",
+          "notes": "从 full passage 中抽出明确命名句，避免整段经络解释压成 support-only。 audit_v1: downgraded from safe_primary because the primary sentence is commentarial. gold_fix_v1: removed review-only learner aliases 口苦病/胆瘅病 from query aliases and retrieval text.",
+          "is_safe_primary_candidate": 0,
+          "is_active": 1,
+          "definition_evidence_passage_ids": [
+            "ZJSHL-CH-012-P-0214"
+          ],
+          "explanation_evidence_passage_ids": [],
+          "membership_evidence_passage_ids": [],
+          "source_passage_ids": [
+            "ZJSHL-CH-012-P-0214"
+          ],
+          "chapter_ids": [
+            "ZJSHL-CH-012"
+          ],
+          "query_aliases": [],
+          "learner_surface_forms": []
+        },
+        "下药": {
+          "concept_id": "DPO-033fc08d3b2a",
+          "canonical_term": "下药",
+          "normalized_term": "下药",
+          "concept_type": "therapeutic_category",
+          "definition_evidence_passage_ids_json": "[]",
+          "explanation_evidence_passage_ids_json": "[]",
+          "membership_evidence_passage_ids_json": "[\"ZJSHL-CH-006-P-0120\"]",
+          "primary_support_passage_id": "ZJSHL-CH-006-P-0120",
+          "primary_source_table": "records_passages",
+          "primary_source_object": "passages",
+          "primary_source_record_id": "full:passages:ZJSHL-CH-006-P-0120",
+          "primary_source_evidence_level": "C",
+          "source_passage_ids_json": "[\"ZJSHL-CH-006-P-0120\"]",
+          "chapter_ids_json": "[\"ZJSHL-CH-006\"]",
+          "query_aliases_json": "[\"泻下药\",\"通下药\",\"下法用药\"]",
+          "learner_surface_forms_json": "[\"泻下药\",\"通下药\",\"下法用药\"]",
+          "primary_evidence_type": "term_membership_sentence",
+          "primary_evidence_text": "承气汤者，下药也",
+          "retrieval_text": "承气汤者，下药也\n下药\n泻下药\n通下药\n下法用药",
+          "normalized_retrieval_text": "承气汤者下药也下药泻下药通下药下法用药",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "promotion_source_layer": "promoted_from_full_risk_layer",
+          "promotion_reason": "exact sentence promoted out of mixed full passage",
+          "review_only_reason": "",
+          "notes": "优先提升直接类属句，解决二字短术语 definition query 缺少稳定锚点的问题。",
+          "is_safe_primary_candidate": 1,
+          "is_active": 1,
+          "definition_evidence_passage_ids": [],
+          "explanation_evidence_passage_ids": [],
+          "membership_evidence_passage_ids": [
+            "ZJSHL-CH-006-P-0120"
+          ],
+          "source_passage_ids": [
+            "ZJSHL-CH-006-P-0120"
+          ],
+          "chapter_ids": [
+            "ZJSHL-CH-006"
+          ],
+          "query_aliases": [
+            "泻下药",
+            "通下药",
+            "下法用药"
+          ],
+          "learner_surface_forms": [
+            "泻下药",
+            "通下药",
+            "下法用药"
+          ]
+        },
+        "四逆": {
+          "concept_id": "DPO-ce8ffb681e3f",
+          "canonical_term": "四逆",
+          "normalized_term": "四逆",
+          "concept_type": "syndrome_term",
+          "definition_evidence_passage_ids_json": "[\"ZJSHL-CH-015-P-0203\"]",
+          "explanation_evidence_passage_ids_json": "[]",
+          "membership_evidence_passage_ids_json": "[]",
+          "primary_support_passage_id": "ZJSHL-CH-015-P-0203",
+          "primary_source_table": "records_passages",
+          "primary_source_object": "passages",
+          "primary_source_record_id": "full:passages:ZJSHL-CH-015-P-0203",
+          "primary_source_evidence_level": "C",
+          "source_passage_ids_json": "[\"ZJSHL-CH-015-P-0203\"]",
+          "chapter_ids_json": "[\"ZJSHL-CH-015\"]",
+          "query_aliases_json": "[\"四肢不温\",\"手足不温\"]",
+          "learner_surface_forms_json": "[\"四肢不温\",\"手足不温\"]",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "四逆者，四肢不温也",
+          "retrieval_text": "四逆者，四肢不温也\n四逆\n四肢不温\n手足不温",
+          "normalized_retrieval_text": "四逆者四肢不温也四逆四肢不温手足不温",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "promotion_source_layer": "promoted_from_full_risk_layer",
+          "promotion_reason": "exact sentence promoted out of mixed full passage",
+          "review_only_reason": "",
+          "notes": "补齐普通学习者常见口语入口，解决‘四肢不温是什么’这类问法的归一化缺口。",
+          "is_safe_primary_candidate": 1,
+          "is_active": 1,
+          "definition_evidence_passage_ids": [
+            "ZJSHL-CH-015-P-0203"
+          ],
+          "explanation_evidence_passage_ids": [],
+          "membership_evidence_passage_ids": [],
+          "source_passage_ids": [
+            "ZJSHL-CH-015-P-0203"
+          ],
+          "chapter_ids": [
+            "ZJSHL-CH-015"
+          ],
+          "query_aliases": [
+            "四肢不温",
+            "手足不温"
+          ],
+          "learner_surface_forms": [
+            "四肢不温",
+            "手足不温"
+          ]
+        }
+      },
+      "dandan_aliases": [
+        {
+          "alias": "胆瘅",
+          "normalized_alias": "胆瘅",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "data_plane_optimization_v1",
+          "notes": "canonical term alias",
+          "is_active": 1
+        }
+      ],
+      "dandan_learner_entries": [],
+      "dandan_risk_alias_count": 0,
+      "dandan_risk_learner_entry_count": 0
+    },
+    "rows": [
+      {
+        "category": "fahan",
+        "query": "什么是发汗药",
+        "target": "发汗药",
+        "target_concept_id": "DPO-c8ac10b5ac88",
+        "answer_mode": "strong",
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-c8ac10b5ac88"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-c8ac10b5ac88",
+              "canonical_term": "发汗药",
+              "alias": "发汗药",
+              "normalized_alias": "发汗药",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                3
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "什么是",
+            "match_mode": "prefix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "什么是{topic}"
+          },
+          "normalized_target_term": "发汗药",
+          "canonical_target_term": "发汗药",
+          "canonical_query": "什么是发汗药",
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:definition_terms:DPO-c8ac10b5ac88"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": true,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      {
+        "category": "fahan",
+        "query": "发汗药是什么意思",
+        "target": "发汗药",
+        "target_concept_id": "DPO-c8ac10b5ac88",
+        "answer_mode": "strong",
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-c8ac10b5ac88"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-c8ac10b5ac88",
+              "canonical_term": "发汗药",
+              "alias": "发汗药",
+              "normalized_alias": "发汗药",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                3
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "发汗药",
+          "canonical_target_term": "发汗药",
+          "canonical_query": "发汗药是什么意思",
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:definition_terms:DPO-c8ac10b5ac88"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": true,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      {
+        "category": "fahan",
+        "query": "发汗药是干什么的",
+        "target": "发汗药",
+        "target_concept_id": "DPO-c8ac10b5ac88",
+        "answer_mode": "strong",
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-c8ac10b5ac88"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-c8ac10b5ac88",
+              "canonical_term": "发汗药",
+              "alias": "发汗药",
+              "normalized_alias": "发汗药",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                3
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是干什么的",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "发汗药",
+          "canonical_target_term": "发汗药",
+          "canonical_query": "发汗药是什么意思",
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:definition_terms:DPO-c8ac10b5ac88"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": true,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      {
+        "category": "fahan",
+        "query": "发汗的药是什么意思",
+        "target": "发汗药",
+        "target_concept_id": "DPO-c8ac10b5ac88",
+        "answer_mode": "strong",
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-c8ac10b5ac88"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-c8ac10b5ac88",
+              "canonical_term": "发汗药",
+              "alias": "发汗的药",
+              "normalized_alias": "发汗的药",
+              "alias_type": "learner_surface",
+              "confidence": 0.9,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                4
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "发汗药",
+          "canonical_target_term": "发汗药",
+          "canonical_query": "发汗药是什么意思",
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:definition_terms:DPO-c8ac10b5ac88"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": true,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      {
+        "category": "dandan",
+        "query": "什么是胆瘅",
+        "target": "胆瘅",
+        "target_concept_id": "DPO-3239213192a3",
+        "answer_mode": "refuse",
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "primary_ids": [],
+        "primary_record_types": [],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": false,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      {
+        "category": "dandan",
+        "query": "胆瘅是什么意思",
+        "target": "胆瘅",
+        "target_concept_id": "DPO-3239213192a3",
+        "answer_mode": "weak_with_review_notice",
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "primary_ids": [],
+        "primary_record_types": [],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": false,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      {
+        "category": "dandan_alias",
+        "query": "口苦病是什么意思",
+        "target": "胆瘅",
+        "target_concept_id": "DPO-3239213192a3",
+        "answer_mode": "refuse",
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "primary_ids": [],
+        "primary_record_types": [],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": false,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      {
+        "category": "dandan_alias",
+        "query": "胆瘅病是什么意思",
+        "target": "胆瘅",
+        "target_concept_id": "DPO-3239213192a3",
+        "answer_mode": "refuse",
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "primary_ids": [],
+        "primary_record_types": [],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": false,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      {
+        "category": "formula",
+        "query": "桂枝汤方的条文是什么？",
+        "target": "",
+        "target_concept_id": "",
+        "answer_mode": "strong",
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-008-P-0217",
+          "safe:main_passages:ZJSHL-CH-016-P-0034",
+          "safe:main_passages:ZJSHL-CH-008-P-0219"
+        ],
+        "primary_record_types": [
+          "main_passages",
+          "main_passages",
+          "main_passages"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": false,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      {
+        "category": "formula",
+        "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+        "target": "",
+        "target_concept_id": "",
+        "answer_mode": "strong",
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-025-P-0004",
+          "safe:main_passages:ZJSHL-CH-025-P-0003"
+        ],
+        "primary_record_types": [
+          "main_passages",
+          "main_passages"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": false,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      {
+        "category": "gold_safe_definition",
+        "query": "什么是下药",
+        "target": "下药",
+        "target_concept_id": "DPO-033fc08d3b2a",
+        "answer_mode": "strong",
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-033fc08d3b2a"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-033fc08d3b2a",
+              "canonical_term": "下药",
+              "alias": "下药",
+              "normalized_alias": "下药",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "什么是",
+            "match_mode": "prefix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "什么是{topic}"
+          },
+          "normalized_target_term": "下药",
+          "canonical_target_term": "下药",
+          "canonical_query": "什么是下药",
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:definition_terms:DPO-033fc08d3b2a"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": true,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      {
+        "category": "gold_safe_definition",
+        "query": "什么是四逆",
+        "target": "四逆",
+        "target_concept_id": "DPO-ce8ffb681e3f",
+        "answer_mode": "strong",
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-ce8ffb681e3f"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-ce8ffb681e3f",
+              "canonical_term": "四逆",
+              "alias": "四逆",
+              "normalized_alias": "四逆",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "什么是",
+            "match_mode": "prefix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "什么是{topic}"
+          },
+          "normalized_target_term": "四逆",
+          "canonical_target_term": "四逆",
+          "canonical_query": "什么是四逆",
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:definition_terms:DPO-ce8ffb681e3f"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": true,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      }
+    ],
+    "summary": {
+      "query_count": 12,
+      "mode_counts": {
+        "refuse": 3,
+        "strong": 8,
+        "weak_with_review_notice": 1
+      },
+      "category_mode_counts": {
+        "dandan": {
+          "refuse": 1,
+          "weak_with_review_notice": 1
+        },
+        "dandan_alias": {
+          "refuse": 2
+        },
+        "fahan": {
+          "strong": 4
+        },
+        "formula": {
+          "strong": 2
+        },
+        "gold_safe_definition": {
+          "strong": 2
+        }
+      },
+      "forbidden_primary_total": 0,
+      "formula_query_count": 2,
+      "formula_strong_count": 2,
+      "formula_bad_anchor_top5_total": 0,
+      "dandan_definition_primary_conflict_total": 0,
+      "dandan_risk_alias_count": 0,
+      "dandan_risk_learner_entry_count": 0,
+      "gold_safe_definition_target_hit_count": 2,
+      "fahan_target_hit_count": 4
+    }
+  },
+  "before_summary": {
+    "query_count": 12,
+    "mode_counts": {
+      "refuse": 3,
+      "strong": 8,
+      "weak_with_review_notice": 1
+    },
+    "category_mode_counts": {
+      "dandan": {
+        "refuse": 1,
+        "weak_with_review_notice": 1
+      },
+      "dandan_alias": {
+        "refuse": 2
+      },
+      "fahan": {
+        "strong": 4
+      },
+      "formula": {
+        "strong": 2
+      },
+      "gold_safe_definition": {
+        "strong": 2
+      }
+    },
+    "forbidden_primary_total": 0,
+    "formula_query_count": 2,
+    "formula_strong_count": 2,
+    "formula_bad_anchor_top5_total": 0,
+    "dandan_definition_primary_conflict_total": 0,
+    "dandan_risk_alias_count": 2,
+    "dandan_risk_learner_entry_count": 0,
+    "gold_safe_definition_target_hit_count": 2,
+    "fahan_target_hit_count": 4
+  },
+  "after_summary": {
+    "query_count": 12,
+    "mode_counts": {
+      "refuse": 3,
+      "strong": 8,
+      "weak_with_review_notice": 1
+    },
+    "category_mode_counts": {
+      "dandan": {
+        "refuse": 1,
+        "weak_with_review_notice": 1
+      },
+      "dandan_alias": {
+        "refuse": 2
+      },
+      "fahan": {
+        "strong": 4
+      },
+      "formula": {
+        "strong": 2
+      },
+      "gold_safe_definition": {
+        "strong": 2
+      }
+    },
+    "forbidden_primary_total": 0,
+    "formula_query_count": 2,
+    "formula_strong_count": 2,
+    "formula_bad_anchor_top5_total": 0,
+    "dandan_definition_primary_conflict_total": 0,
+    "dandan_risk_alias_count": 0,
+    "dandan_risk_learner_entry_count": 0,
+    "gold_safe_definition_target_hit_count": 2,
+    "fahan_target_hit_count": 4
+  },
+  "paired_results": [
+    {
+      "query": "什么是发汗药",
+      "category": "fahan",
+      "before": {
+        "category": "fahan",
+        "query": "什么是发汗药",
+        "target": "发汗药",
+        "target_concept_id": "DPO-c8ac10b5ac88",
+        "answer_mode": "strong",
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-c8ac10b5ac88"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-c8ac10b5ac88",
+              "canonical_term": "发汗药",
+              "alias": "发汗药",
+              "normalized_alias": "发汗药",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                3
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "什么是",
+            "match_mode": "prefix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "什么是{topic}"
+          },
+          "normalized_target_term": "发汗药",
+          "canonical_target_term": "发汗药",
+          "canonical_query": "什么是发汗药",
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:definition_terms:DPO-c8ac10b5ac88"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": true,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "category": "fahan",
+        "query": "什么是发汗药",
+        "target": "发汗药",
+        "target_concept_id": "DPO-c8ac10b5ac88",
+        "answer_mode": "strong",
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-c8ac10b5ac88"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-c8ac10b5ac88",
+              "canonical_term": "发汗药",
+              "alias": "发汗药",
+              "normalized_alias": "发汗药",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                3
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "什么是",
+            "match_mode": "prefix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "什么是{topic}"
+          },
+          "normalized_target_term": "发汗药",
+          "canonical_target_term": "发汗药",
+          "canonical_query": "什么是发汗药",
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:definition_terms:DPO-c8ac10b5ac88"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": true,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "focus_changed": false,
+        "target_hit_changed": false
+      }
+    },
+    {
+      "query": "发汗药是什么意思",
+      "category": "fahan",
+      "before": {
+        "category": "fahan",
+        "query": "发汗药是什么意思",
+        "target": "发汗药",
+        "target_concept_id": "DPO-c8ac10b5ac88",
+        "answer_mode": "strong",
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-c8ac10b5ac88"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-c8ac10b5ac88",
+              "canonical_term": "发汗药",
+              "alias": "发汗药",
+              "normalized_alias": "发汗药",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                3
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "发汗药",
+          "canonical_target_term": "发汗药",
+          "canonical_query": "发汗药是什么意思",
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:definition_terms:DPO-c8ac10b5ac88"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": true,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "category": "fahan",
+        "query": "发汗药是什么意思",
+        "target": "发汗药",
+        "target_concept_id": "DPO-c8ac10b5ac88",
+        "answer_mode": "strong",
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-c8ac10b5ac88"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-c8ac10b5ac88",
+              "canonical_term": "发汗药",
+              "alias": "发汗药",
+              "normalized_alias": "发汗药",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                3
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "发汗药",
+          "canonical_target_term": "发汗药",
+          "canonical_query": "发汗药是什么意思",
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:definition_terms:DPO-c8ac10b5ac88"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": true,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "focus_changed": false,
+        "target_hit_changed": false
+      }
+    },
+    {
+      "query": "发汗药是干什么的",
+      "category": "fahan",
+      "before": {
+        "category": "fahan",
+        "query": "发汗药是干什么的",
+        "target": "发汗药",
+        "target_concept_id": "DPO-c8ac10b5ac88",
+        "answer_mode": "strong",
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-c8ac10b5ac88"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-c8ac10b5ac88",
+              "canonical_term": "发汗药",
+              "alias": "发汗药",
+              "normalized_alias": "发汗药",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                3
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是干什么的",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "发汗药",
+          "canonical_target_term": "发汗药",
+          "canonical_query": "发汗药是什么意思",
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:definition_terms:DPO-c8ac10b5ac88"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": true,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "category": "fahan",
+        "query": "发汗药是干什么的",
+        "target": "发汗药",
+        "target_concept_id": "DPO-c8ac10b5ac88",
+        "answer_mode": "strong",
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-c8ac10b5ac88"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-c8ac10b5ac88",
+              "canonical_term": "发汗药",
+              "alias": "发汗药",
+              "normalized_alias": "发汗药",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                3
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是干什么的",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "发汗药",
+          "canonical_target_term": "发汗药",
+          "canonical_query": "发汗药是什么意思",
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:definition_terms:DPO-c8ac10b5ac88"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": true,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "focus_changed": false,
+        "target_hit_changed": false
+      }
+    },
+    {
+      "query": "发汗的药是什么意思",
+      "category": "fahan",
+      "before": {
+        "category": "fahan",
+        "query": "发汗的药是什么意思",
+        "target": "发汗药",
+        "target_concept_id": "DPO-c8ac10b5ac88",
+        "answer_mode": "strong",
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-c8ac10b5ac88"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-c8ac10b5ac88",
+              "canonical_term": "发汗药",
+              "alias": "发汗的药",
+              "normalized_alias": "发汗的药",
+              "alias_type": "learner_surface",
+              "confidence": 0.9,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                4
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "发汗药",
+          "canonical_target_term": "发汗药",
+          "canonical_query": "发汗药是什么意思",
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:definition_terms:DPO-c8ac10b5ac88"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": true,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "category": "fahan",
+        "query": "发汗的药是什么意思",
+        "target": "发汗药",
+        "target_concept_id": "DPO-c8ac10b5ac88",
+        "answer_mode": "strong",
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-c8ac10b5ac88"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-c8ac10b5ac88",
+              "canonical_term": "发汗药",
+              "alias": "发汗的药",
+              "normalized_alias": "发汗的药",
+              "alias_type": "learner_surface",
+              "confidence": 0.9,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                4
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "发汗药",
+          "canonical_target_term": "发汗药",
+          "canonical_query": "发汗药是什么意思",
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:definition_terms:DPO-c8ac10b5ac88"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": true,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "focus_changed": false,
+        "target_hit_changed": false
+      }
+    },
+    {
+      "query": "什么是胆瘅",
+      "category": "dandan",
+      "before": {
+        "category": "dandan",
+        "query": "什么是胆瘅",
+        "target": "胆瘅",
+        "target_concept_id": "DPO-3239213192a3",
+        "answer_mode": "refuse",
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "primary_ids": [],
+        "primary_record_types": [],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": false,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "category": "dandan",
+        "query": "什么是胆瘅",
+        "target": "胆瘅",
+        "target_concept_id": "DPO-3239213192a3",
+        "answer_mode": "refuse",
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "primary_ids": [],
+        "primary_record_types": [],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": false,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "focus_changed": false,
+        "target_hit_changed": false
+      }
+    },
+    {
+      "query": "胆瘅是什么意思",
+      "category": "dandan",
+      "before": {
+        "category": "dandan",
+        "query": "胆瘅是什么意思",
+        "target": "胆瘅",
+        "target_concept_id": "DPO-3239213192a3",
+        "answer_mode": "weak_with_review_notice",
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "primary_ids": [],
+        "primary_record_types": [],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": false,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "category": "dandan",
+        "query": "胆瘅是什么意思",
+        "target": "胆瘅",
+        "target_concept_id": "DPO-3239213192a3",
+        "answer_mode": "weak_with_review_notice",
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "primary_ids": [],
+        "primary_record_types": [],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": false,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "focus_changed": false,
+        "target_hit_changed": false
+      }
+    },
+    {
+      "query": "口苦病是什么意思",
+      "category": "dandan_alias",
+      "before": {
+        "category": "dandan_alias",
+        "query": "口苦病是什么意思",
+        "target": "胆瘅",
+        "target_concept_id": "DPO-3239213192a3",
+        "answer_mode": "refuse",
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "primary_ids": [],
+        "primary_record_types": [],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": false,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "category": "dandan_alias",
+        "query": "口苦病是什么意思",
+        "target": "胆瘅",
+        "target_concept_id": "DPO-3239213192a3",
+        "answer_mode": "refuse",
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "primary_ids": [],
+        "primary_record_types": [],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": false,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "focus_changed": false,
+        "target_hit_changed": false
+      }
+    },
+    {
+      "query": "胆瘅病是什么意思",
+      "category": "dandan_alias",
+      "before": {
+        "category": "dandan_alias",
+        "query": "胆瘅病是什么意思",
+        "target": "胆瘅",
+        "target_concept_id": "DPO-3239213192a3",
+        "answer_mode": "refuse",
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "primary_ids": [],
+        "primary_record_types": [],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": false,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "category": "dandan_alias",
+        "query": "胆瘅病是什么意思",
+        "target": "胆瘅",
+        "target_concept_id": "DPO-3239213192a3",
+        "answer_mode": "refuse",
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "primary_ids": [],
+        "primary_record_types": [],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": false,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "focus_changed": false,
+        "target_hit_changed": false
+      }
+    },
+    {
+      "query": "桂枝汤方的条文是什么？",
+      "category": "formula",
+      "before": {
+        "category": "formula",
+        "query": "桂枝汤方的条文是什么？",
+        "target": "",
+        "target_concept_id": "",
+        "answer_mode": "strong",
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-008-P-0217",
+          "safe:main_passages:ZJSHL-CH-016-P-0034",
+          "safe:main_passages:ZJSHL-CH-008-P-0219"
+        ],
+        "primary_record_types": [
+          "main_passages",
+          "main_passages",
+          "main_passages"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": false,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "category": "formula",
+        "query": "桂枝汤方的条文是什么？",
+        "target": "",
+        "target_concept_id": "",
+        "answer_mode": "strong",
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-008-P-0217",
+          "safe:main_passages:ZJSHL-CH-016-P-0034",
+          "safe:main_passages:ZJSHL-CH-008-P-0219"
+        ],
+        "primary_record_types": [
+          "main_passages",
+          "main_passages",
+          "main_passages"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": false,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "focus_changed": false,
+        "target_hit_changed": false
+      }
+    },
+    {
+      "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+      "category": "formula",
+      "before": {
+        "category": "formula",
+        "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+        "target": "",
+        "target_concept_id": "",
+        "answer_mode": "strong",
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-025-P-0004",
+          "safe:main_passages:ZJSHL-CH-025-P-0003"
+        ],
+        "primary_record_types": [
+          "main_passages",
+          "main_passages"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": false,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "category": "formula",
+        "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+        "target": "",
+        "target_concept_id": "",
+        "answer_mode": "strong",
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-025-P-0004",
+          "safe:main_passages:ZJSHL-CH-025-P-0003"
+        ],
+        "primary_record_types": [
+          "main_passages",
+          "main_passages"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": false,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "focus_changed": false,
+        "target_hit_changed": false
+      }
+    },
+    {
+      "query": "什么是下药",
+      "category": "gold_safe_definition",
+      "before": {
+        "category": "gold_safe_definition",
+        "query": "什么是下药",
+        "target": "下药",
+        "target_concept_id": "DPO-033fc08d3b2a",
+        "answer_mode": "strong",
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-033fc08d3b2a"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-033fc08d3b2a",
+              "canonical_term": "下药",
+              "alias": "下药",
+              "normalized_alias": "下药",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "什么是",
+            "match_mode": "prefix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "什么是{topic}"
+          },
+          "normalized_target_term": "下药",
+          "canonical_target_term": "下药",
+          "canonical_query": "什么是下药",
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:definition_terms:DPO-033fc08d3b2a"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": true,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "category": "gold_safe_definition",
+        "query": "什么是下药",
+        "target": "下药",
+        "target_concept_id": "DPO-033fc08d3b2a",
+        "answer_mode": "strong",
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-033fc08d3b2a"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-033fc08d3b2a",
+              "canonical_term": "下药",
+              "alias": "下药",
+              "normalized_alias": "下药",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "什么是",
+            "match_mode": "prefix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "什么是{topic}"
+          },
+          "normalized_target_term": "下药",
+          "canonical_target_term": "下药",
+          "canonical_query": "什么是下药",
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:definition_terms:DPO-033fc08d3b2a"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": true,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "focus_changed": false,
+        "target_hit_changed": false
+      }
+    },
+    {
+      "query": "什么是四逆",
+      "category": "gold_safe_definition",
+      "before": {
+        "category": "gold_safe_definition",
+        "query": "什么是四逆",
+        "target": "四逆",
+        "target_concept_id": "DPO-ce8ffb681e3f",
+        "answer_mode": "strong",
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-ce8ffb681e3f"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-ce8ffb681e3f",
+              "canonical_term": "四逆",
+              "alias": "四逆",
+              "normalized_alias": "四逆",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "什么是",
+            "match_mode": "prefix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "什么是{topic}"
+          },
+          "normalized_target_term": "四逆",
+          "canonical_target_term": "四逆",
+          "canonical_query": "什么是四逆",
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:definition_terms:DPO-ce8ffb681e3f"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": true,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "category": "gold_safe_definition",
+        "query": "什么是四逆",
+        "target": "四逆",
+        "target_concept_id": "DPO-ce8ffb681e3f",
+        "answer_mode": "strong",
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-ce8ffb681e3f"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-ce8ffb681e3f",
+              "canonical_term": "四逆",
+              "alias": "四逆",
+              "normalized_alias": "四逆",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "什么是",
+            "match_mode": "prefix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "什么是{topic}"
+          },
+          "normalized_target_term": "四逆",
+          "canonical_target_term": "四逆",
+          "canonical_query": "什么是四逆",
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:definition_terms:DPO-ce8ffb681e3f"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "primary_forbidden_items": [],
+        "target_definition_primary_hit": true,
+        "dandan_definition_primary_conflict": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "focus_changed": false,
+        "target_hit_changed": false
+      }
+    }
+  ]
+}

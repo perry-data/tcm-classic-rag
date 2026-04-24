@@ -62,6 +62,9 @@ ANSWER_SMOKE_EXAMPLES = [
 DEFAULT_DEFINITION_QUERY_PRIORITY_RULES_PATH = "config/controlled_replay/definition_query_priority_rules_v1.json"
 FORMULA_EFFECT_PRIMARY_RULES_ENV_FLAG = "TCM_ENABLE_FORMULA_EFFECT_PRIMARY_RULES_V1"
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
+DEFINITION_PRIORITY_PRIMARY_SOURCE_OBJECTS = {"main_passages", "definition_terms"}
+DEFINITION_PRIORITY_PRIMARY_RECORD_PREFIXES = ("safe:main_passages:", "safe:definition_terms:")
+DEFINITION_PRIORITY_PRIMARY_RECORD_TABLES = {"records_main_passages", "retrieval_ready_definition_view"}
 SNIPPET_LIMIT = 120
 LLM_EVIDENCE_TEXT_LIMIT = 280
 LLM_FALLBACK_LINE_LIMIT = 72
@@ -2274,7 +2277,9 @@ class AnswerAssembler:
         primary_limit = int(self.definition_query_priority_config.get("primary_limit", 1))
         secondary_limit = int(self.definition_query_priority_config.get("secondary_limit", 5))
 
-        if not prioritized_candidates[:primary_limit]:
+        primary_candidates = [candidate for candidate in prioritized_candidates if candidate["primary_eligible"]]
+        selected_primary_candidates = primary_candidates[:primary_limit]
+        if not selected_primary_candidates and not prioritized_candidates:
             self._last_definition_priority_debug = {
                 "query": query_text,
                 "enabled": True,
@@ -2285,20 +2290,29 @@ class AnswerAssembler:
             }
             return self._assemble_standard(query_text)
 
-        selected_primary_candidates = prioritized_candidates[:primary_limit]
         primary = [
             self._build_evidence_item(candidate["row"], display_role="primary")
             for candidate in selected_primary_candidates
         ]
         selected_primary_ids = {item["record_id"] for item in primary}
 
-        preferred_secondary_candidates = [
+        supporting_candidates = [
             candidate
-            for candidate in prioritized_candidates[primary_limit:]
+            for candidate in prioritized_candidates
             if candidate["row"]["record_id"] not in selected_primary_ids
-        ][:2]
+            and (candidate["primary_eligible"] or candidate["secondary_eligible"])
+        ]
+        preferred_secondary_limit = 2 if selected_primary_candidates else secondary_limit
+        preferred_secondary_candidates = supporting_candidates[:preferred_secondary_limit]
         secondary: list[dict[str, Any]] = [
-            self._build_evidence_item(candidate["row"], display_role="secondary")
+            self._build_evidence_item(
+                candidate["row"],
+                display_role="secondary",
+                risk_flags_override=dedupe_strings(
+                    self._extract_risk_flags(candidate["row"])
+                    + ([] if candidate["primary_eligible"] else ["definition_priority_support_only"])
+                ),
+            )
             for candidate in preferred_secondary_candidates
         ]
         seen_secondary_ids = set(selected_primary_ids) | {item["record_id"] for item in secondary}
@@ -2328,17 +2342,22 @@ class AnswerAssembler:
                 if len(secondary) >= secondary_limit:
                     break
 
+        review_seen_ids = set(selected_primary_ids) | {item["record_id"] for item in secondary}
         review = [
             self._build_evidence_item(row, display_role="review")
             for row in retrieval["risk_materials"]
-            if row["record_id"] not in selected_primary_ids
+            if row["record_id"] not in review_seen_ids
         ]
-        answer_text = self._build_definition_priority_answer_text(
-            definition_plan,
-            selected_primary_candidates[0],
-            preferred_secondary_candidates,
-        )
-        citations = self._build_citations("strong", primary, secondary, review)
+        answer_mode = "strong" if primary else "weak_with_review_notice"
+        if selected_primary_candidates:
+            answer_text = self._build_definition_priority_answer_text(
+                definition_plan,
+                selected_primary_candidates[0],
+                preferred_secondary_candidates,
+            )
+        else:
+            answer_text = self._build_answer_text({**retrieval, "mode": answer_mode}, primary, secondary, review)
+        citations = self._build_citations(answer_mode, primary, secondary, review)
         self._last_definition_priority_debug = {
             "query": query_text,
             "enabled": True,
@@ -2352,24 +2371,63 @@ class AnswerAssembler:
                     "record_type": candidate["row"]["source_object"],
                     "evidence_type": candidate["evidence_type"],
                     "selection_score": round(candidate["selection_score"], 3),
+                    "primary_eligible": candidate["primary_eligible"],
+                    "secondary_eligible": candidate["secondary_eligible"],
                 }
                 for candidate in prioritized_candidates[:8]
             ],
+            "no_primary_eligible": not bool(selected_primary_candidates),
             "fallback_to_standard": False,
         }
         return self._compose_payload(
             query_text=query_text,
-            answer_mode="strong",
+            answer_mode=answer_mode,
             answer_text=answer_text,
             primary=primary,
             secondary=secondary,
             review=review,
-            review_notice=self._build_review_notice("strong") if secondary or review else None,
-            disclaimer=self._build_disclaimer("strong", bool(secondary), bool(review)),
+            review_notice=(
+                self._build_review_notice(answer_mode) if (answer_mode != "strong" or secondary or review) else None
+            ),
+            disclaimer=self._build_disclaimer(answer_mode, bool(secondary), bool(review)),
             refuse_reason=None,
             suggested_followup_questions=[],
             citations=citations,
         )
+
+    def _definition_priority_primary_eligible(
+        self,
+        row: dict[str, Any],
+        family_rule: dict[str, Any],
+    ) -> bool:
+        source_object = row.get("source_object")
+        allowed_sources = set(family_rule.get("primary_source_allowlist", []))
+        if allowed_sources and source_object not in allowed_sources:
+            return False
+        if source_object not in DEFINITION_PRIORITY_PRIMARY_SOURCE_OBJECTS:
+            return False
+        record_id = str(row.get("record_id") or "")
+        if not record_id.startswith(DEFINITION_PRIORITY_PRIMARY_RECORD_PREFIXES):
+            return False
+        record_table = row.get("record_table")
+        if record_table and record_table not in DEFINITION_PRIORITY_PRIMARY_RECORD_TABLES:
+            return False
+        if str(row.get("evidence_level") or "").upper() != "A":
+            return False
+        if "primary_allowed" in row and not bool(row.get("primary_allowed")):
+            return False
+        if "display_allowed" in row and not bool(row.get("display_allowed")):
+            return False
+        return True
+
+    def _definition_priority_secondary_eligible(
+        self,
+        row: dict[str, Any],
+        family_rule: dict[str, Any],
+    ) -> bool:
+        source_object = row.get("source_object")
+        allowed_sources = set(family_rule.get("secondary_source_allowlist", []))
+        return bool(allowed_sources and source_object in allowed_sources)
 
     def _collect_definition_priority_candidates(
         self,
@@ -2383,8 +2441,14 @@ class AnswerAssembler:
             if candidate_meta is None:
                 continue
             normalized_row = self._normalize_record_row(row)
+            primary_eligible = self._definition_priority_primary_eligible(row, family_rule)
+            secondary_eligible = self._definition_priority_secondary_eligible(row, family_rule)
+            if not primary_eligible and not secondary_eligible:
+                continue
             candidate = {
                 "row": normalized_row,
+                "primary_eligible": primary_eligible,
+                "secondary_eligible": secondary_eligible,
                 **candidate_meta,
             }
             existing = deduped.get(normalized_row["record_id"])
@@ -2408,7 +2472,9 @@ class AnswerAssembler:
     ) -> dict[str, Any] | None:
         source_object = row.get("source_object")
         blocked_sources = set(family_rule.get("blocked_source_objects", []))
-        allowed_sources = set(family_rule.get("primary_source_allowlist", []))
+        allowed_sources = set(family_rule.get("primary_source_allowlist", [])) | set(
+            family_rule.get("secondary_source_allowlist", [])
+        )
         if source_object in blocked_sources:
             return None
         if allowed_sources and source_object not in allowed_sources:
@@ -2421,6 +2487,17 @@ class AnswerAssembler:
 
         candidate_types: list[str] = []
         topic = definition_plan.normalized_topic
+        if source_object == "definition_terms":
+            definition_terms = [compact_text(row.get("canonical_term")), compact_text(row.get("normalized_term"))]
+            definition_terms.extend(compact_text(alias) for alias in self._parse_json_list(row.get("query_aliases_json")))
+            if topic and topic in set(value for value in definition_terms if value):
+                candidate_types.append(str(row.get("primary_evidence_type") or "exact_term_definition"))
+            if definition_plan.subject_variants and definition_plan.predicate_variants:
+                subject_match = any(subject in normalized_text for subject in definition_plan.subject_variants)
+                predicate_match = any(predicate in normalized_text for predicate in definition_plan.predicate_variants)
+                if subject_match and predicate_match:
+                    candidate_types.append("subject_predicate_definition")
+
         if topic and topic in normalized_text:
             if normalized_text.startswith(topic + "者") and "也" in normalized_text:
                 candidate_types.append("exact_term_definition")
@@ -2479,6 +2556,19 @@ class AnswerAssembler:
             "evidence_type": evidence_type,
             "clean_text": cleaned_text,
         }
+
+    def _parse_json_list(self, value: Any) -> list[str]:
+        if not value:
+            return []
+        if isinstance(value, list):
+            return [str(item) for item in value if item]
+        try:
+            parsed = json.loads(str(value))
+        except Exception:
+            return []
+        if not isinstance(parsed, list):
+            return []
+        return [str(item) for item in parsed if item]
 
     def _build_definition_priority_answer_text(
         self,

@@ -1,0 +1,201 @@
+{
+  "generated_at_utc": "2026-04-24T00:17:15.556076+00:00",
+  "scope": "filtered objects touched or guarded by gold audit minimal fixes v1",
+  "records": [
+    {
+      "concept_id": "DPO-c8ac10b5ac88",
+      "canonical_term": "发汗药",
+      "normalized_term": "发汗药",
+      "concept_type": "therapeutic_category",
+      "definition_evidence_passage_ids_json": "[]",
+      "explanation_evidence_passage_ids_json": "[\"ZJSHL-CH-006-P-0127\"]",
+      "membership_evidence_passage_ids_json": "[\"ZJSHL-CH-006-P-0120\"]",
+      "primary_support_passage_id": "ZJSHL-CH-006-P-0127",
+      "primary_source_table": "records_passages",
+      "primary_source_object": "passages",
+      "primary_source_record_id": "full:passages:ZJSHL-CH-006-P-0127",
+      "primary_source_evidence_level": "C",
+      "source_passage_ids_json": "[\"ZJSHL-CH-006-P-0127\",\"ZJSHL-CH-006-P-0120\"]",
+      "chapter_ids_json": "[\"ZJSHL-CH-006\"]",
+      "query_aliases_json": "[\"发汗的药\",\"发汗类药\"]",
+      "learner_surface_forms_json": "[\"发汗的药\",\"发汗类药\"]",
+      "primary_evidence_type": "exact_term_explanation",
+      "primary_evidence_text": "发汗药，须温暖服者，易为发散也",
+      "retrieval_text": "发汗药，须温暖服者，易为发散也\n桂枝汤者，发汗药也\n发汗药\n发汗的药\n发汗类药",
+      "normalized_retrieval_text": "发汗药须温暖服者易为发散也桂枝汤者发汗药也发汗药发汗的药发汗类药",
+      "source_confidence": "medium",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "promoted_from_full_risk_layer",
+      "promotion_reason": "gold_fix_v1_explanation_primary_not_strict_definition",
+      "review_only_reason": "",
+      "notes": "从 risk_only full passage 中抽出解释句与类属句，避免整段混入《金匮玉函》警示材料。 gold_fix_v1: no safer standalone membership/definition sentence was selected; keep the current sentence as explanation-primary, not definition-primary. ZJSHL-CH-006-P-0120 remains support membership evidence only.",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "definition_evidence_passage_ids": [],
+      "explanation_evidence_passage_ids": [
+        "ZJSHL-CH-006-P-0127"
+      ],
+      "membership_evidence_passage_ids": [
+        "ZJSHL-CH-006-P-0120"
+      ],
+      "source_passage_ids": [
+        "ZJSHL-CH-006-P-0127",
+        "ZJSHL-CH-006-P-0120"
+      ],
+      "chapter_ids": [
+        "ZJSHL-CH-006"
+      ],
+      "query_aliases": [
+        "发汗的药",
+        "发汗类药"
+      ],
+      "learner_surface_forms": [
+        "发汗的药",
+        "发汗类药"
+      ]
+    },
+    {
+      "concept_id": "DPO-3239213192a3",
+      "canonical_term": "胆瘅",
+      "normalized_term": "胆瘅",
+      "concept_type": "disease_state_term",
+      "definition_evidence_passage_ids_json": "[\"ZJSHL-CH-012-P-0214\"]",
+      "explanation_evidence_passage_ids_json": "[]",
+      "membership_evidence_passage_ids_json": "[]",
+      "primary_support_passage_id": "ZJSHL-CH-012-P-0214",
+      "primary_source_table": "records_passages",
+      "primary_source_object": "passages",
+      "primary_source_record_id": "full:passages:ZJSHL-CH-012-P-0214",
+      "primary_source_evidence_level": "C",
+      "source_passage_ids_json": "[\"ZJSHL-CH-012-P-0214\"]",
+      "chapter_ids_json": "[\"ZJSHL-CH-012\"]",
+      "query_aliases_json": "[]",
+      "learner_surface_forms_json": "[]",
+      "primary_evidence_type": "exact_term_definition",
+      "primary_evidence_text": "有病口苦者，名曰胆瘅",
+      "retrieval_text": "有病口苦者，名曰胆瘅\n胆瘅",
+      "normalized_retrieval_text": "有病口苦者名曰胆瘅胆瘅",
+      "source_confidence": "review_only",
+      "promotion_state": "review_only",
+      "promotion_source_layer": "promoted_from_full_risk_layer",
+      "promotion_reason": "exact sentence promoted out of mixed full passage",
+      "review_only_reason": "primary sentence directly depends on commentary citation《内经》曰，当前不宜作为 learner-facing safe primary。",
+      "notes": "从 full passage 中抽出明确命名句，避免整段经络解释压成 support-only。 audit_v1: downgraded from safe_primary because the primary sentence is commentarial. gold_fix_v1: removed review-only learner aliases 口苦病/胆瘅病 from query aliases and retrieval text.",
+      "is_safe_primary_candidate": 0,
+      "is_active": 1,
+      "definition_evidence_passage_ids": [
+        "ZJSHL-CH-012-P-0214"
+      ],
+      "explanation_evidence_passage_ids": [],
+      "membership_evidence_passage_ids": [],
+      "source_passage_ids": [
+        "ZJSHL-CH-012-P-0214"
+      ],
+      "chapter_ids": [
+        "ZJSHL-CH-012"
+      ],
+      "query_aliases": [],
+      "learner_surface_forms": []
+    },
+    {
+      "concept_id": "DPO-033fc08d3b2a",
+      "canonical_term": "下药",
+      "normalized_term": "下药",
+      "concept_type": "therapeutic_category",
+      "definition_evidence_passage_ids_json": "[]",
+      "explanation_evidence_passage_ids_json": "[]",
+      "membership_evidence_passage_ids_json": "[\"ZJSHL-CH-006-P-0120\"]",
+      "primary_support_passage_id": "ZJSHL-CH-006-P-0120",
+      "primary_source_table": "records_passages",
+      "primary_source_object": "passages",
+      "primary_source_record_id": "full:passages:ZJSHL-CH-006-P-0120",
+      "primary_source_evidence_level": "C",
+      "source_passage_ids_json": "[\"ZJSHL-CH-006-P-0120\"]",
+      "chapter_ids_json": "[\"ZJSHL-CH-006\"]",
+      "query_aliases_json": "[\"泻下药\",\"通下药\",\"下法用药\"]",
+      "learner_surface_forms_json": "[\"泻下药\",\"通下药\",\"下法用药\"]",
+      "primary_evidence_type": "term_membership_sentence",
+      "primary_evidence_text": "承气汤者，下药也",
+      "retrieval_text": "承气汤者，下药也\n下药\n泻下药\n通下药\n下法用药",
+      "normalized_retrieval_text": "承气汤者下药也下药泻下药通下药下法用药",
+      "source_confidence": "medium",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "promoted_from_full_risk_layer",
+      "promotion_reason": "exact sentence promoted out of mixed full passage",
+      "review_only_reason": "",
+      "notes": "优先提升直接类属句，解决二字短术语 definition query 缺少稳定锚点的问题。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "definition_evidence_passage_ids": [],
+      "explanation_evidence_passage_ids": [],
+      "membership_evidence_passage_ids": [
+        "ZJSHL-CH-006-P-0120"
+      ],
+      "source_passage_ids": [
+        "ZJSHL-CH-006-P-0120"
+      ],
+      "chapter_ids": [
+        "ZJSHL-CH-006"
+      ],
+      "query_aliases": [
+        "泻下药",
+        "通下药",
+        "下法用药"
+      ],
+      "learner_surface_forms": [
+        "泻下药",
+        "通下药",
+        "下法用药"
+      ]
+    },
+    {
+      "concept_id": "DPO-ce8ffb681e3f",
+      "canonical_term": "四逆",
+      "normalized_term": "四逆",
+      "concept_type": "syndrome_term",
+      "definition_evidence_passage_ids_json": "[\"ZJSHL-CH-015-P-0203\"]",
+      "explanation_evidence_passage_ids_json": "[]",
+      "membership_evidence_passage_ids_json": "[]",
+      "primary_support_passage_id": "ZJSHL-CH-015-P-0203",
+      "primary_source_table": "records_passages",
+      "primary_source_object": "passages",
+      "primary_source_record_id": "full:passages:ZJSHL-CH-015-P-0203",
+      "primary_source_evidence_level": "C",
+      "source_passage_ids_json": "[\"ZJSHL-CH-015-P-0203\"]",
+      "chapter_ids_json": "[\"ZJSHL-CH-015\"]",
+      "query_aliases_json": "[\"四肢不温\",\"手足不温\"]",
+      "learner_surface_forms_json": "[\"四肢不温\",\"手足不温\"]",
+      "primary_evidence_type": "exact_term_definition",
+      "primary_evidence_text": "四逆者，四肢不温也",
+      "retrieval_text": "四逆者，四肢不温也\n四逆\n四肢不温\n手足不温",
+      "normalized_retrieval_text": "四逆者四肢不温也四逆四肢不温手足不温",
+      "source_confidence": "medium",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "promoted_from_full_risk_layer",
+      "promotion_reason": "exact sentence promoted out of mixed full passage",
+      "review_only_reason": "",
+      "notes": "补齐普通学习者常见口语入口，解决‘四肢不温是什么’这类问法的归一化缺口。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "definition_evidence_passage_ids": [
+        "ZJSHL-CH-015-P-0203"
+      ],
+      "explanation_evidence_passage_ids": [],
+      "membership_evidence_passage_ids": [],
+      "source_passage_ids": [
+        "ZJSHL-CH-015-P-0203"
+      ],
+      "chapter_ids": [
+        "ZJSHL-CH-015"
+      ],
+      "query_aliases": [
+        "四肢不温",
+        "手足不温"
+      ],
+      "learner_surface_forms": [
+        "四肢不温",
+        "手足不温"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3382 @@
+{
+  "generated_at_utc": "2026-04-22T12:25:37.988628+00:00",
+  "runtime_env": {
+    "PERF_DISABLE_LLM": "1",
+    "PERF_RETRIEVAL_MODE": "sparse",
+    "PERF_DISABLE_RERANK": "1"
+  },
+  "summary": {
+    "definition_strong_count": 9,
+    "definition_promoted_from_weak_count": 4,
+    "definition_primary_forbidden_total": 0,
+    "definition_primary_allowed_all": true,
+    "formula_strong_count": 8,
+    "formula_primary_safe_main_all": true,
+    "formula_top5_bad_formula_anchor_total": 0,
+    "formula_primary_forbidden_total": 0
+  },
+  "definition_results": [
+    {
+      "query": "什么是发汗药",
+      "previous_payload_mode": "weak_with_review_notice",
+      "payload_mode": "strong",
+      "promoted_from_weak": true,
+      "primary_allowed_definition_source": true,
+      "primary_forbidden_items": [],
+      "payload_primary": [
+        {
+          "record_id": "safe:definition_terms:DEF-FAHAN-YAO",
+          "record_type": "definition_terms",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-006",
+          "risk_flags": [],
+          "snippet": "发汗药，须温暖服者，易为发散也。 桂枝汤者，发汗药也。 发汗药"
+        }
+      ],
+      "payload_secondary": [
+        {
+          "record_id": "full:passages:ZJSHL-CH-006-P-0120",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-006",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "ambiguous_source",
+            "definition_priority_support_only"
+          ],
+          "snippet": "桂枝汤者，发汗药也。承气汤者，下药也。《金匮玉函》曰：不当汗而强与汗之者，令人夺其津液，枯槁而死；不当下而强与下之者，令人开肠洞泄，便溺不禁而死。"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0137",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-010",
+          "risk_flags": [
+            "definition_priority_demoted_from_primary"
+          ],
+          "snippet": "证云：不可发汗，发汗则谵语。是发汗攻太阳之邪，少阳之邪益甚干胃，必发谵语。此云慎勿下之，攻少阳之邪，太阳之邪乘虚入里，必作结胸。经曰：太阳少阳并病，而反下之，成结胸。"
+        }
+      ],
+      "payload_review": [
+        {
+          "record_id": "full:passages:ZJSHL-CH-010-P-0137",
+          "record_type": "passages",
+          "display_role": "review",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-010",
+          "risk_flags": [
+            "ledger_mixed_roles"
+          ],
+          "snippet": "证云：不可发汗，发汗则谵语。是发汗攻太阳之邪，少阳之邪益甚干胃，必发谵语。此云慎勿下之，攻少阳之邪，太阳之邪乘虚入里，必作结胸。经曰：太阳少阳并病，而反下之，成结胸。"
+        }
+      ],
+      "support_full_passages": [
+        {
+          "record_id": "full:passages:ZJSHL-CH-006-P-0120",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-006",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "ambiguous_source",
+            "definition_priority_support_only"
+          ],
+          "snippet": "桂枝汤者，发汗药也。承气汤者，下药也。《金匮玉函》曰：不当汗而强与汗之者，令人夺其津液，枯槁而死；不当下而强与下之者，令人开肠洞泄，便溺不禁而死。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-010-P-0137",
+          "record_type": "passages",
+          "display_role": "review",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-010",
+          "risk_flags": [
+            "ledger_mixed_roles"
+          ],
+          "snippet": "证云：不可发汗，发汗则谵语。是发汗攻太阳之邪，少阳之邪益甚干胃，必发谵语。此云慎勿下之，攻少阳之邪，太阳之邪乘虚入里，必作结胸。经曰：太阳少阳并病，而反下之，成结胸。"
+        }
+      ],
+      "raw_top_candidates": [
+        {
+          "record_id": "safe:definition_terms:DEF-FAHAN-YAO",
+          "record_table": "retrieval_ready_definition_view",
+          "source_object": "definition_terms",
+          "chapter_id": "ZJSHL-CH-006",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 44.639344,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "发汗药，须温暖服者，易为发散也。\n桂枝汤者，发汗药也。\n发汗药"
+        },
+        {
+          "record_id": "safe:chunks:ZJSHL-CK-M-0553",
+          "record_table": "records_chunks",
+          "source_object": "chunks",
+          "chapter_id": "ZJSHL-CH-010",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 34.079748,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "证云：不可发汗，发汗则谵语。是发汗攻太阳之邪，少阳之邪益甚干胃，必发谵语。此云慎勿下之，攻少阳之邪，太阳之邪乘虚入里，必作结胸。经曰：太阳少阳并病，而反下之，成结胸。"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0137",
+          "record_table": "records_main_passages",
+          "source_object": "main_passages",
+          "chapter_id": "ZJSHL-CH-010",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 32.054147,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "证云：不可发汗，发汗则谵语。是发汗攻太阳之邪，少阳之邪益甚干胃，必发谵语。此云慎勿下之，攻少阳之邪，太阳之邪乘虚入里，必作结胸。经曰：太阳少阳并病，而反下之，成结胸。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-010-P-0137",
+          "record_table": "records_passages",
+          "source_object": "passages",
+          "chapter_id": "ZJSHL-CH-010",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 26.029345,
+          "risk_flag": "[\"ledger_mixed_roles\"]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "证云：不可发汗，发汗则谵语。是发汗攻太阳之邪，少阳之邪益甚干胃，必发谵语。此云慎勿下之，攻少阳之邪，太阳之邪乘虚入里，必作结胸。经曰：太阳少阳并病，而反下之，成结胸。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-006-P-0120",
+          "record_table": "records_passages",
+          "source_object": "passages",
+          "chapter_id": "ZJSHL-CH-006",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 25.372347,
+          "risk_flag": "[\"ledger_mixed_roles\",\"ambiguous_source\"]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "桂枝汤者，发汗药也。承气汤者，下药也。《金匮玉函》曰：不当汗而强与汗之者，令人夺其津液，枯槁而死；不当下而强与下之者，令人开肠洞泄，便溺不禁而死。"
+        }
+      ],
+      "definition_priority_debug": {
+        "query": "什么是发汗药",
+        "enabled": true,
+        "family_id": "what_is",
+        "pattern_id": "what_is_prefix",
+        "selected_primary_ids": [
+          "safe:definition_terms:DEF-FAHAN-YAO"
+        ],
+        "preferred_secondary_ids": [
+          "full:passages:ZJSHL-CH-006-P-0120"
+        ],
+        "candidate_debug": [
+          {
+            "record_id": "safe:definition_terms:DEF-FAHAN-YAO",
+            "record_type": "definition_terms",
+            "evidence_type": "exact_term_explanation",
+            "selection_score": 191.16,
+            "primary_eligible": true,
+            "secondary_eligible": false
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-006-P-0120",
+            "record_type": "passages",
+            "evidence_type": "term_membership_sentence",
+            "selection_score": 162.343,
+            "primary_eligible": false,
+            "secondary_eligible": true
+          }
+        ],
+        "no_primary_eligible": false,
+        "fallback_to_standard": false
+      }
+    },
+    {
+      "query": "发汗药是什么意思",
+      "previous_payload_mode": "weak_with_review_notice",
+      "payload_mode": "strong",
+      "promoted_from_weak": true,
+      "primary_allowed_definition_source": true,
+      "primary_forbidden_items": [],
+      "payload_primary": [
+        {
+          "record_id": "safe:definition_terms:DEF-FAHAN-YAO",
+          "record_type": "definition_terms",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-006",
+          "risk_flags": [],
+          "snippet": "发汗药，须温暖服者，易为发散也。 桂枝汤者，发汗药也。 发汗药"
+        }
+      ],
+      "payload_secondary": [
+        {
+          "record_id": "full:passages:ZJSHL-CH-006-P-0127",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-006",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "ambiguous_source",
+            "definition_priority_support_only"
+          ],
+          "snippet": "发汗药，须温暖服者，易为发散也。日三服者，药势续也。病势稍重，当促急服之，以折盛热，不可拘于本方。设药病不相对，汤入即便知之，如阴多者，投以凉药，即寒逆随生；阳多者，饮以温剂，则热毒即起，是便有所觉。 时者，周时也，一日一夜服汤药尽剂，更看..."
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-006-P-0120",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-006",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "ambiguous_source",
+            "definition_priority_support_only"
+          ],
+          "snippet": "桂枝汤者，发汗药也。承气汤者，下药也。《金匮玉函》曰：不当汗而强与汗之者，令人夺其津液，枯槁而死；不当下而强与下之者，令人开肠洞泄，便溺不禁而死。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-006-P-0126",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-006",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "ambiguous_source",
+            "context_padding"
+          ],
+          "snippet": "凡发汗温服赵本作「暖」汤药，其方虽言日三服，若病剧不解，当促其间，可半日中尽三服。若与病相阻，即便有所觉。重病赵本作「病重」者，一日一夜，当 时观之，如服一剂，病证犹在，故当复作本汤服之。至有不肯汗出，服三剂乃解；若汗不出者，死病也。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-006-P-0119",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-006",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "况桂枝下咽，阳盛则赵本作「即」毙；承气入胃，阴盛以亡。"
+        }
+      ],
+      "payload_review": [],
+      "support_full_passages": [
+        {
+          "record_id": "full:passages:ZJSHL-CH-006-P-0127",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-006",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "ambiguous_source",
+            "definition_priority_support_only"
+          ],
+          "snippet": "发汗药，须温暖服者，易为发散也。日三服者，药势续也。病势稍重，当促急服之，以折盛热，不可拘于本方。设药病不相对，汤入即便知之，如阴多者，投以凉药，即寒逆随生；阳多者，饮以温剂，则热毒即起，是便有所觉。 时者，周时也，一日一夜服汤药尽剂，更看..."
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-006-P-0120",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-006",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "ambiguous_source",
+            "definition_priority_support_only"
+          ],
+          "snippet": "桂枝汤者，发汗药也。承气汤者，下药也。《金匮玉函》曰：不当汗而强与汗之者，令人夺其津液，枯槁而死；不当下而强与下之者，令人开肠洞泄，便溺不禁而死。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-006-P-0126",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-006",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "ambiguous_source",
+            "context_padding"
+          ],
+          "snippet": "凡发汗温服赵本作「暖」汤药，其方虽言日三服，若病剧不解，当促其间，可半日中尽三服。若与病相阻，即便有所觉。重病赵本作「病重」者，一日一夜，当 时观之，如服一剂，病证犹在，故当复作本汤服之。至有不肯汗出，服三剂乃解；若汗不出者，死病也。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-006-P-0119",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-006",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "况桂枝下咽，阳盛则赵本作「即」毙；承气入胃，阴盛以亡。"
+        }
+      ],
+      "raw_top_candidates": [
+        {
+          "record_id": "safe:definition_terms:DEF-FAHAN-YAO",
+          "record_table": "retrieval_ready_definition_view",
+          "source_object": "definition_terms",
+          "chapter_id": "ZJSHL-CH-006",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 152.639344,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "发汗药，须温暖服者，易为发散也。\n桂枝汤者，发汗药也。\n发汗药"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-006-P-0120",
+          "record_table": "records_passages",
+          "source_object": "passages",
+          "chapter_id": "ZJSHL-CH-006",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 133.446788,
+          "risk_flag": "[\"ledger_mixed_roles\",\"ambiguous_source\"]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "桂枝汤者，发汗药也。承气汤者，下药也。《金匮玉函》曰：不当汗而强与汗之者，令人夺其津液，枯槁而死；不当下而强与下之者，令人开肠洞泄，便溺不禁而死。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-006-P-0127",
+          "record_table": "records_passages",
+          "source_object": "passages",
+          "chapter_id": "ZJSHL-CH-006",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 128.040743,
+          "risk_flag": "[\"ledger_mixed_roles\",\"ambiguous_source\"]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "发汗药，须温暖服者，易为发散也。日三服者，药势续也。病势稍重，当促急服之，以折盛热，不可拘于本方。设药病不相对，汤入即便知之，如阴多者，投以凉药，即寒逆随生；阳多者，饮以温剂，则热毒即起，是便有所觉。 时者，周时也，一日一夜服汤药尽剂，更看"
+        }
+      ],
+      "definition_priority_debug": {
+        "query": "发汗药是什么意思",
+        "enabled": true,
+        "family_id": "what_means",
+        "pattern_id": "what_means_long_suffix",
+        "selected_primary_ids": [
+          "safe:definition_terms:DEF-FAHAN-YAO"
+        ],
+        "preferred_secondary_ids": [
+          "full:passages:ZJSHL-CH-006-P-0127",
+          "full:passages:ZJSHL-CH-006-P-0120"
+        ],
+        "candidate_debug": [
+          {
+            "record_id": "safe:definition_terms:DEF-FAHAN-YAO",
+            "record_type": "definition_terms",
+            "evidence_type": "exact_term_explanation",
+            "selection_score": 204.0,
+            "primary_eligible": true,
+            "secondary_eligible": false
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-006-P-0127",
+            "record_type": "passages",
+            "evidence_type": "exact_term_explanation",
+            "selection_score": 186.0,
+            "primary_eligible": false,
+            "secondary_eligible": true
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-006-P-0120",
+            "record_type": "passages",
+            "evidence_type": "term_membership_sentence",
+            "selection_score": 180.0,
+            "primary_eligible": false,
+            "secondary_eligible": true
+          }
+        ],
+        "no_primary_eligible": false,
+        "fallback_to_standard": false
+      }
+    },
+    {
+      "query": "坏病是什么",
+      "previous_payload_mode": "weak_with_review_notice",
+      "payload_mode": "strong",
+      "promoted_from_weak": true,
+      "primary_allowed_definition_source": true,
+      "primary_forbidden_items": [],
+      "payload_primary": [
+        {
+          "record_id": "safe:definition_terms:DEF-HUAI-BING",
+          "record_type": "definition_terms",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-008",
+          "risk_flags": [],
+          "snippet": "太阳病，三日中，曾经发汗、吐下、温针，虚其正气，病仍不解者，谓之坏病，言为医所坏病也。 太阳病三日，已发汗，若吐，若下，若温针，仍不解者，此为坏病。 坏病"
+        }
+      ],
+      "payload_secondary": [
+        {
+          "record_id": "full:passages:ZJSHL-CH-008-P-0227",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-008",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "ambiguous_source",
+            "definition_priority_support_only"
+          ],
+          "snippet": "太阳病，三日中，曾经发汗、吐下、温针，虚其正气，病仍不解者，谓之坏病，言为医所坏病也。不可复与桂枝汤。审观脉证，知犯何逆，而治之逆者，随所逆而救之。"
+        }
+      ],
+      "payload_review": [
+        {
+          "record_id": "full:passages:ZJSHL-CH-008-P-0226",
+          "record_type": "passages",
+          "display_role": "review",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-008",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "ambiguous_source"
+          ],
+          "snippet": "太阳病三日，已发汗，若吐，若下，若温针，仍不解者，此为坏病，桂枝不中与赵本有「之」字也。观其脉证，知犯何逆，随证治之。"
+        }
+      ],
+      "support_full_passages": [
+        {
+          "record_id": "full:passages:ZJSHL-CH-008-P-0227",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-008",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "ambiguous_source",
+            "definition_priority_support_only"
+          ],
+          "snippet": "太阳病，三日中，曾经发汗、吐下、温针，虚其正气，病仍不解者，谓之坏病，言为医所坏病也。不可复与桂枝汤。审观脉证，知犯何逆，而治之逆者，随所逆而救之。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-008-P-0226",
+          "record_type": "passages",
+          "display_role": "review",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-008",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "ambiguous_source"
+          ],
+          "snippet": "太阳病三日，已发汗，若吐，若下，若温针，仍不解者，此为坏病，桂枝不中与赵本有「之」字也。观其脉证，知犯何逆，随证治之。"
+        }
+      ],
+      "raw_top_candidates": [
+        {
+          "record_id": "safe:definition_terms:DEF-HUAI-BING",
+          "record_table": "retrieval_ready_definition_view",
+          "source_object": "definition_terms",
+          "chapter_id": "ZJSHL-CH-008",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 121.639344,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "太阳病，三日中，曾经发汗、吐下、温针，虚其正气，病仍不解者，谓之坏病，言为医所坏病也。\n太阳病三日，已发汗，若吐，若下，若温针，仍不解者，此为坏病。\n坏病"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-008-P-0226",
+          "record_table": "records_passages",
+          "source_object": "passages",
+          "chapter_id": "ZJSHL-CH-008",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 113.612903,
+          "risk_flag": "[\"ledger_mixed_roles\",\"ambiguous_source\"]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "太阳病三日，已发汗，若吐，若下，若温针，仍不解者，此为坏病，桂枝不中与赵本有「之」字也。观其脉证，知犯何逆，随证治之。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-008-P-0227",
+          "record_table": "records_passages",
+          "source_object": "passages",
+          "chapter_id": "ZJSHL-CH-008",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 113.587302,
+          "risk_flag": "[\"ledger_mixed_roles\",\"ambiguous_source\"]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "太阳病，三日中，曾经发汗、吐下、温针，虚其正气，病仍不解者，谓之坏病，言为医所坏病也。不可复与桂枝汤。审观脉证，知犯何逆，而治之逆者，随所逆而救之。"
+        }
+      ],
+      "definition_priority_debug": {
+        "query": "坏病是什么",
+        "enabled": true,
+        "family_id": "what_is",
+        "pattern_id": "what_is_suffix",
+        "selected_primary_ids": [
+          "safe:definition_terms:DEF-HUAI-BING"
+        ],
+        "preferred_secondary_ids": [
+          "full:passages:ZJSHL-CH-008-P-0227"
+        ],
+        "candidate_debug": [
+          {
+            "record_id": "safe:definition_terms:DEF-HUAI-BING",
+            "record_type": "definition_terms",
+            "evidence_type": "exact_term_definition",
+            "selection_score": 232.0,
+            "primary_eligible": true,
+            "secondary_eligible": false
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-008-P-0227",
+            "record_type": "passages",
+            "evidence_type": "term_membership_sentence",
+            "selection_score": 180.0,
+            "primary_eligible": false,
+            "secondary_eligible": true
+          }
+        ],
+        "no_primary_eligible": false,
+        "fallback_to_standard": false
+      }
+    },
+    {
+      "query": "坏病是什么意思",
+      "previous_payload_mode": "weak_with_review_notice",
+      "payload_mode": "strong",
+      "promoted_from_weak": true,
+      "primary_allowed_definition_source": true,
+      "primary_forbidden_items": [],
+      "payload_primary": [
+        {
+          "record_id": "safe:definition_terms:DEF-HUAI-BING",
+          "record_type": "definition_terms",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-008",
+          "risk_flags": [],
+          "snippet": "太阳病，三日中，曾经发汗、吐下、温针，虚其正气，病仍不解者，谓之坏病，言为医所坏病也。 太阳病三日，已发汗，若吐，若下，若温针，仍不解者，此为坏病。 坏病"
+        }
+      ],
+      "payload_secondary": [
+        {
+          "record_id": "full:passages:ZJSHL-CH-008-P-0227",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-008",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "ambiguous_source",
+            "definition_priority_support_only"
+          ],
+          "snippet": "太阳病，三日中，曾经发汗、吐下、温针，虚其正气，病仍不解者，谓之坏病，言为医所坏病也。不可复与桂枝汤。审观脉证，知犯何逆，而治之逆者，随所逆而救之。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-008-P-0226",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-008",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "ambiguous_source",
+            "context_padding"
+          ],
+          "snippet": "太阳病三日，已发汗，若吐，若下，若温针，仍不解者，此为坏病，桂枝不中与赵本有「之」字也。观其脉证，知犯何逆，随证治之。"
+        }
+      ],
+      "payload_review": [],
+      "support_full_passages": [
+        {
+          "record_id": "full:passages:ZJSHL-CH-008-P-0227",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-008",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "ambiguous_source",
+            "definition_priority_support_only"
+          ],
+          "snippet": "太阳病，三日中，曾经发汗、吐下、温针，虚其正气，病仍不解者，谓之坏病，言为医所坏病也。不可复与桂枝汤。审观脉证，知犯何逆，而治之逆者，随所逆而救之。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-008-P-0226",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-008",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "ambiguous_source",
+            "context_padding"
+          ],
+          "snippet": "太阳病三日，已发汗，若吐，若下，若温针，仍不解者，此为坏病，桂枝不中与赵本有「之」字也。观其脉证，知犯何逆，随证治之。"
+        }
+      ],
+      "raw_top_candidates": [
+        {
+          "record_id": "safe:definition_terms:DEF-HUAI-BING",
+          "record_table": "retrieval_ready_definition_view",
+          "source_object": "definition_terms",
+          "chapter_id": "ZJSHL-CH-008",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 121.639344,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "太阳病，三日中，曾经发汗、吐下、温针，虚其正气，病仍不解者，谓之坏病，言为医所坏病也。\n太阳病三日，已发汗，若吐，若下，若温针，仍不解者，此为坏病。\n坏病"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-008-P-0226",
+          "record_table": "records_passages",
+          "source_object": "passages",
+          "chapter_id": "ZJSHL-CH-008",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 113.612903,
+          "risk_flag": "[\"ledger_mixed_roles\",\"ambiguous_source\"]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "太阳病三日，已发汗，若吐，若下，若温针，仍不解者，此为坏病，桂枝不中与赵本有「之」字也。观其脉证，知犯何逆，随证治之。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-008-P-0227",
+          "record_table": "records_passages",
+          "source_object": "passages",
+          "chapter_id": "ZJSHL-CH-008",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 113.587302,
+          "risk_flag": "[\"ledger_mixed_roles\",\"ambiguous_source\"]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "太阳病，三日中，曾经发汗、吐下、温针，虚其正气，病仍不解者，谓之坏病，言为医所坏病也。不可复与桂枝汤。审观脉证，知犯何逆，而治之逆者，随所逆而救之。"
+        }
+      ],
+      "definition_priority_debug": {
+        "query": "坏病是什么意思",
+        "enabled": true,
+        "family_id": "what_means",
+        "pattern_id": "what_means_long_suffix",
+        "selected_primary_ids": [
+          "safe:definition_terms:DEF-HUAI-BING"
+        ],
+        "preferred_secondary_ids": [
+          "full:passages:ZJSHL-CH-008-P-0227"
+        ],
+        "candidate_debug": [
+          {
+            "record_id": "safe:definition_terms:DEF-HUAI-BING",
+            "record_type": "definition_terms",
+            "evidence_type": "exact_term_definition",
+            "selection_score": 232.0,
+            "primary_eligible": true,
+            "secondary_eligible": false
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-008-P-0227",
+            "record_type": "passages",
+            "evidence_type": "term_membership_sentence",
+            "selection_score": 180.0,
+            "primary_eligible": false,
+            "secondary_eligible": true
+          }
+        ],
+        "no_primary_eligible": false,
+        "fallback_to_standard": false
+      }
+    },
+    {
+      "query": "下药是什么意思",
+      "previous_payload_mode": null,
+      "payload_mode": "strong",
+      "promoted_from_weak": false,
+      "primary_allowed_definition_source": true,
+      "primary_forbidden_items": [],
+      "payload_primary": [
+        {
+          "record_id": "safe:definition_terms:DEF-XIA-YAO",
+          "record_type": "definition_terms",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-006",
+          "risk_flags": [],
+          "snippet": "承气汤者，下药也。 甘遂者，下药也。 下药"
+        }
+      ],
+      "payload_secondary": [
+        {
+          "record_id": "full:passages:ZJSHL-CH-006-P-0118",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-006",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "definition_priority_support_only"
+          ],
+          "snippet": "夫如是，则神丹安可以误发，甘遂何可以妄攻。虚盛之治，相背千里，吉凶之机，应若影响，岂容易哉！神丹者，发汗之药也。甘遂者，下药也。若汗下当则吉，汗下不当则凶，其应如影随形，如附应声。"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-008-P-0217",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-008",
+          "risk_flags": [
+            "definition_priority_demoted_from_primary"
+          ],
+          "snippet": "桂枝汤方：桂枝三两，去皮，味辛热，按：下药性，赵本无，以后并同 芍药三两。味苦酸，微寒 甘草二两，炙，味甘平 生姜三两，切，味辛温 大枣十二枚，擘，味甘温"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-008-P-0219",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-008",
+          "risk_flags": [
+            "definition_priority_demoted_from_primary"
+          ],
+          "snippet": "右伍味，㕮咀。赵本有「三味」二字以水柒升，微火煑取三升，去滓，适寒温，服壹升。服已须臾，歠热稀粥壹升馀，以助药力，温覆令壹时许，遍身漐漐，微似有汗者益佳，不可令如水流漓，病必不除。若壹服汗出病差，停后服，不必尽剂；若不汗，更服，依前法；又不..."
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-004-P-0146",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-004",
+          "risk_flags": [
+            "definition_priority_demoted_from_primary"
+          ],
+          "snippet": "设令向壁卧，闻师到，不惊起而 视，若三言三止，脉之，咽唾者，此诈病也。设令脉自和，处言汝赵本医统本皆作「此」病大重，当须服吐下药，针灸数十百处，乃愈。"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-008-P-0215",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-008",
+          "risk_flags": [],
+          "snippet": "太阳中风，阳浮而阴弱。阳浮者，热自发；阴弱者，汗自出。啬啬恶寒，淅淅恶风，翕翕发热，鼻鸣乾呕者，桂枝汤主之。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-008-P-0220",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-008",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "太阳病，头痛发热，汗出恶风者，赵本无「者」字桂枝汤主之。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-008-P-0216",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-008",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "阳以候卫，阴以候荣。阳脉浮者，卫中风也；阴脉弱者，荣气弱也。风并于卫，则卫实而荣虚，故发热汗自出也。经曰：太阳病，发热汗出者，此为荣弱卫强者是也。啬啬者，不足也，恶寒之貌也。淅淅者，洒淅也，恶风之貌也。卫虚则恶风，荣虚则恶寒，荣弱卫强，恶寒..."
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-008-P-0218",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-008",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "《内经》曰：辛甘发散为阳。桂枝汤，辛甘之剂也，所以发散风邪。《内经》曰：风淫所胜，平以辛，佐以苦甘，以甘缓之，以酸收之。是以桂枝为主，芍药甘草为佐也。《内经》曰：风淫于内，以甘缓之，以辛散之。是以生姜大枣为使也。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-006-P-0119",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-006",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "况桂枝下咽，阳盛则赵本作「即」毙；承气入胃，阴盛以亡。"
+        }
+      ],
+      "payload_review": [
+        {
+          "record_id": "full:passages:ZJSHL-CH-004-P-0146",
+          "record_type": "passages",
+          "display_role": "review",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-004",
+          "risk_flags": [
+            "ledger_mixed_roles"
+          ],
+          "snippet": "设令向壁卧，闻师到，不惊起而 视，若三言三止，脉之，咽唾者，此诈病也。设令脉自和，处言汝赵本医统本皆作「此」病大重，当须服吐下药，针灸数十百处，乃愈。"
+        },
+        {
+          "record_id": "full:ambiguous_passages:ZJSHL-CH-006-P-0120",
+          "record_type": "ambiguous_passages",
+          "display_role": "review",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-006",
+          "risk_flags": [
+            "ambiguous_source"
+          ],
+          "snippet": "桂枝汤者，发汗药也。承气汤者，下药也。《金匮玉函》曰：不当汗而强与汗之者，令人夺其津液，枯槁而死；不当下而强与下之者，令人开肠洞泄，便溺不禁而死。"
+        }
+      ],
+      "support_full_passages": [
+        {
+          "record_id": "full:passages:ZJSHL-CH-006-P-0118",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-006",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "definition_priority_support_only"
+          ],
+          "snippet": "夫如是，则神丹安可以误发，甘遂何可以妄攻。虚盛之治，相背千里，吉凶之机，应若影响，岂容易哉！神丹者，发汗之药也。甘遂者，下药也。若汗下当则吉，汗下不当则凶，其应如影随形，如附应声。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-008-P-0220",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-008",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "太阳病，头痛发热，汗出恶风者，赵本无「者」字桂枝汤主之。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-008-P-0216",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-008",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "阳以候卫，阴以候荣。阳脉浮者，卫中风也；阴脉弱者，荣气弱也。风并于卫，则卫实而荣虚，故发热汗自出也。经曰：太阳病，发热汗出者，此为荣弱卫强者是也。啬啬者，不足也，恶寒之貌也。淅淅者，洒淅也，恶风之貌也。卫虚则恶风，荣虚则恶寒，荣弱卫强，恶寒..."
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-008-P-0218",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-008",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "《内经》曰：辛甘发散为阳。桂枝汤，辛甘之剂也，所以发散风邪。《内经》曰：风淫所胜，平以辛，佐以苦甘，以甘缓之，以酸收之。是以桂枝为主，芍药甘草为佐也。《内经》曰：风淫于内，以甘缓之，以辛散之。是以生姜大枣为使也。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-006-P-0119",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-006",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "况桂枝下咽，阳盛则赵本作「即」毙；承气入胃，阴盛以亡。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-004-P-0146",
+          "record_type": "passages",
+          "display_role": "review",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-004",
+          "risk_flags": [
+            "ledger_mixed_roles"
+          ],
+          "snippet": "设令向壁卧，闻师到，不惊起而 视，若三言三止，脉之，咽唾者，此诈病也。设令脉自和，处言汝赵本医统本皆作「此」病大重，当须服吐下药，针灸数十百处，乃愈。"
+        }
+      ],
+      "raw_top_candidates": [
+        {
+          "record_id": "formula:FML-1b00cf16ce52",
+          "record_table": "retrieval_ready_formula_view",
+          "source_object": "formulas",
+          "chapter_id": "ZJSHL-CH-008",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 121.639344,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "方剂：桂枝汤\n别名：桂枝汤；桂枝汤方\n方名：桂枝汤；桂枝汤方\n组成：桂枝汤方：桂枝三两，去皮，味辛热，按：下药性，赵本无，以后并同 芍药三两。味苦酸，微寒 甘草二两，炙，味甘平 生姜三两，切，味辛温 大枣十二枚，擘，味甘温\n煎服法：右伍味，"
+        },
+        {
+          "record_id": "safe:chunks:ZJSHL-CK-F-0001",
+          "record_table": "records_chunks",
+          "source_object": "chunks",
+          "chapter_id": "ZJSHL-CH-008",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 121.612903,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "桂枝汤方：桂枝三两，去皮，味辛热，按：下药性，赵本无，以后并同 芍药三两。味苦酸，微寒 甘草二两，炙，味甘平 生姜三两，切，味辛温 大枣十二枚，擘，味甘温\n右伍味，㕮咀。赵本有「三味」二字以水柒升，微火煑取三升，去滓，适寒温，服壹升。服已须"
+        },
+        {
+          "record_id": "safe:chunks:ZJSHL-CK-M-0083",
+          "record_table": "records_chunks",
+          "source_object": "chunks",
+          "chapter_id": "ZJSHL-CH-004",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 121.587302,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "设令向壁卧，闻师到，不惊起而 视，若三言三止，脉之，咽唾者，此诈病也。设令脉自和，处言汝赵本医统本皆作「此」病大重，当须服吐下药，针灸数十百处，乃愈。"
+        },
+        {
+          "record_id": "safe:definition_terms:DEF-XIA-YAO",
+          "record_table": "retrieval_ready_definition_view",
+          "source_object": "definition_terms",
+          "chapter_id": "ZJSHL-CH-006",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 121.5625,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "承气汤者，下药也。\n甘遂者，下药也。\n下药"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-004-P-0146",
+          "record_table": "records_main_passages",
+          "source_object": "main_passages",
+          "chapter_id": "ZJSHL-CH-004",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 119.538462,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "设令向壁卧，闻师到，不惊起而 视，若三言三止，脉之，咽唾者，此诈病也。设令脉自和，处言汝赵本医统本皆作「此」病大重，当须服吐下药，针灸数十百处，乃愈。"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-008-P-0217",
+          "record_table": "records_main_passages",
+          "source_object": "main_passages",
+          "chapter_id": "ZJSHL-CH-008",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 119.515152,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "桂枝汤方：桂枝三两，去皮，味辛热，按：下药性，赵本无，以后并同 芍药三两。味苦酸，微寒 甘草二两，炙，味甘平 生姜三两，切，味辛温 大枣十二枚，擘，味甘温"
+        },
+        {
+          "record_id": "full:annotations:ZJSHL-CH-006-P-0118",
+          "record_table": "records_annotations",
+          "source_object": "annotations",
+          "chapter_id": "ZJSHL-CH-006",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 115.492537,
+          "risk_flag": "[\"annotation_unlinked\"]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "夫如是，则神丹安可以误发，甘遂何可以妄攻。虚盛之治，相背千里，吉凶之机，应若影响，岂容易哉！神丹者，发汗之药也。甘遂者，下药也。若汗下当则吉，汗下不当则凶，其应如影随形，如附应声。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-004-P-0146",
+          "record_table": "records_passages",
+          "source_object": "passages",
+          "chapter_id": "ZJSHL-CH-004",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 113.470588,
+          "risk_flag": "[\"ledger_mixed_roles\"]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "设令向壁卧，闻师到，不惊起而 视，若三言三止，脉之，咽唾者，此诈病也。设令脉自和，处言汝赵本医统本皆作「此」病大重，当须服吐下药，针灸数十百处，乃愈。"
+        }
+      ],
+      "definition_priority_debug": {
+        "query": "下药是什么意思",
+        "enabled": true,
+        "family_id": "what_means",
+        "pattern_id": "what_means_long_suffix",
+        "selected_primary_ids": [
+          "safe:definition_terms:DEF-XIA-YAO"
+        ],
+        "preferred_secondary_ids": [
+          "full:passages:ZJSHL-CH-006-P-0118"
+        ],
+        "candidate_debug": [
+          {
+            "record_id": "safe:definition_terms:DEF-XIA-YAO",
+            "record_type": "definition_terms",
+            "evidence_type": "term_membership_sentence",
+            "selection_score": 192.0,
+            "primary_eligible": true,
+            "secondary_eligible": false
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-006-P-0118",
+            "record_type": "passages",
+            "evidence_type": "term_membership_sentence",
+            "selection_score": 180.0,
+            "primary_eligible": false,
+            "secondary_eligible": true
+          }
+        ],
+        "no_primary_eligible": false,
+        "fallback_to_standard": false
+      }
+    },
+    {
+      "query": "阳结是什么",
+      "previous_payload_mode": "strong",
+      "payload_mode": "strong",
+      "promoted_from_weak": false,
+      "primary_allowed_definition_source": true,
+      "primary_forbidden_items": [],
+      "payload_primary": [
+        {
+          "record_id": "safe:definition_terms:DEF-YANG-JIE",
+          "record_type": "definition_terms",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [],
+          "snippet": "其脉浮而数，能食，不大便者，此为实，名曰阳结也。 脉蔼蔼，如车盖者，名曰阳结也。 阳结"
+        }
+      ],
+      "payload_secondary": [
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-003-P-0017",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [],
+          "snippet": "脉赵本注：「一云秋脉」蔼蔼，如车盖者，名曰阳结也。"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-003-P-0004",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [],
+          "snippet": "问曰：脉有阳结阴结者，何以别之。答曰：其脉浮而数，能食，不大便者，此为实，名曰阳结也。期十七日当剧。其脉沉而迟，不能食，身体重，大便反硬，名曰阴结也。期十四日当剧。"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0020",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-010",
+          "risk_flags": [
+            "definition_priority_demoted_from_primary"
+          ],
+          "snippet": "大陷胸汤方：大黄六两，去皮。苦寒 芒硝一升。咸寒 甘遂一钱，赵本医统本并有「匕」字。苦寒"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0022",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-010",
+          "risk_flags": [],
+          "snippet": "上三味，以水六升，先煮大黄，取二升，去滓，内芒硝，煮一两沸，内甘遂末，温服一升，得快利，止后服。"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0019",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-010",
+          "risk_flags": [],
+          "snippet": "邪在表则见阳脉，邪在里则见阴脉，邪气内陷，动数之脉所以变迟，而浮脉独不变者，以邪结胸中，上焦阳结，脉不得而沉也。客气者，外邪乘胃中空虚入里，结于胸膈，膈中拒痛者，客气动膈也。《金匮要略》曰：短气不足以息者，实也。短气躁医统本作「躁」烦，心中..."
+        }
+      ],
+      "payload_review": [
+        {
+          "record_id": "full:passages:ZJSHL-CH-003-P-0004",
+          "record_type": "passages",
+          "display_role": "review",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [
+            "ledger_mixed_roles"
+          ],
+          "snippet": "问曰：脉有阳结阴结者，何以别之。答曰：其脉浮而数，能食，不大便者，此为实，名曰阳结也。期十七日当剧。其脉沉而迟，不能食，身体重，大便反硬，名曰阴结也。期十四日当剧。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-003-P-0005",
+          "record_type": "passages",
+          "display_role": "review",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [
+            "ledger_mixed_roles"
+          ],
+          "snippet": "结者，气偏结固，阴阳之气不得而杂之。阴中有阳，阳中有阴，阴阳相杂以为和，不相杂以为结。浮数，阳脉也；能食而不大便，里实也。为阳气结固，阴不得而杂之，是名阳结。沉迟，阴脉也；不能食，身体重，阴病也；阴病见阴脉，则当下利，今大便硬者，为阴气结固..."
+        },
+        {
+          "record_id": "full:ambiguous_passages:ZJSHL-CH-010-P-0065",
+          "record_type": "ambiguous_passages",
+          "display_role": "review",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-010",
+          "risk_flags": [
+            "ambiguous_source"
+          ],
+          "snippet": "伤寒五六日，邪当传里之时，头汗出，微恶寒者，表仍未解也。手足冷，心下满，口不欲食，大便硬，脉细者，邪结于里也。大便硬为阳结，此邪热虽传于里，然以外带表邪，则热结犹浅，故曰阳微结。脉沉虽为在里，若纯阴结，则更无头汗恶寒之表证。诸阴脉皆至颈胸中..."
+        }
+      ],
+      "support_full_passages": [
+        {
+          "record_id": "full:passages:ZJSHL-CH-003-P-0004",
+          "record_type": "passages",
+          "display_role": "review",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [
+            "ledger_mixed_roles"
+          ],
+          "snippet": "问曰：脉有阳结阴结者，何以别之。答曰：其脉浮而数，能食，不大便者，此为实，名曰阳结也。期十七日当剧。其脉沉而迟，不能食，身体重，大便反硬，名曰阴结也。期十四日当剧。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-003-P-0005",
+          "record_type": "passages",
+          "display_role": "review",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [
+            "ledger_mixed_roles"
+          ],
+          "snippet": "结者，气偏结固，阴阳之气不得而杂之。阴中有阳，阳中有阴，阴阳相杂以为和，不相杂以为结。浮数，阳脉也；能食而不大便，里实也。为阳气结固，阴不得而杂之，是名阳结。沉迟，阴脉也；不能食，身体重，阴病也；阴病见阴脉，则当下利，今大便硬者，为阴气结固..."
+        }
+      ],
+      "raw_top_candidates": [
+        {
+          "record_id": "formula:FML-6836369fbe28",
+          "record_table": "retrieval_ready_formula_view",
+          "source_object": "formulas",
+          "chapter_id": "ZJSHL-CH-010",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 121.639344,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "方剂：大陷胸汤\n别名：大陷胸汤；大陷胸汤方\n方名：大陷胸汤；大陷胸汤方\n组成：大陷胸汤方：大黄六两，去皮。苦寒 芒硝一升。咸寒 甘遂一钱，赵本医统本并有「匕」字。苦寒\n煎服法：上三味，以水六升，先煮大黄，取二升，去滓，内芒硝，煮一两沸，内甘"
+        },
+        {
+          "record_id": "safe:chunks:ZJSHL-CK-M-0002",
+          "record_table": "records_chunks",
+          "source_object": "chunks",
+          "chapter_id": "ZJSHL-CH-003",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 121.612903,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "问曰：脉有阳结阴结者，何以别之。答曰：其脉浮而数，能食，不大便者，此为实，名曰阳结也。期十七日当剧。其脉沉而迟，不能食，身体重，大便反硬，名曰阴结也。期十四日当剧。"
+        },
+        {
+          "record_id": "safe:chunks:ZJSHL-CK-M-0008",
+          "record_table": "records_chunks",
+          "source_object": "chunks",
+          "chapter_id": "ZJSHL-CH-003",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 121.587302,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "脉赵本注：「一云秋脉」蔼蔼，如车盖者，名曰阳结也。"
+        },
+        {
+          "record_id": "safe:chunks:ZJSHL-CK-M-0486",
+          "record_table": "records_chunks",
+          "source_object": "chunks",
+          "chapter_id": "ZJSHL-CH-010",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 121.5625,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "邪在表则见阳脉，邪在里则见阴脉，邪气内陷，动数之脉所以变迟，而浮脉独不变者，以邪结胸中，上焦阳结，脉不得而沉也。客气者，外邪乘胃中空虚入里，结于胸膈，膈中拒痛者，客气动膈也。《金匮要略》曰：短气不足以息者，实也。短气躁医统本作「躁」烦，心中"
+        },
+        {
+          "record_id": "safe:definition_terms:DEF-YANG-JIE",
+          "record_table": "retrieval_ready_definition_view",
+          "source_object": "definition_terms",
+          "chapter_id": "ZJSHL-CH-003",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 121.538462,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "其脉浮而数，能食，不大便者，此为实，名曰阳结也。\n脉蔼蔼，如车盖者，名曰阳结也。\n阳结"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-003-P-0004",
+          "record_table": "records_main_passages",
+          "source_object": "main_passages",
+          "chapter_id": "ZJSHL-CH-003",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 119.515152,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "问曰：脉有阳结阴结者，何以别之。答曰：其脉浮而数，能食，不大便者，此为实，名曰阳结也。期十七日当剧。其脉沉而迟，不能食，身体重，大便反硬，名曰阴结也。期十四日当剧。"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-003-P-0017",
+          "record_table": "records_main_passages",
+          "source_object": "main_passages",
+          "chapter_id": "ZJSHL-CH-003",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 119.492537,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "脉赵本注：「一云秋脉」蔼蔼，如车盖者，名曰阳结也。"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0019",
+          "record_table": "records_main_passages",
+          "source_object": "main_passages",
+          "chapter_id": "ZJSHL-CH-010",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 119.470588,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "邪在表则见阳脉，邪在里则见阴脉，邪气内陷，动数之脉所以变迟，而浮脉独不变者，以邪结胸中，上焦阳结，脉不得而沉也。客气者，外邪乘胃中空虚入里，结于胸膈，膈中拒痛者，客气动膈也。《金匮要略》曰：短气不足以息者，实也。短气躁医统本作「躁」烦，心中"
+        }
+      ],
+      "definition_priority_debug": {
+        "query": "阳结是什么",
+        "enabled": true,
+        "family_id": "what_is",
+        "pattern_id": "what_is_suffix",
+        "selected_primary_ids": [
+          "safe:definition_terms:DEF-YANG-JIE"
+        ],
+        "preferred_secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-003-P-0017",
+          "safe:main_passages:ZJSHL-CH-003-P-0004"
+        ],
+        "candidate_debug": [
+          {
+            "record_id": "safe:definition_terms:DEF-YANG-JIE",
+            "record_type": "definition_terms",
+            "evidence_type": "exact_term_definition",
+            "selection_score": 236.0,
+            "primary_eligible": true,
+            "secondary_eligible": false
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-003-P-0017",
+            "record_type": "main_passages",
+            "evidence_type": "term_membership_sentence",
+            "selection_score": 186.0,
+            "primary_eligible": true,
+            "secondary_eligible": false
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-003-P-0004",
+            "record_type": "main_passages",
+            "evidence_type": "term_membership_sentence",
+            "selection_score": 182.0,
+            "primary_eligible": true,
+            "secondary_eligible": false
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-003-P-0004",
+            "record_type": "passages",
+            "evidence_type": "term_membership_sentence",
+            "selection_score": 180.0,
+            "primary_eligible": false,
+            "secondary_eligible": true
+          }
+        ],
+        "no_primary_eligible": false,
+        "fallback_to_standard": false
+      }
+    },
+    {
+      "query": "阳结是什么意思",
+      "previous_payload_mode": "strong",
+      "payload_mode": "strong",
+      "promoted_from_weak": false,
+      "primary_allowed_definition_source": true,
+      "primary_forbidden_items": [],
+      "payload_primary": [
+        {
+          "record_id": "safe:definition_terms:DEF-YANG-JIE",
+          "record_type": "definition_terms",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [],
+          "snippet": "其脉浮而数，能食，不大便者，此为实，名曰阳结也。 脉蔼蔼，如车盖者，名曰阳结也。 阳结"
+        }
+      ],
+      "payload_secondary": [
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-003-P-0017",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [],
+          "snippet": "脉赵本注：「一云秋脉」蔼蔼，如车盖者，名曰阳结也。"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-003-P-0004",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [],
+          "snippet": "问曰：脉有阳结阴结者，何以别之。答曰：其脉浮而数，能食，不大便者，此为实，名曰阳结也。期十七日当剧。其脉沉而迟，不能食，身体重，大便反硬，名曰阴结也。期十四日当剧。"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0020",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-010",
+          "risk_flags": [
+            "definition_priority_demoted_from_primary"
+          ],
+          "snippet": "大陷胸汤方：大黄六两，去皮。苦寒 芒硝一升。咸寒 甘遂一钱，赵本医统本并有「匕」字。苦寒"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0022",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-010",
+          "risk_flags": [],
+          "snippet": "上三味，以水六升，先煮大黄，取二升，去滓，内芒硝，煮一两沸，内甘遂末，温服一升，得快利，止后服。"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0019",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-010",
+          "risk_flags": [],
+          "snippet": "邪在表则见阳脉，邪在里则见阴脉，邪气内陷，动数之脉所以变迟，而浮脉独不变者，以邪结胸中，上焦阳结，脉不得而沉也。客气者，外邪乘胃中空虚入里，结于胸膈，膈中拒痛者，客气动膈也。《金匮要略》曰：短气不足以息者，实也。短气躁医统本作「躁」烦，心中..."
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-003-P-0018",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "蔼蔼如车盖者，大而厌厌聂聂也。为阳气郁结于外，不与阴气和杂也。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-003-P-0005",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "结者，气偏结固，阴阳之气不得而杂之。阴中有阳，阳中有阴，阴阳相杂以为和，不相杂以为结。浮数，阳脉也；能食而不大便，里实也。为阳气结固，阴不得而杂之，是名阳结。沉迟，阴脉也；不能食，身体重，阴病也；阴病见阴脉，则当下利，今大便硬者，为阴气结固..."
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-010-P-0019",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-010",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "邪在表则见阳脉，邪在里则见阴脉，邪气内陷，动数之脉所以变迟，而浮脉独不变者，以邪结胸中，上焦阳结，脉不得而沉也。客气者，外邪乘胃中空虚入里，结于胸膈，膈中拒痛者，客气动膈也。《金匮要略》曰：短气不足以息者，实也。短气躁医统本作「躁」烦，心中..."
+        }
+      ],
+      "payload_review": [
+        {
+          "record_id": "full:passages:ZJSHL-CH-003-P-0004",
+          "record_type": "passages",
+          "display_role": "review",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [
+            "ledger_mixed_roles"
+          ],
+          "snippet": "问曰：脉有阳结阴结者，何以别之。答曰：其脉浮而数，能食，不大便者，此为实，名曰阳结也。期十七日当剧。其脉沉而迟，不能食，身体重，大便反硬，名曰阴结也。期十四日当剧。"
+        },
+        {
+          "record_id": "full:ambiguous_passages:ZJSHL-CH-010-P-0065",
+          "record_type": "ambiguous_passages",
+          "display_role": "review",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-010",
+          "risk_flags": [
+            "ambiguous_source"
+          ],
+          "snippet": "伤寒五六日，邪当传里之时，头汗出，微恶寒者，表仍未解也。手足冷，心下满，口不欲食，大便硬，脉细者，邪结于里也。大便硬为阳结，此邪热虽传于里，然以外带表邪，则热结犹浅，故曰阳微结。脉沉虽为在里，若纯阴结，则更无头汗恶寒之表证。诸阴脉皆至颈胸中..."
+        }
+      ],
+      "support_full_passages": [
+        {
+          "record_id": "full:passages:ZJSHL-CH-003-P-0018",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "蔼蔼如车盖者，大而厌厌聂聂也。为阳气郁结于外，不与阴气和杂也。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-003-P-0005",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "结者，气偏结固，阴阳之气不得而杂之。阴中有阳，阳中有阴，阴阳相杂以为和，不相杂以为结。浮数，阳脉也；能食而不大便，里实也。为阳气结固，阴不得而杂之，是名阳结。沉迟，阴脉也；不能食，身体重，阴病也；阴病见阴脉，则当下利，今大便硬者，为阴气结固..."
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-010-P-0019",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-010",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "邪在表则见阳脉，邪在里则见阴脉，邪气内陷，动数之脉所以变迟，而浮脉独不变者，以邪结胸中，上焦阳结，脉不得而沉也。客气者，外邪乘胃中空虚入里，结于胸膈，膈中拒痛者，客气动膈也。《金匮要略》曰：短气不足以息者，实也。短气躁医统本作「躁」烦，心中..."
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-003-P-0004",
+          "record_type": "passages",
+          "display_role": "review",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [
+            "ledger_mixed_roles"
+          ],
+          "snippet": "问曰：脉有阳结阴结者，何以别之。答曰：其脉浮而数，能食，不大便者，此为实，名曰阳结也。期十七日当剧。其脉沉而迟，不能食，身体重，大便反硬，名曰阴结也。期十四日当剧。"
+        }
+      ],
+      "raw_top_candidates": [
+        {
+          "record_id": "formula:FML-6836369fbe28",
+          "record_table": "retrieval_ready_formula_view",
+          "source_object": "formulas",
+          "chapter_id": "ZJSHL-CH-010",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 121.639344,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "方剂：大陷胸汤\n别名：大陷胸汤；大陷胸汤方\n方名：大陷胸汤；大陷胸汤方\n组成：大陷胸汤方：大黄六两，去皮。苦寒 芒硝一升。咸寒 甘遂一钱，赵本医统本并有「匕」字。苦寒\n煎服法：上三味，以水六升，先煮大黄，取二升，去滓，内芒硝，煮一两沸，内甘"
+        },
+        {
+          "record_id": "safe:chunks:ZJSHL-CK-M-0002",
+          "record_table": "records_chunks",
+          "source_object": "chunks",
+          "chapter_id": "ZJSHL-CH-003",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 121.612903,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "问曰：脉有阳结阴结者，何以别之。答曰：其脉浮而数，能食，不大便者，此为实，名曰阳结也。期十七日当剧。其脉沉而迟，不能食，身体重，大便反硬，名曰阴结也。期十四日当剧。"
+        },
+        {
+          "record_id": "safe:chunks:ZJSHL-CK-M-0008",
+          "record_table": "records_chunks",
+          "source_object": "chunks",
+          "chapter_id": "ZJSHL-CH-003",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 121.587302,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "脉赵本注：「一云秋脉」蔼蔼，如车盖者，名曰阳结也。"
+        },
+        {
+          "record_id": "safe:chunks:ZJSHL-CK-M-0486",
+          "record_table": "records_chunks",
+          "source_object": "chunks",
+          "chapter_id": "ZJSHL-CH-010",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 121.5625,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "邪在表则见阳脉，邪在里则见阴脉，邪气内陷，动数之脉所以变迟，而浮脉独不变者，以邪结胸中，上焦阳结，脉不得而沉也。客气者，外邪乘胃中空虚入里，结于胸膈，膈中拒痛者，客气动膈也。《金匮要略》曰：短气不足以息者，实也。短气躁医统本作「躁」烦，心中"
+        },
+        {
+          "record_id": "safe:definition_terms:DEF-YANG-JIE",
+          "record_table": "retrieval_ready_definition_view",
+          "source_object": "definition_terms",
+          "chapter_id": "ZJSHL-CH-003",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 121.538462,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "其脉浮而数，能食，不大便者，此为实，名曰阳结也。\n脉蔼蔼，如车盖者，名曰阳结也。\n阳结"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-003-P-0004",
+          "record_table": "records_main_passages",
+          "source_object": "main_passages",
+          "chapter_id": "ZJSHL-CH-003",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 119.515152,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "问曰：脉有阳结阴结者，何以别之。答曰：其脉浮而数，能食，不大便者，此为实，名曰阳结也。期十七日当剧。其脉沉而迟，不能食，身体重，大便反硬，名曰阴结也。期十四日当剧。"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-003-P-0017",
+          "record_table": "records_main_passages",
+          "source_object": "main_passages",
+          "chapter_id": "ZJSHL-CH-003",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 119.492537,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "脉赵本注：「一云秋脉」蔼蔼，如车盖者，名曰阳结也。"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0019",
+          "record_table": "records_main_passages",
+          "source_object": "main_passages",
+          "chapter_id": "ZJSHL-CH-010",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 119.470588,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "邪在表则见阳脉，邪在里则见阴脉，邪气内陷，动数之脉所以变迟，而浮脉独不变者，以邪结胸中，上焦阳结，脉不得而沉也。客气者，外邪乘胃中空虚入里，结于胸膈，膈中拒痛者，客气动膈也。《金匮要略》曰：短气不足以息者，实也。短气躁医统本作「躁」烦，心中"
+        }
+      ],
+      "definition_priority_debug": {
+        "query": "阳结是什么意思",
+        "enabled": true,
+        "family_id": "what_means",
+        "pattern_id": "what_means_long_suffix",
+        "selected_primary_ids": [
+          "safe:definition_terms:DEF-YANG-JIE"
+        ],
+        "preferred_secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-003-P-0017",
+          "safe:main_passages:ZJSHL-CH-003-P-0004"
+        ],
+        "candidate_debug": [
+          {
+            "record_id": "safe:definition_terms:DEF-YANG-JIE",
+            "record_type": "definition_terms",
+            "evidence_type": "exact_term_definition",
+            "selection_score": 236.0,
+            "primary_eligible": true,
+            "secondary_eligible": false
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-003-P-0017",
+            "record_type": "main_passages",
+            "evidence_type": "term_membership_sentence",
+            "selection_score": 186.0,
+            "primary_eligible": true,
+            "secondary_eligible": false
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-003-P-0004",
+            "record_type": "main_passages",
+            "evidence_type": "term_membership_sentence",
+            "selection_score": 182.0,
+            "primary_eligible": true,
+            "secondary_eligible": false
+          },
+          {
+            "record_id": "full:passages:ZJSHL-CH-003-P-0004",
+            "record_type": "passages",
+            "evidence_type": "term_membership_sentence",
+            "selection_score": 180.0,
+            "primary_eligible": false,
+            "secondary_eligible": true
+          }
+        ],
+        "no_primary_eligible": false,
+        "fallback_to_standard": false
+      }
+    },
+    {
+      "query": "阴结是什么意思",
+      "previous_payload_mode": null,
+      "payload_mode": "strong",
+      "promoted_from_weak": false,
+      "primary_allowed_definition_source": true,
+      "primary_forbidden_items": [],
+      "payload_primary": [
+        {
+          "record_id": "safe:definition_terms:DEF-YIN-JIE",
+          "record_type": "definition_terms",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [],
+          "snippet": "其脉沉而迟，不能食，身体重，大便反硬，名曰阴结也。 脉如循长竿者，名曰阴结也。 阴结"
+        }
+      ],
+      "payload_secondary": [
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-003-P-0019",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [],
+          "snippet": "脉赵本注：「一云夏脉」 ，赵本作：「累累」如循长竿者，名曰阴结也。"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-003-P-0004",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [
+            "definition_priority_demoted_from_primary"
+          ],
+          "snippet": "问曰：脉有阳结阴结者，何以别之。答曰：其脉浮而数，能食，不大便者，此为实，名曰阳结也。期十七日当剧。其脉沉而迟，不能食，身体重，大便反硬，名曰阴结也。期十四日当剧。"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-023-P-0041",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-023",
+          "risk_flags": [
+            "definition_priority_demoted_from_primary"
+          ],
+          "snippet": "无阳者，亡津液也；阴强者，寒多也。大便硬则为阴结，下之虚胃，阴寒内甚，必清谷腹满。"
+        },
+        {
+          "record_id": "full:annotations:ZJSHL-CH-003-P-0005",
+          "record_type": "annotations",
+          "display_role": "secondary",
+          "evidence_level": "B",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [
+            "annotation_unlinked"
+          ],
+          "snippet": "结者，气偏结固，阴阳之气不得而杂之。阴中有阳，阳中有阴，阴阳相杂以为和，不相杂以为结。浮数，阳脉也；能食而不大便，里实也。为阳气结固，阴不得而杂之，是名阳结。沉迟，阴脉也；不能食，身体重，阴病也；阴病见阴脉，则当下利，今大便硬者，为阴气结固..."
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-003-P-0004",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "问曰：脉有阳结阴结者，何以别之。答曰：其脉浮而数，能食，不大便者，此为实，名曰阳结也。期十七日当剧。其脉沉而迟，不能食，身体重，大便反硬，名曰阴结也。期十四日当剧。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-003-P-0005",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "结者，气偏结固，阴阳之气不得而杂之。阴中有阳，阳中有阴，阴阳相杂以为和，不相杂以为结。浮数，阳脉也；能食而不大便，里实也。为阳气结固，阴不得而杂之，是名阳结。沉迟，阴脉也；不能食，身体重，阴病也；阴病见阴脉，则当下利，今大便硬者，为阴气结固..."
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-003-P-0020",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "累累如循长竿者，连连而强直也。为阴气郁结于内，不与阳气和杂也。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-023-P-0040",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-023",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "无阳阴强，大便硬者，下之则赵本无「则」字必清谷腹满。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-003-P-0006",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "问曰：病有洒淅恶寒而复发热者，何？答曰：阴脉不足，阳往从之；阳脉不足，阴往乘之。曰：何谓阳不足。答曰：假令寸口脉微，名曰阳不足，阴气上入阳中，则洒淅恶寒也。曰：何谓阴不足。答曰：假令赵本无「假令」二字尺脉弱，名曰阴不足，阳气下陷入阴中，则发..."
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-003-P-0003",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "《内经》曰：微妙在脉，不可不察。察之有纪，从阴阳始。始之有经，从五行生。兹首论曰：医统本无「曰」字脉之阴阳者，以脉从阴阳始故也。阳脉有五，阴脉有五，以脉从五行生故也。阳道常饶，大、浮、数、动、滑五者，比之平脉也。有馀，故谓之阳。阴道常乏，沉..."
+        }
+      ],
+      "payload_review": [
+        {
+          "record_id": "full:ambiguous_passages:ZJSHL-CH-010-P-0003",
+          "record_type": "ambiguous_passages",
+          "display_role": "review",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-010",
+          "risk_flags": [
+            "ambiguous_source"
+          ],
+          "snippet": "结胸者，邪结在胸；脏结者，邪结在脏。二者皆下后，邪气乘虚入里所致。下后邪气入里，与阳相结者为结胸，以阳受气于胸中故尔；与阴相结者，为脏结，以阴受之，则入五脏故尔。气与宜通而塞，故痛。邪结阳分，则阴气不得上通；邪结阴分，则阳气不得下通。是二者..."
+        }
+      ],
+      "support_full_passages": [
+        {
+          "record_id": "full:passages:ZJSHL-CH-003-P-0004",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "问曰：脉有阳结阴结者，何以别之。答曰：其脉浮而数，能食，不大便者，此为实，名曰阳结也。期十七日当剧。其脉沉而迟，不能食，身体重，大便反硬，名曰阴结也。期十四日当剧。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-003-P-0005",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "结者，气偏结固，阴阳之气不得而杂之。阴中有阳，阳中有阴，阴阳相杂以为和，不相杂以为结。浮数，阳脉也；能食而不大便，里实也。为阳气结固，阴不得而杂之，是名阳结。沉迟，阴脉也；不能食，身体重，阴病也；阴病见阴脉，则当下利，今大便硬者，为阴气结固..."
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-003-P-0020",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "累累如循长竿者，连连而强直也。为阴气郁结于内，不与阳气和杂也。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-023-P-0040",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-023",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "无阳阴强，大便硬者，下之则赵本无「则」字必清谷腹满。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-003-P-0006",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "问曰：病有洒淅恶寒而复发热者，何？答曰：阴脉不足，阳往从之；阳脉不足，阴往乘之。曰：何谓阳不足。答曰：假令寸口脉微，名曰阳不足，阴气上入阳中，则洒淅恶寒也。曰：何谓阴不足。答曰：假令赵本无「假令」二字尺脉弱，名曰阴不足，阳气下陷入阴中，则发..."
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-003-P-0003",
+          "record_type": "passages",
+          "display_role": "secondary",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-003",
+          "risk_flags": [
+            "ledger_mixed_roles",
+            "context_padding"
+          ],
+          "snippet": "《内经》曰：微妙在脉，不可不察。察之有纪，从阴阳始。始之有经，从五行生。兹首论曰：医统本无「曰」字脉之阴阳者，以脉从阴阳始故也。阳脉有五，阴脉有五，以脉从五行生故也。阳道常饶，大、浮、数、动、滑五者，比之平脉也。有馀，故谓之阳。阴道常乏，沉..."
+        }
+      ],
+      "raw_top_candidates": [
+        {
+          "record_id": "safe:chunks:ZJSHL-CK-M-0002",
+          "record_table": "records_chunks",
+          "source_object": "chunks",
+          "chapter_id": "ZJSHL-CH-003",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 121.639344,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "问曰：脉有阳结阴结者，何以别之。答曰：其脉浮而数，能食，不大便者，此为实，名曰阳结也。期十七日当剧。其脉沉而迟，不能食，身体重，大便反硬，名曰阴结也。期十四日当剧。"
+        },
+        {
+          "record_id": "safe:chunks:ZJSHL-CK-M-0009",
+          "record_table": "records_chunks",
+          "source_object": "chunks",
+          "chapter_id": "ZJSHL-CH-003",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 121.612903,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "脉赵本注：「一云夏脉」 ，赵本作：「累累」如循长竿者，名曰阴结也。"
+        },
+        {
+          "record_id": "safe:chunks:ZJSHL-CK-M-0985",
+          "record_table": "records_chunks",
+          "source_object": "chunks",
+          "chapter_id": "ZJSHL-CH-023",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 121.587302,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "无阳者，亡津液也；阴强者，寒多也。大便硬则为阴结，下之虚胃，阴寒内甚，必清谷腹满。"
+        },
+        {
+          "record_id": "safe:definition_terms:DEF-YIN-JIE",
+          "record_table": "retrieval_ready_definition_view",
+          "source_object": "definition_terms",
+          "chapter_id": "ZJSHL-CH-003",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 121.5625,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "其脉沉而迟，不能食，身体重，大便反硬，名曰阴结也。\n脉如循长竿者，名曰阴结也。\n阴结"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-003-P-0004",
+          "record_table": "records_main_passages",
+          "source_object": "main_passages",
+          "chapter_id": "ZJSHL-CH-003",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 119.538462,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "问曰：脉有阳结阴结者，何以别之。答曰：其脉浮而数，能食，不大便者，此为实，名曰阳结也。期十七日当剧。其脉沉而迟，不能食，身体重，大便反硬，名曰阴结也。期十四日当剧。"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-003-P-0019",
+          "record_table": "records_main_passages",
+          "source_object": "main_passages",
+          "chapter_id": "ZJSHL-CH-003",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 119.515152,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "脉赵本注：「一云夏脉」 ，赵本作：「累累」如循长竿者，名曰阴结也。"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-023-P-0041",
+          "record_table": "records_main_passages",
+          "source_object": "main_passages",
+          "chapter_id": "ZJSHL-CH-023",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 119.492537,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "无阳者，亡津液也；阴强者，寒多也。大便硬则为阴结，下之虚胃，阴寒内甚，必清谷腹满。"
+        },
+        {
+          "record_id": "full:annotations:ZJSHL-CH-003-P-0005",
+          "record_table": "records_annotations",
+          "source_object": "annotations",
+          "chapter_id": "ZJSHL-CH-003",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 115.470588,
+          "risk_flag": "[\"annotation_unlinked\"]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "结者，气偏结固，阴阳之气不得而杂之。阴中有阳，阳中有阴，阴阳相杂以为和，不相杂以为结。浮数，阳脉也；能食而不大便，里实也。为阳气结固，阴不得而杂之，是名阳结。沉迟，阴脉也；不能食，身体重，阴病也；阴病见阴脉，则当下利，今大便硬者，为阴气结固"
+        }
+      ],
+      "definition_priority_debug": {
+        "query": "阴结是什么意思",
+        "enabled": true,
+        "family_id": "what_means",
+        "pattern_id": "what_means_long_suffix",
+        "selected_primary_ids": [
+          "safe:definition_terms:DEF-YIN-JIE"
+        ],
+        "preferred_secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-003-P-0019"
+        ],
+        "candidate_debug": [
+          {
+            "record_id": "safe:definition_terms:DEF-YIN-JIE",
+            "record_type": "definition_terms",
+            "evidence_type": "exact_term_definition",
+            "selection_score": 236.0,
+            "primary_eligible": true,
+            "secondary_eligible": false
+          },
+          {
+            "record_id": "safe:main_passages:ZJSHL-CH-003-P-0019",
+            "record_type": "main_passages",
+            "evidence_type": "term_membership_sentence",
+            "selection_score": 186.0,
+            "primary_eligible": true,
+            "secondary_eligible": false
+          }
+        ],
+        "no_primary_eligible": false,
+        "fallback_to_standard": false
+      }
+    },
+    {
+      "query": "承气汤是下药吗",
+      "previous_payload_mode": "strong",
+      "payload_mode": "strong",
+      "promoted_from_weak": false,
+      "primary_allowed_definition_source": true,
+      "primary_forbidden_items": [],
+      "payload_primary": [
+        {
+          "record_id": "safe:definition_terms:DEF-XIA-YAO",
+          "record_type": "definition_terms",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-006",
+          "risk_flags": [],
+          "snippet": "承气汤者，下药也。 甘遂者，下药也。 下药"
+        }
+      ],
+      "payload_secondary": [
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-015-P-0316",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-015",
+          "risk_flags": [
+            "definition_priority_demoted_from_primary"
+          ],
+          "snippet": "下利，谵语者，有燥屎也，宜小承气汤。赵本有「小承气汤方」详见卷五"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0261",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-009",
+          "risk_flags": [
+            "definition_priority_demoted_from_primary"
+          ],
+          "snippet": "桃核承气汤方：桃人人赵本作仁，五十个，去皮尖。味甘平 桂枝二两，去皮。味辛热 大黄四两 芒硝二两 甘草二两，炙"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-011-P-0071",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-011",
+          "risk_flags": [
+            "definition_priority_demoted_from_primary"
+          ],
+          "snippet": "小承气汤方：大黄四两。赵本有「酒洗」二字 浓朴二两，炙，去皮。 枳实三枚，大者，炙"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0263",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-009",
+          "risk_flags": [],
+          "snippet": "上五味，以水七升，煮取二升半，去滓，内芒硝，更上火微沸。下火，先食温服五合，日三服，当微利。"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-011-P-0073",
+          "record_type": "main_passages",
+          "display_role": "secondary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-011",
+          "risk_flags": [],
+          "snippet": "以上赵本作「右」三味，以水四升，煮取一升二合，去滓，分温二服。初服汤，当更衣，不尔者，尽饮之；若更衣者，勿服之。"
+        }
+      ],
+      "payload_review": [
+        {
+          "record_id": "full:passages:ZJSHL-CH-009-P-0134",
+          "record_type": "passages",
+          "display_role": "review",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-009",
+          "risk_flags": [
+            "ledger_mixed_roles"
+          ],
+          "snippet": "当和胃气，与调胃承气汤。赵本有「调胃承气汤方」详见本书卷二。又赵本注：「玉函云，与小承气汤」"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-015-P-0316",
+          "record_type": "passages",
+          "display_role": "review",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-015",
+          "risk_flags": [
+            "ledger_mixed_roles"
+          ],
+          "snippet": "下利，谵语者，有燥屎也，宜小承气汤。赵本有「小承气汤方」详见卷五"
+        }
+      ],
+      "support_full_passages": [
+        {
+          "record_id": "full:passages:ZJSHL-CH-009-P-0134",
+          "record_type": "passages",
+          "display_role": "review",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-009",
+          "risk_flags": [
+            "ledger_mixed_roles"
+          ],
+          "snippet": "当和胃气，与调胃承气汤。赵本有「调胃承气汤方」详见本书卷二。又赵本注：「玉函云，与小承气汤」"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-015-P-0316",
+          "record_type": "passages",
+          "display_role": "review",
+          "evidence_level": "C",
+          "chapter_id": "ZJSHL-CH-015",
+          "risk_flags": [
+            "ledger_mixed_roles"
+          ],
+          "snippet": "下利，谵语者，有燥屎也，宜小承气汤。赵本有「小承气汤方」详见卷五"
+        }
+      ],
+      "raw_top_candidates": [
+        {
+          "record_id": "safe:chunks:ZJSHL-CK-M-0887",
+          "record_table": "records_chunks",
+          "source_object": "chunks",
+          "chapter_id": "ZJSHL-CH-015",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 43.652908,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "下利，谵语者，有燥屎也，宜小承气汤。赵本有「小承气汤方」详见卷五"
+        },
+        {
+          "record_id": "formula:FML-e6e8ed2aa322",
+          "record_table": "retrieval_ready_formula_view",
+          "source_object": "formulas",
+          "chapter_id": "ZJSHL-CH-009",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 42.791742,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "方剂：桃核承气汤\n别名：桃核承气汤；桃核承气汤方\n方名：桃核承气汤；桃核承气汤方\n组成：桃核承气汤方：桃人人赵本作仁，五十个，去皮尖。味甘平 桂枝二两，去皮。味辛热 大黄四两 芒硝二两 甘草二两，炙\n煎服法：上五味，以水七升，煮取二升半，去"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-015-P-0316",
+          "record_table": "records_main_passages",
+          "source_object": "main_passages",
+          "chapter_id": "ZJSHL-CH-015",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 41.600866,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "下利，谵语者，有燥屎也，宜小承气汤。赵本有「小承气汤方」详见卷五"
+        },
+        {
+          "record_id": "safe:definition_terms:DEF-XIA-YAO",
+          "record_table": "retrieval_ready_definition_view",
+          "source_object": "definition_terms",
+          "chapter_id": "ZJSHL-CH-006",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 42.549874,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "承气汤者，下药也。\n甘遂者，下药也。\n下药"
+        },
+        {
+          "record_id": "full:annotations:ZJSHL-CH-009-P-0134",
+          "record_table": "records_annotations",
+          "source_object": "annotations",
+          "chapter_id": "ZJSHL-CH-009",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 38.538462,
+          "risk_flag": "[\"annotation_unlinked\"]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "当和胃气，与调胃承气汤。赵本有「调胃承气汤方」详见本书卷二。又赵本注：「玉函云，与小承气汤」"
+        },
+        {
+          "record_id": "formula:FML-e58f0c961be6",
+          "record_table": "retrieval_ready_formula_view",
+          "source_object": "formulas",
+          "chapter_id": "ZJSHL-CH-011",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 40.937003,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "方剂：小承气汤\n别名：小承气汤；小承气汤方\n方名：小承气汤；小承气汤方\n组成：小承气汤方：大黄四两。赵本有「酒洗」二字 浓朴二两，炙，去皮。 枳实三枚，大者，炙\n煎服法：以上赵本作「右」三味，以水四升，煮取一升二合，去滓，分温二服。初服汤，"
+        },
+        {
+          "record_id": "safe:chunks:ZJSHL-CK-M-0685",
+          "record_table": "records_chunks",
+          "source_object": "chunks",
+          "chapter_id": "ZJSHL-CH-011",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 40.752394,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "发汗不解，腹满痛者，急下之，宜大承气汤。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-009-P-0134",
+          "record_table": "records_passages",
+          "source_object": "passages",
+          "chapter_id": "ZJSHL-CH-009",
+          "topic_consistency": "neutral",
+          "formula_scope": null,
+          "combined_score": 36.470588,
+          "risk_flag": "[\"ledger_mixed_roles\"]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "当和胃气，与调胃承气汤。赵本有「调胃承气汤方」详见本书卷二。又赵本注：「玉函云，与小承气汤」"
+        }
+      ],
+      "definition_priority_debug": {
+        "query": "承气汤是下药吗",
+        "enabled": true,
+        "family_id": "category_membership_yesno",
+        "pattern_id": "subject_predicate_yesno",
+        "selected_primary_ids": [
+          "safe:definition_terms:DEF-XIA-YAO"
+        ],
+        "preferred_secondary_ids": [],
+        "candidate_debug": [
+          {
+            "record_id": "safe:definition_terms:DEF-XIA-YAO",
+            "record_type": "definition_terms",
+            "evidence_type": "subject_predicate_definition",
+            "selection_score": 218.637,
+            "primary_eligible": true,
+            "secondary_eligible": false
+          }
+        ],
+        "no_primary_eligible": false,
+        "fallback_to_standard": false
+      }
+    }
+  ],
+  "formula_results": [
+    {
+      "query": "葛根黄芩黄连汤方的条文是什么？",
+      "payload_mode": "strong",
+      "formula_normalization": {
+        "enabled": true,
+        "type": "exact",
+        "formula_ids": [
+          "FML-1df3a038d2f7"
+        ],
+        "target_formula_id": "FML-1df3a038d2f7",
+        "matches": [
+          {
+            "formula_id": "FML-1df3a038d2f7",
+            "canonical_name": "葛根黄芩黄连汤",
+            "alias": "葛根黄芩黄连汤",
+            "normalized_alias": "葛根黄芩黄连汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              0,
+              7
+            ]
+          }
+        ],
+        "disabled_reason": null
+      },
+      "primary_safe_main_only": true,
+      "primary_forbidden_items": [],
+      "top5_bad_formula_anchor_count": 0,
+      "primary_formula_backref_count": 0,
+      "raw_top_candidates": [
+        {
+          "record_id": "formula:FML-1df3a038d2f7",
+          "record_table": "retrieval_ready_formula_view",
+          "source_object": "formulas",
+          "chapter_id": "ZJSHL-CH-009",
+          "topic_consistency": "formula_object_exact",
+          "formula_scope": "target_formula_object",
+          "combined_score": 317.778689,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "formula_object",
+            "sparse"
+          ],
+          "text_preview": "方剂：葛根黄芩黄连汤\n别名：葛根黄芩黄连汤；葛根黄芩黄连汤方\n方名：葛根黄芩黄连汤；葛根黄芩黄连汤方\n组成：葛根黄芩黄连汤方：赵本芩、连互易\n煎服法：上四味，以水八升，先煮葛根，减二升，内诸药，煮取二升，去滓，分温再服。\n使用语境：\n邻接上"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0016",
+          "record_table": "records_main_passages",
+          "source_object": "main_passages",
+          "chapter_id": "ZJSHL-CH-009",
+          "topic_consistency": "same_formula_span",
+          "formula_scope": "target_formula_span",
+          "combined_score": 274.384605,
+          "risk_flag": "[\"short_text_demoted\"]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "葛根黄芩黄连汤方：赵本芩、连互易"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-009-P-0016",
+          "record_table": "records_passages",
+          "source_object": "passages",
+          "chapter_id": "ZJSHL-CH-009",
+          "topic_consistency": "same_formula_span",
+          "formula_scope": "target_formula_span",
+          "combined_score": 270.359004,
+          "risk_flag": "[\"ledger_mixed_roles\"]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "葛根黄芩黄连汤方：赵本芩、连互易"
+        },
+        {
+          "record_id": "safe:chunks:ZJSHL-CK-F-0009",
+          "record_table": "records_chunks",
+          "source_object": "chunks",
+          "chapter_id": "ZJSHL-CH-009",
+          "topic_consistency": "same_formula_span",
+          "formula_scope": "target_formula_span",
+          "combined_score": 269.581995,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "葛根黄芩黄连汤方：赵本芩、连互易\n葛根半斤 甘草二两，炙。味甘平 黄芩二，赵本作「三」两。味苦寒 黄连三两。味苦寒\n上四味，以水八升，先煮葛根，减二升，内诸药，煮取二升，去滓，分温再服。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-009-P-0015",
+          "record_table": "records_passages",
+          "source_object": "passages",
+          "chapter_id": "ZJSHL-CH-009",
+          "topic_consistency": "phrase_only_match",
+          "formula_scope": null,
+          "combined_score": 65.424746,
+          "risk_flag": "[\"ledger_mixed_roles\",\"ambiguous_source\"]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "经曰：不宜下，而便攻之，内虚热入，协热遂利。桂枝证者，邪在表也，而反下之，虚其肠胃，为热所乘，遂利不止。邪在表则见阳脉，邪在里则见阴脉。下利脉微迟，邪在里也。促为阳盛，虽下利而脉促者，知表未解也。病有汗出而喘者，为自汗出而喘也，即邪气外甚所"
+        }
+      ],
+      "payload_primary": [
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0017",
+          "record_type": "main_passages",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-009",
+          "risk_flags": [],
+          "snippet": "葛根半斤 甘草二两，炙。味甘平 黄芩二，赵本作「三」两。味苦寒 黄连三两。味苦寒"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0019",
+          "record_type": "main_passages",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-009",
+          "risk_flags": [],
+          "snippet": "上四味，以水八升，先煮葛根，减二升，内诸药，煮取二升，去滓，分温再服。"
+        }
+      ]
+    },
+    {
+      "query": "麻黄汤方的条文是什么？",
+      "payload_mode": "strong",
+      "formula_normalization": {
+        "enabled": true,
+        "type": "exact",
+        "formula_ids": [
+          "FML-04f61fac7138"
+        ],
+        "target_formula_id": "FML-04f61fac7138",
+        "matches": [
+          {
+            "formula_id": "FML-04f61fac7138",
+            "canonical_name": "麻黄汤",
+            "alias": "麻黄汤",
+            "normalized_alias": "麻黄汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              0,
+              3
+            ]
+          }
+        ],
+        "disabled_reason": null
+      },
+      "primary_safe_main_only": true,
+      "primary_forbidden_items": [],
+      "top5_bad_formula_anchor_count": 0,
+      "primary_formula_backref_count": 1,
+      "raw_top_candidates": [
+        {
+          "record_id": "formula:FML-04f61fac7138",
+          "record_table": "retrieval_ready_formula_view",
+          "source_object": "formulas",
+          "chapter_id": "ZJSHL-CH-009",
+          "topic_consistency": "formula_object_exact",
+          "formula_scope": "target_formula_object",
+          "combined_score": 293.278689,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "formula_object",
+            "sparse"
+          ],
+          "text_preview": "方剂：麻黄汤\n别名：麻黄汤；麻黄汤方\n方名：麻黄汤；麻黄汤方\n组成：麻黄汤方：麻黄三两，去节。味甘温 桂枝二，医统本作三两，去皮。味辛热 甘草一两，炙。味甘平\n煎服法：上四味，以水九升，先煮麻黄，减二升，去上沫，内诸药，煮取二升半，去滓，温"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0022",
+          "record_table": "records_main_passages",
+          "source_object": "main_passages",
+          "chapter_id": "ZJSHL-CH-009",
+          "topic_consistency": "same_formula_span",
+          "formula_scope": "target_formula_span",
+          "combined_score": 197.77678,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "麻黄汤方：麻黄三两，去节。味甘温 桂枝二，医统本作三两，去皮。味辛热 甘草一两，炙。味甘平"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-009-P-0022",
+          "record_table": "records_passages",
+          "source_object": "passages",
+          "chapter_id": "ZJSHL-CH-009",
+          "topic_consistency": "same_formula_span",
+          "formula_scope": "target_formula_span",
+          "combined_score": 191.751179,
+          "risk_flag": "[\"ledger_mixed_roles\"]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "麻黄汤方：麻黄三两，去节。味甘温 桂枝二，医统本作三两，去皮。味辛热 甘草一两，炙。味甘平"
+        },
+        {
+          "record_id": "safe:chunks:ZJSHL-CK-F-0010",
+          "record_table": "records_chunks",
+          "source_object": "chunks",
+          "chapter_id": "ZJSHL-CH-009",
+          "topic_consistency": "same_formula_span",
+          "formula_scope": "target_formula_span",
+          "combined_score": 191.714201,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "麻黄汤方：麻黄三两，去节。味甘温 桂枝二，医统本作三两，去皮。味辛热 甘草一两，炙。味甘平\n杏仁七十个，汤，赵本无「汤」字，去皮尖。味辛温\n上四味，以水九升，先煮麻黄，减二升，去上沫，内诸药，煮取二升半，去滓，温服八合，覆取微似汗，不须啜粥"
+        }
+      ],
+      "payload_primary": [
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0022",
+          "record_type": "main_passages",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-009",
+          "risk_flags": [],
+          "snippet": "麻黄汤方：麻黄三两，去节。味甘温 桂枝二，医统本作三两，去皮。味辛热 甘草一两，炙。味甘平"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0023",
+          "record_type": "main_passages",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-009",
+          "risk_flags": [],
+          "snippet": "杏仁七十个，汤，赵本无「汤」字，去皮尖。味辛温"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0025",
+          "record_type": "main_passages",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-009",
+          "risk_flags": [],
+          "snippet": "上四味，以水九升，先煮麻黄，减二升，去上沫，内诸药，煮取二升半，去滓，温服八合，覆取微似汗，不须啜粥，馀如桂枝法将息。"
+        }
+      ]
+    },
+    {
+      "query": "大青龙汤方的条文是什么？",
+      "payload_mode": "strong",
+      "formula_normalization": {
+        "enabled": true,
+        "type": "exact",
+        "formula_ids": [
+          "FML-41e6b4407fe9"
+        ],
+        "target_formula_id": "FML-41e6b4407fe9",
+        "matches": [
+          {
+            "formula_id": "FML-41e6b4407fe9",
+            "canonical_name": "大青龙汤",
+            "alias": "大青龙汤",
+            "normalized_alias": "大青龙汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              0,
+              4
+            ]
+          }
+        ],
+        "disabled_reason": null
+      },
+      "primary_safe_main_only": true,
+      "primary_forbidden_items": [],
+      "top5_bad_formula_anchor_count": 0,
+      "primary_formula_backref_count": 1,
+      "raw_top_candidates": [
+        {
+          "record_id": "formula:FML-41e6b4407fe9",
+          "record_table": "retrieval_ready_formula_view",
+          "source_object": "formulas",
+          "chapter_id": "ZJSHL-CH-009",
+          "topic_consistency": "formula_object_exact",
+          "formula_scope": "target_formula_object",
+          "combined_score": 299.278689,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "formula_object",
+            "sparse"
+          ],
+          "text_preview": "方剂：大青龙汤\n别名：大青龙汤；大青龙汤方\n方名：大青龙汤；大青龙汤方\n组成：大青龙汤方：麻黄六两，去节。味甘温 桂枝二两，去皮。味辛热 甘草二两，炙。味甘平 杏人赵本人作「仁」，四十个，赵本作「枚」，去皮尖。味苦，甘温 生姜三两，切。味辛"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0033",
+          "record_table": "records_main_passages",
+          "source_object": "main_passages",
+          "chapter_id": "ZJSHL-CH-009",
+          "topic_consistency": "same_formula_span",
+          "formula_scope": "target_formula_span",
+          "combined_score": 218.706658,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "大青龙汤方：麻黄六两，去节。味甘温 桂枝二两，去皮。味辛热 甘草二两，炙。味甘平 杏人赵本人作「仁」，四十个，赵本作「枚」，去皮尖。味苦，甘温 生姜三两，切。味辛温 大枣十二，赵本无「二」字，枚，擘。味甘温 石膏如鸡子大碎。味甘，微寒"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-009-P-0033",
+          "record_table": "records_passages",
+          "source_object": "passages",
+          "chapter_id": "ZJSHL-CH-009",
+          "topic_consistency": "same_formula_span",
+          "formula_scope": "target_formula_span",
+          "combined_score": 212.681057,
+          "risk_flag": "[\"ledger_mixed_roles\"]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "大青龙汤方：麻黄六两，去节。味甘温 桂枝二两，去皮。味辛热 甘草二两，炙。味甘平 杏人赵本人作「仁」，四十个，赵本作「枚」，去皮尖。味苦，甘温 生姜三两，切。味辛温 大枣十二，赵本无「二」字，枚，擘。味甘温 石膏如鸡子大碎。味甘，微寒"
+        },
+        {
+          "record_id": "safe:chunks:ZJSHL-CK-F-0011",
+          "record_table": "records_chunks",
+          "source_object": "chunks",
+          "chapter_id": "ZJSHL-CH-009",
+          "topic_consistency": "same_formula_span",
+          "formula_scope": "target_formula_span",
+          "combined_score": 212.504261,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "大青龙汤方：麻黄六两，去节。味甘温 桂枝二两，去皮。味辛热 甘草二两，炙。味甘平 杏人赵本人作「仁」，四十个，赵本作「枚」，去皮尖。味苦，甘温 生姜三两，切。味辛温 大枣十二，赵本无「二」字，枚，擘。味甘温 石膏如鸡子大碎。味甘，微寒\n辛甘"
+        }
+      ],
+      "payload_primary": [
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0033",
+          "record_type": "main_passages",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-009",
+          "risk_flags": [],
+          "snippet": "大青龙汤方：麻黄六两，去节。味甘温 桂枝二两，去皮。味辛热 甘草二两，炙。味甘平 杏人赵本人作「仁」，四十个，赵本作「枚」，去皮尖。味苦，甘温 生姜三两，切。味辛温 大枣十二，赵本无「二」字，枚，擘。味甘温 石膏如鸡子大碎。味甘，微寒"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0034",
+          "record_type": "main_passages",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-009",
+          "risk_flags": [],
+          "snippet": "辛甘均为发散。然风宜辛散，寒宜甘发，医统本有「以」字辛甘相合，乃能发散荣卫之风寒。麻黄、甘草、石膏、杏人，以发散荣中之寒，桂枝、姜、枣，以解除卫中之风。"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0035",
+          "record_type": "main_passages",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-009",
+          "risk_flags": [],
+          "snippet": "上七味，以水九升，先煮麻黄，减二升，去上沫，内诸药，煮取三升，去滓，温服一升，取微似汗，汗出多者，温粉扑赵本医统本并作「粉」之。一服汗者，停后服。赵本有「若复服」三字汗多亡阳，遂赵本注：「一作逆」虚，恶风烦躁，不得眠也。"
+        }
+      ]
+    },
+    {
+      "query": "猪苓汤方的条文是什么？",
+      "payload_mode": "strong",
+      "formula_normalization": {
+        "enabled": true,
+        "type": "exact",
+        "formula_ids": [
+          "FML-5044258f6493"
+        ],
+        "target_formula_id": "FML-5044258f6493",
+        "matches": [
+          {
+            "formula_id": "FML-5044258f6493",
+            "canonical_name": "猪苓汤",
+            "alias": "猪苓汤",
+            "normalized_alias": "猪苓汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              0,
+              3
+            ]
+          }
+        ],
+        "disabled_reason": null
+      },
+      "primary_safe_main_only": true,
+      "primary_forbidden_items": [],
+      "top5_bad_formula_anchor_count": 0,
+      "primary_formula_backref_count": 1,
+      "raw_top_candidates": [
+        {
+          "record_id": "formula:FML-5044258f6493",
+          "record_table": "retrieval_ready_formula_view",
+          "source_object": "formulas",
+          "chapter_id": "ZJSHL-CH-011",
+          "topic_consistency": "formula_object_exact",
+          "formula_scope": "target_formula_object",
+          "combined_score": 293.278689,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "formula_object",
+            "sparse"
+          ],
+          "text_preview": "方剂：猪苓汤\n别名：猪苓汤；猪苓汤方\n方名：猪苓汤；猪苓汤方\n组成：猪苓汤方：猪苓去皮。甘平 茯苓甘平 阿胶甘平 滑石碎。甘寒 泽泻各一两。甘咸寒\n煎服法：上五味，以水四升，先煮四味，取二升，去滓，内下赵本无「下」字阿胶烊消，温服七合，日三"
+        },
+        {
+          "record_id": "safe:chunks:ZJSHL-CK-F-0056",
+          "record_table": "records_chunks",
+          "source_object": "chunks",
+          "chapter_id": "ZJSHL-CH-011",
+          "topic_consistency": "same_formula_span",
+          "formula_scope": "target_formula_span",
+          "combined_score": 200.79014,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "猪苓汤方：猪苓去皮。甘平 茯苓甘平 阿胶甘平 滑石碎。甘寒 泽泻各一两。甘咸寒"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-011-P-0109",
+          "record_table": "records_main_passages",
+          "source_object": "main_passages",
+          "chapter_id": "ZJSHL-CH-011",
+          "topic_consistency": "same_formula_span",
+          "formula_scope": "target_formula_span",
+          "combined_score": 198.764539,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "猪苓汤方：猪苓去皮。甘平 茯苓甘平 阿胶甘平 滑石碎。甘寒 泽泻各一两。甘咸寒"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-011-P-0109",
+          "record_table": "records_passages",
+          "source_object": "passages",
+          "chapter_id": "ZJSHL-CH-011",
+          "topic_consistency": "same_formula_span",
+          "formula_scope": "target_formula_span",
+          "combined_score": 192.739737,
+          "risk_flag": "[\"ledger_mixed_roles\"]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "猪苓汤方：猪苓去皮。甘平 茯苓甘平 阿胶甘平 滑石碎。甘寒 泽泻各一两。甘咸寒"
+        }
+      ],
+      "payload_primary": [
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-011-P-0109",
+          "record_type": "main_passages",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-011",
+          "risk_flags": [],
+          "snippet": "猪苓汤方：猪苓去皮。甘平 茯苓甘平 阿胶甘平 滑石碎。甘寒 泽泻各一两。甘咸寒"
+        }
+      ]
+    },
+    {
+      "query": "甘草乾姜汤方和芍药甘草汤方的区别是什么？",
+      "payload_mode": "strong",
+      "formula_normalization": {
+        "enabled": true,
+        "type": "comparison",
+        "formula_ids": [
+          "FML-dcf9a8a122b7",
+          "FML-b6b86919b277"
+        ],
+        "left_formula_id": "FML-dcf9a8a122b7",
+        "right_formula_id": "FML-b6b86919b277",
+        "matches": [
+          {
+            "formula_id": "FML-dcf9a8a122b7",
+            "canonical_name": "甘草乾姜汤",
+            "alias": "甘草乾姜汤",
+            "normalized_alias": "甘草乾姜汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              0,
+              5
+            ]
+          },
+          {
+            "formula_id": "FML-b6b86919b277",
+            "canonical_name": "芍药甘草汤",
+            "alias": "芍药甘草汤",
+            "normalized_alias": "芍药甘草汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              7,
+              12
+            ]
+          }
+        ],
+        "disabled_reason": null
+      },
+      "primary_safe_main_only": true,
+      "primary_forbidden_items": [],
+      "top5_bad_formula_anchor_count": 0,
+      "primary_formula_backref_count": 2,
+      "raw_top_candidates": [
+        {
+          "record_id": "formula:FML-dcf9a8a122b7",
+          "record_table": "retrieval_ready_formula_view",
+          "source_object": "formulas",
+          "chapter_id": "ZJSHL-CH-008",
+          "topic_consistency": "comparison_formula_object",
+          "formula_scope": "target_formula_object",
+          "combined_score": 289.278689,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "formula_object",
+            "sparse"
+          ],
+          "text_preview": "方剂：甘草乾姜汤\n别名：甘草乾姜汤；甘草乾姜汤方；甘草干姜汤；甘草干姜汤方\n方名：甘草乾姜汤；甘草乾姜汤方\n组成：甘草乾姜汤方：甘草四两，炙，味甘平 乾姜二两，炮，味辛热\n煎服法：右㕮咀，赵本作「二味」以水叁升，煑取一升五合，去滓，分温再服"
+        },
+        {
+          "record_id": "formula:FML-b6b86919b277",
+          "record_table": "retrieval_ready_formula_view",
+          "source_object": "formulas",
+          "chapter_id": "ZJSHL-CH-008",
+          "topic_consistency": "comparison_formula_object",
+          "formula_scope": "target_formula_object",
+          "combined_score": 285.225806,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "formula_object",
+            "sparse"
+          ],
+          "text_preview": "方剂：芍药甘草汤\n别名：芍药甘草汤；芍药甘草汤方\n方名：芍药甘草汤；芍药甘草汤方\n组成：芍药甘草汤方：白芍药四两。味，医统本有「苦」字，酸，微寒 甘草四两，炙。甘平\n煎服法：右二味㕮咀，赵本无「㕮咀」二字以水叁升，煑取一升半，赵本作「五合」"
+        },
+        {
+          "record_id": "safe:chunks:ZJSHL-CK-M-0296",
+          "record_table": "records_chunks",
+          "source_object": "chunks",
+          "chapter_id": "ZJSHL-CH-008",
+          "topic_consistency": "comparison_formula_span",
+          "formula_scope": "target_formula_span",
+          "combined_score": 124.81705,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "伤寒脉浮，自汗出，小便数，心烦，微恶寒，脚挛急，反与桂枝汤，赵本无「汤」字，欲攻其表，此误也。得之便厥，咽中乾，烦燥，赵本作「躁」吐逆者，作甘草乾姜汤与之，以复其阳。若厥愈、足温者，更作芍药甘草汤与之，其脚即伸。若胃气不和，讝语者，少与调胃"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-008-P-0256",
+          "record_table": "records_main_passages",
+          "source_object": "main_passages",
+          "chapter_id": "ZJSHL-CH-008",
+          "topic_consistency": "comparison_formula_span",
+          "formula_scope": "target_formula_span",
+          "combined_score": 122.792248,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "伤寒脉浮，自汗出，小便数，心烦，微恶寒，脚挛急，反与桂枝汤，赵本无「汤」字，欲攻其表，此误也。得之便厥，咽中乾，烦燥，赵本作「躁」吐逆者，作甘草乾姜汤与之，以复其阳。若厥愈、足温者，更作芍药甘草汤与之，其脚即伸。若胃气不和，讝语者，少与调胃"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-008-P-0256",
+          "record_table": "records_passages",
+          "source_object": "passages",
+          "chapter_id": "ZJSHL-CH-008",
+          "topic_consistency": "comparison_formula_span",
+          "formula_scope": "target_formula_span",
+          "combined_score": 116.76821,
+          "risk_flag": "[\"ledger_mixed_roles\"]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "伤寒脉浮，自汗出，小便数，心烦，微恶寒，脚挛急，反与桂枝汤，赵本无「汤」字，欲攻其表，此误也。得之便厥，咽中乾，烦燥，赵本作「躁」吐逆者，作甘草乾姜汤与之，以复其阳。若厥愈、足温者，更作芍药甘草汤与之，其脚即伸。若胃气不和，讝语者，少与调胃"
+        }
+      ],
+      "payload_primary": [
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-008-P-0258",
+          "record_type": "main_passages",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-008",
+          "risk_flags": [],
+          "snippet": "甘草乾姜汤方：甘草四两，炙，味甘平 乾姜二两，炮，味辛热"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-008-P-0261",
+          "record_type": "main_passages",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-008",
+          "risk_flags": [],
+          "snippet": "芍药甘草汤方：白芍药四两。味，医统本有「苦」字，酸，微寒 甘草四两，炙。甘平"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-008-P-0256",
+          "record_type": "main_passages",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-008",
+          "risk_flags": [],
+          "snippet": "伤寒脉浮，自汗出，小便数，心烦，微恶寒，脚挛急，反与桂枝汤，赵本无「汤」字，欲攻其表，此误也。得之便厥，咽中乾，烦燥，赵本作「躁」吐逆者，作甘草乾姜汤与之，以复其阳。若厥愈、足温者，更作芍药甘草汤与之，其脚即伸。若胃气不和，讝语者，少与调胃..."
+        }
+      ]
+    },
+    {
+      "query": "栀子豉汤方和栀子乾姜汤方有什么不同？",
+      "payload_mode": "strong",
+      "formula_normalization": {
+        "enabled": true,
+        "type": "comparison",
+        "formula_ids": [
+          "FML-03bfe5c6c2a8",
+          "FML-ae19c8d79625"
+        ],
+        "left_formula_id": "FML-03bfe5c6c2a8",
+        "right_formula_id": "FML-ae19c8d79625",
+        "matches": [
+          {
+            "formula_id": "FML-03bfe5c6c2a8",
+            "canonical_name": "栀子豉汤",
+            "alias": "栀子豉汤",
+            "normalized_alias": "栀子豉汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              0,
+              4
+            ]
+          },
+          {
+            "formula_id": "FML-ae19c8d79625",
+            "canonical_name": "栀子乾姜汤",
+            "alias": "栀子乾姜汤",
+            "normalized_alias": "栀子乾姜汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              6,
+              11
+            ]
+          }
+        ],
+        "disabled_reason": null
+      },
+      "primary_safe_main_only": true,
+      "primary_forbidden_items": [],
+      "top5_bad_formula_anchor_count": 0,
+      "primary_formula_backref_count": 2,
+      "raw_top_candidates": [
+        {
+          "record_id": "formula:FML-ae19c8d79625",
+          "record_table": "retrieval_ready_formula_view",
+          "source_object": "formulas",
+          "chapter_id": "ZJSHL-CH-009",
+          "topic_consistency": "comparison_formula_object",
+          "formula_scope": "target_formula_object",
+          "combined_score": 285.252247,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "formula_object",
+            "sparse"
+          ],
+          "text_preview": "方剂：栀子乾姜汤\n别名：栀子乾姜汤；栀子乾姜汤方；栀子干姜汤；栀子干姜汤方\n方名：栀子乾姜汤；栀子乾姜汤方\n组成：栀子乾姜汤方：栀子十四枚，赵本作「个」擘。味苦寒 乾姜二两。味辛热\n煎服法：\n使用语境：伤寒，医以丸药大下之，身热不去，微烦者"
+        },
+        {
+          "record_id": "formula:FML-03bfe5c6c2a8",
+          "record_table": "retrieval_ready_formula_view",
+          "source_object": "formulas",
+          "chapter_id": "ZJSHL-CH-009",
+          "topic_consistency": "comparison_formula_object",
+          "formula_scope": "target_formula_object",
+          "combined_score": 283.252247,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "formula_object",
+            "sparse"
+          ],
+          "text_preview": "方剂：栀子豉汤\n别名：栀子豉汤；栀子豉汤方\n方名：栀子豉汤；栀子豉汤方\n组成：栀子豉汤方：栀子十四枚，赵本作个，擘。味苦寒 香豉四合，绵裹。味苦寒\n煎服法：上二味，以水四升，先煮栀子，得二升半，内豉，煮取一升半，去滓，分为二服，温进一服。得"
+        },
+        {
+          "record_id": "safe:chunks:ZJSHL-CK-F-0025",
+          "record_table": "records_chunks",
+          "source_object": "chunks",
+          "chapter_id": "ZJSHL-CH-009",
+          "topic_consistency": "comparison_formula_span",
+          "formula_scope": "target_formula_span",
+          "combined_score": 111.33934,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "栀子乾姜汤方：栀子十四枚，赵本作「个」擘。味苦寒 乾姜二两。味辛热"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0175",
+          "record_table": "records_main_passages",
+          "source_object": "main_passages",
+          "chapter_id": "ZJSHL-CH-009",
+          "topic_consistency": "comparison_formula_span",
+          "formula_scope": "target_formula_span",
+          "combined_score": 109.314538,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "栀子乾姜汤方：栀子十四枚，赵本作「个」擘。味苦寒 乾姜二两。味辛热"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-009-P-0175",
+          "record_table": "records_passages",
+          "source_object": "passages",
+          "chapter_id": "ZJSHL-CH-009",
+          "topic_consistency": "comparison_formula_span",
+          "formula_scope": "target_formula_span",
+          "combined_score": 103.2905,
+          "risk_flag": "[\"ledger_mixed_roles\"]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "栀子乾姜汤方：栀子十四枚，赵本作「个」擘。味苦寒 乾姜二两。味辛热"
+        }
+      ],
+      "payload_primary": [
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0175",
+          "record_type": "main_passages",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-009",
+          "risk_flags": [],
+          "snippet": "栀子乾姜汤方：栀子十四枚，赵本作「个」擘。味苦寒 乾姜二两。味辛热"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0159",
+          "record_type": "main_passages",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-009",
+          "risk_flags": [],
+          "snippet": "栀子豉汤方：栀子十四枚，赵本作个，擘。味苦寒 香豉四合，绵裹。味苦寒"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-009-P-0173",
+          "record_type": "main_passages",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-009",
+          "risk_flags": [],
+          "snippet": "伤寒，医以丸药大下之，身热不去，微烦者，栀子乾姜汤主之。"
+        }
+      ]
+    },
+    {
+      "query": "白虎汤方和白虎加人参汤方的区别是什么？",
+      "payload_mode": "strong",
+      "formula_normalization": {
+        "enabled": true,
+        "type": "comparison",
+        "formula_ids": [
+          "FML-47765c7ee78a",
+          "FML-e55f3490b8f5"
+        ],
+        "left_formula_id": "FML-47765c7ee78a",
+        "right_formula_id": "FML-e55f3490b8f5",
+        "matches": [
+          {
+            "formula_id": "FML-47765c7ee78a",
+            "canonical_name": "白虎汤",
+            "alias": "白虎汤",
+            "normalized_alias": "白虎汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              0,
+              3
+            ]
+          },
+          {
+            "formula_id": "FML-e55f3490b8f5",
+            "canonical_name": "白虎加人参汤",
+            "alias": "白虎加人参汤",
+            "normalized_alias": "白虎加人参汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              5,
+              11
+            ]
+          }
+        ],
+        "disabled_reason": null
+      },
+      "primary_safe_main_only": true,
+      "primary_forbidden_items": [],
+      "top5_bad_formula_anchor_count": 0,
+      "primary_formula_backref_count": 2,
+      "raw_top_candidates": [
+        {
+          "record_id": "formula:FML-e55f3490b8f5",
+          "record_table": "retrieval_ready_formula_view",
+          "source_object": "formulas",
+          "chapter_id": "ZJSHL-CH-025",
+          "topic_consistency": "comparison_formula_object",
+          "formula_scope": "target_formula_object",
+          "combined_score": 291.252247,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "formula_object",
+            "sparse"
+          ],
+          "text_preview": "方剂：白虎加人参汤\n别名：白虎加人参汤；白虎加人参汤方\n方名：白虎加人参汤；白虎加人参汤方\n组成：白虎加人参汤方：于白虎汤方内，加人参三两，馀根据白虎汤法。\n煎服法：\n使用语境：服桂枝汤，大汗出后，大烦，渴不解，脉洪大者，白虎加人参汤主之。"
+        },
+        {
+          "record_id": "formula:FML-47765c7ee78a",
+          "record_table": "retrieval_ready_formula_view",
+          "source_object": "formulas",
+          "chapter_id": "ZJSHL-CH-010",
+          "topic_consistency": "comparison_formula_object",
+          "formula_scope": "target_formula_object",
+          "combined_score": 277.252247,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "formula_object",
+            "sparse"
+          ],
+          "text_preview": "方剂：白虎汤\n别名：白虎汤；白虎汤方\n方名：白虎汤；白虎汤方\n组成：白虎汤方：知母六两。味苦寒 石膏一斤，碎。味甘寒 甘草二两，赵本有「炙」字。味甘平 粳米六合。味甘平\n煎服法：上四味，以水一斗，煮米熟，汤成，去滓，温服一升，日三服。\n使用"
+        },
+        {
+          "record_id": "safe:chunks:ZJSHL-CK-F-0094",
+          "record_table": "records_chunks",
+          "source_object": "chunks",
+          "chapter_id": "ZJSHL-CH-025",
+          "topic_consistency": "comparison_formula_span",
+          "formula_scope": "target_formula_span",
+          "combined_score": 144.984857,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "白虎加人参汤方：于白虎汤方内，加人参三两，馀根据白虎汤法。"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-025-P-0012",
+          "record_table": "records_main_passages",
+          "source_object": "main_passages",
+          "chapter_id": "ZJSHL-CH-025",
+          "topic_consistency": "comparison_formula_span",
+          "formula_scope": "target_formula_span",
+          "combined_score": 142.960055,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "白虎加人参汤方：于白虎汤方内，加人参三两，馀根据白虎汤法。"
+        },
+        {
+          "record_id": "full:passages:ZJSHL-CH-025-P-0012",
+          "record_table": "records_passages",
+          "source_object": "passages",
+          "chapter_id": "ZJSHL-CH-025",
+          "topic_consistency": "comparison_formula_span",
+          "formula_scope": "target_formula_span",
+          "combined_score": 136.936017,
+          "risk_flag": "[\"ledger_mixed_roles\"]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "白虎加人参汤方：于白虎汤方内，加人参三两，馀根据白虎汤法。"
+        }
+      ],
+      "payload_primary": [
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-010-P-0165",
+          "record_type": "main_passages",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-010",
+          "risk_flags": [],
+          "snippet": "白虎汤方：知母六两。味苦寒 石膏一斤，碎。味甘寒 甘草二两，赵本有「炙」字。味甘平 粳米六合。味甘平"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-025-P-0012",
+          "record_type": "main_passages",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-025",
+          "risk_flags": [],
+          "snippet": "白虎加人参汤方：于白虎汤方内，加人参三两，馀根据白虎汤法。"
+        }
+      ]
+    },
+    {
+      "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+      "payload_mode": "strong",
+      "formula_normalization": {
+        "enabled": true,
+        "type": "comparison",
+        "formula_ids": [
+          "FML-040863271409",
+          "FML-ab783d366a21"
+        ],
+        "left_formula_id": "FML-040863271409",
+        "right_formula_id": "FML-ab783d366a21",
+        "matches": [
+          {
+            "formula_id": "FML-040863271409",
+            "canonical_name": "桂枝加附子汤",
+            "alias": "桂枝加附子汤",
+            "normalized_alias": "桂枝加附子汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              0,
+              6
+            ]
+          },
+          {
+            "formula_id": "FML-ab783d366a21",
+            "canonical_name": "桂枝加浓朴杏子汤",
+            "alias": "桂枝加浓朴杏子汤",
+            "normalized_alias": "桂枝加浓朴杏子汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              8,
+              16
+            ]
+          }
+        ],
+        "disabled_reason": null
+      },
+      "primary_safe_main_only": true,
+      "primary_forbidden_items": [],
+      "top5_bad_formula_anchor_count": 0,
+      "primary_formula_backref_count": 2,
+      "raw_top_candidates": [
+        {
+          "record_id": "formula:FML-040863271409",
+          "record_table": "retrieval_ready_formula_view",
+          "source_object": "formulas",
+          "chapter_id": "ZJSHL-CH-025",
+          "topic_consistency": "comparison_formula_object",
+          "formula_scope": "target_formula_object",
+          "combined_score": 295.278689,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "formula_object",
+            "sparse"
+          ],
+          "text_preview": "方剂：桂枝加附子汤\n别名：桂枝加附子汤；桂枝加附子汤方\n方名：桂枝加附子汤；桂枝加附子汤方\n组成：桂枝加附子汤方：于桂枝汤方内，加附子一枚，炮，去皮，破八片，馀根据前法。术附汤方，附于此方内，去桂枝，加白术四两，根据前法。\n煎服法：\n使用语"
+        },
+        {
+          "record_id": "formula:FML-ab783d366a21",
+          "record_table": "retrieval_ready_formula_view",
+          "source_object": "formulas",
+          "chapter_id": "ZJSHL-CH-025",
+          "topic_consistency": "comparison_formula_object",
+          "formula_scope": "target_formula_object",
+          "combined_score": 303.225806,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "formula_object",
+            "sparse"
+          ],
+          "text_preview": "方剂：桂枝加浓朴杏子汤\n别名：桂枝加浓朴杏子汤；桂枝加浓朴杏子汤方；桂枝加厚朴杏子汤；桂枝加浓朴杏仁汤；桂枝加厚朴杏子汤方；桂枝加浓朴杏仁汤方\n方名：桂枝加浓朴杏子汤；桂枝加浓朴杏子汤方\n组成：桂枝加浓朴杏子汤方：于桂枝汤方内，加浓朴二两，"
+        },
+        {
+          "record_id": "safe:chunks:ZJSHL-CK-M-0284",
+          "record_table": "records_chunks",
+          "source_object": "chunks",
+          "chapter_id": "ZJSHL-CH-008",
+          "topic_consistency": "comparison_formula_span",
+          "formula_scope": "target_formula_span",
+          "combined_score": 112.701799,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "太阳病，发汗，遂漏不止，其人恶风，小便难，四支微急，难以屈伸者，桂枝加附子汤主之。赵本有「桂枝加附子汤方」详见本书卷十"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-008-P-0236",
+          "record_table": "records_main_passages",
+          "source_object": "main_passages",
+          "chapter_id": "ZJSHL-CH-008",
+          "topic_consistency": "comparison_formula_span",
+          "formula_scope": "target_formula_span",
+          "combined_score": 110.676997,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "太阳病，发汗，遂漏不止，其人恶风，小便难，四支微急，难以屈伸者，桂枝加附子汤主之。赵本有「桂枝加附子汤方」详见本书卷十"
+        },
+        {
+          "record_id": "safe:chunks:ZJSHL-CK-F-0089",
+          "record_table": "records_chunks",
+          "source_object": "chunks",
+          "chapter_id": "ZJSHL-CH-025",
+          "topic_consistency": "comparison_formula_span",
+          "formula_scope": "target_formula_span",
+          "combined_score": 110.476314,
+          "risk_flag": "[]",
+          "stage_sources": [
+            "sparse"
+          ],
+          "text_preview": "桂枝加附子汤方：于桂枝汤方内，加附子一枚，炮，去皮，破八片，馀根据前法。术附汤方，附于此方内，去桂枝，加白术四两，根据前法。"
+        }
+      ],
+      "payload_primary": [
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-025-P-0004",
+          "record_type": "main_passages",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-025",
+          "risk_flags": [],
+          "snippet": "桂枝加附子汤方：于桂枝汤方内，加附子一枚，炮，去皮，破八片，馀根据前法。术附汤方，附于此方内，去桂枝，加白术四两，根据前法。"
+        },
+        {
+          "record_id": "safe:main_passages:ZJSHL-CH-025-P-0003",
+          "record_type": "main_passages",
+          "display_role": "primary",
+          "evidence_level": "A",
+          "chapter_id": "ZJSHL-CH-025",
+          "risk_flags": [],
+          "snippet": "桂枝加浓朴杏子汤方：于桂枝汤方内，加浓朴二两，杏仁五十个，去皮尖，馀根据前法。"
+        }
+      ]
+    }
+  ],
+  "failed_conditions": []
+}

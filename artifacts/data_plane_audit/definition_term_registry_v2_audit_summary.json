@@ -1,0 +1,900 @@
+{
+  "generated_at_utc": "2026-04-24T00:16:59.081664+00:00",
+  "definition_term_count": 32,
+  "safe_primary_candidate_count": 28,
+  "review_only_count": 4,
+  "source_confidence_counts": {
+    "high": 7,
+    "medium": 21,
+    "review_only": 4
+  },
+  "concept_type_counts": {
+    "disease_state_term": 18,
+    "drug_name_term": 2,
+    "pathology_term": 2,
+    "pulse_pattern_term": 6,
+    "symptom_term": 1,
+    "syndrome_term": 1,
+    "therapeutic_category": 2
+  },
+  "promotion_state_counts": {
+    "review_only": 4,
+    "safe_primary": 28
+  },
+  "promotion_source_layer_counts": {
+    "promoted_from_full_risk_layer": 23,
+    "safe_main_passage": 9
+  },
+  "term_alias_count": 82,
+  "learner_lexicon_count": 92,
+  "short_term_safe_primary_count": 22,
+  "short_term_safe_primary_terms": [
+    "下药",
+    "两感",
+    "代阴",
+    "伏气",
+    "关格",
+    "内烦",
+    "四逆",
+    "坏病",
+    "奔豚",
+    "并病",
+    "消渴",
+    "湿痹",
+    "盗汗",
+    "结阴",
+    "肺痿",
+    "脏结",
+    "虚烦",
+    "阳易",
+    "阳结",
+    "阴易",
+    "阴结",
+    "风温"
+  ],
+  "short_query_safe_primary_count": 27,
+  "short_query_safe_primary_terms": [
+    "下药",
+    "两感",
+    "代阴",
+    "伏气",
+    "关格",
+    "内烦",
+    "发汗药",
+    "四逆",
+    "坏病",
+    "奔豚",
+    "小结胸",
+    "并病",
+    "水结胸",
+    "消渴",
+    "湿痹",
+    "盗汗",
+    "结阴",
+    "肺痿",
+    "脏结",
+    "虚烦",
+    "阳不足",
+    "阳易",
+    "阳结",
+    "阴不足",
+    "阴易",
+    "阴结",
+    "风温"
+  ],
+  "sentence_role_summary": {
+    "generated_at_utc": "2026-04-24T00:16:58.952411+00:00",
+    "sentence_count": 11030,
+    "role_counts": {
+      "definition_sentence": 300,
+      "explanation_sentence": 8686,
+      "formula_composition_sentence": 234,
+      "formula_decoction_sentence": 100,
+      "formula_name_sentence": 214,
+      "formula_usage_sentence": 966,
+      "membership_sentence": 191,
+      "risk_sentence": 221,
+      "variant_note_sentence": 118
+    },
+    "source_counts": {
+      "ambiguous_passages": 1463,
+      "annotations": 2098,
+      "main_passages": 1973,
+      "passages": 5496
+    },
+    "mixed_role_passage_count": 2351,
+    "mixed_role_passage_counts_by_source": {
+      "records_annotations": 372,
+      "records_main_passages": 526,
+      "records_passages": 1170,
+      "risk_registry_ambiguous": 283
+    },
+    "editorial_contaminated_passage_count": 1211,
+    "editorial_contaminated_counts_by_source": {
+      "records_annotations": 126,
+      "records_main_passages": 339,
+      "records_passages": 604,
+      "risk_registry_ambiguous": 142
+    },
+    "commentary_contaminated_passage_count": 441,
+    "commentary_contaminated_counts_by_source": {
+      "records_annotations": 148,
+      "records_main_passages": 22,
+      "records_passages": 215,
+      "risk_registry_ambiguous": 56
+    },
+    "mixed_role_passage_examples": [
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0002",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "definition_sentence",
+          "explanation_sentence",
+          "variant_note_sentence"
+        ],
+        "sentence_count": 4
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0004",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "explanation_sentence",
+          "definition_sentence",
+          "membership_sentence"
+        ],
+        "sentence_count": 5
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0006",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "explanation_sentence",
+          "definition_sentence",
+          "variant_note_sentence"
+        ],
+        "sentence_count": 7
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0008",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "explanation_sentence",
+          "variant_note_sentence"
+        ],
+        "sentence_count": 2
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0017",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "definition_sentence",
+          "membership_sentence",
+          "explanation_sentence",
+          "variant_note_sentence"
+        ],
+        "sentence_count": 1
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0019",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "definition_sentence",
+          "membership_sentence",
+          "explanation_sentence",
+          "variant_note_sentence"
+        ],
+        "sentence_count": 1
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0023",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "explanation_sentence",
+          "variant_note_sentence"
+        ],
+        "sentence_count": 1
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0028",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "definition_sentence",
+          "explanation_sentence",
+          "variant_note_sentence"
+        ],
+        "sentence_count": 3
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0031",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "definition_sentence",
+          "explanation_sentence"
+        ],
+        "sentence_count": 3
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0033",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "definition_sentence",
+          "explanation_sentence"
+        ],
+        "sentence_count": 1
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0035",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "definition_sentence",
+          "explanation_sentence"
+        ],
+        "sentence_count": 1
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0037",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "definition_sentence",
+          "explanation_sentence",
+          "variant_note_sentence"
+        ],
+        "sentence_count": 3
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0039",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "explanation_sentence",
+          "commentary_like_sentence"
+        ],
+        "sentence_count": 2
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0048",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "explanation_sentence",
+          "variant_note_sentence"
+        ],
+        "sentence_count": 2
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0054",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "explanation_sentence",
+          "commentary_like_sentence"
+        ],
+        "sentence_count": 2
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0059",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "explanation_sentence",
+          "variant_note_sentence"
+        ],
+        "sentence_count": 5
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0067",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "membership_sentence",
+          "explanation_sentence",
+          "variant_note_sentence"
+        ],
+        "sentence_count": 7
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0074",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "definition_sentence",
+          "explanation_sentence"
+        ],
+        "sentence_count": 5
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0086",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "explanation_sentence",
+          "commentary_like_sentence"
+        ],
+        "sentence_count": 6
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0088",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "explanation_sentence",
+          "variant_note_sentence"
+        ],
+        "sentence_count": 4
+      }
+    ],
+    "editorial_contaminated_examples": [
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0002",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "definition_sentence",
+          "explanation_sentence",
+          "variant_note_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0006",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "explanation_sentence",
+          "definition_sentence",
+          "variant_note_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0008",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "explanation_sentence",
+          "variant_note_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0017",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "definition_sentence",
+          "membership_sentence",
+          "explanation_sentence",
+          "variant_note_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0019",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "definition_sentence",
+          "membership_sentence",
+          "explanation_sentence",
+          "variant_note_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0023",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "explanation_sentence",
+          "variant_note_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0028",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "definition_sentence",
+          "explanation_sentence",
+          "variant_note_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0037",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "definition_sentence",
+          "explanation_sentence",
+          "variant_note_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0048",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "explanation_sentence",
+          "variant_note_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0059",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "explanation_sentence",
+          "variant_note_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0067",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "membership_sentence",
+          "explanation_sentence",
+          "variant_note_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0088",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "explanation_sentence",
+          "variant_note_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0099",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "explanation_sentence",
+          "formula_decoction_sentence",
+          "commentary_like_sentence",
+          "variant_note_sentence",
+          "membership_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0101",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "explanation_sentence",
+          "variant_note_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0109",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "explanation_sentence",
+          "variant_note_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-004-P-0125",
+        "chapter_id": "ZJSHL-CH-004",
+        "chapter_name": "平脉法第二",
+        "role_tags": [
+          "explanation_sentence",
+          "variant_note_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-004-P-0139",
+        "chapter_id": "ZJSHL-CH-004",
+        "chapter_name": "平脉法第二",
+        "role_tags": [
+          "explanation_sentence",
+          "variant_note_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-004-P-0146",
+        "chapter_id": "ZJSHL-CH-004",
+        "chapter_name": "平脉法第二",
+        "role_tags": [
+          "membership_sentence",
+          "explanation_sentence",
+          "variant_note_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-004-P-0168",
+        "chapter_id": "ZJSHL-CH-004",
+        "chapter_name": "平脉法第二",
+        "role_tags": [
+          "explanation_sentence",
+          "variant_note_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-004-P-0172",
+        "chapter_id": "ZJSHL-CH-004",
+        "chapter_name": "平脉法第二",
+        "role_tags": [
+          "definition_sentence",
+          "membership_sentence",
+          "explanation_sentence",
+          "variant_note_sentence"
+        ]
+      }
+    ],
+    "commentary_contaminated_examples": [
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0039",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "explanation_sentence",
+          "commentary_like_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0054",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "explanation_sentence",
+          "commentary_like_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0086",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "explanation_sentence",
+          "commentary_like_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-003-P-0099",
+        "chapter_id": "ZJSHL-CH-003",
+        "chapter_name": "辨脉法第一",
+        "role_tags": [
+          "explanation_sentence",
+          "formula_decoction_sentence",
+          "commentary_like_sentence",
+          "variant_note_sentence",
+          "membership_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-004-P-0143",
+        "chapter_id": "ZJSHL-CH-004",
+        "chapter_name": "平脉法第二",
+        "role_tags": [
+          "explanation_sentence",
+          "commentary_like_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-004-P-0243",
+        "chapter_id": "ZJSHL-CH-004",
+        "chapter_name": "平脉法第二",
+        "role_tags": [
+          "explanation_sentence",
+          "commentary_like_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-004-P-0249",
+        "chapter_id": "ZJSHL-CH-004",
+        "chapter_name": "平脉法第二",
+        "role_tags": [
+          "explanation_sentence",
+          "commentary_like_sentence",
+          "variant_note_sentence",
+          "formula_decoction_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-006-P-0061",
+        "chapter_id": "ZJSHL-CH-006",
+        "chapter_name": "伤寒例第三",
+        "role_tags": [
+          "explanation_sentence",
+          "variant_note_sentence",
+          "commentary_like_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-006-P-0093",
+        "chapter_id": "ZJSHL-CH-006",
+        "chapter_name": "伤寒例第三",
+        "role_tags": [
+          "explanation_sentence",
+          "commentary_like_sentence",
+          "variant_note_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-006-P-0095",
+        "chapter_id": "ZJSHL-CH-006",
+        "chapter_name": "伤寒例第三",
+        "role_tags": [
+          "explanation_sentence",
+          "commentary_like_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-008-P-0259",
+        "chapter_id": "ZJSHL-CH-008",
+        "chapter_name": "辨太阳病脉证并治法上第五",
+        "role_tags": [
+          "explanation_sentence",
+          "commentary_like_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-008-P-0268",
+        "chapter_id": "ZJSHL-CH-008",
+        "chapter_name": "辨太阳病脉证并治法上第五",
+        "role_tags": [
+          "explanation_sentence",
+          "commentary_like_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-009-P-0189",
+        "chapter_id": "ZJSHL-CH-009",
+        "chapter_name": "辨太阳病脉证并治第六",
+        "role_tags": [
+          "explanation_sentence",
+          "commentary_like_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-009-P-0204",
+        "chapter_id": "ZJSHL-CH-009",
+        "chapter_name": "辨太阳病脉证并治第六",
+        "role_tags": [
+          "explanation_sentence",
+          "variant_note_sentence",
+          "commentary_like_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-009-P-0295",
+        "chapter_id": "ZJSHL-CH-009",
+        "chapter_name": "辨太阳病脉证并治第六",
+        "role_tags": [
+          "explanation_sentence",
+          "commentary_like_sentence",
+          "formula_usage_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-010-P-0019",
+        "chapter_id": "ZJSHL-CH-010",
+        "chapter_name": "辨太阳病脉证并治法第七",
+        "role_tags": [
+          "explanation_sentence",
+          "commentary_like_sentence",
+          "variant_note_sentence",
+          "formula_usage_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-010-P-0086",
+        "chapter_id": "ZJSHL-CH-010",
+        "chapter_name": "辨太阳病脉证并治法第七",
+        "role_tags": [
+          "explanation_sentence",
+          "commentary_like_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-010-P-0094",
+        "chapter_id": "ZJSHL-CH-010",
+        "chapter_name": "辨太阳病脉证并治法第七",
+        "role_tags": [
+          "explanation_sentence",
+          "commentary_like_sentence",
+          "formula_usage_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-015-P-0272",
+        "chapter_id": "ZJSHL-CH-015",
+        "chapter_name": "辨厥阴病脉证并治法第十二",
+        "role_tags": [
+          "explanation_sentence",
+          "commentary_like_sentence",
+          "variant_note_sentence",
+          "formula_decoction_sentence"
+        ]
+      },
+      {
+        "source_table": "records_main_passages",
+        "source_object": "main_passages",
+        "passage_id": "ZJSHL-CH-018-P-0097",
+        "chapter_id": "ZJSHL-CH-018",
+        "chapter_name": "辨不可发汗病脉证并治法第十五",
+        "role_tags": [
+          "explanation_sentence",
+          "commentary_like_sentence"
+        ]
+      }
+    ]
+  },
+  "formula_risk_summary": {
+    "formula_count": 106,
+    "formula_medium_confidence_count": 6,
+    "formula_medium_confidence_examples": [
+      {
+        "formula_id": "FML-f581e51c0cb7",
+        "canonical_name": "栀子浓朴汤",
+        "primary_formula_passage_id": "ZJSHL-CH-009-P-0170",
+        "formula_span_start_passage_id": "ZJSHL-CH-009-P-0170",
+        "formula_span_end_passage_id": "ZJSHL-CH-009-P-0170"
+      },
+      {
+        "formula_id": "FML-0196ae607c39",
+        "canonical_name": "桂枝甘草龙骨牡蛎汤",
+        "primary_formula_passage_id": "ZJSHL-CH-009-P-0298",
+        "formula_span_start_passage_id": "ZJSHL-CH-009-P-0298",
+        "formula_span_end_passage_id": "ZJSHL-CH-009-P-0298"
+      },
+      {
+        "formula_id": "FML-ac1d63fd6039",
+        "canonical_name": "旋复代赭石汤",
+        "primary_formula_passage_id": "ZJSHL-CH-010-P-0106",
+        "formula_span_start_passage_id": "ZJSHL-CH-010-P-0106",
+        "formula_span_end_passage_id": "ZJSHL-CH-010-P-0106"
+      },
+      {
+        "formula_id": "FML-c7b169a846ab",
+        "canonical_name": "茵陈蒿汤",
+        "primary_formula_passage_id": "ZJSHL-CH-011-P-0141",
+        "formula_span_start_passage_id": "ZJSHL-CH-011-P-0141",
+        "formula_span_end_passage_id": "ZJSHL-CH-011-P-0141"
+      },
+      {
+        "formula_id": "FML-659e19219c98",
+        "canonical_name": "麻黄附子甘草汤",
+        "primary_formula_passage_id": "ZJSHL-CH-014-P-0069",
+        "formula_span_start_passage_id": "ZJSHL-CH-014-P-0069",
+        "formula_span_end_passage_id": "ZJSHL-CH-014-P-0069"
+      },
+      {
+        "formula_id": "FML-21567be0171c",
+        "canonical_name": "乌梅丸",
+        "primary_formula_passage_id": "ZJSHL-CH-015-P-0221",
+        "formula_span_start_passage_id": "ZJSHL-CH-015-P-0221",
+        "formula_span_end_passage_id": "ZJSHL-CH-015-P-0221"
+      }
+    ]
+  }
+}

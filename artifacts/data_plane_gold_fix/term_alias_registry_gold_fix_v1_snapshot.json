@@ -1,0 +1,15 @@
+{
+  "generated_at_utc": "2026-04-24T00:17:15.556256+00:00",
+  "scope": "胆瘅 alias entries after cleanup",
+  "records": [
+    {
+      "alias": "胆瘅",
+      "normalized_alias": "胆瘅",
+      "alias_type": "canonical",
+      "confidence": 1.0,
+      "source": "data_plane_optimization_v1",
+      "notes": "canonical term alias",
+      "is_active": 1
+    }
+  ]
+}
