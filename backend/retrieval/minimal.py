@@ -121,6 +121,7 @@ DEFINITION_RUNTIME_TABLES = (
     "definition_term_registry",
     "retrieval_ready_definition_view",
 )
+AHV_PROMOTION_SOURCE_LAYER = "ambiguous_high_value_batch_safe_primary"
 DEFINITION_RUNTIME_OPTIONAL_TABLES = (
     "term_alias_registry",
     "learner_query_normalization_lexicon",
@@ -503,6 +504,7 @@ class DefinitionRuntimeIndex:
         definition_rows: list[dict[str, Any]] | None = None,
         concepts_by_id: dict[str, dict[str, Any]] | None = None,
         alias_rows: list[dict[str, Any]] | None = None,
+        inactive_alias_rows: list[dict[str, Any]] | None = None,
         query_family_rows: list[dict[str, Any]] | None = None,
         passage_to_concept_ids: dict[str, list[str]] | None = None,
         disabled_reason: str | None = None,
@@ -514,6 +516,7 @@ class DefinitionRuntimeIndex:
         }
         self.concepts_by_id = concepts_by_id or {}
         self.alias_rows = alias_rows or []
+        self.inactive_alias_rows = inactive_alias_rows or []
         self.query_family_rows = query_family_rows or []
         self.passage_to_concept_ids = passage_to_concept_ids or {}
         self.disabled_reason = disabled_reason
@@ -625,6 +628,8 @@ class DefinitionRuntimeIndex:
             )
 
         alias_rows: list[dict[str, Any]] = []
+        inactive_alias_rows: list[dict[str, Any]] = []
+        definition_concept_ids = {item["concept_id"] for item in definition_rows}
         if "term_alias_registry" in optional_existing:
             raw_alias_rows = [
                 dict(row)
@@ -644,14 +649,44 @@ class DefinitionRuntimeIndex:
                 )
             ]
             for row in raw_alias_rows:
-                if row["concept_id"] not in {item["concept_id"] for item in definition_rows}:
+                if row["concept_id"] not in definition_concept_ids:
                     continue
                 normalized_alias = compact_text(row.get("normalized_alias") or row.get("alias"))
                 if len(normalized_alias) < 2:
                     continue
                 row["normalized_alias"] = normalized_alias
                 row["confidence"] = float(row.get("confidence") or 0.0)
+                concept = concepts_by_id.get(row["concept_id"], {})
+                row["match_mode"] = (
+                    "exact"
+                    if concept.get("promotion_source_layer") == AHV_PROMOTION_SOURCE_LAYER
+                    else "contains"
+                )
                 alias_rows.append(row)
+            inactive_alias_rows = [
+                {
+                    **dict(row),
+                    "normalized_alias": compact_text(row["normalized_alias"] or row["alias"]),
+                    "match_mode": "exact",
+                }
+                for row in conn.execute(
+                    """
+                    SELECT
+                        alias,
+                        normalized_alias,
+                        concept_id,
+                        canonical_term,
+                        alias_type,
+                        confidence,
+                        source
+                    FROM term_alias_registry
+                    WHERE is_active = 0
+                      AND alias_type IN ('learner_risky', 'ambiguous')
+                    """
+                )
+                if row["concept_id"] in definition_concept_ids
+                and compact_text(row["normalized_alias"] or row["alias"])
+            ]
 
         if "learner_query_normalization_lexicon" in optional_existing:
             lexicon_rows = [
@@ -696,11 +731,15 @@ class DefinitionRuntimeIndex:
             if row.get("entry_type") != "term_surface":
                 continue
             concept_id = str(row.get("target_id") or "")
-            if concept_id not in {item["concept_id"] for item in definition_rows}:
+            if concept_id not in definition_concept_ids:
                 continue
             normalized_alias = compact_text(row.get("normalized_surface_form") or row.get("surface_form"))
             if len(normalized_alias) < 2:
                 continue
+            concept = concepts_by_id.get(concept_id, {})
+            match_mode = str(row.get("match_mode") or "contains")
+            if concept.get("promotion_source_layer") == AHV_PROMOTION_SOURCE_LAYER:
+                match_mode = "exact"
             alias_rows.append(
                 {
                     "alias": row.get("surface_form") or row.get("target_term") or "",
@@ -708,6 +747,7 @@ class DefinitionRuntimeIndex:
                     "concept_id": concept_id,
                     "canonical_term": row.get("target_term") or "",
                     "alias_type": "learner_term_surface",
+                    "match_mode": match_mode,
                     "confidence": float(row.get("confidence") or 0.0),
                     "source": row.get("source") or "learner_query_normalization_lexicon",
                 }
@@ -729,19 +769,40 @@ class DefinitionRuntimeIndex:
             definition_rows=definition_rows,
             concepts_by_id=concepts_by_id,
             alias_rows=alias_rows,
+            inactive_alias_rows=inactive_alias_rows,
             query_family_rows=query_family_rows,
             passage_to_concept_ids=passage_to_concept_ids,
             disabled_reason=None if definition_rows else "empty definition runtime rows",
         )
+
+    def _alias_spans(self, normalized_query: str, normalized_alias: str, match_mode: str) -> list[tuple[int, int]]:
+        if not normalized_query or not normalized_alias:
+            return []
+        if match_mode == "exact":
+            return [(0, len(normalized_alias))] if normalized_query == normalized_alias else []
+        if match_mode == "prefix":
+            return [(0, len(normalized_alias))] if normalized_query.startswith(normalized_alias) else []
+        if match_mode == "suffix":
+            start = len(normalized_query) - len(normalized_alias)
+            return [(start, len(normalized_query))] if start >= 0 and normalized_query.endswith(normalized_alias) else []
+
+        spans: list[tuple[int, int]] = []
+        start = normalized_query.find(normalized_alias)
+        while start >= 0:
+            spans.append((start, start + len(normalized_alias)))
+            start = normalized_query.find(normalized_alias, start + 1)
+        return spans
 
     def _match_aliases(self, normalized_query: str) -> list[dict[str, Any]]:
         occupied: list[tuple[int, int]] = []
         matches: list[dict[str, Any]] = []
         for alias in self.alias_rows:
             normalized_alias = alias["normalized_alias"]
-            start = normalized_query.find(normalized_alias)
-            while start >= 0:
-                end = start + len(normalized_alias)
+            for start, end in self._alias_spans(
+                normalized_query,
+                normalized_alias,
+                str(alias.get("match_mode") or "contains"),
+            ):
                 overlaps = any(not (end <= used_start or start >= used_end) for used_start, used_end in occupied)
                 if not overlaps:
                     occupied.append((start, end))
@@ -752,15 +813,61 @@ class DefinitionRuntimeIndex:
                             "alias": alias.get("alias"),
                             "normalized_alias": normalized_alias,
                             "alias_type": alias.get("alias_type"),
+                            "match_mode": alias.get("match_mode") or "contains",
                             "confidence": alias.get("confidence"),
                             "source": alias.get("source"),
                             "span": [start, end],
                         }
                     )
                     break
-                start = normalized_query.find(normalized_alias, start + 1)
         matches.sort(key=lambda item: (item["span"][0], -(item["span"][1] - item["span"][0])))
         return matches
+
+    def inactive_alias_block(self, query_text: str) -> dict[str, Any]:
+        empty = {"concept_ids": [], "matches": []}
+        if not self.enabled or not self.inactive_alias_rows:
+            return empty
+
+        normalized_query = compact_text(query_text)
+        if not normalized_query:
+            return empty
+
+        candidate_queries = [normalized_query]
+        for row in self.query_family_rows:
+            surface = row["normalized_surface_form"]
+            if not surface:
+                continue
+            residual = None
+            if row["match_mode"] == "prefix" and normalized_query.startswith(surface):
+                residual = normalized_query[len(surface) :]
+            elif row["match_mode"] == "suffix" and normalized_query.endswith(surface):
+                residual = normalized_query[: -len(surface)]
+            elif row["match_mode"] == "exact" and normalized_query == surface:
+                residual = ""
+            if residual:
+                candidate_queries.insert(0, residual)
+                break
+
+        matches: list[dict[str, Any]] = []
+        for alias in self.inactive_alias_rows:
+            normalized_alias = alias["normalized_alias"]
+            if any(candidate == normalized_alias for candidate in candidate_queries):
+                matches.append(
+                    {
+                        "concept_id": alias["concept_id"],
+                        "canonical_term": alias.get("canonical_term"),
+                        "alias": alias.get("alias"),
+                        "normalized_alias": normalized_alias,
+                        "alias_type": alias.get("alias_type"),
+                        "source": alias.get("source"),
+                    }
+                )
+        if not matches:
+            return empty
+        return {
+            "concept_ids": unique_preserve_order(match["concept_id"] for match in matches),
+            "matches": matches,
+        }
 
     def resolve(self, query_text: str) -> dict[str, Any]:
         empty = self.empty_resolution()
@@ -1069,6 +1176,7 @@ class RetrievalEngine:
             "query_theme": query_theme,
             "formula_normalization": formula_normalization,
             "term_normalization": term_normalization,
+            "definition_alias_block": self.definition_runtime.inactive_alias_block(query_text),
             "target_mode": "strong_first",
             "precision_profile": "tight_primary" if tight_primary_precision else "baseline",
             "allow_levels": ["A", "B", "C"],
@@ -1337,11 +1445,27 @@ class RetrievalEngine:
     def _definition_topic_meta(self, request: dict[str, Any], row: dict[str, Any]) -> dict[str, Any] | None:
         normalization = request.get("term_normalization") or {}
         target_concept_ids = set(normalization.get("concept_ids") or [])
-        if normalization.get("type") not in {"exact_term", "normalized_query"} or not target_concept_ids:
-            return None
 
         candidate_concept_ids = self.definition_runtime.concept_ids_for_row(row)
         if not candidate_concept_ids:
+            return None
+
+        blocked_concept_ids = set((request.get("definition_alias_block") or {}).get("concept_ids") or [])
+        blocked_matching_concept_ids = [
+            concept_id for concept_id in candidate_concept_ids if concept_id in blocked_concept_ids
+        ]
+        if blocked_matching_concept_ids:
+            concept = self.definition_runtime.concepts_by_id.get(blocked_matching_concept_ids[0]) or {}
+            return {
+                "topic_anchor": concept.get("canonical_term") or row.get("canonical_term") or "",
+                "topic_consistency": "inactive_definition_alias_block",
+                "precision_adjustment": -96.0,
+                "primary_allowed": False,
+                "definition_candidate_ids": candidate_concept_ids,
+                "definition_scope": "inactive_alias_block",
+            }
+
+        if normalization.get("type") not in {"exact_term", "normalized_query"} or not target_concept_ids:
             return None
 
         matching_concept_ids = [concept_id for concept_id in candidate_concept_ids if concept_id in target_concept_ids]

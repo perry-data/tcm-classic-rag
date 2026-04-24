@@ -1,0 +1,444 @@
+{
+  "run_id": "ahv_adversarial_regression_v1",
+  "generated_at_utc": "2026-04-24T05:22:52.005720+00:00",
+  "db_path": "/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/zjshl_v1.db",
+  "metrics": {
+    "changed_learner_surface_count": 28,
+    "downgraded_object_count": 0,
+    "deactivated_alias_count": 0,
+    "new_ahv_object_count": 0
+  },
+  "changes": {
+    "learner_surface_match_mode": [
+      {
+        "lexicon_id": "AHV-LQN-6c756407838f",
+        "surface_form": "伤寒",
+        "target_term": "伤寒",
+        "target_id": "AHV-82d1c8a78473",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-d534a582c494",
+        "surface_form": "伤寒病",
+        "target_term": "伤寒",
+        "target_id": "AHV-82d1c8a78473",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-b171cfde68e6",
+        "surface_form": "促脉",
+        "target_term": "促脉",
+        "target_id": "AHV-472e3287583d",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-5f6c19c1a1df",
+        "surface_form": "内虚",
+        "target_term": "内虚",
+        "target_id": "AHV-b52564cf7480",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-46cc43be8745",
+        "surface_form": "冬温",
+        "target_term": "冬温",
+        "target_id": "AHV-9dfd46e14608",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-b3a936d8b7a1",
+        "surface_form": "冬温病",
+        "target_term": "冬温",
+        "target_id": "AHV-9dfd46e14608",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-c9aba99c8a83",
+        "surface_form": "刚痉",
+        "target_term": "刚痓",
+        "target_id": "AHV-87d3ca263c08",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-27741ba30f2c",
+        "surface_form": "刚痓",
+        "target_term": "刚痓",
+        "target_id": "AHV-87d3ca263c08",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-8b1b08586476",
+        "surface_form": "劳复",
+        "target_term": "劳复",
+        "target_id": "AHV-68ab3aae2083",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-ad3eb04c9ef1",
+        "surface_form": "太阳之为病",
+        "target_term": "太阳病",
+        "target_id": "AHV-fdb12048d73e",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-5f1669f02b03",
+        "surface_form": "太阳病",
+        "target_term": "太阳病",
+        "target_id": "AHV-fdb12048d73e",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-15a326d65b15",
+        "surface_form": "弦脉",
+        "target_term": "弦脉",
+        "target_id": "AHV-54c535ab7161",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-c757bc791d4d",
+        "surface_form": "时行寒疫",
+        "target_term": "时行寒疫",
+        "target_id": "AHV-bb8f9a64a54e",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-383cfc0196a5",
+        "surface_form": "暑病",
+        "target_term": "暑病",
+        "target_id": "AHV-d1abf1c57ecf",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-f622e4953aa0",
+        "surface_form": "柔痉",
+        "target_term": "柔痓",
+        "target_id": "AHV-cdac1a4b7e7b",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-a0fbe9f6204f",
+        "surface_form": "柔痓",
+        "target_term": "柔痓",
+        "target_id": "AHV-cdac1a4b7e7b",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-9ad793848f47",
+        "surface_form": "温病",
+        "target_term": "温病",
+        "target_id": "AHV-65a3bdee145b",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-4c72e878f674",
+        "surface_form": "滑脉",
+        "target_term": "滑脉",
+        "target_id": "AHV-5d33fe1b97eb",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-23948593ca45",
+        "surface_form": "痉病",
+        "target_term": "痓病",
+        "target_id": "AHV-01cf7a0eba28",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-78009ab61848",
+        "surface_form": "痓病",
+        "target_term": "痓病",
+        "target_id": "AHV-01cf7a0eba28",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-049afe91b53a",
+        "surface_form": "结脉",
+        "target_term": "结脉",
+        "target_id": "AHV-bbdfc9d9b74e",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-cba99c5eede7",
+        "surface_form": "崩血",
+        "target_term": "血崩",
+        "target_id": "AHV-439df1ff9f25",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-07cf7d766a62",
+        "surface_form": "血崩",
+        "target_term": "血崩",
+        "target_id": "AHV-439df1ff9f25",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-915b5d1e3a40",
+        "surface_form": "行尸",
+        "target_term": "行尸",
+        "target_id": "AHV-901247b4beaf",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-d53d4f6d796f",
+        "surface_form": "吐利霍乱",
+        "target_term": "霍乱",
+        "target_id": "AHV-72cae785c0ac",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-06f45a26d757",
+        "surface_form": "霍乱",
+        "target_term": "霍乱",
+        "target_id": "AHV-72cae785c0ac",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-eadda59952ac",
+        "surface_form": "革脉",
+        "target_term": "革脉",
+        "target_id": "AHV-6fb7ea26388a",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      },
+      {
+        "lexicon_id": "AHV-LQN-9f9429369084",
+        "surface_form": "食复",
+        "target_term": "食复",
+        "target_id": "AHV-8df0a4ec9de9",
+        "is_active": 1,
+        "before": {
+          "match_mode": "contains",
+          "notes": "batch learner_safe normalization"
+        },
+        "after": {
+          "match_mode": "exact",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary."
+        }
+      }
+    ]
+  },
+  "runtime_fix": {
+    "file": "backend/retrieval/minimal.py",
+    "summary": "AHV aliases are exact-match only at runtime; inactive AHV aliases block definition primary."
+  },
+  "snapshots": {
+    "definition_term_registry": "/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/data_plane_adversarial/definition_term_registry_ahv_adversarial_v1_snapshot.json",
+    "term_alias_registry": "/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/data_plane_adversarial/term_alias_registry_ahv_adversarial_v1_snapshot.json",
+    "learner_query_normalization_lexicon": "/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/data_plane_adversarial/learner_query_normalization_ahv_adversarial_v1_snapshot.json"
+  }
+}

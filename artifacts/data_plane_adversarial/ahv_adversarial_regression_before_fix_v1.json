@@ -1,0 +1,4797 @@
+{
+  "run_id": "ahv_adversarial_regression_v1",
+  "run_label": "before_fix",
+  "generated_at_utc": "2026-04-24T05:18:20.102456+00:00",
+  "db_path": "/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/zjshl_v1.db",
+  "query_set_json": "/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/data_plane_adversarial/ahv_adversarial_query_set_v1.json",
+  "query_count": 87,
+  "metrics": {
+    "run_label": "before_fix",
+    "total_query_count": 87,
+    "pass_count": 67,
+    "fail_count": 20,
+    "query_type_counts": {
+      "ahv_canonical_guard": 20,
+      "disabled_alias_recheck": 5,
+      "formula_guard": 5,
+      "gold_safe_definition_guard": 5,
+      "negative_unrelated": 10,
+      "non_definition_intent": 8,
+      "partial_word_literal_similarity": 10,
+      "review_only_boundary_guard": 4,
+      "similar_concept_false_trigger": 20
+    },
+    "wrong_ahv_primary_hit_count": 2,
+    "wrong_term_normalization_count": 18,
+    "disabled_alias_still_hit_count": 2,
+    "partial_word_false_positive_count": 0,
+    "non_definition_intent_hijack_count": 8,
+    "negative_sample_false_positive_count": 0,
+    "forbidden_primary_total": 0,
+    "review_only_primary_conflict_count": 0,
+    "formula_bad_anchor_top5_total": 0,
+    "ahv_canonical_guard_pass_count": 20,
+    "ahv_canonical_guard_total": 20,
+    "failure_query_ids": [
+      "similar_05",
+      "similar_06",
+      "similar_07",
+      "similar_09",
+      "similar_11",
+      "similar_14",
+      "similar_17",
+      "similar_18",
+      "similar_19",
+      "similar_20",
+      "disabled_alias_02",
+      "disabled_alias_03",
+      "non_definition_01",
+      "non_definition_02",
+      "non_definition_03",
+      "non_definition_04",
+      "non_definition_05",
+      "non_definition_06",
+      "non_definition_07",
+      "non_definition_08"
+    ]
+  },
+  "rows": [
+    {
+      "query_id": "ahv_canonical_01",
+      "query": "何谓太阳病",
+      "query_type": "ahv_canonical_guard",
+      "expected_behavior": "必须命中 太阳病 的 AHV safe definition primary，且不得混入其他 AHV primary。",
+      "expected_ahv_terms": [
+        "太阳病"
+      ],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [
+        "太阳病"
+      ],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-fdb12048d73e"
+      ],
+      "matched_terms": [
+        "太阳病"
+      ],
+      "matched_ahv_terms": [
+        "太阳病"
+      ],
+      "primary_ids": [
+        "safe:definition_terms:AHV-fdb12048d73e"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": true,
+      "ahv_primary_terms": [
+        "太阳病"
+      ],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "ahv_canonical_02",
+      "query": "伤寒是什么",
+      "query_type": "ahv_canonical_guard",
+      "expected_behavior": "必须命中 伤寒 的 AHV safe definition primary，且不得混入其他 AHV primary。",
+      "expected_ahv_terms": [
+        "伤寒"
+      ],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [
+        "伤寒"
+      ],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-82d1c8a78473"
+      ],
+      "matched_terms": [
+        "伤寒"
+      ],
+      "matched_ahv_terms": [
+        "伤寒"
+      ],
+      "primary_ids": [
+        "safe:definition_terms:AHV-82d1c8a78473"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": true,
+      "ahv_primary_terms": [
+        "伤寒"
+      ],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "ahv_canonical_03",
+      "query": "温病是什么意思",
+      "query_type": "ahv_canonical_guard",
+      "expected_behavior": "必须命中 温病 的 AHV safe definition primary，且不得混入其他 AHV primary。",
+      "expected_ahv_terms": [
+        "温病"
+      ],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [
+        "温病"
+      ],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-65a3bdee145b"
+      ],
+      "matched_terms": [
+        "温病"
+      ],
+      "matched_ahv_terms": [
+        "温病"
+      ],
+      "primary_ids": [
+        "safe:definition_terms:AHV-65a3bdee145b"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": true,
+      "ahv_primary_terms": [
+        "温病"
+      ],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "ahv_canonical_04",
+      "query": "暑病是什么意思",
+      "query_type": "ahv_canonical_guard",
+      "expected_behavior": "必须命中 暑病 的 AHV safe definition primary，且不得混入其他 AHV primary。",
+      "expected_ahv_terms": [
+        "暑病"
+      ],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [
+        "暑病"
+      ],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-d1abf1c57ecf"
+      ],
+      "matched_terms": [
+        "暑病"
+      ],
+      "matched_ahv_terms": [
+        "暑病"
+      ],
+      "primary_ids": [
+        "safe:definition_terms:AHV-d1abf1c57ecf"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": true,
+      "ahv_primary_terms": [
+        "暑病"
+      ],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "ahv_canonical_05",
+      "query": "冬温是什么",
+      "query_type": "ahv_canonical_guard",
+      "expected_behavior": "必须命中 冬温 的 AHV safe definition primary，且不得混入其他 AHV primary。",
+      "expected_ahv_terms": [
+        "冬温"
+      ],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [
+        "冬温"
+      ],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-9dfd46e14608"
+      ],
+      "matched_terms": [
+        "冬温"
+      ],
+      "matched_ahv_terms": [
+        "冬温"
+      ],
+      "primary_ids": [
+        "safe:definition_terms:AHV-9dfd46e14608"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": true,
+      "ahv_primary_terms": [
+        "冬温"
+      ],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "ahv_canonical_06",
+      "query": "时行寒疫是什么",
+      "query_type": "ahv_canonical_guard",
+      "expected_behavior": "必须命中 时行寒疫 的 AHV safe definition primary，且不得混入其他 AHV primary。",
+      "expected_ahv_terms": [
+        "时行寒疫"
+      ],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [
+        "时行寒疫"
+      ],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-bb8f9a64a54e"
+      ],
+      "matched_terms": [
+        "时行寒疫"
+      ],
+      "matched_ahv_terms": [
+        "时行寒疫"
+      ],
+      "primary_ids": [
+        "safe:definition_terms:AHV-bb8f9a64a54e"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": true,
+      "ahv_primary_terms": [
+        "时行寒疫"
+      ],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "ahv_canonical_07",
+      "query": "刚痓是什么",
+      "query_type": "ahv_canonical_guard",
+      "expected_behavior": "必须命中 刚痓 的 AHV safe definition primary，且不得混入其他 AHV primary。",
+      "expected_ahv_terms": [
+        "刚痓"
+      ],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [
+        "刚痓"
+      ],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-87d3ca263c08"
+      ],
+      "matched_terms": [
+        "刚痓"
+      ],
+      "matched_ahv_terms": [
+        "刚痓"
+      ],
+      "primary_ids": [
+        "safe:definition_terms:AHV-87d3ca263c08"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": true,
+      "ahv_primary_terms": [
+        "刚痓"
+      ],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "ahv_canonical_08",
+      "query": "柔痓是什么意思",
+      "query_type": "ahv_canonical_guard",
+      "expected_behavior": "必须命中 柔痓 的 AHV safe definition primary，且不得混入其他 AHV primary。",
+      "expected_ahv_terms": [
+        "柔痓"
+      ],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [
+        "柔痓"
+      ],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-cdac1a4b7e7b"
+      ],
+      "matched_terms": [
+        "柔痓"
+      ],
+      "matched_ahv_terms": [
+        "柔痓"
+      ],
+      "primary_ids": [
+        "safe:definition_terms:AHV-cdac1a4b7e7b"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": true,
+      "ahv_primary_terms": [
+        "柔痓"
+      ],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "ahv_canonical_09",
+      "query": "痓病是什么",
+      "query_type": "ahv_canonical_guard",
+      "expected_behavior": "必须命中 痓病 的 AHV safe definition primary，且不得混入其他 AHV primary。",
+      "expected_ahv_terms": [
+        "痓病"
+      ],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [
+        "痓病"
+      ],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-01cf7a0eba28"
+      ],
+      "matched_terms": [
+        "痓病"
+      ],
+      "matched_ahv_terms": [
+        "痓病"
+      ],
+      "primary_ids": [
+        "safe:definition_terms:AHV-01cf7a0eba28"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": true,
+      "ahv_primary_terms": [
+        "痓病"
+      ],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "ahv_canonical_10",
+      "query": "结脉是什么",
+      "query_type": "ahv_canonical_guard",
+      "expected_behavior": "必须命中 结脉 的 AHV safe definition primary，且不得混入其他 AHV primary。",
+      "expected_ahv_terms": [
+        "结脉"
+      ],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [
+        "结脉"
+      ],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-bbdfc9d9b74e"
+      ],
+      "matched_terms": [
+        "结脉"
+      ],
+      "matched_ahv_terms": [
+        "结脉"
+      ],
+      "primary_ids": [
+        "safe:definition_terms:AHV-bbdfc9d9b74e"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": true,
+      "ahv_primary_terms": [
+        "结脉"
+      ],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "ahv_canonical_11",
+      "query": "促脉是什么",
+      "query_type": "ahv_canonical_guard",
+      "expected_behavior": "必须命中 促脉 的 AHV safe definition primary，且不得混入其他 AHV primary。",
+      "expected_ahv_terms": [
+        "促脉"
+      ],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [
+        "促脉"
+      ],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-472e3287583d"
+      ],
+      "matched_terms": [
+        "促脉"
+      ],
+      "matched_ahv_terms": [
+        "促脉"
+      ],
+      "primary_ids": [
+        "safe:definition_terms:AHV-472e3287583d"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": true,
+      "ahv_primary_terms": [
+        "促脉"
+      ],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "ahv_canonical_12",
+      "query": "弦脉是什么",
+      "query_type": "ahv_canonical_guard",
+      "expected_behavior": "必须命中 弦脉 的 AHV safe definition primary，且不得混入其他 AHV primary。",
+      "expected_ahv_terms": [
+        "弦脉"
+      ],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [
+        "弦脉"
+      ],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-54c535ab7161"
+      ],
+      "matched_terms": [
+        "弦脉"
+      ],
+      "matched_ahv_terms": [
+        "弦脉"
+      ],
+      "primary_ids": [
+        "safe:definition_terms:AHV-54c535ab7161"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": true,
+      "ahv_primary_terms": [
+        "弦脉"
+      ],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "ahv_canonical_13",
+      "query": "滑脉是什么意思",
+      "query_type": "ahv_canonical_guard",
+      "expected_behavior": "必须命中 滑脉 的 AHV safe definition primary，且不得混入其他 AHV primary。",
+      "expected_ahv_terms": [
+        "滑脉"
+      ],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [
+        "滑脉"
+      ],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-5d33fe1b97eb"
+      ],
+      "matched_terms": [
+        "滑脉"
+      ],
+      "matched_ahv_terms": [
+        "滑脉"
+      ],
+      "primary_ids": [
+        "safe:definition_terms:AHV-5d33fe1b97eb"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": true,
+      "ahv_primary_terms": [
+        "滑脉"
+      ],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "ahv_canonical_14",
+      "query": "革脉是什么",
+      "query_type": "ahv_canonical_guard",
+      "expected_behavior": "必须命中 革脉 的 AHV safe definition primary，且不得混入其他 AHV primary。",
+      "expected_ahv_terms": [
+        "革脉"
+      ],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [
+        "革脉"
+      ],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-6fb7ea26388a"
+      ],
+      "matched_terms": [
+        "革脉"
+      ],
+      "matched_ahv_terms": [
+        "革脉"
+      ],
+      "primary_ids": [
+        "safe:definition_terms:AHV-6fb7ea26388a"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": true,
+      "ahv_primary_terms": [
+        "革脉"
+      ],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "ahv_canonical_15",
+      "query": "行尸是什么意思",
+      "query_type": "ahv_canonical_guard",
+      "expected_behavior": "必须命中 行尸 的 AHV safe definition primary，且不得混入其他 AHV primary。",
+      "expected_ahv_terms": [
+        "行尸"
+      ],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [
+        "行尸"
+      ],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-901247b4beaf"
+      ],
+      "matched_terms": [
+        "行尸"
+      ],
+      "matched_ahv_terms": [
+        "行尸"
+      ],
+      "primary_ids": [
+        "safe:definition_terms:AHV-901247b4beaf"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": true,
+      "ahv_primary_terms": [
+        "行尸"
+      ],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "ahv_canonical_16",
+      "query": "内虚是什么意思",
+      "query_type": "ahv_canonical_guard",
+      "expected_behavior": "必须命中 内虚 的 AHV safe definition primary，且不得混入其他 AHV primary。",
+      "expected_ahv_terms": [
+        "内虚"
+      ],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [
+        "内虚"
+      ],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-b52564cf7480"
+      ],
+      "matched_terms": [
+        "内虚"
+      ],
+      "matched_ahv_terms": [
+        "内虚"
+      ],
+      "primary_ids": [
+        "safe:definition_terms:AHV-b52564cf7480"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": true,
+      "ahv_primary_terms": [
+        "内虚"
+      ],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "ahv_canonical_17",
+      "query": "血崩是什么",
+      "query_type": "ahv_canonical_guard",
+      "expected_behavior": "必须命中 血崩 的 AHV safe definition primary，且不得混入其他 AHV primary。",
+      "expected_ahv_terms": [
+        "血崩"
+      ],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [
+        "血崩"
+      ],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-439df1ff9f25"
+      ],
+      "matched_terms": [
+        "血崩"
+      ],
+      "matched_ahv_terms": [
+        "血崩"
+      ],
+      "primary_ids": [
+        "safe:definition_terms:AHV-439df1ff9f25"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": true,
+      "ahv_primary_terms": [
+        "血崩"
+      ],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "ahv_canonical_18",
+      "query": "霍乱是什么",
+      "query_type": "ahv_canonical_guard",
+      "expected_behavior": "必须命中 霍乱 的 AHV safe definition primary，且不得混入其他 AHV primary。",
+      "expected_ahv_terms": [
+        "霍乱"
+      ],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [
+        "霍乱"
+      ],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-72cae785c0ac"
+      ],
+      "matched_terms": [
+        "霍乱"
+      ],
+      "matched_ahv_terms": [
+        "霍乱"
+      ],
+      "primary_ids": [
+        "safe:definition_terms:AHV-72cae785c0ac"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": true,
+      "ahv_primary_terms": [
+        "霍乱"
+      ],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "ahv_canonical_19",
+      "query": "劳复是什么意思",
+      "query_type": "ahv_canonical_guard",
+      "expected_behavior": "必须命中 劳复 的 AHV safe definition primary，且不得混入其他 AHV primary。",
+      "expected_ahv_terms": [
+        "劳复"
+      ],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [
+        "劳复"
+      ],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-68ab3aae2083"
+      ],
+      "matched_terms": [
+        "劳复"
+      ],
+      "matched_ahv_terms": [
+        "劳复"
+      ],
+      "primary_ids": [
+        "safe:definition_terms:AHV-68ab3aae2083"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": true,
+      "ahv_primary_terms": [
+        "劳复"
+      ],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "ahv_canonical_20",
+      "query": "食复是什么意思",
+      "query_type": "ahv_canonical_guard",
+      "expected_behavior": "必须命中 食复 的 AHV safe definition primary，且不得混入其他 AHV primary。",
+      "expected_ahv_terms": [
+        "食复"
+      ],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [
+        "食复"
+      ],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-8df0a4ec9de9"
+      ],
+      "matched_terms": [
+        "食复"
+      ],
+      "matched_ahv_terms": [
+        "食复"
+      ],
+      "primary_ids": [
+        "safe:definition_terms:AHV-8df0a4ec9de9"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": true,
+      "ahv_primary_terms": [
+        "食复"
+      ],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "similar_01",
+      "query": "春温病是什么意思",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "春温/温病相近词不得因包含“温病”而命中温病 AHV。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "refuse",
+      "mode_bucket": "refuse",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "similar_02",
+      "query": "寒疫病是什么意思",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "寒疫/时行寒疫相近词不得命中时行寒疫 AHV。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "refuse",
+      "mode_bucket": "refuse",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "similar_03",
+      "query": "痉是什么意思",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "单字异体痉不得命中刚痓、柔痓或痓病 AHV。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "weak_with_review_notice",
+      "mode_bucket": "weak",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "similar_04",
+      "query": "痓是什么意思",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "单字痓不得命中痓病 AHV。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-007-P-0155",
+        "safe:main_passages:ZJSHL-CH-007-P-0159"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "similar_05",
+      "query": "刚痓和柔痓有什么不同",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "刚痓/柔痓比较意图不得被单个 AHV definition primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "weak_with_review_notice",
+      "mode_bucket": "weak",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-87d3ca263c08",
+        "AHV-cdac1a4b7e7b"
+      ],
+      "matched_terms": [
+        "刚痓",
+        "柔痓"
+      ],
+      "matched_ahv_terms": [
+        "刚痓",
+        "柔痓"
+      ],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 刚痓,柔痓"
+    },
+    {
+      "query_id": "similar_06",
+      "query": "柔痓和痓病是一回事吗",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "柔痓/痓病关系问法不得被单个 AHV definition primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-cdac1a4b7e7b",
+        "AHV-01cf7a0eba28"
+      ],
+      "matched_terms": [
+        "柔痓",
+        "痓病"
+      ],
+      "matched_ahv_terms": [
+        "柔痓",
+        "痓病"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-007-P-0159"
+      ],
+      "primary_record_types": [
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 柔痓,痓病"
+    },
+    {
+      "query_id": "similar_07",
+      "query": "痉病和痓病是同一个词吗",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "痉病/痓病关系问法不得被单个 AHV definition primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "weak_with_review_notice",
+      "mode_bucket": "weak",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-01cf7a0eba28"
+      ],
+      "matched_terms": [
+        "痉病",
+        "痓病"
+      ],
+      "matched_ahv_terms": [
+        "痓病"
+      ],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 痓病"
+    },
+    {
+      "query_id": "similar_08",
+      "query": "结是什么意思",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "单字结不得命中结脉 AHV。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-010-P-0123",
+        "safe:main_passages:ZJSHL-CH-010-P-0170"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "similar_09",
+      "query": "结脉和促脉有什么区别",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "结脉/促脉比较意图不得被 AHV definition primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-bbdfc9d9b74e",
+        "AHV-472e3287583d"
+      ],
+      "matched_terms": [
+        "结脉",
+        "促脉"
+      ],
+      "matched_ahv_terms": [
+        "结脉",
+        "促脉"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0028",
+        "safe:main_passages:ZJSHL-CH-010-P-0020",
+        "safe:main_passages:ZJSHL-CH-010-P-0019"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 结脉,促脉"
+    },
+    {
+      "query_id": "similar_10",
+      "query": "促是什么意思",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "单字促不得命中促脉 AHV。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0217",
+        "safe:main_passages:ZJSHL-CH-008-P-0219",
+        "safe:main_passages:ZJSHL-CH-003-P-0028"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "similar_11",
+      "query": "滑脉和革脉有什么不同",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "滑脉/革脉比较意图不得被 AHV definition primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "weak_with_review_notice",
+      "mode_bucket": "weak",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-5d33fe1b97eb",
+        "AHV-6fb7ea26388a"
+      ],
+      "matched_terms": [
+        "滑脉",
+        "革脉"
+      ],
+      "matched_ahv_terms": [
+        "滑脉",
+        "革脉"
+      ],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 滑脉,革脉"
+    },
+    {
+      "query_id": "similar_12",
+      "query": "滑象是什么意思",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "滑象不得因字面相近命中滑脉 AHV。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "refuse",
+      "mode_bucket": "refuse",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "similar_13",
+      "query": "革象是什么意思",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "革象不得因字面相近命中革脉 AHV。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "refuse",
+      "mode_bucket": "refuse",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "similar_14",
+      "query": "劳复和食复一样吗",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "劳复/食复关系问法不得被单个 AHV definition primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-68ab3aae2083",
+        "AHV-8df0a4ec9de9"
+      ],
+      "matched_terms": [
+        "劳复",
+        "食复"
+      ],
+      "matched_ahv_terms": [
+        "劳复",
+        "食复"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-017-P-0050",
+        "safe:main_passages:ZJSHL-CH-017-P-0049"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 劳复,食复"
+    },
+    {
+      "query_id": "similar_15",
+      "query": "劳病是什么意思",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "劳病不得命中劳复 AHV。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "refuse",
+      "mode_bucket": "refuse",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "similar_16",
+      "query": "食病是什么意思",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "食病不得命中食复 AHV。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "weak_with_review_notice",
+      "mode_bucket": "weak",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "similar_17",
+      "query": "伤寒和温病有什么区别",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "伤寒/温病比较意图不得被 AHV definition primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-82d1c8a78473",
+        "AHV-65a3bdee145b"
+      ],
+      "matched_terms": [
+        "伤寒",
+        "温病"
+      ],
+      "matched_ahv_terms": [
+        "伤寒",
+        "温病"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-006-P-0012",
+        "safe:main_passages:ZJSHL-CH-008-P-0195",
+        "safe:main_passages:ZJSHL-CH-009-P-0159"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 伤寒,温病"
+    },
+    {
+      "query_id": "similar_18",
+      "query": "伤寒和暑病有什么区别",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "伤寒/暑病比较意图不得被 AHV definition primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-82d1c8a78473",
+        "AHV-d1abf1c57ecf"
+      ],
+      "matched_terms": [
+        "伤寒",
+        "暑病"
+      ],
+      "matched_ahv_terms": [
+        "伤寒",
+        "暑病"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-006-P-0012",
+        "safe:main_passages:ZJSHL-CH-008-P-0195",
+        "safe:main_passages:ZJSHL-CH-009-P-0159"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 伤寒,暑病"
+    },
+    {
+      "query_id": "similar_19",
+      "query": "伤寒和冬温有什么区别",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "伤寒/冬温比较意图不得被 AHV definition primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-82d1c8a78473",
+        "AHV-9dfd46e14608"
+      ],
+      "matched_terms": [
+        "伤寒",
+        "冬温"
+      ],
+      "matched_ahv_terms": [
+        "伤寒",
+        "冬温"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0195",
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-009-P-0022"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 伤寒,冬温"
+    },
+    {
+      "query_id": "similar_20",
+      "query": "太阳病和伤寒是一回事吗",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "太阳病/伤寒关系问法不得被单个 AHV definition primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-fdb12048d73e",
+        "AHV-82d1c8a78473"
+      ],
+      "matched_terms": [
+        "太阳病",
+        "伤寒"
+      ],
+      "matched_ahv_terms": [
+        "太阳病",
+        "伤寒"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0195",
+        "safe:main_passages:ZJSHL-CH-008-P-0193",
+        "safe:main_passages:ZJSHL-CH-009-P-0002"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 太阳病,伤寒"
+    },
+    {
+      "query_id": "disabled_alias_01",
+      "query": "春温是什么意思",
+      "query_type": "disabled_alias_recheck",
+      "expected_behavior": "停用 alias 春温不得重新命中温病 AHV。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "weak_with_review_notice",
+      "mode_bucket": "weak",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "disabled_alias_02",
+      "query": "暑病者是什么意思",
+      "query_type": "disabled_alias_recheck",
+      "expected_behavior": "停用 alias 暑病者不得重新命中暑病 AHV。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [
+        "safe:definition_terms:AHV-d1abf1c57ecf"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": true,
+      "ahv_primary_terms": [
+        "暑病"
+      ],
+      "wrong_ahv_primary_hit": true,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": false,
+      "fail_reason": "wrong AHV primary hit: 暑病"
+    },
+    {
+      "query_id": "disabled_alias_03",
+      "query": "寒疫是什么意思",
+      "query_type": "disabled_alias_recheck",
+      "expected_behavior": "停用 alias 寒疫不得重新命中时行寒疫 AHV。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [
+        "safe:definition_terms:AHV-bb8f9a64a54e"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": true,
+      "ahv_primary_terms": [
+        "时行寒疫"
+      ],
+      "wrong_ahv_primary_hit": true,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": false,
+      "fail_reason": "wrong AHV primary hit: 时行寒疫"
+    },
+    {
+      "query_id": "disabled_alias_04",
+      "query": "劳动病是什么",
+      "query_type": "disabled_alias_recheck",
+      "expected_behavior": "停用 alias 劳动病不得重新命中劳复 AHV。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-017-P-0049",
+        "safe:main_passages:ZJSHL-CH-017-P-0050",
+        "safe:main_passages:ZJSHL-CH-009-P-0159"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "disabled_alias_05",
+      "query": "强食复病是什么意思",
+      "query_type": "disabled_alias_recheck",
+      "expected_behavior": "停用 alias 强食复病不得重新命中食复 AHV。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "refuse",
+      "mode_bucket": "refuse",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "partial_word_01",
+      "query": "太阳是什么意思",
+      "query_type": "partial_word_literal_similarity",
+      "expected_behavior": "单字或普通部分词不得触发 AHV term normalization 或 AHV primary。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-025-P-0004",
+        "safe:main_passages:ZJSHL-CH-009-P-0022",
+        "safe:main_passages:ZJSHL-CH-008-P-0217"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "partial_word_02",
+      "query": "寒是什么意思",
+      "query_type": "partial_word_literal_similarity",
+      "expected_behavior": "单字或普通部分词不得触发 AHV term normalization 或 AHV primary。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-009-P-0022",
+        "safe:main_passages:ZJSHL-CH-011-P-0209"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "partial_word_03",
+      "query": "温是什么意思",
+      "query_type": "partial_word_literal_similarity",
+      "expected_behavior": "单字或普通部分词不得触发 AHV term normalization 或 AHV primary。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-027-P-0011",
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-009-P-0022"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "partial_word_04",
+      "query": "暑是什么意思",
+      "query_type": "partial_word_literal_similarity",
+      "expected_behavior": "单字或普通部分词不得触发 AHV term normalization 或 AHV primary。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-006-P-0004",
+        "safe:main_passages:ZJSHL-CH-006-P-0012",
+        "safe:main_passages:ZJSHL-CH-006-P-0024"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "partial_word_05",
+      "query": "弦是什么意思",
+      "query_type": "partial_word_literal_similarity",
+      "expected_behavior": "单字或普通部分词不得触发 AHV term normalization 或 AHV primary。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0068",
+        "safe:main_passages:ZJSHL-CH-009-P-0239",
+        "safe:main_passages:ZJSHL-CH-009-P-0211"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "partial_word_06",
+      "query": "滑是什么意思",
+      "query_type": "partial_word_literal_similarity",
+      "expected_behavior": "单字或普通部分词不得触发 AHV term normalization 或 AHV primary。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0217",
+        "safe:main_passages:ZJSHL-CH-015-P-0221",
+        "safe:main_passages:ZJSHL-CH-011-P-0109"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "partial_word_07",
+      "query": "革是什么意思",
+      "query_type": "partial_word_literal_similarity",
+      "expected_behavior": "单字或普通部分词不得触发 AHV term normalization 或 AHV primary。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "weak_with_review_notice",
+      "mode_bucket": "weak",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "partial_word_08",
+      "query": "劳是什么意思",
+      "query_type": "partial_word_literal_similarity",
+      "expected_behavior": "单字或普通部分词不得触发 AHV term normalization 或 AHV primary。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "weak_with_review_notice",
+      "mode_bucket": "weak",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "partial_word_09",
+      "query": "食是什么意思",
+      "query_type": "partial_word_literal_similarity",
+      "expected_behavior": "单字或普通部分词不得触发 AHV term normalization 或 AHV primary。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-010-P-0123",
+        "safe:main_passages:ZJSHL-CH-015-P-0221"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "partial_word_10",
+      "query": "复是什么意思",
+      "query_type": "partial_word_literal_similarity",
+      "expected_behavior": "单字或普通部分词不得触发 AHV term normalization 或 AHV primary。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0298",
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-008-P-0217"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "non_definition_01",
+      "query": "太阳病有哪些方？",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "非 definition/meaning 意图不得被 AHV definition object 抢占 primary；若系统不能正确路由，应记录为 routing/intent 债务。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-fdb12048d73e"
+      ],
+      "matched_terms": [
+        "太阳病"
+      ],
+      "matched_ahv_terms": [
+        "太阳病"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0193",
+        "safe:main_passages:ZJSHL-CH-009-P-0002",
+        "safe:main_passages:ZJSHL-CH-008-P-0220"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 太阳病"
+    },
+    {
+      "query_id": "non_definition_02",
+      "query": "伤寒怎么治疗？",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "非 definition/meaning 意图不得被 AHV definition object 抢占 primary；若系统不能正确路由，应记录为 routing/intent 债务。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-82d1c8a78473"
+      ],
+      "matched_terms": [
+        "伤寒"
+      ],
+      "matched_ahv_terms": [
+        "伤寒"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0195",
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-009-P-0022"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 伤寒"
+    },
+    {
+      "query_id": "non_definition_03",
+      "query": "温病与伤寒如何区分？",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "非 definition/meaning 意图不得被 AHV definition object 抢占 primary；若系统不能正确路由，应记录为 routing/intent 债务。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-65a3bdee145b",
+        "AHV-82d1c8a78473"
+      ],
+      "matched_terms": [
+        "温病",
+        "伤寒"
+      ],
+      "matched_ahv_terms": [
+        "温病",
+        "伤寒"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-006-P-0012",
+        "safe:main_passages:ZJSHL-CH-006-P-0022",
+        "safe:main_passages:ZJSHL-CH-006-P-0046"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 温病,伤寒"
+    },
+    {
+      "query_id": "non_definition_04",
+      "query": "霍乱用什么方？",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "非 definition/meaning 意图不得被 AHV definition object 抢占 primary；若系统不能正确路由，应记录为 routing/intent 债务。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-72cae785c0ac"
+      ],
+      "matched_terms": [
+        "霍乱"
+      ],
+      "matched_ahv_terms": [
+        "霍乱"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-016-P-0002",
+        "safe:main_passages:ZJSHL-CH-016-P-0004",
+        "safe:main_passages:ZJSHL-CH-016-P-0016"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 霍乱"
+    },
+    {
+      "query_id": "non_definition_05",
+      "query": "劳复应该怎么处理？",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "非 definition/meaning 意图不得被 AHV definition object 抢占 primary；若系统不能正确路由，应记录为 routing/intent 债务。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-68ab3aae2083"
+      ],
+      "matched_terms": [
+        "劳复"
+      ],
+      "matched_ahv_terms": [
+        "劳复"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-017-P-0048",
+        "safe:main_passages:ZJSHL-CH-017-P-0049"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 劳复"
+    },
+    {
+      "query_id": "non_definition_06",
+      "query": "食复怎么治？",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "非 definition/meaning 意图不得被 AHV definition object 抢占 primary；若系统不能正确路由，应记录为 routing/intent 债务。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-8df0a4ec9de9"
+      ],
+      "matched_terms": [
+        "食复"
+      ],
+      "matched_ahv_terms": [
+        "食复"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-017-P-0050",
+        "safe:main_passages:ZJSHL-CH-017-P-0049"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 食复"
+    },
+    {
+      "query_id": "non_definition_07",
+      "query": "结脉有什么方？",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "非 definition/meaning 意图不得被 AHV definition object 抢占 primary；若系统不能正确路由，应记录为 routing/intent 债务。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-bbdfc9d9b74e"
+      ],
+      "matched_terms": [
+        "结脉"
+      ],
+      "matched_ahv_terms": [
+        "结脉"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0028",
+        "safe:main_passages:ZJSHL-CH-010-P-0020",
+        "safe:main_passages:ZJSHL-CH-010-P-0019"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 结脉"
+    },
+    {
+      "query_id": "non_definition_08",
+      "query": "革脉预后如何？",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "非 definition/meaning 意图不得被 AHV definition object 抢占 primary；若系统不能正确路由，应记录为 routing/intent 债务。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "refuse",
+      "mode_bucket": "refuse",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-6fb7ea26388a"
+      ],
+      "matched_terms": [
+        "革脉"
+      ],
+      "matched_ahv_terms": [
+        "革脉"
+      ],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 革脉"
+    },
+    {
+      "query_id": "negative_01",
+      "query": "太阳能是什么意思",
+      "query_type": "negative_unrelated",
+      "expected_behavior": "明显非中医/非本书术语样本不得命中 AHV primary，不得 AHV normalization，不得错误 strong。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": true,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "refuse",
+      "mode_bucket": "refuse",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "negative_02",
+      "query": "食物中毒是什么意思",
+      "query_type": "negative_unrelated",
+      "expected_behavior": "明显非中医/非本书术语样本不得命中 AHV primary，不得 AHV normalization，不得错误 strong。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": true,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "refuse",
+      "mode_bucket": "refuse",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "negative_03",
+      "query": "劳动合同是什么",
+      "query_type": "negative_unrelated",
+      "expected_behavior": "明显非中医/非本书术语样本不得命中 AHV primary，不得 AHV normalization，不得错误 strong。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": true,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "refuse",
+      "mode_bucket": "refuse",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "negative_04",
+      "query": "皮革是什么",
+      "query_type": "negative_unrelated",
+      "expected_behavior": "明显非中医/非本书术语样本不得命中 AHV primary，不得 AHV normalization，不得错误 strong。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": true,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "refuse",
+      "mode_bucket": "refuse",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "negative_05",
+      "query": "滑雪是什么意思",
+      "query_type": "negative_unrelated",
+      "expected_behavior": "明显非中医/非本书术语样本不得命中 AHV primary，不得 AHV normalization，不得错误 strong。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": true,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "refuse",
+      "mode_bucket": "refuse",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "negative_06",
+      "query": "内虚拟机是什么",
+      "query_type": "negative_unrelated",
+      "expected_behavior": "明显非中医/非本书术语样本不得命中 AHV primary，不得 AHV normalization，不得错误 strong。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": true,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "refuse",
+      "mode_bucket": "refuse",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "negative_07",
+      "query": "霍乱疫苗是什么",
+      "query_type": "negative_unrelated",
+      "expected_behavior": "明显非中医/非本书术语样本不得命中 AHV primary，不得 AHV normalization，不得错误 strong。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": true,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "refuse",
+      "mode_bucket": "refuse",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "negative_08",
+      "query": "暑假是什么",
+      "query_type": "negative_unrelated",
+      "expected_behavior": "明显非中医/非本书术语样本不得命中 AHV primary，不得 AHV normalization，不得错误 strong。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": true,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "refuse",
+      "mode_bucket": "refuse",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "negative_09",
+      "query": "温度是什么意思",
+      "query_type": "negative_unrelated",
+      "expected_behavior": "明显非中医/非本书术语样本不得命中 AHV primary，不得 AHV normalization，不得错误 strong。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": true,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "refuse",
+      "mode_bucket": "refuse",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "negative_10",
+      "query": "复习是什么意思",
+      "query_type": "negative_unrelated",
+      "expected_behavior": "明显非中医/非本书术语样本不得命中 AHV primary，不得 AHV normalization，不得错误 strong。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": true,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "refuse",
+      "mode_bucket": "refuse",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "formula_guard_01",
+      "query": "桂枝去芍药汤方的条文是什么？",
+      "query_type": "formula_guard",
+      "expected_behavior": "formula guard 不得出现 bad anchor，且不得被 AHV definition primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": true,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-025-P-0005"
+      ],
+      "primary_record_types": [
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "formula_guard_02",
+      "query": "桂枝去芍药加附子汤方的条文是什么？",
+      "query_type": "formula_guard",
+      "expected_behavior": "formula guard 不得出现 bad anchor，且不得被 AHV definition primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": true,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-025-P-0006"
+      ],
+      "primary_record_types": [
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "formula_guard_03",
+      "query": "四逆加人参汤方的条文是什么？",
+      "query_type": "formula_guard",
+      "expected_behavior": "formula guard 不得出现 bad anchor，且不得被 AHV definition primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": true,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-029-P-0001"
+      ],
+      "primary_record_types": [
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "formula_guard_04",
+      "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+      "query_type": "formula_guard",
+      "expected_behavior": "formula guard 不得出现 bad anchor，且不得被 AHV definition primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": true,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-025-P-0004",
+        "safe:main_passages:ZJSHL-CH-025-P-0003"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "formula_guard_05",
+      "query": "桂枝去桂加茯苓白术汤方的条文是什么？",
+      "query_type": "formula_guard",
+      "expected_behavior": "formula guard 不得出现 bad anchor，且不得被 AHV definition primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": true,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-025-P-0013"
+      ],
+      "primary_record_types": [
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "gold_safe_definition_01",
+      "query": "下药是什么意思",
+      "query_type": "gold_safe_definition_guard",
+      "expected_behavior": "既有 gold-safe definition guard 必须保持 strong，且不得被 AHV primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "DPO-033fc08d3b2a"
+      ],
+      "matched_terms": [
+        "下药"
+      ],
+      "matched_ahv_terms": [],
+      "primary_ids": [
+        "safe:definition_terms:DPO-033fc08d3b2a"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "gold_safe_definition_02",
+      "query": "四逆是什么意思",
+      "query_type": "gold_safe_definition_guard",
+      "expected_behavior": "既有 gold-safe definition guard 必须保持 strong，且不得被 AHV primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "DPO-ce8ffb681e3f"
+      ],
+      "matched_terms": [
+        "四逆"
+      ],
+      "matched_ahv_terms": [],
+      "primary_ids": [
+        "safe:definition_terms:DPO-ce8ffb681e3f"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "gold_safe_definition_03",
+      "query": "盗汗是什么意思",
+      "query_type": "gold_safe_definition_guard",
+      "expected_behavior": "既有 gold-safe definition guard 必须保持 strong，且不得被 AHV primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "DPO-246b6bf4c029"
+      ],
+      "matched_terms": [
+        "盗汗"
+      ],
+      "matched_ahv_terms": [],
+      "primary_ids": [
+        "safe:definition_terms:DPO-246b6bf4c029"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "gold_safe_definition_04",
+      "query": "水结胸是什么",
+      "query_type": "gold_safe_definition_guard",
+      "expected_behavior": "既有 gold-safe definition guard 必须保持 strong，且不得被 AHV primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "DPO-e8f5807c114a"
+      ],
+      "matched_terms": [
+        "水结胸"
+      ],
+      "matched_ahv_terms": [],
+      "primary_ids": [
+        "safe:definition_terms:DPO-e8f5807c114a"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "gold_safe_definition_05",
+      "query": "坏病是什么",
+      "query_type": "gold_safe_definition_guard",
+      "expected_behavior": "既有 gold-safe definition guard 必须保持 strong，且不得被 AHV primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_strong": true,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "DPO-f2fb5cd46de2"
+      ],
+      "matched_terms": [
+        "坏病"
+      ],
+      "matched_ahv_terms": [],
+      "primary_ids": [
+        "safe:definition_terms:DPO-f2fb5cd46de2"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "review_only_boundary_01",
+      "query": "神丹是什么意思",
+      "query_type": "review_only_boundary_guard",
+      "expected_behavior": "review-only boundary 不得进入 definition primary。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": true,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "weak_with_review_notice",
+      "mode_bucket": "weak",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "review_only_boundary_02",
+      "query": "将军是什么意思",
+      "query_type": "review_only_boundary_guard",
+      "expected_behavior": "review-only boundary 不得进入 definition primary。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": true,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "weak_with_review_notice",
+      "mode_bucket": "weak",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "review_only_boundary_03",
+      "query": "口苦病是什么意思",
+      "query_type": "review_only_boundary_guard",
+      "expected_behavior": "review-only boundary 不得进入 definition primary。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": true,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "refuse",
+      "mode_bucket": "refuse",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    },
+    {
+      "query_id": "review_only_boundary_04",
+      "query": "胆瘅病是什么意思",
+      "query_type": "review_only_boundary_guard",
+      "expected_behavior": "review-only boundary 不得进入 definition primary。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": true,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "refuse",
+      "mode_bucket": "refuse",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": true,
+      "fail_reason": ""
+    }
+  ],
+  "failures": [
+    {
+      "query_id": "similar_05",
+      "query": "刚痓和柔痓有什么不同",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "刚痓/柔痓比较意图不得被单个 AHV definition primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "weak_with_review_notice",
+      "mode_bucket": "weak",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-87d3ca263c08",
+        "AHV-cdac1a4b7e7b"
+      ],
+      "matched_terms": [
+        "刚痓",
+        "柔痓"
+      ],
+      "matched_ahv_terms": [
+        "刚痓",
+        "柔痓"
+      ],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 刚痓,柔痓"
+    },
+    {
+      "query_id": "similar_06",
+      "query": "柔痓和痓病是一回事吗",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "柔痓/痓病关系问法不得被单个 AHV definition primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-cdac1a4b7e7b",
+        "AHV-01cf7a0eba28"
+      ],
+      "matched_terms": [
+        "柔痓",
+        "痓病"
+      ],
+      "matched_ahv_terms": [
+        "柔痓",
+        "痓病"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-007-P-0159"
+      ],
+      "primary_record_types": [
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 柔痓,痓病"
+    },
+    {
+      "query_id": "similar_07",
+      "query": "痉病和痓病是同一个词吗",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "痉病/痓病关系问法不得被单个 AHV definition primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "weak_with_review_notice",
+      "mode_bucket": "weak",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-01cf7a0eba28"
+      ],
+      "matched_terms": [
+        "痉病",
+        "痓病"
+      ],
+      "matched_ahv_terms": [
+        "痓病"
+      ],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 痓病"
+    },
+    {
+      "query_id": "similar_09",
+      "query": "结脉和促脉有什么区别",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "结脉/促脉比较意图不得被 AHV definition primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-bbdfc9d9b74e",
+        "AHV-472e3287583d"
+      ],
+      "matched_terms": [
+        "结脉",
+        "促脉"
+      ],
+      "matched_ahv_terms": [
+        "结脉",
+        "促脉"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0028",
+        "safe:main_passages:ZJSHL-CH-010-P-0020",
+        "safe:main_passages:ZJSHL-CH-010-P-0019"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 结脉,促脉"
+    },
+    {
+      "query_id": "similar_11",
+      "query": "滑脉和革脉有什么不同",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "滑脉/革脉比较意图不得被 AHV definition primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "weak_with_review_notice",
+      "mode_bucket": "weak",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-5d33fe1b97eb",
+        "AHV-6fb7ea26388a"
+      ],
+      "matched_terms": [
+        "滑脉",
+        "革脉"
+      ],
+      "matched_ahv_terms": [
+        "滑脉",
+        "革脉"
+      ],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 滑脉,革脉"
+    },
+    {
+      "query_id": "similar_14",
+      "query": "劳复和食复一样吗",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "劳复/食复关系问法不得被单个 AHV definition primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-68ab3aae2083",
+        "AHV-8df0a4ec9de9"
+      ],
+      "matched_terms": [
+        "劳复",
+        "食复"
+      ],
+      "matched_ahv_terms": [
+        "劳复",
+        "食复"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-017-P-0050",
+        "safe:main_passages:ZJSHL-CH-017-P-0049"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 劳复,食复"
+    },
+    {
+      "query_id": "similar_17",
+      "query": "伤寒和温病有什么区别",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "伤寒/温病比较意图不得被 AHV definition primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-82d1c8a78473",
+        "AHV-65a3bdee145b"
+      ],
+      "matched_terms": [
+        "伤寒",
+        "温病"
+      ],
+      "matched_ahv_terms": [
+        "伤寒",
+        "温病"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-006-P-0012",
+        "safe:main_passages:ZJSHL-CH-008-P-0195",
+        "safe:main_passages:ZJSHL-CH-009-P-0159"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 伤寒,温病"
+    },
+    {
+      "query_id": "similar_18",
+      "query": "伤寒和暑病有什么区别",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "伤寒/暑病比较意图不得被 AHV definition primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-82d1c8a78473",
+        "AHV-d1abf1c57ecf"
+      ],
+      "matched_terms": [
+        "伤寒",
+        "暑病"
+      ],
+      "matched_ahv_terms": [
+        "伤寒",
+        "暑病"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-006-P-0012",
+        "safe:main_passages:ZJSHL-CH-008-P-0195",
+        "safe:main_passages:ZJSHL-CH-009-P-0159"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 伤寒,暑病"
+    },
+    {
+      "query_id": "similar_19",
+      "query": "伤寒和冬温有什么区别",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "伤寒/冬温比较意图不得被 AHV definition primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-82d1c8a78473",
+        "AHV-9dfd46e14608"
+      ],
+      "matched_terms": [
+        "伤寒",
+        "冬温"
+      ],
+      "matched_ahv_terms": [
+        "伤寒",
+        "冬温"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0195",
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-009-P-0022"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 伤寒,冬温"
+    },
+    {
+      "query_id": "similar_20",
+      "query": "太阳病和伤寒是一回事吗",
+      "query_type": "similar_concept_false_trigger",
+      "expected_behavior": "太阳病/伤寒关系问法不得被单个 AHV definition primary 抢占。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-fdb12048d73e",
+        "AHV-82d1c8a78473"
+      ],
+      "matched_terms": [
+        "太阳病",
+        "伤寒"
+      ],
+      "matched_ahv_terms": [
+        "太阳病",
+        "伤寒"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0195",
+        "safe:main_passages:ZJSHL-CH-008-P-0193",
+        "safe:main_passages:ZJSHL-CH-009-P-0002"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 太阳病,伤寒"
+    },
+    {
+      "query_id": "disabled_alias_02",
+      "query": "暑病者是什么意思",
+      "query_type": "disabled_alias_recheck",
+      "expected_behavior": "停用 alias 暑病者不得重新命中暑病 AHV。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [
+        "safe:definition_terms:AHV-d1abf1c57ecf"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": true,
+      "ahv_primary_terms": [
+        "暑病"
+      ],
+      "wrong_ahv_primary_hit": true,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": false,
+      "fail_reason": "wrong AHV primary hit: 暑病"
+    },
+    {
+      "query_id": "disabled_alias_03",
+      "query": "寒疫是什么意思",
+      "query_type": "disabled_alias_recheck",
+      "expected_behavior": "停用 alias 寒疫不得重新命中时行寒疫 AHV。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": false,
+      "query_focus_source": "noise_stripped_query",
+      "matched_concept_ids": [],
+      "matched_terms": [],
+      "matched_ahv_terms": [],
+      "primary_ids": [
+        "safe:definition_terms:AHV-bb8f9a64a54e"
+      ],
+      "primary_record_types": [
+        "definition_terms"
+      ],
+      "is_ahv_primary_hit": true,
+      "ahv_primary_terms": [
+        "时行寒疫"
+      ],
+      "wrong_ahv_primary_hit": true,
+      "wrong_term_normalization": false,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 1,
+      "pass": false,
+      "fail_reason": "wrong AHV primary hit: 时行寒疫"
+    },
+    {
+      "query_id": "non_definition_01",
+      "query": "太阳病有哪些方？",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "非 definition/meaning 意图不得被 AHV definition object 抢占 primary；若系统不能正确路由，应记录为 routing/intent 债务。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-fdb12048d73e"
+      ],
+      "matched_terms": [
+        "太阳病"
+      ],
+      "matched_ahv_terms": [
+        "太阳病"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0193",
+        "safe:main_passages:ZJSHL-CH-009-P-0002",
+        "safe:main_passages:ZJSHL-CH-008-P-0220"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 太阳病"
+    },
+    {
+      "query_id": "non_definition_02",
+      "query": "伤寒怎么治疗？",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "非 definition/meaning 意图不得被 AHV definition object 抢占 primary；若系统不能正确路由，应记录为 routing/intent 债务。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-82d1c8a78473"
+      ],
+      "matched_terms": [
+        "伤寒"
+      ],
+      "matched_ahv_terms": [
+        "伤寒"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0195",
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-009-P-0022"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 伤寒"
+    },
+    {
+      "query_id": "non_definition_03",
+      "query": "温病与伤寒如何区分？",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "非 definition/meaning 意图不得被 AHV definition object 抢占 primary；若系统不能正确路由，应记录为 routing/intent 债务。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-65a3bdee145b",
+        "AHV-82d1c8a78473"
+      ],
+      "matched_terms": [
+        "温病",
+        "伤寒"
+      ],
+      "matched_ahv_terms": [
+        "温病",
+        "伤寒"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-006-P-0012",
+        "safe:main_passages:ZJSHL-CH-006-P-0022",
+        "safe:main_passages:ZJSHL-CH-006-P-0046"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 温病,伤寒"
+    },
+    {
+      "query_id": "non_definition_04",
+      "query": "霍乱用什么方？",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "非 definition/meaning 意图不得被 AHV definition object 抢占 primary；若系统不能正确路由，应记录为 routing/intent 债务。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-72cae785c0ac"
+      ],
+      "matched_terms": [
+        "霍乱"
+      ],
+      "matched_ahv_terms": [
+        "霍乱"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-016-P-0002",
+        "safe:main_passages:ZJSHL-CH-016-P-0004",
+        "safe:main_passages:ZJSHL-CH-016-P-0016"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 霍乱"
+    },
+    {
+      "query_id": "non_definition_05",
+      "query": "劳复应该怎么处理？",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "非 definition/meaning 意图不得被 AHV definition object 抢占 primary；若系统不能正确路由，应记录为 routing/intent 债务。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-68ab3aae2083"
+      ],
+      "matched_terms": [
+        "劳复"
+      ],
+      "matched_ahv_terms": [
+        "劳复"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-017-P-0048",
+        "safe:main_passages:ZJSHL-CH-017-P-0049"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 劳复"
+    },
+    {
+      "query_id": "non_definition_06",
+      "query": "食复怎么治？",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "非 definition/meaning 意图不得被 AHV definition object 抢占 primary；若系统不能正确路由，应记录为 routing/intent 债务。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-8df0a4ec9de9"
+      ],
+      "matched_terms": [
+        "食复"
+      ],
+      "matched_ahv_terms": [
+        "食复"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-017-P-0050",
+        "safe:main_passages:ZJSHL-CH-017-P-0049"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 食复"
+    },
+    {
+      "query_id": "non_definition_07",
+      "query": "结脉有什么方？",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "非 definition/meaning 意图不得被 AHV definition object 抢占 primary；若系统不能正确路由，应记录为 routing/intent 债务。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "strong",
+      "mode_bucket": "strong",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-bbdfc9d9b74e"
+      ],
+      "matched_terms": [
+        "结脉"
+      ],
+      "matched_ahv_terms": [
+        "结脉"
+      ],
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0028",
+        "safe:main_passages:ZJSHL-CH-010-P-0020",
+        "safe:main_passages:ZJSHL-CH-010-P-0019"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 结脉"
+    },
+    {
+      "query_id": "non_definition_08",
+      "query": "革脉预后如何？",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "非 definition/meaning 意图不得被 AHV definition object 抢占 primary；若系统不能正确路由，应记录为 routing/intent 债务。",
+      "expected_ahv_terms": [],
+      "forbidden_ahv_terms": [],
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_strong": false,
+      "require_not_strong": false,
+      "require_formula_guard": false,
+      "allow_ahv_normalization_terms": [],
+      "actual_answer_mode": "refuse",
+      "mode_bucket": "refuse",
+      "term_normalization_enabled": true,
+      "query_focus_source": "term_normalization",
+      "matched_concept_ids": [
+        "AHV-6fb7ea26388a"
+      ],
+      "matched_terms": [
+        "革脉"
+      ],
+      "matched_ahv_terms": [
+        "革脉"
+      ],
+      "primary_ids": [],
+      "primary_record_types": [],
+      "is_ahv_primary_hit": false,
+      "ahv_primary_terms": [],
+      "wrong_ahv_primary_hit": false,
+      "wrong_term_normalization": true,
+      "forbidden_primary_items": [],
+      "review_only_primary_conflict": false,
+      "review_only_primary_conflict_items": [],
+      "formula_bad_anchor_count": 0,
+      "definition_primary_count": 0,
+      "pass": false,
+      "fail_reason": "wrong AHV term normalization: 革脉"
+    }
+  ]
+}
