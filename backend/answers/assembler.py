@@ -1885,19 +1885,29 @@ class AnswerAssembler:
             "已识别为定义 / 提纲类问题，正在优先裁决经典定义句与总纲句。",
         )
         candidates = self._collect_definition_outline_candidates(definition_plan, seed_scores)
-        if not candidates:
+        definition_object_primary = next(
+            (
+                row
+                for row in query_retrieval.get("raw_candidates", [])
+                if row.get("source_object") == "definition_terms"
+                and row.get("topic_consistency") == "definition_object_exact"
+            ),
+            None,
+        )
+        if not candidates and definition_object_primary is None:
             return self._assemble_standard(query_text)
 
+        primary_row = definition_object_primary or candidates[0]["row"]
         primary = [
             self._build_evidence_item(
-                candidates[0]["row"],
+                primary_row,
                 display_role="primary",
                 title_override=f"{definition_plan.canonical_topic} · 提纲条文",
             )
         ]
         secondary = self._build_definition_outline_secondary(
             definition_plan,
-            candidates=candidates[1:],
+            candidates=candidates if definition_object_primary is not None else candidates[1:],
             retrievals=retrievals,
             selected_record_ids={primary[0]["record_id"]},
         )
@@ -1909,6 +1919,7 @@ class AnswerAssembler:
         answer_text = self._build_answer_text(
             {
                 "mode": "strong",
+                "query_request": query_retrieval.get("query_request", {}),
                 "primary_evidence": primary,
                 "secondary_evidence": secondary,
                 "risk_materials": review,

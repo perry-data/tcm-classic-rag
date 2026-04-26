@@ -1,0 +1,1170 @@
+{
+  "run_id": "ahv2_quality_audit_v1",
+  "generated_at_utc": "2026-04-24T05:54:42.694079+00:00",
+  "metrics": {
+    "quality_audited_A_count": 20,
+    "notes_changed_count": 20,
+    "keep_safe_primary_count": 0,
+    "keep_safe_primary_but_medium_count": 20,
+    "adjust_alias_before_release_count": 0,
+    "support_only_instead_count": 0,
+    "reject_instead_count": 0
+  },
+  "verdict_counts": {
+    "keep_safe_primary_but_medium": 20
+  },
+  "audited_objects": [
+    {
+      "concept_id": "AHV2-850318ee8950",
+      "canonical_term": "荣气微",
+      "primary_support_passage_id": "ZJSHL-CH-003-P-0010",
+      "primary_source_table": "records_main_passages",
+      "primary_source_object": "main_passages",
+      "primary_source_record_id": "safe:main_passages:ZJSHL-CH-003-P-0010",
+      "primary_source_evidence_level": "B",
+      "source_confidence": "medium",
+      "promotion_state": "safe_primary",
+      "primary_evidence_text": "其脉沉者，荣气微也",
+      "checks": {
+        "primary_sentence_independent": true,
+        "context_dependency": "low",
+        "variant_or_collation_pollution": false,
+        "term_identity_stable": true,
+        "alias_overbroad": false,
+        "normalization_safe": true
+      },
+      "alias_registry_rows": [
+        {
+          "alias": "荣气微",
+          "normalized_alias": "荣气微",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "荣气微",
+          "normalized_surface_form": "荣气微",
+          "target_term": "荣气微",
+          "intent_hint": "what_is",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ],
+      "source_text_excerpt": "其脉沉者，荣气微也。",
+      "verdict": "keep_safe_primary_but_medium",
+      "audit_reason": "medium-confidence object kept with exact-match normalization"
+    },
+    {
+      "concept_id": "AHV2-81a12b6da994",
+      "canonical_term": "卫气衰",
+      "primary_support_passage_id": "ZJSHL-CH-003-P-0012",
+      "primary_source_table": "records_main_passages",
+      "primary_source_object": "main_passages",
+      "primary_source_record_id": "safe:main_passages:ZJSHL-CH-003-P-0012",
+      "primary_source_evidence_level": "B",
+      "source_confidence": "medium",
+      "promotion_state": "safe_primary",
+      "primary_evidence_text": "其脉浮，而汗出如流珠者，卫气衰也",
+      "checks": {
+        "primary_sentence_independent": true,
+        "context_dependency": "low",
+        "variant_or_collation_pollution": false,
+        "term_identity_stable": true,
+        "alias_overbroad": false,
+        "normalization_safe": true
+      },
+      "alias_registry_rows": [
+        {
+          "alias": "卫气衰",
+          "normalized_alias": "卫气衰",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "卫气衰",
+          "normalized_surface_form": "卫气衰",
+          "target_term": "卫气衰",
+          "intent_hint": "what_is",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ],
+      "source_text_excerpt": "其脉浮，而汗出如流珠者，卫气衰也。",
+      "verdict": "keep_safe_primary_but_medium",
+      "audit_reason": "medium-confidence object kept with exact-match normalization"
+    },
+    {
+      "concept_id": "AHV2-767dfa46f2b1",
+      "canonical_term": "阳气微",
+      "primary_support_passage_id": "ZJSHL-CH-003-P-0021",
+      "primary_source_table": "records_main_passages",
+      "primary_source_object": "main_passages",
+      "primary_source_record_id": "safe:main_passages:ZJSHL-CH-003-P-0021",
+      "primary_source_evidence_level": "B",
+      "source_confidence": "medium",
+      "promotion_state": "safe_primary",
+      "primary_evidence_text": "脉瞥瞥，如羹上肥者，阳气微也",
+      "checks": {
+        "primary_sentence_independent": true,
+        "context_dependency": "low",
+        "variant_or_collation_pollution": false,
+        "term_identity_stable": true,
+        "alias_overbroad": false,
+        "normalization_safe": true
+      },
+      "alias_registry_rows": [
+        {
+          "alias": "阳气微",
+          "normalized_alias": "阳气微",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "阳气微",
+          "normalized_surface_form": "阳气微",
+          "target_term": "阳气微",
+          "intent_hint": "what_is",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ],
+      "source_text_excerpt": "脉瞥瞥，如羹上肥者，阳气微也。",
+      "verdict": "keep_safe_primary_but_medium",
+      "audit_reason": "medium-confidence object kept with exact-match normalization"
+    },
+    {
+      "concept_id": "AHV2-7882ca0aa96a",
+      "canonical_term": "亡血",
+      "primary_support_passage_id": "ZJSHL-CH-003-P-0026",
+      "primary_source_table": "records_main_passages",
+      "primary_source_object": "main_passages",
+      "primary_source_record_id": "safe:main_passages:ZJSHL-CH-003-P-0026",
+      "primary_source_evidence_level": "B",
+      "source_confidence": "medium",
+      "promotion_state": "safe_primary",
+      "primary_evidence_text": "脉绵绵，如泻漆之绝者，亡其血也",
+      "checks": {
+        "primary_sentence_independent": true,
+        "context_dependency": "low",
+        "variant_or_collation_pollution": false,
+        "term_identity_stable": true,
+        "alias_overbroad": false,
+        "normalization_safe": true
+      },
+      "alias_registry_rows": [
+        {
+          "alias": "亡其血",
+          "normalized_alias": "亡其血",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe exact-match alias",
+          "is_active": 1
+        },
+        {
+          "alias": "亡血",
+          "normalized_alias": "亡血",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "亡其血",
+          "normalized_surface_form": "亡其血",
+          "target_term": "亡血",
+          "intent_hint": "what_is",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        },
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "亡血",
+          "normalized_surface_form": "亡血",
+          "target_term": "亡血",
+          "intent_hint": "what_is",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ],
+      "source_text_excerpt": "脉绵绵，如泻漆之绝者，亡其血也。",
+      "verdict": "keep_safe_primary_but_medium",
+      "audit_reason": "medium-confidence object kept with exact-match normalization"
+    },
+    {
+      "concept_id": "AHV2-310eca701a93",
+      "canonical_term": "平脉",
+      "primary_support_passage_id": "ZJSHL-CH-003-P-0029",
+      "primary_source_table": "risk_registry_ambiguous",
+      "primary_source_object": "ambiguous_passages",
+      "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0029",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "promotion_state": "safe_primary",
+      "primary_evidence_text": "脉一息四至曰平，一息三至曰迟，小快于迟曰缓，一息六至曰数，时有一止者，阴阳之气不得相续也",
+      "checks": {
+        "primary_sentence_independent": true,
+        "context_dependency": "bounded",
+        "variant_or_collation_pollution": false,
+        "term_identity_stable": true,
+        "alias_overbroad": false,
+        "normalization_safe": true
+      },
+      "alias_registry_rows": [
+        {
+          "alias": "平",
+          "normalized_alias": "平",
+          "alias_type": "ambiguous",
+          "confidence": 0.3,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 inactive ambiguous alias; not used for runtime normalization",
+          "is_active": 0
+        },
+        {
+          "alias": "平脉",
+          "normalized_alias": "平脉",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "平脉",
+          "normalized_surface_form": "平脉",
+          "target_term": "平脉",
+          "intent_hint": "what_is",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ],
+      "source_text_excerpt": "脉一息四至曰平，一息三至曰迟，小快于迟曰缓，一息六至曰数，时有一止者，阴阳之气不得相续也。",
+      "verdict": "keep_safe_primary_but_medium",
+      "audit_reason": "medium-confidence object kept with exact-match normalization"
+    },
+    {
+      "concept_id": "AHV2-f9e89349db80",
+      "canonical_term": "数脉",
+      "primary_support_passage_id": "ZJSHL-CH-003-P-0029",
+      "primary_source_table": "risk_registry_ambiguous",
+      "primary_source_object": "ambiguous_passages",
+      "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0029",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "promotion_state": "safe_primary",
+      "primary_evidence_text": "脉一息四至曰平，一息三至曰迟，小快于迟曰缓，一息六至曰数，时有一止者，阴阳之气不得相续也",
+      "checks": {
+        "primary_sentence_independent": true,
+        "context_dependency": "bounded",
+        "variant_or_collation_pollution": false,
+        "term_identity_stable": true,
+        "alias_overbroad": false,
+        "normalization_safe": true
+      },
+      "alias_registry_rows": [
+        {
+          "alias": "数",
+          "normalized_alias": "数",
+          "alias_type": "ambiguous",
+          "confidence": 0.3,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 inactive ambiguous alias; not used for runtime normalization",
+          "is_active": 0
+        },
+        {
+          "alias": "数脉",
+          "normalized_alias": "数脉",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "数脉",
+          "normalized_surface_form": "数脉",
+          "target_term": "数脉",
+          "intent_hint": "what_is",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ],
+      "source_text_excerpt": "脉一息四至曰平，一息三至曰迟，小快于迟曰缓，一息六至曰数，时有一止者，阴阳之气不得相续也。",
+      "verdict": "keep_safe_primary_but_medium",
+      "audit_reason": "medium-confidence object kept with exact-match normalization"
+    },
+    {
+      "concept_id": "AHV2-5f24c7010fec",
+      "canonical_term": "毛脉",
+      "primary_support_passage_id": "ZJSHL-CH-004-P-0192",
+      "primary_source_table": "records_passages",
+      "primary_source_object": "passages",
+      "primary_source_record_id": "full:passages:ZJSHL-CH-004-P-0192",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "promotion_state": "safe_primary",
+      "primary_evidence_text": "轻虚浮曰毛，肺之平脉也",
+      "checks": {
+        "primary_sentence_independent": true,
+        "context_dependency": "bounded",
+        "variant_or_collation_pollution": false,
+        "term_identity_stable": true,
+        "alias_overbroad": false,
+        "normalization_safe": true
+      },
+      "alias_registry_rows": [
+        {
+          "alias": "毛",
+          "normalized_alias": "毛",
+          "alias_type": "ambiguous",
+          "confidence": 0.3,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 inactive ambiguous alias; not used for runtime normalization",
+          "is_active": 0
+        },
+        {
+          "alias": "毛脉",
+          "normalized_alias": "毛脉",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "毛脉",
+          "normalized_surface_form": "毛脉",
+          "target_term": "毛脉",
+          "intent_hint": "what_is",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ],
+      "source_text_excerpt": "轻虚浮曰毛，肺之平脉也。缓迟者，脾之脉，脾为肺之母，以子母相生，故云皆愈；数者，心之脉，火克金，为鬼贼相刑，故剧。肺主皮毛，数则为热，热客皮肤，留而不去，则为痈疡。经曰：数脉不时，则生恶疮。",
+      "verdict": "keep_safe_primary_but_medium",
+      "audit_reason": "medium-confidence object kept with exact-match normalization"
+    },
+    {
+      "concept_id": "AHV2-92d765f487d4",
+      "canonical_term": "纯弦脉",
+      "primary_support_passage_id": "ZJSHL-CH-004-P-0185",
+      "primary_source_table": "records_passages",
+      "primary_source_object": "passages",
+      "primary_source_record_id": "full:passages:ZJSHL-CH-004-P-0185",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "promotion_state": "safe_primary",
+      "primary_evidence_text": "纯弦者，为如弦直而不软，是中无胃气，为真脏之脉",
+      "checks": {
+        "primary_sentence_independent": true,
+        "context_dependency": "bounded",
+        "variant_or_collation_pollution": false,
+        "term_identity_stable": true,
+        "alias_overbroad": false,
+        "normalization_safe": true
+      },
+      "alias_registry_rows": [
+        {
+          "alias": "纯弦",
+          "normalized_alias": "纯弦",
+          "alias_type": "learner_risky",
+          "confidence": 0.42,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 inactive risky alias; not used for runtime normalization",
+          "is_active": 0
+        },
+        {
+          "alias": "纯弦脉",
+          "normalized_alias": "纯弦脉",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "纯弦脉",
+          "normalized_surface_form": "纯弦脉",
+          "target_term": "纯弦脉",
+          "intent_hint": "what_is",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ],
+      "source_text_excerpt": "纯弦者，为如弦直而不软，是中无胃气，为真脏之脉。《内经》曰：死肝脉来，急益劲，如新张弓弦。",
+      "verdict": "keep_safe_primary_but_medium",
+      "audit_reason": "medium-confidence object kept with exact-match normalization"
+    },
+    {
+      "concept_id": "AHV2-dac342243a2d",
+      "canonical_term": "残贼",
+      "primary_support_passage_id": "ZJSHL-CH-004-P-0178",
+      "primary_source_table": "records_main_passages",
+      "primary_source_object": "main_passages",
+      "primary_source_record_id": "safe:main_passages:ZJSHL-CH-004-P-0178",
+      "primary_source_evidence_level": "A",
+      "source_confidence": "medium",
+      "promotion_state": "safe_primary",
+      "primary_evidence_text": "师曰：脉有弦、紧、浮、滑、沉、涩，此六者名曰残贼，能为诸脉作病也",
+      "checks": {
+        "primary_sentence_independent": true,
+        "context_dependency": "low",
+        "variant_or_collation_pollution": false,
+        "term_identity_stable": true,
+        "alias_overbroad": false,
+        "normalization_safe": true
+      },
+      "alias_registry_rows": [
+        {
+          "alias": "残贼",
+          "normalized_alias": "残贼",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "残贼",
+          "normalized_surface_form": "残贼",
+          "target_term": "残贼",
+          "intent_hint": "what_is",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ],
+      "source_text_excerpt": "问曰：脉有残贼，何谓也？师曰：脉有弦、紧、浮、滑、沉、涩，此六者赵本作「脉」名曰残贼，能为诸脉作病也。",
+      "verdict": "keep_safe_primary_but_medium",
+      "audit_reason": "medium-confidence object kept with exact-match normalization"
+    },
+    {
+      "concept_id": "AHV2-c29e7aff2765",
+      "canonical_term": "八邪",
+      "primary_support_passage_id": "ZJSHL-CH-004-P-0179",
+      "primary_source_table": "records_passages",
+      "primary_source_object": "passages",
+      "primary_source_record_id": "full:passages:ZJSHL-CH-004-P-0179",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "promotion_state": "safe_primary",
+      "primary_evidence_text": "为人病者，名曰八邪，风寒暑湿伤于外也，饥、饱、劳、逸伤于内也",
+      "checks": {
+        "primary_sentence_independent": true,
+        "context_dependency": "bounded",
+        "variant_or_collation_pollution": false,
+        "term_identity_stable": true,
+        "alias_overbroad": false,
+        "normalization_safe": true
+      },
+      "alias_registry_rows": [
+        {
+          "alias": "八邪",
+          "normalized_alias": "八邪",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "八邪",
+          "normalized_surface_form": "八邪",
+          "target_term": "八邪",
+          "intent_hint": "what_is",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ],
+      "source_text_excerpt": "为人病者，名曰八邪，风寒暑湿伤于外也，饥、饱、劳、逸伤于内也。经脉者，荣卫也。荣卫者，阴阳也。其为诸经脉作病者，必由风寒暑湿，伤于荣卫，客于阴阳之中，风则脉浮，寒则脉紧，中暑则脉滑，中湿则脉涩，伤于阴则脉沉，伤于阳则脉浮。所以谓之残贼者，伤良曰残，害良曰贼，以能伤害正气也。",
+      "verdict": "keep_safe_primary_but_medium",
+      "audit_reason": "medium-confidence object kept with exact-match normalization"
+    },
+    {
+      "concept_id": "AHV2-1e3cd430a062",
+      "canonical_term": "湿家",
+      "primary_support_passage_id": "ZJSHL-CH-007-P-0172",
+      "primary_source_table": "records_passages",
+      "primary_source_object": "passages",
+      "primary_source_record_id": "full:passages:ZJSHL-CH-007-P-0172",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "promotion_state": "safe_primary",
+      "primary_evidence_text": "湿家之为病，一身尽疼，发热，身色如似熏黄",
+      "checks": {
+        "primary_sentence_independent": true,
+        "context_dependency": "bounded",
+        "variant_or_collation_pollution": false,
+        "term_identity_stable": true,
+        "alias_overbroad": false,
+        "normalization_safe": true
+      },
+      "alias_registry_rows": [
+        {
+          "alias": "湿家",
+          "normalized_alias": "湿家",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "湿家",
+          "normalized_surface_form": "湿家",
+          "target_term": "湿家",
+          "intent_hint": "what_is",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ],
+      "source_text_excerpt": "湿家之为病，一身尽疼，发热，身色如似熏黄。",
+      "verdict": "keep_safe_primary_but_medium",
+      "audit_reason": "medium-confidence object kept with exact-match normalization"
+    },
+    {
+      "concept_id": "AHV2-f5bd47a65fa0",
+      "canonical_term": "风湿",
+      "primary_support_passage_id": "ZJSHL-CH-007-P-0182",
+      "primary_source_table": "risk_registry_ambiguous",
+      "primary_source_object": "ambiguous_passages",
+      "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-007-P-0182",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "promotion_state": "safe_primary",
+      "primary_evidence_text": "病者一身尽疼，发热，日晡所剧者，此名风湿",
+      "checks": {
+        "primary_sentence_independent": true,
+        "context_dependency": "bounded",
+        "variant_or_collation_pollution": false,
+        "term_identity_stable": true,
+        "alias_overbroad": false,
+        "normalization_safe": true
+      },
+      "alias_registry_rows": [
+        {
+          "alias": "风湿",
+          "normalized_alias": "风湿",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        },
+        {
+          "alias": "风湿病",
+          "normalized_alias": "风湿病",
+          "alias_type": "learner_risky",
+          "confidence": 0.42,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 inactive risky alias; not used for runtime normalization",
+          "is_active": 0
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "风湿",
+          "normalized_surface_form": "风湿",
+          "target_term": "风湿",
+          "intent_hint": "what_is",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ],
+      "source_text_excerpt": "病者一身尽疼，发热，日晡所剧者，此名风湿。此病伤于汗出当风，或久伤取冷所致也。",
+      "verdict": "keep_safe_primary_but_medium",
+      "audit_reason": "medium-confidence object kept with exact-match normalization"
+    },
+    {
+      "concept_id": "AHV2-1da410fb57b4",
+      "canonical_term": "水逆",
+      "primary_support_passage_id": "ZJSHL-CH-009-P-0148",
+      "primary_source_table": "risk_registry_ambiguous",
+      "primary_source_object": "ambiguous_passages",
+      "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-009-P-0148",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "promotion_state": "safe_primary",
+      "primary_evidence_text": "中风发热，六七日不解而烦，有表里证，渴欲饮水，水入则吐者，名曰水逆",
+      "checks": {
+        "primary_sentence_independent": true,
+        "context_dependency": "bounded",
+        "variant_or_collation_pollution": false,
+        "term_identity_stable": true,
+        "alias_overbroad": false,
+        "normalization_safe": true
+      },
+      "alias_registry_rows": [
+        {
+          "alias": "水逆",
+          "normalized_alias": "水逆",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "水逆",
+          "normalized_surface_form": "水逆",
+          "target_term": "水逆",
+          "intent_hint": "what_is",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ],
+      "source_text_excerpt": "中风发热，六七日不解而烦，有表里证，渴欲饮水，水入则吐者，名曰水逆。五苓散主之。",
+      "verdict": "keep_safe_primary_but_medium",
+      "audit_reason": "medium-confidence object kept with exact-match normalization"
+    },
+    {
+      "concept_id": "AHV2-aa28a21f86c8",
+      "canonical_term": "半表半里证",
+      "primary_support_passage_id": "ZJSHL-CH-009-P-0210",
+      "primary_source_table": "risk_registry_ambiguous",
+      "primary_source_object": "ambiguous_passages",
+      "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-009-P-0210",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "promotion_state": "safe_primary",
+      "primary_evidence_text": "此邪气在表里之间，谓之半表半里证",
+      "checks": {
+        "primary_sentence_independent": true,
+        "context_dependency": "bounded",
+        "variant_or_collation_pollution": false,
+        "term_identity_stable": true,
+        "alias_overbroad": false,
+        "normalization_safe": true
+      },
+      "alias_registry_rows": [
+        {
+          "alias": "半表半里",
+          "normalized_alias": "半表半里",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe exact-match alias",
+          "is_active": 1
+        },
+        {
+          "alias": "半表半里证",
+          "normalized_alias": "半表半里证",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "半表半里",
+          "normalized_surface_form": "半表半里",
+          "target_term": "半表半里证",
+          "intent_hint": "what_is",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        },
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "半表半里证",
+          "normalized_surface_form": "半表半里证",
+          "target_term": "半表半里证",
+          "intent_hint": "what_is",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ],
+      "source_text_excerpt": "病有在表者，有在里者，有在表里之间者。此邪气在表里之间，谓之半表半里证。五六日，邪气自表传里之时。中风者，或伤寒至五六日也。《玉函》曰：中风五六日，伤寒，往来寒热，即是。或中风，或伤寒，非是伤寒再中风，中风复伤寒也。经曰：伤寒中风，有柴胡证，但见一证，便是，不必悉具者正是。谓或中风、或伤寒也。邪在表则寒，邪在里则热。今邪在半表半里之间，未有定处，是以寒热往来也。邪在表，则心腹不满，邪在里，则心腹胀满。今止言胸胁苦满，知邪气在表里之间，未至于心腹满，言胸胁苦满，知邪气在表里也。默默，静也。邪在表，则呻吟不安，邪在里，则烦闷乱。《内经》曰：阳入之阴则静。默默者，邪方自表之里，在表里之间也。邪在表则能食，邪在里则不能食，不欲食者，邪在表里之间，未至于必不能食也。邪在表，则不烦不呕，邪在里，则烦满而呕，医统本有「心」字烦喜呕者，邪在表方传里也。邪初入里，未有定处，则所传不一，故有或为之证。有柴胡证，但见一证便是，即是此或为之证。",
+      "verdict": "keep_safe_primary_but_medium",
+      "audit_reason": "medium-confidence object kept with exact-match normalization"
+    },
+    {
+      "concept_id": "AHV2-dbeb47457236",
+      "canonical_term": "过经",
+      "primary_support_passage_id": "ZJSHL-CH-009-P-0257",
+      "primary_source_table": "risk_registry_ambiguous",
+      "primary_source_object": "ambiguous_passages",
+      "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-009-P-0257",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "promotion_state": "safe_primary",
+      "primary_evidence_text": "伤寒十三日再传经尽，谓之过经",
+      "checks": {
+        "primary_sentence_independent": true,
+        "context_dependency": "bounded",
+        "variant_or_collation_pollution": false,
+        "term_identity_stable": true,
+        "alias_overbroad": false,
+        "normalization_safe": true
+      },
+      "alias_registry_rows": [
+        {
+          "alias": "过经",
+          "normalized_alias": "过经",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "过经",
+          "normalized_surface_form": "过经",
+          "target_term": "过经",
+          "intent_hint": "what_is",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ],
+      "source_text_excerpt": "伤寒十三日再传经尽，谓之过经。谵语者，阳明胃热也，当以诸承气汤下之。若小便利者，津液偏渗，大盒饭硬，反下利者，知医以丸药下之也。下利，脉微而厥者，虚寒也，今脉调和，则非虚寒，由肠虚胃热，协热而利也，与调胃承气汤以下胃热。",
+      "verdict": "keep_safe_primary_but_medium",
+      "audit_reason": "medium-confidence object kept with exact-match normalization"
+    },
+    {
+      "concept_id": "AHV2-0f3d2d43c342",
+      "canonical_term": "结胸",
+      "primary_support_passage_id": "ZJSHL-CH-010-P-0003",
+      "primary_source_table": "risk_registry_ambiguous",
+      "primary_source_object": "ambiguous_passages",
+      "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-010-P-0003",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "promotion_state": "safe_primary",
+      "primary_evidence_text": "结胸者，邪结在胸",
+      "checks": {
+        "primary_sentence_independent": true,
+        "context_dependency": "bounded",
+        "variant_or_collation_pollution": false,
+        "term_identity_stable": true,
+        "alias_overbroad": false,
+        "normalization_safe": true
+      },
+      "alias_registry_rows": [
+        {
+          "alias": "结胸",
+          "normalized_alias": "结胸",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        },
+        {
+          "alias": "结胸证",
+          "normalized_alias": "结胸证",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "结胸",
+          "normalized_surface_form": "结胸",
+          "target_term": "结胸",
+          "intent_hint": "what_is",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        },
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "结胸证",
+          "normalized_surface_form": "结胸证",
+          "target_term": "结胸",
+          "intent_hint": "what_is",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ],
+      "source_text_excerpt": "结胸者，邪结在胸；脏结者，邪结在脏。二者皆下后，邪气乘虚入里所致。下后邪气入里，与阳相结者为结胸，以阳受气于胸中故尔；与阴相结者，为脏结，以阴受之，则入五脏故尔。气与宜通而塞，故痛。邪结阳分，则阴气不得上通；邪结阴分，则阳气不得下通。是二者，皆心下硬痛。寸脉浮，关脉沉，知邪结在阳也；寸脉浮，关脉小细沉紧，知邪结在阴也。阴结而阳不结，虽心下结痛，饮食亦自如，故阴气乘肠虚而下，故时时自下利。阴得阳则解，脏结得热证多，则易治。舌上白苔滑者，邪气结胸中亦寒，故云难治。",
+      "verdict": "keep_safe_primary_but_medium",
+      "audit_reason": "medium-confidence object kept with exact-match normalization"
+    },
+    {
+      "concept_id": "AHV2-5a00f10e6dee",
+      "canonical_term": "阳明病",
+      "primary_support_passage_id": "ZJSHL-CH-011-P-0008",
+      "primary_source_table": "records_main_passages",
+      "primary_source_object": "main_passages",
+      "primary_source_record_id": "safe:main_passages:ZJSHL-CH-011-P-0008",
+      "primary_source_evidence_level": "B",
+      "source_confidence": "medium",
+      "promotion_state": "safe_primary",
+      "primary_evidence_text": "阳明之为病，胃家实也",
+      "checks": {
+        "primary_sentence_independent": true,
+        "context_dependency": "low",
+        "variant_or_collation_pollution": false,
+        "term_identity_stable": true,
+        "alias_overbroad": false,
+        "normalization_safe": true
+      },
+      "alias_registry_rows": [
+        {
+          "alias": "阳明之为病",
+          "normalized_alias": "阳明之为病",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe exact-match alias",
+          "is_active": 1
+        },
+        {
+          "alias": "阳明病",
+          "normalized_alias": "阳明病",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "阳明之为病",
+          "normalized_surface_form": "阳明之为病",
+          "target_term": "阳明病",
+          "intent_hint": "what_is",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        },
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "阳明病",
+          "normalized_surface_form": "阳明病",
+          "target_term": "阳明病",
+          "intent_hint": "what_is",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ],
+      "source_text_excerpt": "阳明之为病，胃家实赵本有「是」字也。",
+      "verdict": "keep_safe_primary_but_medium",
+      "audit_reason": "medium-confidence object kept with exact-match normalization"
+    },
+    {
+      "concept_id": "AHV2-8709f78f1237",
+      "canonical_term": "太阴病",
+      "primary_support_passage_id": "ZJSHL-CH-013-P-0002",
+      "primary_source_table": "records_passages",
+      "primary_source_object": "passages",
+      "primary_source_record_id": "full:passages:ZJSHL-CH-013-P-0002",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "promotion_state": "safe_primary",
+      "primary_evidence_text": "太阴之为病，腹满而吐，食不下，自利益甚，时腹自痛",
+      "checks": {
+        "primary_sentence_independent": true,
+        "context_dependency": "bounded",
+        "variant_or_collation_pollution": false,
+        "term_identity_stable": true,
+        "alias_overbroad": false,
+        "normalization_safe": true
+      },
+      "alias_registry_rows": [
+        {
+          "alias": "太阴之为病",
+          "normalized_alias": "太阴之为病",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe exact-match alias",
+          "is_active": 1
+        },
+        {
+          "alias": "太阴病",
+          "normalized_alias": "太阴病",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "太阴之为病",
+          "normalized_surface_form": "太阴之为病",
+          "target_term": "太阴病",
+          "intent_hint": "what_is",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        },
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "太阴病",
+          "normalized_surface_form": "太阴病",
+          "target_term": "太阴病",
+          "intent_hint": "what_is",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ],
+      "source_text_excerpt": "太阴之为病，腹满而吐，食不下，自利益甚，时腹自痛。若下之，必胸下结硬。",
+      "verdict": "keep_safe_primary_but_medium",
+      "audit_reason": "medium-confidence object kept with exact-match normalization"
+    },
+    {
+      "concept_id": "AHV2-9f641a6ecc7d",
+      "canonical_term": "少阴病",
+      "primary_support_passage_id": "ZJSHL-CH-014-P-0021",
+      "primary_source_table": "records_main_passages",
+      "primary_source_object": "main_passages",
+      "primary_source_record_id": "safe:main_passages:ZJSHL-CH-014-P-0021",
+      "primary_source_evidence_level": "B",
+      "source_confidence": "medium",
+      "promotion_state": "safe_primary",
+      "primary_evidence_text": "少阴之为病，脉微细，但欲寐也",
+      "checks": {
+        "primary_sentence_independent": true,
+        "context_dependency": "low",
+        "variant_or_collation_pollution": false,
+        "term_identity_stable": true,
+        "alias_overbroad": false,
+        "normalization_safe": true
+      },
+      "alias_registry_rows": [
+        {
+          "alias": "少阴之为病",
+          "normalized_alias": "少阴之为病",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe exact-match alias",
+          "is_active": 1
+        },
+        {
+          "alias": "少阴病",
+          "normalized_alias": "少阴病",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "少阴之为病",
+          "normalized_surface_form": "少阴之为病",
+          "target_term": "少阴病",
+          "intent_hint": "what_is",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        },
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "少阴病",
+          "normalized_surface_form": "少阴病",
+          "target_term": "少阴病",
+          "intent_hint": "what_is",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ],
+      "source_text_excerpt": "少阴之为病，脉微细，但欲寐也。",
+      "verdict": "keep_safe_primary_but_medium",
+      "audit_reason": "medium-confidence object kept with exact-match normalization"
+    },
+    {
+      "concept_id": "AHV2-7b2df4caf446",
+      "canonical_term": "厥阴病",
+      "primary_support_passage_id": "ZJSHL-CH-015-P-0193",
+      "primary_source_table": "records_passages",
+      "primary_source_object": "passages",
+      "primary_source_record_id": "full:passages:ZJSHL-CH-015-P-0193",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "promotion_state": "safe_primary",
+      "primary_evidence_text": "厥阴之为病，消渴，气上撞心，心中疼热，饥而不欲食，食则吐蛔，下之利不止",
+      "checks": {
+        "primary_sentence_independent": true,
+        "context_dependency": "bounded",
+        "variant_or_collation_pollution": false,
+        "term_identity_stable": true,
+        "alias_overbroad": false,
+        "normalization_safe": true
+      },
+      "alias_registry_rows": [
+        {
+          "alias": "厥阴之为病",
+          "normalized_alias": "厥阴之为病",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe exact-match alias",
+          "is_active": 1
+        },
+        {
+          "alias": "厥阴病",
+          "normalized_alias": "厥阴病",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "厥阴之为病",
+          "normalized_surface_form": "厥阴之为病",
+          "target_term": "厥阴病",
+          "intent_hint": "what_is",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        },
+        {
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "厥阴病",
+          "normalized_surface_form": "厥阴病",
+          "target_term": "厥阴病",
+          "intent_hint": "what_is",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ],
+      "source_text_excerpt": "厥阴之为病，消渴，气上撞心，心中疼热，饥而不欲食，食则吐蛔，下之利不止。",
+      "verdict": "keep_safe_primary_but_medium",
+      "audit_reason": "medium-confidence object kept with exact-match normalization"
+    }
+  ]
+}

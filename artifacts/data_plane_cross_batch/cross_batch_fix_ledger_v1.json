@@ -1,0 +1,486 @@
+{
+  "run_id": "cross_batch_ahv_fixes_v1",
+  "generated_at_utc": "2026-04-24T08:24:08.712475+00:00",
+  "db_path": "/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/zjshl_v1.db",
+  "policy": {
+    "expected_primary_type_by_concept_type": {
+      "six_channel_disease_term": "exact_term_definition",
+      "pulse_pattern_term": "exact_term_definition",
+      "pulse_qi_state_term": "exact_term_definition",
+      "pulse_pathology_term": "exact_term_definition",
+      "qi_blood_state_term": "exact_term_definition",
+      "disease_state_term": "exact_term_definition",
+      "disease_person_state_term": "exact_term_definition",
+      "disease_location_term": "exact_term_definition",
+      "disease_course_term": "exact_term_definition",
+      "seasonal_disease_term": "exact_term_definition",
+      "post_recovery_term": "exact_term_definition",
+      "pathogen_category_term": "exact_term_definition"
+    },
+    "cross_batch_scope_by_concept_type": {
+      "six_channel_disease_term": "channel_disease_outline",
+      "pulse_pattern_term": "pulse_pattern_definition",
+      "pulse_qi_state_term": "pulse_state_definition",
+      "pulse_pathology_term": "pulse_pathology_definition",
+      "qi_blood_state_term": "body_state_definition",
+      "disease_state_term": "named_condition_definition",
+      "disease_person_state_term": "named_condition_definition",
+      "disease_location_term": "named_condition_definition",
+      "disease_course_term": "named_condition_definition",
+      "seasonal_disease_term": "seasonal_disease_definition",
+      "post_recovery_term": "post_recovery_definition",
+      "pathogen_category_term": "pathogen_category_definition"
+    }
+  },
+  "metrics": {
+    "before_safe_object_count": 40,
+    "after_safe_object_count": 40,
+    "changed_primary_evidence_type_count": 40,
+    "changed_source_confidence_count": 0,
+    "changed_learner_surface_count": 0,
+    "deactivated_alias_count": 12,
+    "downgraded_object_count": 0,
+    "new_safe_object_count_delta": 0
+  },
+  "changes": {
+    "primary_evidence_type": [
+      {
+        "concept_id": "AHV-82d1c8a78473",
+        "canonical_term": "伤寒",
+        "concept_type": "disease_state_term",
+        "before_primary_evidence_type": "named_condition_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。"
+      },
+      {
+        "concept_id": "AHV-472e3287583d",
+        "canonical_term": "促脉",
+        "concept_type": "pulse_pattern_term",
+        "before_primary_evidence_type": "pulse_pattern_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。"
+      },
+      {
+        "concept_id": "AHV-b52564cf7480",
+        "canonical_term": "内虚",
+        "concept_type": "disease_state_term",
+        "before_primary_evidence_type": "named_condition_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。"
+      },
+      {
+        "concept_id": "AHV-9dfd46e14608",
+        "canonical_term": "冬温",
+        "concept_type": "seasonal_disease_term",
+        "before_primary_evidence_type": "seasonal_disease_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 时病/外感病名对象统一标为 seasonal_disease_definition，仅保留闭合命名/定义句。"
+      },
+      {
+        "concept_id": "AHV-87d3ca263c08",
+        "canonical_term": "刚痓",
+        "concept_type": "disease_state_term",
+        "before_primary_evidence_type": "named_condition_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。"
+      },
+      {
+        "concept_id": "AHV-68ab3aae2083",
+        "canonical_term": "劳复",
+        "concept_type": "post_recovery_term",
+        "before_primary_evidence_type": "post_recovery_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 瘥后复病对象统一标为 post_recovery_definition，劳复、食复、过经互不归一。"
+      },
+      {
+        "concept_id": "AHV-fdb12048d73e",
+        "canonical_term": "太阳病",
+        "concept_type": "six_channel_disease_term",
+        "before_primary_evidence_type": "channel_disease_outline",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 六经病对象统一标为 channel_disease_outline，仅表示提纲句/总纲句，不代表该篇全部证治。"
+      },
+      {
+        "concept_id": "AHV-54c535ab7161",
+        "canonical_term": "弦脉",
+        "concept_type": "pulse_pattern_term",
+        "before_primary_evidence_type": "pulse_pattern_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。"
+      },
+      {
+        "concept_id": "AHV-bb8f9a64a54e",
+        "canonical_term": "时行寒疫",
+        "concept_type": "seasonal_disease_term",
+        "before_primary_evidence_type": "seasonal_disease_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 时病/外感病名对象统一标为 seasonal_disease_definition，仅保留闭合命名/定义句。"
+      },
+      {
+        "concept_id": "AHV-d1abf1c57ecf",
+        "canonical_term": "暑病",
+        "concept_type": "seasonal_disease_term",
+        "before_primary_evidence_type": "seasonal_disease_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 时病/外感病名对象统一标为 seasonal_disease_definition，仅保留闭合命名/定义句。"
+      },
+      {
+        "concept_id": "AHV-cdac1a4b7e7b",
+        "canonical_term": "柔痓",
+        "concept_type": "disease_state_term",
+        "before_primary_evidence_type": "named_condition_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。"
+      },
+      {
+        "concept_id": "AHV-65a3bdee145b",
+        "canonical_term": "温病",
+        "concept_type": "seasonal_disease_term",
+        "before_primary_evidence_type": "seasonal_disease_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 时病/外感病名对象统一标为 seasonal_disease_definition，仅保留闭合命名/定义句。"
+      },
+      {
+        "concept_id": "AHV-5d33fe1b97eb",
+        "canonical_term": "滑脉",
+        "concept_type": "pulse_pattern_term",
+        "before_primary_evidence_type": "pulse_pattern_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。"
+      },
+      {
+        "concept_id": "AHV-01cf7a0eba28",
+        "canonical_term": "痓病",
+        "concept_type": "disease_state_term",
+        "before_primary_evidence_type": "named_condition_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。"
+      },
+      {
+        "concept_id": "AHV-bbdfc9d9b74e",
+        "canonical_term": "结脉",
+        "concept_type": "pulse_pattern_term",
+        "before_primary_evidence_type": "pulse_pattern_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。"
+      },
+      {
+        "concept_id": "AHV-439df1ff9f25",
+        "canonical_term": "血崩",
+        "concept_type": "disease_state_term",
+        "before_primary_evidence_type": "named_condition_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。"
+      },
+      {
+        "concept_id": "AHV-901247b4beaf",
+        "canonical_term": "行尸",
+        "concept_type": "disease_state_term",
+        "before_primary_evidence_type": "named_condition_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。"
+      },
+      {
+        "concept_id": "AHV-72cae785c0ac",
+        "canonical_term": "霍乱",
+        "concept_type": "disease_state_term",
+        "before_primary_evidence_type": "named_condition_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。"
+      },
+      {
+        "concept_id": "AHV-6fb7ea26388a",
+        "canonical_term": "革脉",
+        "concept_type": "pulse_pattern_term",
+        "before_primary_evidence_type": "pulse_pattern_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。"
+      },
+      {
+        "concept_id": "AHV-8df0a4ec9de9",
+        "canonical_term": "食复",
+        "concept_type": "post_recovery_term",
+        "before_primary_evidence_type": "post_recovery_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 瘥后复病对象统一标为 post_recovery_definition，劳复、食复、过经互不归一。"
+      },
+      {
+        "concept_id": "AHV2-7882ca0aa96a",
+        "canonical_term": "亡血",
+        "concept_type": "qi_blood_state_term",
+        "before_primary_evidence_type": "body_state_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 气血/身体状态对象统一标为 body_state_definition，限定为原句命名或判断义。"
+      },
+      {
+        "concept_id": "AHV2-c29e7aff2765",
+        "canonical_term": "八邪",
+        "concept_type": "pathogen_category_term",
+        "before_primary_evidence_type": "pathogen_category_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 分类枚举对象统一标为 pathogen_category_definition，只保留自足枚举句。"
+      },
+      {
+        "concept_id": "AHV2-aa28a21f86c8",
+        "canonical_term": "半表半里证",
+        "concept_type": "disease_location_term",
+        "before_primary_evidence_type": "named_condition_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。"
+      },
+      {
+        "concept_id": "AHV2-81a12b6da994",
+        "canonical_term": "卫气衰",
+        "concept_type": "pulse_qi_state_term",
+        "before_primary_evidence_type": "pulse_state_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 脉象所见气血状态对象统一标为 pulse_state_definition，限定为原句判断义。"
+      },
+      {
+        "concept_id": "AHV2-7b2df4caf446",
+        "canonical_term": "厥阴病",
+        "concept_type": "six_channel_disease_term",
+        "before_primary_evidence_type": "channel_disease_outline",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 六经病对象统一标为 channel_disease_outline，仅表示提纲句/总纲句，不代表该篇全部证治。"
+      },
+      {
+        "concept_id": "AHV2-8709f78f1237",
+        "canonical_term": "太阴病",
+        "concept_type": "six_channel_disease_term",
+        "before_primary_evidence_type": "channel_disease_outline",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 六经病对象统一标为 channel_disease_outline，仅表示提纲句/总纲句，不代表该篇全部证治。"
+      },
+      {
+        "concept_id": "AHV2-9f641a6ecc7d",
+        "canonical_term": "少阴病",
+        "concept_type": "six_channel_disease_term",
+        "before_primary_evidence_type": "channel_disease_outline",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 六经病对象统一标为 channel_disease_outline，仅表示提纲句/总纲句，不代表该篇全部证治。"
+      },
+      {
+        "concept_id": "AHV2-310eca701a93",
+        "canonical_term": "平脉",
+        "concept_type": "pulse_pattern_term",
+        "before_primary_evidence_type": "pulse_pattern_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。"
+      },
+      {
+        "concept_id": "AHV2-f9e89349db80",
+        "canonical_term": "数脉",
+        "concept_type": "pulse_pattern_term",
+        "before_primary_evidence_type": "pulse_pattern_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。"
+      },
+      {
+        "concept_id": "AHV2-dac342243a2d",
+        "canonical_term": "残贼",
+        "concept_type": "pulse_pathology_term",
+        "before_primary_evidence_type": "pulse_pathology_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 脉病理分类对象统一标为 pulse_pathology_definition，后文解释只作 supporting evidence。"
+      },
+      {
+        "concept_id": "AHV2-5f24c7010fec",
+        "canonical_term": "毛脉",
+        "concept_type": "pulse_pattern_term",
+        "before_primary_evidence_type": "pulse_pattern_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。"
+      },
+      {
+        "concept_id": "AHV2-1da410fb57b4",
+        "canonical_term": "水逆",
+        "concept_type": "disease_state_term",
+        "before_primary_evidence_type": "named_condition_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。"
+      },
+      {
+        "concept_id": "AHV2-1e3cd430a062",
+        "canonical_term": "湿家",
+        "concept_type": "disease_person_state_term",
+        "before_primary_evidence_type": "named_condition_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。"
+      },
+      {
+        "concept_id": "AHV2-92d765f487d4",
+        "canonical_term": "纯弦脉",
+        "concept_type": "pulse_pattern_term",
+        "before_primary_evidence_type": "pulse_pattern_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。"
+      },
+      {
+        "concept_id": "AHV2-0f3d2d43c342",
+        "canonical_term": "结胸",
+        "concept_type": "disease_state_term",
+        "before_primary_evidence_type": "named_condition_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。"
+      },
+      {
+        "concept_id": "AHV2-850318ee8950",
+        "canonical_term": "荣气微",
+        "concept_type": "pulse_qi_state_term",
+        "before_primary_evidence_type": "pulse_state_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 脉象所见气血状态对象统一标为 pulse_state_definition，限定为原句判断义。"
+      },
+      {
+        "concept_id": "AHV2-dbeb47457236",
+        "canonical_term": "过经",
+        "concept_type": "disease_course_term",
+        "before_primary_evidence_type": "named_condition_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。"
+      },
+      {
+        "concept_id": "AHV2-5a00f10e6dee",
+        "canonical_term": "阳明病",
+        "concept_type": "six_channel_disease_term",
+        "before_primary_evidence_type": "channel_disease_outline",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 六经病对象统一标为 channel_disease_outline，仅表示提纲句/总纲句，不代表该篇全部证治。"
+      },
+      {
+        "concept_id": "AHV2-767dfa46f2b1",
+        "canonical_term": "阳气微",
+        "concept_type": "pulse_qi_state_term",
+        "before_primary_evidence_type": "pulse_state_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 脉象所见气血状态对象统一标为 pulse_state_definition，限定为原句判断义。"
+      },
+      {
+        "concept_id": "AHV2-f5bd47a65fa0",
+        "canonical_term": "风湿",
+        "concept_type": "disease_state_term",
+        "before_primary_evidence_type": "named_condition_definition",
+        "after_primary_evidence_type": "exact_term_definition",
+        "note_added": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。"
+      }
+    ],
+    "source_confidence": [],
+    "learner_surface_match_mode": [],
+    "deactivated_aliases": [
+      {
+        "alias_id": "AHV-TAL-a10f3c77450e",
+        "alias": "卑",
+        "canonical_term": "卑",
+        "promotion_source_layer": "ambiguous_high_value_batch_support_only",
+        "before_is_active": 1,
+        "after_is_active": 0,
+        "already_applied": true
+      },
+      {
+        "alias_id": "AHV-TAL-dbc92884a888",
+        "alias": "惵",
+        "canonical_term": "惵",
+        "promotion_source_layer": "ambiguous_high_value_batch_support_only",
+        "before_is_active": 1,
+        "after_is_active": 0,
+        "already_applied": true
+      },
+      {
+        "alias_id": "AHV-TAL-244cdfbaf33e",
+        "alias": "损",
+        "canonical_term": "损",
+        "promotion_source_layer": "ambiguous_high_value_batch_support_only",
+        "before_is_active": 1,
+        "after_is_active": 0,
+        "already_applied": true
+      },
+      {
+        "alias_id": "AHV-TAL-34969e00e866",
+        "alias": "章",
+        "canonical_term": "章",
+        "promotion_source_layer": "ambiguous_high_value_batch_support_only",
+        "before_is_active": 1,
+        "after_is_active": 0,
+        "already_applied": true
+      },
+      {
+        "alias_id": "AHV-TAL-0f47e0025f10",
+        "alias": "纲",
+        "canonical_term": "纲",
+        "promotion_source_layer": "ambiguous_high_value_batch_support_only",
+        "before_is_active": 1,
+        "after_is_active": 0,
+        "already_applied": true
+      },
+      {
+        "alias_id": "AHV-TAL-2341644a2c09",
+        "alias": "缓",
+        "canonical_term": "缓",
+        "promotion_source_layer": "ambiguous_high_value_batch_support_only",
+        "before_is_active": 1,
+        "after_is_active": 0,
+        "already_applied": true
+      },
+      {
+        "alias_id": "AHV-TAL-76f533c53e22",
+        "alias": "迟",
+        "canonical_term": "迟",
+        "promotion_source_layer": "ambiguous_high_value_batch_support_only",
+        "before_is_active": 1,
+        "after_is_active": 0,
+        "already_applied": true
+      },
+      {
+        "alias_id": "AHV-TAL-bb987b80e1e0",
+        "alias": "高",
+        "canonical_term": "高",
+        "promotion_source_layer": "ambiguous_high_value_batch_support_only",
+        "before_is_active": 1,
+        "after_is_active": 0,
+        "already_applied": true
+      },
+      {
+        "alias_id": "TAL-167118522b7e",
+        "alias": "两阳",
+        "canonical_term": "两阳",
+        "promotion_source_layer": "promoted_from_full_risk_layer",
+        "before_is_active": 1,
+        "after_is_active": 0,
+        "already_applied": true
+      },
+      {
+        "alias_id": "TAL-9eb11d8b25f6",
+        "alias": "将军",
+        "canonical_term": "将军",
+        "promotion_source_layer": "promoted_from_full_risk_layer",
+        "before_is_active": 1,
+        "after_is_active": 0,
+        "already_applied": true
+      },
+      {
+        "alias_id": "TAL-30d822e542f1",
+        "alias": "神丹",
+        "canonical_term": "神丹",
+        "promotion_source_layer": "promoted_from_full_risk_layer",
+        "before_is_active": 1,
+        "after_is_active": 0,
+        "already_applied": true
+      },
+      {
+        "alias_id": "TAL-0e7169a67c4e",
+        "alias": "胆瘅",
+        "canonical_term": "胆瘅",
+        "promotion_source_layer": "promoted_from_full_risk_layer",
+        "before_is_active": 1,
+        "after_is_active": 0,
+        "already_applied": true
+      }
+    ]
+  },
+  "snapshots": {
+    "definition_term_registry": "/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/data_plane_cross_batch/definition_term_registry_cross_batch_v1_snapshot.json",
+    "term_alias_registry": "/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/data_plane_cross_batch/term_alias_registry_cross_batch_v1_snapshot.json",
+    "learner_query_normalization_lexicon": "/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/data_plane_cross_batch/learner_query_normalization_cross_batch_v1_snapshot.json"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "run_id": "ahv2_adversarial_fixes_v1",
+  "generated_at_utc": "2026-04-24T05:57:14.208276+00:00",
+  "db_path": "/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/zjshl_v1.db",
+  "metrics": {
+    "changed_learner_surface_count": 0,
+    "deactivated_alias_count": 0,
+    "downgraded_object_count": 0,
+    "new_ahv2_object_count": 0
+  },
+  "changes": {
+    "learner_surface_match_mode": [],
+    "deactivated_aliases": []
+  },
+  "runtime_fixes": [
+    {
+      "file": "backend/retrieval/minimal.py",
+      "summary": "AHV v1/v2 layers use exact alias matching and are not collected as raw text-match definition candidates without exact normalization."
+    },
+    {
+      "file": "backend/answers/assembler.py",
+      "summary": "Definition-outline assembly carries query_request metadata and uses an exact definition object as primary when term normalization selected it."
+    }
+  ],
+  "snapshots": {
+    "definition_term_registry": "/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/data_plane_batch_upgrade_v2/definition_term_registry_ahv2_snapshot.json",
+    "term_alias_registry": "/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/data_plane_batch_upgrade_v2/term_alias_registry_ahv2_snapshot.json",
+    "learner_query_normalization_lexicon": "/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/data_plane_batch_upgrade_v2/learner_query_normalization_ahv2_snapshot.json",
+    "sentence_role_registry": "/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/data_plane_batch_upgrade_v2/sentence_role_registry_ahv2_snapshot.json"
+  }
+}

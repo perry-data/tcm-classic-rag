@@ -1,0 +1,56 @@
+# Full Chain Failure Cases v1
+
+- failure_count: `37`
+
+| failure_type | count |
+| --- | --- |
+| answer_mode_calibration_error | 12 |
+| assembler_slot_error | 3 |
+| citation_error | 3 |
+| data_layer_bad_alias | 6 |
+| negative_query_false_positive | 1 |
+| rerank_regression | 2 |
+| retrieval_miss | 3 |
+| review_only_boundary_error | 7 |
+
+## Cases
+
+| mode | query_id | query | category | failure_type | primary_ids | reasons |
+| --- | --- | --- | --- | --- | --- | --- |
+| A_data_plane_baseline | ahv2_canonical_02 | 少阴病是什么意思 | ahv2_canonical | assembler_slot_error | safe:main_passages:ZJSHL-CH-014-P-0095, safe:main_passages:ZJSHL-CH-014-P-0112, safe:main_passages:ZJSHL-CH-014-P-0045 | canonical definition primary does not contain expected concept |
+| A_data_plane_baseline | cross_batch_adversarial_10 | 半表半里证和过经有什么不同 | cross_batch_adversarial | answer_mode_calibration_error | safe:main_passages:ZJSHL-CH-010-P-0005 | strong comparison/relationship answer lacks primary coverage for both sides |
+| A_data_plane_baseline | cross_batch_adversarial_12 | 荣气微和卫气衰有什么区别 | cross_batch_adversarial | answer_mode_calibration_error | safe:main_passages:ZJSHL-CH-004-P-0255 | strong comparison/relationship answer lacks primary coverage for both sides |
+| A_data_plane_baseline | cross_batch_adversarial_15 | 霍乱和伤寒有什么区别 | cross_batch_adversarial | answer_mode_calibration_error | safe:main_passages:ZJSHL-CH-009-P-0320, safe:main_passages:ZJSHL-CH-009-P-0322 | strong comparison/relationship answer lacks primary coverage for both sides |
+| A_data_plane_baseline | cross_batch_adversarial_18 | 痓病和太阳病有什么不同 | cross_batch_adversarial | answer_mode_calibration_error | safe:main_passages:ZJSHL-CH-008-P-0193, safe:main_passages:ZJSHL-CH-009-P-0002, safe:main_passages:ZJSHL-CH-008-P-0220 | strong comparison/relationship answer lacks primary coverage for both sides |
+| A_data_plane_baseline | formula_04 | 白虎汤方和白虎加人参汤方的区别是什么？ | formula | citation_error | safe:main_passages:ZJSHL-CH-010-P-0165, safe:main_passages:ZJSHL-CH-025-P-0012 | fail: strong citations are not limited to primary evidence |
+| A_data_plane_baseline | formula_07 | 桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？ | formula | data_layer_bad_alias | safe:main_passages:ZJSHL-CH-025-P-0004, safe:main_passages:ZJSHL-CH-025-P-0003 | fail: strong citations are not limited to primary evidence; formula normalization/raw candidates missed one or more expected formulas |
+| A_data_plane_baseline | formula_18 | 麻黄汤方和桂枝汤方的区别是什么？ | formula | data_layer_bad_alias | safe:main_passages:ZJSHL-CH-009-P-0022, safe:main_passages:ZJSHL-CH-008-P-0217 | fail: strong citations are not limited to primary evidence; formula normalization/raw candidates missed one or more expected formulas |
+| A_data_plane_baseline | learner_short_21 | 干呕是什么意思？ | learner_short_normal | retrieval_miss |  | normal learner query refused instead of offering a conservative book-grounded answer |
+| A_data_plane_baseline | review_only_boundary_08 | 清邪中上是什么意思？ | review_only_support_boundary | review_only_boundary_error | safe:main_passages:ZJSHL-CH-023-P-0046 | review-only/support-only boundary query produced strong answer; review-only/support-only surface appears in primary evidence |
+| A_data_plane_baseline | review_only_boundary_10 | 反是什么意思？ | review_only_support_boundary | review_only_boundary_error | safe:main_passages:ZJSHL-CH-009-P-0159, safe:main_passages:ZJSHL-CH-008-P-0217, safe:main_passages:ZJSHL-CH-025-P-0007 | review-only/support-only boundary query produced strong answer |
+| B_retrieval_rerank | ahv2_canonical_02 | 少阴病是什么意思 | ahv2_canonical | assembler_slot_error | safe:main_passages:ZJSHL-CH-014-P-0112, safe:main_passages:ZJSHL-CH-014-P-0072, safe:main_passages:ZJSHL-CH-014-P-0105 | canonical definition primary does not contain expected concept |
+| B_retrieval_rerank | cross_batch_adversarial_10 | 半表半里证和过经有什么不同 | cross_batch_adversarial | answer_mode_calibration_error | safe:main_passages:ZJSHL-CH-010-P-0005 | strong comparison/relationship answer lacks primary coverage for both sides |
+| B_retrieval_rerank | cross_batch_adversarial_12 | 荣气微和卫气衰有什么区别 | cross_batch_adversarial | answer_mode_calibration_error | safe:main_passages:ZJSHL-CH-004-P-0255 | strong comparison/relationship answer lacks primary coverage for both sides |
+| B_retrieval_rerank | cross_batch_adversarial_15 | 霍乱和伤寒有什么区别 | cross_batch_adversarial | answer_mode_calibration_error | safe:main_passages:ZJSHL-CH-009-P-0320, safe:main_passages:ZJSHL-CH-009-P-0322 | strong comparison/relationship answer lacks primary coverage for both sides |
+| B_retrieval_rerank | cross_batch_adversarial_18 | 痓病和太阳病有什么不同 | cross_batch_adversarial | answer_mode_calibration_error | safe:main_passages:ZJSHL-CH-007-P-0159, safe:main_passages:ZJSHL-CH-009-P-0002, safe:main_passages:ZJSHL-CH-008-P-0220 | strong comparison/relationship answer lacks primary coverage for both sides |
+| B_retrieval_rerank | formula_04 | 白虎汤方和白虎加人参汤方的区别是什么？ | formula | citation_error | safe:main_passages:ZJSHL-CH-010-P-0165, safe:main_passages:ZJSHL-CH-025-P-0012 | fail: strong citations are not limited to primary evidence |
+| B_retrieval_rerank | formula_07 | 桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？ | formula | data_layer_bad_alias | safe:main_passages:ZJSHL-CH-025-P-0004, safe:main_passages:ZJSHL-CH-025-P-0003 | fail: strong citations are not limited to primary evidence; formula normalization/raw candidates missed one or more expected formulas |
+| B_retrieval_rerank | formula_18 | 麻黄汤方和桂枝汤方的区别是什么？ | formula | data_layer_bad_alias | safe:main_passages:ZJSHL-CH-009-P-0022, safe:main_passages:ZJSHL-CH-008-P-0217 | fail: strong citations are not limited to primary evidence; formula normalization/raw candidates missed one or more expected formulas |
+| B_retrieval_rerank | learner_short_21 | 干呕是什么意思？ | learner_short_normal | retrieval_miss |  | normal learner query refused instead of offering a conservative book-grounded answer |
+| B_retrieval_rerank | review_only_boundary_04 | 两阳是什么意思？ | review_only_support_boundary | rerank_regression | safe:main_passages:ZJSHL-CH-009-P-0275, safe:main_passages:ZJSHL-CH-017-P-0049, safe:main_passages:ZJSHL-CH-017-P-0050 | review-only/support-only boundary query produced strong answer; review-only/support-only surface appears in primary evidence; B mode failed while A mode passed for the same query |
+| B_retrieval_rerank | review_only_boundary_08 | 清邪中上是什么意思？ | review_only_support_boundary | review_only_boundary_error | safe:main_passages:ZJSHL-CH-023-P-0046 | review-only/support-only boundary query produced strong answer; review-only/support-only surface appears in primary evidence |
+| B_retrieval_rerank | review_only_boundary_10 | 反是什么意思？ | review_only_support_boundary | review_only_boundary_error | safe:main_passages:ZJSHL-CH-003-P-0090, safe:main_passages:ZJSHL-CH-025-P-0007, safe:main_passages:ZJSHL-CH-009-P-0159 | review-only/support-only boundary query produced strong answer; review-only/support-only surface appears in primary evidence |
+| B_retrieval_rerank | negative_modern_09 | 白虎是什么意思？ | negative_modern_unrelated | rerank_regression | safe:main_passages:ZJSHL-CH-011-P-0104, safe:main_passages:ZJSHL-CH-010-P-0128, safe:main_passages:ZJSHL-CH-010-P-0165 | negative/modern unrelated query produced strong answer; negative/modern unrelated query has primary evidence; B mode failed while A mode passed for the same query |
+| C_production_like_full_chain | ahv2_canonical_02 | 少阴病是什么意思 | ahv2_canonical | assembler_slot_error | safe:main_passages:ZJSHL-CH-014-P-0112, safe:main_passages:ZJSHL-CH-014-P-0072, safe:main_passages:ZJSHL-CH-014-P-0105 | canonical definition primary does not contain expected concept |
+| C_production_like_full_chain | cross_batch_adversarial_10 | 半表半里证和过经有什么不同 | cross_batch_adversarial | answer_mode_calibration_error | safe:main_passages:ZJSHL-CH-010-P-0005 | strong comparison/relationship answer lacks primary coverage for both sides |
+| C_production_like_full_chain | cross_batch_adversarial_12 | 荣气微和卫气衰有什么区别 | cross_batch_adversarial | answer_mode_calibration_error | safe:main_passages:ZJSHL-CH-004-P-0255 | strong comparison/relationship answer lacks primary coverage for both sides |
+| C_production_like_full_chain | cross_batch_adversarial_15 | 霍乱和伤寒有什么区别 | cross_batch_adversarial | answer_mode_calibration_error | safe:main_passages:ZJSHL-CH-009-P-0320, safe:main_passages:ZJSHL-CH-009-P-0322 | strong comparison/relationship answer lacks primary coverage for both sides |
+| C_production_like_full_chain | cross_batch_adversarial_18 | 痓病和太阳病有什么不同 | cross_batch_adversarial | answer_mode_calibration_error | safe:main_passages:ZJSHL-CH-007-P-0159, safe:main_passages:ZJSHL-CH-009-P-0002, safe:main_passages:ZJSHL-CH-008-P-0220 | strong comparison/relationship answer lacks primary coverage for both sides |
+| C_production_like_full_chain | formula_04 | 白虎汤方和白虎加人参汤方的区别是什么？ | formula | citation_error | safe:main_passages:ZJSHL-CH-010-P-0165, safe:main_passages:ZJSHL-CH-025-P-0012 | fail: strong citations are not limited to primary evidence |
+| C_production_like_full_chain | formula_07 | 桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？ | formula | data_layer_bad_alias | safe:main_passages:ZJSHL-CH-025-P-0004, safe:main_passages:ZJSHL-CH-025-P-0003 | fail: strong citations are not limited to primary evidence; formula normalization/raw candidates missed one or more expected formulas |
+| C_production_like_full_chain | formula_18 | 麻黄汤方和桂枝汤方的区别是什么？ | formula | data_layer_bad_alias | safe:main_passages:ZJSHL-CH-009-P-0022, safe:main_passages:ZJSHL-CH-008-P-0217 | fail: strong citations are not limited to primary evidence; formula normalization/raw candidates missed one or more expected formulas |
+| C_production_like_full_chain | learner_short_21 | 干呕是什么意思？ | learner_short_normal | retrieval_miss |  | normal learner query refused instead of offering a conservative book-grounded answer |
+| C_production_like_full_chain | review_only_boundary_04 | 两阳是什么意思？ | review_only_support_boundary | review_only_boundary_error | safe:main_passages:ZJSHL-CH-009-P-0275, safe:main_passages:ZJSHL-CH-017-P-0049, safe:main_passages:ZJSHL-CH-017-P-0050 | review-only/support-only boundary query produced strong answer; review-only/support-only surface appears in primary evidence |
+| C_production_like_full_chain | review_only_boundary_08 | 清邪中上是什么意思？ | review_only_support_boundary | review_only_boundary_error | safe:main_passages:ZJSHL-CH-023-P-0046 | review-only/support-only boundary query produced strong answer; review-only/support-only surface appears in primary evidence |
+| C_production_like_full_chain | review_only_boundary_10 | 反是什么意思？ | review_only_support_boundary | review_only_boundary_error | safe:main_passages:ZJSHL-CH-003-P-0090, safe:main_passages:ZJSHL-CH-025-P-0007, safe:main_passages:ZJSHL-CH-009-P-0159 | review-only/support-only boundary query produced strong answer; review-only/support-only surface appears in primary evidence |
+| C_production_like_full_chain | negative_modern_09 | 白虎是什么意思？ | negative_modern_unrelated | negative_query_false_positive | safe:main_passages:ZJSHL-CH-011-P-0104, safe:main_passages:ZJSHL-CH-010-P-0128, safe:main_passages:ZJSHL-CH-010-P-0165 | negative/modern unrelated query produced strong answer; negative/modern unrelated query has primary evidence |

@@ -1,0 +1,237 @@
+{
+  "run_id": "cross_batch_ahv_consistency_audit_v1",
+  "generated_at_utc": "2026-04-24T08:24:20.497288+00:00",
+  "db_path": "/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/zjshl_v1.db",
+  "layers": {
+    "ahv_v1": "ambiguous_high_value_batch_safe_primary",
+    "ahv2": "ambiguous_high_value_evidence_upgrade_v2_safe_primary"
+  },
+  "metrics": {
+    "audited_object_count": 40,
+    "ahv_v1_object_count": 20,
+    "ahv2_object_count": 20,
+    "duplicate_concept_count": 0,
+    "active_contains_count": 0,
+    "active_single_char_alias_count": 0,
+    "duplicate_active_alias_count": 0,
+    "inactive_alias_primary_backdoor_count": 0,
+    "review_only_learner_safe_conflict_count": 0,
+    "confidence_consistent_count": 40,
+    "confidence_inconsistent_count": 0,
+    "evidence_type_consistent_count": 40,
+    "evidence_type_inconsistent_count": 0
+  },
+  "duplicate_terms": [],
+  "concept_group_findings": [
+    {
+      "group_id": "convulsion_terms",
+      "requested_terms": [
+        "痓病",
+        "刚痓",
+        "柔痓"
+      ],
+      "present_terms": [
+        "痓病",
+        "刚痓",
+        "柔痓"
+      ],
+      "missing_terms": [],
+      "active_alias_conflicts": [],
+      "inactive_aliases_by_term": {
+        "痓病": [
+          "痓"
+        ],
+        "刚痓": [
+          "痉"
+        ],
+        "柔痓": [
+          "痉"
+        ]
+      },
+      "conclusion": "no_cross_batch_conflict",
+      "rationale": "对象边界按 canonical term exact 命中；未发现 active alias 跨对象复用。"
+    },
+    {
+      "group_id": "pulse_terms",
+      "requested_terms": [
+        "结脉",
+        "促脉",
+        "数脉",
+        "滑脉",
+        "弦脉",
+        "革脉",
+        "毛脉",
+        "纯弦脉"
+      ],
+      "present_terms": [
+        "结脉",
+        "促脉",
+        "数脉",
+        "滑脉",
+        "弦脉",
+        "革脉",
+        "毛脉",
+        "纯弦脉"
+      ],
+      "missing_terms": [],
+      "active_alias_conflicts": [],
+      "inactive_aliases_by_term": {
+        "结脉": [
+          "结"
+        ],
+        "促脉": [
+          "促"
+        ],
+        "数脉": [
+          "数"
+        ],
+        "滑脉": [
+          "滑"
+        ],
+        "弦脉": [
+          "弦"
+        ],
+        "革脉": [
+          "革"
+        ],
+        "毛脉": [
+          "毛"
+        ],
+        "纯弦脉": [
+          "纯弦"
+        ]
+      },
+      "conclusion": "no_cross_batch_conflict",
+      "rationale": "对象边界按 canonical term exact 命中；未发现 active alias 跨对象复用。"
+    },
+    {
+      "group_id": "six_channel_outline_terms",
+      "requested_terms": [
+        "太阳病",
+        "阳明病",
+        "太阴病",
+        "少阴病",
+        "厥阴病"
+      ],
+      "present_terms": [
+        "太阳病",
+        "阳明病",
+        "太阴病",
+        "少阴病",
+        "厥阴病"
+      ],
+      "missing_terms": [],
+      "active_alias_conflicts": [],
+      "inactive_aliases_by_term": {
+        "太阳病": [],
+        "阳明病": [],
+        "太阴病": [],
+        "少阴病": [],
+        "厥阴病": []
+      },
+      "conclusion": "no_cross_batch_conflict",
+      "rationale": "对象边界按 canonical term exact 命中；未发现 active alias 跨对象复用。"
+    },
+    {
+      "group_id": "seasonal_disease_terms",
+      "requested_terms": [
+        "伤寒",
+        "温病",
+        "暑病",
+        "冬温",
+        "时行寒疫"
+      ],
+      "present_terms": [
+        "伤寒",
+        "温病",
+        "暑病",
+        "冬温",
+        "时行寒疫"
+      ],
+      "missing_terms": [],
+      "active_alias_conflicts": [],
+      "inactive_aliases_by_term": {
+        "伤寒": [],
+        "温病": [
+          "春温"
+        ],
+        "暑病": [
+          "暑病者"
+        ],
+        "冬温": [],
+        "时行寒疫": [
+          "寒疫"
+        ]
+      },
+      "conclusion": "no_cross_batch_conflict",
+      "rationale": "对象边界按 canonical term exact 命中；未发现 active alias 跨对象复用。"
+    },
+    {
+      "group_id": "post_recovery_terms",
+      "requested_terms": [
+        "劳复",
+        "食复",
+        "过经"
+      ],
+      "present_terms": [
+        "劳复",
+        "食复",
+        "过经"
+      ],
+      "missing_terms": [],
+      "active_alias_conflicts": [],
+      "inactive_aliases_by_term": {
+        "劳复": [
+          "劳动病"
+        ],
+        "食复": [
+          "强食复病"
+        ],
+        "过经": []
+      },
+      "conclusion": "no_cross_batch_conflict",
+      "rationale": "对象边界按 canonical term exact 命中；未发现 active alias 跨对象复用。"
+    },
+    {
+      "group_id": "chest_and_location_terms",
+      "requested_terms": [
+        "结胸",
+        "水结胸",
+        "半表半里证",
+        "水逆"
+      ],
+      "present_terms": [
+        "结胸",
+        "半表半里证",
+        "水逆"
+      ],
+      "missing_terms": [
+        "水结胸"
+      ],
+      "active_alias_conflicts": [],
+      "inactive_aliases_by_term": {
+        "结胸": [],
+        "半表半里证": [],
+        "水逆": []
+      },
+      "conclusion": "no_cross_batch_conflict",
+      "rationale": "对象边界按 canonical term exact 命中；未发现 active alias 跨对象复用。"
+    }
+  ],
+  "confidence_inconsistencies": [],
+  "evidence_type_inconsistencies": [],
+  "alias_findings": {
+    "active_contains": [],
+    "active_single_char_aliases": [],
+    "active_single_char_learner_surfaces": [],
+    "duplicate_active_aliases": [],
+    "inactive_alias_runtime_probe": {
+      "probe_count": 18,
+      "inactive_alias_primary_backdoor_count": 0,
+      "backdoor_hits": []
+    },
+    "review_only_learner_safe_conflicts": [],
+    "review_only_active_alias_conflicts": [],
+    "review_only_active_learner_conflicts": []
+  }
+}

@@ -1,0 +1,4399 @@
+{
+  "run_id": "batch_upgrade_quality_audit_v1",
+  "generated_at_utc": "2026-04-24T02:13:20.899626+00:00",
+  "before_db": "/private/tmp/zjshl_v1_before_ahv_quality_audit_v1.db",
+  "after_db": "/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/zjshl_v1.db",
+  "ledger_json": "/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/data_plane_batch_audit/ahv_quality_audit_ledger_v1.json",
+  "query_count": 34,
+  "before_summary": {
+    "mode_counts": {
+      "refuse": 2,
+      "strong": 30,
+      "weak_with_review_notice": 2
+    },
+    "mode_bucket_counts": {
+      "refuse": 2,
+      "strong": 30,
+      "weak": 2
+    },
+    "category_mode_counts": {
+      "ahv_object": {
+        "strong": 20
+      },
+      "formula_guard": {
+        "strong": 5
+      },
+      "gold_safe_definition_guard": {
+        "strong": 5
+      },
+      "review_only_boundary_guard": {
+        "refuse": 2,
+        "weak": 2
+      }
+    },
+    "forbidden_primary_total": 0,
+    "review_only_primary_conflict_count": 0,
+    "ahv_primary_hit_count": 20,
+    "ahv_primary_miss_count": 0,
+    "downgraded_ahv_primary_conflict_count": 0,
+    "formula_bad_anchor_top5_total": 0
+  },
+  "after_summary": {
+    "mode_counts": {
+      "refuse": 2,
+      "strong": 30,
+      "weak_with_review_notice": 2
+    },
+    "mode_bucket_counts": {
+      "refuse": 2,
+      "strong": 30,
+      "weak": 2
+    },
+    "category_mode_counts": {
+      "ahv_object": {
+        "strong": 20
+      },
+      "formula_guard": {
+        "strong": 5
+      },
+      "gold_safe_definition_guard": {
+        "strong": 5
+      },
+      "review_only_boundary_guard": {
+        "refuse": 2,
+        "weak": 2
+      }
+    },
+    "forbidden_primary_total": 0,
+    "review_only_primary_conflict_count": 0,
+    "ahv_primary_hit_count": 20,
+    "ahv_primary_miss_count": 0,
+    "downgraded_ahv_primary_conflict_count": 0,
+    "formula_bad_anchor_top5_total": 0
+  },
+  "metrics": {
+    "audited_ahv_object_count": 20,
+    "keep_safe_primary_count": 20,
+    "adjusted_object_count": 18,
+    "downgraded_object_count": 0,
+    "alias_adjusted_count": 5,
+    "focus_audited_count": 10,
+    "before_mode_distribution": {
+      "refuse": 2,
+      "strong": 30,
+      "weak": 2
+    },
+    "after_mode_distribution": {
+      "refuse": 2,
+      "strong": 30,
+      "weak": 2
+    },
+    "forbidden_primary_total": 0,
+    "review_only_primary_conflict_count": 0,
+    "ahv_primary_hit_count": 20,
+    "ahv_primary_miss_count": 0,
+    "downgraded_ahv_primary_conflict_count": 0,
+    "formula_bad_anchor_top5_total": 0,
+    "regression_pass_count": 34,
+    "regression_fail_count": 0
+  },
+  "paired_results": [
+    {
+      "query_id": "AHV-A-4c8a5fc8ec6d",
+      "query": "何谓太阳病",
+      "category": "ahv_object",
+      "canonical_term": "太阳病",
+      "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+      "before": {
+        "query_id": "AHV-A-4c8a5fc8ec6d",
+        "query": "何谓太阳病",
+        "category": "ahv_object",
+        "canonical_term": "太阳病",
+        "concept_id": "AHV-fdb12048d73e",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-fdb12048d73e"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-007-P-0159",
+          "safe:main_passages:ZJSHL-CH-008-P-0195",
+          "safe:main_passages:ZJSHL-CH-008-P-0193",
+          "safe:main_passages:ZJSHL-CH-009-P-0002",
+          "safe:main_passages:ZJSHL-CH-008-P-0220",
+          "full:passages:ZJSHL-CH-009-P-0003",
+          "full:passages:ZJSHL-CH-008-P-0192",
+          "full:passages:ZJSHL-CH-008-P-0194",
+          "full:passages:ZJSHL-CH-007-P-0160",
+          "full:passages:ZJSHL-CH-008-P-0196",
+          "full:passages:ZJSHL-CH-007-P-0158"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-009-P-0306",
+          "full:passages:ZJSHL-CH-007-P-0164"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-fdb12048d73e"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-fdb12048d73e",
+              "canonical_term": "太阳病",
+              "alias": "太阳病",
+              "normalized_alias": "太阳病",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                3
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "何谓",
+            "match_mode": "prefix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "什么是{topic}"
+          },
+          "normalized_target_term": "太阳病",
+          "canonical_target_term": "太阳病",
+          "canonical_query": "什么是太阳病",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "AHV-A-4c8a5fc8ec6d",
+        "query": "何谓太阳病",
+        "category": "ahv_object",
+        "canonical_term": "太阳病",
+        "concept_id": "AHV-fdb12048d73e",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-fdb12048d73e"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-007-P-0159",
+          "safe:main_passages:ZJSHL-CH-008-P-0195",
+          "safe:main_passages:ZJSHL-CH-008-P-0193",
+          "safe:main_passages:ZJSHL-CH-009-P-0002",
+          "safe:main_passages:ZJSHL-CH-008-P-0220",
+          "full:passages:ZJSHL-CH-009-P-0003",
+          "full:passages:ZJSHL-CH-008-P-0192",
+          "full:passages:ZJSHL-CH-008-P-0194",
+          "full:passages:ZJSHL-CH-007-P-0160",
+          "full:passages:ZJSHL-CH-008-P-0196",
+          "full:passages:ZJSHL-CH-007-P-0158"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-009-P-0306",
+          "full:passages:ZJSHL-CH-007-P-0164"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-fdb12048d73e"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-fdb12048d73e",
+              "canonical_term": "太阳病",
+              "alias": "太阳病",
+              "normalized_alias": "太阳病",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                3
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "何谓",
+            "match_mode": "prefix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "什么是{topic}"
+          },
+          "normalized_target_term": "太阳病",
+          "canonical_target_term": "太阳病",
+          "canonical_query": "什么是太阳病",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "kept AHV object hit safe definition primary"
+    },
+    {
+      "query_id": "AHV-A-883c070ef589",
+      "query": "伤寒是什么",
+      "category": "ahv_object",
+      "canonical_term": "伤寒",
+      "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+      "before": {
+        "query_id": "AHV-A-883c070ef589",
+        "query": "伤寒是什么",
+        "category": "ahv_object",
+        "canonical_term": "伤寒",
+        "concept_id": "AHV-82d1c8a78473",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-82d1c8a78473"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "full:passages:ZJSHL-CH-006-P-0007",
+          "safe:main_passages:ZJSHL-CH-008-P-0195",
+          "safe:main_passages:ZJSHL-CH-009-P-0159",
+          "safe:main_passages:ZJSHL-CH-009-P-0022",
+          "full:annotations:ZJSHL-CH-006-P-0007"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-008-P-0195"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-82d1c8a78473"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-82d1c8a78473",
+              "canonical_term": "伤寒",
+              "alias": "伤寒",
+              "normalized_alias": "伤寒",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么",
+            "match_mode": "suffix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "{topic}是什么"
+          },
+          "normalized_target_term": "伤寒",
+          "canonical_target_term": "伤寒",
+          "canonical_query": "伤寒是什么",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "AHV-A-883c070ef589",
+        "query": "伤寒是什么",
+        "category": "ahv_object",
+        "canonical_term": "伤寒",
+        "concept_id": "AHV-82d1c8a78473",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-82d1c8a78473"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "full:passages:ZJSHL-CH-006-P-0007",
+          "safe:main_passages:ZJSHL-CH-008-P-0195",
+          "safe:main_passages:ZJSHL-CH-009-P-0159",
+          "safe:main_passages:ZJSHL-CH-009-P-0022",
+          "full:annotations:ZJSHL-CH-006-P-0007"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-008-P-0195"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-82d1c8a78473"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-82d1c8a78473",
+              "canonical_term": "伤寒",
+              "alias": "伤寒",
+              "normalized_alias": "伤寒",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么",
+            "match_mode": "suffix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "{topic}是什么"
+          },
+          "normalized_target_term": "伤寒",
+          "canonical_target_term": "伤寒",
+          "canonical_query": "伤寒是什么",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "kept AHV object hit safe definition primary"
+    },
+    {
+      "query_id": "AHV-A-fadb167a02a1",
+      "query": "温病是什么意思",
+      "category": "ahv_object",
+      "canonical_term": "温病",
+      "quality_audit_verdict": "adjust_alias",
+      "before": {
+        "query_id": "AHV-A-fadb167a02a1",
+        "query": "温病是什么意思",
+        "category": "ahv_object",
+        "canonical_term": "温病",
+        "concept_id": "AHV-65a3bdee145b",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "adjust_alias",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-65a3bdee145b"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-006-P-0012",
+          "safe:main_passages:ZJSHL-CH-006-P-0022",
+          "safe:main_passages:ZJSHL-CH-006-P-0046",
+          "safe:main_passages:ZJSHL-CH-006-P-0135",
+          "full:annotations:ZJSHL-CH-006-P-0013",
+          "full:passages:ZJSHL-CH-006-P-0136",
+          "full:passages:ZJSHL-CH-006-P-0021",
+          "full:passages:ZJSHL-CH-006-P-0045",
+          "full:passages:ZJSHL-CH-006-P-0013",
+          "full:passages:ZJSHL-CH-006-P-0023"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-006-P-0012",
+          "full:ambiguous_passages:ZJSHL-CH-008-P-0201"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-65a3bdee145b"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-65a3bdee145b",
+              "canonical_term": "温病",
+              "alias": "温病",
+              "normalized_alias": "温病",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "温病",
+          "canonical_target_term": "温病",
+          "canonical_query": "温病是什么意思",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "AHV-A-fadb167a02a1",
+        "query": "温病是什么意思",
+        "category": "ahv_object",
+        "canonical_term": "温病",
+        "concept_id": "AHV-65a3bdee145b",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "adjust_alias",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-65a3bdee145b"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-006-P-0012",
+          "safe:main_passages:ZJSHL-CH-006-P-0022",
+          "safe:main_passages:ZJSHL-CH-006-P-0046",
+          "safe:main_passages:ZJSHL-CH-006-P-0135",
+          "full:annotations:ZJSHL-CH-006-P-0013",
+          "full:passages:ZJSHL-CH-006-P-0136",
+          "full:passages:ZJSHL-CH-006-P-0021",
+          "full:passages:ZJSHL-CH-006-P-0045",
+          "full:passages:ZJSHL-CH-006-P-0013",
+          "full:passages:ZJSHL-CH-006-P-0023"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-006-P-0012",
+          "full:ambiguous_passages:ZJSHL-CH-008-P-0201"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-65a3bdee145b"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-65a3bdee145b",
+              "canonical_term": "温病",
+              "alias": "温病",
+              "normalized_alias": "温病",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "温病",
+          "canonical_target_term": "温病",
+          "canonical_query": "温病是什么意思",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "kept AHV object hit safe definition primary"
+    },
+    {
+      "query_id": "AHV-A-bc409b4e810d",
+      "query": "暑病是什么意思",
+      "category": "ahv_object",
+      "canonical_term": "暑病",
+      "quality_audit_verdict": "adjust_alias",
+      "before": {
+        "query_id": "AHV-A-bc409b4e810d",
+        "query": "暑病是什么意思",
+        "category": "ahv_object",
+        "canonical_term": "暑病",
+        "concept_id": "AHV-d1abf1c57ecf",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "adjust_alias",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-d1abf1c57ecf"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-006-P-0012",
+          "safe:main_passages:ZJSHL-CH-006-P-0024",
+          "full:annotations:ZJSHL-CH-006-P-0013",
+          "full:passages:ZJSHL-CH-006-P-0012",
+          "full:passages:ZJSHL-CH-006-P-0013",
+          "full:passages:ZJSHL-CH-006-P-0023"
+        ],
+        "review_ids": [],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-d1abf1c57ecf"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-d1abf1c57ecf",
+              "canonical_term": "暑病",
+              "alias": "暑病",
+              "normalized_alias": "暑病",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "暑病",
+          "canonical_target_term": "暑病",
+          "canonical_query": "暑病是什么意思",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "AHV-A-bc409b4e810d",
+        "query": "暑病是什么意思",
+        "category": "ahv_object",
+        "canonical_term": "暑病",
+        "concept_id": "AHV-d1abf1c57ecf",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "adjust_alias",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-d1abf1c57ecf"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-006-P-0012",
+          "safe:main_passages:ZJSHL-CH-006-P-0024",
+          "full:annotations:ZJSHL-CH-006-P-0013",
+          "full:passages:ZJSHL-CH-006-P-0012",
+          "full:passages:ZJSHL-CH-006-P-0013",
+          "full:passages:ZJSHL-CH-006-P-0023"
+        ],
+        "review_ids": [],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-d1abf1c57ecf"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-d1abf1c57ecf",
+              "canonical_term": "暑病",
+              "alias": "暑病",
+              "normalized_alias": "暑病",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "暑病",
+          "canonical_target_term": "暑病",
+          "canonical_query": "暑病是什么意思",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "kept AHV object hit safe definition primary"
+    },
+    {
+      "query_id": "AHV-A-32d5c579718c",
+      "query": "冬温是什么",
+      "category": "ahv_object",
+      "canonical_term": "冬温",
+      "quality_audit_verdict": "keep_safe_primary",
+      "before": {
+        "query_id": "AHV-A-32d5c579718c",
+        "query": "冬温是什么",
+        "category": "ahv_object",
+        "canonical_term": "冬温",
+        "concept_id": "AHV-9dfd46e14608",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "keep_safe_primary",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-9dfd46e14608"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "full:annotations:ZJSHL-CH-006-P-0020"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-006-P-0020"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-9dfd46e14608"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-9dfd46e14608",
+              "canonical_term": "冬温",
+              "alias": "冬温",
+              "normalized_alias": "冬温",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么",
+            "match_mode": "suffix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "{topic}是什么"
+          },
+          "normalized_target_term": "冬温",
+          "canonical_target_term": "冬温",
+          "canonical_query": "冬温是什么",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "AHV-A-32d5c579718c",
+        "query": "冬温是什么",
+        "category": "ahv_object",
+        "canonical_term": "冬温",
+        "concept_id": "AHV-9dfd46e14608",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "keep_safe_primary",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-9dfd46e14608"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "full:annotations:ZJSHL-CH-006-P-0020"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-006-P-0020"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-9dfd46e14608"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-9dfd46e14608",
+              "canonical_term": "冬温",
+              "alias": "冬温",
+              "normalized_alias": "冬温",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么",
+            "match_mode": "suffix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "{topic}是什么"
+          },
+          "normalized_target_term": "冬温",
+          "canonical_target_term": "冬温",
+          "canonical_query": "冬温是什么",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "kept AHV object hit safe definition primary"
+    },
+    {
+      "query_id": "AHV-A-72f18363cc0e",
+      "query": "时行寒疫是什么",
+      "category": "ahv_object",
+      "canonical_term": "时行寒疫",
+      "quality_audit_verdict": "adjust_alias",
+      "before": {
+        "query_id": "AHV-A-72f18363cc0e",
+        "query": "时行寒疫是什么",
+        "category": "ahv_object",
+        "canonical_term": "时行寒疫",
+        "concept_id": "AHV-bb8f9a64a54e",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "adjust_alias",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-bb8f9a64a54e"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-006-P-0024",
+          "full:passages:ZJSHL-CH-006-P-0024"
+        ],
+        "review_ids": [],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-bb8f9a64a54e"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-bb8f9a64a54e",
+              "canonical_term": "时行寒疫",
+              "alias": "时行寒疫",
+              "normalized_alias": "时行寒疫",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                4
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么",
+            "match_mode": "suffix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "{topic}是什么"
+          },
+          "normalized_target_term": "时行寒疫",
+          "canonical_target_term": "时行寒疫",
+          "canonical_query": "时行寒疫是什么",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "AHV-A-72f18363cc0e",
+        "query": "时行寒疫是什么",
+        "category": "ahv_object",
+        "canonical_term": "时行寒疫",
+        "concept_id": "AHV-bb8f9a64a54e",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "adjust_alias",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-bb8f9a64a54e"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-006-P-0024",
+          "full:passages:ZJSHL-CH-006-P-0024"
+        ],
+        "review_ids": [],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-bb8f9a64a54e"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-bb8f9a64a54e",
+              "canonical_term": "时行寒疫",
+              "alias": "时行寒疫",
+              "normalized_alias": "时行寒疫",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                4
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么",
+            "match_mode": "suffix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "{topic}是什么"
+          },
+          "normalized_target_term": "时行寒疫",
+          "canonical_target_term": "时行寒疫",
+          "canonical_query": "时行寒疫是什么",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "kept AHV object hit safe definition primary"
+    },
+    {
+      "query_id": "AHV-A-ace457effe85",
+      "query": "刚痓是什么",
+      "category": "ahv_object",
+      "canonical_term": "刚痓",
+      "quality_audit_verdict": "keep_safe_primary",
+      "before": {
+        "query_id": "AHV-A-ace457effe85",
+        "query": "刚痓是什么",
+        "category": "ahv_object",
+        "canonical_term": "刚痓",
+        "concept_id": "AHV-87d3ca263c08",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "keep_safe_primary",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-87d3ca263c08"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-007-P-0157",
+          "full:annotations:ZJSHL-CH-007-P-0158"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-007-P-0157",
+          "full:passages:ZJSHL-CH-007-P-0158"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-87d3ca263c08"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-87d3ca263c08",
+              "canonical_term": "刚痓",
+              "alias": "刚痓",
+              "normalized_alias": "刚痓",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么",
+            "match_mode": "suffix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "{topic}是什么"
+          },
+          "normalized_target_term": "刚痓",
+          "canonical_target_term": "刚痓",
+          "canonical_query": "刚痓是什么",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "AHV-A-ace457effe85",
+        "query": "刚痓是什么",
+        "category": "ahv_object",
+        "canonical_term": "刚痓",
+        "concept_id": "AHV-87d3ca263c08",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "keep_safe_primary",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-87d3ca263c08"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-007-P-0157",
+          "full:annotations:ZJSHL-CH-007-P-0158"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-007-P-0157",
+          "full:passages:ZJSHL-CH-007-P-0158"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-87d3ca263c08"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-87d3ca263c08",
+              "canonical_term": "刚痓",
+              "alias": "刚痓",
+              "normalized_alias": "刚痓",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么",
+            "match_mode": "suffix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "{topic}是什么"
+          },
+          "normalized_target_term": "刚痓",
+          "canonical_target_term": "刚痓",
+          "canonical_query": "刚痓是什么",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "kept AHV object hit safe definition primary"
+    },
+    {
+      "query_id": "AHV-A-8e775942574e",
+      "query": "柔痓是什么意思",
+      "category": "ahv_object",
+      "canonical_term": "柔痓",
+      "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+      "before": {
+        "query_id": "AHV-A-8e775942574e",
+        "query": "柔痓是什么意思",
+        "category": "ahv_object",
+        "canonical_term": "柔痓",
+        "concept_id": "AHV-cdac1a4b7e7b",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-cdac1a4b7e7b"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "full:passages:ZJSHL-CH-007-P-0160",
+          "safe:main_passages:ZJSHL-CH-007-P-0159",
+          "full:annotations:ZJSHL-CH-007-P-0156",
+          "full:passages:ZJSHL-CH-007-P-0159",
+          "full:passages:ZJSHL-CH-007-P-0157",
+          "full:passages:ZJSHL-CH-007-P-0161",
+          "full:passages:ZJSHL-CH-007-P-0158",
+          "full:passages:ZJSHL-CH-007-P-0155"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-007-P-0156"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-cdac1a4b7e7b"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-cdac1a4b7e7b",
+              "canonical_term": "柔痓",
+              "alias": "柔痓",
+              "normalized_alias": "柔痓",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "柔痓",
+          "canonical_target_term": "柔痓",
+          "canonical_query": "柔痓是什么意思",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "AHV-A-8e775942574e",
+        "query": "柔痓是什么意思",
+        "category": "ahv_object",
+        "canonical_term": "柔痓",
+        "concept_id": "AHV-cdac1a4b7e7b",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-cdac1a4b7e7b"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "full:passages:ZJSHL-CH-007-P-0160",
+          "safe:main_passages:ZJSHL-CH-007-P-0159",
+          "full:annotations:ZJSHL-CH-007-P-0156",
+          "full:passages:ZJSHL-CH-007-P-0159",
+          "full:passages:ZJSHL-CH-007-P-0157",
+          "full:passages:ZJSHL-CH-007-P-0161",
+          "full:passages:ZJSHL-CH-007-P-0158",
+          "full:passages:ZJSHL-CH-007-P-0155"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-007-P-0156"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-cdac1a4b7e7b"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-cdac1a4b7e7b",
+              "canonical_term": "柔痓",
+              "alias": "柔痓",
+              "normalized_alias": "柔痓",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "柔痓",
+          "canonical_target_term": "柔痓",
+          "canonical_query": "柔痓是什么意思",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "kept AHV object hit safe definition primary"
+    },
+    {
+      "query_id": "AHV-A-9ab3b11a975a",
+      "query": "痓病是什么",
+      "category": "ahv_object",
+      "canonical_term": "痓病",
+      "quality_audit_verdict": "adjust_primary_sentence",
+      "before": {
+        "query_id": "AHV-A-9ab3b11a975a",
+        "query": "痓病是什么",
+        "category": "ahv_object",
+        "canonical_term": "痓病",
+        "concept_id": "AHV-01cf7a0eba28",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "adjust_primary_sentence",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-01cf7a0eba28"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "full:passages:ZJSHL-CH-007-P-0166"
+        ],
+        "review_ids": [],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-01cf7a0eba28"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-01cf7a0eba28",
+              "canonical_term": "痓病",
+              "alias": "痓病",
+              "normalized_alias": "痓病",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么",
+            "match_mode": "suffix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "{topic}是什么"
+          },
+          "normalized_target_term": "痓病",
+          "canonical_target_term": "痓病",
+          "canonical_query": "痓病是什么",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "AHV-A-9ab3b11a975a",
+        "query": "痓病是什么",
+        "category": "ahv_object",
+        "canonical_term": "痓病",
+        "concept_id": "AHV-01cf7a0eba28",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "adjust_primary_sentence",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-01cf7a0eba28"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "full:passages:ZJSHL-CH-007-P-0166"
+        ],
+        "review_ids": [],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-01cf7a0eba28"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-01cf7a0eba28",
+              "canonical_term": "痓病",
+              "alias": "痓病",
+              "normalized_alias": "痓病",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么",
+            "match_mode": "suffix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "{topic}是什么"
+          },
+          "normalized_target_term": "痓病",
+          "canonical_target_term": "痓病",
+          "canonical_query": "痓病是什么",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "kept AHV object hit safe definition primary"
+    },
+    {
+      "query_id": "AHV-A-8a8d0ebf80d5",
+      "query": "结脉是什么",
+      "category": "ahv_object",
+      "canonical_term": "结脉",
+      "quality_audit_verdict": "adjust_primary_sentence",
+      "before": {
+        "query_id": "AHV-A-8a8d0ebf80d5",
+        "query": "结脉是什么",
+        "category": "ahv_object",
+        "canonical_term": "结脉",
+        "concept_id": "AHV-bbdfc9d9b74e",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "adjust_primary_sentence",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-bbdfc9d9b74e"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-003-P-0028",
+          "safe:main_passages:ZJSHL-CH-010-P-0020",
+          "safe:main_passages:ZJSHL-CH-010-P-0019",
+          "safe:main_passages:ZJSHL-CH-010-P-0022",
+          "safe:main_passages:ZJSHL-CH-010-P-0017"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-003-P-0028",
+          "full:passages:ZJSHL-CH-010-P-0019",
+          "full:ambiguous_passages:ZJSHL-CH-010-P-0065"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-bbdfc9d9b74e"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-bbdfc9d9b74e",
+              "canonical_term": "结脉",
+              "alias": "结脉",
+              "normalized_alias": "结脉",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么",
+            "match_mode": "suffix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "{topic}是什么"
+          },
+          "normalized_target_term": "结脉",
+          "canonical_target_term": "结脉",
+          "canonical_query": "结脉是什么",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "AHV-A-8a8d0ebf80d5",
+        "query": "结脉是什么",
+        "category": "ahv_object",
+        "canonical_term": "结脉",
+        "concept_id": "AHV-bbdfc9d9b74e",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "adjust_primary_sentence",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-bbdfc9d9b74e"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-003-P-0028",
+          "safe:main_passages:ZJSHL-CH-010-P-0020",
+          "safe:main_passages:ZJSHL-CH-010-P-0019",
+          "safe:main_passages:ZJSHL-CH-010-P-0022",
+          "safe:main_passages:ZJSHL-CH-010-P-0017"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-003-P-0028",
+          "full:passages:ZJSHL-CH-010-P-0019",
+          "full:ambiguous_passages:ZJSHL-CH-010-P-0065"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-bbdfc9d9b74e"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-bbdfc9d9b74e",
+              "canonical_term": "结脉",
+              "alias": "结脉",
+              "normalized_alias": "结脉",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么",
+            "match_mode": "suffix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "{topic}是什么"
+          },
+          "normalized_target_term": "结脉",
+          "canonical_target_term": "结脉",
+          "canonical_query": "结脉是什么",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "kept AHV object hit safe definition primary"
+    },
+    {
+      "query_id": "AHV-A-64835cdee209",
+      "query": "促脉是什么",
+      "category": "ahv_object",
+      "canonical_term": "促脉",
+      "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+      "before": {
+        "query_id": "AHV-A-64835cdee209",
+        "query": "促脉是什么",
+        "category": "ahv_object",
+        "canonical_term": "促脉",
+        "concept_id": "AHV-472e3287583d",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-472e3287583d"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [],
+        "review_ids": [],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-472e3287583d"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-472e3287583d",
+              "canonical_term": "促脉",
+              "alias": "促脉",
+              "normalized_alias": "促脉",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么",
+            "match_mode": "suffix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "{topic}是什么"
+          },
+          "normalized_target_term": "促脉",
+          "canonical_target_term": "促脉",
+          "canonical_query": "促脉是什么",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "AHV-A-64835cdee209",
+        "query": "促脉是什么",
+        "category": "ahv_object",
+        "canonical_term": "促脉",
+        "concept_id": "AHV-472e3287583d",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-472e3287583d"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [],
+        "review_ids": [],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-472e3287583d"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-472e3287583d",
+              "canonical_term": "促脉",
+              "alias": "促脉",
+              "normalized_alias": "促脉",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么",
+            "match_mode": "suffix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "{topic}是什么"
+          },
+          "normalized_target_term": "促脉",
+          "canonical_target_term": "促脉",
+          "canonical_query": "促脉是什么",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "kept AHV object hit safe definition primary"
+    },
+    {
+      "query_id": "AHV-A-40ba5cc0872c",
+      "query": "弦脉是什么",
+      "category": "ahv_object",
+      "canonical_term": "弦脉",
+      "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+      "before": {
+        "query_id": "AHV-A-40ba5cc0872c",
+        "query": "弦脉是什么",
+        "category": "ahv_object",
+        "canonical_term": "弦脉",
+        "concept_id": "AHV-54c535ab7161",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-54c535ab7161"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-004-P-0184"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-004-P-0184"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-54c535ab7161"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-54c535ab7161",
+              "canonical_term": "弦脉",
+              "alias": "弦脉",
+              "normalized_alias": "弦脉",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么",
+            "match_mode": "suffix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "{topic}是什么"
+          },
+          "normalized_target_term": "弦脉",
+          "canonical_target_term": "弦脉",
+          "canonical_query": "弦脉是什么",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "AHV-A-40ba5cc0872c",
+        "query": "弦脉是什么",
+        "category": "ahv_object",
+        "canonical_term": "弦脉",
+        "concept_id": "AHV-54c535ab7161",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-54c535ab7161"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-004-P-0184"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-004-P-0184"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-54c535ab7161"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-54c535ab7161",
+              "canonical_term": "弦脉",
+              "alias": "弦脉",
+              "normalized_alias": "弦脉",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么",
+            "match_mode": "suffix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "{topic}是什么"
+          },
+          "normalized_target_term": "弦脉",
+          "canonical_target_term": "弦脉",
+          "canonical_query": "弦脉是什么",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "kept AHV object hit safe definition primary"
+    },
+    {
+      "query_id": "AHV-A-2ae11849a64f",
+      "query": "滑脉是什么意思",
+      "category": "ahv_object",
+      "canonical_term": "滑脉",
+      "quality_audit_verdict": "adjust_primary_sentence",
+      "before": {
+        "query_id": "AHV-A-2ae11849a64f",
+        "query": "滑脉是什么意思",
+        "category": "ahv_object",
+        "canonical_term": "滑脉",
+        "concept_id": "AHV-5d33fe1b97eb",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "adjust_primary_sentence",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-5d33fe1b97eb"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "full:annotations:ZJSHL-CH-024-P-0068"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-024-P-0068"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-5d33fe1b97eb"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-5d33fe1b97eb",
+              "canonical_term": "滑脉",
+              "alias": "滑脉",
+              "normalized_alias": "滑脉",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "滑脉",
+          "canonical_target_term": "滑脉",
+          "canonical_query": "滑脉是什么意思",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "AHV-A-2ae11849a64f",
+        "query": "滑脉是什么意思",
+        "category": "ahv_object",
+        "canonical_term": "滑脉",
+        "concept_id": "AHV-5d33fe1b97eb",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "adjust_primary_sentence",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-5d33fe1b97eb"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "full:annotations:ZJSHL-CH-024-P-0068"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-024-P-0068"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-5d33fe1b97eb"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-5d33fe1b97eb",
+              "canonical_term": "滑脉",
+              "alias": "滑脉",
+              "normalized_alias": "滑脉",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "滑脉",
+          "canonical_target_term": "滑脉",
+          "canonical_query": "滑脉是什么意思",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "kept AHV object hit safe definition primary"
+    },
+    {
+      "query_id": "AHV-A-48ecdb0ae861",
+      "query": "革脉是什么",
+      "category": "ahv_object",
+      "canonical_term": "革脉",
+      "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+      "before": {
+        "query_id": "AHV-A-48ecdb0ae861",
+        "query": "革脉是什么",
+        "category": "ahv_object",
+        "canonical_term": "革脉",
+        "concept_id": "AHV-6fb7ea26388a",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-6fb7ea26388a"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [],
+        "review_ids": [],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-6fb7ea26388a"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-6fb7ea26388a",
+              "canonical_term": "革脉",
+              "alias": "革脉",
+              "normalized_alias": "革脉",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么",
+            "match_mode": "suffix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "{topic}是什么"
+          },
+          "normalized_target_term": "革脉",
+          "canonical_target_term": "革脉",
+          "canonical_query": "革脉是什么",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "AHV-A-48ecdb0ae861",
+        "query": "革脉是什么",
+        "category": "ahv_object",
+        "canonical_term": "革脉",
+        "concept_id": "AHV-6fb7ea26388a",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-6fb7ea26388a"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [],
+        "review_ids": [],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-6fb7ea26388a"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-6fb7ea26388a",
+              "canonical_term": "革脉",
+              "alias": "革脉",
+              "normalized_alias": "革脉",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么",
+            "match_mode": "suffix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "{topic}是什么"
+          },
+          "normalized_target_term": "革脉",
+          "canonical_target_term": "革脉",
+          "canonical_query": "革脉是什么",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "kept AHV object hit safe definition primary"
+    },
+    {
+      "query_id": "AHV-A-58da482af86f",
+      "query": "行尸是什么意思",
+      "category": "ahv_object",
+      "canonical_term": "行尸",
+      "quality_audit_verdict": "adjust_primary_sentence",
+      "before": {
+        "query_id": "AHV-A-58da482af86f",
+        "query": "行尸是什么意思",
+        "category": "ahv_object",
+        "canonical_term": "行尸",
+        "concept_id": "AHV-901247b4beaf",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "adjust_primary_sentence",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-901247b4beaf"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-004-P-0200",
+          "full:passages:ZJSHL-CH-004-P-0201"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-901247b4beaf"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-901247b4beaf",
+              "canonical_term": "行尸",
+              "alias": "行尸",
+              "normalized_alias": "行尸",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "行尸",
+          "canonical_target_term": "行尸",
+          "canonical_query": "行尸是什么意思",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "AHV-A-58da482af86f",
+        "query": "行尸是什么意思",
+        "category": "ahv_object",
+        "canonical_term": "行尸",
+        "concept_id": "AHV-901247b4beaf",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "adjust_primary_sentence",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-901247b4beaf"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-004-P-0200",
+          "full:passages:ZJSHL-CH-004-P-0201"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-901247b4beaf"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-901247b4beaf",
+              "canonical_term": "行尸",
+              "alias": "行尸",
+              "normalized_alias": "行尸",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "行尸",
+          "canonical_target_term": "行尸",
+          "canonical_query": "行尸是什么意思",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "kept AHV object hit safe definition primary"
+    },
+    {
+      "query_id": "AHV-A-2e8bbf768160",
+      "query": "内虚是什么意思",
+      "category": "ahv_object",
+      "canonical_term": "内虚",
+      "quality_audit_verdict": "adjust_primary_sentence",
+      "before": {
+        "query_id": "AHV-A-2e8bbf768160",
+        "query": "内虚是什么意思",
+        "category": "ahv_object",
+        "canonical_term": "内虚",
+        "concept_id": "AHV-b52564cf7480",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "adjust_primary_sentence",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-b52564cf7480"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-004-P-0137",
+          "safe:main_passages:ZJSHL-CH-006-P-0114",
+          "full:annotations:ZJSHL-CH-004-P-0202",
+          "full:annotations:ZJSHL-CH-004-P-0138",
+          "full:annotations:ZJSHL-CH-009-P-0201",
+          "full:passages:ZJSHL-CH-004-P-0138",
+          "full:passages:ZJSHL-CH-004-P-0137",
+          "full:passages:ZJSHL-CH-004-P-0136",
+          "full:passages:ZJSHL-CH-004-P-0201",
+          "full:passages:ZJSHL-CH-004-P-0203"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-004-P-0200",
+          "full:passages:ZJSHL-CH-004-P-0202"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-b52564cf7480"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-b52564cf7480",
+              "canonical_term": "内虚",
+              "alias": "内虚",
+              "normalized_alias": "内虚",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "内虚",
+          "canonical_target_term": "内虚",
+          "canonical_query": "内虚是什么意思",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "AHV-A-2e8bbf768160",
+        "query": "内虚是什么意思",
+        "category": "ahv_object",
+        "canonical_term": "内虚",
+        "concept_id": "AHV-b52564cf7480",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "adjust_primary_sentence",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-b52564cf7480"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-004-P-0137",
+          "safe:main_passages:ZJSHL-CH-006-P-0114",
+          "full:annotations:ZJSHL-CH-004-P-0202",
+          "full:annotations:ZJSHL-CH-004-P-0138",
+          "full:annotations:ZJSHL-CH-009-P-0201",
+          "full:passages:ZJSHL-CH-004-P-0138",
+          "full:passages:ZJSHL-CH-004-P-0137",
+          "full:passages:ZJSHL-CH-004-P-0136",
+          "full:passages:ZJSHL-CH-004-P-0201",
+          "full:passages:ZJSHL-CH-004-P-0203"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-004-P-0200",
+          "full:passages:ZJSHL-CH-004-P-0202"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-b52564cf7480"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-b52564cf7480",
+              "canonical_term": "内虚",
+              "alias": "内虚",
+              "normalized_alias": "内虚",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "内虚",
+          "canonical_target_term": "内虚",
+          "canonical_query": "内虚是什么意思",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "kept AHV object hit safe definition primary"
+    },
+    {
+      "query_id": "AHV-A-bdad6d7a999c",
+      "query": "血崩是什么",
+      "category": "ahv_object",
+      "canonical_term": "血崩",
+      "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+      "before": {
+        "query_id": "AHV-A-bdad6d7a999c",
+        "query": "血崩是什么",
+        "category": "ahv_object",
+        "canonical_term": "血崩",
+        "concept_id": "AHV-439df1ff9f25",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-439df1ff9f25"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-004-P-0257"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-004-P-0257"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-439df1ff9f25"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-439df1ff9f25",
+              "canonical_term": "血崩",
+              "alias": "血崩",
+              "normalized_alias": "血崩",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么",
+            "match_mode": "suffix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "{topic}是什么"
+          },
+          "normalized_target_term": "血崩",
+          "canonical_target_term": "血崩",
+          "canonical_query": "血崩是什么",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "AHV-A-bdad6d7a999c",
+        "query": "血崩是什么",
+        "category": "ahv_object",
+        "canonical_term": "血崩",
+        "concept_id": "AHV-439df1ff9f25",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-439df1ff9f25"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-004-P-0257"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-004-P-0257"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-439df1ff9f25"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-439df1ff9f25",
+              "canonical_term": "血崩",
+              "alias": "血崩",
+              "normalized_alias": "血崩",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么",
+            "match_mode": "suffix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "{topic}是什么"
+          },
+          "normalized_target_term": "血崩",
+          "canonical_target_term": "血崩",
+          "canonical_query": "血崩是什么",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "kept AHV object hit safe definition primary"
+    },
+    {
+      "query_id": "AHV-A-82e098380bd0",
+      "query": "霍乱是什么",
+      "category": "ahv_object",
+      "canonical_term": "霍乱",
+      "quality_audit_verdict": "adjust_primary_sentence",
+      "before": {
+        "query_id": "AHV-A-82e098380bd0",
+        "query": "霍乱是什么",
+        "category": "ahv_object",
+        "canonical_term": "霍乱",
+        "concept_id": "AHV-72cae785c0ac",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "adjust_primary_sentence",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-72cae785c0ac"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-016-P-0002",
+          "safe:main_passages:ZJSHL-CH-016-P-0004",
+          "safe:main_passages:ZJSHL-CH-016-P-0016",
+          "full:annotations:ZJSHL-CH-016-P-0003",
+          "safe:main_passages:ZJSHL-CH-016-P-0018"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-016-P-0002",
+          "full:passages:ZJSHL-CH-016-P-0003",
+          "full:ambiguous_passages:ZJSHL-CH-016-P-0007"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-72cae785c0ac"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-72cae785c0ac",
+              "canonical_term": "霍乱",
+              "alias": "霍乱",
+              "normalized_alias": "霍乱",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么",
+            "match_mode": "suffix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "{topic}是什么"
+          },
+          "normalized_target_term": "霍乱",
+          "canonical_target_term": "霍乱",
+          "canonical_query": "霍乱是什么",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "AHV-A-82e098380bd0",
+        "query": "霍乱是什么",
+        "category": "ahv_object",
+        "canonical_term": "霍乱",
+        "concept_id": "AHV-72cae785c0ac",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "adjust_primary_sentence",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-72cae785c0ac"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-016-P-0002",
+          "safe:main_passages:ZJSHL-CH-016-P-0004",
+          "safe:main_passages:ZJSHL-CH-016-P-0016",
+          "full:annotations:ZJSHL-CH-016-P-0003",
+          "safe:main_passages:ZJSHL-CH-016-P-0018"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-016-P-0002",
+          "full:passages:ZJSHL-CH-016-P-0003",
+          "full:ambiguous_passages:ZJSHL-CH-016-P-0007"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-72cae785c0ac"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-72cae785c0ac",
+              "canonical_term": "霍乱",
+              "alias": "霍乱",
+              "normalized_alias": "霍乱",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么",
+            "match_mode": "suffix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "{topic}是什么"
+          },
+          "normalized_target_term": "霍乱",
+          "canonical_target_term": "霍乱",
+          "canonical_query": "霍乱是什么",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "kept AHV object hit safe definition primary"
+    },
+    {
+      "query_id": "AHV-A-eb2671df3bbe",
+      "query": "劳复是什么意思",
+      "category": "ahv_object",
+      "canonical_term": "劳复",
+      "quality_audit_verdict": "adjust_alias",
+      "before": {
+        "query_id": "AHV-A-eb2671df3bbe",
+        "query": "劳复是什么意思",
+        "category": "ahv_object",
+        "canonical_term": "劳复",
+        "concept_id": "AHV-68ab3aae2083",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "adjust_alias",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-68ab3aae2083"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-009-P-0159",
+          "safe:main_passages:ZJSHL-CH-017-P-0050",
+          "safe:main_passages:ZJSHL-CH-017-P-0049",
+          "safe:main_passages:ZJSHL-CH-009-P-0161",
+          "safe:main_passages:ZJSHL-CH-017-P-0053",
+          "full:passages:ZJSHL-CH-017-P-0049",
+          "full:passages:ZJSHL-CH-017-P-0050",
+          "full:passages:ZJSHL-CH-017-P-0048"
+        ],
+        "review_ids": [],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-68ab3aae2083"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-68ab3aae2083",
+              "canonical_term": "劳复",
+              "alias": "劳复",
+              "normalized_alias": "劳复",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "劳复",
+          "canonical_target_term": "劳复",
+          "canonical_query": "劳复是什么意思",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "AHV-A-eb2671df3bbe",
+        "query": "劳复是什么意思",
+        "category": "ahv_object",
+        "canonical_term": "劳复",
+        "concept_id": "AHV-68ab3aae2083",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "adjust_alias",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-68ab3aae2083"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-009-P-0159",
+          "safe:main_passages:ZJSHL-CH-017-P-0050",
+          "safe:main_passages:ZJSHL-CH-017-P-0049",
+          "safe:main_passages:ZJSHL-CH-009-P-0161",
+          "safe:main_passages:ZJSHL-CH-017-P-0053",
+          "full:passages:ZJSHL-CH-017-P-0049",
+          "full:passages:ZJSHL-CH-017-P-0050",
+          "full:passages:ZJSHL-CH-017-P-0048"
+        ],
+        "review_ids": [],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-68ab3aae2083"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-68ab3aae2083",
+              "canonical_term": "劳复",
+              "alias": "劳复",
+              "normalized_alias": "劳复",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "劳复",
+          "canonical_target_term": "劳复",
+          "canonical_query": "劳复是什么意思",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "kept AHV object hit safe definition primary"
+    },
+    {
+      "query_id": "AHV-A-316d23b74c0f",
+      "query": "食复是什么意思",
+      "category": "ahv_object",
+      "canonical_term": "食复",
+      "quality_audit_verdict": "adjust_alias",
+      "before": {
+        "query_id": "AHV-A-316d23b74c0f",
+        "query": "食复是什么意思",
+        "category": "ahv_object",
+        "canonical_term": "食复",
+        "concept_id": "AHV-8df0a4ec9de9",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "adjust_alias",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-8df0a4ec9de9"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-009-P-0159",
+          "safe:main_passages:ZJSHL-CH-017-P-0050",
+          "safe:main_passages:ZJSHL-CH-017-P-0049",
+          "safe:main_passages:ZJSHL-CH-009-P-0161",
+          "safe:main_passages:ZJSHL-CH-017-P-0053",
+          "full:passages:ZJSHL-CH-017-P-0049",
+          "full:passages:ZJSHL-CH-017-P-0050",
+          "full:passages:ZJSHL-CH-017-P-0048"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-016-P-0010"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-8df0a4ec9de9"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-8df0a4ec9de9",
+              "canonical_term": "食复",
+              "alias": "食复",
+              "normalized_alias": "食复",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "食复",
+          "canonical_target_term": "食复",
+          "canonical_query": "食复是什么意思",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "AHV-A-316d23b74c0f",
+        "query": "食复是什么意思",
+        "category": "ahv_object",
+        "canonical_term": "食复",
+        "concept_id": "AHV-8df0a4ec9de9",
+        "expected_primary_policy": "safe_primary",
+        "quality_audit_verdict": "adjust_alias",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:AHV-8df0a4ec9de9"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-009-P-0159",
+          "safe:main_passages:ZJSHL-CH-017-P-0050",
+          "safe:main_passages:ZJSHL-CH-017-P-0049",
+          "safe:main_passages:ZJSHL-CH-009-P-0161",
+          "safe:main_passages:ZJSHL-CH-017-P-0053",
+          "full:passages:ZJSHL-CH-017-P-0049",
+          "full:passages:ZJSHL-CH-017-P-0050",
+          "full:passages:ZJSHL-CH-017-P-0048"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-016-P-0010"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "AHV-8df0a4ec9de9"
+          ],
+          "matches": [
+            {
+              "concept_id": "AHV-8df0a4ec9de9",
+              "canonical_term": "食复",
+              "alias": "食复",
+              "normalized_alias": "食复",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "ambiguous_high_value_evidence_upgrade_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "食复",
+          "canonical_target_term": "食复",
+          "canonical_query": "食复是什么意思",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": true,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "kept AHV object hit safe definition primary"
+    },
+    {
+      "query_id": "gold_definition_1",
+      "query": "下药是什么意思",
+      "category": "gold_safe_definition_guard",
+      "canonical_term": "",
+      "quality_audit_verdict": "",
+      "before": {
+        "query_id": "gold_definition_1",
+        "query": "下药是什么意思",
+        "category": "gold_safe_definition_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:DPO-033fc08d3b2a"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "full:passages:ZJSHL-CH-006-P-0120",
+          "safe:main_passages:ZJSHL-CH-008-P-0217",
+          "safe:main_passages:ZJSHL-CH-008-P-0219",
+          "safe:main_passages:ZJSHL-CH-004-P-0146",
+          "safe:main_passages:ZJSHL-CH-008-P-0215",
+          "full:passages:ZJSHL-CH-008-P-0220",
+          "full:passages:ZJSHL-CH-008-P-0216",
+          "full:passages:ZJSHL-CH-008-P-0218",
+          "full:passages:ZJSHL-CH-006-P-0119"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-004-P-0146"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-033fc08d3b2a"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-033fc08d3b2a",
+              "canonical_term": "下药",
+              "alias": "下药",
+              "normalized_alias": "下药",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "下药",
+          "canonical_target_term": "下药",
+          "canonical_query": "下药是什么意思",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "gold_definition_1",
+        "query": "下药是什么意思",
+        "category": "gold_safe_definition_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:DPO-033fc08d3b2a"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "full:passages:ZJSHL-CH-006-P-0120",
+          "safe:main_passages:ZJSHL-CH-008-P-0217",
+          "safe:main_passages:ZJSHL-CH-008-P-0219",
+          "safe:main_passages:ZJSHL-CH-004-P-0146",
+          "safe:main_passages:ZJSHL-CH-008-P-0215",
+          "full:passages:ZJSHL-CH-008-P-0220",
+          "full:passages:ZJSHL-CH-008-P-0216",
+          "full:passages:ZJSHL-CH-008-P-0218",
+          "full:passages:ZJSHL-CH-006-P-0119"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-004-P-0146"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-033fc08d3b2a"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-033fc08d3b2a",
+              "canonical_term": "下药",
+              "alias": "下药",
+              "normalized_alias": "下药",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "下药",
+          "canonical_target_term": "下药",
+          "canonical_query": "下药是什么意思",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "gold-safe definition guard remains strong"
+    },
+    {
+      "query_id": "gold_definition_2",
+      "query": "四逆是什么意思",
+      "category": "gold_safe_definition_guard",
+      "canonical_term": "",
+      "quality_audit_verdict": "",
+      "before": {
+        "query_id": "gold_definition_2",
+        "query": "四逆是什么意思",
+        "category": "gold_safe_definition_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:DPO-ce8ffb681e3f"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "full:passages:ZJSHL-CH-015-P-0203",
+          "safe:main_passages:ZJSHL-CH-015-P-0253",
+          "safe:main_passages:ZJSHL-CH-029-P-0001",
+          "safe:main_passages:ZJSHL-CH-008-P-0217",
+          "safe:main_passages:ZJSHL-CH-014-P-0107",
+          "full:passages:ZJSHL-CH-029-P-0002",
+          "full:passages:ZJSHL-CH-015-P-0202",
+          "full:passages:ZJSHL-CH-015-P-0254",
+          "full:passages:ZJSHL-CH-015-P-0252"
+        ],
+        "review_ids": [],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-ce8ffb681e3f"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-ce8ffb681e3f",
+              "canonical_term": "四逆",
+              "alias": "四逆",
+              "normalized_alias": "四逆",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "四逆",
+          "canonical_target_term": "四逆",
+          "canonical_query": "四逆是什么意思",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "gold_definition_2",
+        "query": "四逆是什么意思",
+        "category": "gold_safe_definition_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:DPO-ce8ffb681e3f"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "full:passages:ZJSHL-CH-015-P-0203",
+          "safe:main_passages:ZJSHL-CH-015-P-0253",
+          "safe:main_passages:ZJSHL-CH-029-P-0001",
+          "safe:main_passages:ZJSHL-CH-008-P-0217",
+          "safe:main_passages:ZJSHL-CH-014-P-0107",
+          "full:passages:ZJSHL-CH-029-P-0002",
+          "full:passages:ZJSHL-CH-015-P-0202",
+          "full:passages:ZJSHL-CH-015-P-0254",
+          "full:passages:ZJSHL-CH-015-P-0252"
+        ],
+        "review_ids": [],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-ce8ffb681e3f"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-ce8ffb681e3f",
+              "canonical_term": "四逆",
+              "alias": "四逆",
+              "normalized_alias": "四逆",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "四逆",
+          "canonical_target_term": "四逆",
+          "canonical_query": "四逆是什么意思",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "gold-safe definition guard remains strong"
+    },
+    {
+      "query_id": "gold_definition_3",
+      "query": "盗汗是什么意思",
+      "category": "gold_safe_definition_guard",
+      "canonical_term": "",
+      "quality_audit_verdict": "",
+      "before": {
+        "query_id": "gold_definition_3",
+        "query": "盗汗是什么意思",
+        "category": "gold_safe_definition_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:DPO-246b6bf4c029"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-010-P-0020",
+          "safe:main_passages:ZJSHL-CH-010-P-0017",
+          "full:annotations:ZJSHL-CH-010-P-0018",
+          "safe:main_passages:ZJSHL-CH-010-P-0022",
+          "safe:main_passages:ZJSHL-CH-010-P-0019",
+          "full:passages:ZJSHL-CH-010-P-0018",
+          "full:passages:ZJSHL-CH-010-P-0017",
+          "full:passages:ZJSHL-CH-010-P-0023",
+          "full:passages:ZJSHL-CH-010-P-0019",
+          "full:passages:ZJSHL-CH-010-P-0021"
+        ],
+        "review_ids": [
+          "full:ambiguous_passages:ZJSHL-CH-011-P-0052"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-246b6bf4c029"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-246b6bf4c029",
+              "canonical_term": "盗汗",
+              "alias": "盗汗",
+              "normalized_alias": "盗汗",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "盗汗",
+          "canonical_target_term": "盗汗",
+          "canonical_query": "盗汗是什么意思",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "gold_definition_3",
+        "query": "盗汗是什么意思",
+        "category": "gold_safe_definition_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:DPO-246b6bf4c029"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-010-P-0020",
+          "safe:main_passages:ZJSHL-CH-010-P-0017",
+          "full:annotations:ZJSHL-CH-010-P-0018",
+          "safe:main_passages:ZJSHL-CH-010-P-0022",
+          "safe:main_passages:ZJSHL-CH-010-P-0019",
+          "full:passages:ZJSHL-CH-010-P-0018",
+          "full:passages:ZJSHL-CH-010-P-0017",
+          "full:passages:ZJSHL-CH-010-P-0023",
+          "full:passages:ZJSHL-CH-010-P-0019",
+          "full:passages:ZJSHL-CH-010-P-0021"
+        ],
+        "review_ids": [
+          "full:ambiguous_passages:ZJSHL-CH-011-P-0052"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-246b6bf4c029"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-246b6bf4c029",
+              "canonical_term": "盗汗",
+              "alias": "盗汗",
+              "normalized_alias": "盗汗",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么意思",
+            "match_mode": "suffix",
+            "intent_hint": "what_means",
+            "canonical_query_template": "{topic}是什么意思"
+          },
+          "normalized_target_term": "盗汗",
+          "canonical_target_term": "盗汗",
+          "canonical_query": "盗汗是什么意思",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "gold-safe definition guard remains strong"
+    },
+    {
+      "query_id": "gold_definition_4",
+      "query": "水结胸是什么",
+      "category": "gold_safe_definition_guard",
+      "canonical_term": "",
+      "quality_audit_verdict": "",
+      "before": {
+        "query_id": "gold_definition_4",
+        "query": "水结胸是什么",
+        "category": "gold_safe_definition_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:DPO-e8f5807c114a"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-010-P-0026"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-e8f5807c114a"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-e8f5807c114a",
+              "canonical_term": "水结胸",
+              "alias": "水结胸",
+              "normalized_alias": "水结胸",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                3
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么",
+            "match_mode": "suffix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "{topic}是什么"
+          },
+          "normalized_target_term": "水结胸",
+          "canonical_target_term": "水结胸",
+          "canonical_query": "水结胸是什么",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "gold_definition_4",
+        "query": "水结胸是什么",
+        "category": "gold_safe_definition_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:DPO-e8f5807c114a"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-010-P-0026"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-e8f5807c114a"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-e8f5807c114a",
+              "canonical_term": "水结胸",
+              "alias": "水结胸",
+              "normalized_alias": "水结胸",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                3
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么",
+            "match_mode": "suffix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "{topic}是什么"
+          },
+          "normalized_target_term": "水结胸",
+          "canonical_target_term": "水结胸",
+          "canonical_query": "水结胸是什么",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "gold-safe definition guard remains strong"
+    },
+    {
+      "query_id": "gold_definition_5",
+      "query": "坏病是什么",
+      "category": "gold_safe_definition_guard",
+      "canonical_term": "",
+      "quality_audit_verdict": "",
+      "before": {
+        "query_id": "gold_definition_5",
+        "query": "坏病是什么",
+        "category": "gold_safe_definition_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:DPO-f2fb5cd46de2"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "full:passages:ZJSHL-CH-008-P-0227"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-008-P-0226"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-f2fb5cd46de2"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-f2fb5cd46de2",
+              "canonical_term": "坏病",
+              "alias": "坏病",
+              "normalized_alias": "坏病",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么",
+            "match_mode": "suffix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "{topic}是什么"
+          },
+          "normalized_target_term": "坏病",
+          "canonical_target_term": "坏病",
+          "canonical_query": "坏病是什么",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "gold_definition_5",
+        "query": "坏病是什么",
+        "category": "gold_safe_definition_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:definition_terms:DPO-f2fb5cd46de2"
+        ],
+        "primary_record_types": [
+          "definition_terms"
+        ],
+        "secondary_ids": [
+          "full:passages:ZJSHL-CH-008-P-0227"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-008-P-0226"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "term_normalization",
+        "term_normalization": {
+          "enabled": true,
+          "type": "normalized_query",
+          "concept_ids": [
+            "DPO-f2fb5cd46de2"
+          ],
+          "matches": [
+            {
+              "concept_id": "DPO-f2fb5cd46de2",
+              "canonical_term": "坏病",
+              "alias": "坏病",
+              "normalized_alias": "坏病",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "source": "data_plane_optimization_v1",
+              "span": [
+                0,
+                2
+              ]
+            }
+          ],
+          "matched_query_family": {
+            "surface_form": "是什么",
+            "match_mode": "suffix",
+            "intent_hint": "what_is",
+            "canonical_query_template": "{topic}是什么"
+          },
+          "normalized_target_term": "坏病",
+          "canonical_target_term": "坏病",
+          "canonical_query": "坏病是什么",
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 1,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "gold-safe definition guard remains strong"
+    },
+    {
+      "query_id": "formula_guard_1",
+      "query": "桂枝去芍药汤方的条文是什么？",
+      "category": "formula_guard",
+      "canonical_term": "",
+      "quality_audit_verdict": "",
+      "before": {
+        "query_id": "formula_guard_1",
+        "query": "桂枝去芍药汤方的条文是什么？",
+        "category": "formula_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-025-P-0005"
+        ],
+        "primary_record_types": [
+          "main_passages"
+        ],
+        "secondary_ids": [],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-025-P-0005",
+          "full:passages:ZJSHL-CH-008-P-0238"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 0,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "formula_guard_1",
+        "query": "桂枝去芍药汤方的条文是什么？",
+        "category": "formula_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-025-P-0005"
+        ],
+        "primary_record_types": [
+          "main_passages"
+        ],
+        "secondary_ids": [],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-025-P-0005",
+          "full:passages:ZJSHL-CH-008-P-0238"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 0,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "formula guard remains strong with main primary"
+    },
+    {
+      "query_id": "formula_guard_2",
+      "query": "桂枝去芍药加附子汤方的条文是什么？",
+      "category": "formula_guard",
+      "canonical_term": "",
+      "quality_audit_verdict": "",
+      "before": {
+        "query_id": "formula_guard_2",
+        "query": "桂枝去芍药加附子汤方的条文是什么？",
+        "category": "formula_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-025-P-0006"
+        ],
+        "primary_record_types": [
+          "main_passages"
+        ],
+        "secondary_ids": [],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-025-P-0006",
+          "full:passages:ZJSHL-CH-008-P-0238"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 0,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "formula_guard_2",
+        "query": "桂枝去芍药加附子汤方的条文是什么？",
+        "category": "formula_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-025-P-0006"
+        ],
+        "primary_record_types": [
+          "main_passages"
+        ],
+        "secondary_ids": [],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-025-P-0006",
+          "full:passages:ZJSHL-CH-008-P-0238"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 0,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "formula guard remains strong with main primary"
+    },
+    {
+      "query_id": "formula_guard_3",
+      "query": "四逆加人参汤方的条文是什么？",
+      "category": "formula_guard",
+      "canonical_term": "",
+      "quality_audit_verdict": "",
+      "before": {
+        "query_id": "formula_guard_3",
+        "query": "四逆加人参汤方的条文是什么？",
+        "category": "formula_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-029-P-0001"
+        ],
+        "primary_record_types": [
+          "main_passages"
+        ],
+        "secondary_ids": [
+          "full:annotations:ZJSHL-CH-014-P-0161"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-029-P-0001"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 0,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "formula_guard_3",
+        "query": "四逆加人参汤方的条文是什么？",
+        "category": "formula_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-029-P-0001"
+        ],
+        "primary_record_types": [
+          "main_passages"
+        ],
+        "secondary_ids": [
+          "full:annotations:ZJSHL-CH-014-P-0161"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-029-P-0001"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 0,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "formula guard remains strong with main primary"
+    },
+    {
+      "query_id": "formula_guard_4",
+      "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+      "category": "formula_guard",
+      "canonical_term": "",
+      "quality_audit_verdict": "",
+      "before": {
+        "query_id": "formula_guard_4",
+        "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+        "category": "formula_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-025-P-0004",
+          "safe:main_passages:ZJSHL-CH-025-P-0003"
+        ],
+        "primary_record_types": [
+          "main_passages",
+          "main_passages"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-008-P-0236"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-025-P-0004",
+          "full:passages:ZJSHL-CH-008-P-0236",
+          "full:passages:ZJSHL-CH-025-P-0003",
+          "full:passages:ZJSHL-CH-009-P-0053"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 0,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "formula_guard_4",
+        "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+        "category": "formula_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-025-P-0004",
+          "safe:main_passages:ZJSHL-CH-025-P-0003"
+        ],
+        "primary_record_types": [
+          "main_passages",
+          "main_passages"
+        ],
+        "secondary_ids": [
+          "safe:main_passages:ZJSHL-CH-008-P-0236"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-025-P-0004",
+          "full:passages:ZJSHL-CH-008-P-0236",
+          "full:passages:ZJSHL-CH-025-P-0003",
+          "full:passages:ZJSHL-CH-009-P-0053"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 0,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "formula guard remains strong with main primary"
+    },
+    {
+      "query_id": "formula_guard_5",
+      "query": "桂枝去桂加茯苓白术汤方的条文是什么？",
+      "category": "formula_guard",
+      "canonical_term": "",
+      "quality_audit_verdict": "",
+      "before": {
+        "query_id": "formula_guard_5",
+        "query": "桂枝去桂加茯苓白术汤方的条文是什么？",
+        "category": "formula_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-025-P-0013"
+        ],
+        "primary_record_types": [
+          "main_passages"
+        ],
+        "secondary_ids": [],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-025-P-0013"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 0,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "formula_guard_5",
+        "query": "桂枝去桂加茯苓白术汤方的条文是什么？",
+        "category": "formula_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "strong",
+        "mode_bucket": "strong",
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-025-P-0013"
+        ],
+        "primary_record_types": [
+          "main_passages"
+        ],
+        "secondary_ids": [],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-025-P-0013"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 0,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "formula guard remains strong with main primary"
+    },
+    {
+      "query_id": "review_boundary_1",
+      "query": "神丹是什么意思",
+      "category": "review_only_boundary_guard",
+      "canonical_term": "",
+      "quality_audit_verdict": "",
+      "before": {
+        "query_id": "review_boundary_1",
+        "query": "神丹是什么意思",
+        "category": "review_only_boundary_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "weak_with_review_notice",
+        "mode_bucket": "weak",
+        "primary_ids": [],
+        "primary_record_types": [],
+        "secondary_ids": [
+          "full:annotations:ZJSHL-CH-006-P-0118",
+          "full:annotations:ZJSHL-CH-006-P-0123"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-006-P-0118",
+          "full:passages:ZJSHL-CH-006-P-0123"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 0,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "review_boundary_1",
+        "query": "神丹是什么意思",
+        "category": "review_only_boundary_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "weak_with_review_notice",
+        "mode_bucket": "weak",
+        "primary_ids": [],
+        "primary_record_types": [],
+        "secondary_ids": [
+          "full:annotations:ZJSHL-CH-006-P-0118",
+          "full:annotations:ZJSHL-CH-006-P-0123"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-006-P-0118",
+          "full:passages:ZJSHL-CH-006-P-0123"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 0,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "review-only boundary stayed outside definition primary"
+    },
+    {
+      "query_id": "review_boundary_2",
+      "query": "将军是什么意思",
+      "category": "review_only_boundary_guard",
+      "canonical_term": "",
+      "quality_audit_verdict": "",
+      "before": {
+        "query_id": "review_boundary_2",
+        "query": "将军是什么意思",
+        "category": "review_only_boundary_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "weak_with_review_notice",
+        "mode_bucket": "weak",
+        "primary_ids": [],
+        "primary_record_types": [],
+        "secondary_ids": [
+          "full:annotations:ZJSHL-CH-010-P-0021"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-010-P-0021"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 0,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "review_boundary_2",
+        "query": "将军是什么意思",
+        "category": "review_only_boundary_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "weak_with_review_notice",
+        "mode_bucket": "weak",
+        "primary_ids": [],
+        "primary_record_types": [],
+        "secondary_ids": [
+          "full:annotations:ZJSHL-CH-010-P-0021"
+        ],
+        "review_ids": [
+          "full:passages:ZJSHL-CH-010-P-0021"
+        ],
+        "primary_forbidden_items": [],
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 0,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "review-only boundary stayed outside definition primary"
+    },
+    {
+      "query_id": "review_boundary_3",
+      "query": "口苦病是什么意思",
+      "category": "review_only_boundary_guard",
+      "canonical_term": "",
+      "quality_audit_verdict": "",
+      "before": {
+        "query_id": "review_boundary_3",
+        "query": "口苦病是什么意思",
+        "category": "review_only_boundary_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "refuse",
+        "mode_bucket": "refuse",
+        "primary_ids": [],
+        "primary_record_types": [],
+        "secondary_ids": [],
+        "review_ids": [],
+        "primary_forbidden_items": [],
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 0,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "review_boundary_3",
+        "query": "口苦病是什么意思",
+        "category": "review_only_boundary_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "refuse",
+        "mode_bucket": "refuse",
+        "primary_ids": [],
+        "primary_record_types": [],
+        "secondary_ids": [],
+        "review_ids": [],
+        "primary_forbidden_items": [],
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 0,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "review-only boundary stayed outside definition primary"
+    },
+    {
+      "query_id": "review_boundary_4",
+      "query": "胆瘅病是什么意思",
+      "category": "review_only_boundary_guard",
+      "canonical_term": "",
+      "quality_audit_verdict": "",
+      "before": {
+        "query_id": "review_boundary_4",
+        "query": "胆瘅病是什么意思",
+        "category": "review_only_boundary_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "refuse",
+        "mode_bucket": "refuse",
+        "primary_ids": [],
+        "primary_record_types": [],
+        "secondary_ids": [],
+        "review_ids": [],
+        "primary_forbidden_items": [],
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 0,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "after": {
+        "query_id": "review_boundary_4",
+        "query": "胆瘅病是什么意思",
+        "category": "review_only_boundary_guard",
+        "canonical_term": "",
+        "concept_id": null,
+        "expected_primary_policy": "",
+        "quality_audit_verdict": "",
+        "answer_mode": "refuse",
+        "mode_bucket": "refuse",
+        "primary_ids": [],
+        "primary_record_types": [],
+        "secondary_ids": [],
+        "review_ids": [],
+        "primary_forbidden_items": [],
+        "query_focus_source": "noise_stripped_query",
+        "term_normalization": {
+          "enabled": true,
+          "type": "none",
+          "concept_ids": [],
+          "matches": [],
+          "matched_query_family": null,
+          "normalized_target_term": null,
+          "canonical_target_term": null,
+          "canonical_query": null,
+          "disabled_reason": null
+        },
+        "definition_object_primary_count": 0,
+        "ahv_primary_hit": false,
+        "formula_bad_anchor_top5_count": 0
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false,
+        "ahv_primary_hit_changed": false
+      },
+      "pass": true,
+      "pass_reason": "review-only boundary stayed outside definition primary"
+    }
+  ],
+  "failures": []
+}

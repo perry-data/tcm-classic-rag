@@ -1,0 +1,1856 @@
+{
+  "run_id": "cross_batch_adversarial_regression_v1",
+  "generated_at_utc": "2026-04-24T08:24:14.630112+00:00",
+  "query_count": 120,
+  "query_type_counts": {
+    "ahv2_canonical_guard": 20,
+    "ahv_v1_canonical_guard": 20,
+    "alias_partial_negative": 20,
+    "cross_batch_concept_conflict": 25,
+    "formula_guard": 5,
+    "non_definition_intent": 20,
+    "review_only_rejected_guard": 10
+  },
+  "queries": [
+    {
+      "query_id": "ahv_v1_canonical_01",
+      "query": "何谓太阳病",
+      "query_type": "ahv_v1_canonical_guard",
+      "expected_behavior": "必须命中 AHV v1 `太阳病` safe primary。",
+      "expected_terms": [
+        "太阳病"
+      ],
+      "expected_batch": "ahv_v1",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "太阳病"
+      ]
+    },
+    {
+      "query_id": "ahv_v1_canonical_02",
+      "query": "伤寒是什么",
+      "query_type": "ahv_v1_canonical_guard",
+      "expected_behavior": "必须命中 AHV v1 `伤寒` safe primary。",
+      "expected_terms": [
+        "伤寒"
+      ],
+      "expected_batch": "ahv_v1",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "伤寒"
+      ]
+    },
+    {
+      "query_id": "ahv_v1_canonical_03",
+      "query": "温病是什么意思",
+      "query_type": "ahv_v1_canonical_guard",
+      "expected_behavior": "必须命中 AHV v1 `温病` safe primary。",
+      "expected_terms": [
+        "温病"
+      ],
+      "expected_batch": "ahv_v1",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "温病"
+      ]
+    },
+    {
+      "query_id": "ahv_v1_canonical_04",
+      "query": "暑病是什么意思",
+      "query_type": "ahv_v1_canonical_guard",
+      "expected_behavior": "必须命中 AHV v1 `暑病` safe primary。",
+      "expected_terms": [
+        "暑病"
+      ],
+      "expected_batch": "ahv_v1",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "暑病"
+      ]
+    },
+    {
+      "query_id": "ahv_v1_canonical_05",
+      "query": "冬温是什么",
+      "query_type": "ahv_v1_canonical_guard",
+      "expected_behavior": "必须命中 AHV v1 `冬温` safe primary。",
+      "expected_terms": [
+        "冬温"
+      ],
+      "expected_batch": "ahv_v1",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "冬温"
+      ]
+    },
+    {
+      "query_id": "ahv_v1_canonical_06",
+      "query": "时行寒疫是什么",
+      "query_type": "ahv_v1_canonical_guard",
+      "expected_behavior": "必须命中 AHV v1 `时行寒疫` safe primary。",
+      "expected_terms": [
+        "时行寒疫"
+      ],
+      "expected_batch": "ahv_v1",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "时行寒疫"
+      ]
+    },
+    {
+      "query_id": "ahv_v1_canonical_07",
+      "query": "刚痓是什么",
+      "query_type": "ahv_v1_canonical_guard",
+      "expected_behavior": "必须命中 AHV v1 `刚痓` safe primary。",
+      "expected_terms": [
+        "刚痓"
+      ],
+      "expected_batch": "ahv_v1",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "刚痓"
+      ]
+    },
+    {
+      "query_id": "ahv_v1_canonical_08",
+      "query": "柔痓是什么意思",
+      "query_type": "ahv_v1_canonical_guard",
+      "expected_behavior": "必须命中 AHV v1 `柔痓` safe primary。",
+      "expected_terms": [
+        "柔痓"
+      ],
+      "expected_batch": "ahv_v1",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "柔痓"
+      ]
+    },
+    {
+      "query_id": "ahv_v1_canonical_09",
+      "query": "痓病是什么",
+      "query_type": "ahv_v1_canonical_guard",
+      "expected_behavior": "必须命中 AHV v1 `痓病` safe primary。",
+      "expected_terms": [
+        "痓病"
+      ],
+      "expected_batch": "ahv_v1",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "痓病"
+      ]
+    },
+    {
+      "query_id": "ahv_v1_canonical_10",
+      "query": "结脉是什么",
+      "query_type": "ahv_v1_canonical_guard",
+      "expected_behavior": "必须命中 AHV v1 `结脉` safe primary。",
+      "expected_terms": [
+        "结脉"
+      ],
+      "expected_batch": "ahv_v1",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "结脉"
+      ]
+    },
+    {
+      "query_id": "ahv_v1_canonical_11",
+      "query": "促脉是什么",
+      "query_type": "ahv_v1_canonical_guard",
+      "expected_behavior": "必须命中 AHV v1 `促脉` safe primary。",
+      "expected_terms": [
+        "促脉"
+      ],
+      "expected_batch": "ahv_v1",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "促脉"
+      ]
+    },
+    {
+      "query_id": "ahv_v1_canonical_12",
+      "query": "弦脉是什么",
+      "query_type": "ahv_v1_canonical_guard",
+      "expected_behavior": "必须命中 AHV v1 `弦脉` safe primary。",
+      "expected_terms": [
+        "弦脉"
+      ],
+      "expected_batch": "ahv_v1",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "弦脉"
+      ]
+    },
+    {
+      "query_id": "ahv_v1_canonical_13",
+      "query": "滑脉是什么意思",
+      "query_type": "ahv_v1_canonical_guard",
+      "expected_behavior": "必须命中 AHV v1 `滑脉` safe primary。",
+      "expected_terms": [
+        "滑脉"
+      ],
+      "expected_batch": "ahv_v1",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "滑脉"
+      ]
+    },
+    {
+      "query_id": "ahv_v1_canonical_14",
+      "query": "革脉是什么",
+      "query_type": "ahv_v1_canonical_guard",
+      "expected_behavior": "必须命中 AHV v1 `革脉` safe primary。",
+      "expected_terms": [
+        "革脉"
+      ],
+      "expected_batch": "ahv_v1",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "革脉"
+      ]
+    },
+    {
+      "query_id": "ahv_v1_canonical_15",
+      "query": "行尸是什么意思",
+      "query_type": "ahv_v1_canonical_guard",
+      "expected_behavior": "必须命中 AHV v1 `行尸` safe primary。",
+      "expected_terms": [
+        "行尸"
+      ],
+      "expected_batch": "ahv_v1",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "行尸"
+      ]
+    },
+    {
+      "query_id": "ahv_v1_canonical_16",
+      "query": "内虚是什么意思",
+      "query_type": "ahv_v1_canonical_guard",
+      "expected_behavior": "必须命中 AHV v1 `内虚` safe primary。",
+      "expected_terms": [
+        "内虚"
+      ],
+      "expected_batch": "ahv_v1",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "内虚"
+      ]
+    },
+    {
+      "query_id": "ahv_v1_canonical_17",
+      "query": "血崩是什么",
+      "query_type": "ahv_v1_canonical_guard",
+      "expected_behavior": "必须命中 AHV v1 `血崩` safe primary。",
+      "expected_terms": [
+        "血崩"
+      ],
+      "expected_batch": "ahv_v1",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "血崩"
+      ]
+    },
+    {
+      "query_id": "ahv_v1_canonical_18",
+      "query": "霍乱是什么",
+      "query_type": "ahv_v1_canonical_guard",
+      "expected_behavior": "必须命中 AHV v1 `霍乱` safe primary。",
+      "expected_terms": [
+        "霍乱"
+      ],
+      "expected_batch": "ahv_v1",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "霍乱"
+      ]
+    },
+    {
+      "query_id": "ahv_v1_canonical_19",
+      "query": "劳复是什么意思",
+      "query_type": "ahv_v1_canonical_guard",
+      "expected_behavior": "必须命中 AHV v1 `劳复` safe primary。",
+      "expected_terms": [
+        "劳复"
+      ],
+      "expected_batch": "ahv_v1",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "劳复"
+      ]
+    },
+    {
+      "query_id": "ahv_v1_canonical_20",
+      "query": "食复是什么意思",
+      "query_type": "ahv_v1_canonical_guard",
+      "expected_behavior": "必须命中 AHV v1 `食复` safe primary。",
+      "expected_terms": [
+        "食复"
+      ],
+      "expected_batch": "ahv_v1",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "食复"
+      ]
+    },
+    {
+      "query_id": "ahv2_canonical_01",
+      "query": "荣气微是什么意思",
+      "query_type": "ahv2_canonical_guard",
+      "expected_behavior": "必须命中 AHV2 `荣气微` safe primary。",
+      "expected_terms": [
+        "荣气微"
+      ],
+      "expected_batch": "ahv2",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "荣气微"
+      ]
+    },
+    {
+      "query_id": "ahv2_canonical_02",
+      "query": "卫气衰是什么意思",
+      "query_type": "ahv2_canonical_guard",
+      "expected_behavior": "必须命中 AHV2 `卫气衰` safe primary。",
+      "expected_terms": [
+        "卫气衰"
+      ],
+      "expected_batch": "ahv2",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "卫气衰"
+      ]
+    },
+    {
+      "query_id": "ahv2_canonical_03",
+      "query": "阳气微是什么意思",
+      "query_type": "ahv2_canonical_guard",
+      "expected_behavior": "必须命中 AHV2 `阳气微` safe primary。",
+      "expected_terms": [
+        "阳气微"
+      ],
+      "expected_batch": "ahv2",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "阳气微"
+      ]
+    },
+    {
+      "query_id": "ahv2_canonical_04",
+      "query": "亡血是什么意思",
+      "query_type": "ahv2_canonical_guard",
+      "expected_behavior": "必须命中 AHV2 `亡血` safe primary。",
+      "expected_terms": [
+        "亡血"
+      ],
+      "expected_batch": "ahv2",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "亡血"
+      ]
+    },
+    {
+      "query_id": "ahv2_canonical_05",
+      "query": "平脉是什么意思",
+      "query_type": "ahv2_canonical_guard",
+      "expected_behavior": "必须命中 AHV2 `平脉` safe primary。",
+      "expected_terms": [
+        "平脉"
+      ],
+      "expected_batch": "ahv2",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "平脉"
+      ]
+    },
+    {
+      "query_id": "ahv2_canonical_06",
+      "query": "数脉是什么意思",
+      "query_type": "ahv2_canonical_guard",
+      "expected_behavior": "必须命中 AHV2 `数脉` safe primary。",
+      "expected_terms": [
+        "数脉"
+      ],
+      "expected_batch": "ahv2",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "数脉"
+      ]
+    },
+    {
+      "query_id": "ahv2_canonical_07",
+      "query": "毛脉是什么意思",
+      "query_type": "ahv2_canonical_guard",
+      "expected_behavior": "必须命中 AHV2 `毛脉` safe primary。",
+      "expected_terms": [
+        "毛脉"
+      ],
+      "expected_batch": "ahv2",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "毛脉"
+      ]
+    },
+    {
+      "query_id": "ahv2_canonical_08",
+      "query": "纯弦脉是什么意思",
+      "query_type": "ahv2_canonical_guard",
+      "expected_behavior": "必须命中 AHV2 `纯弦脉` safe primary。",
+      "expected_terms": [
+        "纯弦脉"
+      ],
+      "expected_batch": "ahv2",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "纯弦脉"
+      ]
+    },
+    {
+      "query_id": "ahv2_canonical_09",
+      "query": "残贼是什么意思",
+      "query_type": "ahv2_canonical_guard",
+      "expected_behavior": "必须命中 AHV2 `残贼` safe primary。",
+      "expected_terms": [
+        "残贼"
+      ],
+      "expected_batch": "ahv2",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "残贼"
+      ]
+    },
+    {
+      "query_id": "ahv2_canonical_10",
+      "query": "八邪是什么意思",
+      "query_type": "ahv2_canonical_guard",
+      "expected_behavior": "必须命中 AHV2 `八邪` safe primary。",
+      "expected_terms": [
+        "八邪"
+      ],
+      "expected_batch": "ahv2",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "八邪"
+      ]
+    },
+    {
+      "query_id": "ahv2_canonical_11",
+      "query": "湿家是什么意思",
+      "query_type": "ahv2_canonical_guard",
+      "expected_behavior": "必须命中 AHV2 `湿家` safe primary。",
+      "expected_terms": [
+        "湿家"
+      ],
+      "expected_batch": "ahv2",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "湿家"
+      ]
+    },
+    {
+      "query_id": "ahv2_canonical_12",
+      "query": "风湿是什么意思",
+      "query_type": "ahv2_canonical_guard",
+      "expected_behavior": "必须命中 AHV2 `风湿` safe primary。",
+      "expected_terms": [
+        "风湿"
+      ],
+      "expected_batch": "ahv2",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "风湿"
+      ]
+    },
+    {
+      "query_id": "ahv2_canonical_13",
+      "query": "水逆是什么意思",
+      "query_type": "ahv2_canonical_guard",
+      "expected_behavior": "必须命中 AHV2 `水逆` safe primary。",
+      "expected_terms": [
+        "水逆"
+      ],
+      "expected_batch": "ahv2",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "水逆"
+      ]
+    },
+    {
+      "query_id": "ahv2_canonical_14",
+      "query": "半表半里证是什么意思",
+      "query_type": "ahv2_canonical_guard",
+      "expected_behavior": "必须命中 AHV2 `半表半里证` safe primary。",
+      "expected_terms": [
+        "半表半里证"
+      ],
+      "expected_batch": "ahv2",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "半表半里证"
+      ]
+    },
+    {
+      "query_id": "ahv2_canonical_15",
+      "query": "过经是什么意思",
+      "query_type": "ahv2_canonical_guard",
+      "expected_behavior": "必须命中 AHV2 `过经` safe primary。",
+      "expected_terms": [
+        "过经"
+      ],
+      "expected_batch": "ahv2",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "过经"
+      ]
+    },
+    {
+      "query_id": "ahv2_canonical_16",
+      "query": "结胸是什么意思",
+      "query_type": "ahv2_canonical_guard",
+      "expected_behavior": "必须命中 AHV2 `结胸` safe primary。",
+      "expected_terms": [
+        "结胸"
+      ],
+      "expected_batch": "ahv2",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "结胸"
+      ]
+    },
+    {
+      "query_id": "ahv2_canonical_17",
+      "query": "阳明病是什么",
+      "query_type": "ahv2_canonical_guard",
+      "expected_behavior": "必须命中 AHV2 `阳明病` safe primary。",
+      "expected_terms": [
+        "阳明病"
+      ],
+      "expected_batch": "ahv2",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "阳明病"
+      ]
+    },
+    {
+      "query_id": "ahv2_canonical_18",
+      "query": "太阴病是什么",
+      "query_type": "ahv2_canonical_guard",
+      "expected_behavior": "必须命中 AHV2 `太阴病` safe primary。",
+      "expected_terms": [
+        "太阴病"
+      ],
+      "expected_batch": "ahv2",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "太阴病"
+      ]
+    },
+    {
+      "query_id": "ahv2_canonical_19",
+      "query": "少阴病是什么",
+      "query_type": "ahv2_canonical_guard",
+      "expected_behavior": "必须命中 AHV2 `少阴病` safe primary。",
+      "expected_terms": [
+        "少阴病"
+      ],
+      "expected_batch": "ahv2",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "少阴病"
+      ]
+    },
+    {
+      "query_id": "ahv2_canonical_20",
+      "query": "厥阴病是什么",
+      "query_type": "ahv2_canonical_guard",
+      "expected_behavior": "必须命中 AHV2 `厥阴病` safe primary。",
+      "expected_terms": [
+        "厥阴病"
+      ],
+      "expected_batch": "ahv2",
+      "require_no_ahv_primary": false,
+      "require_no_ahv_normalization": false,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": true,
+      "allow_normalization_terms": [
+        "厥阴病"
+      ]
+    },
+    {
+      "query_id": "conflict_01",
+      "query": "太阳病和阳明病有什么区别",
+      "query_type": "cross_batch_concept_conflict",
+      "expected_behavior": "六经比较不得被单个 AHV 对象抢 primary。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "conflict_02",
+      "query": "伤寒和温病有什么区别",
+      "query_type": "cross_batch_concept_conflict",
+      "expected_behavior": "伤寒/温病比较不得被单个 AHV 对象抢 primary。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "conflict_03",
+      "query": "伤寒和暑病是一回事吗",
+      "query_type": "cross_batch_concept_conflict",
+      "expected_behavior": "近义/关系问法不得单点归一。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "conflict_04",
+      "query": "刚痓和柔痓有什么不同",
+      "query_type": "cross_batch_concept_conflict",
+      "expected_behavior": "刚痓/柔痓比较不得单点归一。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "conflict_05",
+      "query": "痓病和刚痓是什么关系",
+      "query_type": "cross_batch_concept_conflict",
+      "expected_behavior": "宽窄关系问法不得被单个对象抢 primary。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "conflict_06",
+      "query": "结脉和促脉有什么区别",
+      "query_type": "cross_batch_concept_conflict",
+      "expected_behavior": "脉象比较不得单点归一。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "conflict_07",
+      "query": "弦脉和纯弦脉有什么区别",
+      "query_type": "cross_batch_concept_conflict",
+      "expected_behavior": "相近脉象比较不得单点归一。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "conflict_08",
+      "query": "滑脉和数脉有什么区别",
+      "query_type": "cross_batch_concept_conflict",
+      "expected_behavior": "脉象比较不得单点归一。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "conflict_09",
+      "query": "劳复和食复一样吗",
+      "query_type": "cross_batch_concept_conflict",
+      "expected_behavior": "瘥后复病关系问法不得单点归一。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "conflict_10",
+      "query": "结胸和水逆有什么不同",
+      "query_type": "cross_batch_concept_conflict",
+      "expected_behavior": "病证比较不得单点归一。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "conflict_11",
+      "query": "半表半里证和结胸有什么关系",
+      "query_type": "cross_batch_concept_conflict",
+      "expected_behavior": "关系问法不得单点归一。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "conflict_12",
+      "query": "水逆和水结胸是一回事吗",
+      "query_type": "cross_batch_concept_conflict",
+      "expected_behavior": "近词比较不得单点归一。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "conflict_13",
+      "query": "少阴病和厥阴病有什么区别",
+      "query_type": "cross_batch_concept_conflict",
+      "expected_behavior": "六经比较不得单点归一。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "conflict_14",
+      "query": "太阴病和阳明病有什么区别",
+      "query_type": "cross_batch_concept_conflict",
+      "expected_behavior": "六经比较不得单点归一。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "conflict_15",
+      "query": "温病和暑病有什么关系",
+      "query_type": "cross_batch_concept_conflict",
+      "expected_behavior": "时病关系问法不得单点归一。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "conflict_16",
+      "query": "冬温和温病是一回事吗",
+      "query_type": "cross_batch_concept_conflict",
+      "expected_behavior": "宽窄关系不得误归一。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "conflict_17",
+      "query": "时行寒疫和伤寒有什么不同",
+      "query_type": "cross_batch_concept_conflict",
+      "expected_behavior": "相近外感病名不得误归一。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "conflict_18",
+      "query": "平脉和数脉有什么区别",
+      "query_type": "cross_batch_concept_conflict",
+      "expected_behavior": "脉象比较不得单点归一。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "conflict_19",
+      "query": "毛脉和革脉有什么区别",
+      "query_type": "cross_batch_concept_conflict",
+      "expected_behavior": "脉象比较不得单点归一。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "conflict_20",
+      "query": "残贼和八邪有什么关系",
+      "query_type": "cross_batch_concept_conflict",
+      "expected_behavior": "分类/病理关系不得单点归一。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "conflict_21",
+      "query": "湿家和风湿有什么区别",
+      "query_type": "cross_batch_concept_conflict",
+      "expected_behavior": "湿病相关概念不得互抢。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "conflict_22",
+      "query": "阳气微和内虚有什么关系",
+      "query_type": "cross_batch_concept_conflict",
+      "expected_behavior": "跨批次状态概念不得误归一。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "conflict_23",
+      "query": "亡血和血崩是一回事吗",
+      "query_type": "cross_batch_concept_conflict",
+      "expected_behavior": "气血状态/病名不得误归一。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "conflict_24",
+      "query": "过经和劳复有什么不同",
+      "query_type": "cross_batch_concept_conflict",
+      "expected_behavior": "病程/复病概念不得误归一。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "conflict_25",
+      "query": "太阳病和少阴病怎样区分",
+      "query_type": "cross_batch_concept_conflict",
+      "expected_behavior": "六经区分问法不得单点归一。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "non_definition_01",
+      "query": "阳明病用什么方",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "治疗、方药、病机、预后、条文意图不得被 AHV definition primary 抢占。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "non_definition_02",
+      "query": "少阴病怎么治",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "治疗、方药、病机、预后、条文意图不得被 AHV definition primary 抢占。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "non_definition_03",
+      "query": "厥阴病有哪些方",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "治疗、方药、病机、预后、条文意图不得被 AHV definition primary 抢占。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "non_definition_04",
+      "query": "霍乱用什么方",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "治疗、方药、病机、预后、条文意图不得被 AHV definition primary 抢占。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "non_definition_05",
+      "query": "结胸怎么治",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "治疗、方药、病机、预后、条文意图不得被 AHV definition primary 抢占。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "non_definition_06",
+      "query": "水逆用什么方",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "治疗、方药、病机、预后、条文意图不得被 AHV definition primary 抢占。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "non_definition_07",
+      "query": "伤寒怎么治疗",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "治疗、方药、病机、预后、条文意图不得被 AHV definition primary 抢占。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "non_definition_08",
+      "query": "温病怎么治",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "治疗、方药、病机、预后、条文意图不得被 AHV definition primary 抢占。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "non_definition_09",
+      "query": "劳复应该怎么处理",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "治疗、方药、病机、预后、条文意图不得被 AHV definition primary 抢占。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "non_definition_10",
+      "query": "食复应该怎么处理",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "治疗、方药、病机、预后、条文意图不得被 AHV definition primary 抢占。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "non_definition_11",
+      "query": "弦脉预后如何",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "治疗、方药、病机、预后、条文意图不得被 AHV definition primary 抢占。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "non_definition_12",
+      "query": "革脉说明什么",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "治疗、方药、病机、预后、条文意图不得被 AHV definition primary 抢占。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "non_definition_13",
+      "query": "结脉有什么方",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "治疗、方药、病机、预后、条文意图不得被 AHV definition primary 抢占。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "non_definition_14",
+      "query": "太阳病的条文是什么",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "治疗、方药、病机、预后、条文意图不得被 AHV definition primary 抢占。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "non_definition_15",
+      "query": "阳明病的条文是什么",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "治疗、方药、病机、预后、条文意图不得被 AHV definition primary 抢占。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "non_definition_16",
+      "query": "太阴病的病机是什么",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "治疗、方药、病机、预后、条文意图不得被 AHV definition primary 抢占。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "non_definition_17",
+      "query": "半表半里证用什么方",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "治疗、方药、病机、预后、条文意图不得被 AHV definition primary 抢占。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "non_definition_18",
+      "query": "风湿如何治疗",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "治疗、方药、病机、预后、条文意图不得被 AHV definition primary 抢占。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "non_definition_19",
+      "query": "亡血怎么处理",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "治疗、方药、病机、预后、条文意图不得被 AHV definition primary 抢占。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "non_definition_20",
+      "query": "过经之后用什么方",
+      "query_type": "non_definition_intent",
+      "expected_behavior": "治疗、方药、病机、预后、条文意图不得被 AHV definition primary 抢占。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "negative_alias_01",
+      "query": "温是什么意思",
+      "query_type": "alias_partial_negative",
+      "expected_behavior": "单字、部分词、现代词、生活词不得触发 AHV primary 或 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "negative_alias_02",
+      "query": "寒是什么意思",
+      "query_type": "alias_partial_negative",
+      "expected_behavior": "单字、部分词、现代词、生活词不得触发 AHV primary 或 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "negative_alias_03",
+      "query": "阳是什么意思",
+      "query_type": "alias_partial_negative",
+      "expected_behavior": "单字、部分词、现代词、生活词不得触发 AHV primary 或 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "negative_alias_04",
+      "query": "阴是什么意思",
+      "query_type": "alias_partial_negative",
+      "expected_behavior": "单字、部分词、现代词、生活词不得触发 AHV primary 或 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "negative_alias_05",
+      "query": "数是什么意思",
+      "query_type": "alias_partial_negative",
+      "expected_behavior": "单字、部分词、现代词、生活词不得触发 AHV primary 或 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "negative_alias_06",
+      "query": "毛是什么意思",
+      "query_type": "alias_partial_negative",
+      "expected_behavior": "单字、部分词、现代词、生活词不得触发 AHV primary 或 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "negative_alias_07",
+      "query": "纯是什么意思",
+      "query_type": "alias_partial_negative",
+      "expected_behavior": "单字、部分词、现代词、生活词不得触发 AHV primary 或 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "negative_alias_08",
+      "query": "弦是什么意思",
+      "query_type": "alias_partial_negative",
+      "expected_behavior": "单字、部分词、现代词、生活词不得触发 AHV primary 或 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "negative_alias_09",
+      "query": "水是什么意思",
+      "query_type": "alias_partial_negative",
+      "expected_behavior": "单字、部分词、现代词、生活词不得触发 AHV primary 或 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "negative_alias_10",
+      "query": "过是什么意思",
+      "query_type": "alias_partial_negative",
+      "expected_behavior": "单字、部分词、现代词、生活词不得触发 AHV primary 或 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "negative_alias_11",
+      "query": "半表是什么意思",
+      "query_type": "alias_partial_negative",
+      "expected_behavior": "单字、部分词、现代词、生活词不得触发 AHV primary 或 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "negative_alias_12",
+      "query": "复习是什么意思",
+      "query_type": "alias_partial_negative",
+      "expected_behavior": "单字、部分词、现代词、生活词不得触发 AHV primary 或 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "negative_alias_13",
+      "query": "劳动是什么意思",
+      "query_type": "alias_partial_negative",
+      "expected_behavior": "单字、部分词、现代词、生活词不得触发 AHV primary 或 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "negative_alias_14",
+      "query": "食物是什么意思",
+      "query_type": "alias_partial_negative",
+      "expected_behavior": "单字、部分词、现代词、生活词不得触发 AHV primary 或 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "negative_alias_15",
+      "query": "太阳能是什么意思",
+      "query_type": "alias_partial_negative",
+      "expected_behavior": "单字、部分词、现代词、生活词不得触发 AHV primary 或 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "negative_alias_16",
+      "query": "阳明山是什么",
+      "query_type": "alias_partial_negative",
+      "expected_behavior": "单字、部分词、现代词、生活词不得触发 AHV primary 或 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "negative_alias_17",
+      "query": "少阴影是什么意思",
+      "query_type": "alias_partial_negative",
+      "expected_behavior": "单字、部分词、现代词、生活词不得触发 AHV primary 或 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "negative_alias_18",
+      "query": "太阴历是什么",
+      "query_type": "alias_partial_negative",
+      "expected_behavior": "单字、部分词、现代词、生活词不得触发 AHV primary 或 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "negative_alias_19",
+      "query": "厥是什么意思",
+      "query_type": "alias_partial_negative",
+      "expected_behavior": "单字、部分词、现代词、生活词不得触发 AHV primary 或 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "negative_alias_20",
+      "query": "八邪游戏是什么",
+      "query_type": "alias_partial_negative",
+      "expected_behavior": "单字、部分词、现代词、生活词不得触发 AHV primary 或 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "review_only_01",
+      "query": "神丹是什么意思",
+      "query_type": "review_only_rejected_guard",
+      "expected_behavior": "review-only/rejected 边界对象不得进入 definition primary，也不得触发 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": true,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "review_only_02",
+      "query": "将军是什么意思",
+      "query_type": "review_only_rejected_guard",
+      "expected_behavior": "review-only/rejected 边界对象不得进入 definition primary，也不得触发 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": true,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "review_only_03",
+      "query": "两阳是什么意思",
+      "query_type": "review_only_rejected_guard",
+      "expected_behavior": "review-only/rejected 边界对象不得进入 definition primary，也不得触发 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": true,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "review_only_04",
+      "query": "胆瘅是什么意思",
+      "query_type": "review_only_rejected_guard",
+      "expected_behavior": "review-only/rejected 边界对象不得进入 definition primary，也不得触发 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": true,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "review_only_05",
+      "query": "火劫发汗是什么意思",
+      "query_type": "review_only_rejected_guard",
+      "expected_behavior": "review-only/rejected 边界对象不得进入 definition primary，也不得触发 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": true,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "review_only_06",
+      "query": "肝乘脾是什么意思",
+      "query_type": "review_only_rejected_guard",
+      "expected_behavior": "review-only/rejected 边界对象不得进入 definition primary，也不得触发 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": true,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "review_only_07",
+      "query": "反是什么意思",
+      "query_type": "review_only_rejected_guard",
+      "expected_behavior": "review-only/rejected 边界对象不得进入 definition primary，也不得触发 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": true,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "review_only_08",
+      "query": "复是什么意思",
+      "query_type": "review_only_rejected_guard",
+      "expected_behavior": "review-only/rejected 边界对象不得进入 definition primary，也不得触发 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": true,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "review_only_09",
+      "query": "寒格是什么意思",
+      "query_type": "review_only_rejected_guard",
+      "expected_behavior": "review-only/rejected 边界对象不得进入 definition primary，也不得触发 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": true,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "review_only_10",
+      "query": "清邪中上是什么意思",
+      "query_type": "review_only_rejected_guard",
+      "expected_behavior": "review-only/rejected 边界对象不得进入 definition primary，也不得触发 AHV normalization。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": true,
+      "require_formula_guard": false,
+      "require_strong": false,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "formula_guard_01",
+      "query": "桂枝去芍药汤方的条文是什么？",
+      "query_type": "formula_guard",
+      "expected_behavior": "formula guard 不得出现 bad anchor，且不得被 AHV definition primary 抢占。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": true,
+      "require_strong": true,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "formula_guard_02",
+      "query": "桂枝去芍药加附子汤方的条文是什么？",
+      "query_type": "formula_guard",
+      "expected_behavior": "formula guard 不得出现 bad anchor，且不得被 AHV definition primary 抢占。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": true,
+      "require_strong": true,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "formula_guard_03",
+      "query": "四逆加人参汤方的条文是什么？",
+      "query_type": "formula_guard",
+      "expected_behavior": "formula guard 不得出现 bad anchor，且不得被 AHV definition primary 抢占。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": true,
+      "require_strong": true,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "formula_guard_04",
+      "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+      "query_type": "formula_guard",
+      "expected_behavior": "formula guard 不得出现 bad anchor，且不得被 AHV definition primary 抢占。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": true,
+      "require_strong": true,
+      "allow_normalization_terms": []
+    },
+    {
+      "query_id": "formula_guard_05",
+      "query": "桂枝去桂加茯苓白术汤方的条文是什么？",
+      "query_type": "formula_guard",
+      "expected_behavior": "formula guard 不得出现 bad anchor，且不得被 AHV definition primary 抢占。",
+      "expected_terms": [],
+      "expected_batch": null,
+      "require_no_ahv_primary": true,
+      "require_no_ahv_normalization": true,
+      "require_no_definition_primary": false,
+      "require_formula_guard": true,
+      "require_strong": true,
+      "allow_normalization_terms": []
+    }
+  ]
+}

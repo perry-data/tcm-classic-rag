@@ -1,0 +1,131 @@
+{
+  "run_id": "full_chain_production_like_regression_v1",
+  "generated_at_utc": "2026-04-26T06:22:22.512304+00:00",
+  "mode_statuses": [
+    {
+      "run_mode": "A_data_plane_baseline",
+      "label": "data-plane baseline",
+      "required": true,
+      "production_like": false,
+      "env": {
+        "PERF_DISABLE_LLM": "1",
+        "PERF_DISABLE_RERANK": "1",
+        "PERF_RETRIEVAL_MODE": "sparse"
+      },
+      "started_at_utc": "2026-04-26T06:01:27.919865+00:00",
+      "completed_at_utc": "2026-04-26T06:01:44.123812+00:00",
+      "status": "completed",
+      "unavailable_reason": null,
+      "llm_preflight": null
+    },
+    {
+      "run_mode": "B_retrieval_rerank",
+      "label": "retrieval + rerank",
+      "required": false,
+      "production_like": false,
+      "env": {
+        "PERF_DISABLE_LLM": "1",
+        "PERF_DISABLE_RERANK": "0",
+        "PERF_RETRIEVAL_MODE": "hybrid"
+      },
+      "started_at_utc": "2026-04-26T06:01:44.125740+00:00",
+      "completed_at_utc": "2026-04-26T06:03:17.008606+00:00",
+      "status": "completed",
+      "unavailable_reason": null,
+      "llm_preflight": null
+    },
+    {
+      "run_mode": "C_production_like_full_chain",
+      "label": "production-like full chain",
+      "required": false,
+      "production_like": true,
+      "env": {
+        "PERF_DISABLE_LLM": "0",
+        "PERF_DISABLE_RERANK": "0",
+        "PERF_RETRIEVAL_MODE": "hybrid"
+      },
+      "started_at_utc": "2026-04-26T06:03:17.011905+00:00",
+      "completed_at_utc": "2026-04-26T06:22:22.501605+00:00",
+      "status": "completed",
+      "unavailable_reason": null,
+      "llm_preflight": {
+        "answer_mode": "strong",
+        "llm_attempted": true,
+        "llm_used": true,
+        "fallback_used": false,
+        "skipped_reason": null,
+        "fallback_reason": null
+      }
+    }
+  ],
+  "modes": {
+    "A_data_plane_baseline": {
+      "count": 120,
+      "latency_p50_ms": 39.291,
+      "latency_p95_ms": 473.935,
+      "latency_max_ms": 635.489,
+      "stage_p50_ms": {
+        "evidence_gating": 0.077,
+        "fusion_rrf": 0.011,
+        "response_build/serialize": 0.003,
+        "sparse_retrieval": 3.893
+      },
+      "stage_p95_ms": {
+        "evidence_gating": 0.633,
+        "fusion_rrf": 0.028,
+        "response_build/serialize": 0.004,
+        "sparse_retrieval": 21.16
+      }
+    },
+    "B_retrieval_rerank": {
+      "count": 120,
+      "latency_p50_ms": 586.909,
+      "latency_p95_ms": 1660.059,
+      "latency_max_ms": 2789.551,
+      "stage_p50_ms": {
+        "dense_embed": 6.12,
+        "dense_search_faiss": 0.113,
+        "evidence_gating": 0.301,
+        "fusion_rrf": 0.048,
+        "rerank_cross_encoder": 490.51,
+        "response_build/serialize": 0.004,
+        "sparse_retrieval": 5.219
+      },
+      "stage_p95_ms": {
+        "dense_embed": 8.772,
+        "dense_search_faiss": 0.242,
+        "evidence_gating": 1.589,
+        "fusion_rrf": 0.1,
+        "rerank_cross_encoder": 1544.184,
+        "response_build/serialize": 0.01,
+        "sparse_retrieval": 25.146
+      }
+    },
+    "C_production_like_full_chain": {
+      "count": 120,
+      "latency_p50_ms": 8654.537,
+      "latency_p95_ms": 21417.208,
+      "latency_max_ms": 26527.032,
+      "stage_p50_ms": {
+        "dense_embed": 6.395,
+        "dense_search_faiss": 0.117,
+        "evidence_gating": 0.284,
+        "fusion_rrf": 0.053,
+        "llm_generate": 8442.114,
+        "rerank_cross_encoder": 448.002,
+        "response_build/serialize": 0.015,
+        "sparse_retrieval": 4.976
+      },
+      "stage_p95_ms": {
+        "dense_embed": 10.659,
+        "dense_search_faiss": 0.349,
+        "evidence_gating": 1.113,
+        "fusion_rrf": 0.109,
+        "llm_generate": 20675.108,
+        "rerank_cross_encoder": 1619.773,
+        "response_build/serialize": 0.027,
+        "sparse_retrieval": 30.737
+      }
+    }
+  }
+}

@@ -1,0 +1,3142 @@
+{
+  "run_id": "cross_batch_ahv_consistency_audit_v1",
+  "generated_at_utc": "2026-04-24T08:24:20.497030+00:00",
+  "db_path": "/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/zjshl_v1.db",
+  "audited_object_count": 40,
+  "ahv_v1_object_count": 20,
+  "ahv2_object_count": 20,
+  "layers": {
+    "ahv_v1": "ambiguous_high_value_batch_safe_primary",
+    "ahv2": "ambiguous_high_value_evidence_upgrade_v2_safe_primary"
+  },
+  "objects": [
+    {
+      "concept_id": "AHV-82d1c8a78473",
+      "canonical_term": "伤寒",
+      "normalized_term": "伤寒",
+      "concept_type": "disease_state_term",
+      "primary_support_passage_id": "ZJSHL-CH-008-P-0195",
+      "primary_source_table": "records_main_passages",
+      "primary_source_evidence_level": "A",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_batch_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "只抽命名句，避免把伤寒总论长段恢复为 safe main。 quality_audit_v1: 使用同 passage safe main source；primary 只取“名曰伤寒”命名句，不恢复 full passage。 cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "named_condition_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "query_aliases": [
+        "伤寒病"
+      ],
+      "learner_surface_forms": [
+        "伤寒病"
+      ],
+      "source_passage_ids": [
+        "ZJSHL-CH-008-P-0195",
+        "ZJSHL-CH-006-P-0007",
+        "ZJSHL-CH-008-P-0196"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV-TAL-e18d46643f5f",
+          "alias": "伤寒",
+          "normalized_alias": "伤寒",
+          "concept_id": "AHV-82d1c8a78473",
+          "canonical_term": "伤寒",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "canonical term alias",
+          "is_active": 1
+        },
+        {
+          "alias_id": "AHV-TAL-845c731293d0",
+          "alias": "伤寒病",
+          "normalized_alias": "伤寒病",
+          "concept_id": "AHV-82d1c8a78473",
+          "canonical_term": "伤寒",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner-safe alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV-LQN-6c756407838f",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "伤寒",
+          "normalized_surface_form": "伤寒",
+          "target_type": "concept_term",
+          "target_id": "AHV-82d1c8a78473",
+          "target_term": "伤寒",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是伤寒",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        },
+        {
+          "lexicon_id": "AHV-LQN-d534a582c494",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "伤寒病",
+          "normalized_surface_form": "伤寒病",
+          "target_type": "concept_term",
+          "target_id": "AHV-82d1c8a78473",
+          "target_term": "伤寒",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是伤寒",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-472e3287583d",
+      "canonical_term": "促脉",
+      "normalized_term": "促脉",
+      "concept_type": "pulse_pattern_term",
+      "primary_support_passage_id": "ZJSHL-CH-003-P-0028",
+      "primary_source_table": "records_main_passages",
+      "primary_source_evidence_level": "A",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_batch_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "单字“促”只登记为 inactive ambiguous alias。 quality_audit_v1: 使用 safe main 命名句；单字促继续 inactive。 cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "pulse_pattern_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。",
+      "query_aliases": [],
+      "learner_surface_forms": [],
+      "source_passage_ids": [
+        "ZJSHL-CH-003-P-0028",
+        "ZJSHL-CH-008-P-0239"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV-TAL-8d2d835bf109",
+          "alias": "促",
+          "normalized_alias": "促",
+          "concept_id": "AHV-472e3287583d",
+          "canonical_term": "促脉",
+          "alias_type": "ambiguous",
+          "confidence": 0.3,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "inactive ambiguous alias; not used for runtime normalization",
+          "is_active": 0
+        },
+        {
+          "alias_id": "AHV-TAL-0e0df27f378e",
+          "alias": "促脉",
+          "normalized_alias": "促脉",
+          "concept_id": "AHV-472e3287583d",
+          "canonical_term": "促脉",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "canonical term alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV-LQN-b171cfde68e6",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "促脉",
+          "normalized_surface_form": "促脉",
+          "target_type": "concept_term",
+          "target_id": "AHV-472e3287583d",
+          "target_term": "促脉",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是促脉",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-b52564cf7480",
+      "canonical_term": "内虚",
+      "normalized_term": "内虚",
+      "concept_type": "disease_state_term",
+      "primary_support_passage_id": "ZJSHL-CH-004-P-0200",
+      "primary_source_table": "risk_registry_ambiguous",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_batch_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "不把同段整体混为一个概念包。 quality_audit_v1: 内虚仅按本段“人病脉不病”命名义保留；不代表泛化虚证概念。 cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "named_condition_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "query_aliases": [],
+      "learner_surface_forms": [],
+      "source_passage_ids": [
+        "ZJSHL-CH-004-P-0200",
+        "ZJSHL-CH-004-P-0202"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV-TAL-7b755d6fcc3b",
+          "alias": "内虚",
+          "normalized_alias": "内虚",
+          "concept_id": "AHV-b52564cf7480",
+          "canonical_term": "内虚",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "canonical term alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV-LQN-5f6c19c1a1df",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "内虚",
+          "normalized_surface_form": "内虚",
+          "target_type": "concept_term",
+          "target_id": "AHV-b52564cf7480",
+          "target_term": "内虚",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是内虚",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-9dfd46e14608",
+      "canonical_term": "冬温",
+      "normalized_term": "冬温",
+      "concept_type": "seasonal_disease_term",
+      "primary_support_passage_id": "ZJSHL-CH-006-P-0020",
+      "primary_source_table": "records_passages",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_batch_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "非节之暖为定义核心，后续证治差异不进入 primary。 cross_batch_ahv_consistency_audit_v1: 时病/外感病名对象统一标为 seasonal_disease_definition，仅保留闭合命名/定义句。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "seasonal_disease_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 时病/外感病名对象统一标为 seasonal_disease_definition，仅保留闭合命名/定义句。",
+      "query_aliases": [
+        "冬温病"
+      ],
+      "learner_surface_forms": [
+        "冬温病"
+      ],
+      "source_passage_ids": [
+        "ZJSHL-CH-006-P-0020"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV-TAL-d3a913e62205",
+          "alias": "冬温",
+          "normalized_alias": "冬温",
+          "concept_id": "AHV-9dfd46e14608",
+          "canonical_term": "冬温",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "canonical term alias",
+          "is_active": 1
+        },
+        {
+          "alias_id": "AHV-TAL-f8e5e4c5d4f3",
+          "alias": "冬温病",
+          "normalized_alias": "冬温病",
+          "concept_id": "AHV-9dfd46e14608",
+          "canonical_term": "冬温",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner-safe alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV-LQN-46cc43be8745",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "冬温",
+          "normalized_surface_form": "冬温",
+          "target_type": "concept_term",
+          "target_id": "AHV-9dfd46e14608",
+          "target_term": "冬温",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是冬温",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        },
+        {
+          "lexicon_id": "AHV-LQN-b3a936d8b7a1",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "冬温病",
+          "normalized_surface_form": "冬温病",
+          "target_type": "concept_term",
+          "target_id": "AHV-9dfd46e14608",
+          "target_term": "冬温",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是冬温",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-87d3ca263c08",
+      "canonical_term": "刚痓",
+      "normalized_term": "刚痓",
+      "concept_type": "disease_state_term",
+      "primary_support_passage_id": "ZJSHL-CH-007-P-0157",
+      "primary_source_table": "records_main_passages",
+      "primary_source_evidence_level": "B",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_batch_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "保留“痉”作 inactive ambiguous alias，不直接 runtime normalization。 cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "named_condition_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "query_aliases": [
+        "刚痉"
+      ],
+      "learner_surface_forms": [
+        "刚痉"
+      ],
+      "source_passage_ids": [
+        "ZJSHL-CH-007-P-0157",
+        "ZJSHL-CH-007-P-0165"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV-TAL-50597cc99cfc",
+          "alias": "刚痉",
+          "normalized_alias": "刚痉",
+          "concept_id": "AHV-87d3ca263c08",
+          "canonical_term": "刚痓",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner-safe alias",
+          "is_active": 1
+        },
+        {
+          "alias_id": "AHV-TAL-907bc6c7a8bc",
+          "alias": "刚痓",
+          "normalized_alias": "刚痓",
+          "concept_id": "AHV-87d3ca263c08",
+          "canonical_term": "刚痓",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "canonical term alias",
+          "is_active": 1
+        },
+        {
+          "alias_id": "AHV-TAL-71cb6e922f6b",
+          "alias": "痉",
+          "normalized_alias": "痉",
+          "concept_id": "AHV-87d3ca263c08",
+          "canonical_term": "刚痓",
+          "alias_type": "ambiguous",
+          "confidence": 0.3,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "inactive ambiguous alias; not used for runtime normalization",
+          "is_active": 0
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV-LQN-c9aba99c8a83",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "刚痉",
+          "normalized_surface_form": "刚痉",
+          "target_type": "concept_term",
+          "target_id": "AHV-87d3ca263c08",
+          "target_term": "刚痓",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是刚痓",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        },
+        {
+          "lexicon_id": "AHV-LQN-27741ba30f2c",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "刚痓",
+          "normalized_surface_form": "刚痓",
+          "target_type": "concept_term",
+          "target_id": "AHV-87d3ca263c08",
+          "target_term": "刚痓",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是刚痓",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-68ab3aae2083",
+      "canonical_term": "劳复",
+      "normalized_term": "劳复",
+      "concept_type": "post_recovery_term",
+      "primary_support_passage_id": "ZJSHL-CH-017-P-0049",
+      "primary_source_table": "records_main_passages",
+      "primary_source_evidence_level": "A",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_batch_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "只升格劳复概念，不混入食复同句的另一个概念。 quality_audit_v1: “劳动病”降为 inactive risky alias；劳复只通过 canonical term 命中。 cross_batch_ahv_consistency_audit_v1: 瘥后复病对象统一标为 post_recovery_definition，劳复、食复、过经互不归一。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "post_recovery_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 瘥后复病对象统一标为 post_recovery_definition，劳复、食复、过经互不归一。",
+      "query_aliases": [],
+      "learner_surface_forms": [],
+      "source_passage_ids": [
+        "ZJSHL-CH-017-P-0049"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV-TAL-699da026a0fc",
+          "alias": "劳动病",
+          "normalized_alias": "劳动病",
+          "concept_id": "AHV-68ab3aae2083",
+          "canonical_term": "劳复",
+          "alias_type": "learner_risky",
+          "confidence": 0.42,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "quality_audit_v1 inactive alias; surface is too broad or constructed for learner-safe normalization",
+          "is_active": 0
+        },
+        {
+          "alias_id": "AHV-TAL-51eadf352111",
+          "alias": "劳复",
+          "normalized_alias": "劳复",
+          "concept_id": "AHV-68ab3aae2083",
+          "canonical_term": "劳复",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "canonical term alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV-LQN-39064338184e",
+          "entry_type": "term_surface",
+          "match_mode": "contains",
+          "surface_form": "劳动病",
+          "normalized_surface_form": "劳动病",
+          "target_type": "concept_term",
+          "target_id": "AHV-68ab3aae2083",
+          "target_term": "劳复",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是劳复",
+          "confidence": 0.42,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "quality_audit_v1 deactivated broad or constructed learner surface",
+          "is_active": 0
+        },
+        {
+          "lexicon_id": "AHV-LQN-8b1b08586476",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "劳复",
+          "normalized_surface_form": "劳复",
+          "target_type": "concept_term",
+          "target_id": "AHV-68ab3aae2083",
+          "target_term": "劳复",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是劳复",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-fdb12048d73e",
+      "canonical_term": "太阳病",
+      "normalized_term": "太阳病",
+      "concept_type": "six_channel_disease_term",
+      "primary_support_passage_id": "ZJSHL-CH-008-P-0191",
+      "primary_source_table": "records_main_passages",
+      "primary_source_evidence_level": "B",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_batch_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "六经提纲类对象只升格闭合句，不把整章太阳病条文整体放进 primary。 quality_audit_v1: 六经提纲对象仅覆盖“太阳之为病”定义句，不能代表太阳病篇全部证治材料。 cross_batch_ahv_consistency_audit_v1: 六经病对象统一标为 channel_disease_outline，仅表示提纲句/总纲句，不代表该篇全部证治。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "channel_disease_outline",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 六经病对象统一标为 channel_disease_outline，仅表示提纲句/总纲句，不代表该篇全部证治。",
+      "query_aliases": [
+        "太阳之为病"
+      ],
+      "learner_surface_forms": [
+        "太阳之为病"
+      ],
+      "source_passage_ids": [
+        "ZJSHL-CH-008-P-0191"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV-TAL-9ad131d684fc",
+          "alias": "太阳之为病",
+          "normalized_alias": "太阳之为病",
+          "concept_id": "AHV-fdb12048d73e",
+          "canonical_term": "太阳病",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner-safe alias",
+          "is_active": 1
+        },
+        {
+          "alias_id": "AHV-TAL-f04fb3d93745",
+          "alias": "太阳病",
+          "normalized_alias": "太阳病",
+          "concept_id": "AHV-fdb12048d73e",
+          "canonical_term": "太阳病",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "canonical term alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV-LQN-ad3eb04c9ef1",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "太阳之为病",
+          "normalized_surface_form": "太阳之为病",
+          "target_type": "concept_term",
+          "target_id": "AHV-fdb12048d73e",
+          "target_term": "太阳病",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是太阳病",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        },
+        {
+          "lexicon_id": "AHV-LQN-5f1669f02b03",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "太阳病",
+          "normalized_surface_form": "太阳病",
+          "target_type": "concept_term",
+          "target_id": "AHV-fdb12048d73e",
+          "target_term": "太阳病",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是太阳病",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-54c535ab7161",
+      "canonical_term": "弦脉",
+      "normalized_term": "弦脉",
+      "concept_type": "pulse_pattern_term",
+      "primary_support_passage_id": "ZJSHL-CH-003-P-0037",
+      "primary_source_table": "records_main_passages",
+      "primary_source_evidence_level": "A",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_batch_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "单字“弦”不参与直接 normalization。 quality_audit_v1: source 收窄到 safe main；单字弦不作为 learner-safe alias。 cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "pulse_pattern_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。",
+      "query_aliases": [],
+      "learner_surface_forms": [],
+      "source_passage_ids": [
+        "ZJSHL-CH-003-P-0037"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV-TAL-4da1cc327d84",
+          "alias": "弦",
+          "normalized_alias": "弦",
+          "concept_id": "AHV-54c535ab7161",
+          "canonical_term": "弦脉",
+          "alias_type": "ambiguous",
+          "confidence": 0.3,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "inactive ambiguous alias; not used for runtime normalization",
+          "is_active": 0
+        },
+        {
+          "alias_id": "AHV-TAL-91e9691ba5ed",
+          "alias": "弦脉",
+          "normalized_alias": "弦脉",
+          "concept_id": "AHV-54c535ab7161",
+          "canonical_term": "弦脉",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "canonical term alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV-LQN-15a326d65b15",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "弦脉",
+          "normalized_surface_form": "弦脉",
+          "target_type": "concept_term",
+          "target_id": "AHV-54c535ab7161",
+          "target_term": "弦脉",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是弦脉",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-bb8f9a64a54e",
+      "canonical_term": "时行寒疫",
+      "normalized_term": "时行寒疫",
+      "concept_type": "seasonal_disease_term",
+      "primary_support_passage_id": "ZJSHL-CH-006-P-0024",
+      "primary_source_table": "records_main_passages",
+      "primary_source_evidence_level": "A",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_batch_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "保留为中等置信 safe object，不扩展到疫气全段。 quality_audit_v1: “寒疫”降为 inactive risky alias，避免把更宽寒疫问法归入时行寒疫。 cross_batch_ahv_consistency_audit_v1: 时病/外感病名对象统一标为 seasonal_disease_definition，仅保留闭合命名/定义句。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "seasonal_disease_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 时病/外感病名对象统一标为 seasonal_disease_definition，仅保留闭合命名/定义句。",
+      "query_aliases": [],
+      "learner_surface_forms": [],
+      "source_passage_ids": [
+        "ZJSHL-CH-006-P-0024"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV-TAL-5ba5d1afe0b5",
+          "alias": "寒疫",
+          "normalized_alias": "寒疫",
+          "concept_id": "AHV-bb8f9a64a54e",
+          "canonical_term": "时行寒疫",
+          "alias_type": "learner_risky",
+          "confidence": 0.42,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "quality_audit_v1 inactive alias; surface is too broad or constructed for learner-safe normalization",
+          "is_active": 0
+        },
+        {
+          "alias_id": "AHV-TAL-42d657993722",
+          "alias": "时行寒疫",
+          "normalized_alias": "时行寒疫",
+          "concept_id": "AHV-bb8f9a64a54e",
+          "canonical_term": "时行寒疫",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "canonical term alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV-LQN-cf031c4355fc",
+          "entry_type": "term_surface",
+          "match_mode": "contains",
+          "surface_form": "寒疫",
+          "normalized_surface_form": "寒疫",
+          "target_type": "concept_term",
+          "target_id": "AHV-bb8f9a64a54e",
+          "target_term": "时行寒疫",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是时行寒疫",
+          "confidence": 0.42,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "quality_audit_v1 deactivated broad or constructed learner surface",
+          "is_active": 0
+        },
+        {
+          "lexicon_id": "AHV-LQN-c757bc791d4d",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "时行寒疫",
+          "normalized_surface_form": "时行寒疫",
+          "target_type": "concept_term",
+          "target_id": "AHV-bb8f9a64a54e",
+          "target_term": "时行寒疫",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是时行寒疫",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-d1abf1c57ecf",
+      "canonical_term": "暑病",
+      "normalized_term": "暑病",
+      "concept_type": "seasonal_disease_term",
+      "primary_support_passage_id": "ZJSHL-CH-006-P-0012",
+      "primary_source_table": "records_main_passages",
+      "primary_source_evidence_level": "A",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_batch_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "只取“暑病者”句，不把温暑病长论作为主证据。 quality_audit_v1: “暑病者”只作原文句法，不再作为 active learner alias。 cross_batch_ahv_consistency_audit_v1: 时病/外感病名对象统一标为 seasonal_disease_definition，仅保留闭合命名/定义句。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "seasonal_disease_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 时病/外感病名对象统一标为 seasonal_disease_definition，仅保留闭合命名/定义句。",
+      "query_aliases": [],
+      "learner_surface_forms": [],
+      "source_passage_ids": [
+        "ZJSHL-CH-006-P-0012"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV-TAL-0eba0c861e69",
+          "alias": "暑病",
+          "normalized_alias": "暑病",
+          "concept_id": "AHV-d1abf1c57ecf",
+          "canonical_term": "暑病",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "canonical term alias",
+          "is_active": 1
+        },
+        {
+          "alias_id": "AHV-TAL-c81375441d04",
+          "alias": "暑病者",
+          "normalized_alias": "暑病者",
+          "concept_id": "AHV-d1abf1c57ecf",
+          "canonical_term": "暑病",
+          "alias_type": "learner_risky",
+          "confidence": 0.42,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "quality_audit_v1 inactive alias; surface is too broad or constructed for learner-safe normalization",
+          "is_active": 0
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV-LQN-383cfc0196a5",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "暑病",
+          "normalized_surface_form": "暑病",
+          "target_type": "concept_term",
+          "target_id": "AHV-d1abf1c57ecf",
+          "target_term": "暑病",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是暑病",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        },
+        {
+          "lexicon_id": "AHV-LQN-e116398f0c2c",
+          "entry_type": "term_surface",
+          "match_mode": "contains",
+          "surface_form": "暑病者",
+          "normalized_surface_form": "暑病者",
+          "target_type": "concept_term",
+          "target_id": "AHV-d1abf1c57ecf",
+          "target_term": "暑病",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是暑病",
+          "confidence": 0.42,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "quality_audit_v1 deactivated broad or constructed learner surface",
+          "is_active": 0
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-cdac1a4b7e7b",
+      "canonical_term": "柔痓",
+      "normalized_term": "柔痓",
+      "concept_type": "disease_state_term",
+      "primary_support_passage_id": "ZJSHL-CH-007-P-0160",
+      "primary_source_table": "risk_registry_ambiguous",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_batch_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "medium safe object，只抽解释句，保留原 ambiguous passage 的风险边界。 quality_audit_v1: primary 为解释性定义句，保留 medium confidence；只升格该句，不升格整段太阳/阳明辨析。 cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "named_condition_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "query_aliases": [
+        "柔痉"
+      ],
+      "learner_surface_forms": [
+        "柔痉"
+      ],
+      "source_passage_ids": [
+        "ZJSHL-CH-007-P-0160"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV-TAL-cbb3afd17e51",
+          "alias": "柔痉",
+          "normalized_alias": "柔痉",
+          "concept_id": "AHV-cdac1a4b7e7b",
+          "canonical_term": "柔痓",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner-safe alias",
+          "is_active": 1
+        },
+        {
+          "alias_id": "AHV-TAL-95ee762039f7",
+          "alias": "柔痓",
+          "normalized_alias": "柔痓",
+          "concept_id": "AHV-cdac1a4b7e7b",
+          "canonical_term": "柔痓",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "canonical term alias",
+          "is_active": 1
+        },
+        {
+          "alias_id": "AHV-TAL-d29eb0cf5a11",
+          "alias": "痉",
+          "normalized_alias": "痉",
+          "concept_id": "AHV-cdac1a4b7e7b",
+          "canonical_term": "柔痓",
+          "alias_type": "ambiguous",
+          "confidence": 0.3,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "inactive ambiguous alias; not used for runtime normalization",
+          "is_active": 0
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV-LQN-f622e4953aa0",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "柔痉",
+          "normalized_surface_form": "柔痉",
+          "target_type": "concept_term",
+          "target_id": "AHV-cdac1a4b7e7b",
+          "target_term": "柔痓",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是柔痓",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        },
+        {
+          "lexicon_id": "AHV-LQN-a0fbe9f6204f",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "柔痓",
+          "normalized_surface_form": "柔痓",
+          "target_type": "concept_term",
+          "target_id": "AHV-cdac1a4b7e7b",
+          "target_term": "柔痓",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是柔痓",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-65a3bdee145b",
+      "canonical_term": "温病",
+      "normalized_term": "温病",
+      "concept_type": "seasonal_disease_term",
+      "primary_support_passage_id": "ZJSHL-CH-006-P-0017",
+      "primary_source_table": "risk_registry_ambiguous",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_batch_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "来自 ambiguous risk registry，升格对象为 medium safe primary，raw ambiguous 不进 primary。 quality_audit_v1: “春温”降为 inactive risky alias；温病对象只接受 canonical 温病命中。 cross_batch_ahv_consistency_audit_v1: 时病/外感病名对象统一标为 seasonal_disease_definition，仅保留闭合命名/定义句。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "seasonal_disease_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 时病/外感病名对象统一标为 seasonal_disease_definition，仅保留闭合命名/定义句。",
+      "query_aliases": [],
+      "learner_surface_forms": [],
+      "source_passage_ids": [
+        "ZJSHL-CH-006-P-0017",
+        "ZJSHL-CH-006-P-0012"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV-TAL-0c2d80e53b32",
+          "alias": "春温",
+          "normalized_alias": "春温",
+          "concept_id": "AHV-65a3bdee145b",
+          "canonical_term": "温病",
+          "alias_type": "learner_risky",
+          "confidence": 0.42,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "quality_audit_v1 inactive alias; surface is too broad or constructed for learner-safe normalization",
+          "is_active": 0
+        },
+        {
+          "alias_id": "AHV-TAL-cbf1c1fa70fa",
+          "alias": "温病",
+          "normalized_alias": "温病",
+          "concept_id": "AHV-65a3bdee145b",
+          "canonical_term": "温病",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "canonical term alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV-LQN-31d2b4b5ef5c",
+          "entry_type": "term_surface",
+          "match_mode": "contains",
+          "surface_form": "春温",
+          "normalized_surface_form": "春温",
+          "target_type": "concept_term",
+          "target_id": "AHV-65a3bdee145b",
+          "target_term": "温病",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是温病",
+          "confidence": 0.42,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "quality_audit_v1 deactivated broad or constructed learner surface",
+          "is_active": 0
+        },
+        {
+          "lexicon_id": "AHV-LQN-9ad793848f47",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "温病",
+          "normalized_surface_form": "温病",
+          "target_type": "concept_term",
+          "target_id": "AHV-65a3bdee145b",
+          "target_term": "温病",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是温病",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-5d33fe1b97eb",
+      "canonical_term": "滑脉",
+      "normalized_term": "滑脉",
+      "concept_type": "pulse_pattern_term",
+      "primary_support_passage_id": "ZJSHL-CH-004-P-0203",
+      "primary_source_table": "records_main_passages",
+      "primary_source_evidence_level": "A",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_batch_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "单字“滑”不直接 runtime normalization。 quality_audit_v1: 去除问答壳和校记，仅保留滑脉命名句；单字滑 inactive。 cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "pulse_pattern_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。",
+      "query_aliases": [],
+      "learner_surface_forms": [],
+      "source_passage_ids": [
+        "ZJSHL-CH-004-P-0203",
+        "ZJSHL-CH-004-P-0205"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV-TAL-a74369595fcc",
+          "alias": "滑",
+          "normalized_alias": "滑",
+          "concept_id": "AHV-5d33fe1b97eb",
+          "canonical_term": "滑脉",
+          "alias_type": "ambiguous",
+          "confidence": 0.3,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "inactive ambiguous alias; not used for runtime normalization",
+          "is_active": 0
+        },
+        {
+          "alias_id": "AHV-TAL-adf095c22d18",
+          "alias": "滑脉",
+          "normalized_alias": "滑脉",
+          "concept_id": "AHV-5d33fe1b97eb",
+          "canonical_term": "滑脉",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "canonical term alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV-LQN-4c72e878f674",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "滑脉",
+          "normalized_surface_form": "滑脉",
+          "target_type": "concept_term",
+          "target_id": "AHV-5d33fe1b97eb",
+          "target_term": "滑脉",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是滑脉",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-01cf7a0eba28",
+      "canonical_term": "痓病",
+      "normalized_term": "痓病",
+      "concept_type": "disease_state_term",
+      "primary_support_passage_id": "ZJSHL-CH-007-P-0166",
+      "primary_source_table": "records_passages",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_batch_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "不启用单字“痓”归一化，只启用痓病/痉病。 quality_audit_v1: 清理长症状串和校记，primary 仅保留“背反张者，痓病也”。 cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "named_condition_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "query_aliases": [
+        "痉病"
+      ],
+      "learner_surface_forms": [
+        "痉病"
+      ],
+      "source_passage_ids": [
+        "ZJSHL-CH-007-P-0166",
+        "ZJSHL-CH-007-P-0161"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV-TAL-0370f143e4bc",
+          "alias": "痉病",
+          "normalized_alias": "痉病",
+          "concept_id": "AHV-01cf7a0eba28",
+          "canonical_term": "痓病",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner-safe alias",
+          "is_active": 1
+        },
+        {
+          "alias_id": "AHV-TAL-501a091c9d7e",
+          "alias": "痓",
+          "normalized_alias": "痓",
+          "concept_id": "AHV-01cf7a0eba28",
+          "canonical_term": "痓病",
+          "alias_type": "ambiguous",
+          "confidence": 0.3,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "inactive ambiguous alias; not used for runtime normalization",
+          "is_active": 0
+        },
+        {
+          "alias_id": "AHV-TAL-8f9c0749f63a",
+          "alias": "痓病",
+          "normalized_alias": "痓病",
+          "concept_id": "AHV-01cf7a0eba28",
+          "canonical_term": "痓病",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "canonical term alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV-LQN-23948593ca45",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "痉病",
+          "normalized_surface_form": "痉病",
+          "target_type": "concept_term",
+          "target_id": "AHV-01cf7a0eba28",
+          "target_term": "痓病",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是痓病",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        },
+        {
+          "lexicon_id": "AHV-LQN-78009ab61848",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "痓病",
+          "normalized_surface_form": "痓病",
+          "target_type": "concept_term",
+          "target_id": "AHV-01cf7a0eba28",
+          "target_term": "痓病",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是痓病",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-bbdfc9d9b74e",
+      "canonical_term": "结脉",
+      "normalized_term": "结脉",
+      "concept_type": "pulse_pattern_term",
+      "primary_support_passage_id": "ZJSHL-CH-003-P-0028",
+      "primary_source_table": "records_main_passages",
+      "primary_source_evidence_level": "A",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_batch_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "单字“结”不进入 learner-safe alias，避免泛化到结胸/脏结等对象。 quality_audit_v1: primary 从 ambiguous 解释句改为 safe main 命名句；P-0029 仅作解释支持。 cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "pulse_pattern_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。",
+      "query_aliases": [
+        "结脉"
+      ],
+      "learner_surface_forms": [
+        "结脉"
+      ],
+      "source_passage_ids": [
+        "ZJSHL-CH-003-P-0029",
+        "ZJSHL-CH-003-P-0028"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV-TAL-a46d67df8159",
+          "alias": "结",
+          "normalized_alias": "结",
+          "concept_id": "AHV-bbdfc9d9b74e",
+          "canonical_term": "结脉",
+          "alias_type": "ambiguous",
+          "confidence": 0.3,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "inactive ambiguous alias; not used for runtime normalization",
+          "is_active": 0
+        },
+        {
+          "alias_id": "AHV-TAL-56de5ff0b364",
+          "alias": "结脉",
+          "normalized_alias": "结脉",
+          "concept_id": "AHV-bbdfc9d9b74e",
+          "canonical_term": "结脉",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner-safe alias",
+          "is_active": 1
+        },
+        {
+          "alias_id": "AHV-TAL-804c958e7919",
+          "alias": "结脉",
+          "normalized_alias": "结脉",
+          "concept_id": "AHV-bbdfc9d9b74e",
+          "canonical_term": "结脉",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "canonical term alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV-LQN-049afe91b53a",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "结脉",
+          "normalized_surface_form": "结脉",
+          "target_type": "concept_term",
+          "target_id": "AHV-bbdfc9d9b74e",
+          "target_term": "结脉",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是结脉",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-439df1ff9f25",
+      "canonical_term": "血崩",
+      "normalized_term": "血崩",
+      "concept_type": "disease_state_term",
+      "primary_support_passage_id": "ZJSHL-CH-004-P-0257",
+      "primary_source_table": "records_main_passages",
+      "primary_source_evidence_level": "A",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_batch_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "只抽命名句，避免把三焦/荣卫长注释整体上浮。 quality_audit_v1: 使用 safe main 命名句；不把三焦/荣卫长解释整体升为 primary。 cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "named_condition_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "query_aliases": [
+        "崩血"
+      ],
+      "learner_surface_forms": [
+        "崩血"
+      ],
+      "source_passage_ids": [
+        "ZJSHL-CH-004-P-0257",
+        "ZJSHL-CH-004-P-0259"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV-TAL-ec425ac4587b",
+          "alias": "崩血",
+          "normalized_alias": "崩血",
+          "concept_id": "AHV-439df1ff9f25",
+          "canonical_term": "血崩",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner-safe alias",
+          "is_active": 1
+        },
+        {
+          "alias_id": "AHV-TAL-a0bab48c8966",
+          "alias": "血崩",
+          "normalized_alias": "血崩",
+          "concept_id": "AHV-439df1ff9f25",
+          "canonical_term": "血崩",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "canonical term alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV-LQN-cba99c5eede7",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "崩血",
+          "normalized_surface_form": "崩血",
+          "target_type": "concept_term",
+          "target_id": "AHV-439df1ff9f25",
+          "target_term": "血崩",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是血崩",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        },
+        {
+          "lexicon_id": "AHV-LQN-07cf7d766a62",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "血崩",
+          "normalized_surface_form": "血崩",
+          "target_type": "concept_term",
+          "target_id": "AHV-439df1ff9f25",
+          "target_term": "血崩",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是血崩",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-901247b4beaf",
+      "canonical_term": "行尸",
+      "normalized_term": "行尸",
+      "concept_type": "disease_state_term",
+      "primary_support_passage_id": "ZJSHL-CH-004-P-0200",
+      "primary_source_table": "risk_registry_ambiguous",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_batch_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "来自 risk registry，仅以短命名句升格为 medium safe object。 quality_audit_v1: primary 只保留命名句，不把后续“卒眩仆”等预后描述作为定义 primary。 cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "named_condition_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "query_aliases": [],
+      "learner_surface_forms": [],
+      "source_passage_ids": [
+        "ZJSHL-CH-004-P-0200",
+        "ZJSHL-CH-004-P-0201"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV-TAL-ea2d7259cf49",
+          "alias": "行尸",
+          "normalized_alias": "行尸",
+          "concept_id": "AHV-901247b4beaf",
+          "canonical_term": "行尸",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "canonical term alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV-LQN-915b5d1e3a40",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "行尸",
+          "normalized_surface_form": "行尸",
+          "target_type": "concept_term",
+          "target_id": "AHV-901247b4beaf",
+          "target_term": "行尸",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是行尸",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-72cae785c0ac",
+      "canonical_term": "霍乱",
+      "normalized_term": "霍乱",
+      "concept_type": "disease_state_term",
+      "primary_support_passage_id": "ZJSHL-CH-016-P-0002",
+      "primary_source_table": "records_main_passages",
+      "primary_source_evidence_level": "A",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_batch_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "霍乱作为病名对象升格，后续证治条文不进入 primary。 quality_audit_v1: 去除问答前缀和校记，只保留霍乱定义句。 cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "named_condition_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "query_aliases": [
+        "吐利霍乱"
+      ],
+      "learner_surface_forms": [
+        "吐利霍乱"
+      ],
+      "source_passage_ids": [
+        "ZJSHL-CH-016-P-0002",
+        "ZJSHL-CH-016-P-0004",
+        "ZJSHL-CH-016-P-0003"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV-TAL-60f3355732ff",
+          "alias": "吐利霍乱",
+          "normalized_alias": "吐利霍乱",
+          "concept_id": "AHV-72cae785c0ac",
+          "canonical_term": "霍乱",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner-safe alias",
+          "is_active": 1
+        },
+        {
+          "alias_id": "AHV-TAL-94623d512956",
+          "alias": "霍乱",
+          "normalized_alias": "霍乱",
+          "concept_id": "AHV-72cae785c0ac",
+          "canonical_term": "霍乱",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "canonical term alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV-LQN-d53d4f6d796f",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "吐利霍乱",
+          "normalized_surface_form": "吐利霍乱",
+          "target_type": "concept_term",
+          "target_id": "AHV-72cae785c0ac",
+          "target_term": "霍乱",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是霍乱",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        },
+        {
+          "lexicon_id": "AHV-LQN-06f45a26d757",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "霍乱",
+          "normalized_surface_form": "霍乱",
+          "target_type": "concept_term",
+          "target_id": "AHV-72cae785c0ac",
+          "target_term": "霍乱",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是霍乱",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-6fb7ea26388a",
+      "canonical_term": "革脉",
+      "normalized_term": "革脉",
+      "concept_type": "pulse_pattern_term",
+      "primary_support_passage_id": "ZJSHL-CH-003-P-0040",
+      "primary_source_table": "risk_registry_ambiguous",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_batch_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "只升格革脉对象，妇人/男子后续病候不作为 primary 定义。 quality_audit_v1: “革”只在革脉对象内解释；单字革保持 inactive，不外扩到普通语义。 cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "pulse_pattern_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。",
+      "query_aliases": [],
+      "learner_surface_forms": [],
+      "source_passage_ids": [
+        "ZJSHL-CH-003-P-0040",
+        "ZJSHL-CH-003-P-0041"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV-TAL-1d0e48db1331",
+          "alias": "革",
+          "normalized_alias": "革",
+          "concept_id": "AHV-6fb7ea26388a",
+          "canonical_term": "革脉",
+          "alias_type": "ambiguous",
+          "confidence": 0.3,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "inactive ambiguous alias; not used for runtime normalization",
+          "is_active": 0
+        },
+        {
+          "alias_id": "AHV-TAL-09b189f6fe30",
+          "alias": "革脉",
+          "normalized_alias": "革脉",
+          "concept_id": "AHV-6fb7ea26388a",
+          "canonical_term": "革脉",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "canonical term alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV-LQN-eadda59952ac",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "革脉",
+          "normalized_surface_form": "革脉",
+          "target_type": "concept_term",
+          "target_id": "AHV-6fb7ea26388a",
+          "target_term": "革脉",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是革脉",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-8df0a4ec9de9",
+      "canonical_term": "食复",
+      "normalized_term": "食复",
+      "concept_type": "post_recovery_term",
+      "primary_support_passage_id": "ZJSHL-CH-017-P-0049",
+      "primary_source_table": "records_main_passages",
+      "primary_source_evidence_level": "A",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_batch_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "与劳复分开建对象，避免同段多概念互相遮挡。 quality_audit_v1: “强食复病”降为 inactive risky alias；食复只通过 canonical term 命中。 cross_batch_ahv_consistency_audit_v1: 瘥后复病对象统一标为 post_recovery_definition，劳复、食复、过经互不归一。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "post_recovery_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 瘥后复病对象统一标为 post_recovery_definition，劳复、食复、过经互不归一。",
+      "query_aliases": [],
+      "learner_surface_forms": [],
+      "source_passage_ids": [
+        "ZJSHL-CH-017-P-0049"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV-TAL-4160268584be",
+          "alias": "强食复病",
+          "normalized_alias": "强食复病",
+          "concept_id": "AHV-8df0a4ec9de9",
+          "canonical_term": "食复",
+          "alias_type": "learner_risky",
+          "confidence": 0.42,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "quality_audit_v1 inactive alias; surface is too broad or constructed for learner-safe normalization",
+          "is_active": 0
+        },
+        {
+          "alias_id": "AHV-TAL-7ddd58b43f35",
+          "alias": "食复",
+          "normalized_alias": "食复",
+          "concept_id": "AHV-8df0a4ec9de9",
+          "canonical_term": "食复",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "canonical term alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV-LQN-5dceb3cb993f",
+          "entry_type": "term_surface",
+          "match_mode": "contains",
+          "surface_form": "强食复病",
+          "normalized_surface_form": "强食复病",
+          "target_type": "concept_term",
+          "target_id": "AHV-8df0a4ec9de9",
+          "target_term": "食复",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是食复",
+          "confidence": 0.42,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "quality_audit_v1 deactivated broad or constructed learner surface",
+          "is_active": 0
+        },
+        {
+          "lexicon_id": "AHV-LQN-9f9429369084",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "食复",
+          "normalized_surface_form": "食复",
+          "target_type": "concept_term",
+          "target_id": "AHV-8df0a4ec9de9",
+          "target_term": "食复",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是食复",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v1",
+          "notes": "batch learner_safe normalization ahv_adversarial_v1: active AHV learner surface uses exact matching; runtime blocks inactive alias primary.",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV2-7882ca0aa96a",
+      "canonical_term": "亡血",
+      "normalized_term": "亡血",
+      "concept_type": "qi_blood_state_term",
+      "primary_support_passage_id": "ZJSHL-CH-003-P-0026",
+      "primary_source_table": "records_main_passages",
+      "primary_source_evidence_level": "B",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_evidence_upgrade_v2_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "AHV2: active alias 只保留原文短语“亡其血”，exact match。 ahv2_quality_audit_v1: verdict=keep_safe_primary_but_medium; normalization_exact=true. cross_batch_ahv_consistency_audit_v1: 气血/身体状态对象统一标为 body_state_definition，限定为原句命名或判断义。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "body_state_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 气血/身体状态对象统一标为 body_state_definition，限定为原句命名或判断义。",
+      "query_aliases": [
+        "亡其血"
+      ],
+      "learner_surface_forms": [
+        "亡其血"
+      ],
+      "source_passage_ids": [
+        "ZJSHL-CH-003-P-0026"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV2-TAL-800f802a2cef",
+          "alias": "亡其血",
+          "normalized_alias": "亡其血",
+          "concept_id": "AHV2-7882ca0aa96a",
+          "canonical_term": "亡血",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe exact-match alias",
+          "is_active": 1
+        },
+        {
+          "alias_id": "AHV2-TAL-a828802803cc",
+          "alias": "亡血",
+          "normalized_alias": "亡血",
+          "concept_id": "AHV2-7882ca0aa96a",
+          "canonical_term": "亡血",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV2-LQN-f8ea2e08f96e",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "亡其血",
+          "normalized_surface_form": "亡其血",
+          "target_type": "concept_term",
+          "target_id": "AHV2-7882ca0aa96a",
+          "target_term": "亡血",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是亡血",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        },
+        {
+          "lexicon_id": "AHV2-LQN-dc0a4d251c08",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "亡血",
+          "normalized_surface_form": "亡血",
+          "target_type": "concept_term",
+          "target_id": "AHV2-7882ca0aa96a",
+          "target_term": "亡血",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是亡血",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV2-c29e7aff2765",
+      "canonical_term": "八邪",
+      "normalized_term": "八邪",
+      "concept_type": "pathogen_category_term",
+      "primary_support_passage_id": "ZJSHL-CH-004-P-0179",
+      "primary_source_table": "records_passages",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_evidence_upgrade_v2_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "AHV2: 只抽八邪枚举句，不把残贼长解释整体放进 primary。 ahv2_quality_audit_v1: verdict=keep_safe_primary_but_medium; normalization_exact=true. cross_batch_ahv_consistency_audit_v1: 分类枚举对象统一标为 pathogen_category_definition，只保留自足枚举句。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "pathogen_category_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 分类枚举对象统一标为 pathogen_category_definition，只保留自足枚举句。",
+      "query_aliases": [],
+      "learner_surface_forms": [],
+      "source_passage_ids": [
+        "ZJSHL-CH-004-P-0179"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV2-TAL-e047b785dc4a",
+          "alias": "八邪",
+          "normalized_alias": "八邪",
+          "concept_id": "AHV2-c29e7aff2765",
+          "canonical_term": "八邪",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV2-LQN-9a6299aeaa38",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "八邪",
+          "normalized_surface_form": "八邪",
+          "target_type": "concept_term",
+          "target_id": "AHV2-c29e7aff2765",
+          "target_term": "八邪",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是八邪",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV2-aa28a21f86c8",
+      "canonical_term": "半表半里证",
+      "normalized_term": "半表半里证",
+      "concept_type": "disease_location_term",
+      "primary_support_passage_id": "ZJSHL-CH-009-P-0210",
+      "primary_source_table": "risk_registry_ambiguous",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_evidence_upgrade_v2_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "AHV2: active alias“半表半里”仅 exact，不让比较/治疗问法被抢占。 ahv2_quality_audit_v1: verdict=keep_safe_primary_but_medium; normalization_exact=true. cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "named_condition_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "query_aliases": [
+        "半表半里"
+      ],
+      "learner_surface_forms": [
+        "半表半里"
+      ],
+      "source_passage_ids": [
+        "ZJSHL-CH-009-P-0210"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV2-TAL-7e5f1b844393",
+          "alias": "半表半里",
+          "normalized_alias": "半表半里",
+          "concept_id": "AHV2-aa28a21f86c8",
+          "canonical_term": "半表半里证",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe exact-match alias",
+          "is_active": 1
+        },
+        {
+          "alias_id": "AHV2-TAL-9e21b3a1a087",
+          "alias": "半表半里证",
+          "normalized_alias": "半表半里证",
+          "concept_id": "AHV2-aa28a21f86c8",
+          "canonical_term": "半表半里证",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV2-LQN-3673107dbedd",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "半表半里",
+          "normalized_surface_form": "半表半里",
+          "target_type": "concept_term",
+          "target_id": "AHV2-aa28a21f86c8",
+          "target_term": "半表半里证",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是半表半里证",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        },
+        {
+          "lexicon_id": "AHV2-LQN-ac45e03cbc11",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "半表半里证",
+          "normalized_surface_form": "半表半里证",
+          "target_type": "concept_term",
+          "target_id": "AHV2-aa28a21f86c8",
+          "target_term": "半表半里证",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是半表半里证",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV2-81a12b6da994",
+      "canonical_term": "卫气衰",
+      "normalized_term": "卫气衰",
+      "concept_type": "pulse_qi_state_term",
+      "primary_support_passage_id": "ZJSHL-CH-003-P-0012",
+      "primary_source_table": "records_main_passages",
+      "primary_source_evidence_level": "B",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_evidence_upgrade_v2_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "AHV2: 保留中等置信，不把卫气系统解释整体上浮。 ahv2_quality_audit_v1: verdict=keep_safe_primary_but_medium; normalization_exact=true. cross_batch_ahv_consistency_audit_v1: 脉象所见气血状态对象统一标为 pulse_state_definition，限定为原句判断义。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "pulse_state_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 脉象所见气血状态对象统一标为 pulse_state_definition，限定为原句判断义。",
+      "query_aliases": [],
+      "learner_surface_forms": [],
+      "source_passage_ids": [
+        "ZJSHL-CH-003-P-0012"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV2-TAL-f3e2086b4d8f",
+          "alias": "卫气衰",
+          "normalized_alias": "卫气衰",
+          "concept_id": "AHV2-81a12b6da994",
+          "canonical_term": "卫气衰",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV2-LQN-87d4bc7a6f96",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "卫气衰",
+          "normalized_surface_form": "卫气衰",
+          "target_type": "concept_term",
+          "target_id": "AHV2-81a12b6da994",
+          "target_term": "卫气衰",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是卫气衰",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV2-7b2df4caf446",
+      "canonical_term": "厥阴病",
+      "normalized_term": "厥阴病",
+      "concept_type": "six_channel_disease_term",
+      "primary_support_passage_id": "ZJSHL-CH-015-P-0193",
+      "primary_source_table": "records_passages",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_evidence_upgrade_v2_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "AHV2: 来自 full 层，仅提纲句进入 object primary。 ahv2_quality_audit_v1: verdict=keep_safe_primary_but_medium; normalization_exact=true. cross_batch_ahv_consistency_audit_v1: 六经病对象统一标为 channel_disease_outline，仅表示提纲句/总纲句，不代表该篇全部证治。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "channel_disease_outline",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 六经病对象统一标为 channel_disease_outline，仅表示提纲句/总纲句，不代表该篇全部证治。",
+      "query_aliases": [
+        "厥阴之为病"
+      ],
+      "learner_surface_forms": [
+        "厥阴之为病"
+      ],
+      "source_passage_ids": [
+        "ZJSHL-CH-015-P-0193"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV2-TAL-448112b99fcf",
+          "alias": "厥阴之为病",
+          "normalized_alias": "厥阴之为病",
+          "concept_id": "AHV2-7b2df4caf446",
+          "canonical_term": "厥阴病",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe exact-match alias",
+          "is_active": 1
+        },
+        {
+          "alias_id": "AHV2-TAL-bc4a8e767d4a",
+          "alias": "厥阴病",
+          "normalized_alias": "厥阴病",
+          "concept_id": "AHV2-7b2df4caf446",
+          "canonical_term": "厥阴病",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV2-LQN-0dee9fe1c1d2",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "厥阴之为病",
+          "normalized_surface_form": "厥阴之为病",
+          "target_type": "concept_term",
+          "target_id": "AHV2-7b2df4caf446",
+          "target_term": "厥阴病",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是厥阴病",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        },
+        {
+          "lexicon_id": "AHV2-LQN-dd61e645628e",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "厥阴病",
+          "normalized_surface_form": "厥阴病",
+          "target_type": "concept_term",
+          "target_id": "AHV2-7b2df4caf446",
+          "target_term": "厥阴病",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是厥阴病",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV2-8709f78f1237",
+      "canonical_term": "太阴病",
+      "normalized_term": "太阴病",
+      "concept_type": "six_channel_disease_term",
+      "primary_support_passage_id": "ZJSHL-CH-013-P-0002",
+      "primary_source_table": "records_passages",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_evidence_upgrade_v2_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "AHV2: 从 full 层抽句，source_confidence 保持 medium。 ahv2_quality_audit_v1: verdict=keep_safe_primary_but_medium; normalization_exact=true. cross_batch_ahv_consistency_audit_v1: 六经病对象统一标为 channel_disease_outline，仅表示提纲句/总纲句，不代表该篇全部证治。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "channel_disease_outline",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 六经病对象统一标为 channel_disease_outline，仅表示提纲句/总纲句，不代表该篇全部证治。",
+      "query_aliases": [
+        "太阴之为病"
+      ],
+      "learner_surface_forms": [
+        "太阴之为病"
+      ],
+      "source_passage_ids": [
+        "ZJSHL-CH-013-P-0002"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV2-TAL-093986ae7a63",
+          "alias": "太阴之为病",
+          "normalized_alias": "太阴之为病",
+          "concept_id": "AHV2-8709f78f1237",
+          "canonical_term": "太阴病",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe exact-match alias",
+          "is_active": 1
+        },
+        {
+          "alias_id": "AHV2-TAL-c8f6101c1dfe",
+          "alias": "太阴病",
+          "normalized_alias": "太阴病",
+          "concept_id": "AHV2-8709f78f1237",
+          "canonical_term": "太阴病",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV2-LQN-4864c3d3c5ec",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "太阴之为病",
+          "normalized_surface_form": "太阴之为病",
+          "target_type": "concept_term",
+          "target_id": "AHV2-8709f78f1237",
+          "target_term": "太阴病",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是太阴病",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        },
+        {
+          "lexicon_id": "AHV2-LQN-d82e826ae97b",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "太阴病",
+          "normalized_surface_form": "太阴病",
+          "target_type": "concept_term",
+          "target_id": "AHV2-8709f78f1237",
+          "target_term": "太阴病",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是太阴病",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV2-9f641a6ecc7d",
+      "canonical_term": "少阴病",
+      "normalized_term": "少阴病",
+      "concept_type": "six_channel_disease_term",
+      "primary_support_passage_id": "ZJSHL-CH-014-P-0021",
+      "primary_source_table": "records_main_passages",
+      "primary_source_evidence_level": "B",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_evidence_upgrade_v2_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "AHV2: 只覆盖少阴病提纲定义，不触碰少阴篇方证主线。 ahv2_quality_audit_v1: verdict=keep_safe_primary_but_medium; normalization_exact=true. cross_batch_ahv_consistency_audit_v1: 六经病对象统一标为 channel_disease_outline，仅表示提纲句/总纲句，不代表该篇全部证治。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "channel_disease_outline",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 六经病对象统一标为 channel_disease_outline，仅表示提纲句/总纲句，不代表该篇全部证治。",
+      "query_aliases": [
+        "少阴之为病"
+      ],
+      "learner_surface_forms": [
+        "少阴之为病"
+      ],
+      "source_passage_ids": [
+        "ZJSHL-CH-014-P-0021"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV2-TAL-a140202e422c",
+          "alias": "少阴之为病",
+          "normalized_alias": "少阴之为病",
+          "concept_id": "AHV2-9f641a6ecc7d",
+          "canonical_term": "少阴病",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe exact-match alias",
+          "is_active": 1
+        },
+        {
+          "alias_id": "AHV2-TAL-59c329903b98",
+          "alias": "少阴病",
+          "normalized_alias": "少阴病",
+          "concept_id": "AHV2-9f641a6ecc7d",
+          "canonical_term": "少阴病",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV2-LQN-43465221f3cc",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "少阴之为病",
+          "normalized_surface_form": "少阴之为病",
+          "target_type": "concept_term",
+          "target_id": "AHV2-9f641a6ecc7d",
+          "target_term": "少阴病",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是少阴病",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        },
+        {
+          "lexicon_id": "AHV2-LQN-2229c78b5747",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "少阴病",
+          "normalized_surface_form": "少阴病",
+          "target_type": "concept_term",
+          "target_id": "AHV2-9f641a6ecc7d",
+          "target_term": "少阴病",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是少阴病",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV2-310eca701a93",
+      "canonical_term": "平脉",
+      "normalized_term": "平脉",
+      "concept_type": "pulse_pattern_term",
+      "primary_support_passage_id": "ZJSHL-CH-003-P-0029",
+      "primary_source_table": "risk_registry_ambiguous",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_evidence_upgrade_v2_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "AHV2: 单字“平”仅作 inactive ambiguous alias，不进入 learner normalization。 ahv2_quality_audit_v1: verdict=keep_safe_primary_but_medium; normalization_exact=true. cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "pulse_pattern_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。",
+      "query_aliases": [],
+      "learner_surface_forms": [],
+      "source_passage_ids": [
+        "ZJSHL-CH-003-P-0029"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV2-TAL-113c27db7de3",
+          "alias": "平",
+          "normalized_alias": "平",
+          "concept_id": "AHV2-310eca701a93",
+          "canonical_term": "平脉",
+          "alias_type": "ambiguous",
+          "confidence": 0.3,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 inactive ambiguous alias; not used for runtime normalization",
+          "is_active": 0
+        },
+        {
+          "alias_id": "AHV2-TAL-1a62e26069db",
+          "alias": "平脉",
+          "normalized_alias": "平脉",
+          "concept_id": "AHV2-310eca701a93",
+          "canonical_term": "平脉",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV2-LQN-899154539fa7",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "平脉",
+          "normalized_surface_form": "平脉",
+          "target_type": "concept_term",
+          "target_id": "AHV2-310eca701a93",
+          "target_term": "平脉",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是平脉",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV2-f9e89349db80",
+      "canonical_term": "数脉",
+      "normalized_term": "数脉",
+      "concept_type": "pulse_pattern_term",
+      "primary_support_passage_id": "ZJSHL-CH-003-P-0029",
+      "primary_source_table": "risk_registry_ambiguous",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_evidence_upgrade_v2_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "AHV2: 不启用单字“数”，避免与数量/次数问法混淆。 ahv2_quality_audit_v1: verdict=keep_safe_primary_but_medium; normalization_exact=true. cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "pulse_pattern_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。",
+      "query_aliases": [],
+      "learner_surface_forms": [],
+      "source_passage_ids": [
+        "ZJSHL-CH-003-P-0029"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV2-TAL-28354ca076b4",
+          "alias": "数",
+          "normalized_alias": "数",
+          "concept_id": "AHV2-f9e89349db80",
+          "canonical_term": "数脉",
+          "alias_type": "ambiguous",
+          "confidence": 0.3,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 inactive ambiguous alias; not used for runtime normalization",
+          "is_active": 0
+        },
+        {
+          "alias_id": "AHV2-TAL-bfd069ccb249",
+          "alias": "数脉",
+          "normalized_alias": "数脉",
+          "concept_id": "AHV2-f9e89349db80",
+          "canonical_term": "数脉",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV2-LQN-09d06f8ac37a",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "数脉",
+          "normalized_surface_form": "数脉",
+          "target_type": "concept_term",
+          "target_id": "AHV2-f9e89349db80",
+          "target_term": "数脉",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是数脉",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV2-dac342243a2d",
+      "canonical_term": "残贼",
+      "normalized_term": "残贼",
+      "concept_type": "pulse_pathology_term",
+      "primary_support_passage_id": "ZJSHL-CH-004-P-0178",
+      "primary_source_table": "records_main_passages",
+      "primary_source_evidence_level": "A",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_evidence_upgrade_v2_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "AHV2: 清理校记后只保留命名句，后文八邪解释仅作 supporting evidence。 ahv2_quality_audit_v1: verdict=keep_safe_primary_but_medium; normalization_exact=true. cross_batch_ahv_consistency_audit_v1: 脉病理分类对象统一标为 pulse_pathology_definition，后文解释只作 supporting evidence。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "pulse_pathology_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 脉病理分类对象统一标为 pulse_pathology_definition，后文解释只作 supporting evidence。",
+      "query_aliases": [],
+      "learner_surface_forms": [],
+      "source_passage_ids": [
+        "ZJSHL-CH-004-P-0178",
+        "ZJSHL-CH-004-P-0179"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV2-TAL-f9023075206a",
+          "alias": "残贼",
+          "normalized_alias": "残贼",
+          "concept_id": "AHV2-dac342243a2d",
+          "canonical_term": "残贼",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV2-LQN-dfc041afabd2",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "残贼",
+          "normalized_surface_form": "残贼",
+          "target_type": "concept_term",
+          "target_id": "AHV2-dac342243a2d",
+          "target_term": "残贼",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是残贼",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV2-5f24c7010fec",
+      "canonical_term": "毛脉",
+      "normalized_term": "毛脉",
+      "concept_type": "pulse_pattern_term",
+      "primary_support_passage_id": "ZJSHL-CH-004-P-0192",
+      "primary_source_table": "records_passages",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_evidence_upgrade_v2_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "AHV2: canonical 使用“毛脉”，单字毛不进入 active alias。 ahv2_quality_audit_v1: verdict=keep_safe_primary_but_medium; normalization_exact=true. cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "pulse_pattern_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。",
+      "query_aliases": [],
+      "learner_surface_forms": [],
+      "source_passage_ids": [
+        "ZJSHL-CH-004-P-0192"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV2-TAL-bcf420fa7bc1",
+          "alias": "毛",
+          "normalized_alias": "毛",
+          "concept_id": "AHV2-5f24c7010fec",
+          "canonical_term": "毛脉",
+          "alias_type": "ambiguous",
+          "confidence": 0.3,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 inactive ambiguous alias; not used for runtime normalization",
+          "is_active": 0
+        },
+        {
+          "alias_id": "AHV2-TAL-d677bcbed068",
+          "alias": "毛脉",
+          "normalized_alias": "毛脉",
+          "concept_id": "AHV2-5f24c7010fec",
+          "canonical_term": "毛脉",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV2-LQN-950d7835e388",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "毛脉",
+          "normalized_surface_form": "毛脉",
+          "target_type": "concept_term",
+          "target_id": "AHV2-5f24c7010fec",
+          "target_term": "毛脉",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是毛脉",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV2-1da410fb57b4",
+      "canonical_term": "水逆",
+      "normalized_term": "水逆",
+      "concept_type": "disease_state_term",
+      "primary_support_passage_id": "ZJSHL-CH-009-P-0148",
+      "primary_source_table": "risk_registry_ambiguous",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_evidence_upgrade_v2_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "AHV2: 不把五苓散处置句纳入 primary。 ahv2_quality_audit_v1: verdict=keep_safe_primary_but_medium; normalization_exact=true. cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "named_condition_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "query_aliases": [],
+      "learner_surface_forms": [],
+      "source_passage_ids": [
+        "ZJSHL-CH-009-P-0148"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV2-TAL-7c9f655ede6d",
+          "alias": "水逆",
+          "normalized_alias": "水逆",
+          "concept_id": "AHV2-1da410fb57b4",
+          "canonical_term": "水逆",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV2-LQN-17ee072e17ff",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "水逆",
+          "normalized_surface_form": "水逆",
+          "target_type": "concept_term",
+          "target_id": "AHV2-1da410fb57b4",
+          "target_term": "水逆",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是水逆",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV2-1e3cd430a062",
+      "canonical_term": "湿家",
+      "normalized_term": "湿家",
+      "concept_type": "disease_person_state_term",
+      "primary_support_passage_id": "ZJSHL-CH-007-P-0172",
+      "primary_source_table": "records_passages",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_evidence_upgrade_v2_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "AHV2: 来自 full 层，按 medium safe object 处理。 ahv2_quality_audit_v1: verdict=keep_safe_primary_but_medium; normalization_exact=true. cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "named_condition_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "query_aliases": [],
+      "learner_surface_forms": [],
+      "source_passage_ids": [
+        "ZJSHL-CH-007-P-0172"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV2-TAL-e90f86f19a4a",
+          "alias": "湿家",
+          "normalized_alias": "湿家",
+          "concept_id": "AHV2-1e3cd430a062",
+          "canonical_term": "湿家",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV2-LQN-47087b2641e1",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "湿家",
+          "normalized_surface_form": "湿家",
+          "target_type": "concept_term",
+          "target_id": "AHV2-1e3cd430a062",
+          "target_term": "湿家",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是湿家",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV2-92d765f487d4",
+      "canonical_term": "纯弦脉",
+      "normalized_term": "纯弦脉",
+      "concept_type": "pulse_pattern_term",
+      "primary_support_passage_id": "ZJSHL-CH-004-P-0185",
+      "primary_source_table": "records_passages",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_evidence_upgrade_v2_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "AHV2: “纯弦”只登记 inactive risky alias，避免短语泛化。 ahv2_quality_audit_v1: verdict=keep_safe_primary_but_medium; normalization_exact=true. cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "pulse_pattern_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 脉象对象统一标为 pulse_pattern_definition，仅表示命名脉象句或短定义句。",
+      "query_aliases": [],
+      "learner_surface_forms": [],
+      "source_passage_ids": [
+        "ZJSHL-CH-004-P-0185"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV2-TAL-d197331916a0",
+          "alias": "纯弦",
+          "normalized_alias": "纯弦",
+          "concept_id": "AHV2-92d765f487d4",
+          "canonical_term": "纯弦脉",
+          "alias_type": "learner_risky",
+          "confidence": 0.42,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 inactive risky alias; not used for runtime normalization",
+          "is_active": 0
+        },
+        {
+          "alias_id": "AHV2-TAL-ba37047ab256",
+          "alias": "纯弦脉",
+          "normalized_alias": "纯弦脉",
+          "concept_id": "AHV2-92d765f487d4",
+          "canonical_term": "纯弦脉",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV2-LQN-e098e334b8c4",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "纯弦脉",
+          "normalized_surface_form": "纯弦脉",
+          "target_type": "concept_term",
+          "target_id": "AHV2-92d765f487d4",
+          "target_term": "纯弦脉",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是纯弦脉",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV2-0f3d2d43c342",
+      "canonical_term": "结胸",
+      "normalized_term": "结胸",
+      "concept_type": "disease_state_term",
+      "primary_support_passage_id": "ZJSHL-CH-010-P-0003",
+      "primary_source_table": "risk_registry_ambiguous",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_evidence_upgrade_v2_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "AHV2: 与脏结、水结胸保持对象边界，exact normalization。 ahv2_quality_audit_v1: verdict=keep_safe_primary_but_medium; normalization_exact=true. cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "named_condition_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "query_aliases": [
+        "结胸证"
+      ],
+      "learner_surface_forms": [
+        "结胸证"
+      ],
+      "source_passage_ids": [
+        "ZJSHL-CH-010-P-0003",
+        "ZJSHL-CH-010-P-0002"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV2-TAL-a40c8931b233",
+          "alias": "结胸",
+          "normalized_alias": "结胸",
+          "concept_id": "AHV2-0f3d2d43c342",
+          "canonical_term": "结胸",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        },
+        {
+          "alias_id": "AHV2-TAL-a53dcdeee6f1",
+          "alias": "结胸证",
+          "normalized_alias": "结胸证",
+          "concept_id": "AHV2-0f3d2d43c342",
+          "canonical_term": "结胸",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV2-LQN-f505f3869b1f",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "结胸",
+          "normalized_surface_form": "结胸",
+          "target_type": "concept_term",
+          "target_id": "AHV2-0f3d2d43c342",
+          "target_term": "结胸",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是结胸",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        },
+        {
+          "lexicon_id": "AHV2-LQN-163f9b4294c5",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "结胸证",
+          "normalized_surface_form": "结胸证",
+          "target_type": "concept_term",
+          "target_id": "AHV2-0f3d2d43c342",
+          "target_term": "结胸",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是结胸",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV2-850318ee8950",
+      "canonical_term": "荣气微",
+      "normalized_term": "荣气微",
+      "concept_type": "pulse_qi_state_term",
+      "primary_support_passage_id": "ZJSHL-CH-003-P-0010",
+      "primary_source_table": "records_main_passages",
+      "primary_source_evidence_level": "B",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_evidence_upgrade_v2_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "AHV2: 只升格荣气微句段，不扩展到荣血/阴虚长注。 ahv2_quality_audit_v1: verdict=keep_safe_primary_but_medium; normalization_exact=true. cross_batch_ahv_consistency_audit_v1: 脉象所见气血状态对象统一标为 pulse_state_definition，限定为原句判断义。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "pulse_state_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 脉象所见气血状态对象统一标为 pulse_state_definition，限定为原句判断义。",
+      "query_aliases": [],
+      "learner_surface_forms": [],
+      "source_passage_ids": [
+        "ZJSHL-CH-003-P-0010"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV2-TAL-223dc2d67031",
+          "alias": "荣气微",
+          "normalized_alias": "荣气微",
+          "concept_id": "AHV2-850318ee8950",
+          "canonical_term": "荣气微",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV2-LQN-6951d22e9369",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "荣气微",
+          "normalized_surface_form": "荣气微",
+          "target_type": "concept_term",
+          "target_id": "AHV2-850318ee8950",
+          "target_term": "荣气微",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是荣气微",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV2-dbeb47457236",
+      "canonical_term": "过经",
+      "normalized_term": "过经",
+      "concept_type": "disease_course_term",
+      "primary_support_passage_id": "ZJSHL-CH-009-P-0257",
+      "primary_source_table": "risk_registry_ambiguous",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_evidence_upgrade_v2_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "AHV2: 只定义过经，不把谵语/承气汤后续治疗语境上浮。 ahv2_quality_audit_v1: verdict=keep_safe_primary_but_medium; normalization_exact=true. cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "named_condition_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "query_aliases": [],
+      "learner_surface_forms": [],
+      "source_passage_ids": [
+        "ZJSHL-CH-009-P-0257"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV2-TAL-ab93fe827dca",
+          "alias": "过经",
+          "normalized_alias": "过经",
+          "concept_id": "AHV2-dbeb47457236",
+          "canonical_term": "过经",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV2-LQN-8bc0454f80e1",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "过经",
+          "normalized_surface_form": "过经",
+          "target_type": "concept_term",
+          "target_id": "AHV2-dbeb47457236",
+          "target_term": "过经",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是过经",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV2-5a00f10e6dee",
+      "canonical_term": "阳明病",
+      "normalized_term": "阳明病",
+      "concept_type": "six_channel_disease_term",
+      "primary_support_passage_id": "ZJSHL-CH-011-P-0008",
+      "primary_source_table": "records_main_passages",
+      "primary_source_evidence_level": "B",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_evidence_upgrade_v2_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "AHV2: 只升格提纲句，不把阳明篇证治整体归入 primary。 ahv2_quality_audit_v1: verdict=keep_safe_primary_but_medium; normalization_exact=true. cross_batch_ahv_consistency_audit_v1: 六经病对象统一标为 channel_disease_outline，仅表示提纲句/总纲句，不代表该篇全部证治。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "channel_disease_outline",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 六经病对象统一标为 channel_disease_outline，仅表示提纲句/总纲句，不代表该篇全部证治。",
+      "query_aliases": [
+        "阳明之为病"
+      ],
+      "learner_surface_forms": [
+        "阳明之为病"
+      ],
+      "source_passage_ids": [
+        "ZJSHL-CH-011-P-0008"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV2-TAL-0e433efa81e5",
+          "alias": "阳明之为病",
+          "normalized_alias": "阳明之为病",
+          "concept_id": "AHV2-5a00f10e6dee",
+          "canonical_term": "阳明病",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe exact-match alias",
+          "is_active": 1
+        },
+        {
+          "alias_id": "AHV2-TAL-303dc996804a",
+          "alias": "阳明病",
+          "normalized_alias": "阳明病",
+          "concept_id": "AHV2-5a00f10e6dee",
+          "canonical_term": "阳明病",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV2-LQN-e294c2e9f945",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "阳明之为病",
+          "normalized_surface_form": "阳明之为病",
+          "target_type": "concept_term",
+          "target_id": "AHV2-5a00f10e6dee",
+          "target_term": "阳明病",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是阳明病",
+          "confidence": 0.9,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        },
+        {
+          "lexicon_id": "AHV2-LQN-0db24831ecd8",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "阳明病",
+          "normalized_surface_form": "阳明病",
+          "target_type": "concept_term",
+          "target_id": "AHV2-5a00f10e6dee",
+          "target_term": "阳明病",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是阳明病",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV2-767dfa46f2b1",
+      "canonical_term": "阳气微",
+      "normalized_term": "阳气微",
+      "concept_type": "pulse_qi_state_term",
+      "primary_support_passage_id": "ZJSHL-CH-003-P-0021",
+      "primary_source_table": "records_main_passages",
+      "primary_source_evidence_level": "B",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_evidence_upgrade_v2_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "AHV2: 与 v1 内虚/行尸不同，限定为脉象所见阳气微。 ahv2_quality_audit_v1: verdict=keep_safe_primary_but_medium; normalization_exact=true. cross_batch_ahv_consistency_audit_v1: 脉象所见气血状态对象统一标为 pulse_state_definition，限定为原句判断义。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "pulse_state_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 脉象所见气血状态对象统一标为 pulse_state_definition，限定为原句判断义。",
+      "query_aliases": [],
+      "learner_surface_forms": [],
+      "source_passage_ids": [
+        "ZJSHL-CH-003-P-0021"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV2-TAL-a81b44ab86f9",
+          "alias": "阳气微",
+          "normalized_alias": "阳气微",
+          "concept_id": "AHV2-767dfa46f2b1",
+          "canonical_term": "阳气微",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV2-LQN-bdc2cc54062d",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "阳气微",
+          "normalized_surface_form": "阳气微",
+          "target_type": "concept_term",
+          "target_id": "AHV2-767dfa46f2b1",
+          "target_term": "阳气微",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是阳气微",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV2-f5bd47a65fa0",
+      "canonical_term": "风湿",
+      "normalized_term": "风湿",
+      "concept_type": "disease_state_term",
+      "primary_support_passage_id": "ZJSHL-CH-007-P-0182",
+      "primary_source_table": "risk_registry_ambiguous",
+      "primary_source_evidence_level": "C",
+      "source_confidence": "medium",
+      "primary_evidence_type": "exact_term_definition",
+      "promotion_state": "safe_primary",
+      "promotion_source_layer": "ambiguous_high_value_evidence_upgrade_v2_safe_primary",
+      "promotion_reason": "clean sentence promoted from ambiguous/full-risk/B layer",
+      "review_only_reason": "",
+      "notes": "AHV2: 不启用现代“风湿病”别名，避免现代病名误触发。 ahv2_quality_audit_v1: verdict=keep_safe_primary_but_medium; normalization_exact=true. cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "is_safe_primary_candidate": 1,
+      "is_active": 1,
+      "expected_primary_evidence_type": "exact_term_definition",
+      "cross_batch_scope_type": "named_condition_definition",
+      "primary_type_policy_note": "cross_batch_ahv_consistency_audit_v1: 病证/状态对象统一标为 named_condition_definition，不外扩到治疗、病机或整段材料。",
+      "query_aliases": [],
+      "learner_surface_forms": [],
+      "source_passage_ids": [
+        "ZJSHL-CH-007-P-0182"
+      ],
+      "aliases": [
+        {
+          "alias_id": "AHV2-TAL-8723c147266d",
+          "alias": "风湿",
+          "normalized_alias": "风湿",
+          "concept_id": "AHV2-f5bd47a65fa0",
+          "canonical_term": "风湿",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 canonical exact-match alias",
+          "is_active": 1
+        },
+        {
+          "alias_id": "AHV2-TAL-b2658962d108",
+          "alias": "风湿病",
+          "normalized_alias": "风湿病",
+          "concept_id": "AHV2-f5bd47a65fa0",
+          "canonical_term": "风湿",
+          "alias_type": "learner_risky",
+          "confidence": 0.42,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 inactive risky alias; not used for runtime normalization",
+          "is_active": 0
+        }
+      ],
+      "learner_normalization": [
+        {
+          "lexicon_id": "AHV2-LQN-756dd6f1d93f",
+          "entry_type": "term_surface",
+          "match_mode": "exact",
+          "surface_form": "风湿",
+          "normalized_surface_form": "风湿",
+          "target_type": "concept_term",
+          "target_id": "AHV2-f5bd47a65fa0",
+          "target_term": "风湿",
+          "intent_hint": "what_is",
+          "canonical_query_template": "什么是风湿",
+          "confidence": 1.0,
+          "source": "ambiguous_high_value_evidence_upgrade_v2",
+          "notes": "AHV2 learner-safe normalization; exact match only",
+          "is_active": 1
+        }
+      ]
+    }
+  ]
+}

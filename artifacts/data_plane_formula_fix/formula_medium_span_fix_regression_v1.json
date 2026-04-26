@@ -1,0 +1,1553 @@
+{
+  "generated_at_utc": "2026-04-24T00:48:06.303096+00:00",
+  "before_db": "/tmp/zjshl_v1_before_formula_medium_span_fix_v1.db",
+  "after_db": "/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/zjshl_v1.db",
+  "before_summary": {
+    "query_count": 8,
+    "mode_counts": {
+      "strong": 8
+    },
+    "category_mode_counts": {
+      "formula_comparison": {
+        "strong": 2
+      },
+      "formula_exact": {
+        "strong": 6
+      }
+    },
+    "forbidden_primary_total": 0,
+    "exact_formula_query_count": 6,
+    "exact_formula_strong_count": 6,
+    "comparison_query_count": 2,
+    "comparison_strong_count": 2,
+    "formula_bad_anchor_top5_total": 0,
+    "primary_non_safe_main_total": 0,
+    "target_high_count": 0,
+    "target_medium_count": 6
+  },
+  "after_summary": {
+    "query_count": 8,
+    "mode_counts": {
+      "strong": 8
+    },
+    "category_mode_counts": {
+      "formula_comparison": {
+        "strong": 2
+      },
+      "formula_exact": {
+        "strong": 6
+      }
+    },
+    "forbidden_primary_total": 0,
+    "exact_formula_query_count": 6,
+    "exact_formula_strong_count": 6,
+    "comparison_query_count": 2,
+    "comparison_strong_count": 2,
+    "formula_bad_anchor_top5_total": 0,
+    "primary_non_safe_main_total": 0,
+    "target_high_count": 4,
+    "target_medium_count": 2
+  },
+  "before_rows": [
+    {
+      "category": "formula_exact",
+      "query": "乌梅丸方的条文是什么？",
+      "target": "乌梅丸",
+      "answer_mode": "strong",
+      "query_focus_source": "noise_stripped_query",
+      "formula_normalization": {
+        "enabled": true,
+        "type": "exact",
+        "formula_ids": [
+          "FML-21567be0171c"
+        ],
+        "target_formula_id": "FML-21567be0171c",
+        "matches": [
+          {
+            "formula_id": "FML-21567be0171c",
+            "canonical_name": "乌梅丸",
+            "alias": "乌梅丸",
+            "normalized_alias": "乌梅丸",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              0,
+              3
+            ]
+          }
+        ],
+        "disabled_reason": null
+      },
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-015-P-0221",
+        "safe:main_passages:ZJSHL-CH-015-P-0222"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages"
+      ],
+      "primary_forbidden_items": [],
+      "primary_all_safe_main": true,
+      "formula_bad_anchor_top5_count": 0,
+      "target_source_confidence": "medium"
+    },
+    {
+      "category": "formula_exact",
+      "query": "旋复代赭石汤方的条文是什么？",
+      "target": "旋复代赭石汤",
+      "answer_mode": "strong",
+      "query_focus_source": "noise_stripped_query",
+      "formula_normalization": {
+        "enabled": true,
+        "type": "exact",
+        "formula_ids": [
+          "FML-ac1d63fd6039"
+        ],
+        "target_formula_id": "FML-ac1d63fd6039",
+        "matches": [
+          {
+            "formula_id": "FML-ac1d63fd6039",
+            "canonical_name": "旋复代赭石汤",
+            "alias": "旋复代赭石汤",
+            "normalized_alias": "旋复代赭石汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              0,
+              6
+            ]
+          }
+        ],
+        "disabled_reason": null
+      },
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0106"
+      ],
+      "primary_record_types": [
+        "main_passages"
+      ],
+      "primary_forbidden_items": [],
+      "primary_all_safe_main": true,
+      "formula_bad_anchor_top5_count": 0,
+      "target_source_confidence": "medium"
+    },
+    {
+      "category": "formula_exact",
+      "query": "栀子浓朴汤方的条文是什么？",
+      "target": "栀子浓朴汤",
+      "answer_mode": "strong",
+      "query_focus_source": "noise_stripped_query",
+      "formula_normalization": {
+        "enabled": true,
+        "type": "exact",
+        "formula_ids": [
+          "FML-f581e51c0cb7"
+        ],
+        "target_formula_id": "FML-f581e51c0cb7",
+        "matches": [
+          {
+            "formula_id": "FML-f581e51c0cb7",
+            "canonical_name": "栀子浓朴汤",
+            "alias": "栀子浓朴汤",
+            "normalized_alias": "栀子浓朴汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              0,
+              5
+            ]
+          }
+        ],
+        "disabled_reason": null
+      },
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0170"
+      ],
+      "primary_record_types": [
+        "main_passages"
+      ],
+      "primary_forbidden_items": [],
+      "primary_all_safe_main": true,
+      "formula_bad_anchor_top5_count": 0,
+      "target_source_confidence": "medium"
+    },
+    {
+      "category": "formula_exact",
+      "query": "桂枝甘草龙骨牡蛎汤方的条文是什么？",
+      "target": "桂枝甘草龙骨牡蛎汤",
+      "answer_mode": "strong",
+      "query_focus_source": "noise_stripped_query",
+      "formula_normalization": {
+        "enabled": true,
+        "type": "exact",
+        "formula_ids": [
+          "FML-0196ae607c39"
+        ],
+        "target_formula_id": "FML-0196ae607c39",
+        "matches": [
+          {
+            "formula_id": "FML-0196ae607c39",
+            "canonical_name": "桂枝甘草龙骨牡蛎汤",
+            "alias": "桂枝甘草龙骨牡蛎汤",
+            "normalized_alias": "桂枝甘草龙骨牡蛎汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              0,
+              9
+            ]
+          }
+        ],
+        "disabled_reason": null
+      },
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0298"
+      ],
+      "primary_record_types": [
+        "main_passages"
+      ],
+      "primary_forbidden_items": [],
+      "primary_all_safe_main": true,
+      "formula_bad_anchor_top5_count": 0,
+      "target_source_confidence": "medium"
+    },
+    {
+      "category": "formula_exact",
+      "query": "茵陈蒿汤方的条文是什么？",
+      "target": "茵陈蒿汤",
+      "answer_mode": "strong",
+      "query_focus_source": "noise_stripped_query",
+      "formula_normalization": {
+        "enabled": true,
+        "type": "exact",
+        "formula_ids": [
+          "FML-c7b169a846ab"
+        ],
+        "target_formula_id": "FML-c7b169a846ab",
+        "matches": [
+          {
+            "formula_id": "FML-c7b169a846ab",
+            "canonical_name": "茵陈蒿汤",
+            "alias": "茵陈蒿汤",
+            "normalized_alias": "茵陈蒿汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              0,
+              4
+            ]
+          }
+        ],
+        "disabled_reason": null
+      },
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0141"
+      ],
+      "primary_record_types": [
+        "main_passages"
+      ],
+      "primary_forbidden_items": [],
+      "primary_all_safe_main": true,
+      "formula_bad_anchor_top5_count": 0,
+      "target_source_confidence": "medium"
+    },
+    {
+      "category": "formula_exact",
+      "query": "麻黄附子甘草汤方的条文是什么？",
+      "target": "麻黄附子甘草汤",
+      "answer_mode": "strong",
+      "query_focus_source": "noise_stripped_query",
+      "formula_normalization": {
+        "enabled": true,
+        "type": "exact",
+        "formula_ids": [
+          "FML-659e19219c98"
+        ],
+        "target_formula_id": "FML-659e19219c98",
+        "matches": [
+          {
+            "formula_id": "FML-659e19219c98",
+            "canonical_name": "麻黄附子甘草汤",
+            "alias": "麻黄附子甘草汤",
+            "normalized_alias": "麻黄附子甘草汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              0,
+              7
+            ]
+          }
+        ],
+        "disabled_reason": null
+      },
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0069"
+      ],
+      "primary_record_types": [
+        "main_passages"
+      ],
+      "primary_forbidden_items": [],
+      "primary_all_safe_main": true,
+      "formula_bad_anchor_top5_count": 0,
+      "target_source_confidence": "medium"
+    },
+    {
+      "category": "formula_comparison",
+      "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+      "target": "",
+      "answer_mode": "strong",
+      "query_focus_source": "noise_stripped_query",
+      "formula_normalization": {
+        "enabled": true,
+        "type": "comparison",
+        "formula_ids": [
+          "FML-040863271409",
+          "FML-ab783d366a21"
+        ],
+        "left_formula_id": "FML-040863271409",
+        "right_formula_id": "FML-ab783d366a21",
+        "matches": [
+          {
+            "formula_id": "FML-040863271409",
+            "canonical_name": "桂枝加附子汤",
+            "alias": "桂枝加附子汤",
+            "normalized_alias": "桂枝加附子汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              0,
+              6
+            ]
+          },
+          {
+            "formula_id": "FML-ab783d366a21",
+            "canonical_name": "桂枝加浓朴杏子汤",
+            "alias": "桂枝加浓朴杏子汤",
+            "normalized_alias": "桂枝加浓朴杏子汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              8,
+              16
+            ]
+          }
+        ],
+        "disabled_reason": null
+      },
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-025-P-0004",
+        "safe:main_passages:ZJSHL-CH-025-P-0003"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages"
+      ],
+      "primary_forbidden_items": [],
+      "primary_all_safe_main": true,
+      "formula_bad_anchor_top5_count": 0,
+      "target_source_confidence": ""
+    },
+    {
+      "category": "formula_comparison",
+      "query": "桂枝去芍药汤方和桂枝去芍药加附子汤方有什么不同？",
+      "target": "",
+      "answer_mode": "strong",
+      "query_focus_source": "noise_stripped_query",
+      "formula_normalization": {
+        "enabled": true,
+        "type": "comparison",
+        "formula_ids": [
+          "FML-bc9f2a4ed524",
+          "FML-3f081531c40e"
+        ],
+        "left_formula_id": "FML-bc9f2a4ed524",
+        "right_formula_id": "FML-3f081531c40e",
+        "matches": [
+          {
+            "formula_id": "FML-bc9f2a4ed524",
+            "canonical_name": "桂枝去芍药汤",
+            "alias": "桂枝去芍药汤",
+            "normalized_alias": "桂枝去芍药汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              0,
+              6
+            ]
+          },
+          {
+            "formula_id": "FML-3f081531c40e",
+            "canonical_name": "桂枝去芍药加附子汤",
+            "alias": "桂枝去芍药加附子汤",
+            "normalized_alias": "桂枝去芍药加附子汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              8,
+              17
+            ]
+          }
+        ],
+        "disabled_reason": null
+      },
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-025-P-0006",
+        "safe:main_passages:ZJSHL-CH-025-P-0005",
+        "safe:main_passages:ZJSHL-CH-009-P-0278"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "primary_forbidden_items": [],
+      "primary_all_safe_main": true,
+      "formula_bad_anchor_top5_count": 0,
+      "target_source_confidence": ""
+    }
+  ],
+  "after_rows": [
+    {
+      "category": "formula_exact",
+      "query": "乌梅丸方的条文是什么？",
+      "target": "乌梅丸",
+      "answer_mode": "strong",
+      "query_focus_source": "noise_stripped_query",
+      "formula_normalization": {
+        "enabled": true,
+        "type": "exact",
+        "formula_ids": [
+          "FML-21567be0171c"
+        ],
+        "target_formula_id": "FML-21567be0171c",
+        "matches": [
+          {
+            "formula_id": "FML-21567be0171c",
+            "canonical_name": "乌梅丸",
+            "alias": "乌梅丸",
+            "normalized_alias": "乌梅丸",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              0,
+              3
+            ]
+          }
+        ],
+        "disabled_reason": null
+      },
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-015-P-0221",
+        "safe:main_passages:ZJSHL-CH-015-P-0222"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages"
+      ],
+      "primary_forbidden_items": [],
+      "primary_all_safe_main": true,
+      "formula_bad_anchor_top5_count": 0,
+      "target_source_confidence": "high"
+    },
+    {
+      "category": "formula_exact",
+      "query": "旋复代赭石汤方的条文是什么？",
+      "target": "旋复代赭石汤",
+      "answer_mode": "strong",
+      "query_focus_source": "noise_stripped_query",
+      "formula_normalization": {
+        "enabled": true,
+        "type": "exact",
+        "formula_ids": [
+          "FML-ac1d63fd6039"
+        ],
+        "target_formula_id": "FML-ac1d63fd6039",
+        "matches": [
+          {
+            "formula_id": "FML-ac1d63fd6039",
+            "canonical_name": "旋复代赭石汤",
+            "alias": "旋复代赭石汤",
+            "normalized_alias": "旋复代赭石汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              0,
+              6
+            ]
+          }
+        ],
+        "disabled_reason": null
+      },
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0106"
+      ],
+      "primary_record_types": [
+        "main_passages"
+      ],
+      "primary_forbidden_items": [],
+      "primary_all_safe_main": true,
+      "formula_bad_anchor_top5_count": 0,
+      "target_source_confidence": "medium"
+    },
+    {
+      "category": "formula_exact",
+      "query": "栀子浓朴汤方的条文是什么？",
+      "target": "栀子浓朴汤",
+      "answer_mode": "strong",
+      "query_focus_source": "noise_stripped_query",
+      "formula_normalization": {
+        "enabled": true,
+        "type": "exact",
+        "formula_ids": [
+          "FML-f581e51c0cb7"
+        ],
+        "target_formula_id": "FML-f581e51c0cb7",
+        "matches": [
+          {
+            "formula_id": "FML-f581e51c0cb7",
+            "canonical_name": "栀子浓朴汤",
+            "alias": "栀子浓朴汤",
+            "normalized_alias": "栀子浓朴汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              0,
+              5
+            ]
+          }
+        ],
+        "disabled_reason": null
+      },
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0170"
+      ],
+      "primary_record_types": [
+        "main_passages"
+      ],
+      "primary_forbidden_items": [],
+      "primary_all_safe_main": true,
+      "formula_bad_anchor_top5_count": 0,
+      "target_source_confidence": "medium"
+    },
+    {
+      "category": "formula_exact",
+      "query": "桂枝甘草龙骨牡蛎汤方的条文是什么？",
+      "target": "桂枝甘草龙骨牡蛎汤",
+      "answer_mode": "strong",
+      "query_focus_source": "noise_stripped_query",
+      "formula_normalization": {
+        "enabled": true,
+        "type": "exact",
+        "formula_ids": [
+          "FML-0196ae607c39"
+        ],
+        "target_formula_id": "FML-0196ae607c39",
+        "matches": [
+          {
+            "formula_id": "FML-0196ae607c39",
+            "canonical_name": "桂枝甘草龙骨牡蛎汤",
+            "alias": "桂枝甘草龙骨牡蛎汤",
+            "normalized_alias": "桂枝甘草龙骨牡蛎汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              0,
+              9
+            ]
+          }
+        ],
+        "disabled_reason": null
+      },
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0298"
+      ],
+      "primary_record_types": [
+        "main_passages"
+      ],
+      "primary_forbidden_items": [],
+      "primary_all_safe_main": true,
+      "formula_bad_anchor_top5_count": 0,
+      "target_source_confidence": "high"
+    },
+    {
+      "category": "formula_exact",
+      "query": "茵陈蒿汤方的条文是什么？",
+      "target": "茵陈蒿汤",
+      "answer_mode": "strong",
+      "query_focus_source": "noise_stripped_query",
+      "formula_normalization": {
+        "enabled": true,
+        "type": "exact",
+        "formula_ids": [
+          "FML-c7b169a846ab"
+        ],
+        "target_formula_id": "FML-c7b169a846ab",
+        "matches": [
+          {
+            "formula_id": "FML-c7b169a846ab",
+            "canonical_name": "茵陈蒿汤",
+            "alias": "茵陈蒿汤",
+            "normalized_alias": "茵陈蒿汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              0,
+              4
+            ]
+          }
+        ],
+        "disabled_reason": null
+      },
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0141"
+      ],
+      "primary_record_types": [
+        "main_passages"
+      ],
+      "primary_forbidden_items": [],
+      "primary_all_safe_main": true,
+      "formula_bad_anchor_top5_count": 0,
+      "target_source_confidence": "high"
+    },
+    {
+      "category": "formula_exact",
+      "query": "麻黄附子甘草汤方的条文是什么？",
+      "target": "麻黄附子甘草汤",
+      "answer_mode": "strong",
+      "query_focus_source": "noise_stripped_query",
+      "formula_normalization": {
+        "enabled": true,
+        "type": "exact",
+        "formula_ids": [
+          "FML-659e19219c98"
+        ],
+        "target_formula_id": "FML-659e19219c98",
+        "matches": [
+          {
+            "formula_id": "FML-659e19219c98",
+            "canonical_name": "麻黄附子甘草汤",
+            "alias": "麻黄附子甘草汤",
+            "normalized_alias": "麻黄附子甘草汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              0,
+              7
+            ]
+          }
+        ],
+        "disabled_reason": null
+      },
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0069"
+      ],
+      "primary_record_types": [
+        "main_passages"
+      ],
+      "primary_forbidden_items": [],
+      "primary_all_safe_main": true,
+      "formula_bad_anchor_top5_count": 0,
+      "target_source_confidence": "high"
+    },
+    {
+      "category": "formula_comparison",
+      "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+      "target": "",
+      "answer_mode": "strong",
+      "query_focus_source": "noise_stripped_query",
+      "formula_normalization": {
+        "enabled": true,
+        "type": "comparison",
+        "formula_ids": [
+          "FML-040863271409",
+          "FML-ab783d366a21"
+        ],
+        "left_formula_id": "FML-040863271409",
+        "right_formula_id": "FML-ab783d366a21",
+        "matches": [
+          {
+            "formula_id": "FML-040863271409",
+            "canonical_name": "桂枝加附子汤",
+            "alias": "桂枝加附子汤",
+            "normalized_alias": "桂枝加附子汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              0,
+              6
+            ]
+          },
+          {
+            "formula_id": "FML-ab783d366a21",
+            "canonical_name": "桂枝加浓朴杏子汤",
+            "alias": "桂枝加浓朴杏子汤",
+            "normalized_alias": "桂枝加浓朴杏子汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              8,
+              16
+            ]
+          }
+        ],
+        "disabled_reason": null
+      },
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-025-P-0004",
+        "safe:main_passages:ZJSHL-CH-025-P-0003"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages"
+      ],
+      "primary_forbidden_items": [],
+      "primary_all_safe_main": true,
+      "formula_bad_anchor_top5_count": 0,
+      "target_source_confidence": ""
+    },
+    {
+      "category": "formula_comparison",
+      "query": "桂枝去芍药汤方和桂枝去芍药加附子汤方有什么不同？",
+      "target": "",
+      "answer_mode": "strong",
+      "query_focus_source": "noise_stripped_query",
+      "formula_normalization": {
+        "enabled": true,
+        "type": "comparison",
+        "formula_ids": [
+          "FML-bc9f2a4ed524",
+          "FML-3f081531c40e"
+        ],
+        "left_formula_id": "FML-bc9f2a4ed524",
+        "right_formula_id": "FML-3f081531c40e",
+        "matches": [
+          {
+            "formula_id": "FML-bc9f2a4ed524",
+            "canonical_name": "桂枝去芍药汤",
+            "alias": "桂枝去芍药汤",
+            "normalized_alias": "桂枝去芍药汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              0,
+              6
+            ]
+          },
+          {
+            "formula_id": "FML-3f081531c40e",
+            "canonical_name": "桂枝去芍药加附子汤",
+            "alias": "桂枝去芍药加附子汤",
+            "normalized_alias": "桂枝去芍药加附子汤",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "span": [
+              8,
+              17
+            ]
+          }
+        ],
+        "disabled_reason": null
+      },
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-025-P-0006",
+        "safe:main_passages:ZJSHL-CH-025-P-0005",
+        "safe:main_passages:ZJSHL-CH-009-P-0278"
+      ],
+      "primary_record_types": [
+        "main_passages",
+        "main_passages",
+        "main_passages"
+      ],
+      "primary_forbidden_items": [],
+      "primary_all_safe_main": true,
+      "formula_bad_anchor_top5_count": 0,
+      "target_source_confidence": ""
+    }
+  ],
+  "paired_results": [
+    {
+      "category": "formula_exact",
+      "query": "乌梅丸方的条文是什么？",
+      "target": "乌梅丸",
+      "before": {
+        "category": "formula_exact",
+        "query": "乌梅丸方的条文是什么？",
+        "target": "乌梅丸",
+        "answer_mode": "strong",
+        "query_focus_source": "noise_stripped_query",
+        "formula_normalization": {
+          "enabled": true,
+          "type": "exact",
+          "formula_ids": [
+            "FML-21567be0171c"
+          ],
+          "target_formula_id": "FML-21567be0171c",
+          "matches": [
+            {
+              "formula_id": "FML-21567be0171c",
+              "canonical_name": "乌梅丸",
+              "alias": "乌梅丸",
+              "normalized_alias": "乌梅丸",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "span": [
+                0,
+                3
+              ]
+            }
+          ],
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-015-P-0221",
+          "safe:main_passages:ZJSHL-CH-015-P-0222"
+        ],
+        "primary_record_types": [
+          "main_passages",
+          "main_passages"
+        ],
+        "primary_forbidden_items": [],
+        "primary_all_safe_main": true,
+        "formula_bad_anchor_top5_count": 0,
+        "target_source_confidence": "medium"
+      },
+      "after": {
+        "category": "formula_exact",
+        "query": "乌梅丸方的条文是什么？",
+        "target": "乌梅丸",
+        "answer_mode": "strong",
+        "query_focus_source": "noise_stripped_query",
+        "formula_normalization": {
+          "enabled": true,
+          "type": "exact",
+          "formula_ids": [
+            "FML-21567be0171c"
+          ],
+          "target_formula_id": "FML-21567be0171c",
+          "matches": [
+            {
+              "formula_id": "FML-21567be0171c",
+              "canonical_name": "乌梅丸",
+              "alias": "乌梅丸",
+              "normalized_alias": "乌梅丸",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "span": [
+                0,
+                3
+              ]
+            }
+          ],
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-015-P-0221",
+          "safe:main_passages:ZJSHL-CH-015-P-0222"
+        ],
+        "primary_record_types": [
+          "main_passages",
+          "main_passages"
+        ],
+        "primary_forbidden_items": [],
+        "primary_all_safe_main": true,
+        "formula_bad_anchor_top5_count": 0,
+        "target_source_confidence": "high"
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false
+      }
+    },
+    {
+      "category": "formula_exact",
+      "query": "旋复代赭石汤方的条文是什么？",
+      "target": "旋复代赭石汤",
+      "before": {
+        "category": "formula_exact",
+        "query": "旋复代赭石汤方的条文是什么？",
+        "target": "旋复代赭石汤",
+        "answer_mode": "strong",
+        "query_focus_source": "noise_stripped_query",
+        "formula_normalization": {
+          "enabled": true,
+          "type": "exact",
+          "formula_ids": [
+            "FML-ac1d63fd6039"
+          ],
+          "target_formula_id": "FML-ac1d63fd6039",
+          "matches": [
+            {
+              "formula_id": "FML-ac1d63fd6039",
+              "canonical_name": "旋复代赭石汤",
+              "alias": "旋复代赭石汤",
+              "normalized_alias": "旋复代赭石汤",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "span": [
+                0,
+                6
+              ]
+            }
+          ],
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-010-P-0106"
+        ],
+        "primary_record_types": [
+          "main_passages"
+        ],
+        "primary_forbidden_items": [],
+        "primary_all_safe_main": true,
+        "formula_bad_anchor_top5_count": 0,
+        "target_source_confidence": "medium"
+      },
+      "after": {
+        "category": "formula_exact",
+        "query": "旋复代赭石汤方的条文是什么？",
+        "target": "旋复代赭石汤",
+        "answer_mode": "strong",
+        "query_focus_source": "noise_stripped_query",
+        "formula_normalization": {
+          "enabled": true,
+          "type": "exact",
+          "formula_ids": [
+            "FML-ac1d63fd6039"
+          ],
+          "target_formula_id": "FML-ac1d63fd6039",
+          "matches": [
+            {
+              "formula_id": "FML-ac1d63fd6039",
+              "canonical_name": "旋复代赭石汤",
+              "alias": "旋复代赭石汤",
+              "normalized_alias": "旋复代赭石汤",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "span": [
+                0,
+                6
+              ]
+            }
+          ],
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-010-P-0106"
+        ],
+        "primary_record_types": [
+          "main_passages"
+        ],
+        "primary_forbidden_items": [],
+        "primary_all_safe_main": true,
+        "formula_bad_anchor_top5_count": 0,
+        "target_source_confidence": "medium"
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false
+      }
+    },
+    {
+      "category": "formula_exact",
+      "query": "栀子浓朴汤方的条文是什么？",
+      "target": "栀子浓朴汤",
+      "before": {
+        "category": "formula_exact",
+        "query": "栀子浓朴汤方的条文是什么？",
+        "target": "栀子浓朴汤",
+        "answer_mode": "strong",
+        "query_focus_source": "noise_stripped_query",
+        "formula_normalization": {
+          "enabled": true,
+          "type": "exact",
+          "formula_ids": [
+            "FML-f581e51c0cb7"
+          ],
+          "target_formula_id": "FML-f581e51c0cb7",
+          "matches": [
+            {
+              "formula_id": "FML-f581e51c0cb7",
+              "canonical_name": "栀子浓朴汤",
+              "alias": "栀子浓朴汤",
+              "normalized_alias": "栀子浓朴汤",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "span": [
+                0,
+                5
+              ]
+            }
+          ],
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-009-P-0170"
+        ],
+        "primary_record_types": [
+          "main_passages"
+        ],
+        "primary_forbidden_items": [],
+        "primary_all_safe_main": true,
+        "formula_bad_anchor_top5_count": 0,
+        "target_source_confidence": "medium"
+      },
+      "after": {
+        "category": "formula_exact",
+        "query": "栀子浓朴汤方的条文是什么？",
+        "target": "栀子浓朴汤",
+        "answer_mode": "strong",
+        "query_focus_source": "noise_stripped_query",
+        "formula_normalization": {
+          "enabled": true,
+          "type": "exact",
+          "formula_ids": [
+            "FML-f581e51c0cb7"
+          ],
+          "target_formula_id": "FML-f581e51c0cb7",
+          "matches": [
+            {
+              "formula_id": "FML-f581e51c0cb7",
+              "canonical_name": "栀子浓朴汤",
+              "alias": "栀子浓朴汤",
+              "normalized_alias": "栀子浓朴汤",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "span": [
+                0,
+                5
+              ]
+            }
+          ],
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-009-P-0170"
+        ],
+        "primary_record_types": [
+          "main_passages"
+        ],
+        "primary_forbidden_items": [],
+        "primary_all_safe_main": true,
+        "formula_bad_anchor_top5_count": 0,
+        "target_source_confidence": "medium"
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false
+      }
+    },
+    {
+      "category": "formula_exact",
+      "query": "桂枝甘草龙骨牡蛎汤方的条文是什么？",
+      "target": "桂枝甘草龙骨牡蛎汤",
+      "before": {
+        "category": "formula_exact",
+        "query": "桂枝甘草龙骨牡蛎汤方的条文是什么？",
+        "target": "桂枝甘草龙骨牡蛎汤",
+        "answer_mode": "strong",
+        "query_focus_source": "noise_stripped_query",
+        "formula_normalization": {
+          "enabled": true,
+          "type": "exact",
+          "formula_ids": [
+            "FML-0196ae607c39"
+          ],
+          "target_formula_id": "FML-0196ae607c39",
+          "matches": [
+            {
+              "formula_id": "FML-0196ae607c39",
+              "canonical_name": "桂枝甘草龙骨牡蛎汤",
+              "alias": "桂枝甘草龙骨牡蛎汤",
+              "normalized_alias": "桂枝甘草龙骨牡蛎汤",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "span": [
+                0,
+                9
+              ]
+            }
+          ],
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-009-P-0298"
+        ],
+        "primary_record_types": [
+          "main_passages"
+        ],
+        "primary_forbidden_items": [],
+        "primary_all_safe_main": true,
+        "formula_bad_anchor_top5_count": 0,
+        "target_source_confidence": "medium"
+      },
+      "after": {
+        "category": "formula_exact",
+        "query": "桂枝甘草龙骨牡蛎汤方的条文是什么？",
+        "target": "桂枝甘草龙骨牡蛎汤",
+        "answer_mode": "strong",
+        "query_focus_source": "noise_stripped_query",
+        "formula_normalization": {
+          "enabled": true,
+          "type": "exact",
+          "formula_ids": [
+            "FML-0196ae607c39"
+          ],
+          "target_formula_id": "FML-0196ae607c39",
+          "matches": [
+            {
+              "formula_id": "FML-0196ae607c39",
+              "canonical_name": "桂枝甘草龙骨牡蛎汤",
+              "alias": "桂枝甘草龙骨牡蛎汤",
+              "normalized_alias": "桂枝甘草龙骨牡蛎汤",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "span": [
+                0,
+                9
+              ]
+            }
+          ],
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-009-P-0298"
+        ],
+        "primary_record_types": [
+          "main_passages"
+        ],
+        "primary_forbidden_items": [],
+        "primary_all_safe_main": true,
+        "formula_bad_anchor_top5_count": 0,
+        "target_source_confidence": "high"
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false
+      }
+    },
+    {
+      "category": "formula_exact",
+      "query": "茵陈蒿汤方的条文是什么？",
+      "target": "茵陈蒿汤",
+      "before": {
+        "category": "formula_exact",
+        "query": "茵陈蒿汤方的条文是什么？",
+        "target": "茵陈蒿汤",
+        "answer_mode": "strong",
+        "query_focus_source": "noise_stripped_query",
+        "formula_normalization": {
+          "enabled": true,
+          "type": "exact",
+          "formula_ids": [
+            "FML-c7b169a846ab"
+          ],
+          "target_formula_id": "FML-c7b169a846ab",
+          "matches": [
+            {
+              "formula_id": "FML-c7b169a846ab",
+              "canonical_name": "茵陈蒿汤",
+              "alias": "茵陈蒿汤",
+              "normalized_alias": "茵陈蒿汤",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "span": [
+                0,
+                4
+              ]
+            }
+          ],
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-011-P-0141"
+        ],
+        "primary_record_types": [
+          "main_passages"
+        ],
+        "primary_forbidden_items": [],
+        "primary_all_safe_main": true,
+        "formula_bad_anchor_top5_count": 0,
+        "target_source_confidence": "medium"
+      },
+      "after": {
+        "category": "formula_exact",
+        "query": "茵陈蒿汤方的条文是什么？",
+        "target": "茵陈蒿汤",
+        "answer_mode": "strong",
+        "query_focus_source": "noise_stripped_query",
+        "formula_normalization": {
+          "enabled": true,
+          "type": "exact",
+          "formula_ids": [
+            "FML-c7b169a846ab"
+          ],
+          "target_formula_id": "FML-c7b169a846ab",
+          "matches": [
+            {
+              "formula_id": "FML-c7b169a846ab",
+              "canonical_name": "茵陈蒿汤",
+              "alias": "茵陈蒿汤",
+              "normalized_alias": "茵陈蒿汤",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "span": [
+                0,
+                4
+              ]
+            }
+          ],
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-011-P-0141"
+        ],
+        "primary_record_types": [
+          "main_passages"
+        ],
+        "primary_forbidden_items": [],
+        "primary_all_safe_main": true,
+        "formula_bad_anchor_top5_count": 0,
+        "target_source_confidence": "high"
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false
+      }
+    },
+    {
+      "category": "formula_exact",
+      "query": "麻黄附子甘草汤方的条文是什么？",
+      "target": "麻黄附子甘草汤",
+      "before": {
+        "category": "formula_exact",
+        "query": "麻黄附子甘草汤方的条文是什么？",
+        "target": "麻黄附子甘草汤",
+        "answer_mode": "strong",
+        "query_focus_source": "noise_stripped_query",
+        "formula_normalization": {
+          "enabled": true,
+          "type": "exact",
+          "formula_ids": [
+            "FML-659e19219c98"
+          ],
+          "target_formula_id": "FML-659e19219c98",
+          "matches": [
+            {
+              "formula_id": "FML-659e19219c98",
+              "canonical_name": "麻黄附子甘草汤",
+              "alias": "麻黄附子甘草汤",
+              "normalized_alias": "麻黄附子甘草汤",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "span": [
+                0,
+                7
+              ]
+            }
+          ],
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-014-P-0069"
+        ],
+        "primary_record_types": [
+          "main_passages"
+        ],
+        "primary_forbidden_items": [],
+        "primary_all_safe_main": true,
+        "formula_bad_anchor_top5_count": 0,
+        "target_source_confidence": "medium"
+      },
+      "after": {
+        "category": "formula_exact",
+        "query": "麻黄附子甘草汤方的条文是什么？",
+        "target": "麻黄附子甘草汤",
+        "answer_mode": "strong",
+        "query_focus_source": "noise_stripped_query",
+        "formula_normalization": {
+          "enabled": true,
+          "type": "exact",
+          "formula_ids": [
+            "FML-659e19219c98"
+          ],
+          "target_formula_id": "FML-659e19219c98",
+          "matches": [
+            {
+              "formula_id": "FML-659e19219c98",
+              "canonical_name": "麻黄附子甘草汤",
+              "alias": "麻黄附子甘草汤",
+              "normalized_alias": "麻黄附子甘草汤",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "span": [
+                0,
+                7
+              ]
+            }
+          ],
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-014-P-0069"
+        ],
+        "primary_record_types": [
+          "main_passages"
+        ],
+        "primary_forbidden_items": [],
+        "primary_all_safe_main": true,
+        "formula_bad_anchor_top5_count": 0,
+        "target_source_confidence": "high"
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false
+      }
+    },
+    {
+      "category": "formula_comparison",
+      "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+      "target": "",
+      "before": {
+        "category": "formula_comparison",
+        "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+        "target": "",
+        "answer_mode": "strong",
+        "query_focus_source": "noise_stripped_query",
+        "formula_normalization": {
+          "enabled": true,
+          "type": "comparison",
+          "formula_ids": [
+            "FML-040863271409",
+            "FML-ab783d366a21"
+          ],
+          "left_formula_id": "FML-040863271409",
+          "right_formula_id": "FML-ab783d366a21",
+          "matches": [
+            {
+              "formula_id": "FML-040863271409",
+              "canonical_name": "桂枝加附子汤",
+              "alias": "桂枝加附子汤",
+              "normalized_alias": "桂枝加附子汤",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "span": [
+                0,
+                6
+              ]
+            },
+            {
+              "formula_id": "FML-ab783d366a21",
+              "canonical_name": "桂枝加浓朴杏子汤",
+              "alias": "桂枝加浓朴杏子汤",
+              "normalized_alias": "桂枝加浓朴杏子汤",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "span": [
+                8,
+                16
+              ]
+            }
+          ],
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-025-P-0004",
+          "safe:main_passages:ZJSHL-CH-025-P-0003"
+        ],
+        "primary_record_types": [
+          "main_passages",
+          "main_passages"
+        ],
+        "primary_forbidden_items": [],
+        "primary_all_safe_main": true,
+        "formula_bad_anchor_top5_count": 0,
+        "target_source_confidence": ""
+      },
+      "after": {
+        "category": "formula_comparison",
+        "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+        "target": "",
+        "answer_mode": "strong",
+        "query_focus_source": "noise_stripped_query",
+        "formula_normalization": {
+          "enabled": true,
+          "type": "comparison",
+          "formula_ids": [
+            "FML-040863271409",
+            "FML-ab783d366a21"
+          ],
+          "left_formula_id": "FML-040863271409",
+          "right_formula_id": "FML-ab783d366a21",
+          "matches": [
+            {
+              "formula_id": "FML-040863271409",
+              "canonical_name": "桂枝加附子汤",
+              "alias": "桂枝加附子汤",
+              "normalized_alias": "桂枝加附子汤",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "span": [
+                0,
+                6
+              ]
+            },
+            {
+              "formula_id": "FML-ab783d366a21",
+              "canonical_name": "桂枝加浓朴杏子汤",
+              "alias": "桂枝加浓朴杏子汤",
+              "normalized_alias": "桂枝加浓朴杏子汤",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "span": [
+                8,
+                16
+              ]
+            }
+          ],
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-025-P-0004",
+          "safe:main_passages:ZJSHL-CH-025-P-0003"
+        ],
+        "primary_record_types": [
+          "main_passages",
+          "main_passages"
+        ],
+        "primary_forbidden_items": [],
+        "primary_all_safe_main": true,
+        "formula_bad_anchor_top5_count": 0,
+        "target_source_confidence": ""
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false
+      }
+    },
+    {
+      "category": "formula_comparison",
+      "query": "桂枝去芍药汤方和桂枝去芍药加附子汤方有什么不同？",
+      "target": "",
+      "before": {
+        "category": "formula_comparison",
+        "query": "桂枝去芍药汤方和桂枝去芍药加附子汤方有什么不同？",
+        "target": "",
+        "answer_mode": "strong",
+        "query_focus_source": "noise_stripped_query",
+        "formula_normalization": {
+          "enabled": true,
+          "type": "comparison",
+          "formula_ids": [
+            "FML-bc9f2a4ed524",
+            "FML-3f081531c40e"
+          ],
+          "left_formula_id": "FML-bc9f2a4ed524",
+          "right_formula_id": "FML-3f081531c40e",
+          "matches": [
+            {
+              "formula_id": "FML-bc9f2a4ed524",
+              "canonical_name": "桂枝去芍药汤",
+              "alias": "桂枝去芍药汤",
+              "normalized_alias": "桂枝去芍药汤",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "span": [
+                0,
+                6
+              ]
+            },
+            {
+              "formula_id": "FML-3f081531c40e",
+              "canonical_name": "桂枝去芍药加附子汤",
+              "alias": "桂枝去芍药加附子汤",
+              "normalized_alias": "桂枝去芍药加附子汤",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "span": [
+                8,
+                17
+              ]
+            }
+          ],
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-025-P-0006",
+          "safe:main_passages:ZJSHL-CH-025-P-0005",
+          "safe:main_passages:ZJSHL-CH-009-P-0278"
+        ],
+        "primary_record_types": [
+          "main_passages",
+          "main_passages",
+          "main_passages"
+        ],
+        "primary_forbidden_items": [],
+        "primary_all_safe_main": true,
+        "formula_bad_anchor_top5_count": 0,
+        "target_source_confidence": ""
+      },
+      "after": {
+        "category": "formula_comparison",
+        "query": "桂枝去芍药汤方和桂枝去芍药加附子汤方有什么不同？",
+        "target": "",
+        "answer_mode": "strong",
+        "query_focus_source": "noise_stripped_query",
+        "formula_normalization": {
+          "enabled": true,
+          "type": "comparison",
+          "formula_ids": [
+            "FML-bc9f2a4ed524",
+            "FML-3f081531c40e"
+          ],
+          "left_formula_id": "FML-bc9f2a4ed524",
+          "right_formula_id": "FML-3f081531c40e",
+          "matches": [
+            {
+              "formula_id": "FML-bc9f2a4ed524",
+              "canonical_name": "桂枝去芍药汤",
+              "alias": "桂枝去芍药汤",
+              "normalized_alias": "桂枝去芍药汤",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "span": [
+                0,
+                6
+              ]
+            },
+            {
+              "formula_id": "FML-3f081531c40e",
+              "canonical_name": "桂枝去芍药加附子汤",
+              "alias": "桂枝去芍药加附子汤",
+              "normalized_alias": "桂枝去芍药加附子汤",
+              "alias_type": "canonical",
+              "confidence": 1.0,
+              "span": [
+                8,
+                17
+              ]
+            }
+          ],
+          "disabled_reason": null
+        },
+        "primary_ids": [
+          "safe:main_passages:ZJSHL-CH-025-P-0006",
+          "safe:main_passages:ZJSHL-CH-025-P-0005",
+          "safe:main_passages:ZJSHL-CH-009-P-0278"
+        ],
+        "primary_record_types": [
+          "main_passages",
+          "main_passages",
+          "main_passages"
+        ],
+        "primary_forbidden_items": [],
+        "primary_all_safe_main": true,
+        "formula_bad_anchor_top5_count": 0,
+        "target_source_confidence": ""
+      },
+      "delta": {
+        "mode_changed": false,
+        "primary_changed": false
+      }
+    }
+  ]
+}

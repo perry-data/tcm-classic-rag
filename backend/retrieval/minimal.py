@@ -122,11 +122,19 @@ DEFINITION_RUNTIME_TABLES = (
     "retrieval_ready_definition_view",
 )
 AHV_PROMOTION_SOURCE_LAYER = "ambiguous_high_value_batch_safe_primary"
+AHV_PROMOTION_SOURCE_LAYERS = {
+    AHV_PROMOTION_SOURCE_LAYER,
+    "ambiguous_high_value_evidence_upgrade_v2_safe_primary",
+}
 DEFINITION_RUNTIME_OPTIONAL_TABLES = (
     "term_alias_registry",
     "learner_query_normalization_lexicon",
 )
 FORMULA_COMPARISON_HINTS = ("区别", "不同", "比较", "对比", "异同", "有什么不一样", "和", "与")
+
+
+def is_ahv_exact_match_layer(source_layer: str | None) -> bool:
+    return str(source_layer or "") in AHV_PROMOTION_SOURCE_LAYERS
 
 
 def resolve_project_path(path_value: str) -> Path:
@@ -659,7 +667,7 @@ class DefinitionRuntimeIndex:
                 concept = concepts_by_id.get(row["concept_id"], {})
                 row["match_mode"] = (
                     "exact"
-                    if concept.get("promotion_source_layer") == AHV_PROMOTION_SOURCE_LAYER
+                    if is_ahv_exact_match_layer(concept.get("promotion_source_layer"))
                     else "contains"
                 )
                 alias_rows.append(row)
@@ -738,7 +746,7 @@ class DefinitionRuntimeIndex:
                 continue
             concept = concepts_by_id.get(concept_id, {})
             match_mode = str(row.get("match_mode") or "contains")
-            if concept.get("promotion_source_layer") == AHV_PROMOTION_SOURCE_LAYER:
+            if is_ahv_exact_match_layer(concept.get("promotion_source_layer")):
                 match_mode = "exact"
             alias_rows.append(
                 {
@@ -1216,9 +1224,16 @@ class RetrievalEngine:
             self._collect_definition_object_candidates(request) + self._collect_formula_object_candidates(request)
         )
         tight_primary_precision = request["precision_profile"] == "tight_primary"
+        normalized_definition_ids = set((request.get("term_normalization") or {}).get("concept_ids") or [])
 
         for row in self.unified_rows:
             if row["source_object"] == "annotation_links":
+                continue
+            if (
+                row.get("source_object") == "definition_terms"
+                and is_ahv_exact_match_layer(row.get("promotion_source_layer"))
+                and row.get("concept_id") not in normalized_definition_ids
+            ):
                 continue
             text_score, matched_terms = compute_text_match_score(query_focus, query_terms, row["normalized_text"])
             if text_score <= 0:

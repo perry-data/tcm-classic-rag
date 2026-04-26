@@ -1,0 +1,1164 @@
+{
+  "run_id": "full_chain_production_like_regression_v1",
+  "generated_at_utc": "2026-04-26T06:01:27.918776+00:00",
+  "query_count": 120,
+  "query_category_counts": {
+    "ahv2_canonical": 16,
+    "ahv_v1_canonical": 16,
+    "cross_batch_adversarial": 26,
+    "formula": 20,
+    "learner_short_normal": 22,
+    "negative_modern_unrelated": 10,
+    "review_only_support_boundary": 10
+  },
+  "queries": [
+    {
+      "query_id": "ahv_v1_canonical_01",
+      "query": "何谓太阳病",
+      "query_category": "ahv_v1_canonical",
+      "expected_terms": [
+        "太阳病"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV v1 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv_v1_canonical_02",
+      "query": "伤寒是什么",
+      "query_category": "ahv_v1_canonical",
+      "expected_terms": [
+        "伤寒"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV v1 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv_v1_canonical_03",
+      "query": "温病是什么意思",
+      "query_category": "ahv_v1_canonical",
+      "expected_terms": [
+        "温病"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV v1 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv_v1_canonical_04",
+      "query": "结脉是什么",
+      "query_category": "ahv_v1_canonical",
+      "expected_terms": [
+        "结脉"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV v1 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv_v1_canonical_05",
+      "query": "霍乱是什么",
+      "query_category": "ahv_v1_canonical",
+      "expected_terms": [
+        "霍乱"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV v1 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv_v1_canonical_06",
+      "query": "劳复是什么意思",
+      "query_category": "ahv_v1_canonical",
+      "expected_terms": [
+        "劳复"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV v1 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv_v1_canonical_07",
+      "query": "食复是什么意思",
+      "query_category": "ahv_v1_canonical",
+      "expected_terms": [
+        "食复"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV v1 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv_v1_canonical_08",
+      "query": "促脉是什么",
+      "query_category": "ahv_v1_canonical",
+      "expected_terms": [
+        "促脉"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV v1 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv_v1_canonical_09",
+      "query": "弦脉是什么意思",
+      "query_category": "ahv_v1_canonical",
+      "expected_terms": [
+        "弦脉"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV v1 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv_v1_canonical_10",
+      "query": "滑脉是什么",
+      "query_category": "ahv_v1_canonical",
+      "expected_terms": [
+        "滑脉"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV v1 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv_v1_canonical_11",
+      "query": "革脉是什么",
+      "query_category": "ahv_v1_canonical",
+      "expected_terms": [
+        "革脉"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV v1 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv_v1_canonical_12",
+      "query": "血崩是什么",
+      "query_category": "ahv_v1_canonical",
+      "expected_terms": [
+        "血崩"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV v1 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv_v1_canonical_13",
+      "query": "内虚是什么意思",
+      "query_category": "ahv_v1_canonical",
+      "expected_terms": [
+        "内虚"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV v1 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv_v1_canonical_14",
+      "query": "痓病是什么",
+      "query_category": "ahv_v1_canonical",
+      "expected_terms": [
+        "痓病"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV v1 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv_v1_canonical_15",
+      "query": "刚痓是什么",
+      "query_category": "ahv_v1_canonical",
+      "expected_terms": [
+        "刚痓"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV v1 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv_v1_canonical_16",
+      "query": "柔痓是什么意思",
+      "query_category": "ahv_v1_canonical",
+      "expected_terms": [
+        "柔痓"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV v1 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv2_canonical_01",
+      "query": "阳明病是什么",
+      "query_category": "ahv2_canonical",
+      "expected_terms": [
+        "阳明病"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV2 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv2_canonical_02",
+      "query": "少阴病是什么意思",
+      "query_category": "ahv2_canonical",
+      "expected_terms": [
+        "少阴病"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV2 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv2_canonical_03",
+      "query": "结胸是什么",
+      "query_category": "ahv2_canonical",
+      "expected_terms": [
+        "结胸"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV2 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv2_canonical_04",
+      "query": "水逆是什么意思",
+      "query_category": "ahv2_canonical",
+      "expected_terms": [
+        "水逆"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV2 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv2_canonical_05",
+      "query": "半表半里证是什么",
+      "query_category": "ahv2_canonical",
+      "expected_terms": [
+        "半表半里证"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV2 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv2_canonical_06",
+      "query": "数脉是什么",
+      "query_category": "ahv2_canonical",
+      "expected_terms": [
+        "数脉"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV2 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv2_canonical_07",
+      "query": "太阴病是什么",
+      "query_category": "ahv2_canonical",
+      "expected_terms": [
+        "太阴病"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV2 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv2_canonical_08",
+      "query": "厥阴病是什么",
+      "query_category": "ahv2_canonical",
+      "expected_terms": [
+        "厥阴病"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV2 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv2_canonical_09",
+      "query": "风湿是什么意思",
+      "query_category": "ahv2_canonical",
+      "expected_terms": [
+        "风湿"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV2 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv2_canonical_10",
+      "query": "湿家是什么",
+      "query_category": "ahv2_canonical",
+      "expected_terms": [
+        "湿家"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV2 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv2_canonical_11",
+      "query": "过经是什么意思",
+      "query_category": "ahv2_canonical",
+      "expected_terms": [
+        "过经"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV2 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv2_canonical_12",
+      "query": "平脉是什么",
+      "query_category": "ahv2_canonical",
+      "expected_terms": [
+        "平脉"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV2 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv2_canonical_13",
+      "query": "毛脉是什么",
+      "query_category": "ahv2_canonical",
+      "expected_terms": [
+        "毛脉"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV2 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv2_canonical_14",
+      "query": "残贼是什么意思",
+      "query_category": "ahv2_canonical",
+      "expected_terms": [
+        "残贼"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV2 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv2_canonical_15",
+      "query": "八邪是什么",
+      "query_category": "ahv2_canonical",
+      "expected_terms": [
+        "八邪"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV2 safe primary canonical definition."
+    },
+    {
+      "query_id": "ahv2_canonical_16",
+      "query": "亡血是什么意思",
+      "query_category": "ahv2_canonical",
+      "expected_terms": [
+        "亡血"
+      ],
+      "expected_formula_names": [],
+      "notes": "AHV2 safe primary canonical definition."
+    },
+    {
+      "query_id": "cross_batch_adversarial_01",
+      "query": "太阳病和阳明病有什么区别",
+      "query_category": "cross_batch_adversarial",
+      "expected_terms": [
+        "太阳病",
+        "阳明病"
+      ],
+      "expected_formula_names": [],
+      "notes": "Cross-batch comparison/relationship query must not be hijacked by one definition object."
+    },
+    {
+      "query_id": "cross_batch_adversarial_02",
+      "query": "伤寒和温病有什么区别",
+      "query_category": "cross_batch_adversarial",
+      "expected_terms": [
+        "伤寒",
+        "温病"
+      ],
+      "expected_formula_names": [],
+      "notes": "Cross-batch comparison/relationship query must not be hijacked by one definition object."
+    },
+    {
+      "query_id": "cross_batch_adversarial_03",
+      "query": "结脉和促脉有什么区别",
+      "query_category": "cross_batch_adversarial",
+      "expected_terms": [
+        "结脉",
+        "促脉"
+      ],
+      "expected_formula_names": [],
+      "notes": "Cross-batch comparison/relationship query must not be hijacked by one definition object."
+    },
+    {
+      "query_id": "cross_batch_adversarial_04",
+      "query": "劳复和食复一样吗",
+      "query_category": "cross_batch_adversarial",
+      "expected_terms": [
+        "劳复",
+        "食复"
+      ],
+      "expected_formula_names": [],
+      "notes": "Cross-batch comparison/relationship query must not be hijacked by one definition object."
+    },
+    {
+      "query_id": "cross_batch_adversarial_05",
+      "query": "结胸和水逆有什么不同",
+      "query_category": "cross_batch_adversarial",
+      "expected_terms": [
+        "结胸",
+        "水逆"
+      ],
+      "expected_formula_names": [],
+      "notes": "Cross-batch comparison/relationship query must not be hijacked by one definition object."
+    },
+    {
+      "query_id": "cross_batch_adversarial_06",
+      "query": "少阴病和厥阴病有什么区别",
+      "query_category": "cross_batch_adversarial",
+      "expected_terms": [
+        "少阴病",
+        "厥阴病"
+      ],
+      "expected_formula_names": [],
+      "notes": "Cross-batch comparison/relationship query must not be hijacked by one definition object."
+    },
+    {
+      "query_id": "cross_batch_adversarial_07",
+      "query": "太阴病和阳明病有什么区别",
+      "query_category": "cross_batch_adversarial",
+      "expected_terms": [
+        "太阴病",
+        "阳明病"
+      ],
+      "expected_formula_names": [],
+      "notes": "Cross-batch comparison/relationship query must not be hijacked by one definition object."
+    },
+    {
+      "query_id": "cross_batch_adversarial_08",
+      "query": "数脉和结脉有什么区别",
+      "query_category": "cross_batch_adversarial",
+      "expected_terms": [
+        "数脉",
+        "结脉"
+      ],
+      "expected_formula_names": [],
+      "notes": "Cross-batch comparison/relationship query must not be hijacked by one definition object."
+    },
+    {
+      "query_id": "cross_batch_adversarial_09",
+      "query": "风湿和湿家一样吗",
+      "query_category": "cross_batch_adversarial",
+      "expected_terms": [
+        "风湿",
+        "湿家"
+      ],
+      "expected_formula_names": [],
+      "notes": "Cross-batch comparison/relationship query must not be hijacked by one definition object."
+    },
+    {
+      "query_id": "cross_batch_adversarial_10",
+      "query": "半表半里证和过经有什么不同",
+      "query_category": "cross_batch_adversarial",
+      "expected_terms": [
+        "半表半里证",
+        "过经"
+      ],
+      "expected_formula_names": [],
+      "notes": "Cross-batch comparison/relationship query must not be hijacked by one definition object."
+    },
+    {
+      "query_id": "cross_batch_adversarial_11",
+      "query": "亡血和阳气微一样吗",
+      "query_category": "cross_batch_adversarial",
+      "expected_terms": [
+        "亡血",
+        "阳气微"
+      ],
+      "expected_formula_names": [],
+      "notes": "Cross-batch comparison/relationship query must not be hijacked by one definition object."
+    },
+    {
+      "query_id": "cross_batch_adversarial_12",
+      "query": "荣气微和卫气衰有什么区别",
+      "query_category": "cross_batch_adversarial",
+      "expected_terms": [
+        "荣气微",
+        "卫气衰"
+      ],
+      "expected_formula_names": [],
+      "notes": "Cross-batch comparison/relationship query must not be hijacked by one definition object."
+    },
+    {
+      "query_id": "cross_batch_adversarial_13",
+      "query": "平脉和数脉有什么区别",
+      "query_category": "cross_batch_adversarial",
+      "expected_terms": [
+        "平脉",
+        "数脉"
+      ],
+      "expected_formula_names": [],
+      "notes": "Cross-batch comparison/relationship query must not be hijacked by one definition object."
+    },
+    {
+      "query_id": "cross_batch_adversarial_14",
+      "query": "八邪和残贼有什么区别",
+      "query_category": "cross_batch_adversarial",
+      "expected_terms": [
+        "八邪",
+        "残贼"
+      ],
+      "expected_formula_names": [],
+      "notes": "Cross-batch comparison/relationship query must not be hijacked by one definition object."
+    },
+    {
+      "query_id": "cross_batch_adversarial_15",
+      "query": "霍乱和伤寒有什么区别",
+      "query_category": "cross_batch_adversarial",
+      "expected_terms": [
+        "霍乱",
+        "伤寒"
+      ],
+      "expected_formula_names": [],
+      "notes": "Cross-batch comparison/relationship query must not be hijacked by one definition object."
+    },
+    {
+      "query_id": "cross_batch_adversarial_16",
+      "query": "内虚和血崩有什么关系",
+      "query_category": "cross_batch_adversarial",
+      "expected_terms": [
+        "内虚",
+        "血崩"
+      ],
+      "expected_formula_names": [],
+      "notes": "Cross-batch comparison/relationship query must not be hijacked by one definition object."
+    },
+    {
+      "query_id": "cross_batch_adversarial_17",
+      "query": "刚痓和柔痓有什么区别",
+      "query_category": "cross_batch_adversarial",
+      "expected_terms": [
+        "刚痓",
+        "柔痓"
+      ],
+      "expected_formula_names": [],
+      "notes": "Cross-batch comparison/relationship query must not be hijacked by one definition object."
+    },
+    {
+      "query_id": "cross_batch_adversarial_18",
+      "query": "痓病和太阳病有什么不同",
+      "query_category": "cross_batch_adversarial",
+      "expected_terms": [
+        "痓病",
+        "太阳病"
+      ],
+      "expected_formula_names": [],
+      "notes": "Cross-batch comparison/relationship query must not be hijacked by one definition object."
+    },
+    {
+      "query_id": "cross_batch_adversarial_19",
+      "query": "阳明病和少阴病一样吗",
+      "query_category": "cross_batch_adversarial",
+      "expected_terms": [
+        "阳明病",
+        "少阴病"
+      ],
+      "expected_formula_names": [],
+      "notes": "Cross-batch comparison/relationship query must not be hijacked by one definition object."
+    },
+    {
+      "query_id": "cross_batch_adversarial_20",
+      "query": "水逆和结胸一样吗",
+      "query_category": "cross_batch_adversarial",
+      "expected_terms": [
+        "水逆",
+        "结胸"
+      ],
+      "expected_formula_names": [],
+      "notes": "Cross-batch comparison/relationship query must not be hijacked by one definition object."
+    },
+    {
+      "query_id": "cross_batch_adversarial_21",
+      "query": "温病和暑病有什么区别",
+      "query_category": "cross_batch_adversarial",
+      "expected_terms": [
+        "温病",
+        "暑病"
+      ],
+      "expected_formula_names": [],
+      "notes": "Cross-batch comparison/relationship query must not be hijacked by one definition object."
+    },
+    {
+      "query_id": "cross_batch_adversarial_22",
+      "query": "冬温和温病有什么区别",
+      "query_category": "cross_batch_adversarial",
+      "expected_terms": [
+        "冬温",
+        "温病"
+      ],
+      "expected_formula_names": [],
+      "notes": "Cross-batch comparison/relationship query must not be hijacked by one definition object."
+    },
+    {
+      "query_id": "cross_batch_adversarial_23",
+      "query": "时行寒疫和伤寒有什么不同",
+      "query_category": "cross_batch_adversarial",
+      "expected_terms": [
+        "时行寒疫",
+        "伤寒"
+      ],
+      "expected_formula_names": [],
+      "notes": "Cross-batch comparison/relationship query must not be hijacked by one definition object."
+    },
+    {
+      "query_id": "cross_batch_adversarial_24",
+      "query": "弦脉和滑脉有什么区别",
+      "query_category": "cross_batch_adversarial",
+      "expected_terms": [
+        "弦脉",
+        "滑脉"
+      ],
+      "expected_formula_names": [],
+      "notes": "Cross-batch comparison/relationship query must not be hijacked by one definition object."
+    },
+    {
+      "query_id": "cross_batch_adversarial_25",
+      "query": "革脉和结脉有什么区别",
+      "query_category": "cross_batch_adversarial",
+      "expected_terms": [
+        "革脉",
+        "结脉"
+      ],
+      "expected_formula_names": [],
+      "notes": "Cross-batch comparison/relationship query must not be hijacked by one definition object."
+    },
+    {
+      "query_id": "cross_batch_adversarial_26",
+      "query": "食复和劳复有什么不同",
+      "query_category": "cross_batch_adversarial",
+      "expected_terms": [
+        "食复",
+        "劳复"
+      ],
+      "expected_formula_names": [],
+      "notes": "Cross-batch comparison/relationship query must not be hijacked by one definition object."
+    },
+    {
+      "query_id": "formula_01",
+      "query": "乌梅丸方的条文是什么？",
+      "query_category": "formula",
+      "expected_terms": [],
+      "expected_formula_names": [
+        "乌梅丸"
+      ],
+      "notes": "Formula exact/comparison query."
+    },
+    {
+      "query_id": "formula_02",
+      "query": "茵陈蒿汤方的条文是什么？",
+      "query_category": "formula",
+      "expected_terms": [],
+      "expected_formula_names": [
+        "茵陈蒿汤"
+      ],
+      "notes": "Formula exact/comparison query."
+    },
+    {
+      "query_id": "formula_03",
+      "query": "桂枝去芍药汤方和桂枝去芍药加附子汤方有什么不同？",
+      "query_category": "formula",
+      "expected_terms": [],
+      "expected_formula_names": [
+        "桂枝去芍药汤",
+        "桂枝去芍药加附子汤"
+      ],
+      "notes": "Formula exact/comparison query."
+    },
+    {
+      "query_id": "formula_04",
+      "query": "白虎汤方和白虎加人参汤方的区别是什么？",
+      "query_category": "formula",
+      "expected_terms": [],
+      "expected_formula_names": [
+        "白虎汤",
+        "白虎加人参汤"
+      ],
+      "notes": "Formula exact/comparison query."
+    },
+    {
+      "query_id": "formula_05",
+      "query": "桂枝加附子汤方的条文是什么？",
+      "query_category": "formula",
+      "expected_terms": [],
+      "expected_formula_names": [
+        "桂枝加附子汤"
+      ],
+      "notes": "Formula exact/comparison query."
+    },
+    {
+      "query_id": "formula_06",
+      "query": "桂枝加厚朴杏子汤方的条文是什么？",
+      "query_category": "formula",
+      "expected_terms": [],
+      "expected_formula_names": [
+        "桂枝加浓朴杏子汤"
+      ],
+      "notes": "Formula exact/comparison query."
+    },
+    {
+      "query_id": "formula_07",
+      "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+      "query_category": "formula",
+      "expected_terms": [],
+      "expected_formula_names": [
+        "桂枝加附子汤",
+        "桂枝加浓朴杏子汤"
+      ],
+      "notes": "Formula exact/comparison query."
+    },
+    {
+      "query_id": "formula_08",
+      "query": "四逆加人参汤方的条文是什么？",
+      "query_category": "formula",
+      "expected_terms": [],
+      "expected_formula_names": [
+        "四逆加人参汤"
+      ],
+      "notes": "Formula exact/comparison query."
+    },
+    {
+      "query_id": "formula_09",
+      "query": "四逆加猪胆汁汤方的条文是什么？",
+      "query_category": "formula",
+      "expected_terms": [],
+      "expected_formula_names": [
+        "四逆加猪胆汁汤"
+      ],
+      "notes": "Formula exact/comparison query."
+    },
+    {
+      "query_id": "formula_10",
+      "query": "柴胡加芒硝汤方的条文是什么？",
+      "query_category": "formula",
+      "expected_terms": [],
+      "expected_formula_names": [
+        "柴胡加芒硝汤"
+      ],
+      "notes": "Formula exact/comparison query."
+    },
+    {
+      "query_id": "formula_11",
+      "query": "桂枝加芍药汤方的条文是什么？",
+      "query_category": "formula",
+      "expected_terms": [],
+      "expected_formula_names": [
+        "桂枝加芍药汤"
+      ],
+      "notes": "Formula exact/comparison query."
+    },
+    {
+      "query_id": "formula_12",
+      "query": "桂枝去桂加茯苓白术汤方的条文是什么？",
+      "query_category": "formula",
+      "expected_terms": [],
+      "expected_formula_names": [
+        "桂枝去桂加茯苓白术汤"
+      ],
+      "notes": "Formula exact/comparison query."
+    },
+    {
+      "query_id": "formula_13",
+      "query": "小柴胡汤方的条文是什么？",
+      "query_category": "formula",
+      "expected_terms": [],
+      "expected_formula_names": [
+        "小柴胡汤"
+      ],
+      "notes": "Formula exact/comparison query."
+    },
+    {
+      "query_id": "formula_14",
+      "query": "大承气汤方的条文是什么？",
+      "query_category": "formula",
+      "expected_terms": [],
+      "expected_formula_names": [
+        "大承气汤"
+      ],
+      "notes": "Formula exact/comparison query."
+    },
+    {
+      "query_id": "formula_15",
+      "query": "小承气汤方和大承气汤方有什么不同？",
+      "query_category": "formula",
+      "expected_terms": [],
+      "expected_formula_names": [
+        "小承气汤",
+        "大承气汤"
+      ],
+      "notes": "Formula exact/comparison query."
+    },
+    {
+      "query_id": "formula_16",
+      "query": "麻黄汤方的条文是什么？",
+      "query_category": "formula",
+      "expected_terms": [],
+      "expected_formula_names": [
+        "麻黄汤"
+      ],
+      "notes": "Formula exact/comparison query."
+    },
+    {
+      "query_id": "formula_17",
+      "query": "桂枝汤方的条文是什么？",
+      "query_category": "formula",
+      "expected_terms": [],
+      "expected_formula_names": [
+        "桂枝汤"
+      ],
+      "notes": "Formula exact/comparison query."
+    },
+    {
+      "query_id": "formula_18",
+      "query": "麻黄汤方和桂枝汤方的区别是什么？",
+      "query_category": "formula",
+      "expected_terms": [],
+      "expected_formula_names": [
+        "麻黄汤",
+        "桂枝汤"
+      ],
+      "notes": "Formula exact/comparison query."
+    },
+    {
+      "query_id": "formula_19",
+      "query": "白通汤方的条文是什么？",
+      "query_category": "formula",
+      "expected_terms": [],
+      "expected_formula_names": [
+        "白通汤"
+      ],
+      "notes": "Formula exact/comparison query."
+    },
+    {
+      "query_id": "formula_20",
+      "query": "白通加猪胆汁汤方和白通汤方有什么不同？",
+      "query_category": "formula",
+      "expected_terms": [],
+      "expected_formula_names": [
+        "白通加猪胆汁汤",
+        "白通汤"
+      ],
+      "notes": "Formula exact/comparison query."
+    },
+    {
+      "query_id": "learner_short_01",
+      "query": "睡着出汗是什么意思？",
+      "query_category": "learner_short_normal",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Learner-facing short or normal user query."
+    },
+    {
+      "query_id": "learner_short_02",
+      "query": "四肢不温是什么？",
+      "query_category": "learner_short_normal",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Learner-facing short or normal user query."
+    },
+    {
+      "query_id": "learner_short_03",
+      "query": "水饮结胸是什么意思？",
+      "query_category": "learner_short_normal",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Learner-facing short or normal user query."
+    },
+    {
+      "query_id": "learner_short_04",
+      "query": "发汗药是干什么的？",
+      "query_category": "learner_short_normal",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Learner-facing short or normal user query."
+    },
+    {
+      "query_id": "learner_short_05",
+      "query": "下药是什么意思？",
+      "query_category": "learner_short_normal",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Learner-facing short or normal user query."
+    },
+    {
+      "query_id": "learner_short_06",
+      "query": "烧针益阳而损阴是什么意思？",
+      "query_category": "learner_short_normal",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Learner-facing short or normal user query."
+    },
+    {
+      "query_id": "learner_short_07",
+      "query": "发汗后恶寒是什么意思？",
+      "query_category": "learner_short_normal",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Learner-facing short or normal user query."
+    },
+    {
+      "query_id": "learner_short_08",
+      "query": "胸满是什么意思？",
+      "query_category": "learner_short_normal",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Learner-facing short or normal user query."
+    },
+    {
+      "query_id": "learner_short_09",
+      "query": "心下悸是什么意思？",
+      "query_category": "learner_short_normal",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Learner-facing short or normal user query."
+    },
+    {
+      "query_id": "learner_short_10",
+      "query": "小便不利是什么意思？",
+      "query_category": "learner_short_normal",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Learner-facing short or normal user query."
+    },
+    {
+      "query_id": "learner_short_11",
+      "query": "口苦咽干目眩是什么意思？",
+      "query_category": "learner_short_normal",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Learner-facing short or normal user query."
+    },
+    {
+      "query_id": "learner_short_12",
+      "query": "头项强痛是什么意思？",
+      "query_category": "learner_short_normal",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Learner-facing short or normal user query."
+    },
+    {
+      "query_id": "learner_short_13",
+      "query": "不了了是什么意思？",
+      "query_category": "learner_short_normal",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Learner-facing short or normal user query."
+    },
+    {
+      "query_id": "learner_short_14",
+      "query": "不得眠是什么意思？",
+      "query_category": "learner_short_normal",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Learner-facing short or normal user query."
+    },
+    {
+      "query_id": "learner_short_15",
+      "query": "心烦是什么意思？",
+      "query_category": "learner_short_normal",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Learner-facing short or normal user query."
+    },
+    {
+      "query_id": "learner_short_16",
+      "query": "身疼痛是什么意思？",
+      "query_category": "learner_short_normal",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Learner-facing short or normal user query."
+    },
+    {
+      "query_id": "learner_short_17",
+      "query": "恶寒是什么意思？",
+      "query_category": "learner_short_normal",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Learner-facing short or normal user query."
+    },
+    {
+      "query_id": "learner_short_18",
+      "query": "发热汗出是什么意思？",
+      "query_category": "learner_short_normal",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Learner-facing short or normal user query."
+    },
+    {
+      "query_id": "learner_short_19",
+      "query": "脉浮是什么意思？",
+      "query_category": "learner_short_normal",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Learner-facing short or normal user query."
+    },
+    {
+      "query_id": "learner_short_20",
+      "query": "下利是什么意思？",
+      "query_category": "learner_short_normal",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Learner-facing short or normal user query."
+    },
+    {
+      "query_id": "learner_short_21",
+      "query": "干呕是什么意思？",
+      "query_category": "learner_short_normal",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Learner-facing short or normal user query."
+    },
+    {
+      "query_id": "learner_short_22",
+      "query": "咽中痛是什么意思？",
+      "query_category": "learner_short_normal",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Learner-facing short or normal user query."
+    },
+    {
+      "query_id": "review_only_boundary_01",
+      "query": "神丹是什么意思？",
+      "query_category": "review_only_support_boundary",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Review-only/support-only boundary query must not become clean primary."
+    },
+    {
+      "query_id": "review_only_boundary_02",
+      "query": "将军是什么意思？",
+      "query_category": "review_only_support_boundary",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Review-only/support-only boundary query must not become clean primary."
+    },
+    {
+      "query_id": "review_only_boundary_03",
+      "query": "胆瘅是什么意思？",
+      "query_category": "review_only_support_boundary",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Review-only/support-only boundary query must not become clean primary."
+    },
+    {
+      "query_id": "review_only_boundary_04",
+      "query": "两阳是什么意思？",
+      "query_category": "review_only_support_boundary",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Review-only/support-only boundary query must not become clean primary."
+    },
+    {
+      "query_id": "review_only_boundary_05",
+      "query": "火劫发汗是什么意思？",
+      "query_category": "review_only_support_boundary",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Review-only/support-only boundary query must not become clean primary."
+    },
+    {
+      "query_id": "review_only_boundary_06",
+      "query": "寒格是什么意思？",
+      "query_category": "review_only_support_boundary",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Review-only/support-only boundary query must not become clean primary."
+    },
+    {
+      "query_id": "review_only_boundary_07",
+      "query": "肝乘脾是什么意思？",
+      "query_category": "review_only_support_boundary",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Review-only/support-only boundary query must not become clean primary."
+    },
+    {
+      "query_id": "review_only_boundary_08",
+      "query": "清邪中上是什么意思？",
+      "query_category": "review_only_support_boundary",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Review-only/support-only boundary query must not become clean primary."
+    },
+    {
+      "query_id": "review_only_boundary_09",
+      "query": "口苦病是什么意思？",
+      "query_category": "review_only_support_boundary",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Review-only/support-only boundary query must not become clean primary."
+    },
+    {
+      "query_id": "review_only_boundary_10",
+      "query": "反是什么意思？",
+      "query_category": "review_only_support_boundary",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Review-only/support-only boundary query must not become clean primary."
+    },
+    {
+      "query_id": "negative_modern_01",
+      "query": "太阳能是什么意思？",
+      "query_category": "negative_modern_unrelated",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Modern unrelated or false-friend negative query."
+    },
+    {
+      "query_id": "negative_modern_02",
+      "query": "复习是什么意思？",
+      "query_category": "negative_modern_unrelated",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Modern unrelated or false-friend negative query."
+    },
+    {
+      "query_id": "negative_modern_03",
+      "query": "劳动合同是什么？",
+      "query_category": "negative_modern_unrelated",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Modern unrelated or false-friend negative query."
+    },
+    {
+      "query_id": "negative_modern_04",
+      "query": "霍乱疫苗是什么？",
+      "query_category": "negative_modern_unrelated",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Modern unrelated or false-friend negative query."
+    },
+    {
+      "query_id": "negative_modern_05",
+      "query": "温度是什么意思？",
+      "query_category": "negative_modern_unrelated",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Modern unrelated or false-friend negative query."
+    },
+    {
+      "query_id": "negative_modern_06",
+      "query": "阳明山在哪里？",
+      "query_category": "negative_modern_unrelated",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Modern unrelated or false-friend negative query."
+    },
+    {
+      "query_id": "negative_modern_07",
+      "query": "少阴影是什么意思？",
+      "query_category": "negative_modern_unrelated",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Modern unrelated or false-friend negative query."
+    },
+    {
+      "query_id": "negative_modern_08",
+      "query": "结胸肌怎么练？",
+      "query_category": "negative_modern_unrelated",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Modern unrelated or false-friend negative query."
+    },
+    {
+      "query_id": "negative_modern_09",
+      "query": "白虎是什么意思？",
+      "query_category": "negative_modern_unrelated",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Modern unrelated or false-friend negative query."
+    },
+    {
+      "query_id": "negative_modern_10",
+      "query": "水逆星座是什么意思？",
+      "query_category": "negative_modern_unrelated",
+      "expected_terms": [],
+      "expected_formula_names": [],
+      "notes": "Modern unrelated or false-friend negative query."
+    }
+  ]
+}

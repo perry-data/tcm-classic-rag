@@ -1,0 +1,3551 @@
+{
+  "run_id": "batch_upgrade_quality_audit_v1",
+  "generated_at_utc": "2026-04-24T02:13:03.552168+00:00",
+  "before_db": "/private/tmp/zjshl_v1_before_ahv_quality_audit_v1.db",
+  "after_db": "/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/zjshl_v1.db",
+  "metrics": {
+    "audited_ahv_object_count": 20,
+    "keep_safe_primary_count": 20,
+    "adjusted_object_count": 18,
+    "downgraded_object_count": 0,
+    "alias_adjusted_count": 5,
+    "focus_audited_count": 10
+  },
+  "verdict_counts": {
+    "adjust_alias": 5,
+    "adjust_primary_sentence": 6,
+    "keep_safe_primary": 2,
+    "keep_safe_primary_but_needs_notes": 7
+  },
+  "required_focus_terms": [
+    "伤寒",
+    "促脉",
+    "劳复",
+    "太阳病",
+    "柔痓",
+    "温病",
+    "痓病",
+    "结脉",
+    "霍乱",
+    "食复"
+  ],
+  "audited_objects": [
+    {
+      "concept_id": "AHV-fdb12048d73e",
+      "canonical_term": "太阳病",
+      "is_focus_term": true,
+      "audit_depth": "focus",
+      "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+      "quality_reason": "六经提纲句能独立成义，但原始来源为 B 级 main passage，应限定为提纲定义，不外扩到整章太阳病材料。",
+      "fix_action": "补充 audit notes，保留 safe primary 与现有 alias。",
+      "should_change_now": true,
+      "risk_level_after": "low",
+      "checks": {
+        "primary_sentence_quality": "完整“X之为病”提纲句，可独立作为定义 primary。",
+        "term_identity_stability": "canonical term 明确，六经病名稳定。",
+        "source_layer_support": "records_main_passages B 级可由句段化对象承接。",
+        "alias_normalization_risk": "alias 仅为原文短语“太阳之为病”，风险可控。",
+        "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+      },
+      "changed_fields": [
+        "notes"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-008-P-0191",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-008-P-0191",
+        "primary_source_evidence_level": "B",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "太阳之为病，脉浮，头项强痛而恶寒",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "太阳之为病"
+        ],
+        "learner_surface_forms": [
+          "太阳之为病"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-008-P-0191",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-008-P-0191",
+        "primary_source_evidence_level": "B",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "太阳之为病，脉浮，头项强痛而恶寒",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "太阳之为病"
+        ],
+        "learner_surface_forms": [
+          "太阳之为病"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "source_text_excerpt": "太阳之为病，脉浮，头项强痛而恶寒。",
+      "alias_registry_rows": [
+        {
+          "alias": "太阳之为病",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "is_active": 1,
+          "notes": "batch learner-safe alias"
+        },
+        {
+          "alias": "太阳病",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "canonical term alias"
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "surface_form": "太阳之为病",
+          "match_mode": "contains",
+          "confidence": 0.9,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        },
+        {
+          "surface_form": "太阳病",
+          "match_mode": "contains",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-82d1c8a78473",
+      "canonical_term": "伤寒",
+      "is_focus_term": true,
+      "audit_depth": "focus",
+      "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+      "quality_reason": "命名句完整，实际同 passage 已有 safe main 行；当前 full source 标记偏保守且 notes 需要说明只取命名句。",
+      "fix_action": "把 source 指向同 passage 的 safe main 行，并补充来源边界 notes。",
+      "should_change_now": true,
+      "risk_level_after": "low",
+      "checks": {
+        "primary_sentence_quality": "症状条件加“名曰伤寒”闭合，可独立解释。",
+        "term_identity_stability": "canonical term 稳定，alias“伤寒病”未越界。",
+        "source_layer_support": "同 passage 有 safe main A 级来源，source 可以收窄到 main。",
+        "alias_normalization_risk": "alias 无短词或跨概念风险。",
+        "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+      },
+      "changed_fields": [
+        "primary_source_table",
+        "primary_source_object",
+        "primary_source_record_id",
+        "primary_source_evidence_level",
+        "notes"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-008-P-0195",
+        "primary_source_table": "records_passages",
+        "primary_source_object": "passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-008-P-0195",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名曰伤寒",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "伤寒病"
+        ],
+        "learner_surface_forms": [
+          "伤寒病"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-008-P-0195",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-008-P-0195",
+        "primary_source_evidence_level": "A",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名曰伤寒",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "伤寒病"
+        ],
+        "learner_surface_forms": [
+          "伤寒病"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "source_text_excerpt": "太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名曰赵本作「为」伤寒。",
+      "alias_registry_rows": [
+        {
+          "alias": "伤寒",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "canonical term alias"
+        },
+        {
+          "alias": "伤寒病",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "is_active": 1,
+          "notes": "batch learner-safe alias"
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "surface_form": "伤寒",
+          "match_mode": "contains",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        },
+        {
+          "surface_form": "伤寒病",
+          "match_mode": "contains",
+          "confidence": 0.9,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-65a3bdee145b",
+      "canonical_term": "温病",
+      "is_focus_term": true,
+      "audit_depth": "focus",
+      "quality_audit_verdict": "adjust_alias",
+      "quality_reason": "primary 句“温者……”可作为抽句定义，但 alias“春温”更像邻近季节术语，作为 learner-safe normalization 过宽。",
+      "fix_action": "保留 canonical 温病 safe primary；停用“春温” learner alias 与 learner normalization。",
+      "should_change_now": true,
+      "risk_level_after": "medium",
+      "checks": {
+        "primary_sentence_quality": "“温者，冬时感寒，至春发者是也”可独立成义。",
+        "term_identity_stability": "温病本身稳定，但春温存在相邻概念风险。",
+        "source_layer_support": "来自 ambiguous risk registry，只能承接抽句，不提升整段。",
+        "alias_normalization_risk": "已停用春温 learner-safe alias。",
+        "runtime_behavior": "温病 canonical query 命中 AHV safe definition primary。"
+      },
+      "changed_fields": [
+        "notes",
+        "query_aliases_json",
+        "learner_surface_forms_json"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-006-P-0017",
+        "primary_source_table": "risk_registry_ambiguous",
+        "primary_source_object": "ambiguous_passages",
+        "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-006-P-0017",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "温者，冬时感寒，至春发者是也",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "春温"
+        ],
+        "learner_surface_forms": [
+          "春温"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-006-P-0017",
+        "primary_source_table": "risk_registry_ambiguous",
+        "primary_source_object": "ambiguous_passages",
+        "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-006-P-0017",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "温者，冬时感寒，至春发者是也",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      },
+      "source_text_excerpt": "四时正气者，春风、夏暑、秋湿、冬寒是也。时行者，时行之气是也。温者，冬时感寒，至春发者是也。疫者，暴厉之气是也。占前斗建，审其时候之寒温，察其邪气之轻重而治之，故下文曰：九月霜降节后，宜渐寒，向冬大寒，至正月雨水节后，宜解也。所以谓之雨水者，以冰雪解而为雨水故也。至惊蛰二月节后，气渐和暖，向夏大热，至秋便凉。冬寒、春温、夏热、秋凉，为四时之正气也。",
+      "alias_registry_rows": [
+        {
+          "alias": "春温",
+          "alias_type": "learner_risky",
+          "confidence": 0.42,
+          "is_active": 0,
+          "notes": "quality_audit_v1 inactive alias; surface is too broad or constructed for learner-safe normalization"
+        },
+        {
+          "alias": "温病",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "canonical term alias"
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "surface_form": "春温",
+          "match_mode": "contains",
+          "confidence": 0.42,
+          "is_active": 0,
+          "notes": "quality_audit_v1 deactivated broad or constructed learner surface"
+        },
+        {
+          "surface_form": "温病",
+          "match_mode": "contains",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-d1abf1c57ecf",
+      "canonical_term": "暑病",
+      "is_focus_term": false,
+      "audit_depth": "light",
+      "quality_audit_verdict": "adjust_alias",
+      "quality_reason": "定义句干净，且同 passage 有 safe main source；alias“暑病者”是原文句法残片，不宜作为 learner-safe surface。",
+      "fix_action": "把 source 收窄到 safe main 行；停用“暑病者” alias 与 learner normalization。",
+      "should_change_now": true,
+      "risk_level_after": "low",
+      "checks": {
+        "primary_sentence_quality": "“暑病者，热极重于温也”是完整定义句。",
+        "term_identity_stability": "canonical term 稳定。",
+        "source_layer_support": "同 passage safe main A 级来源可支撑。",
+        "alias_normalization_risk": "已移除带“者”的句法 alias。",
+        "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+      },
+      "changed_fields": [
+        "primary_source_table",
+        "primary_source_object",
+        "primary_source_record_id",
+        "primary_source_evidence_level",
+        "notes",
+        "query_aliases_json",
+        "learner_surface_forms_json"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-006-P-0012",
+        "primary_source_table": "records_passages",
+        "primary_source_object": "passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-006-P-0012",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "暑病者，热极重于温也",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "暑病者"
+        ],
+        "learner_surface_forms": [
+          "暑病者"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-006-P-0012",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-006-P-0012",
+        "primary_source_evidence_level": "A",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "暑病者，热极重于温也",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      },
+      "source_text_excerpt": "中而即病者，名曰伤寒；不即病者，寒毒藏于肌肤，至春变为温病，至夏变为暑病。暑病者，热极重于温也。",
+      "alias_registry_rows": [
+        {
+          "alias": "暑病",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "canonical term alias"
+        },
+        {
+          "alias": "暑病者",
+          "alias_type": "learner_risky",
+          "confidence": 0.42,
+          "is_active": 0,
+          "notes": "quality_audit_v1 inactive alias; surface is too broad or constructed for learner-safe normalization"
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "surface_form": "暑病",
+          "match_mode": "contains",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        },
+        {
+          "surface_form": "暑病者",
+          "match_mode": "contains",
+          "confidence": 0.42,
+          "is_active": 0,
+          "notes": "quality_audit_v1 deactivated broad or constructed learner surface"
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-9dfd46e14608",
+      "canonical_term": "冬温",
+      "is_focus_term": false,
+      "audit_depth": "light",
+      "quality_audit_verdict": "keep_safe_primary",
+      "quality_reason": "“名曰冬温”命名句自足，canonical 与“冬温病”alias 边界清楚。",
+      "fix_action": "保留 safe primary；不做 registry 改动。",
+      "should_change_now": false,
+      "risk_level_after": "low",
+      "checks": {
+        "primary_sentence_quality": "命名句完整。",
+        "term_identity_stability": "term identity 稳定。",
+        "source_layer_support": "records_passages C 层经抽句对象承接，source_confidence medium 合理。",
+        "alias_normalization_risk": "alias“冬温病”未见过宽。",
+        "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+      },
+      "changed_fields": [],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-006-P-0020",
+        "primary_source_table": "records_passages",
+        "primary_source_object": "passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-006-P-0020",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "其冬有非节之暖者，名曰冬温",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "冬温病"
+        ],
+        "learner_surface_forms": [
+          "冬温病"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-006-P-0020",
+        "primary_source_table": "records_passages",
+        "primary_source_object": "passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-006-P-0020",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "其冬有非节之暖者，名曰冬温",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "冬温病"
+        ],
+        "learner_surface_forms": [
+          "冬温病"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "source_text_excerpt": "其冬有非节之暖者，名曰赵本作「为」冬温。冬温之毒，与伤寒大异，冬温复有先后，更相重沓，亦有轻重，为治不同，证如后章。",
+      "alias_registry_rows": [
+        {
+          "alias": "冬温",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "canonical term alias"
+        },
+        {
+          "alias": "冬温病",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "is_active": 1,
+          "notes": "batch learner-safe alias"
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "surface_form": "冬温",
+          "match_mode": "contains",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        },
+        {
+          "surface_form": "冬温病",
+          "match_mode": "contains",
+          "confidence": 0.9,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-bb8f9a64a54e",
+      "canonical_term": "时行寒疫",
+      "is_focus_term": false,
+      "audit_depth": "light",
+      "quality_audit_verdict": "adjust_alias",
+      "quality_reason": "主句可保留，但“寒疫”比“时行寒疫”更宽，作为 active learner alias 可能误归一。",
+      "fix_action": "把 source 指向 safe main 行；停用“寒疫” learner alias 与 learner normalization。",
+      "should_change_now": true,
+      "risk_level_after": "medium",
+      "checks": {
+        "primary_sentence_quality": "“皆为时行寒疫也”可独立归类。",
+        "term_identity_stability": "canonical term 稳定，短 alias 更宽。",
+        "source_layer_support": "同 passage safe main A 级来源可支撑。",
+        "alias_normalization_risk": "已停用寒疫 active normalization。",
+        "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+      },
+      "changed_fields": [
+        "primary_source_table",
+        "primary_source_object",
+        "primary_source_record_id",
+        "primary_source_evidence_level",
+        "notes",
+        "query_aliases_json",
+        "learner_surface_forms_json"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-006-P-0024",
+        "primary_source_table": "records_passages",
+        "primary_source_object": "passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-006-P-0024",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "从春分以后，至秋分节前，天有暴寒者，皆为时行寒疫也",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "寒疫"
+        ],
+        "learner_surface_forms": [
+          "寒疫"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-006-P-0024",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-006-P-0024",
+        "primary_source_evidence_level": "A",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "从春分以后，至秋分节前，天有暴寒者，皆为时行寒疫也",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      },
+      "source_text_excerpt": "从春分以后，至秋分节前，天有暴寒者，皆为时行寒疫也。三月四月，或有暴寒，其时阳气尚弱，为寒所折，病热犹轻；五月六月，阳气已盛，为寒所折，病热则重；七月八月，阳气已衰，为寒所折，病热亦微。其病与温及暑病相似，但治有殊耳。",
+      "alias_registry_rows": [
+        {
+          "alias": "寒疫",
+          "alias_type": "learner_risky",
+          "confidence": 0.42,
+          "is_active": 0,
+          "notes": "quality_audit_v1 inactive alias; surface is too broad or constructed for learner-safe normalization"
+        },
+        {
+          "alias": "时行寒疫",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "canonical term alias"
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "surface_form": "寒疫",
+          "match_mode": "contains",
+          "confidence": 0.42,
+          "is_active": 0,
+          "notes": "quality_audit_v1 deactivated broad or constructed learner surface"
+        },
+        {
+          "surface_form": "时行寒疫",
+          "match_mode": "contains",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-87d3ca263c08",
+      "canonical_term": "刚痓",
+      "is_focus_term": false,
+      "audit_depth": "light",
+      "quality_audit_verdict": "keep_safe_primary",
+      "quality_reason": "命名句完整，canonical 与异体 alias“刚痉”均有明确边界，单字“痉”已 inactive。",
+      "fix_action": "保留 safe primary；不做 registry 改动。",
+      "should_change_now": false,
+      "risk_level_after": "low",
+      "checks": {
+        "primary_sentence_quality": "“名曰刚痓”句完整。",
+        "term_identity_stability": "与柔痓区分明确。",
+        "source_layer_support": "records_main_passages B 级可由句段化对象承接。",
+        "alias_normalization_risk": "单字痉未启用。",
+        "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+      },
+      "changed_fields": [],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-007-P-0157",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-007-P-0157",
+        "primary_source_evidence_level": "B",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "太阳病，发热无汗，反恶寒者，名曰刚痓",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "刚痉"
+        ],
+        "learner_surface_forms": [
+          "刚痉"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-007-P-0157",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-007-P-0157",
+        "primary_source_evidence_level": "B",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "太阳病，发热无汗，反恶寒者，名曰刚痓",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "刚痉"
+        ],
+        "learner_surface_forms": [
+          "刚痉"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "source_text_excerpt": "太阳病，发热无汗，反恶寒者，名曰刚痓。",
+      "alias_registry_rows": [
+        {
+          "alias": "刚痉",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "is_active": 1,
+          "notes": "batch learner-safe alias"
+        },
+        {
+          "alias": "刚痓",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "canonical term alias"
+        },
+        {
+          "alias": "痉",
+          "alias_type": "ambiguous",
+          "confidence": 0.3,
+          "is_active": 0,
+          "notes": "inactive ambiguous alias; not used for runtime normalization"
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "surface_form": "刚痉",
+          "match_mode": "contains",
+          "confidence": 0.9,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        },
+        {
+          "surface_form": "刚痓",
+          "match_mode": "contains",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-cdac1a4b7e7b",
+      "canonical_term": "柔痓",
+      "is_focus_term": true,
+      "audit_depth": "focus",
+      "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+      "quality_reason": "primary 是解释句而非典型定义句，但“表虚感湿，故曰柔痓”能独立解释柔痓来源；需明确来源为 ambiguous 抽句。",
+      "fix_action": "保留 safe primary，补充 notes 限定为 medium confidence 抽句对象。",
+      "should_change_now": true,
+      "risk_level_after": "medium",
+      "checks": {
+        "primary_sentence_quality": "解释句短且自足，但不是完整“X者”定义。",
+        "term_identity_stability": "柔痓/刚痓术语身份稳定。",
+        "source_layer_support": "ambiguous source 只支持抽句级 safe primary。",
+        "alias_normalization_risk": "异体 alias 柔痉合理，单字痉 inactive。",
+        "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+      },
+      "changed_fields": [
+        "notes"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-007-P-0160",
+        "primary_source_table": "risk_registry_ambiguous",
+        "primary_source_object": "ambiguous_passages",
+        "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-007-P-0160",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_explanation",
+        "primary_evidence_text": "表虚感湿，故曰柔痓",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "柔痉"
+        ],
+        "learner_surface_forms": [
+          "柔痉"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-007-P-0160",
+        "primary_source_table": "risk_registry_ambiguous",
+        "primary_source_object": "ambiguous_passages",
+        "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-007-P-0160",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_explanation",
+        "primary_evidence_text": "表虚感湿，故曰柔痓",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "柔痉"
+        ],
+        "learner_surface_forms": [
+          "柔痉"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "source_text_excerpt": "太阳病，发热汗出为表虚，则当恶寒，其不恶寒者，为阳明病。今发热汗出，而不恶寒者，非阳明证，则是太阳中风，重感于湿，为柔痓也。表虚感湿，故曰柔痓。",
+      "alias_registry_rows": [
+        {
+          "alias": "柔痉",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "is_active": 1,
+          "notes": "batch learner-safe alias"
+        },
+        {
+          "alias": "柔痓",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "canonical term alias"
+        },
+        {
+          "alias": "痉",
+          "alias_type": "ambiguous",
+          "confidence": 0.3,
+          "is_active": 0,
+          "notes": "inactive ambiguous alias; not used for runtime normalization"
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "surface_form": "柔痉",
+          "match_mode": "contains",
+          "confidence": 0.9,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        },
+        {
+          "surface_form": "柔痓",
+          "match_mode": "contains",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-01cf7a0eba28",
+      "canonical_term": "痓病",
+      "is_focus_term": true,
+      "audit_depth": "focus",
+      "quality_audit_verdict": "adjust_primary_sentence",
+      "quality_reason": "当前 primary 带长症状串和“赵本注”校记，不够干净；核心可安全切为“背反张者，痓病也”。",
+      "fix_action": "将 primary_evidence_text 改为干净句段，并补充 notes。",
+      "should_change_now": true,
+      "risk_level_after": "medium",
+      "checks": {
+        "primary_sentence_quality": "原 primary 混入校记；修正后句段可独立成义。",
+        "term_identity_stability": "痓病与单字痓区分，单字 alias inactive。",
+        "source_layer_support": "records_passages C 层只以抽句对象承接。",
+        "alias_normalization_risk": "痉病异体 alias 合理。",
+        "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+      },
+      "changed_fields": [
+        "primary_evidence_text",
+        "notes"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-007-P-0166",
+        "primary_source_table": "records_passages",
+        "primary_source_object": "passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-007-P-0166",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "病身热足寒，颈项强急，恶寒，时头热面赤，目脉赤，独头面赵本注：一本无面字摇，卒口噤，背反张者，痓病也",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "痉病"
+        ],
+        "learner_surface_forms": [
+          "痉病"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-007-P-0166",
+        "primary_source_table": "records_passages",
+        "primary_source_object": "passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-007-P-0166",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "背反张者，痓病也",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "痉病"
+        ],
+        "learner_surface_forms": [
+          "痉病"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "source_text_excerpt": "病身热足寒，颈项强急，恶寒，时头热面赤，目脉赤，独头面赵本注：一本无面字摇，卒口噤，背反张者，痓病也。",
+      "alias_registry_rows": [
+        {
+          "alias": "痉病",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "is_active": 1,
+          "notes": "batch learner-safe alias"
+        },
+        {
+          "alias": "痓",
+          "alias_type": "ambiguous",
+          "confidence": 0.3,
+          "is_active": 0,
+          "notes": "inactive ambiguous alias; not used for runtime normalization"
+        },
+        {
+          "alias": "痓病",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "canonical term alias"
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "surface_form": "痉病",
+          "match_mode": "contains",
+          "confidence": 0.9,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        },
+        {
+          "surface_form": "痓病",
+          "match_mode": "contains",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-bbdfc9d9b74e",
+      "canonical_term": "结脉",
+      "is_focus_term": true,
+      "audit_depth": "focus",
+      "quality_audit_verdict": "adjust_primary_sentence",
+      "quality_reason": "当前 primary 来自 ambiguous 解释句且没有直接命名“结”；同组 definition_passage 有更干净的 safe main 命名句。",
+      "fix_action": "把 primary 改为 `ZJSHL-CH-003-P-0028` 的“脉来缓，时一止复来者，名曰结”，并指向 safe main source。",
+      "should_change_now": true,
+      "risk_level_after": "low",
+      "checks": {
+        "primary_sentence_quality": "修正后是直接命名句。",
+        "term_identity_stability": "结脉与结胸/脏结边界通过“脉”限定。",
+        "source_layer_support": "safe main A 级来源优于原 ambiguous 解释句。",
+        "alias_normalization_risk": "单字结 inactive，未过度归一。",
+        "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+      },
+      "changed_fields": [
+        "primary_support_passage_id",
+        "primary_source_table",
+        "primary_source_object",
+        "primary_source_record_id",
+        "primary_source_evidence_level",
+        "primary_evidence_type",
+        "primary_evidence_text",
+        "notes"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-003-P-0029",
+        "primary_source_table": "risk_registry_ambiguous",
+        "primary_source_object": "ambiguous_passages",
+        "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0029",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_explanation",
+        "primary_evidence_text": "脉一息四至曰平，一息三至曰迟，小快于迟曰缓，一息六至曰数，时有一止者，阴阳之气不得相续也",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "结脉"
+        ],
+        "learner_surface_forms": [
+          "结脉"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-003-P-0028",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-003-P-0028",
+        "primary_source_evidence_level": "A",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "脉来缓，时一止复来者，名曰结",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "结脉"
+        ],
+        "learner_surface_forms": [
+          "结脉"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "source_text_excerpt": "脉来缓，时一止复来者，名曰结。脉来数，时一止复来者，名曰促。赵本注：「一作纵」脉，阳盛则促，阴盛则结，此皆病脉。",
+      "alias_registry_rows": [
+        {
+          "alias": "结",
+          "alias_type": "ambiguous",
+          "confidence": 0.3,
+          "is_active": 0,
+          "notes": "inactive ambiguous alias; not used for runtime normalization"
+        },
+        {
+          "alias": "结脉",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "canonical term alias"
+        },
+        {
+          "alias": "结脉",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "is_active": 1,
+          "notes": "batch learner-safe alias"
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "surface_form": "结脉",
+          "match_mode": "contains",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-472e3287583d",
+      "canonical_term": "促脉",
+      "is_focus_term": true,
+      "audit_depth": "focus",
+      "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+      "quality_reason": "primary 命名句合格，同 passage 有 safe main 行；需要收窄 source，避免看起来依赖 full passage。",
+      "fix_action": "把 source 指向 safe main 行并补充 notes。",
+      "should_change_now": true,
+      "risk_level_after": "low",
+      "checks": {
+        "primary_sentence_quality": "“脉来数，时一止复来者，名曰促”完整。",
+        "term_identity_stability": "促脉 term 身份稳定。",
+        "source_layer_support": "同 passage safe main A 级来源可支撑。",
+        "alias_normalization_risk": "单字促 inactive。",
+        "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+      },
+      "changed_fields": [
+        "primary_source_table",
+        "primary_source_object",
+        "primary_source_record_id",
+        "primary_source_evidence_level",
+        "notes"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-003-P-0028",
+        "primary_source_table": "records_passages",
+        "primary_source_object": "passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-003-P-0028",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "脉来数，时一止复来者，名曰促",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-003-P-0028",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-003-P-0028",
+        "primary_source_evidence_level": "A",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "脉来数，时一止复来者，名曰促",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      },
+      "source_text_excerpt": "脉来缓，时一止复来者，名曰结。脉来数，时一止复来者，名曰促。赵本注：「一作纵」脉，阳盛则促，阴盛则结，此皆病脉。",
+      "alias_registry_rows": [
+        {
+          "alias": "促",
+          "alias_type": "ambiguous",
+          "confidence": 0.3,
+          "is_active": 0,
+          "notes": "inactive ambiguous alias; not used for runtime normalization"
+        },
+        {
+          "alias": "促脉",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "canonical term alias"
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "surface_form": "促脉",
+          "match_mode": "contains",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-54c535ab7161",
+      "canonical_term": "弦脉",
+      "is_focus_term": false,
+      "audit_depth": "light",
+      "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+      "quality_reason": "命名句合格，同 passage 有 safe main 行；需收窄 source 并保留单字弦 inactive。",
+      "fix_action": "把 source 指向 safe main 行并补充 notes。",
+      "should_change_now": true,
+      "risk_level_after": "low",
+      "checks": {
+        "primary_sentence_quality": "命名句完整。",
+        "term_identity_stability": "脉象 term 稳定。",
+        "source_layer_support": "同 passage safe main A 级来源可支撑。",
+        "alias_normalization_risk": "单字弦 inactive。",
+        "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+      },
+      "changed_fields": [
+        "primary_source_table",
+        "primary_source_object",
+        "primary_source_record_id",
+        "primary_source_evidence_level",
+        "notes"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-003-P-0037",
+        "primary_source_table": "records_passages",
+        "primary_source_object": "passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-003-P-0037",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "脉浮而紧者，名曰弦也",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-003-P-0037",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-003-P-0037",
+        "primary_source_evidence_level": "A",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "脉浮而紧者，名曰弦也",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      },
+      "source_text_excerpt": "脉浮而紧者，名曰弦也。弦者状如弓弦，按之不移也。脉紧赵本作「阴」者，如转索无常也。",
+      "alias_registry_rows": [
+        {
+          "alias": "弦",
+          "alias_type": "ambiguous",
+          "confidence": 0.3,
+          "is_active": 0,
+          "notes": "inactive ambiguous alias; not used for runtime normalization"
+        },
+        {
+          "alias": "弦脉",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "canonical term alias"
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "surface_form": "弦脉",
+          "match_mode": "contains",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-5d33fe1b97eb",
+      "canonical_term": "滑脉",
+      "is_focus_term": false,
+      "audit_depth": "light",
+      "quality_audit_verdict": "adjust_primary_sentence",
+      "quality_reason": "当前 primary 含“问曰/何谓也”问答壳，句子不够干净；核心命名句可独立切出。",
+      "fix_action": "将 primary 改为“翕奄沉，名曰滑”，并指向 safe main source。",
+      "should_change_now": true,
+      "risk_level_after": "low",
+      "checks": {
+        "primary_sentence_quality": "修正后为干净命名句。",
+        "term_identity_stability": "滑脉 term 稳定。",
+        "source_layer_support": "同 passage safe main A 级来源可支撑。",
+        "alias_normalization_risk": "单字滑 inactive。",
+        "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+      },
+      "changed_fields": [
+        "primary_source_table",
+        "primary_source_object",
+        "primary_source_record_id",
+        "primary_source_evidence_level",
+        "primary_evidence_text",
+        "notes"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-004-P-0203",
+        "primary_source_table": "records_passages",
+        "primary_source_object": "passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-004-P-0203",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "问曰：翕奄沉，名曰滑，何谓也？",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-004-P-0203",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-004-P-0203",
+        "primary_source_evidence_level": "A",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "翕奄沉，名曰滑",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      },
+      "source_text_excerpt": "问曰：翕奄沉，名曰滑，何谓也？赵本有「师曰」二字沉为纯阴，翕为正阳，阴阳和合，故令脉滑。",
+      "alias_registry_rows": [
+        {
+          "alias": "滑",
+          "alias_type": "ambiguous",
+          "confidence": 0.3,
+          "is_active": 0,
+          "notes": "inactive ambiguous alias; not used for runtime normalization"
+        },
+        {
+          "alias": "滑脉",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "canonical term alias"
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "surface_form": "滑脉",
+          "match_mode": "contains",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-6fb7ea26388a",
+      "canonical_term": "革脉",
+      "is_focus_term": false,
+      "audit_depth": "light",
+      "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+      "quality_reason": "命名句短且能解释革脉，但来源为 ambiguous，且句内只称“革”，必须靠 canonical term 与 notes 约束。",
+      "fix_action": "保留 safe primary，补 notes 限定为革脉对象，不启用单字革。",
+      "should_change_now": true,
+      "risk_level_after": "medium",
+      "checks": {
+        "primary_sentence_quality": "命名句短，可独立但需 canonical title 辅助。",
+        "term_identity_stability": "革脉作为脉象 term 稳定。",
+        "source_layer_support": "ambiguous source 只支持抽句级 medium safe primary。",
+        "alias_normalization_risk": "单字革 inactive。",
+        "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+      },
+      "changed_fields": [
+        "notes"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-003-P-0040",
+        "primary_source_table": "risk_registry_ambiguous",
+        "primary_source_object": "ambiguous_passages",
+        "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0040",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "寒虚相搏，此名为革",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-003-P-0040",
+        "primary_source_table": "risk_registry_ambiguous",
+        "primary_source_object": "ambiguous_passages",
+        "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0040",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "寒虚相搏，此名为革",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      },
+      "source_text_excerpt": "脉弦而大，弦则为减，大则为芤。减则为寒，芤则为虚。寒虚相搏，此名为革。妇人则半产、漏下，男子则亡血、失精。",
+      "alias_registry_rows": [
+        {
+          "alias": "革",
+          "alias_type": "ambiguous",
+          "confidence": 0.3,
+          "is_active": 0,
+          "notes": "inactive ambiguous alias; not used for runtime normalization"
+        },
+        {
+          "alias": "革脉",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "canonical term alias"
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "surface_form": "革脉",
+          "match_mode": "contains",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-901247b4beaf",
+      "canonical_term": "行尸",
+      "is_focus_term": false,
+      "audit_depth": "light",
+      "quality_audit_verdict": "adjust_primary_sentence",
+      "quality_reason": "当前 primary 包含“师曰”和后续预后描述，超出命名句；核心应切为“脉病患不病，名曰行尸”。",
+      "fix_action": "收窄 primary_evidence_text，并补充 source/risk notes。",
+      "should_change_now": true,
+      "risk_level_after": "medium",
+      "checks": {
+        "primary_sentence_quality": "修正后命名句完整。",
+        "term_identity_stability": "term identity 稳定，未设置额外 alias。",
+        "source_layer_support": "ambiguous source 只支持抽句级 medium safe primary。",
+        "alias_normalization_risk": "无 learner alias 扩张。",
+        "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+      },
+      "changed_fields": [
+        "primary_evidence_text",
+        "notes"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-004-P-0200",
+        "primary_source_table": "risk_registry_ambiguous",
+        "primary_source_object": "ambiguous_passages",
+        "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-004-P-0200",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "师曰：脉病患不病，名曰行尸，以无王气，卒眩仆不识人者，短命则死",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-004-P-0200",
+        "primary_source_table": "risk_registry_ambiguous",
+        "primary_source_object": "ambiguous_passages",
+        "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-004-P-0200",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "脉病患不病，名曰行尸",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      },
+      "source_text_excerpt": "师曰：脉病患不病，名曰行尸，以无王气，卒眩仆不识人者，短命则死。人病脉不病，名曰内虚，以无谷神，虽困无苦。",
+      "alias_registry_rows": [
+        {
+          "alias": "行尸",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "canonical term alias"
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "surface_form": "行尸",
+          "match_mode": "contains",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-b52564cf7480",
+      "canonical_term": "内虚",
+      "is_focus_term": false,
+      "audit_depth": "light",
+      "quality_audit_verdict": "adjust_primary_sentence",
+      "quality_reason": "当前 primary 带后续解释，且“内虚”有泛义风险；可保留但必须限定为本段“人病脉不病”命名义。",
+      "fix_action": "收窄 primary_evidence_text，并补 notes 限定概念边界。",
+      "should_change_now": true,
+      "risk_level_after": "medium",
+      "checks": {
+        "primary_sentence_quality": "修正后为命名句，去掉后续解释。",
+        "term_identity_stability": "canonical term 有泛义风险，靠 notes 限定。",
+        "source_layer_support": "ambiguous source 只支持抽句级 medium safe primary。",
+        "alias_normalization_risk": "无额外 alias，normalization 仅 canonical。",
+        "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+      },
+      "changed_fields": [
+        "primary_evidence_text",
+        "notes"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-004-P-0200",
+        "primary_source_table": "risk_registry_ambiguous",
+        "primary_source_object": "ambiguous_passages",
+        "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-004-P-0200",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "人病脉不病，名曰内虚，以无谷神，虽困无苦",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-004-P-0200",
+        "primary_source_table": "risk_registry_ambiguous",
+        "primary_source_object": "ambiguous_passages",
+        "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-004-P-0200",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "人病脉不病，名曰内虚",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      },
+      "source_text_excerpt": "师曰：脉病患不病，名曰行尸，以无王气，卒眩仆不识人者，短命则死。人病脉不病，名曰内虚，以无谷神，虽困无苦。",
+      "alias_registry_rows": [
+        {
+          "alias": "内虚",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "canonical term alias"
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "surface_form": "内虚",
+          "match_mode": "contains",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-439df1ff9f25",
+      "canonical_term": "血崩",
+      "is_focus_term": false,
+      "audit_depth": "light",
+      "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+      "quality_reason": "命名句完整，同 passage 有 safe main 行；需要 source 收窄并说明不纳入三焦/荣卫长解释。",
+      "fix_action": "把 source 指向 safe main 行并补充 notes。",
+      "should_change_now": true,
+      "risk_level_after": "low",
+      "checks": {
+        "primary_sentence_quality": "“名曰血崩”命名句完整。",
+        "term_identity_stability": "term identity 稳定，崩血 alias 可接受。",
+        "source_layer_support": "同 passage safe main A 级来源可支撑。",
+        "alias_normalization_risk": "alias 未过宽。",
+        "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+      },
+      "changed_fields": [
+        "primary_source_table",
+        "primary_source_object",
+        "primary_source_record_id",
+        "primary_source_evidence_level",
+        "notes"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-004-P-0257",
+        "primary_source_table": "risk_registry_ambiguous",
+        "primary_source_object": "ambiguous_passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-004-P-0257",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "荣盛，则其肤必疏，三焦绝经，名曰血崩",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "崩血"
+        ],
+        "learner_surface_forms": [
+          "崩血"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-004-P-0257",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-004-P-0257",
+        "primary_source_evidence_level": "A",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "荣盛，则其肤必疏，三焦绝经，名曰血崩",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "崩血"
+        ],
+        "learner_surface_forms": [
+          "崩血"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "source_text_excerpt": "寸口脉微而缓，微者卫气疏，疏则其肤空；缓者胃气实，实则谷消而水化也。谷入于胃，脉道乃行，而赵本作「水」入于经，其血乃成。荣盛，则其肤必疏，三焦绝经，名曰血崩。",
+      "alias_registry_rows": [
+        {
+          "alias": "崩血",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "is_active": 1,
+          "notes": "batch learner-safe alias"
+        },
+        {
+          "alias": "血崩",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "canonical term alias"
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "surface_form": "崩血",
+          "match_mode": "contains",
+          "confidence": 0.9,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        },
+        {
+          "surface_form": "血崩",
+          "match_mode": "contains",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-72cae785c0ac",
+      "canonical_term": "霍乱",
+      "is_focus_term": true,
+      "audit_depth": "focus",
+      "quality_audit_verdict": "adjust_primary_sentence",
+      "quality_reason": "当前 primary 带“答曰”问答前缀；核心定义句干净且同 passage 有 safe main 行。",
+      "fix_action": "将 primary 改为“呕吐而利，名曰霍乱”，并指向 safe main source。",
+      "should_change_now": true,
+      "risk_level_after": "low",
+      "checks": {
+        "primary_sentence_quality": "修正后定义句完整。",
+        "term_identity_stability": "病名稳定。",
+        "source_layer_support": "同 passage safe main A 级来源可支撑。",
+        "alias_normalization_risk": "吐利霍乱 alias 未越界。",
+        "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+      },
+      "changed_fields": [
+        "primary_source_table",
+        "primary_source_object",
+        "primary_source_record_id",
+        "primary_source_evidence_level",
+        "primary_evidence_text",
+        "notes"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-016-P-0002",
+        "primary_source_table": "records_passages",
+        "primary_source_object": "passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-016-P-0002",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "答曰：呕吐而利，名曰霍乱",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "吐利霍乱"
+        ],
+        "learner_surface_forms": [
+          "吐利霍乱"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-016-P-0002",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-016-P-0002",
+        "primary_source_evidence_level": "A",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "呕吐而利，名曰霍乱",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "吐利霍乱"
+        ],
+        "learner_surface_forms": [
+          "吐利霍乱"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "source_text_excerpt": "问曰：病有霍乱者何？答曰：呕吐而利，名曰霍乱。赵本作「此名霍乱」",
+      "alias_registry_rows": [
+        {
+          "alias": "吐利霍乱",
+          "alias_type": "learner_safe",
+          "confidence": 0.9,
+          "is_active": 1,
+          "notes": "batch learner-safe alias"
+        },
+        {
+          "alias": "霍乱",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "canonical term alias"
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "surface_form": "吐利霍乱",
+          "match_mode": "contains",
+          "confidence": 0.9,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        },
+        {
+          "surface_form": "霍乱",
+          "match_mode": "contains",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-68ab3aae2083",
+      "canonical_term": "劳复",
+      "is_focus_term": true,
+      "audit_depth": "focus",
+      "quality_audit_verdict": "adjust_alias",
+      "quality_reason": "primary 句合格，但 alias“劳动病”是句内解释性短语，现代语义过宽，不应 learner-safe。",
+      "fix_action": "source 指向 safe main；停用“劳动病” alias 与 learner normalization。",
+      "should_change_now": true,
+      "risk_level_after": "low",
+      "checks": {
+        "primary_sentence_quality": "“病者，名曰劳复”完整。",
+        "term_identity_stability": "劳复 term identity 稳定。",
+        "source_layer_support": "同 passage safe main A 级来源可支撑。",
+        "alias_normalization_risk": "已停用过宽解释性 alias。",
+        "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+      },
+      "changed_fields": [
+        "primary_source_table",
+        "primary_source_object",
+        "primary_source_record_id",
+        "primary_source_evidence_level",
+        "notes",
+        "query_aliases_json",
+        "learner_surface_forms_json"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-017-P-0049",
+        "primary_source_table": "records_passages",
+        "primary_source_object": "passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-017-P-0049",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "伤寒新瘥，血气未平，馀热未尽，早作劳动病者，名曰劳复",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "劳动病"
+        ],
+        "learner_surface_forms": [
+          "劳动病"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-017-P-0049",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-017-P-0049",
+        "primary_source_evidence_level": "A",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "伤寒新瘥，血气未平，馀热未尽，早作劳动病者，名曰劳复",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      },
+      "source_text_excerpt": "病有劳复，有食复。伤寒新瘥，血气未平，馀热未尽，早作劳动病者，名曰劳复。病热少愈而强食之，热有所藏，因其谷气留搏，两阳相合而病者，名曰食复。劳复，则热气浮越，与枳实栀子豉汤以解之；食复，则胃有宿积，加大黄以下之。",
+      "alias_registry_rows": [
+        {
+          "alias": "劳动病",
+          "alias_type": "learner_risky",
+          "confidence": 0.42,
+          "is_active": 0,
+          "notes": "quality_audit_v1 inactive alias; surface is too broad or constructed for learner-safe normalization"
+        },
+        {
+          "alias": "劳复",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "canonical term alias"
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "surface_form": "劳动病",
+          "match_mode": "contains",
+          "confidence": 0.42,
+          "is_active": 0,
+          "notes": "quality_audit_v1 deactivated broad or constructed learner surface"
+        },
+        {
+          "surface_form": "劳复",
+          "match_mode": "contains",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        }
+      ]
+    },
+    {
+      "concept_id": "AHV-8df0a4ec9de9",
+      "canonical_term": "食复",
+      "is_focus_term": true,
+      "audit_depth": "focus",
+      "quality_audit_verdict": "adjust_alias",
+      "quality_reason": "primary 句合格，但 alias“强食复病”是人为拼接的解释短语，作为 learner normalization 过激。",
+      "fix_action": "source 指向 safe main；停用“强食复病” alias 与 learner normalization。",
+      "should_change_now": true,
+      "risk_level_after": "low",
+      "checks": {
+        "primary_sentence_quality": "“病者，名曰食复”完整。",
+        "term_identity_stability": "食复 term identity 稳定。",
+        "source_layer_support": "同 passage safe main A 级来源可支撑。",
+        "alias_normalization_risk": "已停用构造性 alias。",
+        "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+      },
+      "changed_fields": [
+        "primary_source_table",
+        "primary_source_object",
+        "primary_source_record_id",
+        "primary_source_evidence_level",
+        "notes",
+        "query_aliases_json",
+        "learner_surface_forms_json"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-017-P-0049",
+        "primary_source_table": "records_passages",
+        "primary_source_object": "passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-017-P-0049",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "病热少愈而强食之，热有所藏，因其谷气留搏，两阳相合而病者，名曰食复",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "强食复病"
+        ],
+        "learner_surface_forms": [
+          "强食复病"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-017-P-0049",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-017-P-0049",
+        "primary_source_evidence_level": "A",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "病热少愈而强食之，热有所藏，因其谷气留搏，两阳相合而病者，名曰食复",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      },
+      "source_text_excerpt": "病有劳复，有食复。伤寒新瘥，血气未平，馀热未尽，早作劳动病者，名曰劳复。病热少愈而强食之，热有所藏，因其谷气留搏，两阳相合而病者，名曰食复。劳复，则热气浮越，与枳实栀子豉汤以解之；食复，则胃有宿积，加大黄以下之。",
+      "alias_registry_rows": [
+        {
+          "alias": "强食复病",
+          "alias_type": "learner_risky",
+          "confidence": 0.42,
+          "is_active": 0,
+          "notes": "quality_audit_v1 inactive alias; surface is too broad or constructed for learner-safe normalization"
+        },
+        {
+          "alias": "食复",
+          "alias_type": "canonical",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "canonical term alias"
+        }
+      ],
+      "learner_normalization_rows": [
+        {
+          "surface_form": "强食复病",
+          "match_mode": "contains",
+          "confidence": 0.42,
+          "is_active": 0,
+          "notes": "quality_audit_v1 deactivated broad or constructed learner surface"
+        },
+        {
+          "surface_form": "食复",
+          "match_mode": "contains",
+          "confidence": 1.0,
+          "is_active": 1,
+          "notes": "batch learner_safe normalization"
+        }
+      ]
+    }
+  ],
+  "lists": {
+    "confirmed_keep_safe_primary": [
+      {
+        "concept_id": "AHV-9dfd46e14608",
+        "canonical_term": "冬温",
+        "is_focus_term": false,
+        "audit_depth": "light",
+        "quality_audit_verdict": "keep_safe_primary",
+        "quality_reason": "“名曰冬温”命名句自足，canonical 与“冬温病”alias 边界清楚。",
+        "fix_action": "保留 safe primary；不做 registry 改动。",
+        "should_change_now": false,
+        "risk_level_after": "low",
+        "checks": {
+          "primary_sentence_quality": "命名句完整。",
+          "term_identity_stability": "term identity 稳定。",
+          "source_layer_support": "records_passages C 层经抽句对象承接，source_confidence medium 合理。",
+          "alias_normalization_risk": "alias“冬温病”未见过宽。",
+          "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+        },
+        "changed_fields": [],
+        "before": {
+          "primary_support_passage_id": "ZJSHL-CH-006-P-0020",
+          "primary_source_table": "records_passages",
+          "primary_source_object": "passages",
+          "primary_source_record_id": "full:passages:ZJSHL-CH-006-P-0020",
+          "primary_source_evidence_level": "C",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "其冬有非节之暖者，名曰冬温",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [
+            "冬温病"
+          ],
+          "learner_surface_forms": [
+            "冬温病"
+          ],
+          "is_safe_primary_candidate": 1
+        },
+        "after": {
+          "primary_support_passage_id": "ZJSHL-CH-006-P-0020",
+          "primary_source_table": "records_passages",
+          "primary_source_object": "passages",
+          "primary_source_record_id": "full:passages:ZJSHL-CH-006-P-0020",
+          "primary_source_evidence_level": "C",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "其冬有非节之暖者，名曰冬温",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [
+            "冬温病"
+          ],
+          "learner_surface_forms": [
+            "冬温病"
+          ],
+          "is_safe_primary_candidate": 1
+        },
+        "source_text_excerpt": "其冬有非节之暖者，名曰赵本作「为」冬温。冬温之毒，与伤寒大异，冬温复有先后，更相重沓，亦有轻重，为治不同，证如后章。",
+        "alias_registry_rows": [
+          {
+            "alias": "冬温",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "canonical term alias"
+          },
+          {
+            "alias": "冬温病",
+            "alias_type": "learner_safe",
+            "confidence": 0.9,
+            "is_active": 1,
+            "notes": "batch learner-safe alias"
+          }
+        ],
+        "learner_normalization_rows": [
+          {
+            "surface_form": "冬温",
+            "match_mode": "contains",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          },
+          {
+            "surface_form": "冬温病",
+            "match_mode": "contains",
+            "confidence": 0.9,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          }
+        ]
+      },
+      {
+        "concept_id": "AHV-87d3ca263c08",
+        "canonical_term": "刚痓",
+        "is_focus_term": false,
+        "audit_depth": "light",
+        "quality_audit_verdict": "keep_safe_primary",
+        "quality_reason": "命名句完整，canonical 与异体 alias“刚痉”均有明确边界，单字“痉”已 inactive。",
+        "fix_action": "保留 safe primary；不做 registry 改动。",
+        "should_change_now": false,
+        "risk_level_after": "low",
+        "checks": {
+          "primary_sentence_quality": "“名曰刚痓”句完整。",
+          "term_identity_stability": "与柔痓区分明确。",
+          "source_layer_support": "records_main_passages B 级可由句段化对象承接。",
+          "alias_normalization_risk": "单字痉未启用。",
+          "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+        },
+        "changed_fields": [],
+        "before": {
+          "primary_support_passage_id": "ZJSHL-CH-007-P-0157",
+          "primary_source_table": "records_main_passages",
+          "primary_source_object": "main_passages",
+          "primary_source_record_id": "safe:main_passages:ZJSHL-CH-007-P-0157",
+          "primary_source_evidence_level": "B",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "太阳病，发热无汗，反恶寒者，名曰刚痓",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [
+            "刚痉"
+          ],
+          "learner_surface_forms": [
+            "刚痉"
+          ],
+          "is_safe_primary_candidate": 1
+        },
+        "after": {
+          "primary_support_passage_id": "ZJSHL-CH-007-P-0157",
+          "primary_source_table": "records_main_passages",
+          "primary_source_object": "main_passages",
+          "primary_source_record_id": "safe:main_passages:ZJSHL-CH-007-P-0157",
+          "primary_source_evidence_level": "B",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "太阳病，发热无汗，反恶寒者，名曰刚痓",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [
+            "刚痉"
+          ],
+          "learner_surface_forms": [
+            "刚痉"
+          ],
+          "is_safe_primary_candidate": 1
+        },
+        "source_text_excerpt": "太阳病，发热无汗，反恶寒者，名曰刚痓。",
+        "alias_registry_rows": [
+          {
+            "alias": "刚痉",
+            "alias_type": "learner_safe",
+            "confidence": 0.9,
+            "is_active": 1,
+            "notes": "batch learner-safe alias"
+          },
+          {
+            "alias": "刚痓",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "canonical term alias"
+          },
+          {
+            "alias": "痉",
+            "alias_type": "ambiguous",
+            "confidence": 0.3,
+            "is_active": 0,
+            "notes": "inactive ambiguous alias; not used for runtime normalization"
+          }
+        ],
+        "learner_normalization_rows": [
+          {
+            "surface_form": "刚痉",
+            "match_mode": "contains",
+            "confidence": 0.9,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          },
+          {
+            "surface_form": "刚痓",
+            "match_mode": "contains",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          }
+        ]
+      }
+    ],
+    "refined_but_kept_safe_primary": [
+      {
+        "concept_id": "AHV-fdb12048d73e",
+        "canonical_term": "太阳病",
+        "is_focus_term": true,
+        "audit_depth": "focus",
+        "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+        "quality_reason": "六经提纲句能独立成义，但原始来源为 B 级 main passage，应限定为提纲定义，不外扩到整章太阳病材料。",
+        "fix_action": "补充 audit notes，保留 safe primary 与现有 alias。",
+        "should_change_now": true,
+        "risk_level_after": "low",
+        "checks": {
+          "primary_sentence_quality": "完整“X之为病”提纲句，可独立作为定义 primary。",
+          "term_identity_stability": "canonical term 明确，六经病名稳定。",
+          "source_layer_support": "records_main_passages B 级可由句段化对象承接。",
+          "alias_normalization_risk": "alias 仅为原文短语“太阳之为病”，风险可控。",
+          "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+        },
+        "changed_fields": [
+          "notes"
+        ],
+        "before": {
+          "primary_support_passage_id": "ZJSHL-CH-008-P-0191",
+          "primary_source_table": "records_main_passages",
+          "primary_source_object": "main_passages",
+          "primary_source_record_id": "safe:main_passages:ZJSHL-CH-008-P-0191",
+          "primary_source_evidence_level": "B",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "太阳之为病，脉浮，头项强痛而恶寒",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [
+            "太阳之为病"
+          ],
+          "learner_surface_forms": [
+            "太阳之为病"
+          ],
+          "is_safe_primary_candidate": 1
+        },
+        "after": {
+          "primary_support_passage_id": "ZJSHL-CH-008-P-0191",
+          "primary_source_table": "records_main_passages",
+          "primary_source_object": "main_passages",
+          "primary_source_record_id": "safe:main_passages:ZJSHL-CH-008-P-0191",
+          "primary_source_evidence_level": "B",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "太阳之为病，脉浮，头项强痛而恶寒",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [
+            "太阳之为病"
+          ],
+          "learner_surface_forms": [
+            "太阳之为病"
+          ],
+          "is_safe_primary_candidate": 1
+        },
+        "source_text_excerpt": "太阳之为病，脉浮，头项强痛而恶寒。",
+        "alias_registry_rows": [
+          {
+            "alias": "太阳之为病",
+            "alias_type": "learner_safe",
+            "confidence": 0.9,
+            "is_active": 1,
+            "notes": "batch learner-safe alias"
+          },
+          {
+            "alias": "太阳病",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "canonical term alias"
+          }
+        ],
+        "learner_normalization_rows": [
+          {
+            "surface_form": "太阳之为病",
+            "match_mode": "contains",
+            "confidence": 0.9,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          },
+          {
+            "surface_form": "太阳病",
+            "match_mode": "contains",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          }
+        ]
+      },
+      {
+        "concept_id": "AHV-82d1c8a78473",
+        "canonical_term": "伤寒",
+        "is_focus_term": true,
+        "audit_depth": "focus",
+        "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+        "quality_reason": "命名句完整，实际同 passage 已有 safe main 行；当前 full source 标记偏保守且 notes 需要说明只取命名句。",
+        "fix_action": "把 source 指向同 passage 的 safe main 行，并补充来源边界 notes。",
+        "should_change_now": true,
+        "risk_level_after": "low",
+        "checks": {
+          "primary_sentence_quality": "症状条件加“名曰伤寒”闭合，可独立解释。",
+          "term_identity_stability": "canonical term 稳定，alias“伤寒病”未越界。",
+          "source_layer_support": "同 passage 有 safe main A 级来源，source 可以收窄到 main。",
+          "alias_normalization_risk": "alias 无短词或跨概念风险。",
+          "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+        },
+        "changed_fields": [
+          "primary_source_table",
+          "primary_source_object",
+          "primary_source_record_id",
+          "primary_source_evidence_level",
+          "notes"
+        ],
+        "before": {
+          "primary_support_passage_id": "ZJSHL-CH-008-P-0195",
+          "primary_source_table": "records_passages",
+          "primary_source_object": "passages",
+          "primary_source_record_id": "full:passages:ZJSHL-CH-008-P-0195",
+          "primary_source_evidence_level": "C",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名曰伤寒",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [
+            "伤寒病"
+          ],
+          "learner_surface_forms": [
+            "伤寒病"
+          ],
+          "is_safe_primary_candidate": 1
+        },
+        "after": {
+          "primary_support_passage_id": "ZJSHL-CH-008-P-0195",
+          "primary_source_table": "records_main_passages",
+          "primary_source_object": "main_passages",
+          "primary_source_record_id": "safe:main_passages:ZJSHL-CH-008-P-0195",
+          "primary_source_evidence_level": "A",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名曰伤寒",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [
+            "伤寒病"
+          ],
+          "learner_surface_forms": [
+            "伤寒病"
+          ],
+          "is_safe_primary_candidate": 1
+        },
+        "source_text_excerpt": "太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名曰赵本作「为」伤寒。",
+        "alias_registry_rows": [
+          {
+            "alias": "伤寒",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "canonical term alias"
+          },
+          {
+            "alias": "伤寒病",
+            "alias_type": "learner_safe",
+            "confidence": 0.9,
+            "is_active": 1,
+            "notes": "batch learner-safe alias"
+          }
+        ],
+        "learner_normalization_rows": [
+          {
+            "surface_form": "伤寒",
+            "match_mode": "contains",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          },
+          {
+            "surface_form": "伤寒病",
+            "match_mode": "contains",
+            "confidence": 0.9,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          }
+        ]
+      },
+      {
+        "concept_id": "AHV-65a3bdee145b",
+        "canonical_term": "温病",
+        "is_focus_term": true,
+        "audit_depth": "focus",
+        "quality_audit_verdict": "adjust_alias",
+        "quality_reason": "primary 句“温者……”可作为抽句定义，但 alias“春温”更像邻近季节术语，作为 learner-safe normalization 过宽。",
+        "fix_action": "保留 canonical 温病 safe primary；停用“春温” learner alias 与 learner normalization。",
+        "should_change_now": true,
+        "risk_level_after": "medium",
+        "checks": {
+          "primary_sentence_quality": "“温者，冬时感寒，至春发者是也”可独立成义。",
+          "term_identity_stability": "温病本身稳定，但春温存在相邻概念风险。",
+          "source_layer_support": "来自 ambiguous risk registry，只能承接抽句，不提升整段。",
+          "alias_normalization_risk": "已停用春温 learner-safe alias。",
+          "runtime_behavior": "温病 canonical query 命中 AHV safe definition primary。"
+        },
+        "changed_fields": [
+          "notes",
+          "query_aliases_json",
+          "learner_surface_forms_json"
+        ],
+        "before": {
+          "primary_support_passage_id": "ZJSHL-CH-006-P-0017",
+          "primary_source_table": "risk_registry_ambiguous",
+          "primary_source_object": "ambiguous_passages",
+          "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-006-P-0017",
+          "primary_source_evidence_level": "C",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "温者，冬时感寒，至春发者是也",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [
+            "春温"
+          ],
+          "learner_surface_forms": [
+            "春温"
+          ],
+          "is_safe_primary_candidate": 1
+        },
+        "after": {
+          "primary_support_passage_id": "ZJSHL-CH-006-P-0017",
+          "primary_source_table": "risk_registry_ambiguous",
+          "primary_source_object": "ambiguous_passages",
+          "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-006-P-0017",
+          "primary_source_evidence_level": "C",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "温者，冬时感寒，至春发者是也",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [],
+          "learner_surface_forms": [],
+          "is_safe_primary_candidate": 1
+        },
+        "source_text_excerpt": "四时正气者，春风、夏暑、秋湿、冬寒是也。时行者，时行之气是也。温者，冬时感寒，至春发者是也。疫者，暴厉之气是也。占前斗建，审其时候之寒温，察其邪气之轻重而治之，故下文曰：九月霜降节后，宜渐寒，向冬大寒，至正月雨水节后，宜解也。所以谓之雨水者，以冰雪解而为雨水故也。至惊蛰二月节后，气渐和暖，向夏大热，至秋便凉。冬寒、春温、夏热、秋凉，为四时之正气也。",
+        "alias_registry_rows": [
+          {
+            "alias": "春温",
+            "alias_type": "learner_risky",
+            "confidence": 0.42,
+            "is_active": 0,
+            "notes": "quality_audit_v1 inactive alias; surface is too broad or constructed for learner-safe normalization"
+          },
+          {
+            "alias": "温病",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "canonical term alias"
+          }
+        ],
+        "learner_normalization_rows": [
+          {
+            "surface_form": "春温",
+            "match_mode": "contains",
+            "confidence": 0.42,
+            "is_active": 0,
+            "notes": "quality_audit_v1 deactivated broad or constructed learner surface"
+          },
+          {
+            "surface_form": "温病",
+            "match_mode": "contains",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          }
+        ]
+      },
+      {
+        "concept_id": "AHV-d1abf1c57ecf",
+        "canonical_term": "暑病",
+        "is_focus_term": false,
+        "audit_depth": "light",
+        "quality_audit_verdict": "adjust_alias",
+        "quality_reason": "定义句干净，且同 passage 有 safe main source；alias“暑病者”是原文句法残片，不宜作为 learner-safe surface。",
+        "fix_action": "把 source 收窄到 safe main 行；停用“暑病者” alias 与 learner normalization。",
+        "should_change_now": true,
+        "risk_level_after": "low",
+        "checks": {
+          "primary_sentence_quality": "“暑病者，热极重于温也”是完整定义句。",
+          "term_identity_stability": "canonical term 稳定。",
+          "source_layer_support": "同 passage safe main A 级来源可支撑。",
+          "alias_normalization_risk": "已移除带“者”的句法 alias。",
+          "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+        },
+        "changed_fields": [
+          "primary_source_table",
+          "primary_source_object",
+          "primary_source_record_id",
+          "primary_source_evidence_level",
+          "notes",
+          "query_aliases_json",
+          "learner_surface_forms_json"
+        ],
+        "before": {
+          "primary_support_passage_id": "ZJSHL-CH-006-P-0012",
+          "primary_source_table": "records_passages",
+          "primary_source_object": "passages",
+          "primary_source_record_id": "full:passages:ZJSHL-CH-006-P-0012",
+          "primary_source_evidence_level": "C",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "暑病者，热极重于温也",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [
+            "暑病者"
+          ],
+          "learner_surface_forms": [
+            "暑病者"
+          ],
+          "is_safe_primary_candidate": 1
+        },
+        "after": {
+          "primary_support_passage_id": "ZJSHL-CH-006-P-0012",
+          "primary_source_table": "records_main_passages",
+          "primary_source_object": "main_passages",
+          "primary_source_record_id": "safe:main_passages:ZJSHL-CH-006-P-0012",
+          "primary_source_evidence_level": "A",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "暑病者，热极重于温也",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [],
+          "learner_surface_forms": [],
+          "is_safe_primary_candidate": 1
+        },
+        "source_text_excerpt": "中而即病者，名曰伤寒；不即病者，寒毒藏于肌肤，至春变为温病，至夏变为暑病。暑病者，热极重于温也。",
+        "alias_registry_rows": [
+          {
+            "alias": "暑病",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "canonical term alias"
+          },
+          {
+            "alias": "暑病者",
+            "alias_type": "learner_risky",
+            "confidence": 0.42,
+            "is_active": 0,
+            "notes": "quality_audit_v1 inactive alias; surface is too broad or constructed for learner-safe normalization"
+          }
+        ],
+        "learner_normalization_rows": [
+          {
+            "surface_form": "暑病",
+            "match_mode": "contains",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          },
+          {
+            "surface_form": "暑病者",
+            "match_mode": "contains",
+            "confidence": 0.42,
+            "is_active": 0,
+            "notes": "quality_audit_v1 deactivated broad or constructed learner surface"
+          }
+        ]
+      },
+      {
+        "concept_id": "AHV-bb8f9a64a54e",
+        "canonical_term": "时行寒疫",
+        "is_focus_term": false,
+        "audit_depth": "light",
+        "quality_audit_verdict": "adjust_alias",
+        "quality_reason": "主句可保留，但“寒疫”比“时行寒疫”更宽，作为 active learner alias 可能误归一。",
+        "fix_action": "把 source 指向 safe main 行；停用“寒疫” learner alias 与 learner normalization。",
+        "should_change_now": true,
+        "risk_level_after": "medium",
+        "checks": {
+          "primary_sentence_quality": "“皆为时行寒疫也”可独立归类。",
+          "term_identity_stability": "canonical term 稳定，短 alias 更宽。",
+          "source_layer_support": "同 passage safe main A 级来源可支撑。",
+          "alias_normalization_risk": "已停用寒疫 active normalization。",
+          "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+        },
+        "changed_fields": [
+          "primary_source_table",
+          "primary_source_object",
+          "primary_source_record_id",
+          "primary_source_evidence_level",
+          "notes",
+          "query_aliases_json",
+          "learner_surface_forms_json"
+        ],
+        "before": {
+          "primary_support_passage_id": "ZJSHL-CH-006-P-0024",
+          "primary_source_table": "records_passages",
+          "primary_source_object": "passages",
+          "primary_source_record_id": "full:passages:ZJSHL-CH-006-P-0024",
+          "primary_source_evidence_level": "C",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "从春分以后，至秋分节前，天有暴寒者，皆为时行寒疫也",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [
+            "寒疫"
+          ],
+          "learner_surface_forms": [
+            "寒疫"
+          ],
+          "is_safe_primary_candidate": 1
+        },
+        "after": {
+          "primary_support_passage_id": "ZJSHL-CH-006-P-0024",
+          "primary_source_table": "records_main_passages",
+          "primary_source_object": "main_passages",
+          "primary_source_record_id": "safe:main_passages:ZJSHL-CH-006-P-0024",
+          "primary_source_evidence_level": "A",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "从春分以后，至秋分节前，天有暴寒者，皆为时行寒疫也",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [],
+          "learner_surface_forms": [],
+          "is_safe_primary_candidate": 1
+        },
+        "source_text_excerpt": "从春分以后，至秋分节前，天有暴寒者，皆为时行寒疫也。三月四月，或有暴寒，其时阳气尚弱，为寒所折，病热犹轻；五月六月，阳气已盛，为寒所折，病热则重；七月八月，阳气已衰，为寒所折，病热亦微。其病与温及暑病相似，但治有殊耳。",
+        "alias_registry_rows": [
+          {
+            "alias": "寒疫",
+            "alias_type": "learner_risky",
+            "confidence": 0.42,
+            "is_active": 0,
+            "notes": "quality_audit_v1 inactive alias; surface is too broad or constructed for learner-safe normalization"
+          },
+          {
+            "alias": "时行寒疫",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "canonical term alias"
+          }
+        ],
+        "learner_normalization_rows": [
+          {
+            "surface_form": "寒疫",
+            "match_mode": "contains",
+            "confidence": 0.42,
+            "is_active": 0,
+            "notes": "quality_audit_v1 deactivated broad or constructed learner surface"
+          },
+          {
+            "surface_form": "时行寒疫",
+            "match_mode": "contains",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          }
+        ]
+      },
+      {
+        "concept_id": "AHV-cdac1a4b7e7b",
+        "canonical_term": "柔痓",
+        "is_focus_term": true,
+        "audit_depth": "focus",
+        "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+        "quality_reason": "primary 是解释句而非典型定义句，但“表虚感湿，故曰柔痓”能独立解释柔痓来源；需明确来源为 ambiguous 抽句。",
+        "fix_action": "保留 safe primary，补充 notes 限定为 medium confidence 抽句对象。",
+        "should_change_now": true,
+        "risk_level_after": "medium",
+        "checks": {
+          "primary_sentence_quality": "解释句短且自足，但不是完整“X者”定义。",
+          "term_identity_stability": "柔痓/刚痓术语身份稳定。",
+          "source_layer_support": "ambiguous source 只支持抽句级 safe primary。",
+          "alias_normalization_risk": "异体 alias 柔痉合理，单字痉 inactive。",
+          "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+        },
+        "changed_fields": [
+          "notes"
+        ],
+        "before": {
+          "primary_support_passage_id": "ZJSHL-CH-007-P-0160",
+          "primary_source_table": "risk_registry_ambiguous",
+          "primary_source_object": "ambiguous_passages",
+          "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-007-P-0160",
+          "primary_source_evidence_level": "C",
+          "primary_evidence_type": "exact_term_explanation",
+          "primary_evidence_text": "表虚感湿，故曰柔痓",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [
+            "柔痉"
+          ],
+          "learner_surface_forms": [
+            "柔痉"
+          ],
+          "is_safe_primary_candidate": 1
+        },
+        "after": {
+          "primary_support_passage_id": "ZJSHL-CH-007-P-0160",
+          "primary_source_table": "risk_registry_ambiguous",
+          "primary_source_object": "ambiguous_passages",
+          "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-007-P-0160",
+          "primary_source_evidence_level": "C",
+          "primary_evidence_type": "exact_term_explanation",
+          "primary_evidence_text": "表虚感湿，故曰柔痓",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [
+            "柔痉"
+          ],
+          "learner_surface_forms": [
+            "柔痉"
+          ],
+          "is_safe_primary_candidate": 1
+        },
+        "source_text_excerpt": "太阳病，发热汗出为表虚，则当恶寒，其不恶寒者，为阳明病。今发热汗出，而不恶寒者，非阳明证，则是太阳中风，重感于湿，为柔痓也。表虚感湿，故曰柔痓。",
+        "alias_registry_rows": [
+          {
+            "alias": "柔痉",
+            "alias_type": "learner_safe",
+            "confidence": 0.9,
+            "is_active": 1,
+            "notes": "batch learner-safe alias"
+          },
+          {
+            "alias": "柔痓",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "canonical term alias"
+          },
+          {
+            "alias": "痉",
+            "alias_type": "ambiguous",
+            "confidence": 0.3,
+            "is_active": 0,
+            "notes": "inactive ambiguous alias; not used for runtime normalization"
+          }
+        ],
+        "learner_normalization_rows": [
+          {
+            "surface_form": "柔痉",
+            "match_mode": "contains",
+            "confidence": 0.9,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          },
+          {
+            "surface_form": "柔痓",
+            "match_mode": "contains",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          }
+        ]
+      },
+      {
+        "concept_id": "AHV-01cf7a0eba28",
+        "canonical_term": "痓病",
+        "is_focus_term": true,
+        "audit_depth": "focus",
+        "quality_audit_verdict": "adjust_primary_sentence",
+        "quality_reason": "当前 primary 带长症状串和“赵本注”校记，不够干净；核心可安全切为“背反张者，痓病也”。",
+        "fix_action": "将 primary_evidence_text 改为干净句段，并补充 notes。",
+        "should_change_now": true,
+        "risk_level_after": "medium",
+        "checks": {
+          "primary_sentence_quality": "原 primary 混入校记；修正后句段可独立成义。",
+          "term_identity_stability": "痓病与单字痓区分，单字 alias inactive。",
+          "source_layer_support": "records_passages C 层只以抽句对象承接。",
+          "alias_normalization_risk": "痉病异体 alias 合理。",
+          "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+        },
+        "changed_fields": [
+          "primary_evidence_text",
+          "notes"
+        ],
+        "before": {
+          "primary_support_passage_id": "ZJSHL-CH-007-P-0166",
+          "primary_source_table": "records_passages",
+          "primary_source_object": "passages",
+          "primary_source_record_id": "full:passages:ZJSHL-CH-007-P-0166",
+          "primary_source_evidence_level": "C",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "病身热足寒，颈项强急，恶寒，时头热面赤，目脉赤，独头面赵本注：一本无面字摇，卒口噤，背反张者，痓病也",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [
+            "痉病"
+          ],
+          "learner_surface_forms": [
+            "痉病"
+          ],
+          "is_safe_primary_candidate": 1
+        },
+        "after": {
+          "primary_support_passage_id": "ZJSHL-CH-007-P-0166",
+          "primary_source_table": "records_passages",
+          "primary_source_object": "passages",
+          "primary_source_record_id": "full:passages:ZJSHL-CH-007-P-0166",
+          "primary_source_evidence_level": "C",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "背反张者，痓病也",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [
+            "痉病"
+          ],
+          "learner_surface_forms": [
+            "痉病"
+          ],
+          "is_safe_primary_candidate": 1
+        },
+        "source_text_excerpt": "病身热足寒，颈项强急，恶寒，时头热面赤，目脉赤，独头面赵本注：一本无面字摇，卒口噤，背反张者，痓病也。",
+        "alias_registry_rows": [
+          {
+            "alias": "痉病",
+            "alias_type": "learner_safe",
+            "confidence": 0.9,
+            "is_active": 1,
+            "notes": "batch learner-safe alias"
+          },
+          {
+            "alias": "痓",
+            "alias_type": "ambiguous",
+            "confidence": 0.3,
+            "is_active": 0,
+            "notes": "inactive ambiguous alias; not used for runtime normalization"
+          },
+          {
+            "alias": "痓病",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "canonical term alias"
+          }
+        ],
+        "learner_normalization_rows": [
+          {
+            "surface_form": "痉病",
+            "match_mode": "contains",
+            "confidence": 0.9,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          },
+          {
+            "surface_form": "痓病",
+            "match_mode": "contains",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          }
+        ]
+      },
+      {
+        "concept_id": "AHV-bbdfc9d9b74e",
+        "canonical_term": "结脉",
+        "is_focus_term": true,
+        "audit_depth": "focus",
+        "quality_audit_verdict": "adjust_primary_sentence",
+        "quality_reason": "当前 primary 来自 ambiguous 解释句且没有直接命名“结”；同组 definition_passage 有更干净的 safe main 命名句。",
+        "fix_action": "把 primary 改为 `ZJSHL-CH-003-P-0028` 的“脉来缓，时一止复来者，名曰结”，并指向 safe main source。",
+        "should_change_now": true,
+        "risk_level_after": "low",
+        "checks": {
+          "primary_sentence_quality": "修正后是直接命名句。",
+          "term_identity_stability": "结脉与结胸/脏结边界通过“脉”限定。",
+          "source_layer_support": "safe main A 级来源优于原 ambiguous 解释句。",
+          "alias_normalization_risk": "单字结 inactive，未过度归一。",
+          "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+        },
+        "changed_fields": [
+          "primary_support_passage_id",
+          "primary_source_table",
+          "primary_source_object",
+          "primary_source_record_id",
+          "primary_source_evidence_level",
+          "primary_evidence_type",
+          "primary_evidence_text",
+          "notes"
+        ],
+        "before": {
+          "primary_support_passage_id": "ZJSHL-CH-003-P-0029",
+          "primary_source_table": "risk_registry_ambiguous",
+          "primary_source_object": "ambiguous_passages",
+          "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0029",
+          "primary_source_evidence_level": "C",
+          "primary_evidence_type": "exact_term_explanation",
+          "primary_evidence_text": "脉一息四至曰平，一息三至曰迟，小快于迟曰缓，一息六至曰数，时有一止者，阴阳之气不得相续也",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [
+            "结脉"
+          ],
+          "learner_surface_forms": [
+            "结脉"
+          ],
+          "is_safe_primary_candidate": 1
+        },
+        "after": {
+          "primary_support_passage_id": "ZJSHL-CH-003-P-0028",
+          "primary_source_table": "records_main_passages",
+          "primary_source_object": "main_passages",
+          "primary_source_record_id": "safe:main_passages:ZJSHL-CH-003-P-0028",
+          "primary_source_evidence_level": "A",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "脉来缓，时一止复来者，名曰结",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [
+            "结脉"
+          ],
+          "learner_surface_forms": [
+            "结脉"
+          ],
+          "is_safe_primary_candidate": 1
+        },
+        "source_text_excerpt": "脉来缓，时一止复来者，名曰结。脉来数，时一止复来者，名曰促。赵本注：「一作纵」脉，阳盛则促，阴盛则结，此皆病脉。",
+        "alias_registry_rows": [
+          {
+            "alias": "结",
+            "alias_type": "ambiguous",
+            "confidence": 0.3,
+            "is_active": 0,
+            "notes": "inactive ambiguous alias; not used for runtime normalization"
+          },
+          {
+            "alias": "结脉",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "canonical term alias"
+          },
+          {
+            "alias": "结脉",
+            "alias_type": "learner_safe",
+            "confidence": 0.9,
+            "is_active": 1,
+            "notes": "batch learner-safe alias"
+          }
+        ],
+        "learner_normalization_rows": [
+          {
+            "surface_form": "结脉",
+            "match_mode": "contains",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          }
+        ]
+      },
+      {
+        "concept_id": "AHV-472e3287583d",
+        "canonical_term": "促脉",
+        "is_focus_term": true,
+        "audit_depth": "focus",
+        "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+        "quality_reason": "primary 命名句合格，同 passage 有 safe main 行；需要收窄 source，避免看起来依赖 full passage。",
+        "fix_action": "把 source 指向 safe main 行并补充 notes。",
+        "should_change_now": true,
+        "risk_level_after": "low",
+        "checks": {
+          "primary_sentence_quality": "“脉来数，时一止复来者，名曰促”完整。",
+          "term_identity_stability": "促脉 term 身份稳定。",
+          "source_layer_support": "同 passage safe main A 级来源可支撑。",
+          "alias_normalization_risk": "单字促 inactive。",
+          "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+        },
+        "changed_fields": [
+          "primary_source_table",
+          "primary_source_object",
+          "primary_source_record_id",
+          "primary_source_evidence_level",
+          "notes"
+        ],
+        "before": {
+          "primary_support_passage_id": "ZJSHL-CH-003-P-0028",
+          "primary_source_table": "records_passages",
+          "primary_source_object": "passages",
+          "primary_source_record_id": "full:passages:ZJSHL-CH-003-P-0028",
+          "primary_source_evidence_level": "C",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "脉来数，时一止复来者，名曰促",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [],
+          "learner_surface_forms": [],
+          "is_safe_primary_candidate": 1
+        },
+        "after": {
+          "primary_support_passage_id": "ZJSHL-CH-003-P-0028",
+          "primary_source_table": "records_main_passages",
+          "primary_source_object": "main_passages",
+          "primary_source_record_id": "safe:main_passages:ZJSHL-CH-003-P-0028",
+          "primary_source_evidence_level": "A",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "脉来数，时一止复来者，名曰促",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [],
+          "learner_surface_forms": [],
+          "is_safe_primary_candidate": 1
+        },
+        "source_text_excerpt": "脉来缓，时一止复来者，名曰结。脉来数，时一止复来者，名曰促。赵本注：「一作纵」脉，阳盛则促，阴盛则结，此皆病脉。",
+        "alias_registry_rows": [
+          {
+            "alias": "促",
+            "alias_type": "ambiguous",
+            "confidence": 0.3,
+            "is_active": 0,
+            "notes": "inactive ambiguous alias; not used for runtime normalization"
+          },
+          {
+            "alias": "促脉",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "canonical term alias"
+          }
+        ],
+        "learner_normalization_rows": [
+          {
+            "surface_form": "促脉",
+            "match_mode": "contains",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          }
+        ]
+      },
+      {
+        "concept_id": "AHV-54c535ab7161",
+        "canonical_term": "弦脉",
+        "is_focus_term": false,
+        "audit_depth": "light",
+        "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+        "quality_reason": "命名句合格，同 passage 有 safe main 行；需收窄 source 并保留单字弦 inactive。",
+        "fix_action": "把 source 指向 safe main 行并补充 notes。",
+        "should_change_now": true,
+        "risk_level_after": "low",
+        "checks": {
+          "primary_sentence_quality": "命名句完整。",
+          "term_identity_stability": "脉象 term 稳定。",
+          "source_layer_support": "同 passage safe main A 级来源可支撑。",
+          "alias_normalization_risk": "单字弦 inactive。",
+          "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+        },
+        "changed_fields": [
+          "primary_source_table",
+          "primary_source_object",
+          "primary_source_record_id",
+          "primary_source_evidence_level",
+          "notes"
+        ],
+        "before": {
+          "primary_support_passage_id": "ZJSHL-CH-003-P-0037",
+          "primary_source_table": "records_passages",
+          "primary_source_object": "passages",
+          "primary_source_record_id": "full:passages:ZJSHL-CH-003-P-0037",
+          "primary_source_evidence_level": "C",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "脉浮而紧者，名曰弦也",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [],
+          "learner_surface_forms": [],
+          "is_safe_primary_candidate": 1
+        },
+        "after": {
+          "primary_support_passage_id": "ZJSHL-CH-003-P-0037",
+          "primary_source_table": "records_main_passages",
+          "primary_source_object": "main_passages",
+          "primary_source_record_id": "safe:main_passages:ZJSHL-CH-003-P-0037",
+          "primary_source_evidence_level": "A",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "脉浮而紧者，名曰弦也",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [],
+          "learner_surface_forms": [],
+          "is_safe_primary_candidate": 1
+        },
+        "source_text_excerpt": "脉浮而紧者，名曰弦也。弦者状如弓弦，按之不移也。脉紧赵本作「阴」者，如转索无常也。",
+        "alias_registry_rows": [
+          {
+            "alias": "弦",
+            "alias_type": "ambiguous",
+            "confidence": 0.3,
+            "is_active": 0,
+            "notes": "inactive ambiguous alias; not used for runtime normalization"
+          },
+          {
+            "alias": "弦脉",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "canonical term alias"
+          }
+        ],
+        "learner_normalization_rows": [
+          {
+            "surface_form": "弦脉",
+            "match_mode": "contains",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          }
+        ]
+      },
+      {
+        "concept_id": "AHV-5d33fe1b97eb",
+        "canonical_term": "滑脉",
+        "is_focus_term": false,
+        "audit_depth": "light",
+        "quality_audit_verdict": "adjust_primary_sentence",
+        "quality_reason": "当前 primary 含“问曰/何谓也”问答壳，句子不够干净；核心命名句可独立切出。",
+        "fix_action": "将 primary 改为“翕奄沉，名曰滑”，并指向 safe main source。",
+        "should_change_now": true,
+        "risk_level_after": "low",
+        "checks": {
+          "primary_sentence_quality": "修正后为干净命名句。",
+          "term_identity_stability": "滑脉 term 稳定。",
+          "source_layer_support": "同 passage safe main A 级来源可支撑。",
+          "alias_normalization_risk": "单字滑 inactive。",
+          "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+        },
+        "changed_fields": [
+          "primary_source_table",
+          "primary_source_object",
+          "primary_source_record_id",
+          "primary_source_evidence_level",
+          "primary_evidence_text",
+          "notes"
+        ],
+        "before": {
+          "primary_support_passage_id": "ZJSHL-CH-004-P-0203",
+          "primary_source_table": "records_passages",
+          "primary_source_object": "passages",
+          "primary_source_record_id": "full:passages:ZJSHL-CH-004-P-0203",
+          "primary_source_evidence_level": "C",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "问曰：翕奄沉，名曰滑，何谓也？",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [],
+          "learner_surface_forms": [],
+          "is_safe_primary_candidate": 1
+        },
+        "after": {
+          "primary_support_passage_id": "ZJSHL-CH-004-P-0203",
+          "primary_source_table": "records_main_passages",
+          "primary_source_object": "main_passages",
+          "primary_source_record_id": "safe:main_passages:ZJSHL-CH-004-P-0203",
+          "primary_source_evidence_level": "A",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "翕奄沉，名曰滑",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [],
+          "learner_surface_forms": [],
+          "is_safe_primary_candidate": 1
+        },
+        "source_text_excerpt": "问曰：翕奄沉，名曰滑，何谓也？赵本有「师曰」二字沉为纯阴，翕为正阳，阴阳和合，故令脉滑。",
+        "alias_registry_rows": [
+          {
+            "alias": "滑",
+            "alias_type": "ambiguous",
+            "confidence": 0.3,
+            "is_active": 0,
+            "notes": "inactive ambiguous alias; not used for runtime normalization"
+          },
+          {
+            "alias": "滑脉",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "canonical term alias"
+          }
+        ],
+        "learner_normalization_rows": [
+          {
+            "surface_form": "滑脉",
+            "match_mode": "contains",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          }
+        ]
+      },
+      {
+        "concept_id": "AHV-6fb7ea26388a",
+        "canonical_term": "革脉",
+        "is_focus_term": false,
+        "audit_depth": "light",
+        "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+        "quality_reason": "命名句短且能解释革脉，但来源为 ambiguous，且句内只称“革”，必须靠 canonical term 与 notes 约束。",
+        "fix_action": "保留 safe primary，补 notes 限定为革脉对象，不启用单字革。",
+        "should_change_now": true,
+        "risk_level_after": "medium",
+        "checks": {
+          "primary_sentence_quality": "命名句短，可独立但需 canonical title 辅助。",
+          "term_identity_stability": "革脉作为脉象 term 稳定。",
+          "source_layer_support": "ambiguous source 只支持抽句级 medium safe primary。",
+          "alias_normalization_risk": "单字革 inactive。",
+          "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+        },
+        "changed_fields": [
+          "notes"
+        ],
+        "before": {
+          "primary_support_passage_id": "ZJSHL-CH-003-P-0040",
+          "primary_source_table": "risk_registry_ambiguous",
+          "primary_source_object": "ambiguous_passages",
+          "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0040",
+          "primary_source_evidence_level": "C",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "寒虚相搏，此名为革",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [],
+          "learner_surface_forms": [],
+          "is_safe_primary_candidate": 1
+        },
+        "after": {
+          "primary_support_passage_id": "ZJSHL-CH-003-P-0040",
+          "primary_source_table": "risk_registry_ambiguous",
+          "primary_source_object": "ambiguous_passages",
+          "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0040",
+          "primary_source_evidence_level": "C",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "寒虚相搏，此名为革",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [],
+          "learner_surface_forms": [],
+          "is_safe_primary_candidate": 1
+        },
+        "source_text_excerpt": "脉弦而大，弦则为减，大则为芤。减则为寒，芤则为虚。寒虚相搏，此名为革。妇人则半产、漏下，男子则亡血、失精。",
+        "alias_registry_rows": [
+          {
+            "alias": "革",
+            "alias_type": "ambiguous",
+            "confidence": 0.3,
+            "is_active": 0,
+            "notes": "inactive ambiguous alias; not used for runtime normalization"
+          },
+          {
+            "alias": "革脉",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "canonical term alias"
+          }
+        ],
+        "learner_normalization_rows": [
+          {
+            "surface_form": "革脉",
+            "match_mode": "contains",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          }
+        ]
+      },
+      {
+        "concept_id": "AHV-901247b4beaf",
+        "canonical_term": "行尸",
+        "is_focus_term": false,
+        "audit_depth": "light",
+        "quality_audit_verdict": "adjust_primary_sentence",
+        "quality_reason": "当前 primary 包含“师曰”和后续预后描述，超出命名句；核心应切为“脉病患不病，名曰行尸”。",
+        "fix_action": "收窄 primary_evidence_text，并补充 source/risk notes。",
+        "should_change_now": true,
+        "risk_level_after": "medium",
+        "checks": {
+          "primary_sentence_quality": "修正后命名句完整。",
+          "term_identity_stability": "term identity 稳定，未设置额外 alias。",
+          "source_layer_support": "ambiguous source 只支持抽句级 medium safe primary。",
+          "alias_normalization_risk": "无 learner alias 扩张。",
+          "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+        },
+        "changed_fields": [
+          "primary_evidence_text",
+          "notes"
+        ],
+        "before": {
+          "primary_support_passage_id": "ZJSHL-CH-004-P-0200",
+          "primary_source_table": "risk_registry_ambiguous",
+          "primary_source_object": "ambiguous_passages",
+          "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-004-P-0200",
+          "primary_source_evidence_level": "C",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "师曰：脉病患不病，名曰行尸，以无王气，卒眩仆不识人者，短命则死",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [],
+          "learner_surface_forms": [],
+          "is_safe_primary_candidate": 1
+        },
+        "after": {
+          "primary_support_passage_id": "ZJSHL-CH-004-P-0200",
+          "primary_source_table": "risk_registry_ambiguous",
+          "primary_source_object": "ambiguous_passages",
+          "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-004-P-0200",
+          "primary_source_evidence_level": "C",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "脉病患不病，名曰行尸",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [],
+          "learner_surface_forms": [],
+          "is_safe_primary_candidate": 1
+        },
+        "source_text_excerpt": "师曰：脉病患不病，名曰行尸，以无王气，卒眩仆不识人者，短命则死。人病脉不病，名曰内虚，以无谷神，虽困无苦。",
+        "alias_registry_rows": [
+          {
+            "alias": "行尸",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "canonical term alias"
+          }
+        ],
+        "learner_normalization_rows": [
+          {
+            "surface_form": "行尸",
+            "match_mode": "contains",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          }
+        ]
+      },
+      {
+        "concept_id": "AHV-b52564cf7480",
+        "canonical_term": "内虚",
+        "is_focus_term": false,
+        "audit_depth": "light",
+        "quality_audit_verdict": "adjust_primary_sentence",
+        "quality_reason": "当前 primary 带后续解释，且“内虚”有泛义风险；可保留但必须限定为本段“人病脉不病”命名义。",
+        "fix_action": "收窄 primary_evidence_text，并补 notes 限定概念边界。",
+        "should_change_now": true,
+        "risk_level_after": "medium",
+        "checks": {
+          "primary_sentence_quality": "修正后为命名句，去掉后续解释。",
+          "term_identity_stability": "canonical term 有泛义风险，靠 notes 限定。",
+          "source_layer_support": "ambiguous source 只支持抽句级 medium safe primary。",
+          "alias_normalization_risk": "无额外 alias，normalization 仅 canonical。",
+          "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+        },
+        "changed_fields": [
+          "primary_evidence_text",
+          "notes"
+        ],
+        "before": {
+          "primary_support_passage_id": "ZJSHL-CH-004-P-0200",
+          "primary_source_table": "risk_registry_ambiguous",
+          "primary_source_object": "ambiguous_passages",
+          "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-004-P-0200",
+          "primary_source_evidence_level": "C",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "人病脉不病，名曰内虚，以无谷神，虽困无苦",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [],
+          "learner_surface_forms": [],
+          "is_safe_primary_candidate": 1
+        },
+        "after": {
+          "primary_support_passage_id": "ZJSHL-CH-004-P-0200",
+          "primary_source_table": "risk_registry_ambiguous",
+          "primary_source_object": "ambiguous_passages",
+          "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-004-P-0200",
+          "primary_source_evidence_level": "C",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "人病脉不病，名曰内虚",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [],
+          "learner_surface_forms": [],
+          "is_safe_primary_candidate": 1
+        },
+        "source_text_excerpt": "师曰：脉病患不病，名曰行尸，以无王气，卒眩仆不识人者，短命则死。人病脉不病，名曰内虚，以无谷神，虽困无苦。",
+        "alias_registry_rows": [
+          {
+            "alias": "内虚",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "canonical term alias"
+          }
+        ],
+        "learner_normalization_rows": [
+          {
+            "surface_form": "内虚",
+            "match_mode": "contains",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          }
+        ]
+      },
+      {
+        "concept_id": "AHV-439df1ff9f25",
+        "canonical_term": "血崩",
+        "is_focus_term": false,
+        "audit_depth": "light",
+        "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+        "quality_reason": "命名句完整，同 passage 有 safe main 行；需要 source 收窄并说明不纳入三焦/荣卫长解释。",
+        "fix_action": "把 source 指向 safe main 行并补充 notes。",
+        "should_change_now": true,
+        "risk_level_after": "low",
+        "checks": {
+          "primary_sentence_quality": "“名曰血崩”命名句完整。",
+          "term_identity_stability": "term identity 稳定，崩血 alias 可接受。",
+          "source_layer_support": "同 passage safe main A 级来源可支撑。",
+          "alias_normalization_risk": "alias 未过宽。",
+          "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+        },
+        "changed_fields": [
+          "primary_source_table",
+          "primary_source_object",
+          "primary_source_record_id",
+          "primary_source_evidence_level",
+          "notes"
+        ],
+        "before": {
+          "primary_support_passage_id": "ZJSHL-CH-004-P-0257",
+          "primary_source_table": "risk_registry_ambiguous",
+          "primary_source_object": "ambiguous_passages",
+          "primary_source_record_id": "full:passages:ZJSHL-CH-004-P-0257",
+          "primary_source_evidence_level": "C",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "荣盛，则其肤必疏，三焦绝经，名曰血崩",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [
+            "崩血"
+          ],
+          "learner_surface_forms": [
+            "崩血"
+          ],
+          "is_safe_primary_candidate": 1
+        },
+        "after": {
+          "primary_support_passage_id": "ZJSHL-CH-004-P-0257",
+          "primary_source_table": "records_main_passages",
+          "primary_source_object": "main_passages",
+          "primary_source_record_id": "safe:main_passages:ZJSHL-CH-004-P-0257",
+          "primary_source_evidence_level": "A",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "荣盛，则其肤必疏，三焦绝经，名曰血崩",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [
+            "崩血"
+          ],
+          "learner_surface_forms": [
+            "崩血"
+          ],
+          "is_safe_primary_candidate": 1
+        },
+        "source_text_excerpt": "寸口脉微而缓，微者卫气疏，疏则其肤空；缓者胃气实，实则谷消而水化也。谷入于胃，脉道乃行，而赵本作「水」入于经，其血乃成。荣盛，则其肤必疏，三焦绝经，名曰血崩。",
+        "alias_registry_rows": [
+          {
+            "alias": "崩血",
+            "alias_type": "learner_safe",
+            "confidence": 0.9,
+            "is_active": 1,
+            "notes": "batch learner-safe alias"
+          },
+          {
+            "alias": "血崩",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "canonical term alias"
+          }
+        ],
+        "learner_normalization_rows": [
+          {
+            "surface_form": "崩血",
+            "match_mode": "contains",
+            "confidence": 0.9,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          },
+          {
+            "surface_form": "血崩",
+            "match_mode": "contains",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          }
+        ]
+      },
+      {
+        "concept_id": "AHV-72cae785c0ac",
+        "canonical_term": "霍乱",
+        "is_focus_term": true,
+        "audit_depth": "focus",
+        "quality_audit_verdict": "adjust_primary_sentence",
+        "quality_reason": "当前 primary 带“答曰”问答前缀；核心定义句干净且同 passage 有 safe main 行。",
+        "fix_action": "将 primary 改为“呕吐而利，名曰霍乱”，并指向 safe main source。",
+        "should_change_now": true,
+        "risk_level_after": "low",
+        "checks": {
+          "primary_sentence_quality": "修正后定义句完整。",
+          "term_identity_stability": "病名稳定。",
+          "source_layer_support": "同 passage safe main A 级来源可支撑。",
+          "alias_normalization_risk": "吐利霍乱 alias 未越界。",
+          "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+        },
+        "changed_fields": [
+          "primary_source_table",
+          "primary_source_object",
+          "primary_source_record_id",
+          "primary_source_evidence_level",
+          "primary_evidence_text",
+          "notes"
+        ],
+        "before": {
+          "primary_support_passage_id": "ZJSHL-CH-016-P-0002",
+          "primary_source_table": "records_passages",
+          "primary_source_object": "passages",
+          "primary_source_record_id": "full:passages:ZJSHL-CH-016-P-0002",
+          "primary_source_evidence_level": "C",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "答曰：呕吐而利，名曰霍乱",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [
+            "吐利霍乱"
+          ],
+          "learner_surface_forms": [
+            "吐利霍乱"
+          ],
+          "is_safe_primary_candidate": 1
+        },
+        "after": {
+          "primary_support_passage_id": "ZJSHL-CH-016-P-0002",
+          "primary_source_table": "records_main_passages",
+          "primary_source_object": "main_passages",
+          "primary_source_record_id": "safe:main_passages:ZJSHL-CH-016-P-0002",
+          "primary_source_evidence_level": "A",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "呕吐而利，名曰霍乱",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [
+            "吐利霍乱"
+          ],
+          "learner_surface_forms": [
+            "吐利霍乱"
+          ],
+          "is_safe_primary_candidate": 1
+        },
+        "source_text_excerpt": "问曰：病有霍乱者何？答曰：呕吐而利，名曰霍乱。赵本作「此名霍乱」",
+        "alias_registry_rows": [
+          {
+            "alias": "吐利霍乱",
+            "alias_type": "learner_safe",
+            "confidence": 0.9,
+            "is_active": 1,
+            "notes": "batch learner-safe alias"
+          },
+          {
+            "alias": "霍乱",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "canonical term alias"
+          }
+        ],
+        "learner_normalization_rows": [
+          {
+            "surface_form": "吐利霍乱",
+            "match_mode": "contains",
+            "confidence": 0.9,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          },
+          {
+            "surface_form": "霍乱",
+            "match_mode": "contains",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          }
+        ]
+      },
+      {
+        "concept_id": "AHV-68ab3aae2083",
+        "canonical_term": "劳复",
+        "is_focus_term": true,
+        "audit_depth": "focus",
+        "quality_audit_verdict": "adjust_alias",
+        "quality_reason": "primary 句合格，但 alias“劳动病”是句内解释性短语，现代语义过宽，不应 learner-safe。",
+        "fix_action": "source 指向 safe main；停用“劳动病” alias 与 learner normalization。",
+        "should_change_now": true,
+        "risk_level_after": "low",
+        "checks": {
+          "primary_sentence_quality": "“病者，名曰劳复”完整。",
+          "term_identity_stability": "劳复 term identity 稳定。",
+          "source_layer_support": "同 passage safe main A 级来源可支撑。",
+          "alias_normalization_risk": "已停用过宽解释性 alias。",
+          "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+        },
+        "changed_fields": [
+          "primary_source_table",
+          "primary_source_object",
+          "primary_source_record_id",
+          "primary_source_evidence_level",
+          "notes",
+          "query_aliases_json",
+          "learner_surface_forms_json"
+        ],
+        "before": {
+          "primary_support_passage_id": "ZJSHL-CH-017-P-0049",
+          "primary_source_table": "records_passages",
+          "primary_source_object": "passages",
+          "primary_source_record_id": "full:passages:ZJSHL-CH-017-P-0049",
+          "primary_source_evidence_level": "C",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "伤寒新瘥，血气未平，馀热未尽，早作劳动病者，名曰劳复",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [
+            "劳动病"
+          ],
+          "learner_surface_forms": [
+            "劳动病"
+          ],
+          "is_safe_primary_candidate": 1
+        },
+        "after": {
+          "primary_support_passage_id": "ZJSHL-CH-017-P-0049",
+          "primary_source_table": "records_main_passages",
+          "primary_source_object": "main_passages",
+          "primary_source_record_id": "safe:main_passages:ZJSHL-CH-017-P-0049",
+          "primary_source_evidence_level": "A",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "伤寒新瘥，血气未平，馀热未尽，早作劳动病者，名曰劳复",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [],
+          "learner_surface_forms": [],
+          "is_safe_primary_candidate": 1
+        },
+        "source_text_excerpt": "病有劳复，有食复。伤寒新瘥，血气未平，馀热未尽，早作劳动病者，名曰劳复。病热少愈而强食之，热有所藏，因其谷气留搏，两阳相合而病者，名曰食复。劳复，则热气浮越，与枳实栀子豉汤以解之；食复，则胃有宿积，加大黄以下之。",
+        "alias_registry_rows": [
+          {
+            "alias": "劳动病",
+            "alias_type": "learner_risky",
+            "confidence": 0.42,
+            "is_active": 0,
+            "notes": "quality_audit_v1 inactive alias; surface is too broad or constructed for learner-safe normalization"
+          },
+          {
+            "alias": "劳复",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "canonical term alias"
+          }
+        ],
+        "learner_normalization_rows": [
+          {
+            "surface_form": "劳动病",
+            "match_mode": "contains",
+            "confidence": 0.42,
+            "is_active": 0,
+            "notes": "quality_audit_v1 deactivated broad or constructed learner surface"
+          },
+          {
+            "surface_form": "劳复",
+            "match_mode": "contains",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          }
+        ]
+      },
+      {
+        "concept_id": "AHV-8df0a4ec9de9",
+        "canonical_term": "食复",
+        "is_focus_term": true,
+        "audit_depth": "focus",
+        "quality_audit_verdict": "adjust_alias",
+        "quality_reason": "primary 句合格，但 alias“强食复病”是人为拼接的解释短语，作为 learner normalization 过激。",
+        "fix_action": "source 指向 safe main；停用“强食复病” alias 与 learner normalization。",
+        "should_change_now": true,
+        "risk_level_after": "low",
+        "checks": {
+          "primary_sentence_quality": "“病者，名曰食复”完整。",
+          "term_identity_stability": "食复 term identity 稳定。",
+          "source_layer_support": "同 passage safe main A 级来源可支撑。",
+          "alias_normalization_risk": "已停用构造性 alias。",
+          "runtime_behavior": "canonical query 命中 AHV safe definition primary。"
+        },
+        "changed_fields": [
+          "primary_source_table",
+          "primary_source_object",
+          "primary_source_record_id",
+          "primary_source_evidence_level",
+          "notes",
+          "query_aliases_json",
+          "learner_surface_forms_json"
+        ],
+        "before": {
+          "primary_support_passage_id": "ZJSHL-CH-017-P-0049",
+          "primary_source_table": "records_passages",
+          "primary_source_object": "passages",
+          "primary_source_record_id": "full:passages:ZJSHL-CH-017-P-0049",
+          "primary_source_evidence_level": "C",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "病热少愈而强食之，热有所藏，因其谷气留搏，两阳相合而病者，名曰食复",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [
+            "强食复病"
+          ],
+          "learner_surface_forms": [
+            "强食复病"
+          ],
+          "is_safe_primary_candidate": 1
+        },
+        "after": {
+          "primary_support_passage_id": "ZJSHL-CH-017-P-0049",
+          "primary_source_table": "records_main_passages",
+          "primary_source_object": "main_passages",
+          "primary_source_record_id": "safe:main_passages:ZJSHL-CH-017-P-0049",
+          "primary_source_evidence_level": "A",
+          "primary_evidence_type": "exact_term_definition",
+          "primary_evidence_text": "病热少愈而强食之，热有所藏，因其谷气留搏，两阳相合而病者，名曰食复",
+          "source_confidence": "medium",
+          "promotion_state": "safe_primary",
+          "query_aliases": [],
+          "learner_surface_forms": [],
+          "is_safe_primary_candidate": 1
+        },
+        "source_text_excerpt": "病有劳复，有食复。伤寒新瘥，血气未平，馀热未尽，早作劳动病者，名曰劳复。病热少愈而强食之，热有所藏，因其谷气留搏，两阳相合而病者，名曰食复。劳复，则热气浮越，与枳实栀子豉汤以解之；食复，则胃有宿积，加大黄以下之。",
+        "alias_registry_rows": [
+          {
+            "alias": "强食复病",
+            "alias_type": "learner_risky",
+            "confidence": 0.42,
+            "is_active": 0,
+            "notes": "quality_audit_v1 inactive alias; surface is too broad or constructed for learner-safe normalization"
+          },
+          {
+            "alias": "食复",
+            "alias_type": "canonical",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "canonical term alias"
+          }
+        ],
+        "learner_normalization_rows": [
+          {
+            "surface_form": "强食复病",
+            "match_mode": "contains",
+            "confidence": 0.42,
+            "is_active": 0,
+            "notes": "quality_audit_v1 deactivated broad or constructed learner surface"
+          },
+          {
+            "surface_form": "食复",
+            "match_mode": "contains",
+            "confidence": 1.0,
+            "is_active": 1,
+            "notes": "batch learner_safe normalization"
+          }
+        ]
+      }
+    ],
+    "downgraded_objects": []
+  }
+}

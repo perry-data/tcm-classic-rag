@@ -1,0 +1,886 @@
+{
+  "run_id": "batch_upgrade_quality_audit_v1",
+  "generated_at_utc": "2026-04-24T02:13:03.554175+00:00",
+  "before_db": "/private/tmp/zjshl_v1_before_ahv_quality_audit_v1.db",
+  "after_db": "/Users/man_ray/Projects/Python/tcm-classic-rag/artifacts/zjshl_v1.db",
+  "metrics": {
+    "audited_ahv_object_count": 20,
+    "keep_safe_primary_count": 20,
+    "adjusted_object_count": 18,
+    "downgraded_object_count": 0,
+    "alias_adjusted_count": 5,
+    "focus_audited_count": 10
+  },
+  "object_changes": [
+    {
+      "concept_id": "AHV-fdb12048d73e",
+      "canonical_term": "太阳病",
+      "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+      "changed_fields": [
+        "notes"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-008-P-0191",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-008-P-0191",
+        "primary_source_evidence_level": "B",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "太阳之为病，脉浮，头项强痛而恶寒",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "太阳之为病"
+        ],
+        "learner_surface_forms": [
+          "太阳之为病"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-008-P-0191",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-008-P-0191",
+        "primary_source_evidence_level": "B",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "太阳之为病，脉浮，头项强痛而恶寒",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "太阳之为病"
+        ],
+        "learner_surface_forms": [
+          "太阳之为病"
+        ],
+        "is_safe_primary_candidate": 1
+      }
+    },
+    {
+      "concept_id": "AHV-82d1c8a78473",
+      "canonical_term": "伤寒",
+      "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+      "changed_fields": [
+        "primary_source_table",
+        "primary_source_object",
+        "primary_source_record_id",
+        "primary_source_evidence_level",
+        "notes"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-008-P-0195",
+        "primary_source_table": "records_passages",
+        "primary_source_object": "passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-008-P-0195",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名曰伤寒",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "伤寒病"
+        ],
+        "learner_surface_forms": [
+          "伤寒病"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-008-P-0195",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-008-P-0195",
+        "primary_source_evidence_level": "A",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "太阳病，或已发热，或未发热，必恶寒，体痛，呕逆，脉阴阳俱紧者，名曰伤寒",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "伤寒病"
+        ],
+        "learner_surface_forms": [
+          "伤寒病"
+        ],
+        "is_safe_primary_candidate": 1
+      }
+    },
+    {
+      "concept_id": "AHV-65a3bdee145b",
+      "canonical_term": "温病",
+      "quality_audit_verdict": "adjust_alias",
+      "changed_fields": [
+        "notes",
+        "query_aliases_json",
+        "learner_surface_forms_json"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-006-P-0017",
+        "primary_source_table": "risk_registry_ambiguous",
+        "primary_source_object": "ambiguous_passages",
+        "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-006-P-0017",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "温者，冬时感寒，至春发者是也",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "春温"
+        ],
+        "learner_surface_forms": [
+          "春温"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-006-P-0017",
+        "primary_source_table": "risk_registry_ambiguous",
+        "primary_source_object": "ambiguous_passages",
+        "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-006-P-0017",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "温者，冬时感寒，至春发者是也",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      }
+    },
+    {
+      "concept_id": "AHV-d1abf1c57ecf",
+      "canonical_term": "暑病",
+      "quality_audit_verdict": "adjust_alias",
+      "changed_fields": [
+        "primary_source_table",
+        "primary_source_object",
+        "primary_source_record_id",
+        "primary_source_evidence_level",
+        "notes",
+        "query_aliases_json",
+        "learner_surface_forms_json"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-006-P-0012",
+        "primary_source_table": "records_passages",
+        "primary_source_object": "passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-006-P-0012",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "暑病者，热极重于温也",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "暑病者"
+        ],
+        "learner_surface_forms": [
+          "暑病者"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-006-P-0012",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-006-P-0012",
+        "primary_source_evidence_level": "A",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "暑病者，热极重于温也",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      }
+    },
+    {
+      "concept_id": "AHV-9dfd46e14608",
+      "canonical_term": "冬温",
+      "quality_audit_verdict": "keep_safe_primary",
+      "changed_fields": [],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-006-P-0020",
+        "primary_source_table": "records_passages",
+        "primary_source_object": "passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-006-P-0020",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "其冬有非节之暖者，名曰冬温",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "冬温病"
+        ],
+        "learner_surface_forms": [
+          "冬温病"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-006-P-0020",
+        "primary_source_table": "records_passages",
+        "primary_source_object": "passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-006-P-0020",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "其冬有非节之暖者，名曰冬温",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "冬温病"
+        ],
+        "learner_surface_forms": [
+          "冬温病"
+        ],
+        "is_safe_primary_candidate": 1
+      }
+    },
+    {
+      "concept_id": "AHV-bb8f9a64a54e",
+      "canonical_term": "时行寒疫",
+      "quality_audit_verdict": "adjust_alias",
+      "changed_fields": [
+        "primary_source_table",
+        "primary_source_object",
+        "primary_source_record_id",
+        "primary_source_evidence_level",
+        "notes",
+        "query_aliases_json",
+        "learner_surface_forms_json"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-006-P-0024",
+        "primary_source_table": "records_passages",
+        "primary_source_object": "passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-006-P-0024",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "从春分以后，至秋分节前，天有暴寒者，皆为时行寒疫也",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "寒疫"
+        ],
+        "learner_surface_forms": [
+          "寒疫"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-006-P-0024",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-006-P-0024",
+        "primary_source_evidence_level": "A",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "从春分以后，至秋分节前，天有暴寒者，皆为时行寒疫也",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      }
+    },
+    {
+      "concept_id": "AHV-87d3ca263c08",
+      "canonical_term": "刚痓",
+      "quality_audit_verdict": "keep_safe_primary",
+      "changed_fields": [],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-007-P-0157",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-007-P-0157",
+        "primary_source_evidence_level": "B",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "太阳病，发热无汗，反恶寒者，名曰刚痓",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "刚痉"
+        ],
+        "learner_surface_forms": [
+          "刚痉"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-007-P-0157",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-007-P-0157",
+        "primary_source_evidence_level": "B",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "太阳病，发热无汗，反恶寒者，名曰刚痓",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "刚痉"
+        ],
+        "learner_surface_forms": [
+          "刚痉"
+        ],
+        "is_safe_primary_candidate": 1
+      }
+    },
+    {
+      "concept_id": "AHV-cdac1a4b7e7b",
+      "canonical_term": "柔痓",
+      "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+      "changed_fields": [
+        "notes"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-007-P-0160",
+        "primary_source_table": "risk_registry_ambiguous",
+        "primary_source_object": "ambiguous_passages",
+        "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-007-P-0160",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_explanation",
+        "primary_evidence_text": "表虚感湿，故曰柔痓",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "柔痉"
+        ],
+        "learner_surface_forms": [
+          "柔痉"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-007-P-0160",
+        "primary_source_table": "risk_registry_ambiguous",
+        "primary_source_object": "ambiguous_passages",
+        "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-007-P-0160",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_explanation",
+        "primary_evidence_text": "表虚感湿，故曰柔痓",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "柔痉"
+        ],
+        "learner_surface_forms": [
+          "柔痉"
+        ],
+        "is_safe_primary_candidate": 1
+      }
+    },
+    {
+      "concept_id": "AHV-01cf7a0eba28",
+      "canonical_term": "痓病",
+      "quality_audit_verdict": "adjust_primary_sentence",
+      "changed_fields": [
+        "primary_evidence_text",
+        "notes"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-007-P-0166",
+        "primary_source_table": "records_passages",
+        "primary_source_object": "passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-007-P-0166",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "病身热足寒，颈项强急，恶寒，时头热面赤，目脉赤，独头面赵本注：一本无面字摇，卒口噤，背反张者，痓病也",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "痉病"
+        ],
+        "learner_surface_forms": [
+          "痉病"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-007-P-0166",
+        "primary_source_table": "records_passages",
+        "primary_source_object": "passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-007-P-0166",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "背反张者，痓病也",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "痉病"
+        ],
+        "learner_surface_forms": [
+          "痉病"
+        ],
+        "is_safe_primary_candidate": 1
+      }
+    },
+    {
+      "concept_id": "AHV-bbdfc9d9b74e",
+      "canonical_term": "结脉",
+      "quality_audit_verdict": "adjust_primary_sentence",
+      "changed_fields": [
+        "primary_support_passage_id",
+        "primary_source_table",
+        "primary_source_object",
+        "primary_source_record_id",
+        "primary_source_evidence_level",
+        "primary_evidence_type",
+        "primary_evidence_text",
+        "notes"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-003-P-0029",
+        "primary_source_table": "risk_registry_ambiguous",
+        "primary_source_object": "ambiguous_passages",
+        "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0029",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_explanation",
+        "primary_evidence_text": "脉一息四至曰平，一息三至曰迟，小快于迟曰缓，一息六至曰数，时有一止者，阴阳之气不得相续也",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "结脉"
+        ],
+        "learner_surface_forms": [
+          "结脉"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-003-P-0028",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-003-P-0028",
+        "primary_source_evidence_level": "A",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "脉来缓，时一止复来者，名曰结",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "结脉"
+        ],
+        "learner_surface_forms": [
+          "结脉"
+        ],
+        "is_safe_primary_candidate": 1
+      }
+    },
+    {
+      "concept_id": "AHV-472e3287583d",
+      "canonical_term": "促脉",
+      "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+      "changed_fields": [
+        "primary_source_table",
+        "primary_source_object",
+        "primary_source_record_id",
+        "primary_source_evidence_level",
+        "notes"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-003-P-0028",
+        "primary_source_table": "records_passages",
+        "primary_source_object": "passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-003-P-0028",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "脉来数，时一止复来者，名曰促",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-003-P-0028",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-003-P-0028",
+        "primary_source_evidence_level": "A",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "脉来数，时一止复来者，名曰促",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      }
+    },
+    {
+      "concept_id": "AHV-54c535ab7161",
+      "canonical_term": "弦脉",
+      "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+      "changed_fields": [
+        "primary_source_table",
+        "primary_source_object",
+        "primary_source_record_id",
+        "primary_source_evidence_level",
+        "notes"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-003-P-0037",
+        "primary_source_table": "records_passages",
+        "primary_source_object": "passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-003-P-0037",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "脉浮而紧者，名曰弦也",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-003-P-0037",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-003-P-0037",
+        "primary_source_evidence_level": "A",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "脉浮而紧者，名曰弦也",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      }
+    },
+    {
+      "concept_id": "AHV-5d33fe1b97eb",
+      "canonical_term": "滑脉",
+      "quality_audit_verdict": "adjust_primary_sentence",
+      "changed_fields": [
+        "primary_source_table",
+        "primary_source_object",
+        "primary_source_record_id",
+        "primary_source_evidence_level",
+        "primary_evidence_text",
+        "notes"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-004-P-0203",
+        "primary_source_table": "records_passages",
+        "primary_source_object": "passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-004-P-0203",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "问曰：翕奄沉，名曰滑，何谓也？",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-004-P-0203",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-004-P-0203",
+        "primary_source_evidence_level": "A",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "翕奄沉，名曰滑",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      }
+    },
+    {
+      "concept_id": "AHV-6fb7ea26388a",
+      "canonical_term": "革脉",
+      "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+      "changed_fields": [
+        "notes"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-003-P-0040",
+        "primary_source_table": "risk_registry_ambiguous",
+        "primary_source_object": "ambiguous_passages",
+        "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0040",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "寒虚相搏，此名为革",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-003-P-0040",
+        "primary_source_table": "risk_registry_ambiguous",
+        "primary_source_object": "ambiguous_passages",
+        "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-003-P-0040",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "寒虚相搏，此名为革",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      }
+    },
+    {
+      "concept_id": "AHV-901247b4beaf",
+      "canonical_term": "行尸",
+      "quality_audit_verdict": "adjust_primary_sentence",
+      "changed_fields": [
+        "primary_evidence_text",
+        "notes"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-004-P-0200",
+        "primary_source_table": "risk_registry_ambiguous",
+        "primary_source_object": "ambiguous_passages",
+        "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-004-P-0200",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "师曰：脉病患不病，名曰行尸，以无王气，卒眩仆不识人者，短命则死",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-004-P-0200",
+        "primary_source_table": "risk_registry_ambiguous",
+        "primary_source_object": "ambiguous_passages",
+        "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-004-P-0200",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "脉病患不病，名曰行尸",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      }
+    },
+    {
+      "concept_id": "AHV-b52564cf7480",
+      "canonical_term": "内虚",
+      "quality_audit_verdict": "adjust_primary_sentence",
+      "changed_fields": [
+        "primary_evidence_text",
+        "notes"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-004-P-0200",
+        "primary_source_table": "risk_registry_ambiguous",
+        "primary_source_object": "ambiguous_passages",
+        "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-004-P-0200",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "人病脉不病，名曰内虚，以无谷神，虽困无苦",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-004-P-0200",
+        "primary_source_table": "risk_registry_ambiguous",
+        "primary_source_object": "ambiguous_passages",
+        "primary_source_record_id": "full:ambiguous_passages:ZJSHL-CH-004-P-0200",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "人病脉不病，名曰内虚",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      }
+    },
+    {
+      "concept_id": "AHV-439df1ff9f25",
+      "canonical_term": "血崩",
+      "quality_audit_verdict": "keep_safe_primary_but_needs_notes",
+      "changed_fields": [
+        "primary_source_table",
+        "primary_source_object",
+        "primary_source_record_id",
+        "primary_source_evidence_level",
+        "notes"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-004-P-0257",
+        "primary_source_table": "risk_registry_ambiguous",
+        "primary_source_object": "ambiguous_passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-004-P-0257",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "荣盛，则其肤必疏，三焦绝经，名曰血崩",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "崩血"
+        ],
+        "learner_surface_forms": [
+          "崩血"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-004-P-0257",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-004-P-0257",
+        "primary_source_evidence_level": "A",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "荣盛，则其肤必疏，三焦绝经，名曰血崩",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "崩血"
+        ],
+        "learner_surface_forms": [
+          "崩血"
+        ],
+        "is_safe_primary_candidate": 1
+      }
+    },
+    {
+      "concept_id": "AHV-72cae785c0ac",
+      "canonical_term": "霍乱",
+      "quality_audit_verdict": "adjust_primary_sentence",
+      "changed_fields": [
+        "primary_source_table",
+        "primary_source_object",
+        "primary_source_record_id",
+        "primary_source_evidence_level",
+        "primary_evidence_text",
+        "notes"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-016-P-0002",
+        "primary_source_table": "records_passages",
+        "primary_source_object": "passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-016-P-0002",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "答曰：呕吐而利，名曰霍乱",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "吐利霍乱"
+        ],
+        "learner_surface_forms": [
+          "吐利霍乱"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-016-P-0002",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-016-P-0002",
+        "primary_source_evidence_level": "A",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "呕吐而利，名曰霍乱",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "吐利霍乱"
+        ],
+        "learner_surface_forms": [
+          "吐利霍乱"
+        ],
+        "is_safe_primary_candidate": 1
+      }
+    },
+    {
+      "concept_id": "AHV-68ab3aae2083",
+      "canonical_term": "劳复",
+      "quality_audit_verdict": "adjust_alias",
+      "changed_fields": [
+        "primary_source_table",
+        "primary_source_object",
+        "primary_source_record_id",
+        "primary_source_evidence_level",
+        "notes",
+        "query_aliases_json",
+        "learner_surface_forms_json"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-017-P-0049",
+        "primary_source_table": "records_passages",
+        "primary_source_object": "passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-017-P-0049",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "伤寒新瘥，血气未平，馀热未尽，早作劳动病者，名曰劳复",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "劳动病"
+        ],
+        "learner_surface_forms": [
+          "劳动病"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-017-P-0049",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-017-P-0049",
+        "primary_source_evidence_level": "A",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "伤寒新瘥，血气未平，馀热未尽，早作劳动病者，名曰劳复",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      }
+    },
+    {
+      "concept_id": "AHV-8df0a4ec9de9",
+      "canonical_term": "食复",
+      "quality_audit_verdict": "adjust_alias",
+      "changed_fields": [
+        "primary_source_table",
+        "primary_source_object",
+        "primary_source_record_id",
+        "primary_source_evidence_level",
+        "notes",
+        "query_aliases_json",
+        "learner_surface_forms_json"
+      ],
+      "before": {
+        "primary_support_passage_id": "ZJSHL-CH-017-P-0049",
+        "primary_source_table": "records_passages",
+        "primary_source_object": "passages",
+        "primary_source_record_id": "full:passages:ZJSHL-CH-017-P-0049",
+        "primary_source_evidence_level": "C",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "病热少愈而强食之，热有所藏，因其谷气留搏，两阳相合而病者，名曰食复",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [
+          "强食复病"
+        ],
+        "learner_surface_forms": [
+          "强食复病"
+        ],
+        "is_safe_primary_candidate": 1
+      },
+      "after": {
+        "primary_support_passage_id": "ZJSHL-CH-017-P-0049",
+        "primary_source_table": "records_main_passages",
+        "primary_source_object": "main_passages",
+        "primary_source_record_id": "safe:main_passages:ZJSHL-CH-017-P-0049",
+        "primary_source_evidence_level": "A",
+        "primary_evidence_type": "exact_term_definition",
+        "primary_evidence_text": "病热少愈而强食之，热有所藏，因其谷气留搏，两阳相合而病者，名曰食复",
+        "source_confidence": "medium",
+        "promotion_state": "safe_primary",
+        "query_aliases": [],
+        "learner_surface_forms": [],
+        "is_safe_primary_candidate": 1
+      }
+    }
+  ]
+}

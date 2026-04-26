@@ -1,0 +1,238 @@
+{
+  "generated_at_utc": "2026-04-24T00:48:06.304762+00:00",
+  "records": [
+    {
+      "formula_id": "FML-21567be0171c",
+      "canonical_name": "乌梅丸",
+      "normalized_name": "乌梅丸",
+      "primary_formula_passage_id": "ZJSHL-CH-015-P-0221",
+      "chapter_id": "ZJSHL-CH-015",
+      "formula_span_start_passage_id": "ZJSHL-CH-015-P-0219",
+      "formula_span_end_passage_id": "ZJSHL-CH-015-P-0225",
+      "composition_passage_ids_json": "[\"ZJSHL-CH-015-P-0221\",\"ZJSHL-CH-015-P-0222\",\"ZJSHL-CH-015-P-0223\"]",
+      "decoction_passage_ids_json": "[\"ZJSHL-CH-015-P-0225\"]",
+      "usage_context_passage_ids_json": "[\"ZJSHL-CH-015-P-0219\",\"ZJSHL-CH-015-P-0220\"]",
+      "source_passage_ids_json": "[\"ZJSHL-CH-015-P-0219\",\"ZJSHL-CH-015-P-0220\",\"ZJSHL-CH-015-P-0221\",\"ZJSHL-CH-015-P-0222\",\"ZJSHL-CH-015-P-0223\",\"ZJSHL-CH-015-P-0225\"]",
+      "chapter_ids_json": "[\"ZJSHL-CH-015\"]",
+      "source_confidence": "high",
+      "is_active": 1,
+      "formula_display_name": "乌梅丸",
+      "composition_display_text": "乌梅丸方：乌梅三百个；细辛六两；乾姜十两；黄连一斤；当归四两；附子六两，炮；蜀椒四两，去子；桂枝六两；人参六两；黄柏六两",
+      "span_fix_reason": "补入 ZJSHL-CH-015-P-0222/ZJSHL-CH-015-P-0223 作为连续组成，并登记 ZJSHL-CH-015-P-0225 为丸法/服法，ZJSHL-CH-015-P-0219/0220 为使用语境。",
+      "confidence_reason": "完整组成、丸法/服法和蛔厥使用语境均已定位；展示层去除赵本异文噪声，primary 回指仍只会落到 safe main passages。",
+      "span_fix_status": "high",
+      "composition_passage_ids": [
+        "ZJSHL-CH-015-P-0221",
+        "ZJSHL-CH-015-P-0222",
+        "ZJSHL-CH-015-P-0223"
+      ],
+      "decoction_passage_ids": [
+        "ZJSHL-CH-015-P-0225"
+      ],
+      "usage_context_passage_ids": [
+        "ZJSHL-CH-015-P-0219",
+        "ZJSHL-CH-015-P-0220"
+      ],
+      "source_passage_ids": [
+        "ZJSHL-CH-015-P-0219",
+        "ZJSHL-CH-015-P-0220",
+        "ZJSHL-CH-015-P-0221",
+        "ZJSHL-CH-015-P-0222",
+        "ZJSHL-CH-015-P-0223",
+        "ZJSHL-CH-015-P-0225"
+      ],
+      "chapter_ids": [
+        "ZJSHL-CH-015"
+      ]
+    },
+    {
+      "formula_id": "FML-ac1d63fd6039",
+      "canonical_name": "旋复代赭石汤",
+      "normalized_name": "旋复代赭石汤",
+      "primary_formula_passage_id": "ZJSHL-CH-010-P-0106",
+      "chapter_id": "ZJSHL-CH-010",
+      "formula_span_start_passage_id": "ZJSHL-CH-010-P-0104",
+      "formula_span_end_passage_id": "ZJSHL-CH-010-P-0106",
+      "composition_passage_ids_json": "[\"ZJSHL-CH-010-P-0106\"]",
+      "decoction_passage_ids_json": "[]",
+      "usage_context_passage_ids_json": "[\"ZJSHL-CH-010-P-0104\",\"ZJSHL-CH-010-P-0105\"]",
+      "source_passage_ids_json": "[\"ZJSHL-CH-010-P-0104\",\"ZJSHL-CH-010-P-0105\",\"ZJSHL-CH-010-P-0106\"]",
+      "chapter_ids_json": "[\"ZJSHL-CH-010\"]",
+      "source_confidence": "medium",
+      "is_active": 1,
+      "formula_display_name": "旋复代赭石汤",
+      "composition_display_text": "旋复代赭石汤方：旋复花三两；人参二两；生姜五两，切；半夏半升，洗；代赭石一两；大枣十二枚，擘；甘草三两，炙",
+      "span_fix_reason": "补入 ZJSHL-CH-010-P-0104/0105 为使用语境，并对标题和代赭石药味做 variant-stripped display。",
+      "confidence_reason": "组成和使用语境可审计，但当前可用数据中未找到独立煎服法 span，故不升 high。",
+      "span_fix_status": "medium",
+      "composition_passage_ids": [
+        "ZJSHL-CH-010-P-0106"
+      ],
+      "decoction_passage_ids": [],
+      "usage_context_passage_ids": [
+        "ZJSHL-CH-010-P-0104",
+        "ZJSHL-CH-010-P-0105"
+      ],
+      "source_passage_ids": [
+        "ZJSHL-CH-010-P-0104",
+        "ZJSHL-CH-010-P-0105",
+        "ZJSHL-CH-010-P-0106"
+      ],
+      "chapter_ids": [
+        "ZJSHL-CH-010"
+      ]
+    },
+    {
+      "formula_id": "FML-f581e51c0cb7",
+      "canonical_name": "栀子浓朴汤",
+      "normalized_name": "栀子浓朴汤",
+      "primary_formula_passage_id": "ZJSHL-CH-009-P-0170",
+      "chapter_id": "ZJSHL-CH-009",
+      "formula_span_start_passage_id": "ZJSHL-CH-009-P-0168",
+      "formula_span_end_passage_id": "ZJSHL-CH-009-P-0170",
+      "composition_passage_ids_json": "[\"ZJSHL-CH-009-P-0170\"]",
+      "decoction_passage_ids_json": "[]",
+      "usage_context_passage_ids_json": "[\"ZJSHL-CH-009-P-0168\",\"ZJSHL-CH-009-P-0169\"]",
+      "source_passage_ids_json": "[\"ZJSHL-CH-009-P-0168\",\"ZJSHL-CH-009-P-0169\",\"ZJSHL-CH-009-P-0170\"]",
+      "chapter_ids_json": "[\"ZJSHL-CH-009\"]",
+      "source_confidence": "medium",
+      "is_active": 1,
+      "formula_display_name": "栀子浓朴汤",
+      "composition_display_text": "栀子浓朴汤方：栀子十四枚，擘；浓朴四两，姜炙，去皮；枳实四枚，水浸，去穣，炒",
+      "span_fix_reason": "补入 ZJSHL-CH-009-P-0168/0169 为使用语境，并清理组成展示中的赵本异文噪声。",
+      "confidence_reason": "使用语境已补齐，但没有独立煎服法 span，组成行仍来自 variant-heavy 行，故保持 medium。",
+      "span_fix_status": "medium",
+      "composition_passage_ids": [
+        "ZJSHL-CH-009-P-0170"
+      ],
+      "decoction_passage_ids": [],
+      "usage_context_passage_ids": [
+        "ZJSHL-CH-009-P-0168",
+        "ZJSHL-CH-009-P-0169"
+      ],
+      "source_passage_ids": [
+        "ZJSHL-CH-009-P-0168",
+        "ZJSHL-CH-009-P-0169",
+        "ZJSHL-CH-009-P-0170"
+      ],
+      "chapter_ids": [
+        "ZJSHL-CH-009"
+      ]
+    },
+    {
+      "formula_id": "FML-0196ae607c39",
+      "canonical_name": "桂枝甘草龙骨牡蛎汤",
+      "normalized_name": "桂枝甘草龙骨牡蛎汤",
+      "primary_formula_passage_id": "ZJSHL-CH-009-P-0298",
+      "chapter_id": "ZJSHL-CH-009",
+      "formula_span_start_passage_id": "ZJSHL-CH-009-P-0296",
+      "formula_span_end_passage_id": "ZJSHL-CH-009-P-0298",
+      "composition_passage_ids_json": "[\"ZJSHL-CH-009-P-0298\"]",
+      "decoction_passage_ids_json": "[]",
+      "usage_context_passage_ids_json": "[\"ZJSHL-CH-009-P-0296\",\"ZJSHL-CH-009-P-0297\"]",
+      "source_passage_ids_json": "[\"ZJSHL-CH-009-P-0296\",\"ZJSHL-CH-009-P-0297\",\"ZJSHL-CH-009-P-0298\"]",
+      "chapter_ids_json": "[\"ZJSHL-CH-009\"]",
+      "source_confidence": "high",
+      "is_active": 1,
+      "formula_display_name": "桂枝甘草龙骨牡蛎汤",
+      "composition_display_text": "桂枝甘草龙骨牡蛎汤方：桂枝一两；甘草二两；牡蛎二两，熬；龙骨二两",
+      "span_fix_reason": "补入 ZJSHL-CH-009-P-0296/0297 为使用语境，并清理桂枝去皮、甘草炙等异文展示噪声。",
+      "confidence_reason": "方名、组成和使用语境连续且边界稳定；无相邻方串入，故可按 composition+usage 对象升 high。",
+      "span_fix_status": "high",
+      "composition_passage_ids": [
+        "ZJSHL-CH-009-P-0298"
+      ],
+      "decoction_passage_ids": [],
+      "usage_context_passage_ids": [
+        "ZJSHL-CH-009-P-0296",
+        "ZJSHL-CH-009-P-0297"
+      ],
+      "source_passage_ids": [
+        "ZJSHL-CH-009-P-0296",
+        "ZJSHL-CH-009-P-0297",
+        "ZJSHL-CH-009-P-0298"
+      ],
+      "chapter_ids": [
+        "ZJSHL-CH-009"
+      ]
+    },
+    {
+      "formula_id": "FML-c7b169a846ab",
+      "canonical_name": "茵陈蒿汤",
+      "normalized_name": "茵陈蒿汤",
+      "primary_formula_passage_id": "ZJSHL-CH-011-P-0141",
+      "chapter_id": "ZJSHL-CH-011",
+      "formula_span_start_passage_id": "ZJSHL-CH-011-P-0141",
+      "formula_span_end_passage_id": "ZJSHL-CH-011-P-0143",
+      "composition_passage_ids_json": "[\"ZJSHL-CH-011-P-0141\"]",
+      "decoction_passage_ids_json": "[\"ZJSHL-CH-011-P-0143\"]",
+      "usage_context_passage_ids_json": "[\"ZJSHL-CH-011-P-0200\"]",
+      "source_passage_ids_json": "[\"ZJSHL-CH-011-P-0200\",\"ZJSHL-CH-011-P-0141\",\"ZJSHL-CH-011-P-0143\"]",
+      "chapter_ids_json": "[\"ZJSHL-CH-011\"]",
+      "source_confidence": "high",
+      "is_active": 1,
+      "formula_display_name": "茵陈蒿汤",
+      "composition_display_text": "茵陈蒿汤方：茵陈蒿六两；栀子十四枚，擘；大黄二两，去皮",
+      "span_fix_reason": "补入 ZJSHL-CH-011-P-0143 为煎服法，补入 ZJSHL-CH-011-P-0200 为精确方名使用语境。",
+      "confidence_reason": "组成、煎服法和精确使用语境均已定位，且 composition display 无显著异文污染，故可升 high。",
+      "span_fix_status": "high",
+      "composition_passage_ids": [
+        "ZJSHL-CH-011-P-0141"
+      ],
+      "decoction_passage_ids": [
+        "ZJSHL-CH-011-P-0143"
+      ],
+      "usage_context_passage_ids": [
+        "ZJSHL-CH-011-P-0200"
+      ],
+      "source_passage_ids": [
+        "ZJSHL-CH-011-P-0200",
+        "ZJSHL-CH-011-P-0141",
+        "ZJSHL-CH-011-P-0143"
+      ],
+      "chapter_ids": [
+        "ZJSHL-CH-011"
+      ]
+    },
+    {
+      "formula_id": "FML-659e19219c98",
+      "canonical_name": "麻黄附子甘草汤",
+      "normalized_name": "麻黄附子甘草汤",
+      "primary_formula_passage_id": "ZJSHL-CH-014-P-0069",
+      "chapter_id": "ZJSHL-CH-014",
+      "formula_span_start_passage_id": "ZJSHL-CH-014-P-0067",
+      "formula_span_end_passage_id": "ZJSHL-CH-014-P-0071",
+      "composition_passage_ids_json": "[\"ZJSHL-CH-014-P-0069\"]",
+      "decoction_passage_ids_json": "[\"ZJSHL-CH-014-P-0071\"]",
+      "usage_context_passage_ids_json": "[\"ZJSHL-CH-014-P-0067\",\"ZJSHL-CH-014-P-0068\"]",
+      "source_passage_ids_json": "[\"ZJSHL-CH-014-P-0067\",\"ZJSHL-CH-014-P-0068\",\"ZJSHL-CH-014-P-0069\",\"ZJSHL-CH-014-P-0071\"]",
+      "chapter_ids_json": "[\"ZJSHL-CH-014\"]",
+      "source_confidence": "high",
+      "is_active": 1,
+      "formula_display_name": "麻黄附子甘草汤",
+      "composition_display_text": "麻黄附子甘草汤方：麻黄二两，去节；甘草二两，炙；附子一枚，炮，去皮",
+      "span_fix_reason": "补入 ZJSHL-CH-014-P-0067/0068 为使用语境，ZJSHL-CH-014-P-0071 为煎服法，并去除附子破八片异文展示噪声。",
+      "confidence_reason": "组成、使用语境和煎服法连续且与相邻麻黄附子细辛汤边界清楚，故可升 high。",
+      "span_fix_status": "high",
+      "composition_passage_ids": [
+        "ZJSHL-CH-014-P-0069"
+      ],
+      "decoction_passage_ids": [
+        "ZJSHL-CH-014-P-0071"
+      ],
+      "usage_context_passage_ids": [
+        "ZJSHL-CH-014-P-0067",
+        "ZJSHL-CH-014-P-0068"
+      ],
+      "source_passage_ids": [
+        "ZJSHL-CH-014-P-0067",
+        "ZJSHL-CH-014-P-0068",
+        "ZJSHL-CH-014-P-0069",
+        "ZJSHL-CH-014-P-0071"
+      ],
+      "chapter_ids": [
+        "ZJSHL-CH-014"
+      ]
+    }
+  ]
+}
