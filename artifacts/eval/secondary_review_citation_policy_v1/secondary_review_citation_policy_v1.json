@@ -1,0 +1,88 @@
+{
+  "api_changed": false,
+  "dataset_changed": false,
+  "excluded_queue_counts": {
+    "p2_manual_audit": 5,
+    "retrieval_or_chunking_repairs": 4,
+    "runtime_citation_scope_repairs": 3,
+    "trace_or_evaluator_repairs": 2
+  },
+  "existing_evaluator_changed": false,
+  "frontend_changed": false,
+  "generated_at_utc": "2026-04-27T07:35:04.977872+00:00",
+  "guarded_non_input_sha256": {
+    "eval_dataset_v1": "7775950069ae5855a2627accc2416d7ddfb62a5e0d89458a8414bf840df93a47"
+  },
+  "judge": {
+    "llm_judge": false,
+    "type": "rules_only_policy_classification"
+  },
+  "manual_audit_required_count": 0,
+  "manual_audit_required_ids": [],
+  "notes": "Only next_queue.secondary_review_policy_decisions is classified here. Accepted weak secondary/review citations do not mean the whole system passed.",
+  "policy_accepted_count": 9,
+  "policy_accepted_ids": [
+    "eval_006",
+    "eval_010",
+    "eval_016",
+    "eval_017",
+    "eval_018",
+    "eval_022",
+    "eval_024",
+    "eval_026",
+    "eval_030"
+  ],
+  "policy_case_ids": [
+    "eval_006",
+    "eval_010",
+    "eval_016",
+    "eval_017",
+    "eval_018",
+    "eval_022",
+    "eval_024",
+    "eval_026",
+    "eval_030"
+  ],
+  "policy_cases_also_in_retrieval_or_chunking_repairs": [
+    "eval_026"
+  ],
+  "policy_needs_trace_improvement_count": 0,
+  "policy_needs_trace_improvement_ids": [],
+  "policy_status_counts": {
+    "policy_accepted": 9
+  },
+  "policy_version": "v1",
+  "policy_violation_count": 0,
+  "policy_violation_ids": [],
+  "prompt_changed": false,
+  "report_scope": {
+    "llm_judge": false,
+    "modifies_runtime": false,
+    "runs_answer_assembly": false,
+    "runs_answer_generation": false,
+    "runs_retrieval": false,
+    "source_artifacts_only": true
+  },
+  "run_id": "secondary_review_citation_policy_v1",
+  "runtime_changed": false,
+  "scope": "weak_with_review_notice secondary/review citation policy",
+  "source_artifacts": {
+    "answer_eval_v1": "artifacts/eval/answer_eval_v1/answer_eval_v1.json",
+    "citation_topk_mismatch_audit_v1": "artifacts/eval/citation_topk_mismatch_audit_v1/citation_topk_mismatch_audit_v1.json",
+    "eval_diagnostic_loop_summary_v1": "artifacts/eval/eval_diagnostic_loop_v1/eval_diagnostic_loop_summary_v1.json",
+    "failure_cases_reclassified_v1": "artifacts/eval/failure_report_reclassified_after_citation_audit_v1/failure_cases_reclassified_v1.json",
+    "next_repair_queue_after_citation_audit_v1": "artifacts/eval/failure_report_reclassified_after_citation_audit_v1/next_repair_queue_after_citation_audit_v1.json",
+    "qa_trace_answer_eval_v1": "artifacts/eval/answer_eval_v1/qa_trace_answer_eval_v1.jsonl"
+  },
+  "source_sha256": {
+    "answer_eval_v1": "24bf4d2bd41f8eb7b38442c70f33f305c54e34a70b706d1f4630808a48826d80",
+    "citation_topk_mismatch_audit_v1": "dba87266892e2bbeb22e54f3233ddcda12e6e84ada7d8b2642f9715d8479ce7a",
+    "eval_diagnostic_loop_summary_v1": "a88c983376dc8cec41389da657511154d1ab8f683fd4d9da17bfc2b792b07df0",
+    "failure_cases_reclassified_v1": "888aec0e560ee4dc57748dbdd4df8120f869fcc11bb317e7477ce8f01b7bf165",
+    "next_repair_queue_after_citation_audit_v1": "9c91f502740aaad0ef5cbceac89492404ace7ce633b1ed6edea414ce0c4374f9",
+    "qa_trace_answer_eval_v1": "9c693992a27202905cce28c71c623c9a301e75e0b9be07f08cf6e57a2fde0045"
+  },
+  "strong_secondary_review_violation_count": 0,
+  "total_policy_decision_cases": 9,
+  "weak_secondary_review_allowed": true
+}

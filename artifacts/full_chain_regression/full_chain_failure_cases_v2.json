@@ -1,0 +1,578 @@
+{
+  "run_id": "full_chain_regression_after_p0_p1_v2",
+  "generated_at_utc": "2026-04-26T11:47:37.573366+00:00",
+  "failure_count": 15,
+  "failure_type_counts": {
+    "answer_mode_calibration_error": 12,
+    "assembler_slot_error": 3
+  },
+  "failures_by_mode": {
+    "A_data_plane_baseline": 5,
+    "B_retrieval_rerank": 5,
+    "C_production_like_full_chain": 5
+  },
+  "failures_by_query_category": {
+    "ahv2_canonical": 3,
+    "cross_batch_adversarial": 12
+  },
+  "per_failure_record": [
+    {
+      "query_id": "ahv2_canonical_02",
+      "query": "少阴病是什么意思",
+      "query_category": "ahv2_canonical",
+      "run_mode": "A_data_plane_baseline",
+      "answer_mode": "strong",
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0095",
+        "safe:main_passages:ZJSHL-CH-014-P-0112",
+        "safe:main_passages:ZJSHL-CH-014-P-0045"
+      ],
+      "secondary_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0058",
+        "safe:main_passages:ZJSHL-CH-014-P-0122",
+        "safe:main_passages:ZJSHL-CH-014-P-0052",
+        "safe:main_passages:ZJSHL-CH-014-P-0117",
+        "full:passages:ZJSHL-CH-014-P-0113",
+        "full:passages:ZJSHL-CH-014-P-0046",
+        "full:passages:ZJSHL-CH-014-P-0059",
+        "full:passages:ZJSHL-CH-014-P-0094",
+        "full:passages:ZJSHL-CH-014-P-0044",
+        "full:passages:ZJSHL-CH-014-P-0123",
+        "full:passages:ZJSHL-CH-014-P-0121",
+        "full:passages:ZJSHL-CH-014-P-0096",
+        "full:passages:ZJSHL-CH-014-P-0111"
+      ],
+      "review_ids": [
+        "full:passages:ZJSHL-CH-014-P-0058",
+        "full:passages:ZJSHL-CH-014-P-0122"
+      ],
+      "matched_formula_ids": [],
+      "matched_definition_concept_ids": [
+        "AHV2-9f641a6ecc7d"
+      ],
+      "forbidden_primary_items": [],
+      "review_only_primary_conflicts": [],
+      "citation_judgement": "pass: citation slots match answer mode",
+      "faithfulness_judgement": "pass: heuristic evidence-slot faithfulness checks passed",
+      "mode_judgement": "pass: answer_mode is consistent with query category",
+      "failure_type": "assembler_slot_error",
+      "failure_reasons": [
+        "canonical definition primary does not contain expected concept"
+      ],
+      "pass": false,
+      "llm_used": false,
+      "llm_answer_source": "baseline_perf_disable_llm",
+      "recommended_next_action": "Manual audit: inspect primary/secondary/review slots and decide whether this is data-layer, rerank, assembler, or LLM work."
+    },
+    {
+      "query_id": "cross_batch_adversarial_10",
+      "query": "半表半里证和过经有什么不同",
+      "query_category": "cross_batch_adversarial",
+      "run_mode": "A_data_plane_baseline",
+      "answer_mode": "strong",
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0005"
+      ],
+      "secondary_ids": [
+        "full:annotations:ZJSHL-CH-010-P-0136",
+        "full:annotations:ZJSHL-CH-010-P-0018",
+        "full:annotations:ZJSHL-CH-009-P-0245"
+      ],
+      "review_ids": [
+        "full:passages:ZJSHL-CH-010-P-0136",
+        "full:passages:ZJSHL-CH-009-P-0210"
+      ],
+      "matched_formula_ids": [],
+      "matched_definition_concept_ids": [],
+      "forbidden_primary_items": [],
+      "review_only_primary_conflicts": [],
+      "citation_judgement": "pass: citation slots match answer mode",
+      "faithfulness_judgement": "pass: heuristic evidence-slot faithfulness checks passed",
+      "mode_judgement": "fail: strong comparison/relationship answer lacks primary coverage for both sides",
+      "failure_type": "answer_mode_calibration_error",
+      "failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ],
+      "pass": false,
+      "llm_used": false,
+      "llm_answer_source": "baseline_perf_disable_llm",
+      "recommended_next_action": "Manual audit: inspect primary/secondary/review slots and decide whether this is data-layer, rerank, assembler, or LLM work."
+    },
+    {
+      "query_id": "cross_batch_adversarial_12",
+      "query": "荣气微和卫气衰有什么区别",
+      "query_category": "cross_batch_adversarial",
+      "run_mode": "A_data_plane_baseline",
+      "answer_mode": "strong",
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-004-P-0255"
+      ],
+      "secondary_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0010",
+        "full:annotations:ZJSHL-CH-004-P-0252",
+        "safe:main_passages:ZJSHL-CH-003-P-0012",
+        "full:annotations:ZJSHL-CH-003-P-0015",
+        "full:annotations:ZJSHL-CH-009-P-0302"
+      ],
+      "review_ids": [
+        "full:passages:ZJSHL-CH-004-P-0252",
+        "full:passages:ZJSHL-CH-003-P-0010",
+        "full:ambiguous_passages:ZJSHL-CH-003-P-0016"
+      ],
+      "matched_formula_ids": [],
+      "matched_definition_concept_ids": [],
+      "forbidden_primary_items": [],
+      "review_only_primary_conflicts": [],
+      "citation_judgement": "pass: citation slots match answer mode",
+      "faithfulness_judgement": "pass: heuristic evidence-slot faithfulness checks passed",
+      "mode_judgement": "fail: strong comparison/relationship answer lacks primary coverage for both sides",
+      "failure_type": "answer_mode_calibration_error",
+      "failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ],
+      "pass": false,
+      "llm_used": false,
+      "llm_answer_source": "baseline_perf_disable_llm",
+      "recommended_next_action": "Manual audit: inspect primary/secondary/review slots and decide whether this is data-layer, rerank, assembler, or LLM work."
+    },
+    {
+      "query_id": "cross_batch_adversarial_15",
+      "query": "霍乱和伤寒有什么区别",
+      "query_category": "cross_batch_adversarial",
+      "run_mode": "A_data_plane_baseline",
+      "answer_mode": "strong",
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0320",
+        "safe:main_passages:ZJSHL-CH-009-P-0322"
+      ],
+      "secondary_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0323",
+        "full:annotations:ZJSHL-CH-003-P-0030"
+      ],
+      "review_ids": [
+        "full:passages:ZJSHL-CH-009-P-0320",
+        "full:passages:ZJSHL-CH-009-P-0321"
+      ],
+      "matched_formula_ids": [],
+      "matched_definition_concept_ids": [],
+      "forbidden_primary_items": [],
+      "review_only_primary_conflicts": [],
+      "citation_judgement": "pass: citation slots match answer mode",
+      "faithfulness_judgement": "pass: heuristic evidence-slot faithfulness checks passed",
+      "mode_judgement": "fail: strong comparison/relationship answer lacks primary coverage for both sides",
+      "failure_type": "answer_mode_calibration_error",
+      "failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ],
+      "pass": false,
+      "llm_used": false,
+      "llm_answer_source": "baseline_perf_disable_llm",
+      "recommended_next_action": "Manual audit: inspect primary/secondary/review slots and decide whether this is data-layer, rerank, assembler, or LLM work."
+    },
+    {
+      "query_id": "cross_batch_adversarial_18",
+      "query": "痓病和太阳病有什么不同",
+      "query_category": "cross_batch_adversarial",
+      "run_mode": "A_data_plane_baseline",
+      "answer_mode": "strong",
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0193",
+        "safe:main_passages:ZJSHL-CH-009-P-0002",
+        "safe:main_passages:ZJSHL-CH-008-P-0220"
+      ],
+      "secondary_ids": [
+        "safe:main_passages:ZJSHL-CH-007-P-0157"
+      ],
+      "review_ids": [
+        "full:passages:ZJSHL-CH-009-P-0306",
+        "full:passages:ZJSHL-CH-007-P-0164"
+      ],
+      "matched_formula_ids": [],
+      "matched_definition_concept_ids": [],
+      "forbidden_primary_items": [],
+      "review_only_primary_conflicts": [],
+      "citation_judgement": "pass: citation slots match answer mode",
+      "faithfulness_judgement": "pass: heuristic evidence-slot faithfulness checks passed",
+      "mode_judgement": "fail: strong comparison/relationship answer lacks primary coverage for both sides",
+      "failure_type": "answer_mode_calibration_error",
+      "failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ],
+      "pass": false,
+      "llm_used": false,
+      "llm_answer_source": "baseline_perf_disable_llm",
+      "recommended_next_action": "Manual audit: inspect primary/secondary/review slots and decide whether this is data-layer, rerank, assembler, or LLM work."
+    },
+    {
+      "query_id": "ahv2_canonical_02",
+      "query": "少阴病是什么意思",
+      "query_category": "ahv2_canonical",
+      "run_mode": "B_retrieval_rerank",
+      "answer_mode": "strong",
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0112",
+        "safe:main_passages:ZJSHL-CH-014-P-0072",
+        "safe:main_passages:ZJSHL-CH-014-P-0105"
+      ],
+      "secondary_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0052",
+        "safe:main_passages:ZJSHL-CH-014-P-0122",
+        "safe:main_passages:ZJSHL-CH-014-P-0021",
+        "safe:main_passages:ZJSHL-CH-014-P-0162",
+        "safe:main_passages:ZJSHL-CH-014-P-0093",
+        "full:passages:ZJSHL-CH-014-P-0073",
+        "full:passages:ZJSHL-CH-014-P-0113",
+        "full:passages:ZJSHL-CH-014-P-0106",
+        "full:passages:ZJSHL-CH-014-P-0053",
+        "full:passages:ZJSHL-CH-014-P-0123",
+        "full:passages:ZJSHL-CH-014-P-0121"
+      ],
+      "review_ids": [],
+      "matched_formula_ids": [],
+      "matched_definition_concept_ids": [
+        "AHV2-9f641a6ecc7d"
+      ],
+      "forbidden_primary_items": [],
+      "review_only_primary_conflicts": [],
+      "citation_judgement": "pass: citation slots match answer mode",
+      "faithfulness_judgement": "pass: heuristic evidence-slot faithfulness checks passed",
+      "mode_judgement": "pass: answer_mode is consistent with query category",
+      "failure_type": "assembler_slot_error",
+      "failure_reasons": [
+        "canonical definition primary does not contain expected concept"
+      ],
+      "pass": false,
+      "llm_used": false,
+      "llm_answer_source": "baseline_perf_disable_llm",
+      "recommended_next_action": "Manual audit: inspect primary/secondary/review slots and decide whether this is data-layer, rerank, assembler, or LLM work."
+    },
+    {
+      "query_id": "cross_batch_adversarial_10",
+      "query": "半表半里证和过经有什么不同",
+      "query_category": "cross_batch_adversarial",
+      "run_mode": "B_retrieval_rerank",
+      "answer_mode": "strong",
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0005"
+      ],
+      "secondary_ids": [
+        "full:annotations:ZJSHL-CH-010-P-0136",
+        "full:annotations:ZJSHL-CH-010-P-0018",
+        "full:annotations:ZJSHL-CH-009-P-0245"
+      ],
+      "review_ids": [
+        "full:passages:ZJSHL-CH-010-P-0136",
+        "full:passages:ZJSHL-CH-009-P-0210"
+      ],
+      "matched_formula_ids": [],
+      "matched_definition_concept_ids": [],
+      "forbidden_primary_items": [],
+      "review_only_primary_conflicts": [],
+      "citation_judgement": "pass: citation slots match answer mode",
+      "faithfulness_judgement": "pass: heuristic evidence-slot faithfulness checks passed",
+      "mode_judgement": "fail: strong comparison/relationship answer lacks primary coverage for both sides",
+      "failure_type": "answer_mode_calibration_error",
+      "failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ],
+      "pass": false,
+      "llm_used": false,
+      "llm_answer_source": "baseline_perf_disable_llm",
+      "recommended_next_action": "Manual audit: inspect primary/secondary/review slots and decide whether this is data-layer, rerank, assembler, or LLM work."
+    },
+    {
+      "query_id": "cross_batch_adversarial_12",
+      "query": "荣气微和卫气衰有什么区别",
+      "query_category": "cross_batch_adversarial",
+      "run_mode": "B_retrieval_rerank",
+      "answer_mode": "strong",
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-004-P-0255"
+      ],
+      "secondary_ids": [
+        "full:annotations:ZJSHL-CH-004-P-0252",
+        "safe:main_passages:ZJSHL-CH-003-P-0012",
+        "safe:main_passages:ZJSHL-CH-003-P-0010",
+        "safe:main_passages:ZJSHL-CH-003-P-0014",
+        "safe:main_passages:ZJSHL-CH-009-P-0073"
+      ],
+      "review_ids": [
+        "full:passages:ZJSHL-CH-004-P-0252",
+        "full:passages:ZJSHL-CH-003-P-0010"
+      ],
+      "matched_formula_ids": [],
+      "matched_definition_concept_ids": [],
+      "forbidden_primary_items": [],
+      "review_only_primary_conflicts": [],
+      "citation_judgement": "pass: citation slots match answer mode",
+      "faithfulness_judgement": "pass: heuristic evidence-slot faithfulness checks passed",
+      "mode_judgement": "fail: strong comparison/relationship answer lacks primary coverage for both sides",
+      "failure_type": "answer_mode_calibration_error",
+      "failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ],
+      "pass": false,
+      "llm_used": false,
+      "llm_answer_source": "baseline_perf_disable_llm",
+      "recommended_next_action": "Manual audit: inspect primary/secondary/review slots and decide whether this is data-layer, rerank, assembler, or LLM work."
+    },
+    {
+      "query_id": "cross_batch_adversarial_15",
+      "query": "霍乱和伤寒有什么区别",
+      "query_category": "cross_batch_adversarial",
+      "run_mode": "B_retrieval_rerank",
+      "answer_mode": "strong",
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0320",
+        "safe:main_passages:ZJSHL-CH-009-P-0322"
+      ],
+      "secondary_ids": [
+        "safe:main_passages:ZJSHL-CH-016-P-0006",
+        "safe:main_passages:ZJSHL-CH-016-P-0014",
+        "safe:main_passages:ZJSHL-CH-016-P-0004",
+        "full:annotations:ZJSHL-CH-003-P-0030",
+        "safe:main_passages:ZJSHL-CH-009-P-0323"
+      ],
+      "review_ids": [
+        "full:passages:ZJSHL-CH-009-P-0321",
+        "full:passages:ZJSHL-CH-009-P-0320"
+      ],
+      "matched_formula_ids": [],
+      "matched_definition_concept_ids": [],
+      "forbidden_primary_items": [],
+      "review_only_primary_conflicts": [],
+      "citation_judgement": "pass: citation slots match answer mode",
+      "faithfulness_judgement": "pass: heuristic evidence-slot faithfulness checks passed",
+      "mode_judgement": "fail: strong comparison/relationship answer lacks primary coverage for both sides",
+      "failure_type": "answer_mode_calibration_error",
+      "failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ],
+      "pass": false,
+      "llm_used": false,
+      "llm_answer_source": "baseline_perf_disable_llm",
+      "recommended_next_action": "Manual audit: inspect primary/secondary/review slots and decide whether this is data-layer, rerank, assembler, or LLM work."
+    },
+    {
+      "query_id": "cross_batch_adversarial_18",
+      "query": "痓病和太阳病有什么不同",
+      "query_category": "cross_batch_adversarial",
+      "run_mode": "B_retrieval_rerank",
+      "answer_mode": "strong",
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-007-P-0159",
+        "safe:main_passages:ZJSHL-CH-009-P-0002",
+        "safe:main_passages:ZJSHL-CH-008-P-0220"
+      ],
+      "secondary_ids": [
+        "safe:main_passages:ZJSHL-CH-007-P-0157",
+        "safe:main_passages:ZJSHL-CH-009-P-0275",
+        "safe:main_passages:ZJSHL-CH-009-P-0318"
+      ],
+      "review_ids": [
+        "full:passages:ZJSHL-CH-009-P-0306"
+      ],
+      "matched_formula_ids": [],
+      "matched_definition_concept_ids": [],
+      "forbidden_primary_items": [],
+      "review_only_primary_conflicts": [],
+      "citation_judgement": "pass: citation slots match answer mode",
+      "faithfulness_judgement": "pass: heuristic evidence-slot faithfulness checks passed",
+      "mode_judgement": "fail: strong comparison/relationship answer lacks primary coverage for both sides",
+      "failure_type": "answer_mode_calibration_error",
+      "failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ],
+      "pass": false,
+      "llm_used": false,
+      "llm_answer_source": "baseline_perf_disable_llm",
+      "recommended_next_action": "Manual audit: inspect primary/secondary/review slots and decide whether this is data-layer, rerank, assembler, or LLM work."
+    },
+    {
+      "query_id": "ahv2_canonical_02",
+      "query": "少阴病是什么意思",
+      "query_category": "ahv2_canonical",
+      "run_mode": "C_production_like_full_chain",
+      "answer_mode": "strong",
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0112",
+        "safe:main_passages:ZJSHL-CH-014-P-0072",
+        "safe:main_passages:ZJSHL-CH-014-P-0105"
+      ],
+      "secondary_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0052",
+        "safe:main_passages:ZJSHL-CH-014-P-0122",
+        "safe:main_passages:ZJSHL-CH-014-P-0021",
+        "safe:main_passages:ZJSHL-CH-014-P-0162",
+        "safe:main_passages:ZJSHL-CH-014-P-0093",
+        "full:passages:ZJSHL-CH-014-P-0073",
+        "full:passages:ZJSHL-CH-014-P-0113",
+        "full:passages:ZJSHL-CH-014-P-0106",
+        "full:passages:ZJSHL-CH-014-P-0053",
+        "full:passages:ZJSHL-CH-014-P-0123",
+        "full:passages:ZJSHL-CH-014-P-0121"
+      ],
+      "review_ids": [],
+      "matched_formula_ids": [],
+      "matched_definition_concept_ids": [
+        "AHV2-9f641a6ecc7d"
+      ],
+      "forbidden_primary_items": [],
+      "review_only_primary_conflicts": [],
+      "citation_judgement": "pass: citation slots match answer mode",
+      "faithfulness_judgement": "pass: heuristic evidence-slot faithfulness checks passed",
+      "mode_judgement": "pass: answer_mode is consistent with query category",
+      "failure_type": "assembler_slot_error",
+      "failure_reasons": [
+        "canonical definition primary does not contain expected concept"
+      ],
+      "pass": false,
+      "llm_used": true,
+      "llm_answer_source": "llm",
+      "recommended_next_action": "Manual audit: inspect primary/secondary/review slots and decide whether this is data-layer, rerank, assembler, or LLM work."
+    },
+    {
+      "query_id": "cross_batch_adversarial_10",
+      "query": "半表半里证和过经有什么不同",
+      "query_category": "cross_batch_adversarial",
+      "run_mode": "C_production_like_full_chain",
+      "answer_mode": "strong",
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0005"
+      ],
+      "secondary_ids": [
+        "full:annotations:ZJSHL-CH-010-P-0136",
+        "full:annotations:ZJSHL-CH-010-P-0018",
+        "full:annotations:ZJSHL-CH-009-P-0245"
+      ],
+      "review_ids": [
+        "full:passages:ZJSHL-CH-010-P-0136",
+        "full:passages:ZJSHL-CH-009-P-0210"
+      ],
+      "matched_formula_ids": [],
+      "matched_definition_concept_ids": [],
+      "forbidden_primary_items": [],
+      "review_only_primary_conflicts": [],
+      "citation_judgement": "pass: citation slots match answer mode",
+      "faithfulness_judgement": "pass: heuristic evidence-slot faithfulness checks passed",
+      "mode_judgement": "fail: strong comparison/relationship answer lacks primary coverage for both sides",
+      "failure_type": "answer_mode_calibration_error",
+      "failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ],
+      "pass": false,
+      "llm_used": true,
+      "llm_answer_source": "llm",
+      "recommended_next_action": "Manual audit: inspect primary/secondary/review slots and decide whether this is data-layer, rerank, assembler, or LLM work."
+    },
+    {
+      "query_id": "cross_batch_adversarial_12",
+      "query": "荣气微和卫气衰有什么区别",
+      "query_category": "cross_batch_adversarial",
+      "run_mode": "C_production_like_full_chain",
+      "answer_mode": "strong",
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-004-P-0255"
+      ],
+      "secondary_ids": [
+        "full:annotations:ZJSHL-CH-004-P-0252",
+        "safe:main_passages:ZJSHL-CH-003-P-0012",
+        "safe:main_passages:ZJSHL-CH-003-P-0010",
+        "safe:main_passages:ZJSHL-CH-003-P-0014",
+        "safe:main_passages:ZJSHL-CH-009-P-0073"
+      ],
+      "review_ids": [
+        "full:passages:ZJSHL-CH-004-P-0252",
+        "full:passages:ZJSHL-CH-003-P-0010"
+      ],
+      "matched_formula_ids": [],
+      "matched_definition_concept_ids": [],
+      "forbidden_primary_items": [],
+      "review_only_primary_conflicts": [],
+      "citation_judgement": "pass: citation slots match answer mode",
+      "faithfulness_judgement": "pass: heuristic evidence-slot faithfulness checks passed",
+      "mode_judgement": "fail: strong comparison/relationship answer lacks primary coverage for both sides",
+      "failure_type": "answer_mode_calibration_error",
+      "failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ],
+      "pass": false,
+      "llm_used": true,
+      "llm_answer_source": "llm",
+      "recommended_next_action": "Manual audit: inspect primary/secondary/review slots and decide whether this is data-layer, rerank, assembler, or LLM work."
+    },
+    {
+      "query_id": "cross_batch_adversarial_15",
+      "query": "霍乱和伤寒有什么区别",
+      "query_category": "cross_batch_adversarial",
+      "run_mode": "C_production_like_full_chain",
+      "answer_mode": "strong",
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0320",
+        "safe:main_passages:ZJSHL-CH-009-P-0322"
+      ],
+      "secondary_ids": [
+        "safe:main_passages:ZJSHL-CH-016-P-0006",
+        "safe:main_passages:ZJSHL-CH-016-P-0014",
+        "safe:main_passages:ZJSHL-CH-016-P-0004",
+        "full:annotations:ZJSHL-CH-003-P-0030",
+        "safe:main_passages:ZJSHL-CH-009-P-0323"
+      ],
+      "review_ids": [
+        "full:passages:ZJSHL-CH-009-P-0321",
+        "full:passages:ZJSHL-CH-009-P-0320"
+      ],
+      "matched_formula_ids": [],
+      "matched_definition_concept_ids": [],
+      "forbidden_primary_items": [],
+      "review_only_primary_conflicts": [],
+      "citation_judgement": "pass: citation slots match answer mode",
+      "faithfulness_judgement": "pass: heuristic evidence-slot faithfulness checks passed",
+      "mode_judgement": "fail: strong comparison/relationship answer lacks primary coverage for both sides",
+      "failure_type": "answer_mode_calibration_error",
+      "failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ],
+      "pass": false,
+      "llm_used": true,
+      "llm_answer_source": "llm",
+      "recommended_next_action": "Manual audit: inspect primary/secondary/review slots and decide whether this is data-layer, rerank, assembler, or LLM work."
+    },
+    {
+      "query_id": "cross_batch_adversarial_18",
+      "query": "痓病和太阳病有什么不同",
+      "query_category": "cross_batch_adversarial",
+      "run_mode": "C_production_like_full_chain",
+      "answer_mode": "strong",
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-007-P-0159",
+        "safe:main_passages:ZJSHL-CH-009-P-0002",
+        "safe:main_passages:ZJSHL-CH-008-P-0220"
+      ],
+      "secondary_ids": [
+        "safe:main_passages:ZJSHL-CH-007-P-0157",
+        "safe:main_passages:ZJSHL-CH-009-P-0275",
+        "safe:main_passages:ZJSHL-CH-009-P-0318"
+      ],
+      "review_ids": [
+        "full:passages:ZJSHL-CH-009-P-0306"
+      ],
+      "matched_formula_ids": [],
+      "matched_definition_concept_ids": [],
+      "forbidden_primary_items": [],
+      "review_only_primary_conflicts": [],
+      "citation_judgement": "pass: citation slots match answer mode",
+      "faithfulness_judgement": "pass: heuristic evidence-slot faithfulness checks passed",
+      "mode_judgement": "fail: strong comparison/relationship answer lacks primary coverage for both sides",
+      "failure_type": "answer_mode_calibration_error",
+      "failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ],
+      "pass": false,
+      "llm_used": true,
+      "llm_answer_source": "llm",
+      "recommended_next_action": "Manual audit: inspect primary/secondary/review slots and decide whether this is data-layer, rerank, assembler, or LLM work."
+    }
+  ],
+  "suggested_next_action": "Use residual_repair_queue_after_p0_p1_v2.json as the P2/P3 queue; do not change acceptance rules in this run."
+}

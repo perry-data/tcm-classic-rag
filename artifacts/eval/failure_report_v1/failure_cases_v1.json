@@ -1,0 +1,2772 @@
+{
+  "answer_eval_source": "artifacts/eval/answer_eval_v1/answer_eval_v1.json",
+  "answer_mode_mismatch_examples": [
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "原文定位",
+      "example_class": "answerable_metric",
+      "id": "eval_006",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "太阳之为病的原文是什么？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "方剂关联",
+      "example_class": "answerable_metric",
+      "id": "eval_016",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "太阳中风鼻鸣乾呕用什么方？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "方剂关联",
+      "example_class": "answerable_metric",
+      "id": "eval_017",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "太阳病项背强几几无汗恶风用什么方？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "方剂关联",
+      "example_class": "answerable_metric",
+      "id": "eval_018",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "伤寒脉浮紧无汗身疼痛用什么方？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "方剂关联",
+      "example_class": "answerable_metric",
+      "id": "eval_020",
+      "primary_failure_type": "expected_answer_mode_mismatch",
+      "question": "霍乱热多欲饮水用什么方？",
+      "recommended_next_action": "inspect_answer_mode_calibration",
+      "severity": "warning"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "症候检索",
+      "example_class": "answerable_metric",
+      "id": "eval_022",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "头项强痛而恶寒对应哪段原文？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "症候检索",
+      "example_class": "answerable_metric",
+      "id": "eval_024",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "发热无汗反恶寒名为什么？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "correct_chunk_not_retrieved",
+        "citation_not_from_top_k",
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "category": "注文理解",
+      "example_class": "answerable_metric",
+      "id": "eval_027",
+      "primary_failure_type": "correct_chunk_not_retrieved",
+      "question": "成无己如何解释卫气衰？",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "category": "注文理解",
+      "example_class": "answerable_metric",
+      "id": "eval_028",
+      "primary_failure_type": "gold_not_cited",
+      "question": "注文怎样解释清邪中上？",
+      "recommended_next_action": "fix_citation_mapping_or_answer_assembly",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "correct_chunk_not_retrieved",
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "category": "注文理解",
+      "example_class": "answerable_metric",
+      "id": "eval_029",
+      "primary_failure_type": "correct_chunk_not_retrieved",
+      "question": "注文对桂枝汤不可误用有什么提醒？",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "severity": "fail"
+    }
+  ],
+  "answerable_metric_examples": 25,
+  "citation_not_from_top_k_examples": [
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k"
+      ],
+      "category": "原文定位",
+      "example_class": "answerable_metric",
+      "id": "eval_002",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "麻黄汤方的条文是什么？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "原文定位",
+      "example_class": "answerable_metric",
+      "id": "eval_006",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "太阳之为病的原文是什么？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "scope_qualifier_missing"
+      ],
+      "category": "术语解释",
+      "example_class": "answerable_metric",
+      "id": "eval_009",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "反是什么意思？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "scope_qualifier_missing"
+      ],
+      "category": "术语解释",
+      "example_class": "answerable_metric",
+      "id": "eval_010",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "两阳是什么意思？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "方剂关联",
+      "example_class": "answerable_metric",
+      "id": "eval_016",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "太阳中风鼻鸣乾呕用什么方？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "方剂关联",
+      "example_class": "answerable_metric",
+      "id": "eval_017",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "太阳病项背强几几无汗恶风用什么方？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "方剂关联",
+      "example_class": "answerable_metric",
+      "id": "eval_018",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "伤寒脉浮紧无汗身疼痛用什么方？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "症候检索",
+      "example_class": "answerable_metric",
+      "id": "eval_022",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "头项强痛而恶寒对应哪段原文？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k"
+      ],
+      "category": "症候检索",
+      "example_class": "answerable_metric",
+      "id": "eval_023",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "发热汗出恶风脉缓名为什么？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "症候检索",
+      "example_class": "answerable_metric",
+      "id": "eval_024",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "发热无汗反恶寒名为什么？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "gold_not_cited"
+      ],
+      "category": "症候检索",
+      "example_class": "answerable_metric",
+      "id": "eval_025",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "发热汗出不恶寒名为什么？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "correct_chunk_not_retrieved",
+        "citation_not_from_top_k",
+        "gold_not_cited",
+        "scope_qualifier_missing"
+      ],
+      "category": "注文理解",
+      "example_class": "answerable_metric",
+      "id": "eval_026",
+      "primary_failure_type": "correct_chunk_not_retrieved",
+      "question": "成无己如何解释荣气微？",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "correct_chunk_not_retrieved",
+        "citation_not_from_top_k",
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "category": "注文理解",
+      "example_class": "answerable_metric",
+      "id": "eval_027",
+      "primary_failure_type": "correct_chunk_not_retrieved",
+      "question": "成无己如何解释卫气衰？",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "scope_qualifier_missing"
+      ],
+      "category": "注文理解",
+      "example_class": "answerable_metric",
+      "id": "eval_030",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "注文如何解释奔豚从何而发？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    }
+  ],
+  "dataset_path": "data/eval/eval_dataset_v1.csv",
+  "diagnostic_count": 5,
+  "diagnostic_only_examples": 5,
+  "failure_type_counts": {
+    "citation_not_from_top_k": 14,
+    "correct_chunk_not_retrieved": 4,
+    "expected_answer_mode_mismatch": 10,
+    "gold_not_cited": 5,
+    "manual_audit_required": 5,
+    "scope_qualifier_missing": 12
+  },
+  "formal_fail_count": 17,
+  "formal_failure_type_counts": {
+    "citation_not_from_top_k": 14,
+    "correct_chunk_not_retrieved": 4,
+    "expected_answer_mode_mismatch": 9,
+    "gold_not_cited": 5,
+    "scope_qualifier_missing": 10
+  },
+  "generated_at_utc": "2026-04-27T07:06:17.623175+00:00",
+  "gold_not_cited_examples": [
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "gold_not_cited"
+      ],
+      "category": "症候检索",
+      "example_class": "answerable_metric",
+      "id": "eval_025",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "发热汗出不恶寒名为什么？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "correct_chunk_not_retrieved",
+        "citation_not_from_top_k",
+        "gold_not_cited",
+        "scope_qualifier_missing"
+      ],
+      "category": "注文理解",
+      "example_class": "answerable_metric",
+      "id": "eval_026",
+      "primary_failure_type": "correct_chunk_not_retrieved",
+      "question": "成无己如何解释荣气微？",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "correct_chunk_not_retrieved",
+        "citation_not_from_top_k",
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "category": "注文理解",
+      "example_class": "answerable_metric",
+      "id": "eval_027",
+      "primary_failure_type": "correct_chunk_not_retrieved",
+      "question": "成无己如何解释卫气衰？",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "category": "注文理解",
+      "example_class": "answerable_metric",
+      "id": "eval_028",
+      "primary_failure_type": "gold_not_cited",
+      "question": "注文怎样解释清邪中上？",
+      "recommended_next_action": "fix_citation_mapping_or_answer_assembly",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "correct_chunk_not_retrieved",
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "category": "注文理解",
+      "example_class": "answerable_metric",
+      "id": "eval_029",
+      "primary_failure_type": "correct_chunk_not_retrieved",
+      "question": "注文对桂枝汤不可误用有什么提醒？",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "severity": "fail"
+    }
+  ],
+  "judge": {
+    "llm_judge": false,
+    "type": "rules_only_artifact_merge"
+  },
+  "ok_count": 12,
+  "p2_diagnostic_examples": [
+    {
+      "all_failure_types": [
+        "manual_audit_required"
+      ],
+      "category": "术语解释",
+      "example_class": "diagnostic_only",
+      "id": "eval_011",
+      "primary_failure_type": "manual_audit_required",
+      "question": "少阴病是什么意思",
+      "recommended_next_action": "manual_audit_required",
+      "severity": "diagnostic"
+    },
+    {
+      "all_failure_types": [
+        "manual_audit_required"
+      ],
+      "category": "术语解释",
+      "example_class": "diagnostic_only",
+      "id": "eval_012",
+      "primary_failure_type": "manual_audit_required",
+      "question": "半表半里证和过经有什么不同",
+      "recommended_next_action": "manual_audit_required",
+      "severity": "diagnostic"
+    },
+    {
+      "all_failure_types": [
+        "manual_audit_required"
+      ],
+      "category": "术语解释",
+      "example_class": "diagnostic_only",
+      "id": "eval_013",
+      "primary_failure_type": "manual_audit_required",
+      "question": "荣气微和卫气衰有什么区别",
+      "recommended_next_action": "manual_audit_required",
+      "severity": "diagnostic"
+    },
+    {
+      "all_failure_types": [
+        "manual_audit_required"
+      ],
+      "category": "术语解释",
+      "example_class": "diagnostic_only",
+      "id": "eval_014",
+      "primary_failure_type": "manual_audit_required",
+      "question": "霍乱和伤寒有什么区别",
+      "recommended_next_action": "manual_audit_required",
+      "severity": "diagnostic"
+    },
+    {
+      "all_failure_types": [
+        "manual_audit_required"
+      ],
+      "category": "术语解释",
+      "example_class": "diagnostic_only",
+      "id": "eval_015",
+      "primary_failure_type": "manual_audit_required",
+      "question": "痓病和太阳病有什么不同",
+      "recommended_next_action": "manual_audit_required",
+      "severity": "diagnostic"
+    }
+  ],
+  "per_example": [
+    {
+      "all_failure_types": [],
+      "answer_keyword_hit": true,
+      "answer_mode": "strong",
+      "answer_notes": "",
+      "category": "原文定位",
+      "citation_from_top_k": true,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0217",
+        "safe:main_passages:ZJSHL-CH-016-P-0034",
+        "safe:main_passages:ZJSHL-CH-008-P-0219"
+      ],
+      "dataset_notes": "primary formula passage confirmed in retrieval_ready_formula_view",
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "和“桂枝汤”直接相关的主条，当前主要落在这些方文或条文片段里。 桂枝汤方：桂枝三两，去皮，味辛热，按：下药性，赵本无，以后并同 芍药三两。味苦酸，微寒 甘草二两，炙，味甘平 生姜三两，切，味辛温 大枣十二枚，擘，味甘温 吐利止而身痛不休者，当消息和解其外，宜桂枝汤小和之。赵本有「桂枝汤方」详见卷二 右伍味，㕮咀。赵本有「三味」二字以水柒升，微火煑取三升，去滓...",
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0217"
+      ],
+      "gold_cited": true,
+      "has_citation": true,
+      "id": "eval_001",
+      "manual_audit_required": false,
+      "primary_failure_type": null,
+      "question": "桂枝汤方的条文是什么？",
+      "recommended_next_action": "none",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_notes": "primary formula passage confirmed in retrieval_ready_formula_view",
+      "retrieval_top5_record_ids": [
+        "formula:FML-1b00cf16ce52",
+        "safe:main_passages:ZJSHL-CH-008-P-0217",
+        "full:passages:ZJSHL-CH-008-P-0217",
+        "safe:chunks:ZJSHL-CK-M-0911",
+        "safe:main_passages:ZJSHL-CH-016-P-0034"
+      ],
+      "scope_qualified": true,
+      "severity": "ok",
+      "should_answer": true,
+      "subtype": "formula_exact",
+      "trace_top_k_record_ids": [
+        "formula:FML-1b00cf16ce52",
+        "safe:main_passages:ZJSHL-CH-008-P-0217",
+        "full:passages:ZJSHL-CH-008-P-0217",
+        "safe:chunks:ZJSHL-CK-M-0911",
+        "safe:main_passages:ZJSHL-CH-016-P-0034"
+      ]
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k"
+      ],
+      "answer_keyword_hit": true,
+      "answer_mode": "strong",
+      "answer_notes": "at least one citation was not found in trace top_k_chunks",
+      "category": "原文定位",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0022",
+        "safe:main_passages:ZJSHL-CH-009-P-0023",
+        "safe:main_passages:ZJSHL-CH-009-P-0025"
+      ],
+      "dataset_notes": "primary formula passage confirmed in retrieval_ready_formula_view",
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "和“麻黄汤”直接相关的主条，当前主要落在这些方文或条文片段里。 麻黄汤方：麻黄三两，去节。味甘温 桂枝二，医统本作三两，去皮。味辛热 甘草一两，炙。味甘平 杏仁七十个，汤，赵本无「汤」字，去皮尖。味辛温 上四味，以水九升，先煮麻黄，减二升，去上沫，内诸药，煮取二升半，去滓，温服八合，覆取微似汗，不须啜粥，馀如桂枝法将息。 可以先据此理解原文意思，具体字句再结...",
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0022"
+      ],
+      "gold_cited": true,
+      "has_citation": true,
+      "id": "eval_002",
+      "manual_audit_required": false,
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "麻黄汤方的条文是什么？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_notes": "primary formula passage confirmed in retrieval_ready_formula_view",
+      "retrieval_top5_record_ids": [
+        "formula:FML-04f61fac7138",
+        "safe:main_passages:ZJSHL-CH-009-P-0022",
+        "full:passages:ZJSHL-CH-009-P-0022",
+        "safe:chunks:ZJSHL-CK-F-0010"
+      ],
+      "scope_qualified": true,
+      "severity": "fail",
+      "should_answer": true,
+      "subtype": "formula_exact",
+      "trace_top_k_record_ids": [
+        "formula:FML-04f61fac7138",
+        "safe:main_passages:ZJSHL-CH-009-P-0022",
+        "full:passages:ZJSHL-CH-009-P-0022",
+        "safe:chunks:ZJSHL-CK-F-0010"
+      ]
+    },
+    {
+      "all_failure_types": [],
+      "answer_keyword_hit": true,
+      "answer_mode": "strong",
+      "answer_notes": "",
+      "category": "原文定位",
+      "citation_from_top_k": true,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0165",
+        "safe:main_passages:ZJSHL-CH-025-P-0012",
+        "safe:main_passages:ZJSHL-CH-010-P-0167"
+      ],
+      "dataset_notes": "primary formula passage confirmed in retrieval_ready_formula_view",
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "和“白虎汤”直接相关的主条，当前主要落在这些方文或条文片段里。 白虎汤方：知母六两。味苦寒 石膏一斤，碎。味甘寒 甘草二两，赵本有「炙」字。味甘平 粳米六合。味甘平 白虎加人参汤方：于白虎汤方内，加人参三两，馀根据白虎汤法。 上四味，以水一斗，煮米熟，汤成，去滓，温服一升，日三服。 可以先据此理解原文意思，具体字句再结合引用继续回看。",
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0165"
+      ],
+      "gold_cited": true,
+      "has_citation": true,
+      "id": "eval_003",
+      "manual_audit_required": false,
+      "primary_failure_type": null,
+      "question": "白虎汤方的条文是什么？",
+      "recommended_next_action": "none",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_notes": "primary formula passage confirmed in retrieval_ready_formula_view",
+      "retrieval_top5_record_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0165",
+        "full:passages:ZJSHL-CH-010-P-0165",
+        "formula:FML-47765c7ee78a",
+        "safe:chunks:ZJSHL-CK-F-0052",
+        "safe:chunks:ZJSHL-CK-F-0094"
+      ],
+      "scope_qualified": true,
+      "severity": "ok",
+      "should_answer": true,
+      "subtype": "formula_exact",
+      "trace_top_k_record_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0165",
+        "full:passages:ZJSHL-CH-010-P-0165",
+        "formula:FML-47765c7ee78a",
+        "safe:chunks:ZJSHL-CK-F-0052",
+        "safe:chunks:ZJSHL-CK-F-0094"
+      ]
+    },
+    {
+      "all_failure_types": [],
+      "answer_keyword_hit": true,
+      "answer_mode": "strong",
+      "answer_notes": "",
+      "category": "原文定位",
+      "citation_from_top_k": true,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0211",
+        "safe:main_passages:ZJSHL-CH-015-P-0326",
+        "safe:main_passages:ZJSHL-CH-011-P-0123"
+      ],
+      "dataset_notes": "primary formula passage confirmed in retrieval_ready_formula_view",
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "和“小柴胡汤”直接相关的主条，当前主要落在这些方文或条文片段里。 小柴胡汤方：柴胡半斤。味苦，微寒 黄芩三两。味苦寒 人参三两。味甘温 甘草三两，赵本有「炙」字。味甘平 半夏半升，洗。味辛温 生姜三两，切。味辛温 大枣十三，赵本医统本并作「二」，枚，擘。味甘温 呕而发热者，小柴胡汤主之。赵本有「小柴胡汤方」详见卷三 阳明病，发潮热，大便溏，小便自可，胸胁满不...",
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0211"
+      ],
+      "gold_cited": true,
+      "has_citation": true,
+      "id": "eval_004",
+      "manual_audit_required": false,
+      "primary_failure_type": null,
+      "question": "小柴胡汤方的条文是什么？",
+      "recommended_next_action": "none",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_notes": "primary formula passage confirmed in retrieval_ready_formula_view",
+      "retrieval_top5_record_ids": [
+        "formula:FML-fdc6285c27c4",
+        "safe:main_passages:ZJSHL-CH-009-P-0211",
+        "safe:chunks:ZJSHL-CK-F-0026",
+        "safe:chunks:ZJSHL-CK-M-0892",
+        "safe:main_passages:ZJSHL-CH-015-P-0326"
+      ],
+      "scope_qualified": true,
+      "severity": "ok",
+      "should_answer": true,
+      "subtype": "formula_exact",
+      "trace_top_k_record_ids": [
+        "formula:FML-fdc6285c27c4",
+        "safe:main_passages:ZJSHL-CH-009-P-0211",
+        "safe:chunks:ZJSHL-CK-F-0026",
+        "safe:chunks:ZJSHL-CK-M-0892",
+        "safe:main_passages:ZJSHL-CH-015-P-0326"
+      ]
+    },
+    {
+      "all_failure_types": [],
+      "answer_keyword_hit": true,
+      "answer_mode": "strong",
+      "answer_notes": "",
+      "category": "原文定位",
+      "citation_from_top_k": true,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-015-P-0221",
+        "safe:main_passages:ZJSHL-CH-015-P-0222"
+      ],
+      "dataset_notes": "primary formula passage confirmed in retrieval_ready_formula_view",
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "和“乌梅丸”直接相关的主条，当前主要落在这些方文或条文片段里。 乌梅丸方：乌梅三百个。赵本作「枚」。味酸温 细辛六两。辛热 乾姜十两。辛热 黄连一斤。 赵本作「十六两」。苦寒 当归四两。辛温 附子六两，炮。赵本有「去皮」二字。辛热 蜀椒四两，去子。赵本作「出汗」。医统本作「去汗」。辛热 桂枝六两。赵本有「去皮」二字。辛热 可以先据此理解原文意思，具体字句再结...",
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-015-P-0221"
+      ],
+      "gold_cited": true,
+      "has_citation": true,
+      "id": "eval_005",
+      "manual_audit_required": false,
+      "primary_failure_type": null,
+      "question": "乌梅丸方的条文是什么？",
+      "recommended_next_action": "none",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_notes": "primary formula passage confirmed in retrieval_ready_formula_view",
+      "retrieval_top5_record_ids": [
+        "formula:FML-21567be0171c",
+        "safe:chunks:ZJSHL-CK-F-0077",
+        "safe:main_passages:ZJSHL-CH-015-P-0221",
+        "full:passages:ZJSHL-CH-015-P-0221"
+      ],
+      "scope_qualified": true,
+      "severity": "ok",
+      "should_answer": true,
+      "subtype": "formula_exact",
+      "trace_top_k_record_ids": [
+        "formula:FML-21567be0171c",
+        "safe:chunks:ZJSHL-CK-F-0077",
+        "safe:main_passages:ZJSHL-CH-015-P-0221",
+        "full:passages:ZJSHL-CH-015-P-0221"
+      ]
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "answer_keyword_hit": true,
+      "answer_mode": "weak_with_review_notice",
+      "answer_notes": "at least one citation was not found in trace top_k_chunks",
+      "category": "原文定位",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0191",
+        "safe:main_passages:ZJSHL-CH-009-P-0202",
+        "safe:main_passages:ZJSHL-CH-008-P-0195",
+        "safe:main_passages:ZJSHL-CH-009-P-0318",
+        "safe:main_passages:ZJSHL-CH-007-P-0157",
+        "full:passages:ZJSHL-CH-008-P-0191"
+      ],
+      "dataset_notes": "primary main passage in current DB",
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "这个问题目前只能先保守地理解到这里：太阳之为病，脉浮，头项强痛而恶寒。。 之所以只能先这样说，是因为当前缺少更稳定的正文主证据。 建议先回看这条命中片段所在原句，再核对前后文。",
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0191"
+      ],
+      "gold_cited": true,
+      "has_citation": true,
+      "id": "eval_006",
+      "manual_audit_required": false,
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "太阳之为病的原文是什么？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_notes": "primary main passage in current DB",
+      "retrieval_top5_record_ids": [
+        "safe:definition_terms:AHV-fdb12048d73e",
+        "safe:chunks:ZJSHL-CK-M-0405",
+        "safe:main_passages:ZJSHL-CH-009-P-0202",
+        "safe:main_passages:ZJSHL-CH-008-P-0191",
+        "full:passages:ZJSHL-CH-008-P-0191"
+      ],
+      "scope_qualified": false,
+      "severity": "fail",
+      "should_answer": true,
+      "subtype": "original_text",
+      "trace_top_k_record_ids": [
+        "safe:definition_terms:AHV-fdb12048d73e",
+        "safe:chunks:ZJSHL-CK-M-0405",
+        "safe:main_passages:ZJSHL-CH-009-P-0202",
+        "safe:main_passages:ZJSHL-CH-008-P-0191",
+        "full:passages:ZJSHL-CH-008-P-0191"
+      ]
+    },
+    {
+      "all_failure_types": [
+        "correct_chunk_not_retrieved"
+      ],
+      "answer_keyword_hit": true,
+      "answer_mode": "weak_with_review_notice",
+      "answer_notes": "",
+      "category": "术语解释",
+      "citation_from_top_k": true,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0188",
+        "safe:main_passages:ZJSHL-CH-015-P-0324",
+        "safe:main_passages:ZJSHL-CH-008-P-0215",
+        "full:passages:ZJSHL-CH-014-P-0189",
+        "full:passages:ZJSHL-CH-015-P-0325"
+      ],
+      "dataset_notes": "full-chain v2 secondary ids kept as weak boundary sample",
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "“干呕”在书中常写作“乾呕”。当前没有已审定的 learner-safe 定义对象，所以这里不把它硬升为强答。 按现有核对材料，只能先保守理解为：与呕逆、欲呕而不一定吐出实物这一类表现有关。可核对的关键句是：“吐则物出，呕则物不出”；又说“若膈上有寒饮，则但乾呕而不吐也”。 相关正文还把它放在不同病机和方证语境里，因此这个回答只作弱整理；若要下更确定定义，需...",
+      "first_hit_rank": null,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0188",
+        "safe:main_passages:ZJSHL-CH-015-P-0324"
+      ],
+      "gold_cited": true,
+      "has_citation": true,
+      "id": "eval_007",
+      "manual_audit_required": false,
+      "primary_failure_type": "correct_chunk_not_retrieved",
+      "question": "干呕是什么意思？",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": false,
+      "retrieval_notes": "full-chain v2 secondary ids kept as weak boundary sample",
+      "retrieval_top5_record_ids": [],
+      "scope_qualified": true,
+      "severity": "fail",
+      "should_answer": true,
+      "subtype": "weak_boundary",
+      "trace_top_k_record_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0188",
+        "safe:main_passages:ZJSHL-CH-015-P-0324",
+        "safe:main_passages:ZJSHL-CH-008-P-0215",
+        "full:passages:ZJSHL-CH-014-P-0189",
+        "full:passages:ZJSHL-CH-015-P-0325"
+      ]
+    },
+    {
+      "all_failure_types": [
+        "scope_qualifier_missing"
+      ],
+      "answer_keyword_hit": true,
+      "answer_mode": "weak_with_review_notice",
+      "answer_notes": "",
+      "category": "术语解释",
+      "citation_from_top_k": true,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-023-P-0046",
+        "full:annotations:ZJSHL-CH-003-P-0098",
+        "full:passages:ZJSHL-CH-003-P-0098",
+        "full:passages:ZJSHL-CH-023-P-0046"
+      ],
+      "dataset_notes": "full-chain v2 secondary and review ids kept as weak boundary sample",
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "“清邪中上”目前不作为已审定的稳定定义来强答。 现有材料只能作为核对线索：脉阴阳俱紧，则清邪中上，浊邪中下，太阳少阴俱感邪也。恶寒者少阴，发热者太阳，脉欲厥者，表邪欲传里也。恶寒甚者，则变热，翕翕汗出，喉中痛，以少阴之脉循喉咙故也。热多者，太阳多也；目赤脉多者，睛不慧，以太阳之脉起于目故也。发汗攻阳，则少阴之热因...。 原因是这个问法仍属于 review-...",
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0098",
+        "safe:main_passages:ZJSHL-CH-023-P-0046"
+      ],
+      "gold_cited": true,
+      "has_citation": true,
+      "id": "eval_008",
+      "manual_audit_required": false,
+      "primary_failure_type": "scope_qualifier_missing",
+      "question": "清邪中上是什么意思？",
+      "recommended_next_action": "consider_answer_template_scope_phrase",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_notes": "full-chain v2 secondary and review ids kept as weak boundary sample",
+      "retrieval_top5_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0098",
+        "full:passages:ZJSHL-CH-003-P-0098",
+        "safe:chunks:ZJSHL-CK-M-0989",
+        "safe:main_passages:ZJSHL-CH-023-P-0046",
+        "full:passages:ZJSHL-CH-023-P-0046"
+      ],
+      "scope_qualified": false,
+      "severity": "warning",
+      "should_answer": true,
+      "subtype": "weak_boundary",
+      "trace_top_k_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0098",
+        "full:passages:ZJSHL-CH-003-P-0098",
+        "safe:chunks:ZJSHL-CK-M-0989",
+        "safe:main_passages:ZJSHL-CH-023-P-0046",
+        "full:passages:ZJSHL-CH-023-P-0046"
+      ]
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "scope_qualifier_missing"
+      ],
+      "answer_keyword_hit": true,
+      "answer_mode": "weak_with_review_notice",
+      "answer_notes": "at least one citation was not found in trace top_k_chunks",
+      "category": "术语解释",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0090",
+        "safe:main_passages:ZJSHL-CH-025-P-0007",
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-014-P-0107",
+        "safe:main_passages:ZJSHL-CH-014-P-0108",
+        "safe:main_passages:ZJSHL-CH-014-P-0105",
+        "safe:main_passages:ZJSHL-CH-014-P-0069",
+        "safe:main_passages:ZJSHL-CH-015-P-0265"
+      ],
+      "dataset_notes": "full-chain v2 secondary ids kept as weak boundary sample",
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "“反”目前不作为已审定的稳定定义来强答。 现有材料只能作为核对线索：经云：脉浮大，应发汗，若反下之，为大逆。浮大之脉，邪在表也，当发其汗，若反下之，是攻其正气，邪气得以深入，故为大逆。浮则无血者，下后亡血也；大则为寒者，邪气独在也。。 原因是这个问法仍属于 review-only / not-ready 边界，离开前后文容易把局部语句误当成安全主定义。 建议...",
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0090",
+        "safe:main_passages:ZJSHL-CH-014-P-0107"
+      ],
+      "gold_cited": true,
+      "has_citation": true,
+      "id": "eval_009",
+      "manual_audit_required": false,
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "反是什么意思？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_notes": "full-chain v2 secondary ids kept as weak boundary sample",
+      "retrieval_top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0049",
+        "formula:FML-214c592b6f9b",
+        "formula:FML-1fdcaddd7958",
+        "formula:FML-03bfe5c6c2a8",
+        "safe:chunks:ZJSHL-CK-M-0021"
+      ],
+      "scope_qualified": false,
+      "severity": "fail",
+      "should_answer": true,
+      "subtype": "weak_boundary",
+      "trace_top_k_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0049",
+        "formula:FML-214c592b6f9b",
+        "formula:FML-1fdcaddd7958",
+        "formula:FML-03bfe5c6c2a8",
+        "safe:chunks:ZJSHL-CK-M-0021"
+      ]
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "scope_qualifier_missing"
+      ],
+      "answer_keyword_hit": true,
+      "answer_mode": "weak_with_review_notice",
+      "answer_notes": "at least one citation was not found in trace top_k_chunks",
+      "category": "术语解释",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0275",
+        "safe:main_passages:ZJSHL-CH-017-P-0049",
+        "safe:main_passages:ZJSHL-CH-017-P-0050",
+        "safe:main_passages:ZJSHL-CH-017-P-0053",
+        "safe:main_passages:ZJSHL-CH-009-P-0161",
+        "safe:main_passages:ZJSHL-CH-009-P-0160",
+        "safe:main_passages:ZJSHL-CH-009-P-0164"
+      ],
+      "dataset_notes": "full-chain v2 secondary ids kept as weak boundary sample",
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "“两阳”目前不作为已审定的稳定定义来强答。 现有材料只能作为核对线索：太阳病中风，以火劫发汗，邪风被火热，血气流溢，失其常度，两阳相熏灼，其身发黄。阳盛则欲衄，阴虚则小便难，阴阳俱虚竭，身体则枯燥。但头汗出，剂颈而还，腹满微喘，口乾咽烂，或不大便，久则谵语，甚者至哕，手足躁扰，捻衣摸床，小便利者，其人可治。。 原因是这个问法仍属于 review-only /...",
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0275",
+        "safe:main_passages:ZJSHL-CH-017-P-0049"
+      ],
+      "gold_cited": true,
+      "has_citation": true,
+      "id": "eval_010",
+      "manual_audit_required": false,
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "两阳是什么意思？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_notes": "full-chain v2 secondary ids kept as weak boundary sample",
+      "retrieval_top5_record_ids": [
+        "safe:definition_terms:AHV-8df0a4ec9de9",
+        "safe:chunks:ZJSHL-CK-M-0451",
+        "safe:main_passages:ZJSHL-CH-009-P-0275",
+        "safe:chunks:ZJSHL-CK-M-0917",
+        "formula:FML-56cfd37acca4"
+      ],
+      "scope_qualified": false,
+      "severity": "fail",
+      "should_answer": true,
+      "subtype": "weak_boundary",
+      "trace_top_k_record_ids": [
+        "safe:definition_terms:AHV-8df0a4ec9de9",
+        "safe:chunks:ZJSHL-CK-M-0451",
+        "safe:main_passages:ZJSHL-CH-009-P-0275",
+        "safe:chunks:ZJSHL-CK-M-0917",
+        "formula:FML-56cfd37acca4"
+      ]
+    },
+    {
+      "all_failure_types": [
+        "manual_audit_required"
+      ],
+      "answer_keyword_hit": null,
+      "answer_mode": "strong",
+      "answer_notes": "at least one citation was not found in trace top_k_chunks",
+      "category": "术语解释",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0112",
+        "safe:main_passages:ZJSHL-CH-014-P-0072",
+        "safe:main_passages:ZJSHL-CH-014-P-0105"
+      ],
+      "dataset_notes": "P2 residual diagnostic sample; gold evidence requires manual audit",
+      "example_class": "diagnostic_only",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "和这个问题直接相关的主条，当前主要落在这些命中片段里。 少阴病，咽中伤生疮，不能语言，声不出者，苦酒汤主之。 少阴病，得之二三日以上，心中烦，不得卧，黄连阿胶汤主之。 少阴病，二三日咽痛者，可与甘草汤；不瘥者，赵本无「者」字与桔梗汤。 可以先据此理解原文意思，具体字句再结合引用继续回看。",
+      "first_hit_rank": null,
+      "gold_chunk_ids": [],
+      "gold_cited": null,
+      "has_citation": true,
+      "id": "eval_011",
+      "manual_audit_required": true,
+      "primary_failure_type": "manual_audit_required",
+      "question": "少阴病是什么意思",
+      "recommended_next_action": "manual_audit_required",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": false,
+      "retrieval_notes": "P2 residual diagnostic sample; gold evidence requires manual audit",
+      "retrieval_top5_record_ids": [
+        "safe:definition_terms:AHV2-9f641a6ecc7d",
+        "safe:chunks:ZJSHL-CK-M-0777",
+        "safe:main_passages:ZJSHL-CH-014-P-0029",
+        "safe:chunks:ZJSHL-CK-M-0756",
+        "safe:chunks:ZJSHL-CK-M-0776"
+      ],
+      "scope_qualified": null,
+      "severity": "diagnostic",
+      "should_answer": true,
+      "subtype": "p2_residual",
+      "trace_top_k_record_ids": [
+        "safe:definition_terms:AHV2-9f641a6ecc7d",
+        "safe:chunks:ZJSHL-CK-M-0777",
+        "safe:main_passages:ZJSHL-CH-014-P-0029",
+        "safe:chunks:ZJSHL-CK-M-0756",
+        "safe:chunks:ZJSHL-CK-M-0776"
+      ]
+    },
+    {
+      "all_failure_types": [
+        "manual_audit_required"
+      ],
+      "answer_keyword_hit": null,
+      "answer_mode": "strong",
+      "answer_notes": "at least one citation was not found in trace top_k_chunks",
+      "category": "术语解释",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0005"
+      ],
+      "dataset_notes": "P2 residual diagnostic sample; gold evidence requires manual audit",
+      "example_class": "diagnostic_only",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "和这个问题直接相关的主条，当前主要落在这些命中片段里。 脏结于法当下，无阳证，为表无热；不往来寒热，为半表半里无热；其人反静，为里无热。经曰：舌上如苔者，以丹田有热，胸中有寒，医统本有「邪气」二字以表里皆寒，故不可攻。 可以先据此理解原文意思，具体字句再结合引用继续回看。",
+      "first_hit_rank": null,
+      "gold_chunk_ids": [],
+      "gold_cited": null,
+      "has_citation": true,
+      "id": "eval_012",
+      "manual_audit_required": true,
+      "primary_failure_type": "manual_audit_required",
+      "question": "半表半里证和过经有什么不同",
+      "recommended_next_action": "manual_audit_required",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": false,
+      "retrieval_notes": "P2 residual diagnostic sample; gold evidence requires manual audit",
+      "retrieval_top5_record_ids": [
+        "full:passages:ZJSHL-CH-009-P-0210",
+        "safe:definition_terms:AHV2-aa28a21f86c8",
+        "full:annotations:ZJSHL-CH-010-P-0136",
+        "full:passages:ZJSHL-CH-010-P-0136",
+        "safe:chunks:ZJSHL-CK-M-0480"
+      ],
+      "scope_qualified": null,
+      "severity": "diagnostic",
+      "should_answer": true,
+      "subtype": "p2_residual",
+      "trace_top_k_record_ids": [
+        "safe:definition_terms:AHV2-aa28a21f86c8",
+        "full:passages:ZJSHL-CH-009-P-0210",
+        "full:annotations:ZJSHL-CH-010-P-0136",
+        "full:passages:ZJSHL-CH-010-P-0136",
+        "safe:chunks:ZJSHL-CK-M-0480"
+      ]
+    },
+    {
+      "all_failure_types": [
+        "manual_audit_required"
+      ],
+      "answer_keyword_hit": null,
+      "answer_mode": "strong",
+      "answer_notes": "at least one citation was not found in trace top_k_chunks",
+      "category": "术语解释",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-004-P-0255"
+      ],
+      "dataset_notes": "P2 residual diagnostic sample; gold evidence requires manual audit",
+      "example_class": "diagnostic_only",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "和这个问题直接相关的主条，当前主要落在这些命中片段里。 趺阳脉浮而芤，浮者卫气衰，赵本作「虚」芤者荣气伤，其身体瘦，肌肉甲错，浮芤相搏，宗气衰微，赵本作「微衰」四属断绝。 可以先据此理解原文意思，具体字句再结合引用继续回看。",
+      "first_hit_rank": null,
+      "gold_chunk_ids": [],
+      "gold_cited": null,
+      "has_citation": true,
+      "id": "eval_013",
+      "manual_audit_required": true,
+      "primary_failure_type": "manual_audit_required",
+      "question": "荣气微和卫气衰有什么区别",
+      "recommended_next_action": "manual_audit_required",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": false,
+      "retrieval_notes": "P2 residual diagnostic sample; gold evidence requires manual audit",
+      "retrieval_top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0007",
+        "safe:main_passages:ZJSHL-CH-003-P-0014",
+        "full:annotations:ZJSHL-CH-004-P-0252",
+        "full:passages:ZJSHL-CH-004-P-0252",
+        "safe:definition_terms:AHV2-81a12b6da994"
+      ],
+      "scope_qualified": null,
+      "severity": "diagnostic",
+      "should_answer": true,
+      "subtype": "p2_residual",
+      "trace_top_k_record_ids": [
+        "full:annotations:ZJSHL-CH-004-P-0252",
+        "full:passages:ZJSHL-CH-004-P-0252",
+        "safe:chunks:ZJSHL-CK-M-0007",
+        "safe:main_passages:ZJSHL-CH-003-P-0014",
+        "safe:definition_terms:AHV2-81a12b6da994"
+      ]
+    },
+    {
+      "all_failure_types": [
+        "manual_audit_required"
+      ],
+      "answer_keyword_hit": null,
+      "answer_mode": "strong",
+      "answer_notes": "at least one citation was not found in trace top_k_chunks",
+      "category": "术语解释",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0320",
+        "safe:main_passages:ZJSHL-CH-009-P-0322"
+      ],
+      "dataset_notes": "P2 residual diagnostic sample; gold evidence requires manual audit",
+      "example_class": "diagnostic_only",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "和这个问题直接相关的主条，当前主要落在这些命中片段里。 伤寒有热，少腹满，应小便不利；今反利者，为有血也，当下之，不可馀药，宜抵当丸。 抵当丸方：水蛭二十个，赵本有「熬」字。味苦寒 虻虫二十五个，赵本作二十个，去翅足，熬。味苦，微寒 桃人人赵本作仁，二十个，赵本有「五」字，去皮尖 大黄三两 可以先据此理解原文意思，具体字句再结合引用继续回看。",
+      "first_hit_rank": null,
+      "gold_chunk_ids": [],
+      "gold_cited": null,
+      "has_citation": true,
+      "id": "eval_014",
+      "manual_audit_required": true,
+      "primary_failure_type": "manual_audit_required",
+      "question": "霍乱和伤寒有什么区别",
+      "recommended_next_action": "manual_audit_required",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": false,
+      "retrieval_notes": "P2 residual diagnostic sample; gold evidence requires manual audit",
+      "retrieval_top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0897",
+        "safe:main_passages:ZJSHL-CH-016-P-0006",
+        "safe:chunks:ZJSHL-CK-M-0902",
+        "safe:main_passages:ZJSHL-CH-016-P-0014",
+        "full:passages:ZJSHL-CH-009-P-0321"
+      ],
+      "scope_qualified": null,
+      "severity": "diagnostic",
+      "should_answer": true,
+      "subtype": "p2_residual",
+      "trace_top_k_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0897",
+        "safe:main_passages:ZJSHL-CH-016-P-0006",
+        "safe:chunks:ZJSHL-CK-M-0902",
+        "safe:main_passages:ZJSHL-CH-016-P-0014",
+        "safe:chunks:ZJSHL-CK-M-0896"
+      ]
+    },
+    {
+      "all_failure_types": [
+        "manual_audit_required"
+      ],
+      "answer_keyword_hit": null,
+      "answer_mode": "strong",
+      "answer_notes": "at least one citation was not found in trace top_k_chunks",
+      "category": "术语解释",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-007-P-0159",
+        "safe:main_passages:ZJSHL-CH-009-P-0002",
+        "safe:main_passages:ZJSHL-CH-008-P-0220"
+      ],
+      "dataset_notes": "P2 residual diagnostic sample; gold evidence requires manual audit",
+      "example_class": "diagnostic_only",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "和这个问题直接相关的主条，当前主要落在这些命中片段里。 太阳病，发热汗出，赵本有「而」字不恶寒者，赵本无「者」字名曰柔痓。 太阳病，项背强几几，无汗，恶风，葛根汤主之。 太阳病，头痛发热，汗出恶风者，赵本无「者」字桂枝汤主之。 可以先据此理解原文意思，具体字句再结合引用继续回看。",
+      "first_hit_rank": null,
+      "gold_chunk_ids": [],
+      "gold_cited": null,
+      "has_citation": true,
+      "id": "eval_015",
+      "manual_audit_required": true,
+      "primary_failure_type": "manual_audit_required",
+      "question": "痓病和太阳病有什么不同",
+      "recommended_next_action": "manual_audit_required",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": false,
+      "retrieval_notes": "P2 residual diagnostic sample; gold evidence requires manual audit",
+      "retrieval_top5_record_ids": [
+        "safe:definition_terms:AHV-87d3ca263c08",
+        "safe:main_passages:ZJSHL-CH-007-P-0157",
+        "safe:definition_terms:DPO-0159fa8c7c2c",
+        "safe:chunks:ZJSHL-CK-M-0451",
+        "safe:main_passages:ZJSHL-CH-009-P-0275"
+      ],
+      "scope_qualified": null,
+      "severity": "diagnostic",
+      "should_answer": true,
+      "subtype": "p2_residual",
+      "trace_top_k_record_ids": [
+        "safe:main_passages:ZJSHL-CH-007-P-0157",
+        "safe:definition_terms:AHV-87d3ca263c08",
+        "safe:chunks:ZJSHL-CK-M-0451",
+        "safe:main_passages:ZJSHL-CH-009-P-0275",
+        "safe:definition_terms:DPO-0159fa8c7c2c"
+      ]
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "answer_keyword_hit": true,
+      "answer_mode": "weak_with_review_notice",
+      "answer_notes": "at least one citation was not found in trace top_k_chunks",
+      "category": "方剂关联",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0215",
+        "safe:main_passages:ZJSHL-CH-008-P-0217",
+        "safe:main_passages:ZJSHL-CH-008-P-0219",
+        "safe:main_passages:ZJSHL-CH-008-P-0220",
+        "safe:main_passages:ZJSHL-CH-008-P-0229",
+        "full:passages:ZJSHL-CH-008-P-0215",
+        "full:passages:ZJSHL-CH-007-P-0167"
+      ],
+      "dataset_notes": "main passage gives formula association",
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "这个问题目前只能先保守地理解到这里：太阳中风，阳浮而阴弱。阳浮者，热自发；阴弱者，汗自出。啬啬恶寒，淅淅恶风，翕翕发热，鼻鸣乾呕者，桂枝汤主之。。 之所以只能先这样说，是因为当前缺少更稳定的正文主证据。 建议先回看这条命中片段所在原句，再核对前后文。",
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0215"
+      ],
+      "gold_cited": true,
+      "has_citation": true,
+      "id": "eval_016",
+      "manual_audit_required": false,
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "太阳中风鼻鸣乾呕用什么方？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_notes": "main passage gives formula association",
+      "retrieval_top5_record_ids": [
+        "formula:FML-1b00cf16ce52",
+        "safe:chunks:ZJSHL-CK-M-0271",
+        "safe:main_passages:ZJSHL-CH-008-P-0215",
+        "full:passages:ZJSHL-CH-008-P-0215",
+        "safe:chunks:ZJSHL-CK-M-0521"
+      ],
+      "scope_qualified": false,
+      "severity": "fail",
+      "should_answer": true,
+      "subtype": "formula_association",
+      "trace_top_k_record_ids": [
+        "formula:FML-1b00cf16ce52",
+        "safe:chunks:ZJSHL-CK-M-0271",
+        "safe:main_passages:ZJSHL-CH-008-P-0215",
+        "full:passages:ZJSHL-CH-008-P-0215",
+        "safe:chunks:ZJSHL-CK-M-0521"
+      ]
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "answer_keyword_hit": true,
+      "answer_mode": "weak_with_review_notice",
+      "answer_notes": "at least one citation was not found in trace top_k_chunks",
+      "category": "方剂关联",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0002",
+        "safe:main_passages:ZJSHL-CH-009-P-0004",
+        "safe:main_passages:ZJSHL-CH-009-P-0006",
+        "safe:main_passages:ZJSHL-CH-009-P-0011",
+        "safe:main_passages:ZJSHL-CH-026-P-0001",
+        "full:passages:ZJSHL-CH-009-P-0002",
+        "full:passages:ZJSHL-CH-009-P-0003"
+      ],
+      "dataset_notes": "main passage gives formula association",
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "这个问题目前只能先保守地理解到这里：太阳病，项背强几几，无汗，恶风，葛根汤主之。。 之所以只能先这样说，是因为当前缺少更稳定的正文主证据。 建议先回看这条命中片段所在原句，再核对前后文。",
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0002"
+      ],
+      "gold_cited": true,
+      "has_citation": true,
+      "id": "eval_017",
+      "manual_audit_required": false,
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "太阳病项背强几几无汗恶风用什么方？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_notes": "main passage gives formula association",
+      "retrieval_top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0299",
+        "safe:main_passages:ZJSHL-CH-009-P-0002",
+        "full:passages:ZJSHL-CH-009-P-0002",
+        "safe:chunks:ZJSHL-CK-M-0273",
+        "safe:main_passages:ZJSHL-CH-008-P-0222"
+      ],
+      "scope_qualified": false,
+      "severity": "fail",
+      "should_answer": true,
+      "subtype": "formula_association",
+      "trace_top_k_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0299",
+        "safe:main_passages:ZJSHL-CH-009-P-0002",
+        "full:passages:ZJSHL-CH-009-P-0002",
+        "safe:chunks:ZJSHL-CK-M-0273",
+        "safe:main_passages:ZJSHL-CH-008-P-0222"
+      ]
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "answer_keyword_hit": true,
+      "answer_mode": "weak_with_review_notice",
+      "answer_notes": "at least one citation was not found in trace top_k_chunks",
+      "category": "方剂关联",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0022",
+        "safe:main_passages:ZJSHL-CH-009-P-0025",
+        "safe:main_passages:ZJSHL-CH-009-P-0026",
+        "safe:main_passages:ZJSHL-CH-009-P-0030",
+        "safe:main_passages:ZJSHL-CH-009-P-0059",
+        "full:passages:ZJSHL-CH-009-P-0077",
+        "full:passages:ZJSHL-CH-009-P-0078"
+      ],
+      "dataset_notes": "main passage gives formula association",
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "这个问题目前只能先保守地理解到这里：麻黄汤方：麻黄三两，去节。味甘温 桂枝二，医统本作三两，去皮。味辛热 甘草一两，炙。味甘平。 之所以只能先这样说，是因为当前缺少更稳定的正文主证据。 建议先回看这条命中片段所在原句，再核对前后文。",
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0059"
+      ],
+      "gold_cited": true,
+      "has_citation": true,
+      "id": "eval_018",
+      "manual_audit_required": false,
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "伤寒脉浮紧无汗身疼痛用什么方？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_notes": "main passage gives formula association",
+      "retrieval_top5_record_ids": [
+        "formula:FML-04f61fac7138",
+        "safe:chunks:ZJSHL-CK-M-0326",
+        "safe:main_passages:ZJSHL-CH-009-P-0059",
+        "safe:chunks:ZJSHL-CK-M-0337",
+        "safe:main_passages:ZJSHL-CH-009-P-0077"
+      ],
+      "scope_qualified": false,
+      "severity": "fail",
+      "should_answer": true,
+      "subtype": "formula_association",
+      "trace_top_k_record_ids": [
+        "formula:FML-04f61fac7138",
+        "safe:chunks:ZJSHL-CK-M-0326",
+        "safe:main_passages:ZJSHL-CH-009-P-0059",
+        "safe:chunks:ZJSHL-CK-M-0337",
+        "safe:main_passages:ZJSHL-CH-009-P-0077"
+      ]
+    },
+    {
+      "all_failure_types": [],
+      "answer_keyword_hit": true,
+      "answer_mode": "strong",
+      "answer_notes": "",
+      "category": "方剂关联",
+      "citation_from_top_k": true,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0029",
+        "safe:main_passages:ZJSHL-CH-010-P-0031"
+      ],
+      "dataset_notes": "main passage gives formula association",
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "和这个问题直接相关的主条，当前主要落在这些命中片段里。 小结胸病，正在心下，按之则痛，脉浮滑者，小陷胸汤主之。 小陷胸汤方：黄连一两。苦寒 半夏半升，洗。辛温 栝蒌实大者一个，赵本作枚。味苦寒 可以先据此理解原文意思，具体字句再结合引用继续回看。",
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0029"
+      ],
+      "gold_cited": true,
+      "has_citation": true,
+      "id": "eval_019",
+      "manual_audit_required": false,
+      "primary_failure_type": null,
+      "question": "小结胸病正在心下按之痛用什么方？",
+      "recommended_next_action": "none",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_notes": "main passage gives formula association",
+      "retrieval_top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0492",
+        "safe:main_passages:ZJSHL-CH-010-P-0029",
+        "full:passages:ZJSHL-CH-010-P-0029",
+        "formula:FML-fbda04fad45e",
+        "safe:definition_terms:DPO-3110870253d3"
+      ],
+      "scope_qualified": true,
+      "severity": "ok",
+      "should_answer": true,
+      "subtype": "formula_association",
+      "trace_top_k_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0492",
+        "safe:main_passages:ZJSHL-CH-010-P-0029",
+        "full:passages:ZJSHL-CH-010-P-0029",
+        "formula:FML-fbda04fad45e",
+        "safe:definition_terms:DPO-3110870253d3"
+      ]
+    },
+    {
+      "all_failure_types": [
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "answer_keyword_hit": true,
+      "answer_mode": "weak_with_review_notice",
+      "answer_notes": "",
+      "category": "方剂关联",
+      "citation_from_top_k": true,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-016-P-0014",
+        "safe:main_passages:ZJSHL-CH-016-P-0016",
+        "safe:main_passages:ZJSHL-CH-016-P-0018",
+        "safe:main_passages:ZJSHL-CH-017-P-0061",
+        "full:annotations:ZJSHL-CH-016-P-0015",
+        "full:passages:ZJSHL-CH-016-P-0014",
+        "full:passages:ZJSHL-CH-016-P-0015"
+      ],
+      "dataset_notes": "main passage gives formula association",
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "这个问题目前只能先保守地理解到这里：霍乱，头痛，发热，身疼痛，热多欲饮水者，五苓散主之；寒多不用水者，理中丸主之。赵本有「五芩散方」详见卷三。 之所以只能先这样说，是因为当前缺少更稳定的正文主证据。 建议先回看这条命中片段所在原句，再核对前后文。",
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-016-P-0014"
+      ],
+      "gold_cited": true,
+      "has_citation": true,
+      "id": "eval_020",
+      "manual_audit_required": false,
+      "primary_failure_type": "expected_answer_mode_mismatch",
+      "question": "霍乱热多欲饮水用什么方？",
+      "recommended_next_action": "inspect_answer_mode_calibration",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_notes": "main passage gives formula association",
+      "retrieval_top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0902",
+        "safe:main_passages:ZJSHL-CH-016-P-0014",
+        "full:passages:ZJSHL-CH-016-P-0014",
+        "formula:FML-c0e2a6a2a401",
+        "full:annotations:ZJSHL-CH-016-P-0015"
+      ],
+      "scope_qualified": false,
+      "severity": "warning",
+      "should_answer": true,
+      "subtype": "formula_association",
+      "trace_top_k_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0902",
+        "safe:main_passages:ZJSHL-CH-016-P-0014",
+        "full:passages:ZJSHL-CH-016-P-0014",
+        "formula:FML-c0e2a6a2a401",
+        "full:annotations:ZJSHL-CH-016-P-0015"
+      ]
+    },
+    {
+      "all_failure_types": [],
+      "answer_keyword_hit": true,
+      "answer_mode": "strong",
+      "answer_notes": "",
+      "category": "症候检索",
+      "citation_from_top_k": true,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-016-P-0002"
+      ],
+      "dataset_notes": "main passage gives symptom name",
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "和这个问题直接相关的主条，当前主要落在这些命中片段里。 问曰：病有霍乱者何？答曰：呕吐而利，名曰霍乱。赵本作「此名霍乱」 可以先据此理解原文意思，具体字句再结合引用继续回看。",
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-016-P-0002"
+      ],
+      "gold_cited": true,
+      "has_citation": true,
+      "id": "eval_021",
+      "manual_audit_required": false,
+      "primary_failure_type": null,
+      "question": "呕吐而利在书中叫什么？",
+      "recommended_next_action": "none",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_notes": "main passage gives symptom name",
+      "retrieval_top5_record_ids": [
+        "safe:definition_terms:AHV-72cae785c0ac",
+        "safe:chunks:ZJSHL-CK-M-0895",
+        "safe:main_passages:ZJSHL-CH-016-P-0002",
+        "full:passages:ZJSHL-CH-016-P-0002",
+        "full:passages:ZJSHL-CH-010-P-0119"
+      ],
+      "scope_qualified": true,
+      "severity": "ok",
+      "should_answer": true,
+      "subtype": "symptom_lookup",
+      "trace_top_k_record_ids": [
+        "safe:definition_terms:AHV-72cae785c0ac",
+        "safe:chunks:ZJSHL-CK-M-0895",
+        "safe:main_passages:ZJSHL-CH-016-P-0002",
+        "full:passages:ZJSHL-CH-016-P-0002",
+        "full:passages:ZJSHL-CH-010-P-0119"
+      ]
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "answer_keyword_hit": true,
+      "answer_mode": "weak_with_review_notice",
+      "answer_notes": "at least one citation was not found in trace top_k_chunks",
+      "category": "症候检索",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0191",
+        "full:annotations:ZJSHL-CH-008-P-0192",
+        "full:annotations:ZJSHL-CH-008-P-0255",
+        "safe:main_passages:ZJSHL-CH-016-P-0006",
+        "safe:main_passages:ZJSHL-CH-007-P-0188",
+        "full:passages:ZJSHL-CH-008-P-0191",
+        "full:passages:ZJSHL-CH-008-P-0192",
+        "full:ambiguous_passages:ZJSHL-CH-010-P-0048"
+      ],
+      "dataset_notes": "main passage gives symptom cluster",
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "这个问题目前只能先保守地理解到这里：太阳之为病，脉浮，头项强痛而恶寒。。 之所以只能先这样说，是因为当前缺少更稳定的正文主证据。 建议先回看这条命中片段所在原句，再核对前后文。",
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0191"
+      ],
+      "gold_cited": true,
+      "has_citation": true,
+      "id": "eval_022",
+      "manual_audit_required": false,
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "头项强痛而恶寒对应哪段原文？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_notes": "main passage gives symptom cluster",
+      "retrieval_top5_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0191",
+        "full:passages:ZJSHL-CH-008-P-0191",
+        "safe:definition_terms:AHV-fdb12048d73e",
+        "full:annotations:ZJSHL-CH-008-P-0192",
+        "full:passages:ZJSHL-CH-008-P-0192"
+      ],
+      "scope_qualified": false,
+      "severity": "fail",
+      "should_answer": true,
+      "subtype": "symptom_lookup",
+      "trace_top_k_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0191",
+        "full:passages:ZJSHL-CH-008-P-0191",
+        "safe:definition_terms:AHV-fdb12048d73e",
+        "full:annotations:ZJSHL-CH-008-P-0192",
+        "full:passages:ZJSHL-CH-008-P-0192"
+      ]
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k"
+      ],
+      "answer_keyword_hit": true,
+      "answer_mode": "strong",
+      "answer_notes": "at least one citation was not found in trace top_k_chunks",
+      "category": "症候检索",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0193",
+        "safe:main_passages:ZJSHL-CH-008-P-0229",
+        "safe:main_passages:ZJSHL-CH-008-P-0220"
+      ],
+      "dataset_notes": "main passage gives symptom name",
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "和这个问题直接相关的主条，当前主要落在这些命中片段里。 太阳病，发热，汗出，恶风，脉缓者，名为中风。 脉浮，发热，汗出恶风者，中风也，可与桂枝汤解肌；脉浮紧，发热，不汗医统本作「汗不」出者，伤寒也，可与麻黄汤。常须识此，勿妄治也。 太阳病，头痛发热，汗出恶风者，赵本无「者」字桂枝汤主之。 可以先据此理解原文意思，具体字句再结合引用继续回看。",
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0193"
+      ],
+      "gold_cited": true,
+      "has_citation": true,
+      "id": "eval_023",
+      "manual_audit_required": false,
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "发热汗出恶风脉缓名为什么？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_notes": "main passage gives symptom name",
+      "retrieval_top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0256",
+        "safe:main_passages:ZJSHL-CH-008-P-0193",
+        "full:passages:ZJSHL-CH-008-P-0193",
+        "full:annotations:ZJSHL-CH-008-P-0194",
+        "safe:chunks:ZJSHL-CK-M-0460"
+      ],
+      "scope_qualified": true,
+      "severity": "fail",
+      "should_answer": true,
+      "subtype": "symptom_lookup",
+      "trace_top_k_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0256",
+        "safe:main_passages:ZJSHL-CH-008-P-0193",
+        "full:passages:ZJSHL-CH-008-P-0193",
+        "full:annotations:ZJSHL-CH-008-P-0194",
+        "safe:chunks:ZJSHL-CK-M-0460"
+      ]
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "answer_keyword_hit": true,
+      "answer_mode": "weak_with_review_notice",
+      "answer_notes": "at least one citation was not found in trace top_k_chunks",
+      "category": "症候检索",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-007-P-0157",
+        "full:annotations:ZJSHL-CH-007-P-0158",
+        "full:annotations:ZJSHL-CH-008-P-0194",
+        "safe:main_passages:ZJSHL-CH-009-P-0303",
+        "safe:main_passages:ZJSHL-CH-007-P-0159",
+        "full:passages:ZJSHL-CH-007-P-0159",
+        "full:passages:ZJSHL-CH-007-P-0158",
+        "full:passages:ZJSHL-CH-007-P-0157",
+        "full:passages:ZJSHL-CH-007-P-0160",
+        "full:passages:ZJSHL-CH-008-P-0193",
+        "full:passages:ZJSHL-CH-008-P-0195",
+        "full:ambiguous_passages:ZJSHL-CH-011-P-0020"
+      ],
+      "dataset_notes": "main passage gives symptom name",
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "这个问题目前只能先保守地理解到这里：太阳病，发热无汗，反恶寒者，名曰刚痓。。 之所以只能先这样说，是因为当前缺少更稳定的正文主证据。 建议先回看这条命中片段所在原句，再核对前后文。",
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-007-P-0157"
+      ],
+      "gold_cited": true,
+      "has_citation": true,
+      "id": "eval_024",
+      "manual_audit_required": false,
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "发热无汗反恶寒名为什么？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_notes": "main passage gives symptom name",
+      "retrieval_top5_record_ids": [
+        "safe:definition_terms:AHV-87d3ca263c08",
+        "safe:main_passages:ZJSHL-CH-007-P-0157",
+        "full:passages:ZJSHL-CH-007-P-0157",
+        "full:annotations:ZJSHL-CH-007-P-0158",
+        "full:passages:ZJSHL-CH-007-P-0158"
+      ],
+      "scope_qualified": false,
+      "severity": "fail",
+      "should_answer": true,
+      "subtype": "symptom_lookup",
+      "trace_top_k_record_ids": [
+        "safe:definition_terms:AHV-87d3ca263c08",
+        "safe:main_passages:ZJSHL-CH-007-P-0157",
+        "full:passages:ZJSHL-CH-007-P-0157",
+        "full:annotations:ZJSHL-CH-007-P-0158",
+        "full:passages:ZJSHL-CH-007-P-0158"
+      ]
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "gold_not_cited"
+      ],
+      "answer_keyword_hit": true,
+      "answer_mode": "strong",
+      "answer_notes": "at least one citation was not found in trace top_k_chunks; no citation matched gold_chunk_ids under evaluator equivalence",
+      "category": "症候检索",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0101",
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-009-P-0135"
+      ],
+      "dataset_notes": "main passage gives symptom name",
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "和这个问题直接相关的主条，当前主要落在这些命中片段里。 阳明病，脉浮而紧，咽燥口苦，腹满而喘，发热汗出，不恶寒，反恶热，身重。若发汗则躁，心愦愦，反谵语。若加烧赵本作「温」针，必怵惕烦躁，不得眠；若下之，则胃中空虚，客气动膈，心中懊 ，舌上苔者，栀子豉汤主之。赵本有「栀子豉汤方」详见卷三 栀子豉汤方：栀子十四枚，赵本作个，擘。味苦寒 香豉四合，绵裹。味苦寒...",
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-007-P-0159"
+      ],
+      "gold_cited": false,
+      "has_citation": true,
+      "id": "eval_025",
+      "manual_audit_required": false,
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "发热汗出不恶寒名为什么？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_notes": "main passage gives symptom name",
+      "retrieval_top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0232",
+        "full:annotations:ZJSHL-CH-008-P-0194",
+        "full:passages:ZJSHL-CH-008-P-0194",
+        "safe:chunks:ZJSHL-CK-M-0365",
+        "safe:main_passages:ZJSHL-CH-009-P-0135"
+      ],
+      "scope_qualified": true,
+      "severity": "fail",
+      "should_answer": true,
+      "subtype": "symptom_lookup",
+      "trace_top_k_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0232",
+        "full:annotations:ZJSHL-CH-008-P-0194",
+        "full:passages:ZJSHL-CH-008-P-0194",
+        "safe:chunks:ZJSHL-CK-M-0365",
+        "safe:main_passages:ZJSHL-CH-009-P-0135"
+      ]
+    },
+    {
+      "all_failure_types": [
+        "correct_chunk_not_retrieved",
+        "citation_not_from_top_k",
+        "gold_not_cited",
+        "scope_qualifier_missing"
+      ],
+      "answer_keyword_hit": true,
+      "answer_mode": "weak_with_review_notice",
+      "answer_notes": "at least one citation was not found in trace top_k_chunks; no citation matched gold_chunk_ids under evaluator equivalence",
+      "category": "注文理解",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0010",
+        "full:annotations:ZJSHL-CH-003-P-0015",
+        "safe:main_passages:ZJSHL-CH-004-P-0216",
+        "full:annotations:ZJSHL-CH-009-P-0302",
+        "safe:main_passages:ZJSHL-CH-003-P-0014",
+        "full:passages:ZJSHL-CH-003-P-0015",
+        "full:passages:ZJSHL-CH-003-P-0014",
+        "full:passages:ZJSHL-CH-003-P-0016",
+        "full:passages:ZJSHL-CH-003-P-0011",
+        "full:passages:ZJSHL-CH-009-P-0303",
+        "full:passages:ZJSHL-CH-003-P-0009",
+        "full:passages:ZJSHL-CH-003-P-0010",
+        "full:passages:ZJSHL-CH-005-P-0002"
+      ],
+      "dataset_notes": "annotation evidence remains secondary review evidence",
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "这个问题目前只能先保守地理解到这里：其脉沉者，荣气微也。。 之所以只能先这样说，是因为当前缺少更稳定的正文主证据。 建议先回看这条命中片段所在原句，再核对前后文。",
+      "first_hit_rank": null,
+      "gold_chunk_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0011",
+        "full:annotations:ZJSHL-CH-003-P-0016"
+      ],
+      "gold_cited": false,
+      "has_citation": true,
+      "id": "eval_026",
+      "manual_audit_required": false,
+      "primary_failure_type": "correct_chunk_not_retrieved",
+      "question": "成无己如何解释荣气微？",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": false,
+      "retrieval_notes": "annotation evidence remains secondary review evidence",
+      "retrieval_top5_record_ids": [
+        "safe:definition_terms:AHV2-850318ee8950",
+        "safe:main_passages:ZJSHL-CH-003-P-0010",
+        "full:passages:ZJSHL-CH-003-P-0010",
+        "safe:main_passages:ZJSHL-CH-004-P-0216",
+        "full:annotations:ZJSHL-CH-003-P-0015"
+      ],
+      "scope_qualified": false,
+      "severity": "fail",
+      "should_answer": true,
+      "subtype": "commentary_understanding",
+      "trace_top_k_record_ids": [
+        "safe:definition_terms:AHV2-850318ee8950",
+        "safe:main_passages:ZJSHL-CH-003-P-0010",
+        "full:passages:ZJSHL-CH-003-P-0010",
+        "safe:main_passages:ZJSHL-CH-004-P-0216",
+        "full:annotations:ZJSHL-CH-003-P-0015"
+      ]
+    },
+    {
+      "all_failure_types": [
+        "correct_chunk_not_retrieved",
+        "citation_not_from_top_k",
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "answer_keyword_hit": true,
+      "answer_mode": "strong",
+      "answer_notes": "at least one citation was not found in trace top_k_chunks; no citation matched gold_chunk_ids under evaluator equivalence",
+      "category": "注文理解",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-004-P-0255"
+      ],
+      "dataset_notes": "annotation evidence remains secondary review evidence",
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "和这个问题直接相关的主条，当前主要落在这些命中片段里。 趺阳脉浮而芤，浮者卫气衰，赵本作「虚」芤者荣气伤，其身体瘦，肌肉甲错，浮芤相搏，宗气衰微，赵本作「微衰」四属断绝。 可以先据此理解原文意思，具体字句再结合引用继续回看。",
+      "first_hit_rank": null,
+      "gold_chunk_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0013"
+      ],
+      "gold_cited": false,
+      "has_citation": true,
+      "id": "eval_027",
+      "manual_audit_required": false,
+      "primary_failure_type": "correct_chunk_not_retrieved",
+      "question": "成无己如何解释卫气衰？",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": false,
+      "retrieval_notes": "annotation evidence remains secondary review evidence",
+      "retrieval_top5_record_ids": [
+        "safe:definition_terms:AHV2-81a12b6da994",
+        "safe:main_passages:ZJSHL-CH-003-P-0012",
+        "safe:main_passages:ZJSHL-CH-004-P-0214",
+        "safe:chunks:ZJSHL-CK-M-0007",
+        "safe:main_passages:ZJSHL-CH-003-P-0014"
+      ],
+      "scope_qualified": true,
+      "severity": "fail",
+      "should_answer": true,
+      "subtype": "commentary_understanding",
+      "trace_top_k_record_ids": [
+        "safe:definition_terms:AHV2-81a12b6da994",
+        "safe:main_passages:ZJSHL-CH-004-P-0214",
+        "safe:main_passages:ZJSHL-CH-003-P-0012",
+        "full:annotations:ZJSHL-CH-004-P-0252",
+        "full:passages:ZJSHL-CH-004-P-0252"
+      ]
+    },
+    {
+      "all_failure_types": [
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "answer_keyword_hit": true,
+      "answer_mode": "strong",
+      "answer_notes": "no citation matched gold_chunk_ids under evaluator equivalence",
+      "category": "注文理解",
+      "citation_from_top_k": true,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-023-P-0046"
+      ],
+      "dataset_notes": "annotation evidence remains secondary review evidence",
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "和这个问题直接相关的主条，当前主要落在这些命中片段里。 脉阴阳俱紧，则清邪中上，浊邪中下，太阳少阴俱感邪也。恶寒者少阴，发热者太阳，脉欲厥者，表邪欲传里也。恶寒甚者，则变热，翕翕汗出，喉中痛，以少阴之脉循喉咙故也。热多者，太阳多也；目赤脉多者，睛不慧，以太阳之脉起于目故也。发汗攻阳，则少阴之热因... 可以先据此理解原文意思，具体字句再结合引用继续回看。",
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0098"
+      ],
+      "gold_cited": false,
+      "has_citation": true,
+      "id": "eval_028",
+      "manual_audit_required": false,
+      "primary_failure_type": "gold_not_cited",
+      "question": "注文怎样解释清邪中上？",
+      "recommended_next_action": "fix_citation_mapping_or_answer_assembly",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_notes": "annotation evidence remains secondary review evidence",
+      "retrieval_top5_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0098",
+        "full:passages:ZJSHL-CH-003-P-0098",
+        "safe:chunks:ZJSHL-CK-M-0989",
+        "safe:main_passages:ZJSHL-CH-023-P-0046",
+        "full:passages:ZJSHL-CH-023-P-0046"
+      ],
+      "scope_qualified": true,
+      "severity": "fail",
+      "should_answer": true,
+      "subtype": "commentary_understanding",
+      "trace_top_k_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0098",
+        "full:passages:ZJSHL-CH-003-P-0098",
+        "safe:chunks:ZJSHL-CK-M-0989",
+        "safe:main_passages:ZJSHL-CH-023-P-0046",
+        "full:passages:ZJSHL-CH-023-P-0046"
+      ]
+    },
+    {
+      "all_failure_types": [
+        "correct_chunk_not_retrieved",
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "answer_keyword_hit": true,
+      "answer_mode": "strong",
+      "answer_notes": "no citation matched gold_chunk_ids under evaluator equivalence",
+      "category": "注文理解",
+      "citation_from_top_k": true,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0217"
+      ],
+      "dataset_notes": "annotation evidence remains secondary review evidence",
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "和“桂枝汤”直接相关的主条，当前主要落在这些方文或条文片段里。 桂枝汤方：桂枝三两，去皮，味辛热，按：下药性，赵本无，以后并同 芍药三两。味苦酸，微寒 甘草二两，炙，味甘平 生姜三两，切，味辛温 大枣十二枚，擘，味甘温 可以先据此理解原文意思，具体字句再结合引用继续回看。",
+      "first_hit_rank": null,
+      "gold_chunk_ids": [
+        "full:annotations:ZJSHL-CH-008-P-0228"
+      ],
+      "gold_cited": false,
+      "has_citation": true,
+      "id": "eval_029",
+      "manual_audit_required": false,
+      "primary_failure_type": "correct_chunk_not_retrieved",
+      "question": "注文对桂枝汤不可误用有什么提醒？",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": false,
+      "retrieval_notes": "annotation evidence remains secondary review evidence",
+      "retrieval_top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0292",
+        "formula:FML-1b00cf16ce52",
+        "safe:chunks:ZJSHL-CK-F-0001",
+        "safe:main_passages:ZJSHL-CH-008-P-0217",
+        "safe:chunks:ZJSHL-CK-F-0002"
+      ],
+      "scope_qualified": true,
+      "severity": "fail",
+      "should_answer": true,
+      "subtype": "commentary_understanding",
+      "trace_top_k_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0292",
+        "formula:FML-1b00cf16ce52",
+        "safe:chunks:ZJSHL-CK-F-0001",
+        "safe:main_passages:ZJSHL-CH-008-P-0217",
+        "safe:chunks:ZJSHL-CK-F-0002"
+      ]
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "scope_qualifier_missing"
+      ],
+      "answer_keyword_hit": true,
+      "answer_mode": "weak_with_review_notice",
+      "answer_notes": "at least one citation was not found in trace top_k_chunks",
+      "category": "注文理解",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0295",
+        "full:annotations:ZJSHL-CH-009-P-0109",
+        "full:annotations:ZJSHL-CH-009-P-0111",
+        "full:passages:ZJSHL-CH-009-P-0294",
+        "full:passages:ZJSHL-CH-009-P-0108",
+        "full:passages:ZJSHL-CH-026-P-0005",
+        "full:passages:ZJSHL-CH-009-P-0296",
+        "full:passages:ZJSHL-CH-009-P-0110",
+        "safe:main_passages:ZJSHL-CH-026-P-0006",
+        "full:passages:ZJSHL-CH-009-P-0109"
+      ],
+      "dataset_notes": "annotation evidence remains secondary review evidence",
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "这个问题目前只能先保守地理解到这里：烧针发汗，则损阴血，而惊动心气。针处被寒，气聚而成核。心气因惊而虚，肾气乘寒气而动，发为奔豚。《金匮要略》曰：病有奔豚，从惊发得之。肾气欲上乘心，故其气从少腹上冲心也。先灸核上，以散其寒，与桂枝加桂汤，以泄奔豚之气。。 之所以只能先这样说，是因为当前缺少更稳定的正文主证据。 建议先回看这条命中片段所在原句，再核对前后文。",
+      "first_hit_rank": 3,
+      "gold_chunk_ids": [
+        "full:annotations:ZJSHL-CH-009-P-0109"
+      ],
+      "gold_cited": true,
+      "has_citation": true,
+      "id": "eval_030",
+      "manual_audit_required": false,
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "注文如何解释奔豚从何而发？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_notes": "annotation evidence remains secondary review evidence",
+      "retrieval_top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0461",
+        "safe:main_passages:ZJSHL-CH-009-P-0295",
+        "full:annotations:ZJSHL-CH-009-P-0109",
+        "full:passages:ZJSHL-CH-009-P-0109",
+        "safe:definition_terms:DPO-e3ac03414a67"
+      ],
+      "scope_qualified": false,
+      "severity": "fail",
+      "should_answer": true,
+      "subtype": "commentary_understanding",
+      "trace_top_k_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0461",
+        "safe:main_passages:ZJSHL-CH-009-P-0295",
+        "full:annotations:ZJSHL-CH-009-P-0109",
+        "full:passages:ZJSHL-CH-009-P-0109",
+        "safe:definition_terms:DPO-e3ac03414a67"
+      ]
+    },
+    {
+      "all_failure_types": [],
+      "answer_keyword_hit": null,
+      "answer_mode": "refuse",
+      "answer_notes": "",
+      "category": "超范围拒答",
+      "citation_from_top_k": null,
+      "citation_ids": [],
+      "dataset_notes": "negative modern false friend retained",
+      "example_class": "unanswerable",
+      "expected_answer_mode": "refuse",
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "“白虎”这个问法当前没有安全的书内定义对象可用，不能因为相近方名或普通现代义直接强答。可以改问“白虎汤方的条文是什么”或“白虎加人参汤方的条文是什么”这类明确方名问题。",
+      "first_hit_rank": null,
+      "gold_chunk_ids": [],
+      "gold_cited": null,
+      "has_citation": null,
+      "id": "eval_031",
+      "manual_audit_required": false,
+      "primary_failure_type": null,
+      "question": "白虎是什么意思？",
+      "recommended_next_action": "none",
+      "refuse_when_should_not_answer": true,
+      "retrieval_hit_at_5": false,
+      "retrieval_notes": "negative modern false friend retained",
+      "retrieval_top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0638",
+        "safe:main_passages:ZJSHL-CH-011-P-0104",
+        "formula:FML-47765c7ee78a",
+        "safe:chunks:ZJSHL-CK-M-0546",
+        "safe:main_passages:ZJSHL-CH-010-P-0128"
+      ],
+      "scope_qualified": true,
+      "severity": "ok",
+      "should_answer": false,
+      "subtype": "negative_scope",
+      "trace_top_k_record_ids": []
+    },
+    {
+      "all_failure_types": [],
+      "answer_keyword_hit": null,
+      "answer_mode": "refuse",
+      "answer_notes": "",
+      "category": "超范围拒答",
+      "citation_from_top_k": null,
+      "citation_ids": [],
+      "dataset_notes": "negative scope sample retained",
+      "example_class": "unanswerable",
+      "expected_answer_mode": "refuse",
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "目前还没有检索到足以支撑回答的书内依据，所以这里先不硬答。可以改问更具体的条文、方名，或某一句话在书里是什么意思。",
+      "first_hit_rank": null,
+      "gold_chunk_ids": [],
+      "gold_cited": null,
+      "has_citation": null,
+      "id": "eval_032",
+      "manual_audit_required": false,
+      "primary_failure_type": null,
+      "question": "太阳能是什么意思？",
+      "recommended_next_action": "none",
+      "refuse_when_should_not_answer": true,
+      "retrieval_hit_at_5": false,
+      "retrieval_notes": "negative scope sample retained",
+      "retrieval_top5_record_ids": [],
+      "scope_qualified": true,
+      "severity": "ok",
+      "should_answer": false,
+      "subtype": "negative_scope",
+      "trace_top_k_record_ids": []
+    },
+    {
+      "all_failure_types": [],
+      "answer_keyword_hit": null,
+      "answer_mode": "refuse",
+      "answer_notes": "",
+      "category": "超范围拒答",
+      "citation_from_top_k": null,
+      "citation_ids": [],
+      "dataset_notes": "negative scope sample retained",
+      "example_class": "unanswerable",
+      "expected_answer_mode": "refuse",
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "目前还没有检索到足以支撑回答的书内依据，所以这里先不硬答。可以改问更具体的条文、方名，或某一句话在书里是什么意思。",
+      "first_hit_rank": null,
+      "gold_chunk_ids": [],
+      "gold_cited": null,
+      "has_citation": null,
+      "id": "eval_033",
+      "manual_audit_required": false,
+      "primary_failure_type": null,
+      "question": "霍乱疫苗是什么？",
+      "recommended_next_action": "none",
+      "refuse_when_should_not_answer": true,
+      "retrieval_hit_at_5": false,
+      "retrieval_notes": "negative scope sample retained",
+      "retrieval_top5_record_ids": [],
+      "scope_qualified": true,
+      "severity": "ok",
+      "should_answer": false,
+      "subtype": "negative_scope",
+      "trace_top_k_record_ids": []
+    },
+    {
+      "all_failure_types": [],
+      "answer_keyword_hit": null,
+      "answer_mode": "refuse",
+      "answer_notes": "",
+      "category": "超范围拒答",
+      "citation_from_top_k": null,
+      "citation_ids": [],
+      "dataset_notes": "negative scope sample retained",
+      "example_class": "unanswerable",
+      "expected_answer_mode": "refuse",
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "目前还没有检索到足以支撑回答的书内依据，所以这里先不硬答。可以改问更具体的条文、方名，或某一句话在书里是什么意思。",
+      "first_hit_rank": null,
+      "gold_chunk_ids": [],
+      "gold_cited": null,
+      "has_citation": null,
+      "id": "eval_034",
+      "manual_audit_required": false,
+      "primary_failure_type": null,
+      "question": "劳动合同是什么？",
+      "recommended_next_action": "none",
+      "refuse_when_should_not_answer": true,
+      "retrieval_hit_at_5": false,
+      "retrieval_notes": "negative scope sample retained",
+      "retrieval_top5_record_ids": [],
+      "scope_qualified": true,
+      "severity": "ok",
+      "should_answer": false,
+      "subtype": "negative_scope",
+      "trace_top_k_record_ids": []
+    },
+    {
+      "all_failure_types": [],
+      "answer_keyword_hit": null,
+      "answer_mode": "refuse",
+      "answer_notes": "",
+      "category": "超范围拒答",
+      "citation_from_top_k": null,
+      "citation_ids": [],
+      "dataset_notes": "negative scope sample retained",
+      "example_class": "unanswerable",
+      "expected_answer_mode": "refuse",
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "目前还没有检索到足以支撑回答的书内依据，所以这里先不硬答。可以改问更具体的条文、方名，或某一句话在书里是什么意思。",
+      "first_hit_rank": null,
+      "gold_chunk_ids": [],
+      "gold_cited": null,
+      "has_citation": null,
+      "id": "eval_035",
+      "manual_audit_required": false,
+      "primary_failure_type": null,
+      "question": "量子纠缠在书中怎么解释？",
+      "recommended_next_action": "none",
+      "refuse_when_should_not_answer": true,
+      "retrieval_hit_at_5": false,
+      "retrieval_notes": "negative scope sample retained",
+      "retrieval_top5_record_ids": [],
+      "scope_qualified": true,
+      "severity": "ok",
+      "should_answer": false,
+      "subtype": "negative_scope",
+      "trace_top_k_record_ids": []
+    },
+    {
+      "all_failure_types": [],
+      "answer_keyword_hit": null,
+      "answer_mode": "refuse",
+      "answer_notes": "",
+      "category": "超范围拒答",
+      "citation_from_top_k": null,
+      "citation_ids": [],
+      "dataset_notes": "negative scope sample retained",
+      "example_class": "unanswerable",
+      "expected_answer_mode": "refuse",
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "目前还没有检索到足以支撑回答的书内依据，所以这里先不硬答。可以改问更具体的条文、方名，或某一句话在书里是什么意思。",
+      "first_hit_rank": null,
+      "gold_chunk_ids": [],
+      "gold_cited": null,
+      "has_citation": null,
+      "id": "eval_036",
+      "manual_audit_required": false,
+      "primary_failure_type": null,
+      "question": "Python 怎么写爬虫？",
+      "recommended_next_action": "none",
+      "refuse_when_should_not_answer": true,
+      "retrieval_hit_at_5": false,
+      "retrieval_notes": "negative scope sample retained",
+      "retrieval_top5_record_ids": [],
+      "scope_qualified": true,
+      "severity": "ok",
+      "should_answer": false,
+      "subtype": "negative_scope",
+      "trace_top_k_record_ids": []
+    }
+  ],
+  "recommended_next_action_counts": {
+    "consider_answer_template_scope_phrase": 1,
+    "fix_citation_mapping_or_answer_assembly": 1,
+    "fix_retrieval_or_chunking": 4,
+    "inspect_answer_mode_calibration": 1,
+    "inspect_trace_or_citation_mapping": 12,
+    "manual_audit_required": 5,
+    "none": 12
+  },
+  "retrieval_eval_source": "artifacts/eval/retrieval_eval_v1/retrieval_eval_v1.json",
+  "run_id": "failure_report_v1",
+  "scope_qualifier_missing_examples": [
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "原文定位",
+      "example_class": "answerable_metric",
+      "id": "eval_006",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "太阳之为病的原文是什么？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "scope_qualifier_missing"
+      ],
+      "category": "术语解释",
+      "example_class": "answerable_metric",
+      "id": "eval_008",
+      "primary_failure_type": "scope_qualifier_missing",
+      "question": "清邪中上是什么意思？",
+      "recommended_next_action": "consider_answer_template_scope_phrase",
+      "severity": "warning"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "scope_qualifier_missing"
+      ],
+      "category": "术语解释",
+      "example_class": "answerable_metric",
+      "id": "eval_009",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "反是什么意思？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "scope_qualifier_missing"
+      ],
+      "category": "术语解释",
+      "example_class": "answerable_metric",
+      "id": "eval_010",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "两阳是什么意思？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "方剂关联",
+      "example_class": "answerable_metric",
+      "id": "eval_016",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "太阳中风鼻鸣乾呕用什么方？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "方剂关联",
+      "example_class": "answerable_metric",
+      "id": "eval_017",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "太阳病项背强几几无汗恶风用什么方？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "方剂关联",
+      "example_class": "answerable_metric",
+      "id": "eval_018",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "伤寒脉浮紧无汗身疼痛用什么方？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "方剂关联",
+      "example_class": "answerable_metric",
+      "id": "eval_020",
+      "primary_failure_type": "expected_answer_mode_mismatch",
+      "question": "霍乱热多欲饮水用什么方？",
+      "recommended_next_action": "inspect_answer_mode_calibration",
+      "severity": "warning"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "症候检索",
+      "example_class": "answerable_metric",
+      "id": "eval_022",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "头项强痛而恶寒对应哪段原文？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "症候检索",
+      "example_class": "answerable_metric",
+      "id": "eval_024",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "发热无汗反恶寒名为什么？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "correct_chunk_not_retrieved",
+        "citation_not_from_top_k",
+        "gold_not_cited",
+        "scope_qualifier_missing"
+      ],
+      "category": "注文理解",
+      "example_class": "answerable_metric",
+      "id": "eval_026",
+      "primary_failure_type": "correct_chunk_not_retrieved",
+      "question": "成无己如何解释荣气微？",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "scope_qualifier_missing"
+      ],
+      "category": "注文理解",
+      "example_class": "answerable_metric",
+      "id": "eval_030",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "注文如何解释奔豚从何而发？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    }
+  ],
+  "severity_counts": {
+    "diagnostic": 5,
+    "fail": 17,
+    "ok": 12,
+    "warning": 2
+  },
+  "source_metric_summary": {
+    "answer_eval_v1": {
+      "answer_keyword_hit_rate": 1.0,
+      "answerable_metric_examples": 25,
+      "citation_from_top_k_rate": 0.44,
+      "diagnostic_only_examples": 5,
+      "expected_answer_mode_match_rate": 0.677419,
+      "gold_cited_rate": 0.8,
+      "has_citation_rate": 1.0,
+      "refuse_when_should_not_answer_rate": 1.0,
+      "scope_qualified_rate": 0.612903,
+      "total_examples": 36,
+      "unanswerable_examples": 6
+    },
+    "retrieval_eval_v1": {
+      "answerable_metric_examples": 25,
+      "diagnostic_only_examples": 5,
+      "hit_at_1": 0.8,
+      "hit_at_3": 0.84,
+      "hit_at_5": 0.84,
+      "mrr": 0.813333,
+      "recall_at_5": 0.84,
+      "total_examples": 36,
+      "unanswerable_examples": 6
+    }
+  },
+  "top_failure_examples": [
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k"
+      ],
+      "category": "原文定位",
+      "example_class": "answerable_metric",
+      "id": "eval_002",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "麻黄汤方的条文是什么？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "原文定位",
+      "example_class": "answerable_metric",
+      "id": "eval_006",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "太阳之为病的原文是什么？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "correct_chunk_not_retrieved"
+      ],
+      "category": "术语解释",
+      "example_class": "answerable_metric",
+      "id": "eval_007",
+      "primary_failure_type": "correct_chunk_not_retrieved",
+      "question": "干呕是什么意思？",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "scope_qualifier_missing"
+      ],
+      "category": "术语解释",
+      "example_class": "answerable_metric",
+      "id": "eval_009",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "反是什么意思？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "scope_qualifier_missing"
+      ],
+      "category": "术语解释",
+      "example_class": "answerable_metric",
+      "id": "eval_010",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "两阳是什么意思？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "方剂关联",
+      "example_class": "answerable_metric",
+      "id": "eval_016",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "太阳中风鼻鸣乾呕用什么方？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "方剂关联",
+      "example_class": "answerable_metric",
+      "id": "eval_017",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "太阳病项背强几几无汗恶风用什么方？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "方剂关联",
+      "example_class": "answerable_metric",
+      "id": "eval_018",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "伤寒脉浮紧无汗身疼痛用什么方？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "症候检索",
+      "example_class": "answerable_metric",
+      "id": "eval_022",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "头项强痛而恶寒对应哪段原文？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k"
+      ],
+      "category": "症候检索",
+      "example_class": "answerable_metric",
+      "id": "eval_023",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "发热汗出恶风脉缓名为什么？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "症候检索",
+      "example_class": "answerable_metric",
+      "id": "eval_024",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "发热无汗反恶寒名为什么？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "gold_not_cited"
+      ],
+      "category": "症候检索",
+      "example_class": "answerable_metric",
+      "id": "eval_025",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "发热汗出不恶寒名为什么？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "correct_chunk_not_retrieved",
+        "citation_not_from_top_k",
+        "gold_not_cited",
+        "scope_qualifier_missing"
+      ],
+      "category": "注文理解",
+      "example_class": "answerable_metric",
+      "id": "eval_026",
+      "primary_failure_type": "correct_chunk_not_retrieved",
+      "question": "成无己如何解释荣气微？",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "correct_chunk_not_retrieved",
+        "citation_not_from_top_k",
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "category": "注文理解",
+      "example_class": "answerable_metric",
+      "id": "eval_027",
+      "primary_failure_type": "correct_chunk_not_retrieved",
+      "question": "成无己如何解释卫气衰？",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "category": "注文理解",
+      "example_class": "answerable_metric",
+      "id": "eval_028",
+      "primary_failure_type": "gold_not_cited",
+      "question": "注文怎样解释清邪中上？",
+      "recommended_next_action": "fix_citation_mapping_or_answer_assembly",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "correct_chunk_not_retrieved",
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "category": "注文理解",
+      "example_class": "answerable_metric",
+      "id": "eval_029",
+      "primary_failure_type": "correct_chunk_not_retrieved",
+      "question": "注文对桂枝汤不可误用有什么提醒？",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "severity": "fail"
+    },
+    {
+      "all_failure_types": [
+        "citation_not_from_top_k",
+        "scope_qualifier_missing"
+      ],
+      "category": "注文理解",
+      "example_class": "answerable_metric",
+      "id": "eval_030",
+      "primary_failure_type": "citation_not_from_top_k",
+      "question": "注文如何解释奔豚从何而发？",
+      "recommended_next_action": "inspect_trace_or_citation_mapping",
+      "severity": "fail"
+    }
+  ],
+  "total_examples": 36,
+  "trace_log": "artifacts/eval/answer_eval_v1/qa_trace_answer_eval_v1.jsonl",
+  "unanswerable_examples": 6,
+  "warning_count": 2,
+  "warning_examples": [
+    {
+      "all_failure_types": [
+        "scope_qualifier_missing"
+      ],
+      "category": "术语解释",
+      "example_class": "answerable_metric",
+      "id": "eval_008",
+      "primary_failure_type": "scope_qualifier_missing",
+      "question": "清邪中上是什么意思？",
+      "recommended_next_action": "consider_answer_template_scope_phrase",
+      "severity": "warning"
+    },
+    {
+      "all_failure_types": [
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "category": "方剂关联",
+      "example_class": "answerable_metric",
+      "id": "eval_020",
+      "primary_failure_type": "expected_answer_mode_mismatch",
+      "question": "霍乱热多欲饮水用什么方？",
+      "recommended_next_action": "inspect_answer_mode_calibration",
+      "severity": "warning"
+    }
+  ]
+}

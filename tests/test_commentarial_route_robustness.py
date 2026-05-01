@@ -99,13 +99,10 @@ class CommentarialRouteRobustnessTests(unittest.TestCase):
             with self.subTest(query=query):
                 self._assert_detected_route(query, ROUTE_META, ())
 
-    def test_default_queries_stay_assistive_and_keep_canonical_primary(self) -> None:
-        cases = [
-            "桂枝汤是什么？",
-            "少阳病是什么意思？",
-            "黄连汤方的条文是什么？",
-        ]
-        for query in cases:
+    def test_default_queries_detect_assistive_and_keep_canonical_primary(self) -> None:
+        rendered_cases = ["少阳病是什么意思？"]
+        suppressed_template_cases = ["桂枝汤是什么？", "黄连汤方的条文是什么？"]
+        for query in rendered_cases + suppressed_template_cases:
             with self.subTest(query=query):
                 plan = self.layer.detect_route(query)
                 self.assertIsNotNone(plan)
@@ -117,18 +114,21 @@ class CommentarialRouteRobustnessTests(unittest.TestCase):
                 self.assertEqual(plan.debug["chosen_route"], ROUTE_ASSISTIVE)
                 payload = self.assembler.assemble(query)
                 self.assertEqual(payload["query"], query)
-                commentarial = payload.get("commentarial")
-                self.assertIsNotNone(commentarial)
-                assert commentarial is not None
-                self.assertEqual(commentarial["route"], ROUTE_ASSISTIVE)
-                self.assertTrue(commentarial["sections"])
-                self.assertTrue(all(section["collapsed_by_default"] for section in commentarial["sections"]))
                 self.assertTrue(payload["primary_evidence"])
                 self.assertTrue(all(item["record_type"] == "main_passages" for item in payload["primary_evidence"]))
-                items = self._commentarial_items(payload)
-                self.assertTrue(items)
-                self.assertTrue(all(item["never_use_in_primary"] for item in items))
-                self.assertTrue(all(not item["use_for_confidence_gate"] for item in items))
+                if query in suppressed_template_cases:
+                    self.assertIsNone(payload.get("commentarial"))
+                else:
+                    commentarial = payload.get("commentarial")
+                    self.assertIsNotNone(commentarial)
+                    assert commentarial is not None
+                    self.assertEqual(commentarial["route"], ROUTE_ASSISTIVE)
+                    self.assertTrue(commentarial["sections"])
+                    self.assertTrue(all(section["collapsed_by_default"] for section in commentarial["sections"]))
+                    items = self._commentarial_items(payload)
+                    self.assertTrue(items)
+                    self.assertTrue(all(item["never_use_in_primary"] for item in items))
+                    self.assertTrue(all(not item["use_for_confidence_gate"] for item in items))
 
     def test_explicit_routes_do_not_pollute_canonical_citations(self) -> None:
         cases = [

@@ -140,14 +140,20 @@ class CommentarialRouteV2Tests(unittest.TestCase):
     def test_ordinary_explanations_do_not_get_swallowed_by_meta(self) -> None:
         assistive_cases = [
             "少阳病是什么意思？",
-            "桂枝汤是什么？",
-            "黄连汤方的条文是什么？",
         ]
+        suppressed_template_cases = ["桂枝汤是什么？", "黄连汤方的条文是什么？"]
         for query in assistive_cases:
             with self.subTest(query=query):
                 self._assert_route(query, ROUTE_ASSISTIVE, (), explicit=False)
                 payload = self.assembler.assemble(query)
                 self.assertEqual(payload["commentarial"]["route"], ROUTE_ASSISTIVE)
+                self.assertTrue(payload["primary_evidence"], query)
+                self.assertTrue(all(item["record_type"] == "main_passages" for item in payload["primary_evidence"]))
+        for query in suppressed_template_cases:
+            with self.subTest(query=query):
+                self._assert_route(query, ROUTE_ASSISTIVE, (), explicit=False)
+                payload = self.assembler.assemble(query)
+                self.assertIsNone(payload.get("commentarial"))
                 self.assertTrue(payload["primary_evidence"], query)
                 self.assertTrue(all(item["record_type"] == "main_passages" for item in payload["primary_evidence"]))
 
@@ -170,7 +176,6 @@ class CommentarialRouteV2Tests(unittest.TestCase):
             "刘老对141条怎么说？",
             "两位老师怎么看少阳病？",
             "初学者应该怎么理解少阳病？",
-            "桂枝汤是什么？",
         ]
         for query in queries:
             with self.subTest(query=query):
@@ -183,6 +188,9 @@ class CommentarialRouteV2Tests(unittest.TestCase):
                     "tier_4_do_not_default_display",
                     {item.get("theme_display_tier") for item in items if item.get("theme_display_tier")},
                 )
+
+        suppressed_payload = self.assembler.assemble("桂枝汤是什么？")
+        self.assertIsNone(suppressed_payload.get("commentarial"))
 
         unresolved_multi_unit = next(
             unit for unit in self.layer.units if unit.get("anchor_priority_mode") == "unresolved_multi"

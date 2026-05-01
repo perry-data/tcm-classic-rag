@@ -880,9 +880,15 @@ def run_single_query(
         assembler.engine.retrieve = original_retrieve  # type: ignore[method-assign]
 
     diagnostic_retrieval_used = False
-    if captured_retrievals:
-        retrieval = captured_retrievals[0]
-    else:
+    retrieval = next(
+        (
+            item
+            for item in captured_retrievals
+            if (item.get("query_request") or {}).get("query_text") == spec.query
+        ),
+        None,
+    )
+    if retrieval is None:
         retrieval = original_retrieve(spec.query)
         diagnostic_retrieval_used = True
 
@@ -1080,6 +1086,12 @@ def summarize_metrics(
     }
     fail_records = [record for record in records if not record.get("pass")]
     failure_type_counts = Counter(record["failure_type"] for record in fail_records)
+    failure_type_count_total = sum(failure_type_counts.values())
+    missing_failure_type_count = sum(
+        1
+        for record in fail_records
+        if not record.get("failure_type") or record.get("failure_type") == "none"
+    )
     wrong_definition_primary_total = sum(
         1
         for record in records
@@ -1118,6 +1130,11 @@ def summarize_metrics(
         "llm_faithfulness_error_count": failure_type_counts["llm_faithfulness_error"],
         "answer_mode_calibration_error_count": failure_type_counts["answer_mode_calibration_error"],
         "citation_error_count": failure_type_counts["citation_error"],
+        "failure_record_count": len(fail_records),
+        "failure_type_count_total": failure_type_count_total,
+        "missing_failure_type_count": missing_failure_type_count,
+        "failure_metrics_consistent": len(fail_records) == failure_type_count_total
+        and missing_failure_type_count == 0,
         "failure_type_counts": dict(sorted(failure_type_counts.items())),
         "p0_repair_count": len(repair_queue["P0"]),
         "p1_repair_count": len(repair_queue["P1"]),
@@ -1437,6 +1454,10 @@ def render_report_md(
                 ["llm_faithfulness_error_count", metrics["llm_faithfulness_error_count"]],
                 ["answer_mode_calibration_error_count", metrics["answer_mode_calibration_error_count"]],
                 ["citation_error_count", metrics["citation_error_count"]],
+                ["failure_record_count", metrics["failure_record_count"]],
+                ["failure_type_count_total", metrics["failure_type_count_total"]],
+                ["missing_failure_type_count", metrics["missing_failure_type_count"]],
+                ["failure_metrics_consistent", metrics["failure_metrics_consistent"]],
                 ["p0_repair_count", metrics["p0_repair_count"]],
                 ["p1_repair_count", metrics["p1_repair_count"]],
                 ["latency_p50_by_mode", json.dumps(metrics["latency_p50_by_mode"], ensure_ascii=False)],

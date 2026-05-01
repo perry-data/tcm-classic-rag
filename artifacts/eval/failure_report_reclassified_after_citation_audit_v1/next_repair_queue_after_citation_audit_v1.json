@@ -1,0 +1,920 @@
+{
+  "answer_mode_calibration_observations": [
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "原文定位",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_006",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "太阳之为病的原文是什么？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "方剂关联",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_016",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "太阳中风鼻鸣乾呕用什么方？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "方剂关联",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_017",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "太阳病项背强几几无汗恶风用什么方？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "方剂关联",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_018",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "伤寒脉浮紧无汗身疼痛用什么方？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "方剂关联",
+      "citation_audit_root_cause": null,
+      "id": "eval_020",
+      "notes": "",
+      "question": "霍乱热多欲饮水用什么方？",
+      "reclassified_failure_types": [
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "expected_answer_mode_mismatch",
+      "reclassified_severity": "warning",
+      "recommended_next_action": "inspect_answer_mode_calibration",
+      "recommended_next_actions": [
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "症候检索",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_022",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "头项强痛而恶寒对应哪段原文？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "症候检索",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_024",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "发热无汗反恶寒名为什么？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "strong",
+      "category": "注文理解",
+      "citation_audit_root_cause": "real_citation_assembly_issue",
+      "id": "eval_027",
+      "notes": "citation audit root_cause=real_citation_assembly_issue reclassifies the original citation_not_from_top_k signal.",
+      "question": "成无己如何解释卫气衰？",
+      "reclassified_failure_types": [
+        "correct_chunk_not_retrieved",
+        "real_citation_assembly_issue",
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "reclassified_primary_failure_type": "real_citation_assembly_issue",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_answer_assembly_citation_scope",
+      "recommended_next_actions": [
+        "fix_retrieval_or_chunking",
+        "fix_answer_assembly_citation_scope",
+        "fix_citation_mapping_or_answer_assembly",
+        "inspect_answer_mode_calibration"
+      ]
+    },
+    {
+      "answer_mode": "strong",
+      "category": "注文理解",
+      "citation_audit_root_cause": null,
+      "id": "eval_028",
+      "notes": "",
+      "question": "注文怎样解释清邪中上？",
+      "reclassified_failure_types": [
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "reclassified_primary_failure_type": "gold_not_cited",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_citation_mapping_or_answer_assembly",
+      "recommended_next_actions": [
+        "fix_citation_mapping_or_answer_assembly",
+        "inspect_answer_mode_calibration"
+      ]
+    },
+    {
+      "answer_mode": "strong",
+      "category": "注文理解",
+      "citation_audit_root_cause": null,
+      "id": "eval_029",
+      "notes": "",
+      "question": "注文对桂枝汤不可误用有什么提醒？",
+      "reclassified_failure_types": [
+        "correct_chunk_not_retrieved",
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "reclassified_primary_failure_type": "correct_chunk_not_retrieved",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "recommended_next_actions": [
+        "fix_retrieval_or_chunking",
+        "fix_citation_mapping_or_answer_assembly",
+        "inspect_answer_mode_calibration"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-04-27T07:06:17.700014+00:00",
+  "p2_manual_audit": [
+    {
+      "answer_mode": "strong",
+      "category": "术语解释",
+      "citation_audit_root_cause": null,
+      "id": "eval_011",
+      "notes": "P2 residual remains diagnostic-only and is excluded from runtime repair queues.",
+      "question": "少阴病是什么意思",
+      "reclassified_failure_types": [
+        "manual_audit_required"
+      ],
+      "reclassified_primary_failure_type": "manual_audit_required",
+      "reclassified_severity": "diagnostic",
+      "recommended_next_action": "manual_audit_required",
+      "recommended_next_actions": [
+        "manual_audit_required"
+      ]
+    },
+    {
+      "answer_mode": "strong",
+      "category": "术语解释",
+      "citation_audit_root_cause": null,
+      "id": "eval_012",
+      "notes": "P2 residual remains diagnostic-only and is excluded from runtime repair queues.",
+      "question": "半表半里证和过经有什么不同",
+      "reclassified_failure_types": [
+        "manual_audit_required"
+      ],
+      "reclassified_primary_failure_type": "manual_audit_required",
+      "reclassified_severity": "diagnostic",
+      "recommended_next_action": "manual_audit_required",
+      "recommended_next_actions": [
+        "manual_audit_required"
+      ]
+    },
+    {
+      "answer_mode": "strong",
+      "category": "术语解释",
+      "citation_audit_root_cause": null,
+      "id": "eval_013",
+      "notes": "P2 residual remains diagnostic-only and is excluded from runtime repair queues.",
+      "question": "荣气微和卫气衰有什么区别",
+      "reclassified_failure_types": [
+        "manual_audit_required"
+      ],
+      "reclassified_primary_failure_type": "manual_audit_required",
+      "reclassified_severity": "diagnostic",
+      "recommended_next_action": "manual_audit_required",
+      "recommended_next_actions": [
+        "manual_audit_required"
+      ]
+    },
+    {
+      "answer_mode": "strong",
+      "category": "术语解释",
+      "citation_audit_root_cause": null,
+      "id": "eval_014",
+      "notes": "P2 residual remains diagnostic-only and is excluded from runtime repair queues.",
+      "question": "霍乱和伤寒有什么区别",
+      "reclassified_failure_types": [
+        "manual_audit_required"
+      ],
+      "reclassified_primary_failure_type": "manual_audit_required",
+      "reclassified_severity": "diagnostic",
+      "recommended_next_action": "manual_audit_required",
+      "recommended_next_actions": [
+        "manual_audit_required"
+      ]
+    },
+    {
+      "answer_mode": "strong",
+      "category": "术语解释",
+      "citation_audit_root_cause": null,
+      "id": "eval_015",
+      "notes": "P2 residual remains diagnostic-only and is excluded from runtime repair queues.",
+      "question": "痓病和太阳病有什么不同",
+      "reclassified_failure_types": [
+        "manual_audit_required"
+      ],
+      "reclassified_primary_failure_type": "manual_audit_required",
+      "reclassified_severity": "diagnostic",
+      "recommended_next_action": "manual_audit_required",
+      "recommended_next_actions": [
+        "manual_audit_required"
+      ]
+    }
+  ],
+  "retrieval_or_chunking_repairs": [
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "术语解释",
+      "citation_audit_root_cause": null,
+      "id": "eval_007",
+      "notes": "",
+      "question": "干呕是什么意思？",
+      "reclassified_failure_types": [
+        "correct_chunk_not_retrieved"
+      ],
+      "reclassified_primary_failure_type": "correct_chunk_not_retrieved",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "recommended_next_actions": [
+        "fix_retrieval_or_chunking"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "注文理解",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_026",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair. policy warning coexists with a still-valid formal retrieval or gold-citation failure.",
+      "question": "成无己如何解释荣气微？",
+      "reclassified_failure_types": [
+        "correct_chunk_not_retrieved",
+        "secondary_review_citation_policy_needs_decision",
+        "gold_not_cited",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "correct_chunk_not_retrieved",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "recommended_next_actions": [
+        "fix_retrieval_or_chunking",
+        "define_secondary_review_citation_policy",
+        "fix_citation_mapping_or_answer_assembly",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "strong",
+      "category": "注文理解",
+      "citation_audit_root_cause": "real_citation_assembly_issue",
+      "id": "eval_027",
+      "notes": "citation audit root_cause=real_citation_assembly_issue reclassifies the original citation_not_from_top_k signal.",
+      "question": "成无己如何解释卫气衰？",
+      "reclassified_failure_types": [
+        "correct_chunk_not_retrieved",
+        "real_citation_assembly_issue",
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "reclassified_primary_failure_type": "real_citation_assembly_issue",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_answer_assembly_citation_scope",
+      "recommended_next_actions": [
+        "fix_retrieval_or_chunking",
+        "fix_answer_assembly_citation_scope",
+        "fix_citation_mapping_or_answer_assembly",
+        "inspect_answer_mode_calibration"
+      ]
+    },
+    {
+      "answer_mode": "strong",
+      "category": "注文理解",
+      "citation_audit_root_cause": null,
+      "id": "eval_029",
+      "notes": "",
+      "question": "注文对桂枝汤不可误用有什么提醒？",
+      "reclassified_failure_types": [
+        "correct_chunk_not_retrieved",
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "reclassified_primary_failure_type": "correct_chunk_not_retrieved",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "recommended_next_actions": [
+        "fix_retrieval_or_chunking",
+        "fix_citation_mapping_or_answer_assembly",
+        "inspect_answer_mode_calibration"
+      ]
+    }
+  ],
+  "run_id": "next_repair_queue_after_citation_audit_v1",
+  "runtime_citation_scope_repairs": [
+    {
+      "answer_mode": "strong",
+      "category": "症候检索",
+      "citation_audit_root_cause": "real_citation_assembly_issue",
+      "id": "eval_023",
+      "notes": "citation audit root_cause=real_citation_assembly_issue reclassifies the original citation_not_from_top_k signal.",
+      "question": "发热汗出恶风脉缓名为什么？",
+      "reclassified_failure_types": [
+        "real_citation_assembly_issue"
+      ],
+      "reclassified_primary_failure_type": "real_citation_assembly_issue",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_answer_assembly_citation_scope",
+      "recommended_next_actions": [
+        "fix_answer_assembly_citation_scope"
+      ]
+    },
+    {
+      "answer_mode": "strong",
+      "category": "症候检索",
+      "citation_audit_root_cause": "real_citation_assembly_issue",
+      "id": "eval_025",
+      "notes": "citation audit root_cause=real_citation_assembly_issue reclassifies the original citation_not_from_top_k signal.",
+      "question": "发热汗出不恶寒名为什么？",
+      "reclassified_failure_types": [
+        "real_citation_assembly_issue",
+        "gold_not_cited"
+      ],
+      "reclassified_primary_failure_type": "real_citation_assembly_issue",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_answer_assembly_citation_scope",
+      "recommended_next_actions": [
+        "fix_answer_assembly_citation_scope",
+        "fix_citation_mapping_or_answer_assembly"
+      ]
+    },
+    {
+      "answer_mode": "strong",
+      "category": "注文理解",
+      "citation_audit_root_cause": "real_citation_assembly_issue",
+      "id": "eval_027",
+      "notes": "citation audit root_cause=real_citation_assembly_issue reclassifies the original citation_not_from_top_k signal.",
+      "question": "成无己如何解释卫气衰？",
+      "reclassified_failure_types": [
+        "correct_chunk_not_retrieved",
+        "real_citation_assembly_issue",
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "reclassified_primary_failure_type": "real_citation_assembly_issue",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_answer_assembly_citation_scope",
+      "recommended_next_actions": [
+        "fix_retrieval_or_chunking",
+        "fix_answer_assembly_citation_scope",
+        "fix_citation_mapping_or_answer_assembly",
+        "inspect_answer_mode_calibration"
+      ]
+    }
+  ],
+  "scope_phrase_warnings": [
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "原文定位",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_006",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "太阳之为病的原文是什么？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "术语解释",
+      "citation_audit_root_cause": null,
+      "id": "eval_008",
+      "notes": "",
+      "question": "清邪中上是什么意思？",
+      "reclassified_failure_types": [
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "scope_qualifier_missing",
+      "reclassified_severity": "warning",
+      "recommended_next_action": "consider_answer_template_scope_phrase",
+      "recommended_next_actions": [
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "术语解释",
+      "citation_audit_root_cause": "trace_topk_missing_equivalence",
+      "id": "eval_009",
+      "notes": "citation audit root_cause=trace_topk_missing_equivalence reclassifies the original citation_not_from_top_k signal.",
+      "question": "反是什么意思？",
+      "reclassified_failure_types": [
+        "trace_or_evaluator_equivalence_gap",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "trace_or_evaluator_equivalence_gap",
+      "reclassified_severity": "tooling",
+      "recommended_next_action": "fix_trace_logging_or_eval_equivalence",
+      "recommended_next_actions": [
+        "fix_trace_logging_or_eval_equivalence",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "术语解释",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_010",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "两阳是什么意思？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "方剂关联",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_016",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "太阳中风鼻鸣乾呕用什么方？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "方剂关联",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_017",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "太阳病项背强几几无汗恶风用什么方？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "方剂关联",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_018",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "伤寒脉浮紧无汗身疼痛用什么方？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "方剂关联",
+      "citation_audit_root_cause": null,
+      "id": "eval_020",
+      "notes": "",
+      "question": "霍乱热多欲饮水用什么方？",
+      "reclassified_failure_types": [
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "expected_answer_mode_mismatch",
+      "reclassified_severity": "warning",
+      "recommended_next_action": "inspect_answer_mode_calibration",
+      "recommended_next_actions": [
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "症候检索",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_022",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "头项强痛而恶寒对应哪段原文？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "症候检索",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_024",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "发热无汗反恶寒名为什么？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "注文理解",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_026",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair. policy warning coexists with a still-valid formal retrieval or gold-citation failure.",
+      "question": "成无己如何解释荣气微？",
+      "reclassified_failure_types": [
+        "correct_chunk_not_retrieved",
+        "secondary_review_citation_policy_needs_decision",
+        "gold_not_cited",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "correct_chunk_not_retrieved",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "recommended_next_actions": [
+        "fix_retrieval_or_chunking",
+        "define_secondary_review_citation_policy",
+        "fix_citation_mapping_or_answer_assembly",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "注文理解",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_030",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "注文如何解释奔豚从何而发？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "consider_answer_template_scope_phrase"
+      ]
+    }
+  ],
+  "secondary_review_policy_decisions": [
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "原文定位",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_006",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "太阳之为病的原文是什么？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "术语解释",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_010",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "两阳是什么意思？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "方剂关联",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_016",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "太阳中风鼻鸣乾呕用什么方？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "方剂关联",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_017",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "太阳病项背强几几无汗恶风用什么方？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "方剂关联",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_018",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "伤寒脉浮紧无汗身疼痛用什么方？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "症候检索",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_022",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "头项强痛而恶寒对应哪段原文？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "症候检索",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_024",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "发热无汗反恶寒名为什么？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "注文理解",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_026",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair. policy warning coexists with a still-valid formal retrieval or gold-citation failure.",
+      "question": "成无己如何解释荣气微？",
+      "reclassified_failure_types": [
+        "correct_chunk_not_retrieved",
+        "secondary_review_citation_policy_needs_decision",
+        "gold_not_cited",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "correct_chunk_not_retrieved",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "recommended_next_actions": [
+        "fix_retrieval_or_chunking",
+        "define_secondary_review_citation_policy",
+        "fix_citation_mapping_or_answer_assembly",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "注文理解",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_030",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "注文如何解释奔豚从何而发？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "consider_answer_template_scope_phrase"
+      ]
+    }
+  ],
+  "source_reclassified_report": "artifacts/eval/failure_report_reclassified_after_citation_audit_v1/failure_cases_reclassified_v1.json",
+  "trace_or_evaluator_repairs": [
+    {
+      "answer_mode": "strong",
+      "category": "原文定位",
+      "citation_audit_root_cause": "trace_topk_missing_equivalence",
+      "id": "eval_002",
+      "notes": "citation audit root_cause=trace_topk_missing_equivalence reclassifies the original citation_not_from_top_k signal.",
+      "question": "麻黄汤方的条文是什么？",
+      "reclassified_failure_types": [
+        "trace_or_evaluator_equivalence_gap"
+      ],
+      "reclassified_primary_failure_type": "trace_or_evaluator_equivalence_gap",
+      "reclassified_severity": "tooling",
+      "recommended_next_action": "fix_trace_logging_or_eval_equivalence",
+      "recommended_next_actions": [
+        "fix_trace_logging_or_eval_equivalence"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "术语解释",
+      "citation_audit_root_cause": "trace_topk_missing_equivalence",
+      "id": "eval_009",
+      "notes": "citation audit root_cause=trace_topk_missing_equivalence reclassifies the original citation_not_from_top_k signal.",
+      "question": "反是什么意思？",
+      "reclassified_failure_types": [
+        "trace_or_evaluator_equivalence_gap",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "trace_or_evaluator_equivalence_gap",
+      "reclassified_severity": "tooling",
+      "recommended_next_action": "fix_trace_logging_or_eval_equivalence",
+      "recommended_next_actions": [
+        "fix_trace_logging_or_eval_equivalence",
+        "consider_answer_template_scope_phrase"
+      ]
+    }
+  ]
+}

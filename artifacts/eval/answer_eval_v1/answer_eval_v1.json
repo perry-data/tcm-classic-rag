@@ -1,0 +1,3175 @@
+{
+  "run_id": "answer_eval_v1",
+  "generated_at_utc": "2026-04-27T07:06:16.970171+00:00",
+  "dataset_path": "data/eval/eval_dataset_v1.csv",
+  "retrieval_eval_source": "artifacts/eval/retrieval_eval_v1/retrieval_eval_v1.json",
+  "trace_log": "artifacts/eval/answer_eval_v1/qa_trace_answer_eval_v1.jsonl",
+  "run_mode": "B_retrieval_rerank_no_llm",
+  "env_flags": {
+    "PERF_DISABLE_LLM": "1",
+    "PERF_DISABLE_RERANK": "0",
+    "PERF_RETRIEVAL_MODE": "hybrid"
+  },
+  "judge": {
+    "type": "rules_only",
+    "llm_judge": false
+  },
+  "llm_used": false,
+  "total_examples": 36,
+  "answerable_metric_examples": 25,
+  "diagnostic_only_examples": 5,
+  "unanswerable_examples": 6,
+  "has_citation_rate": 1.0,
+  "citation_from_top_k_rate": 0.44,
+  "gold_cited_rate": 0.8,
+  "refuse_when_should_not_answer_rate": 1.0,
+  "scope_qualified_rate": 0.612903,
+  "answer_keyword_hit_rate": 1.0,
+  "expected_answer_mode_match_rate": 0.677419,
+  "metric_denominators": {
+    "has_citation": 25,
+    "citation_from_top_k": 25,
+    "gold_cited": 25,
+    "refuse_when_should_not_answer": 6,
+    "scope_qualified": 31,
+    "answer_keyword_hit": 25,
+    "expected_answer_mode_match": 31
+  },
+  "metric_pass_counts": {
+    "has_citation": 25,
+    "citation_from_top_k": 11,
+    "gold_cited": 20,
+    "refuse_when_should_not_answer": 6,
+    "scope_qualified": 19,
+    "answer_keyword_hit": 25,
+    "expected_answer_mode_match": 21
+  },
+  "per_category": {
+    "原文定位": {
+      "examples": 6,
+      "answerable_metric_examples": 6,
+      "diagnostic_only_examples": 0,
+      "unanswerable_examples": 0,
+      "has_citation_rate": 1.0,
+      "citation_from_top_k_rate": 0.666667,
+      "gold_cited_rate": 1.0,
+      "refuse_when_should_not_answer_rate": 0.0,
+      "scope_qualified_rate": 0.833333,
+      "answer_keyword_hit_rate": 1.0,
+      "expected_answer_mode_match_rate": 0.833333
+    },
+    "方剂关联": {
+      "examples": 5,
+      "answerable_metric_examples": 5,
+      "diagnostic_only_examples": 0,
+      "unanswerable_examples": 0,
+      "has_citation_rate": 1.0,
+      "citation_from_top_k_rate": 0.4,
+      "gold_cited_rate": 1.0,
+      "refuse_when_should_not_answer_rate": 0.0,
+      "scope_qualified_rate": 0.2,
+      "answer_keyword_hit_rate": 1.0,
+      "expected_answer_mode_match_rate": 0.2
+    },
+    "术语解释": {
+      "examples": 9,
+      "answerable_metric_examples": 4,
+      "diagnostic_only_examples": 5,
+      "unanswerable_examples": 0,
+      "has_citation_rate": 1.0,
+      "citation_from_top_k_rate": 0.5,
+      "gold_cited_rate": 1.0,
+      "refuse_when_should_not_answer_rate": 0.0,
+      "scope_qualified_rate": 0.25,
+      "answer_keyword_hit_rate": 1.0,
+      "expected_answer_mode_match_rate": 1.0
+    },
+    "注文理解": {
+      "examples": 5,
+      "answerable_metric_examples": 5,
+      "diagnostic_only_examples": 0,
+      "unanswerable_examples": 0,
+      "has_citation_rate": 1.0,
+      "citation_from_top_k_rate": 0.4,
+      "gold_cited_rate": 0.2,
+      "refuse_when_should_not_answer_rate": 0.0,
+      "scope_qualified_rate": 0.6,
+      "answer_keyword_hit_rate": 1.0,
+      "expected_answer_mode_match_rate": 0.4
+    },
+    "症候检索": {
+      "examples": 5,
+      "answerable_metric_examples": 5,
+      "diagnostic_only_examples": 0,
+      "unanswerable_examples": 0,
+      "has_citation_rate": 1.0,
+      "citation_from_top_k_rate": 0.2,
+      "gold_cited_rate": 0.8,
+      "refuse_when_should_not_answer_rate": 0.0,
+      "scope_qualified_rate": 0.6,
+      "answer_keyword_hit_rate": 1.0,
+      "expected_answer_mode_match_rate": 0.6
+    },
+    "超范围拒答": {
+      "examples": 6,
+      "answerable_metric_examples": 0,
+      "diagnostic_only_examples": 0,
+      "unanswerable_examples": 6,
+      "has_citation_rate": 0.0,
+      "citation_from_top_k_rate": 0.0,
+      "gold_cited_rate": 0.0,
+      "refuse_when_should_not_answer_rate": 1.0,
+      "scope_qualified_rate": 1.0,
+      "answer_keyword_hit_rate": 0.0,
+      "expected_answer_mode_match_rate": 1.0
+    }
+  },
+  "per_example": [
+    {
+      "id": "eval_001",
+      "category": "原文定位",
+      "question": "桂枝汤方的条文是什么？",
+      "should_answer": true,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": true,
+      "diagnostic_only": false,
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "actual_answer_mode": "strong",
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0217"
+      ],
+      "gold_answer_keywords": [
+        "桂枝汤方",
+        "桂枝",
+        "芍药"
+      ],
+      "top5_record_ids": [
+        "formula:FML-1b00cf16ce52",
+        "safe:main_passages:ZJSHL-CH-008-P-0217",
+        "full:passages:ZJSHL-CH-008-P-0217",
+        "safe:chunks:ZJSHL-CK-M-0911",
+        "safe:main_passages:ZJSHL-CH-016-P-0034"
+      ],
+      "top5_chunk_ids": [
+        "FML-1b00cf16ce52",
+        "ZJSHL-CH-008-P-0217",
+        "ZJSHL-CH-008-P-0217",
+        "ZJSHL-CK-M-0911",
+        "ZJSHL-CH-016-P-0034"
+      ],
+      "top5_matchable_ids": [
+        [
+          "FML-1b00cf16ce52",
+          "ZJSHL-CH-008-P-0215",
+          "ZJSHL-CH-008-P-0217",
+          "ZJSHL-CH-008-P-0219",
+          "ZJSHL-CH-008-P-0220",
+          "ZJSHL-CH-008-P-0229",
+          "ZJSHL-CH-008-P-0246",
+          "ZJSHL-CH-008-P-0248",
+          "ZJSHL-CH-008-P-0253",
+          "ZJSHL-CH-008-P-0256",
+          "ZJSHL-CH-016-P-0034",
+          "formula:FML-1b00cf16ce52",
+          "full:passages:ZJSHL-CH-008-P-0215",
+          "full:passages:ZJSHL-CH-008-P-0217",
+          "full:passages:ZJSHL-CH-008-P-0219",
+          "full:passages:ZJSHL-CH-008-P-0220",
+          "full:passages:ZJSHL-CH-008-P-0229",
+          "full:passages:ZJSHL-CH-008-P-0246",
+          "full:passages:ZJSHL-CH-008-P-0248",
+          "full:passages:ZJSHL-CH-008-P-0253",
+          "full:passages:ZJSHL-CH-008-P-0256",
+          "full:passages:ZJSHL-CH-016-P-0034",
+          "safe:main_passages:ZJSHL-CH-008-P-0215",
+          "safe:main_passages:ZJSHL-CH-008-P-0217",
+          "safe:main_passages:ZJSHL-CH-008-P-0219",
+          "safe:main_passages:ZJSHL-CH-008-P-0220",
+          "safe:main_passages:ZJSHL-CH-008-P-0229",
+          "safe:main_passages:ZJSHL-CH-008-P-0246",
+          "safe:main_passages:ZJSHL-CH-008-P-0248",
+          "safe:main_passages:ZJSHL-CH-008-P-0253",
+          "safe:main_passages:ZJSHL-CH-008-P-0256",
+          "safe:main_passages:ZJSHL-CH-016-P-0034"
+        ],
+        [
+          "ZJSHL-CH-008-P-0217",
+          "full:passages:ZJSHL-CH-008-P-0217",
+          "safe:main_passages:ZJSHL-CH-008-P-0217"
+        ],
+        [
+          "ZJSHL-CH-008-P-0217",
+          "full:passages:ZJSHL-CH-008-P-0217",
+          "safe:main_passages:ZJSHL-CH-008-P-0217"
+        ],
+        [
+          "ZJSHL-CK-M-0911",
+          "safe:chunks:ZJSHL-CK-M-0911"
+        ],
+        [
+          "ZJSHL-CH-016-P-0034",
+          "full:passages:ZJSHL-CH-016-P-0034",
+          "safe:main_passages:ZJSHL-CH-016-P-0034"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0217",
+        "safe:main_passages:ZJSHL-CH-016-P-0034",
+        "safe:main_passages:ZJSHL-CH-008-P-0219"
+      ],
+      "citation_source_slots": [
+        "primary",
+        "primary",
+        "primary"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": true,
+      "gold_cited": true,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": true,
+      "answer_keyword_hit": true,
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "和“桂枝汤”直接相关的主条，当前主要落在这些方文或条文片段里。 桂枝汤方：桂枝三两，去皮，味辛热，按：下药性，赵本无，以后并同 芍药三两。味苦酸，微寒 甘草二两，炙，味甘平 生姜三两，切，味辛温 大枣十二枚，擘，味甘温 吐利止而身痛不休者，当消息和解其外，宜桂枝汤小和之。赵本有「桂枝汤方」详见卷二 右伍味，㕮咀。赵本有「三味」二字以水柒升，微火煑取三升，去滓...",
+      "notes": "",
+      "subtype": "formula_exact",
+      "dataset_notes": "primary formula passage confirmed in retrieval_ready_formula_view"
+    },
+    {
+      "id": "eval_002",
+      "category": "原文定位",
+      "question": "麻黄汤方的条文是什么？",
+      "should_answer": true,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": true,
+      "diagnostic_only": false,
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "actual_answer_mode": "strong",
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0022"
+      ],
+      "gold_answer_keywords": [
+        "麻黄汤方",
+        "麻黄",
+        "桂枝"
+      ],
+      "top5_record_ids": [
+        "formula:FML-04f61fac7138",
+        "safe:main_passages:ZJSHL-CH-009-P-0022",
+        "full:passages:ZJSHL-CH-009-P-0022",
+        "safe:chunks:ZJSHL-CK-F-0010"
+      ],
+      "top5_chunk_ids": [
+        "FML-04f61fac7138",
+        "ZJSHL-CH-009-P-0022",
+        "ZJSHL-CH-009-P-0022",
+        "ZJSHL-CK-F-0010"
+      ],
+      "top5_matchable_ids": [
+        [
+          "FML-04f61fac7138",
+          "ZJSHL-CH-008-P-0229",
+          "ZJSHL-CH-009-P-0022",
+          "ZJSHL-CH-009-P-0025",
+          "ZJSHL-CH-009-P-0026",
+          "ZJSHL-CH-009-P-0030",
+          "ZJSHL-CH-009-P-0059",
+          "ZJSHL-CH-009-P-0069",
+          "ZJSHL-CH-009-P-0071",
+          "ZJSHL-CH-009-P-0077",
+          "formula:FML-04f61fac7138",
+          "full:passages:ZJSHL-CH-008-P-0229",
+          "full:passages:ZJSHL-CH-009-P-0022",
+          "full:passages:ZJSHL-CH-009-P-0025",
+          "full:passages:ZJSHL-CH-009-P-0026",
+          "full:passages:ZJSHL-CH-009-P-0030",
+          "full:passages:ZJSHL-CH-009-P-0059",
+          "full:passages:ZJSHL-CH-009-P-0069",
+          "full:passages:ZJSHL-CH-009-P-0071",
+          "full:passages:ZJSHL-CH-009-P-0077",
+          "safe:main_passages:ZJSHL-CH-008-P-0229",
+          "safe:main_passages:ZJSHL-CH-009-P-0022",
+          "safe:main_passages:ZJSHL-CH-009-P-0025",
+          "safe:main_passages:ZJSHL-CH-009-P-0026",
+          "safe:main_passages:ZJSHL-CH-009-P-0030",
+          "safe:main_passages:ZJSHL-CH-009-P-0059",
+          "safe:main_passages:ZJSHL-CH-009-P-0069",
+          "safe:main_passages:ZJSHL-CH-009-P-0071",
+          "safe:main_passages:ZJSHL-CH-009-P-0077"
+        ],
+        [
+          "ZJSHL-CH-009-P-0022",
+          "full:passages:ZJSHL-CH-009-P-0022",
+          "safe:main_passages:ZJSHL-CH-009-P-0022"
+        ],
+        [
+          "ZJSHL-CH-009-P-0022",
+          "full:passages:ZJSHL-CH-009-P-0022",
+          "safe:main_passages:ZJSHL-CH-009-P-0022"
+        ],
+        [
+          "ZJSHL-CK-F-0010",
+          "safe:chunks:ZJSHL-CK-F-0010"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0022",
+        "safe:main_passages:ZJSHL-CH-009-P-0023",
+        "safe:main_passages:ZJSHL-CH-009-P-0025"
+      ],
+      "citation_source_slots": [
+        "primary",
+        "primary",
+        "primary"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": false,
+      "gold_cited": true,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": true,
+      "answer_keyword_hit": true,
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "和“麻黄汤”直接相关的主条，当前主要落在这些方文或条文片段里。 麻黄汤方：麻黄三两，去节。味甘温 桂枝二，医统本作三两，去皮。味辛热 甘草一两，炙。味甘平 杏仁七十个，汤，赵本无「汤」字，去皮尖。味辛温 上四味，以水九升，先煮麻黄，减二升，去上沫，内诸药，煮取二升半，去滓，温服八合，覆取微似汗，不须啜粥，馀如桂枝法将息。 可以先据此理解原文意思，具体字句再结...",
+      "notes": "at least one citation was not found in trace top_k_chunks",
+      "subtype": "formula_exact",
+      "dataset_notes": "primary formula passage confirmed in retrieval_ready_formula_view"
+    },
+    {
+      "id": "eval_003",
+      "category": "原文定位",
+      "question": "白虎汤方的条文是什么？",
+      "should_answer": true,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": true,
+      "diagnostic_only": false,
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "actual_answer_mode": "strong",
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0165"
+      ],
+      "gold_answer_keywords": [
+        "白虎汤方",
+        "知母",
+        "石膏"
+      ],
+      "top5_record_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0165",
+        "full:passages:ZJSHL-CH-010-P-0165",
+        "formula:FML-47765c7ee78a",
+        "safe:chunks:ZJSHL-CK-F-0052",
+        "safe:chunks:ZJSHL-CK-F-0094"
+      ],
+      "top5_chunk_ids": [
+        "ZJSHL-CH-010-P-0165",
+        "ZJSHL-CH-010-P-0165",
+        "FML-47765c7ee78a",
+        "ZJSHL-CK-F-0052",
+        "ZJSHL-CK-F-0094"
+      ],
+      "top5_matchable_ids": [
+        [
+          "ZJSHL-CH-010-P-0165",
+          "full:passages:ZJSHL-CH-010-P-0165",
+          "safe:main_passages:ZJSHL-CH-010-P-0165"
+        ],
+        [
+          "ZJSHL-CH-010-P-0165",
+          "full:passages:ZJSHL-CH-010-P-0165",
+          "safe:main_passages:ZJSHL-CH-010-P-0165"
+        ],
+        [
+          "FML-47765c7ee78a",
+          "ZJSHL-CH-010-P-0132",
+          "ZJSHL-CH-010-P-0165",
+          "ZJSHL-CH-010-P-0167",
+          "ZJSHL-CH-025-P-0012",
+          "formula:FML-47765c7ee78a",
+          "full:passages:ZJSHL-CH-010-P-0132",
+          "full:passages:ZJSHL-CH-010-P-0165",
+          "full:passages:ZJSHL-CH-010-P-0167",
+          "full:passages:ZJSHL-CH-025-P-0012",
+          "safe:main_passages:ZJSHL-CH-010-P-0132",
+          "safe:main_passages:ZJSHL-CH-010-P-0165",
+          "safe:main_passages:ZJSHL-CH-010-P-0167",
+          "safe:main_passages:ZJSHL-CH-025-P-0012"
+        ],
+        [
+          "ZJSHL-CK-F-0052",
+          "safe:chunks:ZJSHL-CK-F-0052"
+        ],
+        [
+          "ZJSHL-CK-F-0094",
+          "safe:chunks:ZJSHL-CK-F-0094"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0165",
+        "safe:main_passages:ZJSHL-CH-025-P-0012",
+        "safe:main_passages:ZJSHL-CH-010-P-0167"
+      ],
+      "citation_source_slots": [
+        "primary",
+        "primary",
+        "primary"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": true,
+      "gold_cited": true,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": true,
+      "answer_keyword_hit": true,
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "和“白虎汤”直接相关的主条，当前主要落在这些方文或条文片段里。 白虎汤方：知母六两。味苦寒 石膏一斤，碎。味甘寒 甘草二两，赵本有「炙」字。味甘平 粳米六合。味甘平 白虎加人参汤方：于白虎汤方内，加人参三两，馀根据白虎汤法。 上四味，以水一斗，煮米熟，汤成，去滓，温服一升，日三服。 可以先据此理解原文意思，具体字句再结合引用继续回看。",
+      "notes": "",
+      "subtype": "formula_exact",
+      "dataset_notes": "primary formula passage confirmed in retrieval_ready_formula_view"
+    },
+    {
+      "id": "eval_004",
+      "category": "原文定位",
+      "question": "小柴胡汤方的条文是什么？",
+      "should_answer": true,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": true,
+      "diagnostic_only": false,
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "actual_answer_mode": "strong",
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0211"
+      ],
+      "gold_answer_keywords": [
+        "小柴胡汤方",
+        "柴胡",
+        "黄芩"
+      ],
+      "top5_record_ids": [
+        "formula:FML-fdc6285c27c4",
+        "safe:main_passages:ZJSHL-CH-009-P-0211",
+        "safe:chunks:ZJSHL-CK-F-0026",
+        "safe:chunks:ZJSHL-CK-M-0892",
+        "safe:main_passages:ZJSHL-CH-015-P-0326"
+      ],
+      "top5_chunk_ids": [
+        "FML-fdc6285c27c4",
+        "ZJSHL-CH-009-P-0211",
+        "ZJSHL-CK-F-0026",
+        "ZJSHL-CK-M-0892",
+        "ZJSHL-CH-015-P-0326"
+      ],
+      "top5_matchable_ids": [
+        [
+          "FML-fdc6285c27c4",
+          "ZJSHL-CH-009-P-0211",
+          "ZJSHL-CH-009-P-0213",
+          "ZJSHL-CH-009-P-0229",
+          "ZJSHL-CH-009-P-0237",
+          "ZJSHL-CH-011-P-0123",
+          "ZJSHL-CH-012-P-0219",
+          "ZJSHL-CH-015-P-0326",
+          "ZJSHL-CH-026-P-0005",
+          "formula:FML-fdc6285c27c4",
+          "full:passages:ZJSHL-CH-009-P-0211",
+          "full:passages:ZJSHL-CH-009-P-0213",
+          "full:passages:ZJSHL-CH-009-P-0229",
+          "full:passages:ZJSHL-CH-009-P-0237",
+          "full:passages:ZJSHL-CH-011-P-0123",
+          "full:passages:ZJSHL-CH-012-P-0219",
+          "full:passages:ZJSHL-CH-015-P-0326",
+          "full:passages:ZJSHL-CH-026-P-0005",
+          "safe:main_passages:ZJSHL-CH-009-P-0211",
+          "safe:main_passages:ZJSHL-CH-009-P-0213",
+          "safe:main_passages:ZJSHL-CH-009-P-0229",
+          "safe:main_passages:ZJSHL-CH-009-P-0237",
+          "safe:main_passages:ZJSHL-CH-011-P-0123",
+          "safe:main_passages:ZJSHL-CH-012-P-0219",
+          "safe:main_passages:ZJSHL-CH-015-P-0326",
+          "safe:main_passages:ZJSHL-CH-026-P-0005"
+        ],
+        [
+          "ZJSHL-CH-009-P-0211",
+          "full:passages:ZJSHL-CH-009-P-0211",
+          "safe:main_passages:ZJSHL-CH-009-P-0211"
+        ],
+        [
+          "ZJSHL-CK-F-0026",
+          "safe:chunks:ZJSHL-CK-F-0026"
+        ],
+        [
+          "ZJSHL-CK-M-0892",
+          "safe:chunks:ZJSHL-CK-M-0892"
+        ],
+        [
+          "ZJSHL-CH-015-P-0326",
+          "full:passages:ZJSHL-CH-015-P-0326",
+          "safe:main_passages:ZJSHL-CH-015-P-0326"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0211",
+        "safe:main_passages:ZJSHL-CH-015-P-0326",
+        "safe:main_passages:ZJSHL-CH-011-P-0123"
+      ],
+      "citation_source_slots": [
+        "primary",
+        "primary",
+        "primary"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": true,
+      "gold_cited": true,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": true,
+      "answer_keyword_hit": true,
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "和“小柴胡汤”直接相关的主条，当前主要落在这些方文或条文片段里。 小柴胡汤方：柴胡半斤。味苦，微寒 黄芩三两。味苦寒 人参三两。味甘温 甘草三两，赵本有「炙」字。味甘平 半夏半升，洗。味辛温 生姜三两，切。味辛温 大枣十三，赵本医统本并作「二」，枚，擘。味甘温 呕而发热者，小柴胡汤主之。赵本有「小柴胡汤方」详见卷三 阳明病，发潮热，大便溏，小便自可，胸胁满不...",
+      "notes": "",
+      "subtype": "formula_exact",
+      "dataset_notes": "primary formula passage confirmed in retrieval_ready_formula_view"
+    },
+    {
+      "id": "eval_005",
+      "category": "原文定位",
+      "question": "乌梅丸方的条文是什么？",
+      "should_answer": true,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": true,
+      "diagnostic_only": false,
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "actual_answer_mode": "strong",
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-015-P-0221"
+      ],
+      "gold_answer_keywords": [
+        "乌梅丸方",
+        "乌梅",
+        "黄连"
+      ],
+      "top5_record_ids": [
+        "formula:FML-21567be0171c",
+        "safe:chunks:ZJSHL-CK-F-0077",
+        "safe:main_passages:ZJSHL-CH-015-P-0221",
+        "full:passages:ZJSHL-CH-015-P-0221"
+      ],
+      "top5_chunk_ids": [
+        "FML-21567be0171c",
+        "ZJSHL-CK-F-0077",
+        "ZJSHL-CH-015-P-0221",
+        "ZJSHL-CH-015-P-0221"
+      ],
+      "top5_matchable_ids": [
+        [
+          "FML-21567be0171c",
+          "ZJSHL-CH-015-P-0219",
+          "ZJSHL-CH-015-P-0220",
+          "ZJSHL-CH-015-P-0221",
+          "ZJSHL-CH-015-P-0222",
+          "ZJSHL-CH-015-P-0223",
+          "ZJSHL-CH-015-P-0225",
+          "formula:FML-21567be0171c",
+          "full:passages:ZJSHL-CH-015-P-0219",
+          "full:passages:ZJSHL-CH-015-P-0220",
+          "full:passages:ZJSHL-CH-015-P-0221",
+          "full:passages:ZJSHL-CH-015-P-0222",
+          "full:passages:ZJSHL-CH-015-P-0223",
+          "full:passages:ZJSHL-CH-015-P-0225",
+          "safe:main_passages:ZJSHL-CH-015-P-0219",
+          "safe:main_passages:ZJSHL-CH-015-P-0220",
+          "safe:main_passages:ZJSHL-CH-015-P-0221",
+          "safe:main_passages:ZJSHL-CH-015-P-0222",
+          "safe:main_passages:ZJSHL-CH-015-P-0223",
+          "safe:main_passages:ZJSHL-CH-015-P-0225"
+        ],
+        [
+          "ZJSHL-CK-F-0077",
+          "safe:chunks:ZJSHL-CK-F-0077"
+        ],
+        [
+          "ZJSHL-CH-015-P-0221",
+          "full:passages:ZJSHL-CH-015-P-0221",
+          "safe:main_passages:ZJSHL-CH-015-P-0221"
+        ],
+        [
+          "ZJSHL-CH-015-P-0221",
+          "full:passages:ZJSHL-CH-015-P-0221",
+          "safe:main_passages:ZJSHL-CH-015-P-0221"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-015-P-0221",
+        "safe:main_passages:ZJSHL-CH-015-P-0222"
+      ],
+      "citation_source_slots": [
+        "primary",
+        "primary"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": true,
+      "gold_cited": true,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": true,
+      "answer_keyword_hit": true,
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "和“乌梅丸”直接相关的主条，当前主要落在这些方文或条文片段里。 乌梅丸方：乌梅三百个。赵本作「枚」。味酸温 细辛六两。辛热 乾姜十两。辛热 黄连一斤。 赵本作「十六两」。苦寒 当归四两。辛温 附子六两，炮。赵本有「去皮」二字。辛热 蜀椒四两，去子。赵本作「出汗」。医统本作「去汗」。辛热 桂枝六两。赵本有「去皮」二字。辛热 可以先据此理解原文意思，具体字句再结...",
+      "notes": "",
+      "subtype": "formula_exact",
+      "dataset_notes": "primary formula passage confirmed in retrieval_ready_formula_view"
+    },
+    {
+      "id": "eval_006",
+      "category": "原文定位",
+      "question": "太阳之为病的原文是什么？",
+      "should_answer": true,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": true,
+      "diagnostic_only": false,
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "actual_answer_mode": "weak_with_review_notice",
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0191"
+      ],
+      "gold_answer_keywords": [
+        "太阳之为病",
+        "脉浮",
+        "头项强痛"
+      ],
+      "top5_record_ids": [
+        "safe:definition_terms:AHV-fdb12048d73e",
+        "safe:chunks:ZJSHL-CK-M-0405",
+        "safe:main_passages:ZJSHL-CH-009-P-0202",
+        "safe:main_passages:ZJSHL-CH-008-P-0191",
+        "full:passages:ZJSHL-CH-008-P-0191"
+      ],
+      "top5_chunk_ids": [
+        "AHV-fdb12048d73e",
+        "ZJSHL-CK-M-0405",
+        "ZJSHL-CH-009-P-0202",
+        "ZJSHL-CH-008-P-0191",
+        "ZJSHL-CH-008-P-0191"
+      ],
+      "top5_matchable_ids": [
+        [
+          "AHV-fdb12048d73e",
+          "ZJSHL-CH-008-P-0191",
+          "full:passages:ZJSHL-CH-008-P-0191",
+          "safe:definition_terms:AHV-fdb12048d73e",
+          "safe:main_passages:ZJSHL-CH-008-P-0191"
+        ],
+        [
+          "ZJSHL-CK-M-0405",
+          "safe:chunks:ZJSHL-CK-M-0405"
+        ],
+        [
+          "ZJSHL-CH-009-P-0202",
+          "full:passages:ZJSHL-CH-009-P-0202",
+          "safe:main_passages:ZJSHL-CH-009-P-0202"
+        ],
+        [
+          "ZJSHL-CH-008-P-0191",
+          "full:passages:ZJSHL-CH-008-P-0191",
+          "safe:main_passages:ZJSHL-CH-008-P-0191"
+        ],
+        [
+          "ZJSHL-CH-008-P-0191",
+          "full:passages:ZJSHL-CH-008-P-0191",
+          "safe:main_passages:ZJSHL-CH-008-P-0191"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0191",
+        "safe:main_passages:ZJSHL-CH-009-P-0202",
+        "safe:main_passages:ZJSHL-CH-008-P-0195",
+        "safe:main_passages:ZJSHL-CH-009-P-0318",
+        "safe:main_passages:ZJSHL-CH-007-P-0157",
+        "full:passages:ZJSHL-CH-008-P-0191"
+      ],
+      "citation_source_slots": [
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "review"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": false,
+      "gold_cited": true,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": false,
+      "answer_keyword_hit": true,
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "这个问题目前只能先保守地理解到这里：太阳之为病，脉浮，头项强痛而恶寒。。 之所以只能先这样说，是因为当前缺少更稳定的正文主证据。 建议先回看这条命中片段所在原句，再核对前后文。",
+      "notes": "at least one citation was not found in trace top_k_chunks",
+      "subtype": "original_text",
+      "dataset_notes": "primary main passage in current DB"
+    },
+    {
+      "id": "eval_007",
+      "category": "术语解释",
+      "question": "干呕是什么意思？",
+      "should_answer": true,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": true,
+      "diagnostic_only": false,
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "actual_answer_mode": "weak_with_review_notice",
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0188",
+        "safe:main_passages:ZJSHL-CH-015-P-0324"
+      ],
+      "gold_answer_keywords": [
+        "乾呕",
+        "四逆汤",
+        "吴茱萸汤"
+      ],
+      "top5_record_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0188",
+        "safe:main_passages:ZJSHL-CH-015-P-0324",
+        "safe:main_passages:ZJSHL-CH-008-P-0215",
+        "full:passages:ZJSHL-CH-014-P-0189",
+        "full:passages:ZJSHL-CH-015-P-0325"
+      ],
+      "top5_chunk_ids": [
+        "ZJSHL-CH-014-P-0188",
+        "ZJSHL-CH-015-P-0324",
+        "ZJSHL-CH-008-P-0215",
+        "ZJSHL-CH-014-P-0189",
+        "ZJSHL-CH-015-P-0325"
+      ],
+      "top5_matchable_ids": [
+        [
+          "ZJSHL-CH-014-P-0188",
+          "full:passages:ZJSHL-CH-014-P-0188",
+          "safe:main_passages:ZJSHL-CH-014-P-0188"
+        ],
+        [
+          "ZJSHL-CH-015-P-0324",
+          "full:passages:ZJSHL-CH-015-P-0324",
+          "safe:main_passages:ZJSHL-CH-015-P-0324"
+        ],
+        [
+          "ZJSHL-CH-008-P-0215",
+          "full:passages:ZJSHL-CH-008-P-0215",
+          "safe:main_passages:ZJSHL-CH-008-P-0215"
+        ],
+        [
+          "ZJSHL-CH-014-P-0189",
+          "full:passages:ZJSHL-CH-014-P-0189",
+          "safe:main_passages:ZJSHL-CH-014-P-0189"
+        ],
+        [
+          "ZJSHL-CH-015-P-0325",
+          "full:passages:ZJSHL-CH-015-P-0325",
+          "safe:main_passages:ZJSHL-CH-015-P-0325"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0188",
+        "safe:main_passages:ZJSHL-CH-015-P-0324",
+        "safe:main_passages:ZJSHL-CH-008-P-0215",
+        "full:passages:ZJSHL-CH-014-P-0189",
+        "full:passages:ZJSHL-CH-015-P-0325"
+      ],
+      "citation_source_slots": [
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": true,
+      "gold_cited": true,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": true,
+      "answer_keyword_hit": true,
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "“干呕”在书中常写作“乾呕”。当前没有已审定的 learner-safe 定义对象，所以这里不把它硬升为强答。 按现有核对材料，只能先保守理解为：与呕逆、欲呕而不一定吐出实物这一类表现有关。可核对的关键句是：“吐则物出，呕则物不出”；又说“若膈上有寒饮，则但乾呕而不吐也”。 相关正文还把它放在不同病机和方证语境里，因此这个回答只作弱整理；若要下更确定定义，需...",
+      "notes": "",
+      "subtype": "weak_boundary",
+      "dataset_notes": "full-chain v2 secondary ids kept as weak boundary sample"
+    },
+    {
+      "id": "eval_008",
+      "category": "术语解释",
+      "question": "清邪中上是什么意思？",
+      "should_answer": true,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": true,
+      "diagnostic_only": false,
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "actual_answer_mode": "weak_with_review_notice",
+      "gold_chunk_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0098",
+        "safe:main_passages:ZJSHL-CH-023-P-0046"
+      ],
+      "gold_answer_keywords": [
+        "清邪中上",
+        "上焦",
+        "少阴"
+      ],
+      "top5_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0098",
+        "full:passages:ZJSHL-CH-003-P-0098",
+        "safe:chunks:ZJSHL-CK-M-0989",
+        "safe:main_passages:ZJSHL-CH-023-P-0046",
+        "full:passages:ZJSHL-CH-023-P-0046"
+      ],
+      "top5_chunk_ids": [
+        "ZJSHL-CH-003-P-0098",
+        "ZJSHL-CH-003-P-0098",
+        "ZJSHL-CK-M-0989",
+        "ZJSHL-CH-023-P-0046",
+        "ZJSHL-CH-023-P-0046"
+      ],
+      "top5_matchable_ids": [
+        [
+          "ZJSHL-CH-003-P-0098",
+          "full:annotations:ZJSHL-CH-003-P-0098",
+          "full:passages:ZJSHL-CH-003-P-0098",
+          "safe:main_passages:ZJSHL-CH-003-P-0098"
+        ],
+        [
+          "ZJSHL-CH-003-P-0098",
+          "full:passages:ZJSHL-CH-003-P-0098",
+          "safe:main_passages:ZJSHL-CH-003-P-0098"
+        ],
+        [
+          "ZJSHL-CK-M-0989",
+          "safe:chunks:ZJSHL-CK-M-0989"
+        ],
+        [
+          "ZJSHL-CH-023-P-0046",
+          "full:passages:ZJSHL-CH-023-P-0046",
+          "safe:main_passages:ZJSHL-CH-023-P-0046"
+        ],
+        [
+          "ZJSHL-CH-023-P-0046",
+          "full:passages:ZJSHL-CH-023-P-0046",
+          "safe:main_passages:ZJSHL-CH-023-P-0046"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-023-P-0046",
+        "full:annotations:ZJSHL-CH-003-P-0098",
+        "full:passages:ZJSHL-CH-003-P-0098",
+        "full:passages:ZJSHL-CH-023-P-0046"
+      ],
+      "citation_source_slots": [
+        "secondary",
+        "secondary",
+        "review",
+        "review"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": true,
+      "gold_cited": true,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": false,
+      "answer_keyword_hit": true,
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "“清邪中上”目前不作为已审定的稳定定义来强答。 现有材料只能作为核对线索：脉阴阳俱紧，则清邪中上，浊邪中下，太阳少阴俱感邪也。恶寒者少阴，发热者太阳，脉欲厥者，表邪欲传里也。恶寒甚者，则变热，翕翕汗出，喉中痛，以少阴之脉循喉咙故也。热多者，太阳多也；目赤脉多者，睛不慧，以太阳之脉起于目故也。发汗攻阳，则少阴之热因...。 原因是这个问法仍属于 review-...",
+      "notes": "",
+      "subtype": "weak_boundary",
+      "dataset_notes": "full-chain v2 secondary and review ids kept as weak boundary sample"
+    },
+    {
+      "id": "eval_009",
+      "category": "术语解释",
+      "question": "反是什么意思？",
+      "should_answer": true,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": true,
+      "diagnostic_only": false,
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "actual_answer_mode": "weak_with_review_notice",
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0090",
+        "safe:main_passages:ZJSHL-CH-014-P-0107"
+      ],
+      "gold_answer_keywords": [
+        "反下之",
+        "为大逆",
+        "上下文"
+      ],
+      "top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0049",
+        "formula:FML-214c592b6f9b",
+        "formula:FML-1fdcaddd7958",
+        "formula:FML-03bfe5c6c2a8",
+        "safe:chunks:ZJSHL-CK-M-0021"
+      ],
+      "top5_chunk_ids": [
+        "ZJSHL-CK-M-0049",
+        "FML-214c592b6f9b",
+        "FML-1fdcaddd7958",
+        "FML-03bfe5c6c2a8",
+        "ZJSHL-CK-M-0021"
+      ],
+      "top5_matchable_ids": [
+        [
+          "ZJSHL-CK-M-0049",
+          "safe:chunks:ZJSHL-CK-M-0049"
+        ],
+        [
+          "FML-214c592b6f9b",
+          "ZJSHL-CH-008-P-0256",
+          "ZJSHL-CH-008-P-0261",
+          "ZJSHL-CH-009-P-0105",
+          "ZJSHL-CH-009-P-0118",
+          "ZJSHL-CH-009-P-0120",
+          "ZJSHL-CH-014-P-0069",
+          "ZJSHL-CH-014-P-0105",
+          "ZJSHL-CH-014-P-0107",
+          "ZJSHL-CH-014-P-0108",
+          "ZJSHL-CH-015-P-0265",
+          "formula:FML-214c592b6f9b",
+          "full:passages:ZJSHL-CH-008-P-0256",
+          "full:passages:ZJSHL-CH-008-P-0261",
+          "full:passages:ZJSHL-CH-009-P-0105",
+          "full:passages:ZJSHL-CH-009-P-0118",
+          "full:passages:ZJSHL-CH-009-P-0120",
+          "full:passages:ZJSHL-CH-014-P-0069",
+          "full:passages:ZJSHL-CH-014-P-0105",
+          "full:passages:ZJSHL-CH-014-P-0107",
+          "full:passages:ZJSHL-CH-014-P-0108",
+          "full:passages:ZJSHL-CH-015-P-0265",
+          "safe:main_passages:ZJSHL-CH-008-P-0256",
+          "safe:main_passages:ZJSHL-CH-008-P-0261",
+          "safe:main_passages:ZJSHL-CH-009-P-0105",
+          "safe:main_passages:ZJSHL-CH-009-P-0118",
+          "safe:main_passages:ZJSHL-CH-009-P-0120",
+          "safe:main_passages:ZJSHL-CH-014-P-0069",
+          "safe:main_passages:ZJSHL-CH-014-P-0105",
+          "safe:main_passages:ZJSHL-CH-014-P-0107",
+          "safe:main_passages:ZJSHL-CH-014-P-0108",
+          "safe:main_passages:ZJSHL-CH-015-P-0265"
+        ],
+        [
+          "FML-1fdcaddd7958",
+          "ZJSHL-CH-008-P-0242",
+          "ZJSHL-CH-025-P-0007",
+          "ZJSHL-CH-025-P-0008",
+          "formula:FML-1fdcaddd7958",
+          "full:passages:ZJSHL-CH-008-P-0242",
+          "full:passages:ZJSHL-CH-025-P-0007",
+          "full:passages:ZJSHL-CH-025-P-0008",
+          "safe:main_passages:ZJSHL-CH-008-P-0242",
+          "safe:main_passages:ZJSHL-CH-025-P-0007",
+          "safe:main_passages:ZJSHL-CH-025-P-0008"
+        ],
+        [
+          "FML-03bfe5c6c2a8",
+          "ZJSHL-CH-009-P-0159",
+          "ZJSHL-CH-009-P-0160",
+          "ZJSHL-CH-009-P-0161",
+          "ZJSHL-CH-009-P-0164",
+          "ZJSHL-CH-009-P-0166",
+          "ZJSHL-CH-011-P-0101",
+          "ZJSHL-CH-015-P-0318",
+          "ZJSHL-CH-017-P-0049",
+          "ZJSHL-CH-017-P-0050",
+          "ZJSHL-CH-026-P-0004",
+          "formula:FML-03bfe5c6c2a8",
+          "full:passages:ZJSHL-CH-009-P-0159",
+          "full:passages:ZJSHL-CH-009-P-0160",
+          "full:passages:ZJSHL-CH-009-P-0161",
+          "full:passages:ZJSHL-CH-009-P-0164",
+          "full:passages:ZJSHL-CH-009-P-0166",
+          "full:passages:ZJSHL-CH-011-P-0101",
+          "full:passages:ZJSHL-CH-015-P-0318",
+          "full:passages:ZJSHL-CH-017-P-0049",
+          "full:passages:ZJSHL-CH-017-P-0050",
+          "full:passages:ZJSHL-CH-026-P-0004",
+          "safe:main_passages:ZJSHL-CH-009-P-0159",
+          "safe:main_passages:ZJSHL-CH-009-P-0160",
+          "safe:main_passages:ZJSHL-CH-009-P-0161",
+          "safe:main_passages:ZJSHL-CH-009-P-0164",
+          "safe:main_passages:ZJSHL-CH-009-P-0166",
+          "safe:main_passages:ZJSHL-CH-011-P-0101",
+          "safe:main_passages:ZJSHL-CH-015-P-0318",
+          "safe:main_passages:ZJSHL-CH-017-P-0049",
+          "safe:main_passages:ZJSHL-CH-017-P-0050",
+          "safe:main_passages:ZJSHL-CH-026-P-0004"
+        ],
+        [
+          "ZJSHL-CK-M-0021",
+          "safe:chunks:ZJSHL-CK-M-0021"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0090",
+        "safe:main_passages:ZJSHL-CH-025-P-0007",
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-014-P-0107",
+        "safe:main_passages:ZJSHL-CH-014-P-0108",
+        "safe:main_passages:ZJSHL-CH-014-P-0105",
+        "safe:main_passages:ZJSHL-CH-014-P-0069",
+        "safe:main_passages:ZJSHL-CH-015-P-0265"
+      ],
+      "citation_source_slots": [
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": false,
+      "gold_cited": true,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": false,
+      "answer_keyword_hit": true,
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "“反”目前不作为已审定的稳定定义来强答。 现有材料只能作为核对线索：经云：脉浮大，应发汗，若反下之，为大逆。浮大之脉，邪在表也，当发其汗，若反下之，是攻其正气，邪气得以深入，故为大逆。浮则无血者，下后亡血也；大则为寒者，邪气独在也。。 原因是这个问法仍属于 review-only / not-ready 边界，离开前后文容易把局部语句误当成安全主定义。 建议...",
+      "notes": "at least one citation was not found in trace top_k_chunks",
+      "subtype": "weak_boundary",
+      "dataset_notes": "full-chain v2 secondary ids kept as weak boundary sample"
+    },
+    {
+      "id": "eval_010",
+      "category": "术语解释",
+      "question": "两阳是什么意思？",
+      "should_answer": true,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": true,
+      "diagnostic_only": false,
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "actual_answer_mode": "weak_with_review_notice",
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0275",
+        "safe:main_passages:ZJSHL-CH-017-P-0049"
+      ],
+      "gold_answer_keywords": [
+        "两阳",
+        "熏灼",
+        "相合"
+      ],
+      "top5_record_ids": [
+        "safe:definition_terms:AHV-8df0a4ec9de9",
+        "safe:chunks:ZJSHL-CK-M-0451",
+        "safe:main_passages:ZJSHL-CH-009-P-0275",
+        "safe:chunks:ZJSHL-CK-M-0917",
+        "formula:FML-56cfd37acca4"
+      ],
+      "top5_chunk_ids": [
+        "AHV-8df0a4ec9de9",
+        "ZJSHL-CK-M-0451",
+        "ZJSHL-CH-009-P-0275",
+        "ZJSHL-CK-M-0917",
+        "FML-56cfd37acca4"
+      ],
+      "top5_matchable_ids": [
+        [
+          "AHV-8df0a4ec9de9",
+          "ZJSHL-CH-017-P-0049",
+          "full:passages:ZJSHL-CH-017-P-0049",
+          "safe:definition_terms:AHV-8df0a4ec9de9",
+          "safe:main_passages:ZJSHL-CH-017-P-0049"
+        ],
+        [
+          "ZJSHL-CK-M-0451",
+          "safe:chunks:ZJSHL-CK-M-0451"
+        ],
+        [
+          "ZJSHL-CH-009-P-0275",
+          "full:passages:ZJSHL-CH-009-P-0275",
+          "safe:main_passages:ZJSHL-CH-009-P-0275"
+        ],
+        [
+          "ZJSHL-CK-M-0917",
+          "safe:chunks:ZJSHL-CK-M-0917"
+        ],
+        [
+          "FML-56cfd37acca4",
+          "ZJSHL-CH-017-P-0049",
+          "ZJSHL-CH-017-P-0050",
+          "ZJSHL-CH-017-P-0053",
+          "formula:FML-56cfd37acca4",
+          "full:passages:ZJSHL-CH-017-P-0049",
+          "full:passages:ZJSHL-CH-017-P-0050",
+          "full:passages:ZJSHL-CH-017-P-0053",
+          "safe:main_passages:ZJSHL-CH-017-P-0049",
+          "safe:main_passages:ZJSHL-CH-017-P-0050",
+          "safe:main_passages:ZJSHL-CH-017-P-0053"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0275",
+        "safe:main_passages:ZJSHL-CH-017-P-0049",
+        "safe:main_passages:ZJSHL-CH-017-P-0050",
+        "safe:main_passages:ZJSHL-CH-017-P-0053",
+        "safe:main_passages:ZJSHL-CH-009-P-0161",
+        "safe:main_passages:ZJSHL-CH-009-P-0160",
+        "safe:main_passages:ZJSHL-CH-009-P-0164"
+      ],
+      "citation_source_slots": [
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": false,
+      "gold_cited": true,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": false,
+      "answer_keyword_hit": true,
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "“两阳”目前不作为已审定的稳定定义来强答。 现有材料只能作为核对线索：太阳病中风，以火劫发汗，邪风被火热，血气流溢，失其常度，两阳相熏灼，其身发黄。阳盛则欲衄，阴虚则小便难，阴阳俱虚竭，身体则枯燥。但头汗出，剂颈而还，腹满微喘，口乾咽烂，或不大便，久则谵语，甚者至哕，手足躁扰，捻衣摸床，小便利者，其人可治。。 原因是这个问法仍属于 review-only /...",
+      "notes": "at least one citation was not found in trace top_k_chunks",
+      "subtype": "weak_boundary",
+      "dataset_notes": "full-chain v2 secondary ids kept as weak boundary sample"
+    },
+    {
+      "id": "eval_011",
+      "category": "术语解释",
+      "question": "少阴病是什么意思",
+      "should_answer": true,
+      "manual_audit_required": true,
+      "included_in_answer_metrics": false,
+      "diagnostic_only": true,
+      "example_class": "diagnostic_only",
+      "expected_answer_mode": "weak_with_review_notice",
+      "actual_answer_mode": "strong",
+      "gold_chunk_ids": [],
+      "gold_answer_keywords": [
+        "少阴病",
+        "P2",
+        "manual audit"
+      ],
+      "top5_record_ids": [
+        "safe:definition_terms:AHV2-9f641a6ecc7d",
+        "safe:chunks:ZJSHL-CK-M-0777",
+        "safe:main_passages:ZJSHL-CH-014-P-0029",
+        "safe:chunks:ZJSHL-CK-M-0756",
+        "safe:chunks:ZJSHL-CK-M-0776"
+      ],
+      "top5_chunk_ids": [
+        "AHV2-9f641a6ecc7d",
+        "ZJSHL-CK-M-0777",
+        "ZJSHL-CH-014-P-0029",
+        "ZJSHL-CK-M-0756",
+        "ZJSHL-CK-M-0776"
+      ],
+      "top5_matchable_ids": [
+        [
+          "AHV2-9f641a6ecc7d",
+          "ZJSHL-CH-014-P-0021",
+          "full:passages:ZJSHL-CH-014-P-0021",
+          "safe:definition_terms:AHV2-9f641a6ecc7d",
+          "safe:main_passages:ZJSHL-CH-014-P-0021"
+        ],
+        [
+          "ZJSHL-CK-M-0777",
+          "safe:chunks:ZJSHL-CK-M-0777"
+        ],
+        [
+          "ZJSHL-CH-014-P-0029",
+          "full:passages:ZJSHL-CH-014-P-0029",
+          "safe:main_passages:ZJSHL-CH-014-P-0029"
+        ],
+        [
+          "ZJSHL-CK-M-0756",
+          "safe:chunks:ZJSHL-CK-M-0756"
+        ],
+        [
+          "ZJSHL-CK-M-0776",
+          "safe:chunks:ZJSHL-CK-M-0776"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0112",
+        "safe:main_passages:ZJSHL-CH-014-P-0072",
+        "safe:main_passages:ZJSHL-CH-014-P-0105"
+      ],
+      "citation_source_slots": [
+        "primary",
+        "primary",
+        "primary"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": false,
+      "gold_cited": null,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": null,
+      "answer_keyword_hit": null,
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "和这个问题直接相关的主条，当前主要落在这些命中片段里。 少阴病，咽中伤生疮，不能语言，声不出者，苦酒汤主之。 少阴病，得之二三日以上，心中烦，不得卧，黄连阿胶汤主之。 少阴病，二三日咽痛者，可与甘草汤；不瘥者，赵本无「者」字与桔梗汤。 可以先据此理解原文意思，具体字句再结合引用继续回看。",
+      "notes": "at least one citation was not found in trace top_k_chunks",
+      "subtype": "p2_residual",
+      "dataset_notes": "P2 residual diagnostic sample; gold evidence requires manual audit"
+    },
+    {
+      "id": "eval_012",
+      "category": "术语解释",
+      "question": "半表半里证和过经有什么不同",
+      "should_answer": true,
+      "manual_audit_required": true,
+      "included_in_answer_metrics": false,
+      "diagnostic_only": true,
+      "example_class": "diagnostic_only",
+      "expected_answer_mode": "weak_with_review_notice",
+      "actual_answer_mode": "strong",
+      "gold_chunk_ids": [],
+      "gold_answer_keywords": [
+        "半表半里",
+        "过经",
+        "P2"
+      ],
+      "top5_record_ids": [
+        "safe:definition_terms:AHV2-aa28a21f86c8",
+        "full:passages:ZJSHL-CH-009-P-0210",
+        "full:annotations:ZJSHL-CH-010-P-0136",
+        "full:passages:ZJSHL-CH-010-P-0136",
+        "safe:chunks:ZJSHL-CK-M-0480"
+      ],
+      "top5_chunk_ids": [
+        "AHV2-aa28a21f86c8",
+        "ZJSHL-CH-009-P-0210",
+        "ZJSHL-CH-010-P-0136",
+        "ZJSHL-CH-010-P-0136",
+        "ZJSHL-CK-M-0480"
+      ],
+      "top5_matchable_ids": [
+        [
+          "AHV2-aa28a21f86c8",
+          "ZJSHL-CH-009-P-0210",
+          "full:ambiguous_passages:ZJSHL-CH-009-P-0210",
+          "full:passages:ZJSHL-CH-009-P-0210",
+          "safe:definition_terms:AHV2-aa28a21f86c8",
+          "safe:main_passages:ZJSHL-CH-009-P-0210"
+        ],
+        [
+          "ZJSHL-CH-009-P-0210",
+          "full:passages:ZJSHL-CH-009-P-0210",
+          "safe:main_passages:ZJSHL-CH-009-P-0210"
+        ],
+        [
+          "ZJSHL-CH-010-P-0136",
+          "full:annotations:ZJSHL-CH-010-P-0136",
+          "full:passages:ZJSHL-CH-010-P-0136",
+          "safe:main_passages:ZJSHL-CH-010-P-0136"
+        ],
+        [
+          "ZJSHL-CH-010-P-0136",
+          "full:passages:ZJSHL-CH-010-P-0136",
+          "safe:main_passages:ZJSHL-CH-010-P-0136"
+        ],
+        [
+          "ZJSHL-CK-M-0480",
+          "safe:chunks:ZJSHL-CK-M-0480"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0005"
+      ],
+      "citation_source_slots": [
+        "primary"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": false,
+      "gold_cited": null,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": null,
+      "answer_keyword_hit": null,
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "和这个问题直接相关的主条，当前主要落在这些命中片段里。 脏结于法当下，无阳证，为表无热；不往来寒热，为半表半里无热；其人反静，为里无热。经曰：舌上如苔者，以丹田有热，胸中有寒，医统本有「邪气」二字以表里皆寒，故不可攻。 可以先据此理解原文意思，具体字句再结合引用继续回看。",
+      "notes": "at least one citation was not found in trace top_k_chunks",
+      "subtype": "p2_residual",
+      "dataset_notes": "P2 residual diagnostic sample; gold evidence requires manual audit"
+    },
+    {
+      "id": "eval_013",
+      "category": "术语解释",
+      "question": "荣气微和卫气衰有什么区别",
+      "should_answer": true,
+      "manual_audit_required": true,
+      "included_in_answer_metrics": false,
+      "diagnostic_only": true,
+      "example_class": "diagnostic_only",
+      "expected_answer_mode": "weak_with_review_notice",
+      "actual_answer_mode": "strong",
+      "gold_chunk_ids": [],
+      "gold_answer_keywords": [
+        "荣气微",
+        "卫气衰",
+        "P2"
+      ],
+      "top5_record_ids": [
+        "full:annotations:ZJSHL-CH-004-P-0252",
+        "full:passages:ZJSHL-CH-004-P-0252",
+        "safe:chunks:ZJSHL-CK-M-0007",
+        "safe:main_passages:ZJSHL-CH-003-P-0014",
+        "safe:definition_terms:AHV2-81a12b6da994"
+      ],
+      "top5_chunk_ids": [
+        "ZJSHL-CH-004-P-0252",
+        "ZJSHL-CH-004-P-0252",
+        "ZJSHL-CK-M-0007",
+        "ZJSHL-CH-003-P-0014",
+        "AHV2-81a12b6da994"
+      ],
+      "top5_matchable_ids": [
+        [
+          "ZJSHL-CH-004-P-0252",
+          "full:annotations:ZJSHL-CH-004-P-0252",
+          "full:passages:ZJSHL-CH-004-P-0252",
+          "safe:main_passages:ZJSHL-CH-004-P-0252"
+        ],
+        [
+          "ZJSHL-CH-004-P-0252",
+          "full:passages:ZJSHL-CH-004-P-0252",
+          "safe:main_passages:ZJSHL-CH-004-P-0252"
+        ],
+        [
+          "ZJSHL-CK-M-0007",
+          "safe:chunks:ZJSHL-CK-M-0007"
+        ],
+        [
+          "ZJSHL-CH-003-P-0014",
+          "full:passages:ZJSHL-CH-003-P-0014",
+          "safe:main_passages:ZJSHL-CH-003-P-0014"
+        ],
+        [
+          "AHV2-81a12b6da994",
+          "ZJSHL-CH-003-P-0012",
+          "full:passages:ZJSHL-CH-003-P-0012",
+          "safe:definition_terms:AHV2-81a12b6da994",
+          "safe:main_passages:ZJSHL-CH-003-P-0012"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-004-P-0255"
+      ],
+      "citation_source_slots": [
+        "primary"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": false,
+      "gold_cited": null,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": null,
+      "answer_keyword_hit": null,
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "和这个问题直接相关的主条，当前主要落在这些命中片段里。 趺阳脉浮而芤，浮者卫气衰，赵本作「虚」芤者荣气伤，其身体瘦，肌肉甲错，浮芤相搏，宗气衰微，赵本作「微衰」四属断绝。 可以先据此理解原文意思，具体字句再结合引用继续回看。",
+      "notes": "at least one citation was not found in trace top_k_chunks",
+      "subtype": "p2_residual",
+      "dataset_notes": "P2 residual diagnostic sample; gold evidence requires manual audit"
+    },
+    {
+      "id": "eval_014",
+      "category": "术语解释",
+      "question": "霍乱和伤寒有什么区别",
+      "should_answer": true,
+      "manual_audit_required": true,
+      "included_in_answer_metrics": false,
+      "diagnostic_only": true,
+      "example_class": "diagnostic_only",
+      "expected_answer_mode": "weak_with_review_notice",
+      "actual_answer_mode": "strong",
+      "gold_chunk_ids": [],
+      "gold_answer_keywords": [
+        "霍乱",
+        "伤寒",
+        "P2"
+      ],
+      "top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0897",
+        "safe:main_passages:ZJSHL-CH-016-P-0006",
+        "safe:chunks:ZJSHL-CK-M-0902",
+        "safe:main_passages:ZJSHL-CH-016-P-0014",
+        "safe:chunks:ZJSHL-CK-M-0896"
+      ],
+      "top5_chunk_ids": [
+        "ZJSHL-CK-M-0897",
+        "ZJSHL-CH-016-P-0006",
+        "ZJSHL-CK-M-0902",
+        "ZJSHL-CH-016-P-0014",
+        "ZJSHL-CK-M-0896"
+      ],
+      "top5_matchable_ids": [
+        [
+          "ZJSHL-CK-M-0897",
+          "safe:chunks:ZJSHL-CK-M-0897"
+        ],
+        [
+          "ZJSHL-CH-016-P-0006",
+          "full:passages:ZJSHL-CH-016-P-0006",
+          "safe:main_passages:ZJSHL-CH-016-P-0006"
+        ],
+        [
+          "ZJSHL-CK-M-0902",
+          "safe:chunks:ZJSHL-CK-M-0902"
+        ],
+        [
+          "ZJSHL-CH-016-P-0014",
+          "full:passages:ZJSHL-CH-016-P-0014",
+          "safe:main_passages:ZJSHL-CH-016-P-0014"
+        ],
+        [
+          "ZJSHL-CK-M-0896",
+          "safe:chunks:ZJSHL-CK-M-0896"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0320",
+        "safe:main_passages:ZJSHL-CH-009-P-0322"
+      ],
+      "citation_source_slots": [
+        "primary",
+        "primary"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": false,
+      "gold_cited": null,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": null,
+      "answer_keyword_hit": null,
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "和这个问题直接相关的主条，当前主要落在这些命中片段里。 伤寒有热，少腹满，应小便不利；今反利者，为有血也，当下之，不可馀药，宜抵当丸。 抵当丸方：水蛭二十个，赵本有「熬」字。味苦寒 虻虫二十五个，赵本作二十个，去翅足，熬。味苦，微寒 桃人人赵本作仁，二十个，赵本有「五」字，去皮尖 大黄三两 可以先据此理解原文意思，具体字句再结合引用继续回看。",
+      "notes": "at least one citation was not found in trace top_k_chunks",
+      "subtype": "p2_residual",
+      "dataset_notes": "P2 residual diagnostic sample; gold evidence requires manual audit"
+    },
+    {
+      "id": "eval_015",
+      "category": "术语解释",
+      "question": "痓病和太阳病有什么不同",
+      "should_answer": true,
+      "manual_audit_required": true,
+      "included_in_answer_metrics": false,
+      "diagnostic_only": true,
+      "example_class": "diagnostic_only",
+      "expected_answer_mode": "weak_with_review_notice",
+      "actual_answer_mode": "strong",
+      "gold_chunk_ids": [],
+      "gold_answer_keywords": [
+        "痓病",
+        "太阳病",
+        "P2"
+      ],
+      "top5_record_ids": [
+        "safe:main_passages:ZJSHL-CH-007-P-0157",
+        "safe:definition_terms:AHV-87d3ca263c08",
+        "safe:chunks:ZJSHL-CK-M-0451",
+        "safe:main_passages:ZJSHL-CH-009-P-0275",
+        "safe:definition_terms:DPO-0159fa8c7c2c"
+      ],
+      "top5_chunk_ids": [
+        "ZJSHL-CH-007-P-0157",
+        "AHV-87d3ca263c08",
+        "ZJSHL-CK-M-0451",
+        "ZJSHL-CH-009-P-0275",
+        "DPO-0159fa8c7c2c"
+      ],
+      "top5_matchable_ids": [
+        [
+          "ZJSHL-CH-007-P-0157",
+          "full:passages:ZJSHL-CH-007-P-0157",
+          "safe:main_passages:ZJSHL-CH-007-P-0157"
+        ],
+        [
+          "AHV-87d3ca263c08",
+          "ZJSHL-CH-007-P-0157",
+          "ZJSHL-CH-007-P-0165",
+          "full:passages:ZJSHL-CH-007-P-0157",
+          "full:passages:ZJSHL-CH-007-P-0165",
+          "safe:definition_terms:AHV-87d3ca263c08",
+          "safe:main_passages:ZJSHL-CH-007-P-0157",
+          "safe:main_passages:ZJSHL-CH-007-P-0165"
+        ],
+        [
+          "ZJSHL-CK-M-0451",
+          "safe:chunks:ZJSHL-CK-M-0451"
+        ],
+        [
+          "ZJSHL-CH-009-P-0275",
+          "full:passages:ZJSHL-CH-009-P-0275",
+          "safe:main_passages:ZJSHL-CH-009-P-0275"
+        ],
+        [
+          "DPO-0159fa8c7c2c",
+          "ZJSHL-CH-009-P-0008",
+          "ZJSHL-CH-009-P-0064",
+          "full:passages:ZJSHL-CH-009-P-0008",
+          "full:passages:ZJSHL-CH-009-P-0064",
+          "safe:definition_terms:DPO-0159fa8c7c2c",
+          "safe:main_passages:ZJSHL-CH-009-P-0008",
+          "safe:main_passages:ZJSHL-CH-009-P-0064"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-007-P-0159",
+        "safe:main_passages:ZJSHL-CH-009-P-0002",
+        "safe:main_passages:ZJSHL-CH-008-P-0220"
+      ],
+      "citation_source_slots": [
+        "primary",
+        "primary",
+        "primary"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": false,
+      "gold_cited": null,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": null,
+      "answer_keyword_hit": null,
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "和这个问题直接相关的主条，当前主要落在这些命中片段里。 太阳病，发热汗出，赵本有「而」字不恶寒者，赵本无「者」字名曰柔痓。 太阳病，项背强几几，无汗，恶风，葛根汤主之。 太阳病，头痛发热，汗出恶风者，赵本无「者」字桂枝汤主之。 可以先据此理解原文意思，具体字句再结合引用继续回看。",
+      "notes": "at least one citation was not found in trace top_k_chunks",
+      "subtype": "p2_residual",
+      "dataset_notes": "P2 residual diagnostic sample; gold evidence requires manual audit"
+    },
+    {
+      "id": "eval_016",
+      "category": "方剂关联",
+      "question": "太阳中风鼻鸣乾呕用什么方？",
+      "should_answer": true,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": true,
+      "diagnostic_only": false,
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "actual_answer_mode": "weak_with_review_notice",
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0215"
+      ],
+      "gold_answer_keywords": [
+        "太阳中风",
+        "鼻鸣乾呕",
+        "桂枝汤"
+      ],
+      "top5_record_ids": [
+        "formula:FML-1b00cf16ce52",
+        "safe:chunks:ZJSHL-CK-M-0271",
+        "safe:main_passages:ZJSHL-CH-008-P-0215",
+        "full:passages:ZJSHL-CH-008-P-0215",
+        "safe:chunks:ZJSHL-CK-M-0521"
+      ],
+      "top5_chunk_ids": [
+        "FML-1b00cf16ce52",
+        "ZJSHL-CK-M-0271",
+        "ZJSHL-CH-008-P-0215",
+        "ZJSHL-CH-008-P-0215",
+        "ZJSHL-CK-M-0521"
+      ],
+      "top5_matchable_ids": [
+        [
+          "FML-1b00cf16ce52",
+          "ZJSHL-CH-008-P-0215",
+          "ZJSHL-CH-008-P-0217",
+          "ZJSHL-CH-008-P-0219",
+          "ZJSHL-CH-008-P-0220",
+          "ZJSHL-CH-008-P-0229",
+          "ZJSHL-CH-008-P-0246",
+          "ZJSHL-CH-008-P-0248",
+          "ZJSHL-CH-008-P-0253",
+          "ZJSHL-CH-008-P-0256",
+          "ZJSHL-CH-016-P-0034",
+          "formula:FML-1b00cf16ce52",
+          "full:passages:ZJSHL-CH-008-P-0215",
+          "full:passages:ZJSHL-CH-008-P-0217",
+          "full:passages:ZJSHL-CH-008-P-0219",
+          "full:passages:ZJSHL-CH-008-P-0220",
+          "full:passages:ZJSHL-CH-008-P-0229",
+          "full:passages:ZJSHL-CH-008-P-0246",
+          "full:passages:ZJSHL-CH-008-P-0248",
+          "full:passages:ZJSHL-CH-008-P-0253",
+          "full:passages:ZJSHL-CH-008-P-0256",
+          "full:passages:ZJSHL-CH-016-P-0034",
+          "safe:main_passages:ZJSHL-CH-008-P-0215",
+          "safe:main_passages:ZJSHL-CH-008-P-0217",
+          "safe:main_passages:ZJSHL-CH-008-P-0219",
+          "safe:main_passages:ZJSHL-CH-008-P-0220",
+          "safe:main_passages:ZJSHL-CH-008-P-0229",
+          "safe:main_passages:ZJSHL-CH-008-P-0246",
+          "safe:main_passages:ZJSHL-CH-008-P-0248",
+          "safe:main_passages:ZJSHL-CH-008-P-0253",
+          "safe:main_passages:ZJSHL-CH-008-P-0256",
+          "safe:main_passages:ZJSHL-CH-016-P-0034"
+        ],
+        [
+          "ZJSHL-CK-M-0271",
+          "safe:chunks:ZJSHL-CK-M-0271"
+        ],
+        [
+          "ZJSHL-CH-008-P-0215",
+          "full:passages:ZJSHL-CH-008-P-0215",
+          "safe:main_passages:ZJSHL-CH-008-P-0215"
+        ],
+        [
+          "ZJSHL-CH-008-P-0215",
+          "full:passages:ZJSHL-CH-008-P-0215",
+          "safe:main_passages:ZJSHL-CH-008-P-0215"
+        ],
+        [
+          "ZJSHL-CK-M-0521",
+          "safe:chunks:ZJSHL-CK-M-0521"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0215",
+        "safe:main_passages:ZJSHL-CH-008-P-0217",
+        "safe:main_passages:ZJSHL-CH-008-P-0219",
+        "safe:main_passages:ZJSHL-CH-008-P-0220",
+        "safe:main_passages:ZJSHL-CH-008-P-0229",
+        "full:passages:ZJSHL-CH-008-P-0215",
+        "full:passages:ZJSHL-CH-007-P-0167"
+      ],
+      "citation_source_slots": [
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "review",
+        "review"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": false,
+      "gold_cited": true,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": false,
+      "answer_keyword_hit": true,
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "这个问题目前只能先保守地理解到这里：太阳中风，阳浮而阴弱。阳浮者，热自发；阴弱者，汗自出。啬啬恶寒，淅淅恶风，翕翕发热，鼻鸣乾呕者，桂枝汤主之。。 之所以只能先这样说，是因为当前缺少更稳定的正文主证据。 建议先回看这条命中片段所在原句，再核对前后文。",
+      "notes": "at least one citation was not found in trace top_k_chunks",
+      "subtype": "formula_association",
+      "dataset_notes": "main passage gives formula association"
+    },
+    {
+      "id": "eval_017",
+      "category": "方剂关联",
+      "question": "太阳病项背强几几无汗恶风用什么方？",
+      "should_answer": true,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": true,
+      "diagnostic_only": false,
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "actual_answer_mode": "weak_with_review_notice",
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0002"
+      ],
+      "gold_answer_keywords": [
+        "项背强几几",
+        "无汗",
+        "葛根汤"
+      ],
+      "top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0299",
+        "safe:main_passages:ZJSHL-CH-009-P-0002",
+        "full:passages:ZJSHL-CH-009-P-0002",
+        "safe:chunks:ZJSHL-CK-M-0273",
+        "safe:main_passages:ZJSHL-CH-008-P-0222"
+      ],
+      "top5_chunk_ids": [
+        "ZJSHL-CK-M-0299",
+        "ZJSHL-CH-009-P-0002",
+        "ZJSHL-CH-009-P-0002",
+        "ZJSHL-CK-M-0273",
+        "ZJSHL-CH-008-P-0222"
+      ],
+      "top5_matchable_ids": [
+        [
+          "ZJSHL-CK-M-0299",
+          "safe:chunks:ZJSHL-CK-M-0299"
+        ],
+        [
+          "ZJSHL-CH-009-P-0002",
+          "full:passages:ZJSHL-CH-009-P-0002",
+          "safe:main_passages:ZJSHL-CH-009-P-0002"
+        ],
+        [
+          "ZJSHL-CH-009-P-0002",
+          "full:passages:ZJSHL-CH-009-P-0002",
+          "safe:main_passages:ZJSHL-CH-009-P-0002"
+        ],
+        [
+          "ZJSHL-CK-M-0273",
+          "safe:chunks:ZJSHL-CK-M-0273"
+        ],
+        [
+          "ZJSHL-CH-008-P-0222",
+          "full:passages:ZJSHL-CH-008-P-0222",
+          "safe:main_passages:ZJSHL-CH-008-P-0222"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0002",
+        "safe:main_passages:ZJSHL-CH-009-P-0004",
+        "safe:main_passages:ZJSHL-CH-009-P-0006",
+        "safe:main_passages:ZJSHL-CH-009-P-0011",
+        "safe:main_passages:ZJSHL-CH-026-P-0001",
+        "full:passages:ZJSHL-CH-009-P-0002",
+        "full:passages:ZJSHL-CH-009-P-0003"
+      ],
+      "citation_source_slots": [
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "review",
+        "review"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": false,
+      "gold_cited": true,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": false,
+      "answer_keyword_hit": true,
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "这个问题目前只能先保守地理解到这里：太阳病，项背强几几，无汗，恶风，葛根汤主之。。 之所以只能先这样说，是因为当前缺少更稳定的正文主证据。 建议先回看这条命中片段所在原句，再核对前后文。",
+      "notes": "at least one citation was not found in trace top_k_chunks",
+      "subtype": "formula_association",
+      "dataset_notes": "main passage gives formula association"
+    },
+    {
+      "id": "eval_018",
+      "category": "方剂关联",
+      "question": "伤寒脉浮紧无汗身疼痛用什么方？",
+      "should_answer": true,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": true,
+      "diagnostic_only": false,
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "actual_answer_mode": "weak_with_review_notice",
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0059"
+      ],
+      "gold_answer_keywords": [
+        "脉浮紧",
+        "无汗",
+        "麻黄汤"
+      ],
+      "top5_record_ids": [
+        "formula:FML-04f61fac7138",
+        "safe:chunks:ZJSHL-CK-M-0326",
+        "safe:main_passages:ZJSHL-CH-009-P-0059",
+        "safe:chunks:ZJSHL-CK-M-0337",
+        "safe:main_passages:ZJSHL-CH-009-P-0077"
+      ],
+      "top5_chunk_ids": [
+        "FML-04f61fac7138",
+        "ZJSHL-CK-M-0326",
+        "ZJSHL-CH-009-P-0059",
+        "ZJSHL-CK-M-0337",
+        "ZJSHL-CH-009-P-0077"
+      ],
+      "top5_matchable_ids": [
+        [
+          "FML-04f61fac7138",
+          "ZJSHL-CH-008-P-0229",
+          "ZJSHL-CH-009-P-0022",
+          "ZJSHL-CH-009-P-0025",
+          "ZJSHL-CH-009-P-0026",
+          "ZJSHL-CH-009-P-0030",
+          "ZJSHL-CH-009-P-0059",
+          "ZJSHL-CH-009-P-0069",
+          "ZJSHL-CH-009-P-0071",
+          "ZJSHL-CH-009-P-0077",
+          "formula:FML-04f61fac7138",
+          "full:passages:ZJSHL-CH-008-P-0229",
+          "full:passages:ZJSHL-CH-009-P-0022",
+          "full:passages:ZJSHL-CH-009-P-0025",
+          "full:passages:ZJSHL-CH-009-P-0026",
+          "full:passages:ZJSHL-CH-009-P-0030",
+          "full:passages:ZJSHL-CH-009-P-0059",
+          "full:passages:ZJSHL-CH-009-P-0069",
+          "full:passages:ZJSHL-CH-009-P-0071",
+          "full:passages:ZJSHL-CH-009-P-0077",
+          "safe:main_passages:ZJSHL-CH-008-P-0229",
+          "safe:main_passages:ZJSHL-CH-009-P-0022",
+          "safe:main_passages:ZJSHL-CH-009-P-0025",
+          "safe:main_passages:ZJSHL-CH-009-P-0026",
+          "safe:main_passages:ZJSHL-CH-009-P-0030",
+          "safe:main_passages:ZJSHL-CH-009-P-0059",
+          "safe:main_passages:ZJSHL-CH-009-P-0069",
+          "safe:main_passages:ZJSHL-CH-009-P-0071",
+          "safe:main_passages:ZJSHL-CH-009-P-0077"
+        ],
+        [
+          "ZJSHL-CK-M-0326",
+          "safe:chunks:ZJSHL-CK-M-0326"
+        ],
+        [
+          "ZJSHL-CH-009-P-0059",
+          "full:passages:ZJSHL-CH-009-P-0059",
+          "safe:main_passages:ZJSHL-CH-009-P-0059"
+        ],
+        [
+          "ZJSHL-CK-M-0337",
+          "safe:chunks:ZJSHL-CK-M-0337"
+        ],
+        [
+          "ZJSHL-CH-009-P-0077",
+          "full:passages:ZJSHL-CH-009-P-0077",
+          "safe:main_passages:ZJSHL-CH-009-P-0077"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0022",
+        "safe:main_passages:ZJSHL-CH-009-P-0025",
+        "safe:main_passages:ZJSHL-CH-009-P-0026",
+        "safe:main_passages:ZJSHL-CH-009-P-0030",
+        "safe:main_passages:ZJSHL-CH-009-P-0059",
+        "full:passages:ZJSHL-CH-009-P-0077",
+        "full:passages:ZJSHL-CH-009-P-0078"
+      ],
+      "citation_source_slots": [
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "review",
+        "review"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": false,
+      "gold_cited": true,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": false,
+      "answer_keyword_hit": true,
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "这个问题目前只能先保守地理解到这里：麻黄汤方：麻黄三两，去节。味甘温 桂枝二，医统本作三两，去皮。味辛热 甘草一两，炙。味甘平。 之所以只能先这样说，是因为当前缺少更稳定的正文主证据。 建议先回看这条命中片段所在原句，再核对前后文。",
+      "notes": "at least one citation was not found in trace top_k_chunks",
+      "subtype": "formula_association",
+      "dataset_notes": "main passage gives formula association"
+    },
+    {
+      "id": "eval_019",
+      "category": "方剂关联",
+      "question": "小结胸病正在心下按之痛用什么方？",
+      "should_answer": true,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": true,
+      "diagnostic_only": false,
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "actual_answer_mode": "strong",
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0029"
+      ],
+      "gold_answer_keywords": [
+        "小结胸",
+        "按之则痛",
+        "小陷胸汤"
+      ],
+      "top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0492",
+        "safe:main_passages:ZJSHL-CH-010-P-0029",
+        "full:passages:ZJSHL-CH-010-P-0029",
+        "formula:FML-fbda04fad45e",
+        "safe:definition_terms:DPO-3110870253d3"
+      ],
+      "top5_chunk_ids": [
+        "ZJSHL-CK-M-0492",
+        "ZJSHL-CH-010-P-0029",
+        "ZJSHL-CH-010-P-0029",
+        "FML-fbda04fad45e",
+        "DPO-3110870253d3"
+      ],
+      "top5_matchable_ids": [
+        [
+          "ZJSHL-CK-M-0492",
+          "safe:chunks:ZJSHL-CK-M-0492"
+        ],
+        [
+          "ZJSHL-CH-010-P-0029",
+          "full:passages:ZJSHL-CH-010-P-0029",
+          "safe:main_passages:ZJSHL-CH-010-P-0029"
+        ],
+        [
+          "ZJSHL-CH-010-P-0029",
+          "full:passages:ZJSHL-CH-010-P-0029",
+          "safe:main_passages:ZJSHL-CH-010-P-0029"
+        ],
+        [
+          "FML-fbda04fad45e",
+          "ZJSHL-CH-010-P-0029",
+          "ZJSHL-CH-010-P-0031",
+          "ZJSHL-CH-010-P-0040",
+          "formula:FML-fbda04fad45e",
+          "full:passages:ZJSHL-CH-010-P-0029",
+          "full:passages:ZJSHL-CH-010-P-0031",
+          "full:passages:ZJSHL-CH-010-P-0040",
+          "safe:main_passages:ZJSHL-CH-010-P-0029",
+          "safe:main_passages:ZJSHL-CH-010-P-0031",
+          "safe:main_passages:ZJSHL-CH-010-P-0040"
+        ],
+        [
+          "DPO-3110870253d3",
+          "ZJSHL-CH-010-P-0029",
+          "ZJSHL-CH-010-P-0030",
+          "full:passages:ZJSHL-CH-010-P-0029",
+          "full:passages:ZJSHL-CH-010-P-0030",
+          "safe:definition_terms:DPO-3110870253d3",
+          "safe:main_passages:ZJSHL-CH-010-P-0029",
+          "safe:main_passages:ZJSHL-CH-010-P-0030"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0029",
+        "safe:main_passages:ZJSHL-CH-010-P-0031"
+      ],
+      "citation_source_slots": [
+        "primary",
+        "primary"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": true,
+      "gold_cited": true,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": true,
+      "answer_keyword_hit": true,
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "和这个问题直接相关的主条，当前主要落在这些命中片段里。 小结胸病，正在心下，按之则痛，脉浮滑者，小陷胸汤主之。 小陷胸汤方：黄连一两。苦寒 半夏半升，洗。辛温 栝蒌实大者一个，赵本作枚。味苦寒 可以先据此理解原文意思，具体字句再结合引用继续回看。",
+      "notes": "",
+      "subtype": "formula_association",
+      "dataset_notes": "main passage gives formula association"
+    },
+    {
+      "id": "eval_020",
+      "category": "方剂关联",
+      "question": "霍乱热多欲饮水用什么方？",
+      "should_answer": true,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": true,
+      "diagnostic_only": false,
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "actual_answer_mode": "weak_with_review_notice",
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-016-P-0014"
+      ],
+      "gold_answer_keywords": [
+        "霍乱",
+        "热多欲饮水",
+        "五苓散"
+      ],
+      "top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0902",
+        "safe:main_passages:ZJSHL-CH-016-P-0014",
+        "full:passages:ZJSHL-CH-016-P-0014",
+        "formula:FML-c0e2a6a2a401",
+        "full:annotations:ZJSHL-CH-016-P-0015"
+      ],
+      "top5_chunk_ids": [
+        "ZJSHL-CK-M-0902",
+        "ZJSHL-CH-016-P-0014",
+        "ZJSHL-CH-016-P-0014",
+        "FML-c0e2a6a2a401",
+        "ZJSHL-CH-016-P-0015"
+      ],
+      "top5_matchable_ids": [
+        [
+          "ZJSHL-CK-M-0902",
+          "safe:chunks:ZJSHL-CK-M-0902"
+        ],
+        [
+          "ZJSHL-CH-016-P-0014",
+          "full:passages:ZJSHL-CH-016-P-0014",
+          "safe:main_passages:ZJSHL-CH-016-P-0014"
+        ],
+        [
+          "ZJSHL-CH-016-P-0014",
+          "full:passages:ZJSHL-CH-016-P-0014",
+          "safe:main_passages:ZJSHL-CH-016-P-0014"
+        ],
+        [
+          "FML-c0e2a6a2a401",
+          "ZJSHL-CH-016-P-0014",
+          "ZJSHL-CH-016-P-0016",
+          "ZJSHL-CH-016-P-0018",
+          "ZJSHL-CH-017-P-0061",
+          "formula:FML-c0e2a6a2a401",
+          "full:passages:ZJSHL-CH-016-P-0014",
+          "full:passages:ZJSHL-CH-016-P-0016",
+          "full:passages:ZJSHL-CH-016-P-0018",
+          "full:passages:ZJSHL-CH-017-P-0061",
+          "safe:main_passages:ZJSHL-CH-016-P-0014",
+          "safe:main_passages:ZJSHL-CH-016-P-0016",
+          "safe:main_passages:ZJSHL-CH-016-P-0018",
+          "safe:main_passages:ZJSHL-CH-017-P-0061"
+        ],
+        [
+          "ZJSHL-CH-016-P-0015",
+          "full:annotations:ZJSHL-CH-016-P-0015",
+          "full:passages:ZJSHL-CH-016-P-0015",
+          "safe:main_passages:ZJSHL-CH-016-P-0015"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-016-P-0014",
+        "safe:main_passages:ZJSHL-CH-016-P-0016",
+        "safe:main_passages:ZJSHL-CH-016-P-0018",
+        "safe:main_passages:ZJSHL-CH-017-P-0061",
+        "full:annotations:ZJSHL-CH-016-P-0015",
+        "full:passages:ZJSHL-CH-016-P-0014",
+        "full:passages:ZJSHL-CH-016-P-0015"
+      ],
+      "citation_source_slots": [
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "review",
+        "review"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": true,
+      "gold_cited": true,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": false,
+      "answer_keyword_hit": true,
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "这个问题目前只能先保守地理解到这里：霍乱，头痛，发热，身疼痛，热多欲饮水者，五苓散主之；寒多不用水者，理中丸主之。赵本有「五芩散方」详见卷三。 之所以只能先这样说，是因为当前缺少更稳定的正文主证据。 建议先回看这条命中片段所在原句，再核对前后文。",
+      "notes": "",
+      "subtype": "formula_association",
+      "dataset_notes": "main passage gives formula association"
+    },
+    {
+      "id": "eval_021",
+      "category": "症候检索",
+      "question": "呕吐而利在书中叫什么？",
+      "should_answer": true,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": true,
+      "diagnostic_only": false,
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "actual_answer_mode": "strong",
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-016-P-0002"
+      ],
+      "gold_answer_keywords": [
+        "呕吐而利",
+        "霍乱"
+      ],
+      "top5_record_ids": [
+        "safe:definition_terms:AHV-72cae785c0ac",
+        "safe:chunks:ZJSHL-CK-M-0895",
+        "safe:main_passages:ZJSHL-CH-016-P-0002",
+        "full:passages:ZJSHL-CH-016-P-0002",
+        "full:passages:ZJSHL-CH-010-P-0119"
+      ],
+      "top5_chunk_ids": [
+        "AHV-72cae785c0ac",
+        "ZJSHL-CK-M-0895",
+        "ZJSHL-CH-016-P-0002",
+        "ZJSHL-CH-016-P-0002",
+        "ZJSHL-CH-010-P-0119"
+      ],
+      "top5_matchable_ids": [
+        [
+          "AHV-72cae785c0ac",
+          "ZJSHL-CH-016-P-0002",
+          "ZJSHL-CH-016-P-0003",
+          "ZJSHL-CH-016-P-0004",
+          "full:passages:ZJSHL-CH-016-P-0002",
+          "full:passages:ZJSHL-CH-016-P-0003",
+          "full:passages:ZJSHL-CH-016-P-0004",
+          "safe:definition_terms:AHV-72cae785c0ac",
+          "safe:main_passages:ZJSHL-CH-016-P-0002",
+          "safe:main_passages:ZJSHL-CH-016-P-0003",
+          "safe:main_passages:ZJSHL-CH-016-P-0004"
+        ],
+        [
+          "ZJSHL-CK-M-0895",
+          "safe:chunks:ZJSHL-CK-M-0895"
+        ],
+        [
+          "ZJSHL-CH-016-P-0002",
+          "full:passages:ZJSHL-CH-016-P-0002",
+          "safe:main_passages:ZJSHL-CH-016-P-0002"
+        ],
+        [
+          "ZJSHL-CH-016-P-0002",
+          "full:passages:ZJSHL-CH-016-P-0002",
+          "safe:main_passages:ZJSHL-CH-016-P-0002"
+        ],
+        [
+          "ZJSHL-CH-010-P-0119",
+          "full:passages:ZJSHL-CH-010-P-0119",
+          "safe:main_passages:ZJSHL-CH-010-P-0119"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-016-P-0002"
+      ],
+      "citation_source_slots": [
+        "primary"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": true,
+      "gold_cited": true,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": true,
+      "answer_keyword_hit": true,
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "和这个问题直接相关的主条，当前主要落在这些命中片段里。 问曰：病有霍乱者何？答曰：呕吐而利，名曰霍乱。赵本作「此名霍乱」 可以先据此理解原文意思，具体字句再结合引用继续回看。",
+      "notes": "",
+      "subtype": "symptom_lookup",
+      "dataset_notes": "main passage gives symptom name"
+    },
+    {
+      "id": "eval_022",
+      "category": "症候检索",
+      "question": "头项强痛而恶寒对应哪段原文？",
+      "should_answer": true,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": true,
+      "diagnostic_only": false,
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "actual_answer_mode": "weak_with_review_notice",
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0191"
+      ],
+      "gold_answer_keywords": [
+        "头项强痛",
+        "恶寒",
+        "太阳之为病"
+      ],
+      "top5_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0191",
+        "full:passages:ZJSHL-CH-008-P-0191",
+        "safe:definition_terms:AHV-fdb12048d73e",
+        "full:annotations:ZJSHL-CH-008-P-0192",
+        "full:passages:ZJSHL-CH-008-P-0192"
+      ],
+      "top5_chunk_ids": [
+        "ZJSHL-CH-008-P-0191",
+        "ZJSHL-CH-008-P-0191",
+        "AHV-fdb12048d73e",
+        "ZJSHL-CH-008-P-0192",
+        "ZJSHL-CH-008-P-0192"
+      ],
+      "top5_matchable_ids": [
+        [
+          "ZJSHL-CH-008-P-0191",
+          "full:passages:ZJSHL-CH-008-P-0191",
+          "safe:main_passages:ZJSHL-CH-008-P-0191"
+        ],
+        [
+          "ZJSHL-CH-008-P-0191",
+          "full:passages:ZJSHL-CH-008-P-0191",
+          "safe:main_passages:ZJSHL-CH-008-P-0191"
+        ],
+        [
+          "AHV-fdb12048d73e",
+          "ZJSHL-CH-008-P-0191",
+          "full:passages:ZJSHL-CH-008-P-0191",
+          "safe:definition_terms:AHV-fdb12048d73e",
+          "safe:main_passages:ZJSHL-CH-008-P-0191"
+        ],
+        [
+          "ZJSHL-CH-008-P-0192",
+          "full:annotations:ZJSHL-CH-008-P-0192",
+          "full:passages:ZJSHL-CH-008-P-0192",
+          "safe:main_passages:ZJSHL-CH-008-P-0192"
+        ],
+        [
+          "ZJSHL-CH-008-P-0192",
+          "full:passages:ZJSHL-CH-008-P-0192",
+          "safe:main_passages:ZJSHL-CH-008-P-0192"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0191",
+        "full:annotations:ZJSHL-CH-008-P-0192",
+        "full:annotations:ZJSHL-CH-008-P-0255",
+        "safe:main_passages:ZJSHL-CH-016-P-0006",
+        "safe:main_passages:ZJSHL-CH-007-P-0188",
+        "full:passages:ZJSHL-CH-008-P-0191",
+        "full:passages:ZJSHL-CH-008-P-0192",
+        "full:ambiguous_passages:ZJSHL-CH-010-P-0048"
+      ],
+      "citation_source_slots": [
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "review",
+        "review",
+        "review"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": false,
+      "gold_cited": true,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": false,
+      "answer_keyword_hit": true,
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "这个问题目前只能先保守地理解到这里：太阳之为病，脉浮，头项强痛而恶寒。。 之所以只能先这样说，是因为当前缺少更稳定的正文主证据。 建议先回看这条命中片段所在原句，再核对前后文。",
+      "notes": "at least one citation was not found in trace top_k_chunks",
+      "subtype": "symptom_lookup",
+      "dataset_notes": "main passage gives symptom cluster"
+    },
+    {
+      "id": "eval_023",
+      "category": "症候检索",
+      "question": "发热汗出恶风脉缓名为什么？",
+      "should_answer": true,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": true,
+      "diagnostic_only": false,
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "actual_answer_mode": "strong",
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0193"
+      ],
+      "gold_answer_keywords": [
+        "发热汗出",
+        "恶风",
+        "中风"
+      ],
+      "top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0256",
+        "safe:main_passages:ZJSHL-CH-008-P-0193",
+        "full:passages:ZJSHL-CH-008-P-0193",
+        "full:annotations:ZJSHL-CH-008-P-0194",
+        "safe:chunks:ZJSHL-CK-M-0460"
+      ],
+      "top5_chunk_ids": [
+        "ZJSHL-CK-M-0256",
+        "ZJSHL-CH-008-P-0193",
+        "ZJSHL-CH-008-P-0193",
+        "ZJSHL-CH-008-P-0194",
+        "ZJSHL-CK-M-0460"
+      ],
+      "top5_matchable_ids": [
+        [
+          "ZJSHL-CK-M-0256",
+          "safe:chunks:ZJSHL-CK-M-0256"
+        ],
+        [
+          "ZJSHL-CH-008-P-0193",
+          "full:passages:ZJSHL-CH-008-P-0193",
+          "safe:main_passages:ZJSHL-CH-008-P-0193"
+        ],
+        [
+          "ZJSHL-CH-008-P-0193",
+          "full:passages:ZJSHL-CH-008-P-0193",
+          "safe:main_passages:ZJSHL-CH-008-P-0193"
+        ],
+        [
+          "ZJSHL-CH-008-P-0194",
+          "full:annotations:ZJSHL-CH-008-P-0194",
+          "full:passages:ZJSHL-CH-008-P-0194",
+          "safe:main_passages:ZJSHL-CH-008-P-0194"
+        ],
+        [
+          "ZJSHL-CK-M-0460",
+          "safe:chunks:ZJSHL-CK-M-0460"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0193",
+        "safe:main_passages:ZJSHL-CH-008-P-0229",
+        "safe:main_passages:ZJSHL-CH-008-P-0220"
+      ],
+      "citation_source_slots": [
+        "primary",
+        "primary",
+        "primary"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": false,
+      "gold_cited": true,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": true,
+      "answer_keyword_hit": true,
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "和这个问题直接相关的主条，当前主要落在这些命中片段里。 太阳病，发热，汗出，恶风，脉缓者，名为中风。 脉浮，发热，汗出恶风者，中风也，可与桂枝汤解肌；脉浮紧，发热，不汗医统本作「汗不」出者，伤寒也，可与麻黄汤。常须识此，勿妄治也。 太阳病，头痛发热，汗出恶风者，赵本无「者」字桂枝汤主之。 可以先据此理解原文意思，具体字句再结合引用继续回看。",
+      "notes": "at least one citation was not found in trace top_k_chunks",
+      "subtype": "symptom_lookup",
+      "dataset_notes": "main passage gives symptom name"
+    },
+    {
+      "id": "eval_024",
+      "category": "症候检索",
+      "question": "发热无汗反恶寒名为什么？",
+      "should_answer": true,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": true,
+      "diagnostic_only": false,
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "actual_answer_mode": "weak_with_review_notice",
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-007-P-0157"
+      ],
+      "gold_answer_keywords": [
+        "发热无汗",
+        "恶寒",
+        "刚痓"
+      ],
+      "top5_record_ids": [
+        "safe:definition_terms:AHV-87d3ca263c08",
+        "safe:main_passages:ZJSHL-CH-007-P-0157",
+        "full:passages:ZJSHL-CH-007-P-0157",
+        "full:annotations:ZJSHL-CH-007-P-0158",
+        "full:passages:ZJSHL-CH-007-P-0158"
+      ],
+      "top5_chunk_ids": [
+        "AHV-87d3ca263c08",
+        "ZJSHL-CH-007-P-0157",
+        "ZJSHL-CH-007-P-0157",
+        "ZJSHL-CH-007-P-0158",
+        "ZJSHL-CH-007-P-0158"
+      ],
+      "top5_matchable_ids": [
+        [
+          "AHV-87d3ca263c08",
+          "ZJSHL-CH-007-P-0157",
+          "ZJSHL-CH-007-P-0165",
+          "full:passages:ZJSHL-CH-007-P-0157",
+          "full:passages:ZJSHL-CH-007-P-0165",
+          "safe:definition_terms:AHV-87d3ca263c08",
+          "safe:main_passages:ZJSHL-CH-007-P-0157",
+          "safe:main_passages:ZJSHL-CH-007-P-0165"
+        ],
+        [
+          "ZJSHL-CH-007-P-0157",
+          "full:passages:ZJSHL-CH-007-P-0157",
+          "safe:main_passages:ZJSHL-CH-007-P-0157"
+        ],
+        [
+          "ZJSHL-CH-007-P-0157",
+          "full:passages:ZJSHL-CH-007-P-0157",
+          "safe:main_passages:ZJSHL-CH-007-P-0157"
+        ],
+        [
+          "ZJSHL-CH-007-P-0158",
+          "full:annotations:ZJSHL-CH-007-P-0158",
+          "full:passages:ZJSHL-CH-007-P-0158",
+          "safe:main_passages:ZJSHL-CH-007-P-0158"
+        ],
+        [
+          "ZJSHL-CH-007-P-0158",
+          "full:passages:ZJSHL-CH-007-P-0158",
+          "safe:main_passages:ZJSHL-CH-007-P-0158"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-007-P-0157",
+        "full:annotations:ZJSHL-CH-007-P-0158",
+        "full:annotations:ZJSHL-CH-008-P-0194",
+        "safe:main_passages:ZJSHL-CH-009-P-0303",
+        "safe:main_passages:ZJSHL-CH-007-P-0159",
+        "full:passages:ZJSHL-CH-007-P-0159",
+        "full:passages:ZJSHL-CH-007-P-0158",
+        "full:passages:ZJSHL-CH-007-P-0157",
+        "full:passages:ZJSHL-CH-007-P-0160",
+        "full:passages:ZJSHL-CH-008-P-0193",
+        "full:passages:ZJSHL-CH-008-P-0195",
+        "full:ambiguous_passages:ZJSHL-CH-011-P-0020"
+      ],
+      "citation_source_slots": [
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "review"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": false,
+      "gold_cited": true,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": false,
+      "answer_keyword_hit": true,
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "这个问题目前只能先保守地理解到这里：太阳病，发热无汗，反恶寒者，名曰刚痓。。 之所以只能先这样说，是因为当前缺少更稳定的正文主证据。 建议先回看这条命中片段所在原句，再核对前后文。",
+      "notes": "at least one citation was not found in trace top_k_chunks",
+      "subtype": "symptom_lookup",
+      "dataset_notes": "main passage gives symptom name"
+    },
+    {
+      "id": "eval_025",
+      "category": "症候检索",
+      "question": "发热汗出不恶寒名为什么？",
+      "should_answer": true,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": true,
+      "diagnostic_only": false,
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "actual_answer_mode": "strong",
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-007-P-0159"
+      ],
+      "gold_answer_keywords": [
+        "发热汗出",
+        "不恶寒",
+        "柔痓"
+      ],
+      "top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0232",
+        "full:annotations:ZJSHL-CH-008-P-0194",
+        "full:passages:ZJSHL-CH-008-P-0194",
+        "safe:chunks:ZJSHL-CK-M-0365",
+        "safe:main_passages:ZJSHL-CH-009-P-0135"
+      ],
+      "top5_chunk_ids": [
+        "ZJSHL-CK-M-0232",
+        "ZJSHL-CH-008-P-0194",
+        "ZJSHL-CH-008-P-0194",
+        "ZJSHL-CK-M-0365",
+        "ZJSHL-CH-009-P-0135"
+      ],
+      "top5_matchable_ids": [
+        [
+          "ZJSHL-CK-M-0232",
+          "safe:chunks:ZJSHL-CK-M-0232"
+        ],
+        [
+          "ZJSHL-CH-008-P-0194",
+          "full:annotations:ZJSHL-CH-008-P-0194",
+          "full:passages:ZJSHL-CH-008-P-0194",
+          "safe:main_passages:ZJSHL-CH-008-P-0194"
+        ],
+        [
+          "ZJSHL-CH-008-P-0194",
+          "full:passages:ZJSHL-CH-008-P-0194",
+          "safe:main_passages:ZJSHL-CH-008-P-0194"
+        ],
+        [
+          "ZJSHL-CK-M-0365",
+          "safe:chunks:ZJSHL-CK-M-0365"
+        ],
+        [
+          "ZJSHL-CH-009-P-0135",
+          "full:passages:ZJSHL-CH-009-P-0135",
+          "safe:main_passages:ZJSHL-CH-009-P-0135"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0101",
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-009-P-0135"
+      ],
+      "citation_source_slots": [
+        "primary",
+        "primary",
+        "primary"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": false,
+      "gold_cited": false,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": true,
+      "answer_keyword_hit": true,
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "和这个问题直接相关的主条，当前主要落在这些命中片段里。 阳明病，脉浮而紧，咽燥口苦，腹满而喘，发热汗出，不恶寒，反恶热，身重。若发汗则躁，心愦愦，反谵语。若加烧赵本作「温」针，必怵惕烦躁，不得眠；若下之，则胃中空虚，客气动膈，心中懊 ，舌上苔者，栀子豉汤主之。赵本有「栀子豉汤方」详见卷三 栀子豉汤方：栀子十四枚，赵本作个，擘。味苦寒 香豉四合，绵裹。味苦寒...",
+      "notes": "at least one citation was not found in trace top_k_chunks; no citation matched gold_chunk_ids under evaluator equivalence",
+      "subtype": "symptom_lookup",
+      "dataset_notes": "main passage gives symptom name"
+    },
+    {
+      "id": "eval_026",
+      "category": "注文理解",
+      "question": "成无己如何解释荣气微？",
+      "should_answer": true,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": true,
+      "diagnostic_only": false,
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "actual_answer_mode": "weak_with_review_notice",
+      "gold_chunk_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0011",
+        "full:annotations:ZJSHL-CH-003-P-0016"
+      ],
+      "gold_answer_keywords": [
+        "荣气微",
+        "荣血内微",
+        "阴虚"
+      ],
+      "top5_record_ids": [
+        "safe:definition_terms:AHV2-850318ee8950",
+        "safe:main_passages:ZJSHL-CH-003-P-0010",
+        "full:passages:ZJSHL-CH-003-P-0010",
+        "safe:main_passages:ZJSHL-CH-004-P-0216",
+        "full:annotations:ZJSHL-CH-003-P-0015"
+      ],
+      "top5_chunk_ids": [
+        "AHV2-850318ee8950",
+        "ZJSHL-CH-003-P-0010",
+        "ZJSHL-CH-003-P-0010",
+        "ZJSHL-CH-004-P-0216",
+        "ZJSHL-CH-003-P-0015"
+      ],
+      "top5_matchable_ids": [
+        [
+          "AHV2-850318ee8950",
+          "ZJSHL-CH-003-P-0010",
+          "full:passages:ZJSHL-CH-003-P-0010",
+          "safe:definition_terms:AHV2-850318ee8950",
+          "safe:main_passages:ZJSHL-CH-003-P-0010"
+        ],
+        [
+          "ZJSHL-CH-003-P-0010",
+          "full:passages:ZJSHL-CH-003-P-0010",
+          "safe:main_passages:ZJSHL-CH-003-P-0010"
+        ],
+        [
+          "ZJSHL-CH-003-P-0010",
+          "full:passages:ZJSHL-CH-003-P-0010",
+          "safe:main_passages:ZJSHL-CH-003-P-0010"
+        ],
+        [
+          "ZJSHL-CH-004-P-0216",
+          "full:passages:ZJSHL-CH-004-P-0216",
+          "safe:main_passages:ZJSHL-CH-004-P-0216"
+        ],
+        [
+          "ZJSHL-CH-003-P-0015",
+          "full:annotations:ZJSHL-CH-003-P-0015",
+          "full:passages:ZJSHL-CH-003-P-0015",
+          "safe:main_passages:ZJSHL-CH-003-P-0015"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0010",
+        "full:annotations:ZJSHL-CH-003-P-0015",
+        "safe:main_passages:ZJSHL-CH-004-P-0216",
+        "full:annotations:ZJSHL-CH-009-P-0302",
+        "safe:main_passages:ZJSHL-CH-003-P-0014",
+        "full:passages:ZJSHL-CH-003-P-0015",
+        "full:passages:ZJSHL-CH-003-P-0014",
+        "full:passages:ZJSHL-CH-003-P-0016",
+        "full:passages:ZJSHL-CH-003-P-0011",
+        "full:passages:ZJSHL-CH-009-P-0303",
+        "full:passages:ZJSHL-CH-003-P-0009",
+        "full:passages:ZJSHL-CH-003-P-0010",
+        "full:passages:ZJSHL-CH-005-P-0002"
+      ],
+      "citation_source_slots": [
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "review",
+        "review"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": false,
+      "gold_cited": false,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": false,
+      "answer_keyword_hit": true,
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "这个问题目前只能先保守地理解到这里：其脉沉者，荣气微也。。 之所以只能先这样说，是因为当前缺少更稳定的正文主证据。 建议先回看这条命中片段所在原句，再核对前后文。",
+      "notes": "at least one citation was not found in trace top_k_chunks; no citation matched gold_chunk_ids under evaluator equivalence",
+      "subtype": "commentary_understanding",
+      "dataset_notes": "annotation evidence remains secondary review evidence"
+    },
+    {
+      "id": "eval_027",
+      "category": "注文理解",
+      "question": "成无己如何解释卫气衰？",
+      "should_answer": true,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": true,
+      "diagnostic_only": false,
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "actual_answer_mode": "strong",
+      "gold_chunk_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0013"
+      ],
+      "gold_answer_keywords": [
+        "卫气衰",
+        "汗出如流珠",
+        "开合"
+      ],
+      "top5_record_ids": [
+        "safe:definition_terms:AHV2-81a12b6da994",
+        "safe:main_passages:ZJSHL-CH-004-P-0214",
+        "safe:main_passages:ZJSHL-CH-003-P-0012",
+        "full:annotations:ZJSHL-CH-004-P-0252",
+        "full:passages:ZJSHL-CH-004-P-0252"
+      ],
+      "top5_chunk_ids": [
+        "AHV2-81a12b6da994",
+        "ZJSHL-CH-004-P-0214",
+        "ZJSHL-CH-003-P-0012",
+        "ZJSHL-CH-004-P-0252",
+        "ZJSHL-CH-004-P-0252"
+      ],
+      "top5_matchable_ids": [
+        [
+          "AHV2-81a12b6da994",
+          "ZJSHL-CH-003-P-0012",
+          "full:passages:ZJSHL-CH-003-P-0012",
+          "safe:definition_terms:AHV2-81a12b6da994",
+          "safe:main_passages:ZJSHL-CH-003-P-0012"
+        ],
+        [
+          "ZJSHL-CH-004-P-0214",
+          "full:passages:ZJSHL-CH-004-P-0214",
+          "safe:main_passages:ZJSHL-CH-004-P-0214"
+        ],
+        [
+          "ZJSHL-CH-003-P-0012",
+          "full:passages:ZJSHL-CH-003-P-0012",
+          "safe:main_passages:ZJSHL-CH-003-P-0012"
+        ],
+        [
+          "ZJSHL-CH-004-P-0252",
+          "full:annotations:ZJSHL-CH-004-P-0252",
+          "full:passages:ZJSHL-CH-004-P-0252",
+          "safe:main_passages:ZJSHL-CH-004-P-0252"
+        ],
+        [
+          "ZJSHL-CH-004-P-0252",
+          "full:passages:ZJSHL-CH-004-P-0252",
+          "safe:main_passages:ZJSHL-CH-004-P-0252"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-004-P-0255"
+      ],
+      "citation_source_slots": [
+        "primary"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": false,
+      "gold_cited": false,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": true,
+      "answer_keyword_hit": true,
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "和这个问题直接相关的主条，当前主要落在这些命中片段里。 趺阳脉浮而芤，浮者卫气衰，赵本作「虚」芤者荣气伤，其身体瘦，肌肉甲错，浮芤相搏，宗气衰微，赵本作「微衰」四属断绝。 可以先据此理解原文意思，具体字句再结合引用继续回看。",
+      "notes": "at least one citation was not found in trace top_k_chunks; no citation matched gold_chunk_ids under evaluator equivalence",
+      "subtype": "commentary_understanding",
+      "dataset_notes": "annotation evidence remains secondary review evidence"
+    },
+    {
+      "id": "eval_028",
+      "category": "注文理解",
+      "question": "注文怎样解释清邪中上？",
+      "should_answer": true,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": true,
+      "diagnostic_only": false,
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "actual_answer_mode": "strong",
+      "gold_chunk_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0098"
+      ],
+      "gold_answer_keywords": [
+        "清邪中上",
+        "上焦",
+        "雾露之气"
+      ],
+      "top5_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0098",
+        "full:passages:ZJSHL-CH-003-P-0098",
+        "safe:chunks:ZJSHL-CK-M-0989",
+        "safe:main_passages:ZJSHL-CH-023-P-0046",
+        "full:passages:ZJSHL-CH-023-P-0046"
+      ],
+      "top5_chunk_ids": [
+        "ZJSHL-CH-003-P-0098",
+        "ZJSHL-CH-003-P-0098",
+        "ZJSHL-CK-M-0989",
+        "ZJSHL-CH-023-P-0046",
+        "ZJSHL-CH-023-P-0046"
+      ],
+      "top5_matchable_ids": [
+        [
+          "ZJSHL-CH-003-P-0098",
+          "full:annotations:ZJSHL-CH-003-P-0098",
+          "full:passages:ZJSHL-CH-003-P-0098",
+          "safe:main_passages:ZJSHL-CH-003-P-0098"
+        ],
+        [
+          "ZJSHL-CH-003-P-0098",
+          "full:passages:ZJSHL-CH-003-P-0098",
+          "safe:main_passages:ZJSHL-CH-003-P-0098"
+        ],
+        [
+          "ZJSHL-CK-M-0989",
+          "safe:chunks:ZJSHL-CK-M-0989"
+        ],
+        [
+          "ZJSHL-CH-023-P-0046",
+          "full:passages:ZJSHL-CH-023-P-0046",
+          "safe:main_passages:ZJSHL-CH-023-P-0046"
+        ],
+        [
+          "ZJSHL-CH-023-P-0046",
+          "full:passages:ZJSHL-CH-023-P-0046",
+          "safe:main_passages:ZJSHL-CH-023-P-0046"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-023-P-0046"
+      ],
+      "citation_source_slots": [
+        "primary"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": true,
+      "gold_cited": false,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": true,
+      "answer_keyword_hit": true,
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "和这个问题直接相关的主条，当前主要落在这些命中片段里。 脉阴阳俱紧，则清邪中上，浊邪中下，太阳少阴俱感邪也。恶寒者少阴，发热者太阳，脉欲厥者，表邪欲传里也。恶寒甚者，则变热，翕翕汗出，喉中痛，以少阴之脉循喉咙故也。热多者，太阳多也；目赤脉多者，睛不慧，以太阳之脉起于目故也。发汗攻阳，则少阴之热因... 可以先据此理解原文意思，具体字句再结合引用继续回看。",
+      "notes": "no citation matched gold_chunk_ids under evaluator equivalence",
+      "subtype": "commentary_understanding",
+      "dataset_notes": "annotation evidence remains secondary review evidence"
+    },
+    {
+      "id": "eval_029",
+      "category": "注文理解",
+      "question": "注文对桂枝汤不可误用有什么提醒？",
+      "should_answer": true,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": true,
+      "diagnostic_only": false,
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "actual_answer_mode": "strong",
+      "gold_chunk_ids": [
+        "full:annotations:ZJSHL-CH-008-P-0228"
+      ],
+      "gold_answer_keywords": [
+        "桂枝",
+        "脉浮紧",
+        "不可与"
+      ],
+      "top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0292",
+        "formula:FML-1b00cf16ce52",
+        "safe:chunks:ZJSHL-CK-F-0001",
+        "safe:main_passages:ZJSHL-CH-008-P-0217",
+        "safe:chunks:ZJSHL-CK-F-0002"
+      ],
+      "top5_chunk_ids": [
+        "ZJSHL-CK-M-0292",
+        "FML-1b00cf16ce52",
+        "ZJSHL-CK-F-0001",
+        "ZJSHL-CH-008-P-0217",
+        "ZJSHL-CK-F-0002"
+      ],
+      "top5_matchable_ids": [
+        [
+          "ZJSHL-CK-M-0292",
+          "safe:chunks:ZJSHL-CK-M-0292"
+        ],
+        [
+          "FML-1b00cf16ce52",
+          "ZJSHL-CH-008-P-0215",
+          "ZJSHL-CH-008-P-0217",
+          "ZJSHL-CH-008-P-0219",
+          "ZJSHL-CH-008-P-0220",
+          "ZJSHL-CH-008-P-0229",
+          "ZJSHL-CH-008-P-0246",
+          "ZJSHL-CH-008-P-0248",
+          "ZJSHL-CH-008-P-0253",
+          "ZJSHL-CH-008-P-0256",
+          "ZJSHL-CH-016-P-0034",
+          "formula:FML-1b00cf16ce52",
+          "full:passages:ZJSHL-CH-008-P-0215",
+          "full:passages:ZJSHL-CH-008-P-0217",
+          "full:passages:ZJSHL-CH-008-P-0219",
+          "full:passages:ZJSHL-CH-008-P-0220",
+          "full:passages:ZJSHL-CH-008-P-0229",
+          "full:passages:ZJSHL-CH-008-P-0246",
+          "full:passages:ZJSHL-CH-008-P-0248",
+          "full:passages:ZJSHL-CH-008-P-0253",
+          "full:passages:ZJSHL-CH-008-P-0256",
+          "full:passages:ZJSHL-CH-016-P-0034",
+          "safe:main_passages:ZJSHL-CH-008-P-0215",
+          "safe:main_passages:ZJSHL-CH-008-P-0217",
+          "safe:main_passages:ZJSHL-CH-008-P-0219",
+          "safe:main_passages:ZJSHL-CH-008-P-0220",
+          "safe:main_passages:ZJSHL-CH-008-P-0229",
+          "safe:main_passages:ZJSHL-CH-008-P-0246",
+          "safe:main_passages:ZJSHL-CH-008-P-0248",
+          "safe:main_passages:ZJSHL-CH-008-P-0253",
+          "safe:main_passages:ZJSHL-CH-008-P-0256",
+          "safe:main_passages:ZJSHL-CH-016-P-0034"
+        ],
+        [
+          "ZJSHL-CK-F-0001",
+          "safe:chunks:ZJSHL-CK-F-0001"
+        ],
+        [
+          "ZJSHL-CH-008-P-0217",
+          "full:passages:ZJSHL-CH-008-P-0217",
+          "safe:main_passages:ZJSHL-CH-008-P-0217"
+        ],
+        [
+          "ZJSHL-CK-F-0002",
+          "safe:chunks:ZJSHL-CK-F-0002"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0217"
+      ],
+      "citation_source_slots": [
+        "primary"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": true,
+      "gold_cited": false,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": true,
+      "answer_keyword_hit": true,
+      "expected_answer_mode_match": false,
+      "final_answer_excerpt": "和“桂枝汤”直接相关的主条，当前主要落在这些方文或条文片段里。 桂枝汤方：桂枝三两，去皮，味辛热，按：下药性，赵本无，以后并同 芍药三两。味苦酸，微寒 甘草二两，炙，味甘平 生姜三两，切，味辛温 大枣十二枚，擘，味甘温 可以先据此理解原文意思，具体字句再结合引用继续回看。",
+      "notes": "no citation matched gold_chunk_ids under evaluator equivalence",
+      "subtype": "commentary_understanding",
+      "dataset_notes": "annotation evidence remains secondary review evidence"
+    },
+    {
+      "id": "eval_030",
+      "category": "注文理解",
+      "question": "注文如何解释奔豚从何而发？",
+      "should_answer": true,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": true,
+      "diagnostic_only": false,
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "actual_answer_mode": "weak_with_review_notice",
+      "gold_chunk_ids": [
+        "full:annotations:ZJSHL-CH-009-P-0109"
+      ],
+      "gold_answer_keywords": [
+        "奔豚",
+        "肾气",
+        "少腹"
+      ],
+      "top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0461",
+        "safe:main_passages:ZJSHL-CH-009-P-0295",
+        "full:annotations:ZJSHL-CH-009-P-0109",
+        "full:passages:ZJSHL-CH-009-P-0109",
+        "safe:definition_terms:DPO-e3ac03414a67"
+      ],
+      "top5_chunk_ids": [
+        "ZJSHL-CK-M-0461",
+        "ZJSHL-CH-009-P-0295",
+        "ZJSHL-CH-009-P-0109",
+        "ZJSHL-CH-009-P-0109",
+        "DPO-e3ac03414a67"
+      ],
+      "top5_matchable_ids": [
+        [
+          "ZJSHL-CK-M-0461",
+          "safe:chunks:ZJSHL-CK-M-0461"
+        ],
+        [
+          "ZJSHL-CH-009-P-0295",
+          "full:passages:ZJSHL-CH-009-P-0295",
+          "safe:main_passages:ZJSHL-CH-009-P-0295"
+        ],
+        [
+          "ZJSHL-CH-009-P-0109",
+          "full:annotations:ZJSHL-CH-009-P-0109",
+          "full:passages:ZJSHL-CH-009-P-0109",
+          "safe:main_passages:ZJSHL-CH-009-P-0109"
+        ],
+        [
+          "ZJSHL-CH-009-P-0109",
+          "full:passages:ZJSHL-CH-009-P-0109",
+          "safe:main_passages:ZJSHL-CH-009-P-0109"
+        ],
+        [
+          "DPO-e3ac03414a67",
+          "ZJSHL-CH-009-P-0108",
+          "ZJSHL-CH-009-P-0109",
+          "ZJSHL-CH-009-P-0295",
+          "full:passages:ZJSHL-CH-009-P-0108",
+          "full:passages:ZJSHL-CH-009-P-0109",
+          "full:passages:ZJSHL-CH-009-P-0295",
+          "safe:definition_terms:DPO-e3ac03414a67",
+          "safe:main_passages:ZJSHL-CH-009-P-0108",
+          "safe:main_passages:ZJSHL-CH-009-P-0109",
+          "safe:main_passages:ZJSHL-CH-009-P-0295"
+        ]
+      ],
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0295",
+        "full:annotations:ZJSHL-CH-009-P-0109",
+        "full:annotations:ZJSHL-CH-009-P-0111",
+        "full:passages:ZJSHL-CH-009-P-0294",
+        "full:passages:ZJSHL-CH-009-P-0108",
+        "full:passages:ZJSHL-CH-026-P-0005",
+        "full:passages:ZJSHL-CH-009-P-0296",
+        "full:passages:ZJSHL-CH-009-P-0110",
+        "safe:main_passages:ZJSHL-CH-026-P-0006",
+        "full:passages:ZJSHL-CH-009-P-0109"
+      ],
+      "citation_source_slots": [
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary",
+        "secondary"
+      ],
+      "has_citation": true,
+      "citation_from_top_k": false,
+      "gold_cited": true,
+      "refuse_when_should_not_answer": null,
+      "scope_qualified": false,
+      "answer_keyword_hit": true,
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "这个问题目前只能先保守地理解到这里：烧针发汗，则损阴血，而惊动心气。针处被寒，气聚而成核。心气因惊而虚，肾气乘寒气而动，发为奔豚。《金匮要略》曰：病有奔豚，从惊发得之。肾气欲上乘心，故其气从少腹上冲心也。先灸核上，以散其寒，与桂枝加桂汤，以泄奔豚之气。。 之所以只能先这样说，是因为当前缺少更稳定的正文主证据。 建议先回看这条命中片段所在原句，再核对前后文。",
+      "notes": "at least one citation was not found in trace top_k_chunks",
+      "subtype": "commentary_understanding",
+      "dataset_notes": "annotation evidence remains secondary review evidence"
+    },
+    {
+      "id": "eval_031",
+      "category": "超范围拒答",
+      "question": "白虎是什么意思？",
+      "should_answer": false,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": false,
+      "diagnostic_only": false,
+      "example_class": "unanswerable",
+      "expected_answer_mode": "refuse",
+      "actual_answer_mode": "refuse",
+      "gold_chunk_ids": [],
+      "gold_answer_keywords": [
+        "白虎",
+        "白虎汤",
+        "改问"
+      ],
+      "top5_record_ids": [],
+      "top5_chunk_ids": [],
+      "top5_matchable_ids": [],
+      "citation_ids": [],
+      "citation_source_slots": [],
+      "has_citation": null,
+      "citation_from_top_k": null,
+      "gold_cited": null,
+      "refuse_when_should_not_answer": true,
+      "scope_qualified": true,
+      "answer_keyword_hit": null,
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "“白虎”这个问法当前没有安全的书内定义对象可用，不能因为相近方名或普通现代义直接强答。可以改问“白虎汤方的条文是什么”或“白虎加人参汤方的条文是什么”这类明确方名问题。",
+      "notes": "",
+      "subtype": "negative_scope",
+      "dataset_notes": "negative modern false friend retained"
+    },
+    {
+      "id": "eval_032",
+      "category": "超范围拒答",
+      "question": "太阳能是什么意思？",
+      "should_answer": false,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": false,
+      "diagnostic_only": false,
+      "example_class": "unanswerable",
+      "expected_answer_mode": "refuse",
+      "actual_answer_mode": "refuse",
+      "gold_chunk_ids": [],
+      "gold_answer_keywords": [
+        "太阳能",
+        "现代能源",
+        "超范围"
+      ],
+      "top5_record_ids": [],
+      "top5_chunk_ids": [],
+      "top5_matchable_ids": [],
+      "citation_ids": [],
+      "citation_source_slots": [],
+      "has_citation": null,
+      "citation_from_top_k": null,
+      "gold_cited": null,
+      "refuse_when_should_not_answer": true,
+      "scope_qualified": true,
+      "answer_keyword_hit": null,
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "目前还没有检索到足以支撑回答的书内依据，所以这里先不硬答。可以改问更具体的条文、方名，或某一句话在书里是什么意思。",
+      "notes": "",
+      "subtype": "negative_scope",
+      "dataset_notes": "negative scope sample retained"
+    },
+    {
+      "id": "eval_033",
+      "category": "超范围拒答",
+      "question": "霍乱疫苗是什么？",
+      "should_answer": false,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": false,
+      "diagnostic_only": false,
+      "example_class": "unanswerable",
+      "expected_answer_mode": "refuse",
+      "actual_answer_mode": "refuse",
+      "gold_chunk_ids": [],
+      "gold_answer_keywords": [
+        "霍乱疫苗",
+        "现代医学",
+        "超范围"
+      ],
+      "top5_record_ids": [],
+      "top5_chunk_ids": [],
+      "top5_matchable_ids": [],
+      "citation_ids": [],
+      "citation_source_slots": [],
+      "has_citation": null,
+      "citation_from_top_k": null,
+      "gold_cited": null,
+      "refuse_when_should_not_answer": true,
+      "scope_qualified": true,
+      "answer_keyword_hit": null,
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "目前还没有检索到足以支撑回答的书内依据，所以这里先不硬答。可以改问更具体的条文、方名，或某一句话在书里是什么意思。",
+      "notes": "",
+      "subtype": "negative_scope",
+      "dataset_notes": "negative scope sample retained"
+    },
+    {
+      "id": "eval_034",
+      "category": "超范围拒答",
+      "question": "劳动合同是什么？",
+      "should_answer": false,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": false,
+      "diagnostic_only": false,
+      "example_class": "unanswerable",
+      "expected_answer_mode": "refuse",
+      "actual_answer_mode": "refuse",
+      "gold_chunk_ids": [],
+      "gold_answer_keywords": [
+        "劳动合同",
+        "法律",
+        "超范围"
+      ],
+      "top5_record_ids": [],
+      "top5_chunk_ids": [],
+      "top5_matchable_ids": [],
+      "citation_ids": [],
+      "citation_source_slots": [],
+      "has_citation": null,
+      "citation_from_top_k": null,
+      "gold_cited": null,
+      "refuse_when_should_not_answer": true,
+      "scope_qualified": true,
+      "answer_keyword_hit": null,
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "目前还没有检索到足以支撑回答的书内依据，所以这里先不硬答。可以改问更具体的条文、方名，或某一句话在书里是什么意思。",
+      "notes": "",
+      "subtype": "negative_scope",
+      "dataset_notes": "negative scope sample retained"
+    },
+    {
+      "id": "eval_035",
+      "category": "超范围拒答",
+      "question": "量子纠缠在书中怎么解释？",
+      "should_answer": false,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": false,
+      "diagnostic_only": false,
+      "example_class": "unanswerable",
+      "expected_answer_mode": "refuse",
+      "actual_answer_mode": "refuse",
+      "gold_chunk_ids": [],
+      "gold_answer_keywords": [
+        "量子纠缠",
+        "现代物理",
+        "超范围"
+      ],
+      "top5_record_ids": [],
+      "top5_chunk_ids": [],
+      "top5_matchable_ids": [],
+      "citation_ids": [],
+      "citation_source_slots": [],
+      "has_citation": null,
+      "citation_from_top_k": null,
+      "gold_cited": null,
+      "refuse_when_should_not_answer": true,
+      "scope_qualified": true,
+      "answer_keyword_hit": null,
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "目前还没有检索到足以支撑回答的书内依据，所以这里先不硬答。可以改问更具体的条文、方名，或某一句话在书里是什么意思。",
+      "notes": "",
+      "subtype": "negative_scope",
+      "dataset_notes": "negative scope sample retained"
+    },
+    {
+      "id": "eval_036",
+      "category": "超范围拒答",
+      "question": "Python 怎么写爬虫？",
+      "should_answer": false,
+      "manual_audit_required": false,
+      "included_in_answer_metrics": false,
+      "diagnostic_only": false,
+      "example_class": "unanswerable",
+      "expected_answer_mode": "refuse",
+      "actual_answer_mode": "refuse",
+      "gold_chunk_ids": [],
+      "gold_answer_keywords": [
+        "Python",
+        "爬虫",
+        "超范围"
+      ],
+      "top5_record_ids": [],
+      "top5_chunk_ids": [],
+      "top5_matchable_ids": [],
+      "citation_ids": [],
+      "citation_source_slots": [],
+      "has_citation": null,
+      "citation_from_top_k": null,
+      "gold_cited": null,
+      "refuse_when_should_not_answer": true,
+      "scope_qualified": true,
+      "answer_keyword_hit": null,
+      "expected_answer_mode_match": true,
+      "final_answer_excerpt": "目前还没有检索到足以支撑回答的书内依据，所以这里先不硬答。可以改问更具体的条文、方名，或某一句话在书里是什么意思。",
+      "notes": "",
+      "subtype": "negative_scope",
+      "dataset_notes": "negative scope sample retained"
+    }
+  ]
+}

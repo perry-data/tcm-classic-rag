@@ -18,11 +18,17 @@ Thumbs.db
 
 # Runtime outputs
 outputs/
-logs/
+logs/*
+!logs/qa_traces/
+logs/qa_traces/*
+!logs/qa_traces/.gitkeep
 *.log
+*.zip
 artifacts/perf/request_timings.jsonl
 artifacts/route_a_before_results.json
 artifacts/route_a_after_results.json
+artifacts/data_reconstruction_handoff_v1/
+artifacts/data_reconstruction_v2/
 
 # Databases / indexes
 data/sqlite/*.sqlite

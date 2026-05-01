@@ -1,0 +1,105 @@
+{
+  "answer_eval_citation_from_top_k_rate": 0.44,
+  "api_changed": false,
+  "dataset_changed": false,
+  "existing_evaluator_changed": false,
+  "frontend_changed": false,
+  "generated_at_utc": "2026-04-27T07:55:08.130374+00:00",
+  "judge": {
+    "llm_judge": false,
+    "type": "rules_only_artifact_summary"
+  },
+  "next_queue_counts": {
+    "deferred_observations": 15,
+    "p2_manual_audit": 5,
+    "policy_accepted_no_runtime_repair": 9,
+    "retrieval_or_chunking_repairs": 4,
+    "runtime_citation_scope_repairs": 3,
+    "trace_or_evaluator_repairs": 2
+  },
+  "notes": [
+    "9 条 secondary/review policy warning 已被 policy 接受，不进入 runtime repair queue。",
+    "policy accepted 不等于所有相关样本都没有别的问题。",
+    "eval_026 policy accepted，但仍保留 retrieval/chunking repair 观察。",
+    "这不是系统全通过。",
+    "本轮不修 runtime、不改 prompt、不改 API、不改前端。"
+  ],
+  "original_failure_report_formal_fail_count": 17,
+  "p2_manual_audit_ids": [
+    "eval_011",
+    "eval_012",
+    "eval_013",
+    "eval_014",
+    "eval_015"
+  ],
+  "policy_accepted_ids": [
+    "eval_006",
+    "eval_010",
+    "eval_016",
+    "eval_017",
+    "eval_018",
+    "eval_022",
+    "eval_024",
+    "eval_026",
+    "eval_030"
+  ],
+  "policy_cases_also_in_retrieval_or_chunking_repairs": [
+    "eval_026"
+  ],
+  "policy_integrated_diagnostic_count": 5,
+  "policy_integrated_policy_blocking_count": 0,
+  "policy_integrated_retrieval_or_chunking_repair_count": 4,
+  "policy_integrated_runtime_bug_count": 3,
+  "policy_integrated_tooling_issue_count": 2,
+  "prompt_changed": false,
+  "reclassified_formal_fail_count_before_policy": 7,
+  "report_scope": {
+    "modifies_runtime": false,
+    "runs_answer_assembly": false,
+    "runs_answer_generation": false,
+    "runs_retrieval": false,
+    "source_artifacts_only": true
+  },
+  "retrieval_eval_hit_at_5": 0.84,
+  "retrieval_or_chunking_repair_ids": [
+    "eval_007",
+    "eval_026",
+    "eval_027",
+    "eval_029"
+  ],
+  "run_id": "eval_diagnostic_loop_policy_integrated_v1",
+  "runtime_changed": false,
+  "runtime_citation_bug_ids": [
+    "eval_023",
+    "eval_025",
+    "eval_027"
+  ],
+  "secondary_review_policy_accepted_count": 9,
+  "secondary_review_policy_decision_count": 9,
+  "secondary_review_policy_needs_trace_improvement_count": 0,
+  "secondary_review_policy_violation_count": 0,
+  "secondary_review_policy_warning_resolution": "accepted",
+  "source_artifacts": {
+    "source_loop_summary": "artifacts/eval/eval_diagnostic_loop_v1/eval_diagnostic_loop_summary_v1.json",
+    "source_next_queue": "artifacts/eval/failure_report_reclassified_after_citation_audit_v1/next_repair_queue_after_citation_audit_v1.json",
+    "source_reclassified_report": "artifacts/eval/failure_report_reclassified_after_citation_audit_v1/failure_cases_reclassified_v1.json",
+    "source_secondary_policy": "artifacts/eval/secondary_review_citation_policy_v1/secondary_review_citation_policy_v1.json",
+    "source_secondary_policy_cases": "artifacts/eval/secondary_review_citation_policy_v1/secondary_review_policy_cases_v1.json"
+  },
+  "source_loop_summary": "artifacts/eval/eval_diagnostic_loop_v1/eval_diagnostic_loop_summary_v1.json",
+  "source_reclassified_report": "artifacts/eval/failure_report_reclassified_after_citation_audit_v1/failure_cases_reclassified_v1.json",
+  "source_secondary_policy": "artifacts/eval/secondary_review_citation_policy_v1/secondary_review_citation_policy_v1.json",
+  "source_sha256": {
+    "source_loop_summary": "a88c983376dc8cec41389da657511154d1ab8f683fd4d9da17bfc2b792b07df0",
+    "source_next_queue": "9c91f502740aaad0ef5cbceac89492404ace7ce633b1ed6edea414ce0c4374f9",
+    "source_reclassified_report": "888aec0e560ee4dc57748dbdd4df8120f869fcc11bb317e7477ce8f01b7bf165",
+    "source_secondary_policy": "bbd2afac612b84822720e49c4c7c33bf30894614690a702ecd4f002c7aaa287d",
+    "source_secondary_policy_cases": "27256b57ab93b3cee6f05df8b925883b748020e7ddc0bcf2859b63296d1ff44b"
+  },
+  "system_all_passed": false,
+  "total_examples": 36,
+  "trace_or_evaluator_issue_ids": [
+    "eval_002",
+    "eval_009"
+  ]
+}

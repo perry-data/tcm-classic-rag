@@ -6,12 +6,14 @@ import json
 import os
 import re
 import sys
+import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
 
 from backend.commentarial import CommentarialLayer, CommentarialRoutePlan
+from backend.diagnostics.qa_trace import write_qa_trace_safely
 from backend.llm import (
     DEFAULT_MODEL_STUDIO_BASE_URL,
     DEFAULT_MODEL_STUDIO_MODEL,
@@ -249,6 +251,8 @@ FORMULA_EFFECT_QUERY_HINTS = tuple(
         "适用什么情况",
         "用于什么情况",
         "用在什么情况",
+        "对应什么表现",
+        "是什么表现",
         "是治什么的",
         "治什么的",
     )
@@ -432,6 +436,101 @@ DOSAGE_CONVERSION_HINTS = (
     "用量",
 )
 
+GENERIC_SELF_MEDICATION_SAFETY_REFUSE_REASON = (
+    "个人用药、剂量换算或实际服药安全超出《注解伤寒论》单书研读支持范围。"
+)
+
+GENERIC_SELF_MEDICATION_HERB_HINTS = (
+    "附子",
+    "半夏",
+    "麻黄",
+    "桂枝",
+    "大黄",
+    "甘草",
+    "芍药",
+    "生姜",
+    "大枣",
+    "杏仁",
+    "杏子",
+    "乌头",
+    "细辛",
+    "干姜",
+    "人参",
+)
+
+GENERIC_SELF_MEDICATION_ACTION_HINTS = (
+    "自用",
+    "自己用",
+    "自行用",
+    "服用",
+    "能不能用",
+    "可不可以用",
+    "能直接用",
+    "直接用",
+    "吃",
+    "煎",
+    "自己煎",
+    "用药",
+    "处方",
+    "剂量",
+    "克数",
+    "换算",
+    "有毒",
+    "安全使用",
+)
+
+GENERIC_SELF_MEDICATION_HARD_SAFETY_HINTS = (
+    "自用",
+    "自己用",
+    "自行用",
+    "服用",
+    "能不能用",
+    "可不可以用",
+    "能直接用",
+    "直接用",
+    "吃",
+    "自己煎",
+    "用药",
+    "处方",
+    "有毒",
+    "安全使用",
+)
+
+GENERIC_TEXTUAL_LOOKUP_ALLOW_HINTS = (
+    "方文是什么",
+    "方文",
+    "条文是什么",
+    "对应条文",
+    "原文是什么",
+    "组成是什么",
+    "由什么组成",
+    "有哪些药",
+    "药味是什么",
+    "煎服法是什么",
+    "出自哪里",
+    "出处",
+    "是什么意思",
+    "什么意思",
+    "如何理解",
+    "怎么理解",
+)
+
+CLASSICAL_DOSAGE_CONTEXT_HINTS = (
+    "汉代",
+    "古代",
+    "一两",
+    "二两",
+    "三两",
+    "四两",
+    "五两",
+    "六两",
+    "半升",
+    "一升",
+    "二升",
+    "现代克",
+    "现代克数",
+)
+
 MODERN_MEDICAL_TERMS = (
     "支气管炎",
     "高血压",
@@ -556,6 +655,63 @@ MEANING_CONTEXT_TERM_STOPWORDS = {
     "何谓",
     "何解",
     "指什么",
+}
+
+P0_REVIEW_ONLY_MEANING_GUARDS = {
+    "清邪",
+    "浊邪",
+    "清邪中上",
+    "清邪中上和浊邪中下",
+    "两阳",
+    "两阳病",
+    "风与火气",
+    "反",
+}
+P0_NEGATIVE_MEANING_GUARDS = {
+    "反证",
+    "反复",
+    "白虎",
+    "白虎星",
+}
+P0_MEANING_GUARD_SUFFIXES = (
+    "是什么意思",
+    "什么意思",
+    "怎么理解",
+    "如何理解",
+    "是什么含义",
+    "含义是什么",
+    "是什么",
+)
+P0_MEANING_GUARD_PREFIXES = (
+    "什么是",
+    "什么叫",
+    "何谓",
+)
+P1_CONSERVATIVE_MEANING_GUARDS = {
+    "干呕": {
+        "canonical_topic": "乾呕",
+        "secondary_record_ids": [
+            "safe:main_passages:ZJSHL-CH-014-P-0188",
+            "safe:main_passages:ZJSHL-CH-015-P-0324",
+            "safe:main_passages:ZJSHL-CH-008-P-0215",
+        ],
+        "review_record_ids": [
+            "full:passages:ZJSHL-CH-014-P-0189",
+            "full:passages:ZJSHL-CH-015-P-0325",
+        ],
+    },
+    "乾呕": {
+        "canonical_topic": "乾呕",
+        "secondary_record_ids": [
+            "safe:main_passages:ZJSHL-CH-014-P-0188",
+            "safe:main_passages:ZJSHL-CH-015-P-0324",
+            "safe:main_passages:ZJSHL-CH-008-P-0215",
+        ],
+        "review_record_ids": [
+            "full:passages:ZJSHL-CH-014-P-0189",
+            "full:passages:ZJSHL-CH-015-P-0325",
+        ],
+    },
 }
 
 
@@ -786,6 +942,7 @@ class AnswerAssembler:
         self._last_general_debug: dict[str, Any] | None = None
         self._last_definition_priority_debug: dict[str, Any] | None = None
         self._last_llm_debug: dict[str, Any] | None = None
+        self._trace_retrievals: list[dict[str, Any]] = []
         self._progress_callback: Callable[[dict[str, Any]], None] | None = None
         self._last_progress_stage: str | None = None
         self.definition_query_priority_config = self._load_definition_query_priority_config()
@@ -832,6 +989,11 @@ class AnswerAssembler:
             return env_flag_enabled(os.environ.get(FORMULA_EFFECT_PRIMARY_RULES_ENV_FLAG))
         return True
 
+    def _retrieve_for_trace(self, query_text: str, tight_primary_precision: bool = True) -> dict[str, Any]:
+        retrieval = self.engine.retrieve(query_text, tight_primary_precision=tight_primary_precision)
+        self._trace_retrievals.append(retrieval)
+        return retrieval
+
     def assemble(
         self,
         query_text: str,
@@ -841,8 +1003,11 @@ class AnswerAssembler:
         self._last_general_debug = None
         self._last_definition_priority_debug = None
         self._last_llm_debug = None
+        self._trace_retrievals = []
         self._progress_callback = progress_callback
         self._last_progress_stage = None
+        trace_started_at_perf = time.perf_counter()
+        payload: dict[str, Any] | None = None
         self._emit_progress(
             "retrieving_evidence",
             "已提交问题，正在检索可用依据并判断是否命中稳定边界。",
@@ -850,45 +1015,77 @@ class AnswerAssembler:
         try:
             if self._detect_greeting(query_text):
                 payload = self._assemble_greeting(query_text)
-                return self._finalize_commentarial_payload(query_text, payload, None)
+                payload = self._finalize_commentarial_payload(query_text, payload, None)
+                return payload
 
             policy_refusal = self._detect_policy_refusal(query_text)
             if policy_refusal is not None:
                 payload = self._assemble_policy_refusal(query_text, policy_refusal)
-                return self._finalize_commentarial_payload(query_text, payload, None)
+                payload = self._finalize_commentarial_payload(query_text, payload, None)
+                return payload
 
-            commentarial_plan = self.commentarial_layer.detect_route(query_text)
-            if commentarial_plan is not None and commentarial_plan.explicit:
-                payload = self._assemble_standard(self._build_commentarial_shadow_query(query_text, commentarial_plan))
-                return self._finalize_commentarial_payload(query_text, payload, commentarial_plan)
+            p0_boundary_guard = self._detect_p0_meaning_boundary_guard(query_text)
+            if p0_boundary_guard is not None:
+                payload = self._assemble_p0_meaning_boundary_guard(query_text, p0_boundary_guard)
+                payload = self._finalize_commentarial_payload(query_text, payload, None)
+                return payload
+
+            p1_conservative_guard = self._detect_p1_conservative_meaning_guard(query_text)
+            if p1_conservative_guard is not None:
+                payload = self._assemble_p1_conservative_meaning_guard(query_text, p1_conservative_guard)
+                payload = self._finalize_commentarial_payload(query_text, payload, None)
+                return payload
 
             comparison_plan = self._detect_comparison_query(query_text)
             if comparison_plan is not None:
                 payload = self._assemble_comparison(query_text, comparison_plan)
-                return self._finalize_commentarial_payload(query_text, payload, commentarial_plan)
+                payload = self._finalize_commentarial_payload(query_text, payload, None)
+                return payload
+
+            commentarial_plan = self.commentarial_layer.detect_route(query_text)
+            if commentarial_plan is not None and commentarial_plan.explicit:
+                payload = self._assemble_standard(self._build_commentarial_shadow_query(query_text, commentarial_plan))
+                payload = self._finalize_commentarial_payload(query_text, payload, commentarial_plan)
+                return payload
+
             formula_composition_plan = self._detect_formula_composition_query(query_text)
             if formula_composition_plan is not None:
                 payload = self._assemble_formula_composition_query(query_text, formula_composition_plan)
-                return self._finalize_commentarial_payload(query_text, payload, commentarial_plan)
+                payload = self._finalize_commentarial_payload(query_text, payload, commentarial_plan)
+                return payload
             formula_effect_plan = self._detect_formula_effect_query(query_text)
             if formula_effect_plan is not None:
                 payload = self._assemble_formula_effect_query(query_text, formula_effect_plan)
-                return self._finalize_commentarial_payload(query_text, payload, commentarial_plan)
+                payload = self._finalize_commentarial_payload(query_text, payload, commentarial_plan)
+                return payload
             definition_outline_plan = self._detect_definition_outline_query(query_text)
             if definition_outline_plan is not None:
                 payload = self._assemble_definition_outline_query(query_text, definition_outline_plan)
-                return self._finalize_commentarial_payload(query_text, payload, commentarial_plan)
+                payload = self._finalize_commentarial_payload(query_text, payload, commentarial_plan)
+                return payload
             definition_priority_plan = self._detect_definition_priority_query(query_text)
             if definition_priority_plan is not None:
                 payload = self._assemble_definition_priority_query(query_text, definition_priority_plan)
-                return self._finalize_commentarial_payload(query_text, payload, commentarial_plan)
+                payload = self._finalize_commentarial_payload(query_text, payload, commentarial_plan)
+                return payload
             general_plan = detect_general_question(query_text)
             if general_plan is not None:
                 payload = self._assemble_general_question(query_text, general_plan)
-                return self._finalize_commentarial_payload(query_text, payload, commentarial_plan)
+                payload = self._finalize_commentarial_payload(query_text, payload, commentarial_plan)
+                return payload
             payload = self._assemble_standard(query_text)
-            return self._finalize_commentarial_payload(query_text, payload, commentarial_plan)
+            payload = self._finalize_commentarial_payload(query_text, payload, commentarial_plan)
+            return payload
         finally:
+            if payload is not None:
+                write_qa_trace_safely(
+                    query=query_text,
+                    payload=payload,
+                    retrievals=list(self._trace_retrievals),
+                    llm_debug=self._last_llm_debug,
+                    started_at_perf=trace_started_at_perf,
+                    model_name=self._llm_config.model,
+                )
             self._progress_callback = None
             self._last_progress_stage = None
 
@@ -938,6 +1135,10 @@ class AnswerAssembler:
 
         has_personal_context = self._has_any_hint(compact_query, PERSONAL_HEALTH_CONTEXT_HINTS)
         has_personal_action = self._has_any_hint(compact_query, PERSONAL_TREATMENT_ACTION_HINTS)
+        has_generic_self_medication_safety = self._detect_generic_self_medication_safety(compact_query)
+
+        if has_generic_self_medication_safety:
+            return GENERIC_SELF_MEDICATION_SAFETY_REFUSE_REASON
 
         if self._has_any_hint(compact_query, EXTERNAL_BOOK_HINTS) and self._has_any_hint(
             compact_query,
@@ -962,6 +1163,27 @@ class AnswerAssembler:
 
         return None
 
+    def _detect_generic_self_medication_safety(self, compact_query: str) -> bool:
+        if self._is_plain_textual_lookup_query(compact_query):
+            return False
+
+        has_formula_or_herb = bool(self._find_formula_mentions(compact_query)) or self._has_any_hint(
+            compact_query,
+            GENERIC_SELF_MEDICATION_HERB_HINTS,
+        )
+        has_safety_action = self._has_any_hint(compact_query, GENERIC_SELF_MEDICATION_ACTION_HINTS)
+        has_classical_dosage_conversion = self._has_any_hint(compact_query, DOSAGE_CONVERSION_HINTS) and (
+            self._has_any_hint(compact_query, CLASSICAL_DOSAGE_CONTEXT_HINTS) or "现代" in compact_query
+        )
+        if has_classical_dosage_conversion:
+            return True
+        return has_formula_or_herb and has_safety_action
+
+    def _is_plain_textual_lookup_query(self, compact_query: str) -> bool:
+        if self._has_any_hint(compact_query, GENERIC_SELF_MEDICATION_HARD_SAFETY_HINTS):
+            return False
+        return self._has_any_hint(compact_query, GENERIC_TEXTUAL_LOOKUP_ALLOW_HINTS)
+
     @staticmethod
     def _has_any_hint(text: str, hints: tuple[str, ...]) -> bool:
         return any(hint in text for hint in hints)
@@ -975,8 +1197,16 @@ class AnswerAssembler:
             query_text=query_text,
             answer_mode="refuse",
             answer_text=self._build_refuse_answer_text(
-                "这个问题超出了《伤寒论》单书研读支持范围，所以这里不直接回答",
-                "可以改问书中的具体条文、方名，或某一句话在书里是什么意思",
+                (
+                    "这个问题涉及个人用药、剂量换算或实际服药安全，超出《注解伤寒论》单书研读支持范围"
+                    if refuse_reason == GENERIC_SELF_MEDICATION_SAFETY_REFUSE_REASON
+                    else "这个问题超出了《伤寒论》单书研读支持范围，所以这里不直接回答"
+                ),
+                (
+                    "可以改问该方在书中的方文、对应条文、书内语境，或某句话的文本含义"
+                    if refuse_reason == GENERIC_SELF_MEDICATION_SAFETY_REFUSE_REASON
+                    else "可以改问书中的具体条文、方名，或某一句话在书里是什么意思"
+                ),
             ),
             primary=[],
             secondary=[],
@@ -984,8 +1214,248 @@ class AnswerAssembler:
             review_notice=None,
             disclaimer=self._build_disclaimer("refuse", False, False),
             refuse_reason=refuse_reason,
-            suggested_followup_questions=self._build_followups("refuse"),
+            suggested_followup_questions=(
+                ["某方在书中的方文是什么？", "某方对应哪条条文？", "这句话在书内语境里怎么理解？"]
+                if refuse_reason == GENERIC_SELF_MEDICATION_SAFETY_REFUSE_REASON
+                else self._build_followups("refuse")
+            ),
             citations=[],
+        )
+
+    def _extract_p0_meaning_guard_topic(self, query_text: str) -> str | None:
+        stripped = compact_whitespace(query_text).strip().strip(QUERY_TRAILING_PUNCTUATION)
+        if not stripped:
+            return None
+        normalized = compact_text(stripped)
+        for prefix in P0_MEANING_GUARD_PREFIXES:
+            normalized_prefix = compact_text(prefix)
+            if normalized.startswith(normalized_prefix):
+                topic = normalized[len(normalized_prefix) :]
+                return topic or None
+        for suffix in P0_MEANING_GUARD_SUFFIXES:
+            normalized_suffix = compact_text(suffix)
+            if normalized.endswith(normalized_suffix):
+                topic = normalized[: -len(normalized_suffix)]
+                return topic or None
+        return None
+
+    def _detect_p0_meaning_boundary_guard(self, query_text: str) -> dict[str, str] | None:
+        topic = self._extract_p0_meaning_guard_topic(query_text)
+        if not topic:
+            return None
+        if topic in P0_REVIEW_ONLY_MEANING_GUARDS:
+            return {
+                "topic": topic,
+                "guard_type": "review_only_boundary",
+                "refuse_reason": "该问法命中 review-only / not-ready boundary，当前不得作为 safe primary 定义强答。",
+            }
+        if topic in P0_NEGATIVE_MEANING_GUARDS:
+            return {
+                "topic": topic,
+                "guard_type": "negative_modern_false_positive",
+                "refuse_reason": "该问法容易被相近书内方名或普通现代义误触发，当前没有足以支撑强答的安全对象。",
+            }
+        return None
+
+    def _detect_p1_conservative_meaning_guard(self, query_text: str) -> dict[str, Any] | None:
+        topic = self._extract_p0_meaning_guard_topic(query_text)
+        if not topic:
+            return None
+        guard = P1_CONSERVATIVE_MEANING_GUARDS.get(topic)
+        if guard is None:
+            return None
+        return {
+            "topic": topic,
+            **guard,
+        }
+
+    def _build_p0_guarded_evidence_item(
+        self,
+        row: dict[str, Any],
+        *,
+        display_role: str,
+        demoted_from_primary: bool = False,
+    ) -> dict[str, Any]:
+        risk_flags = self._extract_risk_flags(row)
+        risk_flags.append("p0_boundary_guard")
+        if demoted_from_primary:
+            risk_flags.append("p0_boundary_demoted_from_primary")
+        return self._build_evidence_item(
+            row,
+            display_role=display_role,
+            risk_flags_override=dedupe_strings(risk_flags),
+        )
+
+    def _assemble_p0_meaning_boundary_guard(self, query_text: str, guard: dict[str, str]) -> dict[str, Any]:
+        topic = guard["topic"]
+        if guard["guard_type"] == "negative_modern_false_positive":
+            self._emit_progress(
+                "organizing_evidence",
+                "当前问题命中 exact negative guard，正在避免现代义或相近方名误触发。",
+            )
+            return self._compose_payload(
+                query_text=query_text,
+                answer_mode="refuse",
+                answer_text=self._build_refuse_answer_text(
+                    f"“{topic}”这个问法当前没有安全的书内定义对象可用，不能因为相近方名或普通现代义直接强答",
+                    "可以改问“白虎汤方的条文是什么”或“白虎加人参汤方的条文是什么”这类明确方名问题",
+                ),
+                primary=[],
+                secondary=[],
+                review=[],
+                review_notice=None,
+                disclaimer=self._build_disclaimer("refuse", False, False),
+                refuse_reason=guard["refuse_reason"],
+                suggested_followup_questions=self._build_followups("refuse"),
+                citations=[],
+            )
+
+        self._emit_progress(
+            "organizing_evidence",
+            "当前问题命中 review-only 边界，正在把相关材料降为待核对依据。",
+        )
+        retrieval = self._retrieve_for_trace(query_text)
+        secondary = [
+            self._build_p0_guarded_evidence_item(row, display_role="secondary", demoted_from_primary=True)
+            for row in retrieval.get("primary_evidence", [])
+        ]
+        secondary.extend(
+            self._build_p0_guarded_evidence_item(row, display_role="secondary")
+            for row in retrieval.get("secondary_evidence", [])
+        )
+        review = [
+            self._build_p0_guarded_evidence_item(row, display_role="review")
+            for row in retrieval.get("risk_materials", [])
+        ]
+        secondary = self._merge_evidence_items([], secondary)
+        review = self._merge_evidence_items([], review)
+
+        if not secondary and not review:
+            return self._compose_payload(
+                query_text=query_text,
+                answer_mode="refuse",
+                answer_text=self._build_refuse_answer_text(
+                    f"“{topic}”目前没有可作为稳定回答的书内依据",
+                    "可以改问更完整的原句，或带上前后文一起核对",
+                ),
+                primary=[],
+                secondary=[],
+                review=[],
+                review_notice=None,
+                disclaimer=self._build_disclaimer("refuse", False, False),
+                refuse_reason=guard["refuse_reason"],
+                suggested_followup_questions=self._build_followups("refuse"),
+                citations=[],
+            )
+
+        evidence_item = secondary[0] if secondary else review[0]
+        answer_text = "\n".join(
+            [
+                f"“{topic}”目前不作为已审定的稳定定义来强答。",
+                f"现有材料只能作为核对线索：{evidence_item['snippet']}。",
+                "原因是这个问法仍属于 review-only / not-ready 边界，离开前后文容易把局部语句误当成安全主定义。",
+                "建议回到命中的原句及其前后文核对，再判断是否需要以后单独做对象审计。",
+            ]
+        )
+        answer_mode = "weak_with_review_notice"
+        citations = self._build_citations(answer_mode, [], secondary, review)
+        return self._compose_payload(
+            query_text=query_text,
+            answer_mode=answer_mode,
+            answer_text=answer_text,
+            primary=[],
+            secondary=secondary,
+            review=review,
+            review_notice=self._build_review_notice(answer_mode),
+            disclaimer=self._build_disclaimer(answer_mode, bool(secondary), bool(review)),
+            refuse_reason=None,
+            suggested_followup_questions=[],
+            citations=citations,
+        )
+
+    def _build_p1_conservative_evidence_item(
+        self,
+        row: dict[str, Any],
+        *,
+        display_role: str,
+    ) -> dict[str, Any]:
+        return self._build_evidence_item(
+            row,
+            display_role=display_role,
+            risk_flags_override=dedupe_strings(
+                self._extract_risk_flags(row)
+                + [
+                    "p1_conservative_learner_guard",
+                    "orthographic_variant_guard",
+                ]
+            ),
+        )
+
+    def _rows_by_record_ids(self, record_ids: list[str]) -> list[dict[str, Any]]:
+        rows: list[dict[str, Any]] = []
+        for record_id in record_ids:
+            row = self.engine.record_by_id.get(record_id)
+            if row is not None:
+                rows.append(row)
+        return rows
+
+    def _assemble_p1_conservative_meaning_guard(self, query_text: str, guard: dict[str, Any]) -> dict[str, Any]:
+        topic = str(guard["topic"])
+        canonical_topic = str(guard["canonical_topic"])
+        self._emit_progress(
+            "organizing_evidence",
+            "当前问题命中 P1 exact learner guard，正在保守整理 secondary/review 证据。",
+        )
+        secondary = [
+            self._build_p1_conservative_evidence_item(row, display_role="secondary")
+            for row in self._rows_by_record_ids(list(guard.get("secondary_record_ids") or []))
+        ]
+        review = [
+            self._build_p1_conservative_evidence_item(row, display_role="review")
+            for row in self._rows_by_record_ids(list(guard.get("review_record_ids") or []))
+        ]
+        secondary = self._merge_evidence_items([], secondary)
+        review = self._merge_evidence_items([], review)
+
+        if not secondary and not review:
+            return self._compose_payload(
+                query_text=query_text,
+                answer_mode="refuse",
+                answer_text=self._build_refuse_answer_text(
+                    f"“{topic}”目前没有可作为稳定回答的书内依据",
+                    "可以改问更完整的原句，或带上前后文一起核对",
+                ),
+                primary=[],
+                secondary=[],
+                review=[],
+                review_notice=None,
+                disclaimer=self._build_disclaimer("refuse", False, False),
+                refuse_reason="P1 conservative guard found no configured evidence rows.",
+                suggested_followup_questions=self._build_followups("refuse"),
+                citations=[],
+            )
+
+        answer_text = "\n".join(
+            [
+                f"“{topic}”在书中常写作“{canonical_topic}”。当前没有已审定的 learner-safe 定义对象，所以这里不把它硬升为强答。",
+                "按现有核对材料，只能先保守理解为：与呕逆、欲呕而不一定吐出实物这一类表现有关。可核对的关键句是：“吐则物出，呕则物不出”；又说“若膈上有寒饮，则但乾呕而不吐也”。",
+                "相关正文还把它放在不同病机和方证语境里，因此这个回答只作弱整理；若要下更确定定义，需要以后单独做对象审计。",
+            ]
+        )
+        answer_mode = "weak_with_review_notice"
+        citations = self._build_citations(answer_mode, [], secondary, review)
+        return self._compose_payload(
+            query_text=query_text,
+            answer_mode=answer_mode,
+            answer_text=answer_text,
+            primary=[],
+            secondary=secondary,
+            review=review,
+            review_notice=self._build_review_notice(answer_mode),
+            disclaimer=self._build_disclaimer(answer_mode, bool(secondary), bool(review)),
+            refuse_reason=None,
+            suggested_followup_questions=[],
+            citations=citations,
         )
 
     def _fetch_adjacent_passages(self, record_id: str) -> list[dict[str, Any]]:
@@ -1158,7 +1628,7 @@ class AnswerAssembler:
         ]
 
     def _assemble_standard(self, query_text: str) -> dict[str, Any]:
-        retrieval = self.engine.retrieve(query_text)
+        retrieval = self._retrieve_for_trace(query_text)
         self._emit_progress(
             "organizing_evidence",
             "已拿到候选依据，正在裁决主依据、补充依据与核对材料。",
@@ -1379,11 +1849,11 @@ class AnswerAssembler:
         return normalized
 
     def _assemble_general_question(self, query_text: str, general_plan: GeneralQuestionPlan) -> dict[str, Any]:
-        query_retrieval = self.engine.retrieve(query_text)
+        query_retrieval = self._retrieve_for_trace(query_text)
         topic_retrieval = (
             query_retrieval
             if compact_text(query_text) == general_plan.normalized_topic
-            else self.engine.retrieve(general_plan.topic_text)
+            else self._retrieve_for_trace(general_plan.topic_text)
         )
         self._emit_progress(
             "organizing_evidence",
@@ -1870,12 +2340,12 @@ class AnswerAssembler:
         query_text: str,
         definition_plan: DefinitionOutlinePlan,
     ) -> dict[str, Any]:
-        query_retrieval = self.engine.retrieve(query_text)
+        query_retrieval = self._retrieve_for_trace(query_text)
         topic_focus = extract_focus_text(query_text)
         topic_retrieval = (
             query_retrieval
             if topic_focus == definition_plan.normalized_topic
-            else self.engine.retrieve(definition_plan.canonical_topic)
+            else self._retrieve_for_trace(definition_plan.canonical_topic)
         )
         retrievals = [query_retrieval] if topic_retrieval is query_retrieval else [query_retrieval, topic_retrieval]
         seed_scores = self._build_general_seed_scores(retrievals)
@@ -2275,7 +2745,7 @@ class AnswerAssembler:
         query_text: str,
         definition_plan: DefinitionPriorityPlan,
     ) -> dict[str, Any]:
-        retrieval = self.engine.retrieve(query_text)
+        retrieval = self._retrieve_for_trace(query_text)
         family_rule = self._get_definition_priority_family_rule(definition_plan.family_id)
         if family_rule is None:
             return self._assemble_standard(query_text)
@@ -2688,10 +3158,10 @@ class AnswerAssembler:
 
     def _build_comparison_refuse_reason(self, reason: str) -> str:
         if reason == "unsupported_comparison":
-            return "当前只支持基于条文证据整理“区别 / 不同 / 异同 / 多了什么 / 少了什么”这类比较，不支持优劣判断。"
-        if reason == "too_many_entities":
-            return "当前一次只支持两个对象的 pairwise comparison，请把问题收缩到两个方名。"
-        return "当前无法稳定识别两个待比较的方名，因此不能可靠组织比较答案。"
+            return "当前只支持基于条文证据整理方剂之间的“区别 / 不同 / 异同 / 多了什么 / 少了什么”，不支持优劣、适合谁或临床价值判断。"
+        if reason in {"too_many_entities", "too_many_formula_entities"}:
+            return "当前一次只支持两个方剂的 pairwise comparison，请把问题收缩到两个方名。"
+        return "当前无法稳定识别两个待比较方剂，因此不能可靠组织方剂比较答案。"
 
     def _detect_formula_composition_query(self, query_text: str) -> dict[str, Any] | None:
         compact_query = compact_whitespace(query_text)
@@ -2886,7 +3356,7 @@ class AnswerAssembler:
         *,
         formula_effect_primary_v1: bool = False,
     ) -> dict[str, Any]:
-        retrieval = self.engine.retrieve(canonical_name)
+        retrieval = self._retrieve_for_trace(canonical_name)
         formula_row = self._find_formula_heading_row(canonical_name, retrieval)
         formula_rows = [formula_row] if formula_row else []
         excluded_record_ids = {row["record_id"] for row in formula_rows}
@@ -2949,7 +3419,7 @@ class AnswerAssembler:
         return None
 
     def _collect_formula_composition_rows(self, canonical_name: str) -> list[dict[str, Any]]:
-        retrieval = self.engine.retrieve(canonical_name)
+        retrieval = self._retrieve_for_trace(canonical_name)
         formula_row = self._find_formula_heading_row(canonical_name, retrieval)
         if not formula_row:
             return []
@@ -3712,35 +4182,45 @@ class AnswerAssembler:
             formula_snippet = snippet_text(self._fetch_record_meta(bundle["formula_rows"][0]["record_id"])["retrieval_text"])
 
         if answer_mode == "strong":
+            context_line = context_text or context_snippet or "当前命中的直接条文语境"
             lines = [
-                f"根据当前主依据，{display_name}在书中的直接使用语境，是“{context_text or context_snippet}”。",
-                f"也就是说，它更偏向用于{context_text or context_snippet}这类情况。",
+                f"结论：从《注解伤寒论》书内看，{display_name}的直接使用语境是“{context_line}”这一条文语境。",
+                "",
+                "原文语境：",
+                context_snippet or context_line,
             ]
-            if context_snippet:
-                lines.append(f"依据条文：{context_snippet}")
             if formula_snippet:
-                lines.append(f"补充方文：{formula_snippet}")
+                lines.extend(["", "方文：", formula_snippet])
+            lines.extend(
+                [
+                    "",
+                    "研读提示：",
+                    "这里回答的是《注解伤寒论》书内“主之”或直接对应条文语境，不作为临床用药建议。",
+                ]
+            )
             return "\n".join(lines)
 
         if answer_mode == "weak_with_review_notice":
-            if context_text or context_snippet:
-                lines = [
-                    f"当前未稳定找到{display_name}在正文中的直接主治条文；目前只能从核对层材料看到“{context_text or context_snippet}”这一使用语境。",
-                    f"因此只能先保守理解为：它偏向用于{context_text or context_snippet}这类情况。",
-                ]
-                if context_snippet:
-                    lines.append(f"核对材料：{context_snippet}")
-            else:
-                lines = [
-                    f"当前只稳定找到{display_name}的方文，尚未稳定找到它在书中的直接使用语境，因此不能把“作用”概括成确定结论。"
-                ]
+            lines = [
+                f"当前只稳定找到{display_name}的方文或待核对材料，尚未稳定命中它在正文中的直接“主之”条文，所以不能把“作用 / 主治”概括成确定结论。"
+            ]
             if formula_snippet:
-                lines.append(f"补充方文：{formula_snippet}")
+                lines.append(f"可先核对的方文是：{formula_snippet}")
+            if context_snippet:
+                lines.append(f"另有待核对材料可回看：{context_snippet}。这类材料不作为本轮主结论。")
+            lines.extend(
+                [
+                    "如果要继续研读，建议改问：",
+                    f"- {display_name}的条文是什么？",
+                    f"- {display_name}方文是什么？",
+                    f"- {display_name}在哪一条出现？",
+                ]
+            )
             return "\n".join(lines)
 
         return self._build_refuse_answer_text(
-            f"目前还没有稳定命中能直接说明“{canonical_name}有什么作用”的书内使用语境，所以这里不直接下结论",
-            f"可以改问“{canonical_name}的条文是什么”，或先看它在书里对应的方文和上下文",
+            f"目前没有稳定命中能说明{display_name}书内使用语境的依据，所以不直接概括其作用",
+            f"可以改问“{canonical_name}方文是什么”、“{canonical_name}对应哪条条文”，或先确认方名写法",
         )
 
     def _formula_text_variants(self, canonical_name: str) -> list[str]:
@@ -3778,6 +4258,67 @@ class AnswerAssembler:
             return "weak_with_review_notice"
         return "strong"
 
+    def _comparison_formula_clause(self, bundle: dict[str, Any]) -> str:
+        row = bundle["formula_rows"][0] if bundle["formula_rows"] else None
+        if row is None:
+            return "未稳定命中方文。"
+        formula_text = self._fetch_record_meta(row["record_id"])["retrieval_text"]
+        if "：" in formula_text:
+            formula_text = formula_text.split("：", 1)[1]
+        facts = bundle["facts"]
+        has_explicit_delta = facts["base_formula"] or facts["added_ingredients"] or facts["removed_ingredients"]
+        if has_explicit_delta:
+            formula_text = formula_text.split("。", 1)[0]
+        formula_text = compact_whitespace(formula_text).strip("，；; ")
+        formula_text = snippet_text(formula_text, limit=160)
+        return f"{formula_text}。" if formula_text and formula_text[-1] not in "。！？!?" else formula_text
+
+    def _comparison_context_sentence(self, bundle: dict[str, Any]) -> str:
+        row = bundle.get("context_row")
+        if row is None:
+            return ""
+        context_text = self._fetch_record_meta(row["record_id"])["retrieval_text"]
+        context_text = re.split(r"赵本|医统本|成本", context_text, maxsplit=1)[0]
+        context_text = compact_whitespace(context_text).strip("，。；; ")
+        return context_text or bundle["facts"].get("context_clause", "")
+
+    def _comparison_context_rows(self, bundle: dict[str, Any]) -> list[dict[str, Any]]:
+        if bundle["support_rows"]:
+            return bundle["support_rows"][:COMPARISON_SUPPORT_LIMIT]
+        context_row = bundle.get("context_row")
+        if context_row is not None:
+            return [context_row]
+        return []
+
+    def _is_formula_comparison_template_query(self, query_text: str) -> bool:
+        comparison_plan = self._detect_comparison_query(query_text)
+        return bool(comparison_plan and comparison_plan.get("valid"))
+
+    def _is_formula_effect_template_query(self, query_text: str) -> bool:
+        return self._detect_formula_effect_query(query_text) is not None
+
+    def _is_formula_composition_or_lookup_template_query(self, query_text: str) -> bool:
+        if self._detect_formula_composition_query(query_text) is not None:
+            return True
+        compact_query = compact_whitespace(query_text)
+        mentions = self._find_formula_mentions(compact_query)
+        if len(mentions) != 1:
+            return False
+        normalized_query = normalize_formula_lookup_text(compact_query, keep_formula_suffix=True)
+        mention = mentions[0]
+        residual = compact_text(normalized_query[: mention["start"]] + normalized_query[mention["end"] :])
+        if not residual or any(hint in residual for hint in COMPARISON_KEYWORDS):
+            return False
+        return residual in {"是什么", "方是什么"} or any(
+            hint in residual
+            for hint in (
+                "方文是什么",
+                "条文是什么",
+                "对应条文",
+                "在哪一条出现",
+            )
+        )
+
     def _build_comparison_lines(
         self,
         comparison_plan: dict[str, Any],
@@ -3800,12 +4341,47 @@ class AnswerAssembler:
         second_removed = [name for name in second_facts["removed_ingredients"] if name not in first_facts["removed_ingredients"]]
 
         if answer_mode == "strong":
-            if shared_base:
-                lines = [f"从现有方文与相关条文看，{first_name}与{second_name}都从{shared_base}加减而来，但显式加味和对应语境不同。"]
+            shared_base_text = f"都以{shared_base}为基础方" if shared_base else "都属于书内可核对的方文对象"
+            delta_line = self._build_comparison_delta_line(
+                comparison_plan["query_kind"],
+                first_name,
+                second_name,
+                first_added,
+                second_added,
+                first_removed,
+                second_removed,
+            )
+            if not delta_line:
+                delta_line = "方文组成不同，具体以两侧方文逐字核对。"
+
+            first_formula_clause = self._comparison_formula_clause(first)
+            second_formula_clause = self._comparison_formula_clause(second)
+            first_context = self._comparison_context_sentence(first)
+            second_context = self._comparison_context_sentence(second)
+            if first_context and second_context:
+                context_line = f"{first_name}对应：“{first_context}”；{second_name}对应：“{second_context}”。"
+                summary_context = (
+                    f"{first_name}偏向书内“{first_facts['context_clause']}”这一条文语境；"
+                    f"{second_name}偏向书内“{second_facts['context_clause']}”这一条文语境。"
+                )
             else:
-                lines = [f"从现有方文与相关条文看，{first_name}与{second_name}在显式组成和相关条文语境上并不相同。"]
-        else:
-            lines = [f"两方都已识别，但当前比较仍有证据缺口，以下只按现有方文做弱整理：{first_name} 与 {second_name} 的差异需要继续核对。"]
+                context_line = "当前未稳定取得两侧直接条文语境，只能先以方文差异为主。"
+                summary_context = "条文语境仍需回看下方依据继续核对。"
+
+            lines = [
+                f"结论：{first_name}和{second_name}的共同点是{shared_base_text}；核心区别是{delta_line}",
+                "比较：",
+                f"1. 方药组成不同：{first_name}：{first_formula_clause}{second_name}：{second_formula_clause}",
+                f"2. 条文语境不同：{context_line}",
+                f"3. 简要总结：二者都按《注解伤寒论》书内方文比较；{summary_context}",
+                "依据：",
+                f"- 方文依据：{first_name}方文；{second_name}方文。",
+                f"- 条文语境依据：{first_name}相关条文；{second_name}相关条文。",
+                "边界：以上为《注解伤寒论》书内文本研读比较，不作为临床用药建议。",
+            ]
+            return lines
+
+        lines = [f"两方都已识别，但当前比较仍有证据缺口，以下只按现有方文做弱整理：{first_name} 与 {second_name} 的差异需要继续核对。"]
 
         if comparison_plan["query_kind"] == "same_and_diff" and shared_base:
             lines.append(f"1. 共同点：两方的方文都写明是在“{shared_base}”基础上加减。")
@@ -3942,11 +4518,7 @@ class AnswerAssembler:
         review: list[dict[str, Any]],
     ) -> list[dict[str, Any]]:
         if answer_mode == "strong":
-            citation_source = list(primary + secondary)
-            covered_titles = {item["title"] for item in secondary}
-            for item in review:
-                if item["title"] not in covered_titles:
-                    citation_source.append(item)
+            citation_source = list(primary)
         elif answer_mode == "weak_with_review_notice":
             citation_source = secondary + review
         else:
@@ -4048,22 +4620,33 @@ class AnswerAssembler:
     def _detect_comparison_query(self, query_text: str) -> dict[str, Any] | None:
         compact_query = compact_whitespace(query_text)
         has_supported_keyword = any(keyword in compact_query for keyword in COMPARISON_KEYWORDS)
+        has_unsupported_comparison = any(hint in compact_query for hint in UNSUPPORTED_COMPARISON_HINTS)
         mentions = self._find_formula_mentions(compact_query)
 
-        if len(mentions) >= COMPARISON_ENTITY_LIMIT and any(hint in compact_query for hint in UNSUPPORTED_COMPARISON_HINTS):
+        if not has_supported_keyword and not (len(mentions) == COMPARISON_ENTITY_LIMIT and has_unsupported_comparison):
+            return None
+
+        if len(mentions) == 0:
+            return None
+
+        if len(mentions) == 1:
             return {
                 "valid": False,
-                "reason": "unsupported_comparison",
+                "reason": "entity_resolution_failed",
                 "mentions": mentions,
             }
 
-        if not has_supported_keyword:
-            return None
-
-        if len(mentions) != COMPARISON_ENTITY_LIMIT:
+        if len(mentions) > COMPARISON_ENTITY_LIMIT:
             return {
                 "valid": False,
-                "reason": "entity_resolution_failed" if len(mentions) < COMPARISON_ENTITY_LIMIT else "too_many_entities",
+                "reason": "too_many_formula_entities",
+                "mentions": mentions,
+            }
+
+        if has_unsupported_comparison:
+            return {
+                "valid": False,
+                "reason": "unsupported_comparison",
                 "mentions": mentions,
             }
 
@@ -4131,6 +4714,22 @@ class AnswerAssembler:
                 "比较对象未能稳定识别，正在整理拒答原因与改问建议。",
             )
             refuse_reason = self._build_comparison_refuse_reason(comparison_plan["reason"])
+            if comparison_plan["reason"] == "unsupported_comparison":
+                refuse_summary = "当前只支持整理两个方剂在书内方文和条文语境上的差异，不支持判断哪个更好、更适合谁或临床优劣"
+                refuse_suggestion = "可以改问两个方名的区别、方文组成差异，或各自对应的书内条文语境"
+                comparison_followups = [
+                    "A 和 B 的区别是什么？",
+                    "A 方的方文是什么？",
+                    "B 方对应的书内条文语境是什么？",
+                ]
+            elif comparison_plan["reason"] in {"too_many_entities", "too_many_formula_entities"}:
+                refuse_summary = "当前一次只能稳定比较两个方剂，不能同时组织多个方剂的差异"
+                refuse_suggestion = "请把问题收缩到两个方名，例如：A 和 B 的区别是什么"
+                comparison_followups = list(COMPARISON_REFUSE_GUIDANCE_TEMPLATES)
+            else:
+                refuse_summary = "当前无法稳定识别两个待比较方剂，所以这里不直接给方剂比较结论"
+                refuse_suggestion = "请明确写出两个方名，或先分别追问其中一个方的条文、组成或语境"
+                comparison_followups = list(COMPARISON_REFUSE_GUIDANCE_TEMPLATES)
             self._last_comparison_debug = {
                 "query": query_text,
                 "comparison_detected": True,
@@ -4143,8 +4742,8 @@ class AnswerAssembler:
                 query_text=query_text,
                 answer_mode="refuse",
                 answer_text=self._build_refuse_answer_text(
-                    "当前没能稳定识别出要比较的两个对象，所以这里不直接给比较结论",
-                    "请明确写出两个方名，或先分别追问其中一个方的条文、组成或语境",
+                    refuse_summary,
+                    refuse_suggestion,
                 ),
                 primary=[],
                 secondary=[],
@@ -4152,7 +4751,7 @@ class AnswerAssembler:
                 review_notice=None,
                 disclaimer=self._build_disclaimer("refuse", False, False),
                 refuse_reason=refuse_reason,
-                suggested_followup_questions=list(COMPARISON_REFUSE_GUIDANCE_TEMPLATES),
+                suggested_followup_questions=comparison_followups,
                 citations=[],
             )
 
@@ -4173,7 +4772,7 @@ class AnswerAssembler:
                     self._build_evidence_item(
                         row,
                         display_role="primary",
-                        title_override=f"{bundle['group_label']} · {bundle['canonical_name']}",
+                        title_override=f"方文依据 · {bundle['group_label']} · {bundle['canonical_name']}",
                     )
                     for row in bundle["formula_rows"][:COMPARISON_FORMULA_TITLE_LIMIT]
                 )
@@ -4181,17 +4780,9 @@ class AnswerAssembler:
                     self._build_evidence_item(
                         row,
                         display_role="secondary",
-                        title_override=f"{bundle['group_label']} · {bundle['canonical_name']}",
+                        title_override=f"条文语境 · {bundle['group_label']} · {bundle['canonical_name']}",
                     )
-                    for row in bundle["support_rows"][:COMPARISON_SUPPORT_LIMIT]
-                )
-                review.extend(
-                    self._build_evidence_item(
-                        row,
-                        display_role="review",
-                        title_override=f"{bundle['group_label']} · {bundle['canonical_name']}",
-                    )
-                    for row in bundle["review_rows"][:COMPARISON_REVIEW_LIMIT]
+                    for row in self._comparison_context_rows(bundle)
                 )
         else:
             primary = []
@@ -4338,6 +4929,13 @@ class AnswerAssembler:
         route_plan: CommentarialRoutePlan | None,
     ) -> dict[str, Any]:
         payload["query"] = query_text
+        if route_plan is None or not route_plan.explicit:
+            if (
+                self._is_formula_comparison_template_query(query_text)
+                or self._is_formula_effect_template_query(query_text)
+                or self._is_formula_composition_or_lookup_template_query(query_text)
+            ):
+                return payload
         if payload.get("commentarial") is None and self.commentarial_layer.enabled:
             commentarial = self.commentarial_layer.build_extension(query_text, payload, route_plan=route_plan)
             if commentarial:
@@ -4411,6 +5009,40 @@ class AnswerAssembler:
         if answer_mode == "refuse":
             debug["skipped_reason"] = "refuse_mode"
             debug["answer_source"] = "baseline_refuse"
+            self._last_llm_debug = debug
+            record_metadata("llm_debug", debug)
+            return baseline_answer_text
+
+        if any(
+            "p0_boundary_guard" in (item.get("risk_flags") or [])
+            for item in primary + secondary + review
+        ):
+            debug["skipped_reason"] = "p0_boundary_guard"
+            debug["answer_source"] = "baseline_p0_boundary_guard"
+            self._last_llm_debug = debug
+            record_metadata("llm_debug", debug)
+            return baseline_answer_text
+
+        if any(
+            "p1_conservative_learner_guard" in (item.get("risk_flags") or [])
+            for item in primary + secondary + review
+        ):
+            debug["skipped_reason"] = "p1_conservative_learner_guard"
+            debug["answer_source"] = "baseline_p1_conservative_learner_guard"
+            self._last_llm_debug = debug
+            record_metadata("llm_debug", debug)
+            return baseline_answer_text
+
+        if self._is_formula_comparison_template_query(query_text):
+            debug["skipped_reason"] = "formula_comparison_template"
+            debug["answer_source"] = "baseline_formula_comparison_template"
+            self._last_llm_debug = debug
+            record_metadata("llm_debug", debug)
+            return baseline_answer_text
+
+        if self._is_formula_effect_template_query(query_text):
+            debug["skipped_reason"] = "formula_effect_reading_template"
+            debug["answer_source"] = "baseline_formula_effect_reading_template"
             self._last_llm_debug = debug
             record_metadata("llm_debug", debug)
             return baseline_answer_text
@@ -4721,7 +5353,7 @@ class AnswerAssembler:
                 [
                     f"{query_anchor}可以先看作书里的一个方名或方剂条目，当前直接命中的主依据主要是在交代它的方文内容。{summary_refs}",
                     f"目前检索到的组成片段包括{evidence_fragments}；如果方文还没完整展开，就只能先看到这些。{summary_refs}",
-                    f"要确认它的主治或具体使用语境，还得继续回看对应条文或方后注解；现阶段能直接依据的主要就是这些片段。{summary_refs}",
+                    f"要确认它的书内使用语境或对应条文，还得继续回看正文；现阶段能直接依据的主要就是这些片段。{summary_refs}",
                 ]
             )
 
@@ -4832,7 +5464,7 @@ class AnswerAssembler:
                     [
                         f"{query_anchor}可以先看作书里的一个方名，当前直接命中的主依据主要是在交代它的方文内容。",
                         f"目前检索到的组成片段包括：{snippets}。",
-                        "如果还要确认它的主治或使用语境，还得继续回看对应条文。",
+                        "如果还要确认它的书内使用语境或对应条文，还得继续回看正文。",
                     ]
                 )
             if query_theme.get("type") == "formula_name":

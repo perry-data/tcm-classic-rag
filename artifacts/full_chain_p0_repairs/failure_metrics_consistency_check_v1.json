@@ -1,0 +1,24 @@
+{
+  "run_id": "full_chain_p0_boundary_repairs_v1",
+  "generated_at_utc": "2026-04-26T06:55:13.921152+00:00",
+  "source_results_path": "artifacts/full_chain_regression/full_chain_regression_results_v1.json",
+  "source_failures_path": "artifacts/full_chain_regression/full_chain_failure_cases_v1.json",
+  "results_fail_record_count": 37,
+  "failure_cases_failure_count": 37,
+  "results_metric_failure_type_total": 37,
+  "failure_cases_type_total": 37,
+  "computed_failure_type_counts": {
+    "answer_mode_calibration_error": 12,
+    "assembler_slot_error": 3,
+    "citation_error": 3,
+    "data_layer_bad_alias": 6,
+    "negative_query_false_positive": 1,
+    "rerank_regression": 2,
+    "retrieval_miss": 3,
+    "review_only_boundary_error": 7
+  },
+  "missing_or_none_failure_type_count": 0,
+  "missing_or_none_failure_type_records": [],
+  "consistent": true,
+  "finding": "JSON artifacts are internally consistent at 37 failures; the apparent mismatch came from reading partial failure-type metrics instead of summing failure_type_counts."
+}

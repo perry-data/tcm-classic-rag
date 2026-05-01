@@ -95,7 +95,7 @@ class CommentarialIntegrationTests(unittest.TestCase):
         self.assertTrue(any(item["theme_display_tier"] == "tier_3_meta_learning_only" for item in items))
 
     def test_default_assistive_preserves_canonical_primary(self) -> None:
-        payload = self.assembler.assemble("桂枝汤是什么？")
+        payload = self.assembler.assemble("少阳病是什么意思？")
         commentarial = payload.get("commentarial")
         self.assertIsNotNone(commentarial)
         self.assertEqual(commentarial["route"], ROUTE_ASSISTIVE)
@@ -103,15 +103,23 @@ class CommentarialIntegrationTests(unittest.TestCase):
         self.assertTrue(all(item["record_type"] == "main_passages" for item in payload["primary_evidence"]))
         self.assertTrue(all(section["collapsed_by_default"] for section in commentarial["sections"]))
 
+    def test_formula_lookup_suppresses_default_assistive_commentarial(self) -> None:
+        for query in ("桂枝汤是什么？", "黄连汤方的条文是什么？"):
+            with self.subTest(query=query):
+                payload = self.assembler.assemble(query)
+                self.assertIsNone(payload.get("commentarial"))
+                self.assertGreater(len(payload["primary_evidence"]), 0)
+                self.assertTrue(all(item["record_type"] == "main_passages" for item in payload["primary_evidence"]))
+
     def test_commentarial_flags_stay_out_of_primary_and_confidence_gate(self) -> None:
-        payload = self.assembler.assemble("桂枝汤是什么？")
+        payload = self.assembler.assemble("刘渡舟怎么看第141条？")
         items = [item for section in payload["commentarial"]["sections"] for item in section["items"]]
         self.assertTrue(items)
         self.assertTrue(all(item["never_use_in_primary"] for item in items))
         self.assertTrue(all(not item["use_for_confidence_gate"] for item in items))
 
     def test_display_summary_hides_internal_commentary_function_tags(self) -> None:
-        payload = self.assembler.assemble("桂枝汤是什么？")
+        payload = self.assembler.assemble("刘渡舟怎么看第141条？")
         items = [item for section in payload["commentarial"]["sections"] for item in section["items"]]
         tagged_units = [
             (item, self.layer.units_by_id[item["unit_id"]])

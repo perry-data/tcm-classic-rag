@@ -43,6 +43,7 @@ from backend.perf import (
     set_current_trace,
     stage_timer,
 )
+from backend.retrieval.production_shadow import maybe_run_production_shadow
 
 
 API_PATH = "/api/v1/answers"
@@ -263,6 +264,16 @@ class MinimalApiService:
     ) -> dict[str, Any]:
         response_payload = self.assembler.assemble(query, progress_callback=progress_callback)
         self.last_llm_debug = self.assembler.get_last_llm_debug()
+        try:
+            trace = current_trace()
+            maybe_run_production_shadow(
+                query,
+                served_response_payload=response_payload,
+                request_id=trace.request_id if trace is not None else None,
+                source_route="backend.api.minimal_api.MinimalApiService.answer_query",
+            )
+        except Exception as exc:  # pragma: no cover - shadow must never fail served v1
+            log(f"[production-shadow:error] {type(exc).__name__}")
         return response_payload
 
     def answer(

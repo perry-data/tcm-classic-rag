@@ -287,6 +287,16 @@ def sanitize_commentarial_summary_text(summary_text: str | None, fallback_text: 
     if not compact:
         return snippet_text(fallback_text)
 
+    internal_tag_prefix = re.match(
+        r"^.*?重点涉及[A-Za-z0-9_、,\s]+(?:[。；;，,]\s*)?(.*)$",
+        compact,
+    )
+    if internal_tag_prefix:
+        remainder = internal_tag_prefix.group(1).strip()
+        if remainder:
+            return remainder
+        return snippet_text(fallback_text)
+
     first_sentence_match = re.match(r"^(.+?[。！？!?])", compact)
     first_sentence = first_sentence_match.group(1) if first_sentence_match else compact
     looks_like_internal_tag_lead = "重点涉及" in first_sentence and bool(re.search(r"[a-z]+_[a-z_]+", first_sentence))

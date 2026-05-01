@@ -1,0 +1,37 @@
+id,category,question,gold_chunk_ids,gold_answer,should_answer,expected_answer_mode,gold_answer_keywords,notes,manual_audit_required,subtype
+eval_001,原文定位,桂枝汤方的条文是什么？,safe:main_passages:ZJSHL-CH-008-P-0217,桂枝汤方列桂枝、芍药、甘草、生姜、大枣等组成。各味后附药性说明。,true,strong,桂枝汤方|桂枝|芍药,primary formula passage confirmed in retrieval_ready_formula_view,false,formula_exact
+eval_002,原文定位,麻黄汤方的条文是什么？,safe:main_passages:ZJSHL-CH-009-P-0022,麻黄汤方列麻黄、桂枝、甘草等组成。原文处为方剂条文开头。,true,strong,麻黄汤方|麻黄|桂枝,primary formula passage confirmed in retrieval_ready_formula_view,false,formula_exact
+eval_003,原文定位,白虎汤方的条文是什么？,safe:main_passages:ZJSHL-CH-010-P-0165,白虎汤方列知母、石膏、甘草、粳米等组成。,true,strong,白虎汤方|知母|石膏,primary formula passage confirmed in retrieval_ready_formula_view,false,formula_exact
+eval_004,原文定位,小柴胡汤方的条文是什么？,safe:main_passages:ZJSHL-CH-009-P-0211,小柴胡汤方列柴胡、黄芩、人参、甘草、半夏、生姜、大枣等组成。,true,strong,小柴胡汤方|柴胡|黄芩,primary formula passage confirmed in retrieval_ready_formula_view,false,formula_exact
+eval_005,原文定位,乌梅丸方的条文是什么？,safe:main_passages:ZJSHL-CH-015-P-0221,乌梅丸方条文列乌梅、细辛、乾姜、黄连等组成。,true,strong,乌梅丸方|乌梅|黄连,primary formula passage confirmed in retrieval_ready_formula_view,false,formula_exact
+eval_006,原文定位,太阳之为病的原文是什么？,safe:main_passages:ZJSHL-CH-008-P-0191,原文为太阳之为病，脉浮，头项强痛而恶寒。,true,strong,太阳之为病|脉浮|头项强痛,primary main passage in current DB,false,original_text
+eval_007,术语解释,干呕是什么意思？,safe:main_passages:ZJSHL-CH-014-P-0188|safe:main_passages:ZJSHL-CH-015-P-0324,书中可先按乾呕相关条文保守解释，并提示证据为弱支持。,true,weak_with_review_notice,乾呕|四逆汤|吴茱萸汤,full-chain v2 secondary ids kept as weak boundary sample,false,weak_boundary
+eval_008,术语解释,清邪中上是什么意思？,full:annotations:ZJSHL-CH-003-P-0098|safe:main_passages:ZJSHL-CH-023-P-0046,注文把清邪中上关联到上焦与太阳少阴俱感邪等语境，应弱回答并提示需核对。,true,weak_with_review_notice,清邪中上|上焦|少阴,full-chain v2 secondary and review ids kept as weak boundary sample,false,weak_boundary
+eval_009,术语解释,反是什么意思？,safe:main_passages:ZJSHL-CH-003-P-0090|safe:main_passages:ZJSHL-CH-014-P-0107,反在书中多依上下文表示反误或转折，不宜抽成单一定义。,true,weak_with_review_notice,反下之|为大逆|上下文,full-chain v2 secondary ids kept as weak boundary sample,false,weak_boundary
+eval_010,术语解释,两阳是什么意思？,safe:main_passages:ZJSHL-CH-009-P-0275|safe:main_passages:ZJSHL-CH-017-P-0049,两阳有相熏灼、相合等具体语境，应按条文弱解释而非泛化定义。,true,weak_with_review_notice,两阳|熏灼|相合,full-chain v2 secondary ids kept as weak boundary sample,false,weak_boundary
+eval_011,术语解释,少阴病是什么意思,,P2 残留诊断样本。本轮只纳入评测集，不确认 gold evidence。,true,weak_with_review_notice,少阴病|P2|manual audit,P2 residual diagnostic sample; gold evidence requires manual audit,true,p2_residual
+eval_012,术语解释,半表半里证和过经有什么不同,,P2 残留诊断样本。本轮只纳入评测集，不确认 gold evidence。,true,weak_with_review_notice,半表半里|过经|P2,P2 residual diagnostic sample; gold evidence requires manual audit,true,p2_residual
+eval_013,术语解释,荣气微和卫气衰有什么区别,,P2 残留诊断样本。本轮只纳入评测集，不确认 gold evidence。,true,weak_with_review_notice,荣气微|卫气衰|P2,P2 residual diagnostic sample; gold evidence requires manual audit,true,p2_residual
+eval_014,术语解释,霍乱和伤寒有什么区别,,P2 残留诊断样本。本轮只纳入评测集，不确认 gold evidence。,true,weak_with_review_notice,霍乱|伤寒|P2,P2 residual diagnostic sample; gold evidence requires manual audit,true,p2_residual
+eval_015,术语解释,痓病和太阳病有什么不同,,P2 残留诊断样本。本轮只纳入评测集，不确认 gold evidence。,true,weak_with_review_notice,痓病|太阳病|P2,P2 residual diagnostic sample; gold evidence requires manual audit,true,p2_residual
+eval_016,方剂关联,太阳中风鼻鸣乾呕用什么方？,safe:main_passages:ZJSHL-CH-008-P-0215,太阳中风见阳浮阴弱、汗出恶风、鼻鸣乾呕者，桂枝汤主之。,true,strong,太阳中风|鼻鸣乾呕|桂枝汤,main passage gives formula association,false,formula_association
+eval_017,方剂关联,太阳病项背强几几无汗恶风用什么方？,safe:main_passages:ZJSHL-CH-009-P-0002,太阳病项背强几几、无汗、恶风者，葛根汤主之。,true,strong,项背强几几|无汗|葛根汤,main passage gives formula association,false,formula_association
+eval_018,方剂关联,伤寒脉浮紧无汗身疼痛用什么方？,safe:main_passages:ZJSHL-CH-009-P-0059,伤寒脉浮紧、无汗、发热、身疼痛，表证仍在者，麻黄汤主之。,true,strong,脉浮紧|无汗|麻黄汤,main passage gives formula association,false,formula_association
+eval_019,方剂关联,小结胸病正在心下按之痛用什么方？,safe:main_passages:ZJSHL-CH-010-P-0029,小结胸病正在心下、按之则痛、脉浮滑者，小陷胸汤主之。,true,strong,小结胸|按之则痛|小陷胸汤,main passage gives formula association,false,formula_association
+eval_020,方剂关联,霍乱热多欲饮水用什么方？,safe:main_passages:ZJSHL-CH-016-P-0014,霍乱头痛发热身疼痛，热多欲饮水者五苓散主之；寒多不用水者理中丸主之。,true,strong,霍乱|热多欲饮水|五苓散,main passage gives formula association,false,formula_association
+eval_021,症候检索,呕吐而利在书中叫什么？,safe:main_passages:ZJSHL-CH-016-P-0002,书中问病有霍乱者何，答曰呕吐而利名曰霍乱。,true,strong,呕吐而利|霍乱,main passage gives symptom name,false,symptom_lookup
+eval_022,症候检索,头项强痛而恶寒对应哪段原文？,safe:main_passages:ZJSHL-CH-008-P-0191,对应太阳之为病，脉浮，头项强痛而恶寒。,true,strong,头项强痛|恶寒|太阳之为病,main passage gives symptom cluster,false,symptom_lookup
+eval_023,症候检索,发热汗出恶风脉缓名为什么？,safe:main_passages:ZJSHL-CH-008-P-0193,太阳病发热汗出恶风脉缓者，名为中风。,true,strong,发热汗出|恶风|中风,main passage gives symptom name,false,symptom_lookup
+eval_024,症候检索,发热无汗反恶寒名为什么？,safe:main_passages:ZJSHL-CH-007-P-0157,太阳病发热无汗、反恶寒者，名曰刚痓。,true,strong,发热无汗|恶寒|刚痓,main passage gives symptom name,false,symptom_lookup
+eval_025,症候检索,发热汗出不恶寒名为什么？,safe:main_passages:ZJSHL-CH-007-P-0159,太阳病发热汗出、不恶寒者，名曰柔痓。,true,strong,发热汗出|不恶寒|柔痓,main passage gives symptom name,false,symptom_lookup
+eval_026,注文理解,成无己如何解释荣气微？,full:annotations:ZJSHL-CH-003-P-0011|full:annotations:ZJSHL-CH-003-P-0016,注文说脉沉知荣血内微，又把荣气微理解为阴虚，烧针会更发热而躁烦。,true,weak_with_review_notice,荣气微|荣血内微|阴虚,annotation evidence remains secondary review evidence,false,commentary_understanding
+eval_027,注文理解,成无己如何解释卫气衰？,full:annotations:ZJSHL-CH-003-P-0013,注文以卫气司温分肉、充皮毛、开合，汗出如流珠为卫气外衰。,true,weak_with_review_notice,卫气衰|汗出如流珠|开合,annotation evidence remains secondary review evidence,false,commentary_understanding
+eval_028,注文理解,注文怎样解释清邪中上？,full:annotations:ZJSHL-CH-003-P-0098,注文把清邪中上解释为清邪中于上焦，并联系发热、头痛、项强等阳中雾露之气。,true,weak_with_review_notice,清邪中上|上焦|雾露之气,annotation evidence remains secondary review evidence,false,commentary_understanding
+eval_029,注文理解,注文对桂枝汤不可误用有什么提醒？,full:annotations:ZJSHL-CH-008-P-0228,注文提醒桂枝本为解肌，若脉浮紧、发热汗不出者不可与，常须识此勿令误也。,true,weak_with_review_notice,桂枝|脉浮紧|不可与,annotation evidence remains secondary review evidence,false,commentary_understanding
+eval_030,注文理解,注文如何解释奔豚从何而发？,full:annotations:ZJSHL-CH-009-P-0109,注文说发汗后脐下悸为心气虚而肾气发动，肾之积名曰奔豚，发则从少腹上至心下。,true,weak_with_review_notice,奔豚|肾气|少腹,annotation evidence remains secondary review evidence,false,commentary_understanding
+eval_031,超范围拒答,白虎是什么意思？,,该问法容易落到现代或泛文化含义，不能直接等同书中的白虎汤，应拒答或要求改问白虎汤。,false,refuse,白虎|白虎汤|改问,negative modern false friend retained,false,negative_scope
+eval_032,超范围拒答,太阳能是什么意思？,,太阳能是现代能源概念，不属于《注解伤寒论》可回答范围。,false,refuse,太阳能|现代能源|超范围,negative scope sample retained,false,negative_scope
+eval_033,超范围拒答,霍乱疫苗是什么？,,霍乱疫苗属于现代医学问题，不属于本书证据范围。,false,refuse,霍乱疫苗|现代医学|超范围,negative scope sample retained,false,negative_scope
+eval_034,超范围拒答,劳动合同是什么？,,劳动合同属于法律概念，不属于《注解伤寒论》研读范围。,false,refuse,劳动合同|法律|超范围,negative scope sample retained,false,negative_scope
+eval_035,超范围拒答,量子纠缠在书中怎么解释？,,量子纠缠属于现代物理概念，本书没有相应研读依据。,false,refuse,量子纠缠|现代物理|超范围,negative scope sample retained,false,negative_scope
+eval_036,超范围拒答,Python 怎么写爬虫？,,编程问题不属于《注解伤寒论》单书研读支持范围。,false,refuse,Python|爬虫|超范围,negative scope sample retained,false,negative_scope

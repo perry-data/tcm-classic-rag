@@ -1,0 +1,653 @@
+{
+  "run_id": "full_chain_regression_after_p0_p1_v2",
+  "generated_at_utc": "2026-04-26T11:47:37.586577+00:00",
+  "comparison_key": [
+    "query_id",
+    "run_mode"
+  ],
+  "v1_total_failures": 37,
+  "v2_total_failures": 15,
+  "fixed_failures": [
+    {
+      "query_id": "formula_04",
+      "run_mode": "A_data_plane_baseline",
+      "query": "白虎汤方和白虎加人参汤方的区别是什么？",
+      "v1_failure_type": "citation_error",
+      "v1_failure_reasons": [
+        "fail: strong citations are not limited to primary evidence"
+      ]
+    },
+    {
+      "query_id": "formula_04",
+      "run_mode": "B_retrieval_rerank",
+      "query": "白虎汤方和白虎加人参汤方的区别是什么？",
+      "v1_failure_type": "citation_error",
+      "v1_failure_reasons": [
+        "fail: strong citations are not limited to primary evidence"
+      ]
+    },
+    {
+      "query_id": "formula_04",
+      "run_mode": "C_production_like_full_chain",
+      "query": "白虎汤方和白虎加人参汤方的区别是什么？",
+      "v1_failure_type": "citation_error",
+      "v1_failure_reasons": [
+        "fail: strong citations are not limited to primary evidence"
+      ]
+    },
+    {
+      "query_id": "formula_07",
+      "run_mode": "A_data_plane_baseline",
+      "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+      "v1_failure_type": "data_layer_bad_alias",
+      "v1_failure_reasons": [
+        "fail: strong citations are not limited to primary evidence",
+        "formula normalization/raw candidates missed one or more expected formulas"
+      ]
+    },
+    {
+      "query_id": "formula_07",
+      "run_mode": "B_retrieval_rerank",
+      "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+      "v1_failure_type": "data_layer_bad_alias",
+      "v1_failure_reasons": [
+        "fail: strong citations are not limited to primary evidence",
+        "formula normalization/raw candidates missed one or more expected formulas"
+      ]
+    },
+    {
+      "query_id": "formula_07",
+      "run_mode": "C_production_like_full_chain",
+      "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+      "v1_failure_type": "data_layer_bad_alias",
+      "v1_failure_reasons": [
+        "fail: strong citations are not limited to primary evidence",
+        "formula normalization/raw candidates missed one or more expected formulas"
+      ]
+    },
+    {
+      "query_id": "formula_18",
+      "run_mode": "A_data_plane_baseline",
+      "query": "麻黄汤方和桂枝汤方的区别是什么？",
+      "v1_failure_type": "data_layer_bad_alias",
+      "v1_failure_reasons": [
+        "fail: strong citations are not limited to primary evidence",
+        "formula normalization/raw candidates missed one or more expected formulas"
+      ]
+    },
+    {
+      "query_id": "formula_18",
+      "run_mode": "B_retrieval_rerank",
+      "query": "麻黄汤方和桂枝汤方的区别是什么？",
+      "v1_failure_type": "data_layer_bad_alias",
+      "v1_failure_reasons": [
+        "fail: strong citations are not limited to primary evidence",
+        "formula normalization/raw candidates missed one or more expected formulas"
+      ]
+    },
+    {
+      "query_id": "formula_18",
+      "run_mode": "C_production_like_full_chain",
+      "query": "麻黄汤方和桂枝汤方的区别是什么？",
+      "v1_failure_type": "data_layer_bad_alias",
+      "v1_failure_reasons": [
+        "fail: strong citations are not limited to primary evidence",
+        "formula normalization/raw candidates missed one or more expected formulas"
+      ]
+    },
+    {
+      "query_id": "learner_short_21",
+      "run_mode": "A_data_plane_baseline",
+      "query": "干呕是什么意思？",
+      "v1_failure_type": "retrieval_miss",
+      "v1_failure_reasons": [
+        "normal learner query refused instead of offering a conservative book-grounded answer"
+      ]
+    },
+    {
+      "query_id": "learner_short_21",
+      "run_mode": "B_retrieval_rerank",
+      "query": "干呕是什么意思？",
+      "v1_failure_type": "retrieval_miss",
+      "v1_failure_reasons": [
+        "normal learner query refused instead of offering a conservative book-grounded answer"
+      ]
+    },
+    {
+      "query_id": "learner_short_21",
+      "run_mode": "C_production_like_full_chain",
+      "query": "干呕是什么意思？",
+      "v1_failure_type": "retrieval_miss",
+      "v1_failure_reasons": [
+        "normal learner query refused instead of offering a conservative book-grounded answer"
+      ]
+    },
+    {
+      "query_id": "negative_modern_09",
+      "run_mode": "B_retrieval_rerank",
+      "query": "白虎是什么意思？",
+      "v1_failure_type": "rerank_regression",
+      "v1_failure_reasons": [
+        "negative/modern unrelated query produced strong answer",
+        "negative/modern unrelated query has primary evidence",
+        "B mode failed while A mode passed for the same query"
+      ]
+    },
+    {
+      "query_id": "negative_modern_09",
+      "run_mode": "C_production_like_full_chain",
+      "query": "白虎是什么意思？",
+      "v1_failure_type": "negative_query_false_positive",
+      "v1_failure_reasons": [
+        "negative/modern unrelated query produced strong answer",
+        "negative/modern unrelated query has primary evidence"
+      ]
+    },
+    {
+      "query_id": "review_only_boundary_04",
+      "run_mode": "B_retrieval_rerank",
+      "query": "两阳是什么意思？",
+      "v1_failure_type": "rerank_regression",
+      "v1_failure_reasons": [
+        "review-only/support-only boundary query produced strong answer",
+        "review-only/support-only surface appears in primary evidence",
+        "B mode failed while A mode passed for the same query"
+      ]
+    },
+    {
+      "query_id": "review_only_boundary_04",
+      "run_mode": "C_production_like_full_chain",
+      "query": "两阳是什么意思？",
+      "v1_failure_type": "review_only_boundary_error",
+      "v1_failure_reasons": [
+        "review-only/support-only boundary query produced strong answer",
+        "review-only/support-only surface appears in primary evidence"
+      ]
+    },
+    {
+      "query_id": "review_only_boundary_08",
+      "run_mode": "A_data_plane_baseline",
+      "query": "清邪中上是什么意思？",
+      "v1_failure_type": "review_only_boundary_error",
+      "v1_failure_reasons": [
+        "review-only/support-only boundary query produced strong answer",
+        "review-only/support-only surface appears in primary evidence"
+      ]
+    },
+    {
+      "query_id": "review_only_boundary_08",
+      "run_mode": "B_retrieval_rerank",
+      "query": "清邪中上是什么意思？",
+      "v1_failure_type": "review_only_boundary_error",
+      "v1_failure_reasons": [
+        "review-only/support-only boundary query produced strong answer",
+        "review-only/support-only surface appears in primary evidence"
+      ]
+    },
+    {
+      "query_id": "review_only_boundary_08",
+      "run_mode": "C_production_like_full_chain",
+      "query": "清邪中上是什么意思？",
+      "v1_failure_type": "review_only_boundary_error",
+      "v1_failure_reasons": [
+        "review-only/support-only boundary query produced strong answer",
+        "review-only/support-only surface appears in primary evidence"
+      ]
+    },
+    {
+      "query_id": "review_only_boundary_10",
+      "run_mode": "A_data_plane_baseline",
+      "query": "反是什么意思？",
+      "v1_failure_type": "review_only_boundary_error",
+      "v1_failure_reasons": [
+        "review-only/support-only boundary query produced strong answer"
+      ]
+    },
+    {
+      "query_id": "review_only_boundary_10",
+      "run_mode": "B_retrieval_rerank",
+      "query": "反是什么意思？",
+      "v1_failure_type": "review_only_boundary_error",
+      "v1_failure_reasons": [
+        "review-only/support-only boundary query produced strong answer",
+        "review-only/support-only surface appears in primary evidence"
+      ]
+    },
+    {
+      "query_id": "review_only_boundary_10",
+      "run_mode": "C_production_like_full_chain",
+      "query": "反是什么意思？",
+      "v1_failure_type": "review_only_boundary_error",
+      "v1_failure_reasons": [
+        "review-only/support-only boundary query produced strong answer",
+        "review-only/support-only surface appears in primary evidence"
+      ]
+    }
+  ],
+  "persistent_failures": [
+    {
+      "query_id": "ahv2_canonical_02",
+      "run_mode": "A_data_plane_baseline",
+      "query": "少阴病是什么意思",
+      "v1_failure_type": "assembler_slot_error",
+      "v2_failure_type": "assembler_slot_error",
+      "v2_failure_reasons": [
+        "canonical definition primary does not contain expected concept"
+      ]
+    },
+    {
+      "query_id": "ahv2_canonical_02",
+      "run_mode": "B_retrieval_rerank",
+      "query": "少阴病是什么意思",
+      "v1_failure_type": "assembler_slot_error",
+      "v2_failure_type": "assembler_slot_error",
+      "v2_failure_reasons": [
+        "canonical definition primary does not contain expected concept"
+      ]
+    },
+    {
+      "query_id": "ahv2_canonical_02",
+      "run_mode": "C_production_like_full_chain",
+      "query": "少阴病是什么意思",
+      "v1_failure_type": "assembler_slot_error",
+      "v2_failure_type": "assembler_slot_error",
+      "v2_failure_reasons": [
+        "canonical definition primary does not contain expected concept"
+      ]
+    },
+    {
+      "query_id": "cross_batch_adversarial_10",
+      "run_mode": "A_data_plane_baseline",
+      "query": "半表半里证和过经有什么不同",
+      "v1_failure_type": "answer_mode_calibration_error",
+      "v2_failure_type": "answer_mode_calibration_error",
+      "v2_failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ]
+    },
+    {
+      "query_id": "cross_batch_adversarial_10",
+      "run_mode": "B_retrieval_rerank",
+      "query": "半表半里证和过经有什么不同",
+      "v1_failure_type": "answer_mode_calibration_error",
+      "v2_failure_type": "answer_mode_calibration_error",
+      "v2_failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ]
+    },
+    {
+      "query_id": "cross_batch_adversarial_10",
+      "run_mode": "C_production_like_full_chain",
+      "query": "半表半里证和过经有什么不同",
+      "v1_failure_type": "answer_mode_calibration_error",
+      "v2_failure_type": "answer_mode_calibration_error",
+      "v2_failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ]
+    },
+    {
+      "query_id": "cross_batch_adversarial_12",
+      "run_mode": "A_data_plane_baseline",
+      "query": "荣气微和卫气衰有什么区别",
+      "v1_failure_type": "answer_mode_calibration_error",
+      "v2_failure_type": "answer_mode_calibration_error",
+      "v2_failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ]
+    },
+    {
+      "query_id": "cross_batch_adversarial_12",
+      "run_mode": "B_retrieval_rerank",
+      "query": "荣气微和卫气衰有什么区别",
+      "v1_failure_type": "answer_mode_calibration_error",
+      "v2_failure_type": "answer_mode_calibration_error",
+      "v2_failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ]
+    },
+    {
+      "query_id": "cross_batch_adversarial_12",
+      "run_mode": "C_production_like_full_chain",
+      "query": "荣气微和卫气衰有什么区别",
+      "v1_failure_type": "answer_mode_calibration_error",
+      "v2_failure_type": "answer_mode_calibration_error",
+      "v2_failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ]
+    },
+    {
+      "query_id": "cross_batch_adversarial_15",
+      "run_mode": "A_data_plane_baseline",
+      "query": "霍乱和伤寒有什么区别",
+      "v1_failure_type": "answer_mode_calibration_error",
+      "v2_failure_type": "answer_mode_calibration_error",
+      "v2_failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ]
+    },
+    {
+      "query_id": "cross_batch_adversarial_15",
+      "run_mode": "B_retrieval_rerank",
+      "query": "霍乱和伤寒有什么区别",
+      "v1_failure_type": "answer_mode_calibration_error",
+      "v2_failure_type": "answer_mode_calibration_error",
+      "v2_failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ]
+    },
+    {
+      "query_id": "cross_batch_adversarial_15",
+      "run_mode": "C_production_like_full_chain",
+      "query": "霍乱和伤寒有什么区别",
+      "v1_failure_type": "answer_mode_calibration_error",
+      "v2_failure_type": "answer_mode_calibration_error",
+      "v2_failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ]
+    },
+    {
+      "query_id": "cross_batch_adversarial_18",
+      "run_mode": "A_data_plane_baseline",
+      "query": "痓病和太阳病有什么不同",
+      "v1_failure_type": "answer_mode_calibration_error",
+      "v2_failure_type": "answer_mode_calibration_error",
+      "v2_failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ]
+    },
+    {
+      "query_id": "cross_batch_adversarial_18",
+      "run_mode": "B_retrieval_rerank",
+      "query": "痓病和太阳病有什么不同",
+      "v1_failure_type": "answer_mode_calibration_error",
+      "v2_failure_type": "answer_mode_calibration_error",
+      "v2_failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ]
+    },
+    {
+      "query_id": "cross_batch_adversarial_18",
+      "run_mode": "C_production_like_full_chain",
+      "query": "痓病和太阳病有什么不同",
+      "v1_failure_type": "answer_mode_calibration_error",
+      "v2_failure_type": "answer_mode_calibration_error",
+      "v2_failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ]
+    }
+  ],
+  "new_failures": [],
+  "p0_delta": {
+    "guard_query_count": 4,
+    "v1_failed_cases": 10,
+    "v2_failed_cases": 0,
+    "all_v2_pass": true,
+    "records": [
+      {
+        "query_id": "review_only_boundary_08",
+        "query": "清邪中上是什么意思？",
+        "run_mode": "A_data_plane_baseline",
+        "v1_pass": false,
+        "v1_failure_type": "review_only_boundary_error",
+        "v2_pass": true,
+        "v2_failure_type": "none",
+        "fixed": true
+      },
+      {
+        "query_id": "review_only_boundary_08",
+        "query": "清邪中上是什么意思？",
+        "run_mode": "B_retrieval_rerank",
+        "v1_pass": false,
+        "v1_failure_type": "review_only_boundary_error",
+        "v2_pass": true,
+        "v2_failure_type": "none",
+        "fixed": true
+      },
+      {
+        "query_id": "review_only_boundary_08",
+        "query": "清邪中上是什么意思？",
+        "run_mode": "C_production_like_full_chain",
+        "v1_pass": false,
+        "v1_failure_type": "review_only_boundary_error",
+        "v2_pass": true,
+        "v2_failure_type": "none",
+        "fixed": true
+      },
+      {
+        "query_id": "review_only_boundary_10",
+        "query": "反是什么意思？",
+        "run_mode": "A_data_plane_baseline",
+        "v1_pass": false,
+        "v1_failure_type": "review_only_boundary_error",
+        "v2_pass": true,
+        "v2_failure_type": "none",
+        "fixed": true
+      },
+      {
+        "query_id": "review_only_boundary_10",
+        "query": "反是什么意思？",
+        "run_mode": "B_retrieval_rerank",
+        "v1_pass": false,
+        "v1_failure_type": "review_only_boundary_error",
+        "v2_pass": true,
+        "v2_failure_type": "none",
+        "fixed": true
+      },
+      {
+        "query_id": "review_only_boundary_10",
+        "query": "反是什么意思？",
+        "run_mode": "C_production_like_full_chain",
+        "v1_pass": false,
+        "v1_failure_type": "review_only_boundary_error",
+        "v2_pass": true,
+        "v2_failure_type": "none",
+        "fixed": true
+      },
+      {
+        "query_id": "review_only_boundary_04",
+        "query": "两阳是什么意思？",
+        "run_mode": "A_data_plane_baseline",
+        "v1_pass": true,
+        "v1_failure_type": "none",
+        "v2_pass": true,
+        "v2_failure_type": "none",
+        "fixed": false
+      },
+      {
+        "query_id": "review_only_boundary_04",
+        "query": "两阳是什么意思？",
+        "run_mode": "B_retrieval_rerank",
+        "v1_pass": false,
+        "v1_failure_type": "rerank_regression",
+        "v2_pass": true,
+        "v2_failure_type": "none",
+        "fixed": true
+      },
+      {
+        "query_id": "review_only_boundary_04",
+        "query": "两阳是什么意思？",
+        "run_mode": "C_production_like_full_chain",
+        "v1_pass": false,
+        "v1_failure_type": "review_only_boundary_error",
+        "v2_pass": true,
+        "v2_failure_type": "none",
+        "fixed": true
+      },
+      {
+        "query_id": "negative_modern_09",
+        "query": "白虎是什么意思？",
+        "run_mode": "A_data_plane_baseline",
+        "v1_pass": true,
+        "v1_failure_type": "none",
+        "v2_pass": true,
+        "v2_failure_type": "none",
+        "fixed": false
+      },
+      {
+        "query_id": "negative_modern_09",
+        "query": "白虎是什么意思？",
+        "run_mode": "B_retrieval_rerank",
+        "v1_pass": false,
+        "v1_failure_type": "rerank_regression",
+        "v2_pass": true,
+        "v2_failure_type": "none",
+        "fixed": true
+      },
+      {
+        "query_id": "negative_modern_09",
+        "query": "白虎是什么意思？",
+        "run_mode": "C_production_like_full_chain",
+        "v1_pass": false,
+        "v1_failure_type": "negative_query_false_positive",
+        "v2_pass": true,
+        "v2_failure_type": "none",
+        "fixed": true
+      }
+    ]
+  },
+  "p1_delta": {
+    "guard_query_count": 3,
+    "v1_failed_cases": 9,
+    "v2_failed_cases": 0,
+    "all_v2_pass": true,
+    "records": [
+      {
+        "query_id": "formula_07",
+        "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+        "run_mode": "A_data_plane_baseline",
+        "v1_pass": false,
+        "v1_failure_type": "data_layer_bad_alias",
+        "v2_pass": true,
+        "v2_failure_type": "none",
+        "fixed": true
+      },
+      {
+        "query_id": "formula_07",
+        "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+        "run_mode": "B_retrieval_rerank",
+        "v1_pass": false,
+        "v1_failure_type": "data_layer_bad_alias",
+        "v2_pass": true,
+        "v2_failure_type": "none",
+        "fixed": true
+      },
+      {
+        "query_id": "formula_07",
+        "query": "桂枝加附子汤方和桂枝加厚朴杏子汤方的区别是什么？",
+        "run_mode": "C_production_like_full_chain",
+        "v1_pass": false,
+        "v1_failure_type": "data_layer_bad_alias",
+        "v2_pass": true,
+        "v2_failure_type": "none",
+        "fixed": true
+      },
+      {
+        "query_id": "formula_18",
+        "query": "麻黄汤方和桂枝汤方的区别是什么？",
+        "run_mode": "A_data_plane_baseline",
+        "v1_pass": false,
+        "v1_failure_type": "data_layer_bad_alias",
+        "v2_pass": true,
+        "v2_failure_type": "none",
+        "fixed": true
+      },
+      {
+        "query_id": "formula_18",
+        "query": "麻黄汤方和桂枝汤方的区别是什么？",
+        "run_mode": "B_retrieval_rerank",
+        "v1_pass": false,
+        "v1_failure_type": "data_layer_bad_alias",
+        "v2_pass": true,
+        "v2_failure_type": "none",
+        "fixed": true
+      },
+      {
+        "query_id": "formula_18",
+        "query": "麻黄汤方和桂枝汤方的区别是什么？",
+        "run_mode": "C_production_like_full_chain",
+        "v1_pass": false,
+        "v1_failure_type": "data_layer_bad_alias",
+        "v2_pass": true,
+        "v2_failure_type": "none",
+        "fixed": true
+      },
+      {
+        "query_id": "learner_short_21",
+        "query": "干呕是什么意思？",
+        "run_mode": "A_data_plane_baseline",
+        "v1_pass": false,
+        "v1_failure_type": "retrieval_miss",
+        "v2_pass": true,
+        "v2_failure_type": "none",
+        "fixed": true
+      },
+      {
+        "query_id": "learner_short_21",
+        "query": "干呕是什么意思？",
+        "run_mode": "B_retrieval_rerank",
+        "v1_pass": false,
+        "v1_failure_type": "retrieval_miss",
+        "v2_pass": true,
+        "v2_failure_type": "none",
+        "fixed": true
+      },
+      {
+        "query_id": "learner_short_21",
+        "query": "干呕是什么意思？",
+        "run_mode": "C_production_like_full_chain",
+        "v1_pass": false,
+        "v1_failure_type": "retrieval_miss",
+        "v2_pass": true,
+        "v2_failure_type": "none",
+        "fixed": true
+      }
+    ]
+  },
+  "failure_type_delta": {
+    "answer_mode_calibration_error": {
+      "v1": 12,
+      "v2": 12,
+      "delta": 0
+    },
+    "assembler_slot_error": {
+      "v1": 3,
+      "v2": 3,
+      "delta": 0
+    },
+    "citation_error": {
+      "v1": 3,
+      "v2": 0,
+      "delta": -3
+    },
+    "data_layer_bad_alias": {
+      "v1": 6,
+      "v2": 0,
+      "delta": -6
+    },
+    "negative_query_false_positive": {
+      "v1": 1,
+      "v2": 0,
+      "delta": -1
+    },
+    "rerank_regression": {
+      "v1": 2,
+      "v2": 0,
+      "delta": -2
+    },
+    "retrieval_miss": {
+      "v1": 3,
+      "v2": 0,
+      "delta": -3
+    },
+    "review_only_boundary_error": {
+      "v1": 7,
+      "v2": 0,
+      "delta": -7
+    }
+  },
+  "notes": [
+    "v2 reused the 120-query full_chain_query_set_v1 query set and reran A/B/C modes.",
+    "Fixed/persistent/new are computed by query_id + run_mode, not by relaxed failure criteria.",
+    "P0/P1 deltas are guard coverage summaries; no P2 repair is applied in this run."
+  ]
+}

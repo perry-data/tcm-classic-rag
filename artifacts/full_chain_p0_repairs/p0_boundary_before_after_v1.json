@@ -1,0 +1,682 @@
+{
+  "run_id": "full_chain_p0_boundary_repairs_v1",
+  "generated_at_utc": "2026-04-26T06:55:13.932327+00:00",
+  "before_source": "artifacts/full_chain_regression/full_chain_regression_results_v1.json",
+  "before_failure_count": 10,
+  "after_failure_count": 0,
+  "before": [
+    {
+      "query_id": "review_only_boundary_04",
+      "query": "两阳是什么意思？",
+      "run_mode": "A_data_plane_baseline",
+      "answer_mode": "weak_with_review_notice",
+      "failure_type": "none",
+      "pass": true,
+      "primary_ids": [],
+      "matched_definition_concept_ids": [],
+      "matched_formula_ids": [],
+      "failure_reasons": []
+    },
+    {
+      "query_id": "review_only_boundary_08",
+      "query": "清邪中上是什么意思？",
+      "run_mode": "A_data_plane_baseline",
+      "answer_mode": "strong",
+      "failure_type": "review_only_boundary_error",
+      "pass": false,
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-023-P-0046"
+      ],
+      "matched_definition_concept_ids": [],
+      "matched_formula_ids": [],
+      "failure_reasons": [
+        "review-only/support-only boundary query produced strong answer",
+        "review-only/support-only surface appears in primary evidence"
+      ]
+    },
+    {
+      "query_id": "review_only_boundary_10",
+      "query": "反是什么意思？",
+      "run_mode": "A_data_plane_baseline",
+      "answer_mode": "strong",
+      "failure_type": "review_only_boundary_error",
+      "pass": false,
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-008-P-0217",
+        "safe:main_passages:ZJSHL-CH-025-P-0007"
+      ],
+      "matched_definition_concept_ids": [],
+      "matched_formula_ids": [],
+      "failure_reasons": [
+        "review-only/support-only boundary query produced strong answer"
+      ]
+    },
+    {
+      "query_id": "negative_modern_09",
+      "query": "白虎是什么意思？",
+      "run_mode": "A_data_plane_baseline",
+      "answer_mode": "weak_with_review_notice",
+      "failure_type": "none",
+      "pass": true,
+      "primary_ids": [],
+      "matched_definition_concept_ids": [],
+      "matched_formula_ids": [],
+      "failure_reasons": []
+    },
+    {
+      "query_id": "review_only_boundary_04",
+      "query": "两阳是什么意思？",
+      "run_mode": "B_retrieval_rerank",
+      "answer_mode": "strong",
+      "failure_type": "rerank_regression",
+      "pass": false,
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0275",
+        "safe:main_passages:ZJSHL-CH-017-P-0049",
+        "safe:main_passages:ZJSHL-CH-017-P-0050"
+      ],
+      "matched_definition_concept_ids": [],
+      "matched_formula_ids": [],
+      "failure_reasons": [
+        "review-only/support-only boundary query produced strong answer",
+        "review-only/support-only surface appears in primary evidence",
+        "B mode failed while A mode passed for the same query"
+      ]
+    },
+    {
+      "query_id": "review_only_boundary_08",
+      "query": "清邪中上是什么意思？",
+      "run_mode": "B_retrieval_rerank",
+      "answer_mode": "strong",
+      "failure_type": "review_only_boundary_error",
+      "pass": false,
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-023-P-0046"
+      ],
+      "matched_definition_concept_ids": [],
+      "matched_formula_ids": [],
+      "failure_reasons": [
+        "review-only/support-only boundary query produced strong answer",
+        "review-only/support-only surface appears in primary evidence"
+      ]
+    },
+    {
+      "query_id": "review_only_boundary_10",
+      "query": "反是什么意思？",
+      "run_mode": "B_retrieval_rerank",
+      "answer_mode": "strong",
+      "failure_type": "review_only_boundary_error",
+      "pass": false,
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0090",
+        "safe:main_passages:ZJSHL-CH-025-P-0007",
+        "safe:main_passages:ZJSHL-CH-009-P-0159"
+      ],
+      "matched_definition_concept_ids": [],
+      "matched_formula_ids": [],
+      "failure_reasons": [
+        "review-only/support-only boundary query produced strong answer",
+        "review-only/support-only surface appears in primary evidence"
+      ]
+    },
+    {
+      "query_id": "negative_modern_09",
+      "query": "白虎是什么意思？",
+      "run_mode": "B_retrieval_rerank",
+      "answer_mode": "strong",
+      "failure_type": "rerank_regression",
+      "pass": false,
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0104",
+        "safe:main_passages:ZJSHL-CH-010-P-0128",
+        "safe:main_passages:ZJSHL-CH-010-P-0165"
+      ],
+      "matched_definition_concept_ids": [],
+      "matched_formula_ids": [],
+      "failure_reasons": [
+        "negative/modern unrelated query produced strong answer",
+        "negative/modern unrelated query has primary evidence",
+        "B mode failed while A mode passed for the same query"
+      ]
+    },
+    {
+      "query_id": "review_only_boundary_04",
+      "query": "两阳是什么意思？",
+      "run_mode": "C_production_like_full_chain",
+      "answer_mode": "strong",
+      "failure_type": "review_only_boundary_error",
+      "pass": false,
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0275",
+        "safe:main_passages:ZJSHL-CH-017-P-0049",
+        "safe:main_passages:ZJSHL-CH-017-P-0050"
+      ],
+      "matched_definition_concept_ids": [],
+      "matched_formula_ids": [],
+      "failure_reasons": [
+        "review-only/support-only boundary query produced strong answer",
+        "review-only/support-only surface appears in primary evidence"
+      ]
+    },
+    {
+      "query_id": "review_only_boundary_08",
+      "query": "清邪中上是什么意思？",
+      "run_mode": "C_production_like_full_chain",
+      "answer_mode": "strong",
+      "failure_type": "review_only_boundary_error",
+      "pass": false,
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-023-P-0046"
+      ],
+      "matched_definition_concept_ids": [],
+      "matched_formula_ids": [],
+      "failure_reasons": [
+        "review-only/support-only boundary query produced strong answer",
+        "review-only/support-only surface appears in primary evidence"
+      ]
+    },
+    {
+      "query_id": "review_only_boundary_10",
+      "query": "反是什么意思？",
+      "run_mode": "C_production_like_full_chain",
+      "answer_mode": "strong",
+      "failure_type": "review_only_boundary_error",
+      "pass": false,
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0090",
+        "safe:main_passages:ZJSHL-CH-025-P-0007",
+        "safe:main_passages:ZJSHL-CH-009-P-0159"
+      ],
+      "matched_definition_concept_ids": [],
+      "matched_formula_ids": [],
+      "failure_reasons": [
+        "review-only/support-only boundary query produced strong answer",
+        "review-only/support-only surface appears in primary evidence"
+      ]
+    },
+    {
+      "query_id": "negative_modern_09",
+      "query": "白虎是什么意思？",
+      "run_mode": "C_production_like_full_chain",
+      "answer_mode": "strong",
+      "failure_type": "negative_query_false_positive",
+      "pass": false,
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0104",
+        "safe:main_passages:ZJSHL-CH-010-P-0128",
+        "safe:main_passages:ZJSHL-CH-010-P-0165"
+      ],
+      "matched_definition_concept_ids": [],
+      "matched_formula_ids": [],
+      "failure_reasons": [
+        "negative/modern unrelated query produced strong answer",
+        "negative/modern unrelated query has primary evidence"
+      ]
+    }
+  ],
+  "after": [
+    {
+      "query_id": "p0_original_01",
+      "query": "清邪中上是什么意思？",
+      "run_mode": "A_data_plane_baseline",
+      "answer_mode": "weak_with_review_notice",
+      "p0_pass": true,
+      "p0_failure_type": "none",
+      "primary_ids": [],
+      "secondary_ids": [
+        "safe:main_passages:ZJSHL-CH-023-P-0046",
+        "full:annotations:ZJSHL-CH-003-P-0098",
+        "full:passages:ZJSHL-CH-003-P-0099",
+        "full:passages:ZJSHL-CH-023-P-0047"
+      ],
+      "review_ids": [
+        "full:passages:ZJSHL-CH-003-P-0098",
+        "full:passages:ZJSHL-CH-023-P-0046"
+      ],
+      "matched_definition_concept_ids": [],
+      "matched_formula_ids": [],
+      "p0_failure_reasons": [],
+      "llm_debug": {
+        "provider": "Alibaba Cloud Model Studio",
+        "enabled": false,
+        "model": "qwen-plus",
+        "query_text": "清邪中上是什么意思？",
+        "answer_mode": "weak_with_review_notice",
+        "attempted": false,
+        "used_llm": false,
+        "fallback_used": false,
+        "skipped_reason": "p0_boundary_guard",
+        "fallback_reason": null,
+        "answer_source": "baseline_p0_boundary_guard",
+        "baseline_answer_text_excerpt": "“清邪中上”目前不作为已审定的稳定定义来强答。 现有材料只能作为核对线索：脉阴阳俱紧，则清邪中上，浊邪中下，太阳少阴俱感邪也。恶寒者少阴，发热者太阳，脉欲厥者，表邪欲传里也。恶寒甚者，则变热，翕翕汗出，喉中痛，以少阴之脉循喉咙故也。热多者，太阳多也；目赤脉多者，睛不慧，以太阳之脉起于目故也。发汗攻阳，则少阴之热因......",
+        "attempts": []
+      }
+    },
+    {
+      "query_id": "p0_original_02",
+      "query": "反是什么意思？",
+      "run_mode": "A_data_plane_baseline",
+      "answer_mode": "weak_with_review_notice",
+      "p0_pass": true,
+      "p0_failure_type": "none",
+      "primary_ids": [],
+      "secondary_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-008-P-0217",
+        "safe:main_passages:ZJSHL-CH-025-P-0007",
+        "safe:main_passages:ZJSHL-CH-014-P-0107",
+        "safe:main_passages:ZJSHL-CH-009-P-0161",
+        "safe:main_passages:ZJSHL-CH-008-P-0219",
+        "safe:main_passages:ZJSHL-CH-025-P-0008",
+        "safe:main_passages:ZJSHL-CH-014-P-0108",
+        "full:passages:ZJSHL-CH-014-P-0108",
+        "full:passages:ZJSHL-CH-025-P-0006",
+        "full:passages:ZJSHL-CH-014-P-0106",
+        "full:passages:ZJSHL-CH-008-P-0218",
+        "full:passages:ZJSHL-CH-009-P-0162",
+        "full:passages:ZJSHL-CH-025-P-0008"
+      ],
+      "review_ids": [],
+      "matched_definition_concept_ids": [],
+      "matched_formula_ids": [],
+      "p0_failure_reasons": [],
+      "llm_debug": {
+        "provider": "Alibaba Cloud Model Studio",
+        "enabled": false,
+        "model": "qwen-plus",
+        "query_text": "反是什么意思？",
+        "answer_mode": "weak_with_review_notice",
+        "attempted": false,
+        "used_llm": false,
+        "fallback_used": false,
+        "skipped_reason": "p0_boundary_guard",
+        "fallback_reason": null,
+        "answer_source": "baseline_p0_boundary_guard",
+        "baseline_answer_text_excerpt": "“反”目前不作为已审定的稳定定义来强答。 现有材料只能作为核对线索：栀子豉汤方：栀子十四枚，赵本作个，擘。味苦寒 香豉四合，绵裹。味苦寒。 原因是这个问法仍属于 review-only / not-ready 边界，离开前后文容易把局部语句误当成安全主定义。 建议回到命中的原句及其前后文核对，再判断是否需要以后单独做对...",
+        "attempts": []
+      }
+    },
+    {
+      "query_id": "p0_original_03",
+      "query": "两阳是什么意思？",
+      "run_mode": "A_data_plane_baseline",
+      "answer_mode": "weak_with_review_notice",
+      "p0_pass": true,
+      "p0_failure_type": "none",
+      "primary_ids": [],
+      "secondary_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-017-P-0050",
+        "safe:main_passages:ZJSHL-CH-009-P-0275",
+        "safe:main_passages:ZJSHL-CH-009-P-0161",
+        "safe:main_passages:ZJSHL-CH-017-P-0053",
+        "safe:main_passages:ZJSHL-CH-009-P-0160",
+        "safe:main_passages:ZJSHL-CH-017-P-0049",
+        "safe:main_passages:ZJSHL-CH-009-P-0164",
+        "full:passages:ZJSHL-CH-009-P-0276",
+        "full:passages:ZJSHL-CH-017-P-0051",
+        "full:passages:ZJSHL-CH-017-P-0049",
+        "full:passages:ZJSHL-CH-009-P-0158",
+        "full:passages:ZJSHL-CH-009-P-0160",
+        "full:passages:ZJSHL-CH-009-P-0162"
+      ],
+      "review_ids": [
+        "full:passages:ZJSHL-CH-009-P-0275"
+      ],
+      "matched_definition_concept_ids": [],
+      "matched_formula_ids": [],
+      "p0_failure_reasons": [],
+      "llm_debug": {
+        "provider": "Alibaba Cloud Model Studio",
+        "enabled": false,
+        "model": "qwen-plus",
+        "query_text": "两阳是什么意思？",
+        "answer_mode": "weak_with_review_notice",
+        "attempted": false,
+        "used_llm": false,
+        "fallback_used": false,
+        "skipped_reason": "p0_boundary_guard",
+        "fallback_reason": null,
+        "answer_source": "baseline_p0_boundary_guard",
+        "baseline_answer_text_excerpt": "“两阳”目前不作为已审定的稳定定义来强答。 现有材料只能作为核对线索：栀子豉汤方：栀子十四枚，赵本作个，擘。味苦寒 香豉四合，绵裹。味苦寒。 原因是这个问法仍属于 review-only / not-ready 边界，离开前后文容易把局部语句误当成安全主定义。 建议回到命中的原句及其前后文核对，再判断是否需要以后单独做...",
+        "attempts": []
+      }
+    },
+    {
+      "query_id": "p0_original_04",
+      "query": "白虎是什么意思？",
+      "run_mode": "A_data_plane_baseline",
+      "answer_mode": "refuse",
+      "p0_pass": true,
+      "p0_failure_type": "none",
+      "primary_ids": [],
+      "secondary_ids": [],
+      "review_ids": [],
+      "matched_definition_concept_ids": [],
+      "matched_formula_ids": [],
+      "p0_failure_reasons": [],
+      "llm_debug": {
+        "provider": "Alibaba Cloud Model Studio",
+        "enabled": false,
+        "model": "qwen-plus",
+        "query_text": "白虎是什么意思？",
+        "answer_mode": "refuse",
+        "attempted": false,
+        "used_llm": false,
+        "fallback_used": false,
+        "skipped_reason": "refuse_mode",
+        "fallback_reason": null,
+        "answer_source": "baseline_refuse",
+        "baseline_answer_text_excerpt": "“白虎”这个问法当前没有安全的书内定义对象可用，不能因为相近方名或普通现代义直接强答。可以改问“白虎汤方的条文是什么”或“白虎加人参汤方的条文是什么”这类明确方名问题。",
+        "attempts": []
+      }
+    },
+    {
+      "query_id": "p0_original_01",
+      "query": "清邪中上是什么意思？",
+      "run_mode": "B_retrieval_rerank",
+      "answer_mode": "weak_with_review_notice",
+      "p0_pass": true,
+      "p0_failure_type": "none",
+      "primary_ids": [],
+      "secondary_ids": [
+        "safe:main_passages:ZJSHL-CH-023-P-0046",
+        "full:annotations:ZJSHL-CH-003-P-0098",
+        "full:passages:ZJSHL-CH-003-P-0099",
+        "full:passages:ZJSHL-CH-023-P-0047"
+      ],
+      "review_ids": [
+        "full:passages:ZJSHL-CH-003-P-0098",
+        "full:passages:ZJSHL-CH-023-P-0046"
+      ],
+      "matched_definition_concept_ids": [],
+      "matched_formula_ids": [],
+      "p0_failure_reasons": [],
+      "llm_debug": {
+        "provider": "Alibaba Cloud Model Studio",
+        "enabled": false,
+        "model": "qwen-plus",
+        "query_text": "清邪中上是什么意思？",
+        "answer_mode": "weak_with_review_notice",
+        "attempted": false,
+        "used_llm": false,
+        "fallback_used": false,
+        "skipped_reason": "p0_boundary_guard",
+        "fallback_reason": null,
+        "answer_source": "baseline_p0_boundary_guard",
+        "baseline_answer_text_excerpt": "“清邪中上”目前不作为已审定的稳定定义来强答。 现有材料只能作为核对线索：脉阴阳俱紧，则清邪中上，浊邪中下，太阳少阴俱感邪也。恶寒者少阴，发热者太阳，脉欲厥者，表邪欲传里也。恶寒甚者，则变热，翕翕汗出，喉中痛，以少阴之脉循喉咙故也。热多者，太阳多也；目赤脉多者，睛不慧，以太阳之脉起于目故也。发汗攻阳，则少阴之热因......",
+        "attempts": []
+      }
+    },
+    {
+      "query_id": "p0_original_02",
+      "query": "反是什么意思？",
+      "run_mode": "B_retrieval_rerank",
+      "answer_mode": "weak_with_review_notice",
+      "p0_pass": true,
+      "p0_failure_type": "none",
+      "primary_ids": [],
+      "secondary_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0090",
+        "safe:main_passages:ZJSHL-CH-025-P-0007",
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-014-P-0107",
+        "safe:main_passages:ZJSHL-CH-014-P-0108",
+        "safe:main_passages:ZJSHL-CH-014-P-0105",
+        "safe:main_passages:ZJSHL-CH-014-P-0069",
+        "safe:main_passages:ZJSHL-CH-015-P-0265",
+        "full:passages:ZJSHL-CH-014-P-0108",
+        "full:passages:ZJSHL-CH-014-P-0107",
+        "full:passages:ZJSHL-CH-025-P-0008",
+        "full:passages:ZJSHL-CH-014-P-0109",
+        "full:passages:ZJSHL-CH-014-P-0106",
+        "full:passages:ZJSHL-CH-003-P-0089"
+      ],
+      "review_ids": [],
+      "matched_definition_concept_ids": [],
+      "matched_formula_ids": [],
+      "p0_failure_reasons": [],
+      "llm_debug": {
+        "provider": "Alibaba Cloud Model Studio",
+        "enabled": false,
+        "model": "qwen-plus",
+        "query_text": "反是什么意思？",
+        "answer_mode": "weak_with_review_notice",
+        "attempted": false,
+        "used_llm": false,
+        "fallback_used": false,
+        "skipped_reason": "p0_boundary_guard",
+        "fallback_reason": null,
+        "answer_source": "baseline_p0_boundary_guard",
+        "baseline_answer_text_excerpt": "“反”目前不作为已审定的稳定定义来强答。 现有材料只能作为核对线索：经云：脉浮大，应发汗，若反下之，为大逆。浮大之脉，邪在表也，当发其汗，若反下之，是攻其正气，邪气得以深入，故为大逆。浮则无血者，下后亡血也；大则为寒者，邪气独在也。。 原因是这个问法仍属于 review-only / not-ready 边界，离开前后...",
+        "attempts": []
+      }
+    },
+    {
+      "query_id": "p0_original_03",
+      "query": "两阳是什么意思？",
+      "run_mode": "B_retrieval_rerank",
+      "answer_mode": "weak_with_review_notice",
+      "p0_pass": true,
+      "p0_failure_type": "none",
+      "primary_ids": [],
+      "secondary_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0275",
+        "safe:main_passages:ZJSHL-CH-017-P-0049",
+        "safe:main_passages:ZJSHL-CH-017-P-0050",
+        "safe:main_passages:ZJSHL-CH-017-P-0053",
+        "safe:main_passages:ZJSHL-CH-009-P-0161",
+        "safe:main_passages:ZJSHL-CH-009-P-0160",
+        "safe:main_passages:ZJSHL-CH-009-P-0164",
+        "full:passages:ZJSHL-CH-017-P-0049",
+        "full:passages:ZJSHL-CH-017-P-0050",
+        "full:passages:ZJSHL-CH-009-P-0276",
+        "full:passages:ZJSHL-CH-017-P-0051",
+        "full:passages:ZJSHL-CH-017-P-0048",
+        "full:passages:ZJSHL-CH-009-P-0160"
+      ],
+      "review_ids": [],
+      "matched_definition_concept_ids": [],
+      "matched_formula_ids": [],
+      "p0_failure_reasons": [],
+      "llm_debug": {
+        "provider": "Alibaba Cloud Model Studio",
+        "enabled": false,
+        "model": "qwen-plus",
+        "query_text": "两阳是什么意思？",
+        "answer_mode": "weak_with_review_notice",
+        "attempted": false,
+        "used_llm": false,
+        "fallback_used": false,
+        "skipped_reason": "p0_boundary_guard",
+        "fallback_reason": null,
+        "answer_source": "baseline_p0_boundary_guard",
+        "baseline_answer_text_excerpt": "“两阳”目前不作为已审定的稳定定义来强答。 现有材料只能作为核对线索：太阳病中风，以火劫发汗，邪风被火热，血气流溢，失其常度，两阳相熏灼，其身发黄。阳盛则欲衄，阴虚则小便难，阴阳俱虚竭，身体则枯燥。但头汗出，剂颈而还，腹满微喘，口乾咽烂，或不大便，久则谵语，甚者至哕，手足躁扰，捻衣摸床，小便利者，其人可治。。 原因是这...",
+        "attempts": []
+      }
+    },
+    {
+      "query_id": "p0_original_04",
+      "query": "白虎是什么意思？",
+      "run_mode": "B_retrieval_rerank",
+      "answer_mode": "refuse",
+      "p0_pass": true,
+      "p0_failure_type": "none",
+      "primary_ids": [],
+      "secondary_ids": [],
+      "review_ids": [],
+      "matched_definition_concept_ids": [],
+      "matched_formula_ids": [],
+      "p0_failure_reasons": [],
+      "llm_debug": {
+        "provider": "Alibaba Cloud Model Studio",
+        "enabled": false,
+        "model": "qwen-plus",
+        "query_text": "白虎是什么意思？",
+        "answer_mode": "refuse",
+        "attempted": false,
+        "used_llm": false,
+        "fallback_used": false,
+        "skipped_reason": "refuse_mode",
+        "fallback_reason": null,
+        "answer_source": "baseline_refuse",
+        "baseline_answer_text_excerpt": "“白虎”这个问法当前没有安全的书内定义对象可用，不能因为相近方名或普通现代义直接强答。可以改问“白虎汤方的条文是什么”或“白虎加人参汤方的条文是什么”这类明确方名问题。",
+        "attempts": []
+      }
+    },
+    {
+      "query_id": "p0_original_01",
+      "query": "清邪中上是什么意思？",
+      "run_mode": "C_production_like_full_chain",
+      "answer_mode": "weak_with_review_notice",
+      "p0_pass": true,
+      "p0_failure_type": "none",
+      "primary_ids": [],
+      "secondary_ids": [
+        "safe:main_passages:ZJSHL-CH-023-P-0046",
+        "full:annotations:ZJSHL-CH-003-P-0098",
+        "full:passages:ZJSHL-CH-003-P-0099",
+        "full:passages:ZJSHL-CH-023-P-0047"
+      ],
+      "review_ids": [
+        "full:passages:ZJSHL-CH-003-P-0098",
+        "full:passages:ZJSHL-CH-023-P-0046"
+      ],
+      "matched_definition_concept_ids": [],
+      "matched_formula_ids": [],
+      "p0_failure_reasons": [],
+      "llm_debug": {
+        "provider": "Alibaba Cloud Model Studio",
+        "enabled": true,
+        "model": "qwen-plus",
+        "query_text": "清邪中上是什么意思？",
+        "answer_mode": "weak_with_review_notice",
+        "attempted": false,
+        "used_llm": false,
+        "fallback_used": false,
+        "skipped_reason": "p0_boundary_guard",
+        "fallback_reason": null,
+        "answer_source": "baseline_p0_boundary_guard",
+        "baseline_answer_text_excerpt": "“清邪中上”目前不作为已审定的稳定定义来强答。 现有材料只能作为核对线索：脉阴阳俱紧，则清邪中上，浊邪中下，太阳少阴俱感邪也。恶寒者少阴，发热者太阳，脉欲厥者，表邪欲传里也。恶寒甚者，则变热，翕翕汗出，喉中痛，以少阴之脉循喉咙故也。热多者，太阳多也；目赤脉多者，睛不慧，以太阳之脉起于目故也。发汗攻阳，则少阴之热因......",
+        "attempts": []
+      }
+    },
+    {
+      "query_id": "p0_original_02",
+      "query": "反是什么意思？",
+      "run_mode": "C_production_like_full_chain",
+      "answer_mode": "weak_with_review_notice",
+      "p0_pass": true,
+      "p0_failure_type": "none",
+      "primary_ids": [],
+      "secondary_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0090",
+        "safe:main_passages:ZJSHL-CH-025-P-0007",
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-014-P-0107",
+        "safe:main_passages:ZJSHL-CH-014-P-0108",
+        "safe:main_passages:ZJSHL-CH-014-P-0105",
+        "safe:main_passages:ZJSHL-CH-014-P-0069",
+        "safe:main_passages:ZJSHL-CH-015-P-0265",
+        "full:passages:ZJSHL-CH-014-P-0108",
+        "full:passages:ZJSHL-CH-014-P-0107",
+        "full:passages:ZJSHL-CH-025-P-0008",
+        "full:passages:ZJSHL-CH-014-P-0109",
+        "full:passages:ZJSHL-CH-014-P-0106",
+        "full:passages:ZJSHL-CH-003-P-0089"
+      ],
+      "review_ids": [],
+      "matched_definition_concept_ids": [],
+      "matched_formula_ids": [],
+      "p0_failure_reasons": [],
+      "llm_debug": {
+        "provider": "Alibaba Cloud Model Studio",
+        "enabled": true,
+        "model": "qwen-plus",
+        "query_text": "反是什么意思？",
+        "answer_mode": "weak_with_review_notice",
+        "attempted": false,
+        "used_llm": false,
+        "fallback_used": false,
+        "skipped_reason": "p0_boundary_guard",
+        "fallback_reason": null,
+        "answer_source": "baseline_p0_boundary_guard",
+        "baseline_answer_text_excerpt": "“反”目前不作为已审定的稳定定义来强答。 现有材料只能作为核对线索：经云：脉浮大，应发汗，若反下之，为大逆。浮大之脉，邪在表也，当发其汗，若反下之，是攻其正气，邪气得以深入，故为大逆。浮则无血者，下后亡血也；大则为寒者，邪气独在也。。 原因是这个问法仍属于 review-only / not-ready 边界，离开前后...",
+        "attempts": []
+      }
+    },
+    {
+      "query_id": "p0_original_03",
+      "query": "两阳是什么意思？",
+      "run_mode": "C_production_like_full_chain",
+      "answer_mode": "weak_with_review_notice",
+      "p0_pass": true,
+      "p0_failure_type": "none",
+      "primary_ids": [],
+      "secondary_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0275",
+        "safe:main_passages:ZJSHL-CH-017-P-0049",
+        "safe:main_passages:ZJSHL-CH-017-P-0050",
+        "safe:main_passages:ZJSHL-CH-017-P-0053",
+        "safe:main_passages:ZJSHL-CH-009-P-0161",
+        "safe:main_passages:ZJSHL-CH-009-P-0160",
+        "safe:main_passages:ZJSHL-CH-009-P-0164",
+        "full:passages:ZJSHL-CH-017-P-0049",
+        "full:passages:ZJSHL-CH-017-P-0050",
+        "full:passages:ZJSHL-CH-009-P-0276",
+        "full:passages:ZJSHL-CH-017-P-0051",
+        "full:passages:ZJSHL-CH-017-P-0048",
+        "full:passages:ZJSHL-CH-009-P-0160"
+      ],
+      "review_ids": [],
+      "matched_definition_concept_ids": [],
+      "matched_formula_ids": [],
+      "p0_failure_reasons": [],
+      "llm_debug": {
+        "provider": "Alibaba Cloud Model Studio",
+        "enabled": true,
+        "model": "qwen-plus",
+        "query_text": "两阳是什么意思？",
+        "answer_mode": "weak_with_review_notice",
+        "attempted": false,
+        "used_llm": false,
+        "fallback_used": false,
+        "skipped_reason": "p0_boundary_guard",
+        "fallback_reason": null,
+        "answer_source": "baseline_p0_boundary_guard",
+        "baseline_answer_text_excerpt": "“两阳”目前不作为已审定的稳定定义来强答。 现有材料只能作为核对线索：太阳病中风，以火劫发汗，邪风被火热，血气流溢，失其常度，两阳相熏灼，其身发黄。阳盛则欲衄，阴虚则小便难，阴阳俱虚竭，身体则枯燥。但头汗出，剂颈而还，腹满微喘，口乾咽烂，或不大便，久则谵语，甚者至哕，手足躁扰，捻衣摸床，小便利者，其人可治。。 原因是这...",
+        "attempts": []
+      }
+    },
+    {
+      "query_id": "p0_original_04",
+      "query": "白虎是什么意思？",
+      "run_mode": "C_production_like_full_chain",
+      "answer_mode": "refuse",
+      "p0_pass": true,
+      "p0_failure_type": "none",
+      "primary_ids": [],
+      "secondary_ids": [],
+      "review_ids": [],
+      "matched_definition_concept_ids": [],
+      "matched_formula_ids": [],
+      "p0_failure_reasons": [],
+      "llm_debug": {
+        "provider": "Alibaba Cloud Model Studio",
+        "enabled": true,
+        "model": "qwen-plus",
+        "query_text": "白虎是什么意思？",
+        "answer_mode": "refuse",
+        "attempted": false,
+        "used_llm": false,
+        "fallback_used": false,
+        "skipped_reason": "refuse_mode",
+        "fallback_reason": null,
+        "answer_source": "baseline_refuse",
+        "baseline_answer_text_excerpt": "“白虎”这个问法当前没有安全的书内定义对象可用，不能因为相近方名或普通现代义直接强答。可以改问“白虎汤方的条文是什么”或“白虎加人参汤方的条文是什么”这类明确方名问题。",
+        "attempts": []
+      }
+    }
+  ]
+}

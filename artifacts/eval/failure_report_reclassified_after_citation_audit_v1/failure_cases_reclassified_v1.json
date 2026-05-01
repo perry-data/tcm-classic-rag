@@ -1,0 +1,2387 @@
+{
+  "answer_eval_source": "artifacts/eval/answer_eval_v1/answer_eval_v1.json",
+  "dataset_path": "data/eval/eval_dataset_v1.csv",
+  "diagnostic_count": 5,
+  "formal_runtime_repair_candidates": [
+    {
+      "answer_mode": "strong",
+      "category": "症候检索",
+      "citation_audit_root_cause": "real_citation_assembly_issue",
+      "id": "eval_023",
+      "notes": "citation audit root_cause=real_citation_assembly_issue reclassifies the original citation_not_from_top_k signal.",
+      "question": "发热汗出恶风脉缓名为什么？",
+      "reclassified_failure_types": [
+        "real_citation_assembly_issue"
+      ],
+      "reclassified_primary_failure_type": "real_citation_assembly_issue",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_answer_assembly_citation_scope",
+      "recommended_next_actions": [
+        "fix_answer_assembly_citation_scope"
+      ]
+    },
+    {
+      "answer_mode": "strong",
+      "category": "症候检索",
+      "citation_audit_root_cause": "real_citation_assembly_issue",
+      "id": "eval_025",
+      "notes": "citation audit root_cause=real_citation_assembly_issue reclassifies the original citation_not_from_top_k signal.",
+      "question": "发热汗出不恶寒名为什么？",
+      "reclassified_failure_types": [
+        "real_citation_assembly_issue",
+        "gold_not_cited"
+      ],
+      "reclassified_primary_failure_type": "real_citation_assembly_issue",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_answer_assembly_citation_scope",
+      "recommended_next_actions": [
+        "fix_answer_assembly_citation_scope",
+        "fix_citation_mapping_or_answer_assembly"
+      ]
+    },
+    {
+      "answer_mode": "strong",
+      "category": "注文理解",
+      "citation_audit_root_cause": "real_citation_assembly_issue",
+      "id": "eval_027",
+      "notes": "citation audit root_cause=real_citation_assembly_issue reclassifies the original citation_not_from_top_k signal.",
+      "question": "成无己如何解释卫气衰？",
+      "reclassified_failure_types": [
+        "correct_chunk_not_retrieved",
+        "real_citation_assembly_issue",
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "reclassified_primary_failure_type": "real_citation_assembly_issue",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_answer_assembly_citation_scope",
+      "recommended_next_actions": [
+        "fix_retrieval_or_chunking",
+        "fix_answer_assembly_citation_scope",
+        "fix_citation_mapping_or_answer_assembly",
+        "inspect_answer_mode_calibration"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-04-27T07:06:17.698936+00:00",
+  "judge": {
+    "llm_judge": false,
+    "type": "rules_only_artifact_reclassification"
+  },
+  "ok_count": 12,
+  "original_formal_fail_count": 17,
+  "p2_diagnostic_examples": [
+    {
+      "answer_mode": "strong",
+      "category": "术语解释",
+      "citation_audit_root_cause": null,
+      "id": "eval_011",
+      "notes": "P2 residual remains diagnostic-only and is excluded from runtime repair queues.",
+      "question": "少阴病是什么意思",
+      "reclassified_failure_types": [
+        "manual_audit_required"
+      ],
+      "reclassified_primary_failure_type": "manual_audit_required",
+      "reclassified_severity": "diagnostic",
+      "recommended_next_action": "manual_audit_required",
+      "recommended_next_actions": [
+        "manual_audit_required"
+      ]
+    },
+    {
+      "answer_mode": "strong",
+      "category": "术语解释",
+      "citation_audit_root_cause": null,
+      "id": "eval_012",
+      "notes": "P2 residual remains diagnostic-only and is excluded from runtime repair queues.",
+      "question": "半表半里证和过经有什么不同",
+      "reclassified_failure_types": [
+        "manual_audit_required"
+      ],
+      "reclassified_primary_failure_type": "manual_audit_required",
+      "reclassified_severity": "diagnostic",
+      "recommended_next_action": "manual_audit_required",
+      "recommended_next_actions": [
+        "manual_audit_required"
+      ]
+    },
+    {
+      "answer_mode": "strong",
+      "category": "术语解释",
+      "citation_audit_root_cause": null,
+      "id": "eval_013",
+      "notes": "P2 residual remains diagnostic-only and is excluded from runtime repair queues.",
+      "question": "荣气微和卫气衰有什么区别",
+      "reclassified_failure_types": [
+        "manual_audit_required"
+      ],
+      "reclassified_primary_failure_type": "manual_audit_required",
+      "reclassified_severity": "diagnostic",
+      "recommended_next_action": "manual_audit_required",
+      "recommended_next_actions": [
+        "manual_audit_required"
+      ]
+    },
+    {
+      "answer_mode": "strong",
+      "category": "术语解释",
+      "citation_audit_root_cause": null,
+      "id": "eval_014",
+      "notes": "P2 residual remains diagnostic-only and is excluded from runtime repair queues.",
+      "question": "霍乱和伤寒有什么区别",
+      "reclassified_failure_types": [
+        "manual_audit_required"
+      ],
+      "reclassified_primary_failure_type": "manual_audit_required",
+      "reclassified_severity": "diagnostic",
+      "recommended_next_action": "manual_audit_required",
+      "recommended_next_actions": [
+        "manual_audit_required"
+      ]
+    },
+    {
+      "answer_mode": "strong",
+      "category": "术语解释",
+      "citation_audit_root_cause": null,
+      "id": "eval_015",
+      "notes": "P2 residual remains diagnostic-only and is excluded from runtime repair queues.",
+      "question": "痓病和太阳病有什么不同",
+      "reclassified_failure_types": [
+        "manual_audit_required"
+      ],
+      "reclassified_primary_failure_type": "manual_audit_required",
+      "reclassified_severity": "diagnostic",
+      "recommended_next_action": "manual_audit_required",
+      "recommended_next_actions": [
+        "manual_audit_required"
+      ]
+    }
+  ],
+  "per_example": [
+    {
+      "answer_mode": "strong",
+      "category": "原文定位",
+      "citation_audit_recommended_next_action": null,
+      "citation_audit_root_cause": null,
+      "citation_from_top_k": true,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0217",
+        "safe:main_passages:ZJSHL-CH-016-P-0034",
+        "safe:main_passages:ZJSHL-CH-008-P-0219"
+      ],
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": true,
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0217"
+      ],
+      "gold_cited": true,
+      "id": "eval_001",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "",
+      "original_failure_types": [],
+      "original_primary_failure_type": null,
+      "original_severity": "ok",
+      "question": "桂枝汤方的条文是什么？",
+      "reclassified_failure_types": [],
+      "reclassified_primary_failure_type": null,
+      "reclassified_severity": "ok",
+      "recommended_next_action": "none",
+      "recommended_next_actions": [],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_top5_record_ids": [
+        "formula:FML-1b00cf16ce52",
+        "safe:main_passages:ZJSHL-CH-008-P-0217",
+        "full:passages:ZJSHL-CH-008-P-0217",
+        "safe:chunks:ZJSHL-CK-M-0911",
+        "safe:main_passages:ZJSHL-CH-016-P-0034"
+      ],
+      "scope_qualified": true,
+      "should_answer": true,
+      "subtype": "formula_exact"
+    },
+    {
+      "answer_mode": "strong",
+      "category": "原文定位",
+      "citation_audit_recommended_next_action": "fix_trace_logging",
+      "citation_audit_root_cause": "trace_topk_missing_equivalence",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0022",
+        "safe:main_passages:ZJSHL-CH-009-P-0023",
+        "safe:main_passages:ZJSHL-CH-009-P-0025"
+      ],
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": true,
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0022"
+      ],
+      "gold_cited": true,
+      "id": "eval_002",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "citation audit root_cause=trace_topk_missing_equivalence reclassifies the original citation_not_from_top_k signal.",
+      "original_failure_types": [
+        "citation_not_from_top_k"
+      ],
+      "original_primary_failure_type": "citation_not_from_top_k",
+      "original_severity": "fail",
+      "question": "麻黄汤方的条文是什么？",
+      "reclassified_failure_types": [
+        "trace_or_evaluator_equivalence_gap"
+      ],
+      "reclassified_primary_failure_type": "trace_or_evaluator_equivalence_gap",
+      "reclassified_severity": "tooling",
+      "recommended_next_action": "fix_trace_logging_or_eval_equivalence",
+      "recommended_next_actions": [
+        "fix_trace_logging_or_eval_equivalence"
+      ],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_top5_record_ids": [
+        "formula:FML-04f61fac7138",
+        "safe:main_passages:ZJSHL-CH-009-P-0022",
+        "full:passages:ZJSHL-CH-009-P-0022",
+        "safe:chunks:ZJSHL-CK-F-0010"
+      ],
+      "scope_qualified": true,
+      "should_answer": true,
+      "subtype": "formula_exact"
+    },
+    {
+      "answer_mode": "strong",
+      "category": "原文定位",
+      "citation_audit_recommended_next_action": null,
+      "citation_audit_root_cause": null,
+      "citation_from_top_k": true,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0165",
+        "safe:main_passages:ZJSHL-CH-025-P-0012",
+        "safe:main_passages:ZJSHL-CH-010-P-0167"
+      ],
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": true,
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0165"
+      ],
+      "gold_cited": true,
+      "id": "eval_003",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "",
+      "original_failure_types": [],
+      "original_primary_failure_type": null,
+      "original_severity": "ok",
+      "question": "白虎汤方的条文是什么？",
+      "reclassified_failure_types": [],
+      "reclassified_primary_failure_type": null,
+      "reclassified_severity": "ok",
+      "recommended_next_action": "none",
+      "recommended_next_actions": [],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_top5_record_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0165",
+        "full:passages:ZJSHL-CH-010-P-0165",
+        "formula:FML-47765c7ee78a",
+        "safe:chunks:ZJSHL-CK-F-0052",
+        "safe:chunks:ZJSHL-CK-F-0094"
+      ],
+      "scope_qualified": true,
+      "should_answer": true,
+      "subtype": "formula_exact"
+    },
+    {
+      "answer_mode": "strong",
+      "category": "原文定位",
+      "citation_audit_recommended_next_action": null,
+      "citation_audit_root_cause": null,
+      "citation_from_top_k": true,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0211",
+        "safe:main_passages:ZJSHL-CH-015-P-0326",
+        "safe:main_passages:ZJSHL-CH-011-P-0123"
+      ],
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": true,
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0211"
+      ],
+      "gold_cited": true,
+      "id": "eval_004",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "",
+      "original_failure_types": [],
+      "original_primary_failure_type": null,
+      "original_severity": "ok",
+      "question": "小柴胡汤方的条文是什么？",
+      "reclassified_failure_types": [],
+      "reclassified_primary_failure_type": null,
+      "reclassified_severity": "ok",
+      "recommended_next_action": "none",
+      "recommended_next_actions": [],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_top5_record_ids": [
+        "formula:FML-fdc6285c27c4",
+        "safe:main_passages:ZJSHL-CH-009-P-0211",
+        "safe:chunks:ZJSHL-CK-F-0026",
+        "safe:chunks:ZJSHL-CK-M-0892",
+        "safe:main_passages:ZJSHL-CH-015-P-0326"
+      ],
+      "scope_qualified": true,
+      "should_answer": true,
+      "subtype": "formula_exact"
+    },
+    {
+      "answer_mode": "strong",
+      "category": "原文定位",
+      "citation_audit_recommended_next_action": null,
+      "citation_audit_root_cause": null,
+      "citation_from_top_k": true,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-015-P-0221",
+        "safe:main_passages:ZJSHL-CH-015-P-0222"
+      ],
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": true,
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-015-P-0221"
+      ],
+      "gold_cited": true,
+      "id": "eval_005",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "",
+      "original_failure_types": [],
+      "original_primary_failure_type": null,
+      "original_severity": "ok",
+      "question": "乌梅丸方的条文是什么？",
+      "reclassified_failure_types": [],
+      "reclassified_primary_failure_type": null,
+      "reclassified_severity": "ok",
+      "recommended_next_action": "none",
+      "recommended_next_actions": [],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_top5_record_ids": [
+        "formula:FML-21567be0171c",
+        "safe:chunks:ZJSHL-CK-F-0077",
+        "safe:main_passages:ZJSHL-CH-015-P-0221",
+        "full:passages:ZJSHL-CH-015-P-0221"
+      ],
+      "scope_qualified": true,
+      "should_answer": true,
+      "subtype": "formula_exact"
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "原文定位",
+      "citation_audit_recommended_next_action": "inspect_secondary_review_citation_policy",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0191",
+        "safe:main_passages:ZJSHL-CH-009-P-0202",
+        "safe:main_passages:ZJSHL-CH-008-P-0195",
+        "safe:main_passages:ZJSHL-CH-009-P-0318",
+        "safe:main_passages:ZJSHL-CH-007-P-0157",
+        "full:passages:ZJSHL-CH-008-P-0191"
+      ],
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": false,
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0191"
+      ],
+      "gold_cited": true,
+      "id": "eval_006",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "original_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "original_primary_failure_type": "citation_not_from_top_k",
+      "original_severity": "fail",
+      "question": "太阳之为病的原文是什么？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_top5_record_ids": [
+        "safe:definition_terms:AHV-fdb12048d73e",
+        "safe:chunks:ZJSHL-CK-M-0405",
+        "safe:main_passages:ZJSHL-CH-009-P-0202",
+        "safe:main_passages:ZJSHL-CH-008-P-0191",
+        "full:passages:ZJSHL-CH-008-P-0191"
+      ],
+      "scope_qualified": false,
+      "should_answer": true,
+      "subtype": "original_text"
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "术语解释",
+      "citation_audit_recommended_next_action": null,
+      "citation_audit_root_cause": null,
+      "citation_from_top_k": true,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0188",
+        "safe:main_passages:ZJSHL-CH-015-P-0324",
+        "safe:main_passages:ZJSHL-CH-008-P-0215",
+        "full:passages:ZJSHL-CH-014-P-0189",
+        "full:passages:ZJSHL-CH-015-P-0325"
+      ],
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": true,
+      "first_hit_rank": null,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0188",
+        "safe:main_passages:ZJSHL-CH-015-P-0324"
+      ],
+      "gold_cited": true,
+      "id": "eval_007",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "",
+      "original_failure_types": [
+        "correct_chunk_not_retrieved"
+      ],
+      "original_primary_failure_type": "correct_chunk_not_retrieved",
+      "original_severity": "fail",
+      "question": "干呕是什么意思？",
+      "reclassified_failure_types": [
+        "correct_chunk_not_retrieved"
+      ],
+      "reclassified_primary_failure_type": "correct_chunk_not_retrieved",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "recommended_next_actions": [
+        "fix_retrieval_or_chunking"
+      ],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": false,
+      "retrieval_top5_record_ids": [],
+      "scope_qualified": true,
+      "should_answer": true,
+      "subtype": "weak_boundary"
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "术语解释",
+      "citation_audit_recommended_next_action": null,
+      "citation_audit_root_cause": null,
+      "citation_from_top_k": true,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-023-P-0046",
+        "full:annotations:ZJSHL-CH-003-P-0098",
+        "full:passages:ZJSHL-CH-003-P-0098",
+        "full:passages:ZJSHL-CH-023-P-0046"
+      ],
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": true,
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0098",
+        "safe:main_passages:ZJSHL-CH-023-P-0046"
+      ],
+      "gold_cited": true,
+      "id": "eval_008",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "",
+      "original_failure_types": [
+        "scope_qualifier_missing"
+      ],
+      "original_primary_failure_type": "scope_qualifier_missing",
+      "original_severity": "warning",
+      "question": "清邪中上是什么意思？",
+      "reclassified_failure_types": [
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "scope_qualifier_missing",
+      "reclassified_severity": "warning",
+      "recommended_next_action": "consider_answer_template_scope_phrase",
+      "recommended_next_actions": [
+        "consider_answer_template_scope_phrase"
+      ],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_top5_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0098",
+        "full:passages:ZJSHL-CH-003-P-0098",
+        "safe:chunks:ZJSHL-CK-M-0989",
+        "safe:main_passages:ZJSHL-CH-023-P-0046",
+        "full:passages:ZJSHL-CH-023-P-0046"
+      ],
+      "scope_qualified": false,
+      "should_answer": true,
+      "subtype": "weak_boundary"
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "术语解释",
+      "citation_audit_recommended_next_action": "fix_trace_logging",
+      "citation_audit_root_cause": "trace_topk_missing_equivalence",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0090",
+        "safe:main_passages:ZJSHL-CH-025-P-0007",
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-014-P-0107",
+        "safe:main_passages:ZJSHL-CH-014-P-0108",
+        "safe:main_passages:ZJSHL-CH-014-P-0105",
+        "safe:main_passages:ZJSHL-CH-014-P-0069",
+        "safe:main_passages:ZJSHL-CH-015-P-0265"
+      ],
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": true,
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0090",
+        "safe:main_passages:ZJSHL-CH-014-P-0107"
+      ],
+      "gold_cited": true,
+      "id": "eval_009",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "citation audit root_cause=trace_topk_missing_equivalence reclassifies the original citation_not_from_top_k signal.",
+      "original_failure_types": [
+        "citation_not_from_top_k",
+        "scope_qualifier_missing"
+      ],
+      "original_primary_failure_type": "citation_not_from_top_k",
+      "original_severity": "fail",
+      "question": "反是什么意思？",
+      "reclassified_failure_types": [
+        "trace_or_evaluator_equivalence_gap",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "trace_or_evaluator_equivalence_gap",
+      "reclassified_severity": "tooling",
+      "recommended_next_action": "fix_trace_logging_or_eval_equivalence",
+      "recommended_next_actions": [
+        "fix_trace_logging_or_eval_equivalence",
+        "consider_answer_template_scope_phrase"
+      ],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0049",
+        "formula:FML-214c592b6f9b",
+        "formula:FML-1fdcaddd7958",
+        "formula:FML-03bfe5c6c2a8",
+        "safe:chunks:ZJSHL-CK-M-0021"
+      ],
+      "scope_qualified": false,
+      "should_answer": true,
+      "subtype": "weak_boundary"
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "术语解释",
+      "citation_audit_recommended_next_action": "inspect_secondary_review_citation_policy",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0275",
+        "safe:main_passages:ZJSHL-CH-017-P-0049",
+        "safe:main_passages:ZJSHL-CH-017-P-0050",
+        "safe:main_passages:ZJSHL-CH-017-P-0053",
+        "safe:main_passages:ZJSHL-CH-009-P-0161",
+        "safe:main_passages:ZJSHL-CH-009-P-0160",
+        "safe:main_passages:ZJSHL-CH-009-P-0164"
+      ],
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": true,
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0275",
+        "safe:main_passages:ZJSHL-CH-017-P-0049"
+      ],
+      "gold_cited": true,
+      "id": "eval_010",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "original_failure_types": [
+        "citation_not_from_top_k",
+        "scope_qualifier_missing"
+      ],
+      "original_primary_failure_type": "citation_not_from_top_k",
+      "original_severity": "fail",
+      "question": "两阳是什么意思？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "consider_answer_template_scope_phrase"
+      ],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_top5_record_ids": [
+        "safe:definition_terms:AHV-8df0a4ec9de9",
+        "safe:chunks:ZJSHL-CK-M-0451",
+        "safe:main_passages:ZJSHL-CH-009-P-0275",
+        "safe:chunks:ZJSHL-CK-M-0917",
+        "formula:FML-56cfd37acca4"
+      ],
+      "scope_qualified": false,
+      "should_answer": true,
+      "subtype": "weak_boundary"
+    },
+    {
+      "answer_mode": "strong",
+      "category": "术语解释",
+      "citation_audit_recommended_next_action": null,
+      "citation_audit_root_cause": null,
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0112",
+        "safe:main_passages:ZJSHL-CH-014-P-0072",
+        "safe:main_passages:ZJSHL-CH-014-P-0105"
+      ],
+      "example_class": "diagnostic_only",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": false,
+      "first_hit_rank": null,
+      "gold_chunk_ids": [],
+      "gold_cited": null,
+      "id": "eval_011",
+      "is_runtime_bug": false,
+      "manual_audit_required": true,
+      "notes": "P2 residual remains diagnostic-only and is excluded from runtime repair queues.",
+      "original_failure_types": [
+        "manual_audit_required"
+      ],
+      "original_primary_failure_type": "manual_audit_required",
+      "original_severity": "diagnostic",
+      "question": "少阴病是什么意思",
+      "reclassified_failure_types": [
+        "manual_audit_required"
+      ],
+      "reclassified_primary_failure_type": "manual_audit_required",
+      "reclassified_severity": "diagnostic",
+      "recommended_next_action": "manual_audit_required",
+      "recommended_next_actions": [
+        "manual_audit_required"
+      ],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": false,
+      "retrieval_top5_record_ids": [
+        "safe:definition_terms:AHV2-9f641a6ecc7d",
+        "safe:chunks:ZJSHL-CK-M-0777",
+        "safe:main_passages:ZJSHL-CH-014-P-0029",
+        "safe:chunks:ZJSHL-CK-M-0756",
+        "safe:chunks:ZJSHL-CK-M-0776"
+      ],
+      "scope_qualified": null,
+      "should_answer": true,
+      "subtype": "p2_residual"
+    },
+    {
+      "answer_mode": "strong",
+      "category": "术语解释",
+      "citation_audit_recommended_next_action": null,
+      "citation_audit_root_cause": null,
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0005"
+      ],
+      "example_class": "diagnostic_only",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": false,
+      "first_hit_rank": null,
+      "gold_chunk_ids": [],
+      "gold_cited": null,
+      "id": "eval_012",
+      "is_runtime_bug": false,
+      "manual_audit_required": true,
+      "notes": "P2 residual remains diagnostic-only and is excluded from runtime repair queues.",
+      "original_failure_types": [
+        "manual_audit_required"
+      ],
+      "original_primary_failure_type": "manual_audit_required",
+      "original_severity": "diagnostic",
+      "question": "半表半里证和过经有什么不同",
+      "reclassified_failure_types": [
+        "manual_audit_required"
+      ],
+      "reclassified_primary_failure_type": "manual_audit_required",
+      "reclassified_severity": "diagnostic",
+      "recommended_next_action": "manual_audit_required",
+      "recommended_next_actions": [
+        "manual_audit_required"
+      ],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": false,
+      "retrieval_top5_record_ids": [
+        "full:passages:ZJSHL-CH-009-P-0210",
+        "safe:definition_terms:AHV2-aa28a21f86c8",
+        "full:annotations:ZJSHL-CH-010-P-0136",
+        "full:passages:ZJSHL-CH-010-P-0136",
+        "safe:chunks:ZJSHL-CK-M-0480"
+      ],
+      "scope_qualified": null,
+      "should_answer": true,
+      "subtype": "p2_residual"
+    },
+    {
+      "answer_mode": "strong",
+      "category": "术语解释",
+      "citation_audit_recommended_next_action": null,
+      "citation_audit_root_cause": null,
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-004-P-0255"
+      ],
+      "example_class": "diagnostic_only",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": false,
+      "first_hit_rank": null,
+      "gold_chunk_ids": [],
+      "gold_cited": null,
+      "id": "eval_013",
+      "is_runtime_bug": false,
+      "manual_audit_required": true,
+      "notes": "P2 residual remains diagnostic-only and is excluded from runtime repair queues.",
+      "original_failure_types": [
+        "manual_audit_required"
+      ],
+      "original_primary_failure_type": "manual_audit_required",
+      "original_severity": "diagnostic",
+      "question": "荣气微和卫气衰有什么区别",
+      "reclassified_failure_types": [
+        "manual_audit_required"
+      ],
+      "reclassified_primary_failure_type": "manual_audit_required",
+      "reclassified_severity": "diagnostic",
+      "recommended_next_action": "manual_audit_required",
+      "recommended_next_actions": [
+        "manual_audit_required"
+      ],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": false,
+      "retrieval_top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0007",
+        "safe:main_passages:ZJSHL-CH-003-P-0014",
+        "full:annotations:ZJSHL-CH-004-P-0252",
+        "full:passages:ZJSHL-CH-004-P-0252",
+        "safe:definition_terms:AHV2-81a12b6da994"
+      ],
+      "scope_qualified": null,
+      "should_answer": true,
+      "subtype": "p2_residual"
+    },
+    {
+      "answer_mode": "strong",
+      "category": "术语解释",
+      "citation_audit_recommended_next_action": null,
+      "citation_audit_root_cause": null,
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0320",
+        "safe:main_passages:ZJSHL-CH-009-P-0322"
+      ],
+      "example_class": "diagnostic_only",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": false,
+      "first_hit_rank": null,
+      "gold_chunk_ids": [],
+      "gold_cited": null,
+      "id": "eval_014",
+      "is_runtime_bug": false,
+      "manual_audit_required": true,
+      "notes": "P2 residual remains diagnostic-only and is excluded from runtime repair queues.",
+      "original_failure_types": [
+        "manual_audit_required"
+      ],
+      "original_primary_failure_type": "manual_audit_required",
+      "original_severity": "diagnostic",
+      "question": "霍乱和伤寒有什么区别",
+      "reclassified_failure_types": [
+        "manual_audit_required"
+      ],
+      "reclassified_primary_failure_type": "manual_audit_required",
+      "reclassified_severity": "diagnostic",
+      "recommended_next_action": "manual_audit_required",
+      "recommended_next_actions": [
+        "manual_audit_required"
+      ],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": false,
+      "retrieval_top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0897",
+        "safe:main_passages:ZJSHL-CH-016-P-0006",
+        "safe:chunks:ZJSHL-CK-M-0902",
+        "safe:main_passages:ZJSHL-CH-016-P-0014",
+        "full:passages:ZJSHL-CH-009-P-0321"
+      ],
+      "scope_qualified": null,
+      "should_answer": true,
+      "subtype": "p2_residual"
+    },
+    {
+      "answer_mode": "strong",
+      "category": "术语解释",
+      "citation_audit_recommended_next_action": null,
+      "citation_audit_root_cause": null,
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-007-P-0159",
+        "safe:main_passages:ZJSHL-CH-009-P-0002",
+        "safe:main_passages:ZJSHL-CH-008-P-0220"
+      ],
+      "example_class": "diagnostic_only",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": false,
+      "first_hit_rank": null,
+      "gold_chunk_ids": [],
+      "gold_cited": null,
+      "id": "eval_015",
+      "is_runtime_bug": false,
+      "manual_audit_required": true,
+      "notes": "P2 residual remains diagnostic-only and is excluded from runtime repair queues.",
+      "original_failure_types": [
+        "manual_audit_required"
+      ],
+      "original_primary_failure_type": "manual_audit_required",
+      "original_severity": "diagnostic",
+      "question": "痓病和太阳病有什么不同",
+      "reclassified_failure_types": [
+        "manual_audit_required"
+      ],
+      "reclassified_primary_failure_type": "manual_audit_required",
+      "reclassified_severity": "diagnostic",
+      "recommended_next_action": "manual_audit_required",
+      "recommended_next_actions": [
+        "manual_audit_required"
+      ],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": false,
+      "retrieval_top5_record_ids": [
+        "safe:definition_terms:AHV-87d3ca263c08",
+        "safe:main_passages:ZJSHL-CH-007-P-0157",
+        "safe:definition_terms:DPO-0159fa8c7c2c",
+        "safe:chunks:ZJSHL-CK-M-0451",
+        "safe:main_passages:ZJSHL-CH-009-P-0275"
+      ],
+      "scope_qualified": null,
+      "should_answer": true,
+      "subtype": "p2_residual"
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "方剂关联",
+      "citation_audit_recommended_next_action": "inspect_secondary_review_citation_policy",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0215",
+        "safe:main_passages:ZJSHL-CH-008-P-0217",
+        "safe:main_passages:ZJSHL-CH-008-P-0219",
+        "safe:main_passages:ZJSHL-CH-008-P-0220",
+        "safe:main_passages:ZJSHL-CH-008-P-0229",
+        "full:passages:ZJSHL-CH-008-P-0215",
+        "full:passages:ZJSHL-CH-007-P-0167"
+      ],
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": false,
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0215"
+      ],
+      "gold_cited": true,
+      "id": "eval_016",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "original_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "original_primary_failure_type": "citation_not_from_top_k",
+      "original_severity": "fail",
+      "question": "太阳中风鼻鸣乾呕用什么方？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_top5_record_ids": [
+        "formula:FML-1b00cf16ce52",
+        "safe:chunks:ZJSHL-CK-M-0271",
+        "safe:main_passages:ZJSHL-CH-008-P-0215",
+        "full:passages:ZJSHL-CH-008-P-0215",
+        "safe:chunks:ZJSHL-CK-M-0521"
+      ],
+      "scope_qualified": false,
+      "should_answer": true,
+      "subtype": "formula_association"
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "方剂关联",
+      "citation_audit_recommended_next_action": "inspect_secondary_review_citation_policy",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0002",
+        "safe:main_passages:ZJSHL-CH-009-P-0004",
+        "safe:main_passages:ZJSHL-CH-009-P-0006",
+        "safe:main_passages:ZJSHL-CH-009-P-0011",
+        "safe:main_passages:ZJSHL-CH-026-P-0001",
+        "full:passages:ZJSHL-CH-009-P-0002",
+        "full:passages:ZJSHL-CH-009-P-0003"
+      ],
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": false,
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0002"
+      ],
+      "gold_cited": true,
+      "id": "eval_017",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "original_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "original_primary_failure_type": "citation_not_from_top_k",
+      "original_severity": "fail",
+      "question": "太阳病项背强几几无汗恶风用什么方？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0299",
+        "safe:main_passages:ZJSHL-CH-009-P-0002",
+        "full:passages:ZJSHL-CH-009-P-0002",
+        "safe:chunks:ZJSHL-CK-M-0273",
+        "safe:main_passages:ZJSHL-CH-008-P-0222"
+      ],
+      "scope_qualified": false,
+      "should_answer": true,
+      "subtype": "formula_association"
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "方剂关联",
+      "citation_audit_recommended_next_action": "inspect_secondary_review_citation_policy",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0022",
+        "safe:main_passages:ZJSHL-CH-009-P-0025",
+        "safe:main_passages:ZJSHL-CH-009-P-0026",
+        "safe:main_passages:ZJSHL-CH-009-P-0030",
+        "safe:main_passages:ZJSHL-CH-009-P-0059",
+        "full:passages:ZJSHL-CH-009-P-0077",
+        "full:passages:ZJSHL-CH-009-P-0078"
+      ],
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": false,
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0059"
+      ],
+      "gold_cited": true,
+      "id": "eval_018",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "original_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "original_primary_failure_type": "citation_not_from_top_k",
+      "original_severity": "fail",
+      "question": "伤寒脉浮紧无汗身疼痛用什么方？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_top5_record_ids": [
+        "formula:FML-04f61fac7138",
+        "safe:chunks:ZJSHL-CK-M-0326",
+        "safe:main_passages:ZJSHL-CH-009-P-0059",
+        "safe:chunks:ZJSHL-CK-M-0337",
+        "safe:main_passages:ZJSHL-CH-009-P-0077"
+      ],
+      "scope_qualified": false,
+      "should_answer": true,
+      "subtype": "formula_association"
+    },
+    {
+      "answer_mode": "strong",
+      "category": "方剂关联",
+      "citation_audit_recommended_next_action": null,
+      "citation_audit_root_cause": null,
+      "citation_from_top_k": true,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0029",
+        "safe:main_passages:ZJSHL-CH-010-P-0031"
+      ],
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": true,
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0029"
+      ],
+      "gold_cited": true,
+      "id": "eval_019",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "",
+      "original_failure_types": [],
+      "original_primary_failure_type": null,
+      "original_severity": "ok",
+      "question": "小结胸病正在心下按之痛用什么方？",
+      "reclassified_failure_types": [],
+      "reclassified_primary_failure_type": null,
+      "reclassified_severity": "ok",
+      "recommended_next_action": "none",
+      "recommended_next_actions": [],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0492",
+        "safe:main_passages:ZJSHL-CH-010-P-0029",
+        "full:passages:ZJSHL-CH-010-P-0029",
+        "formula:FML-fbda04fad45e",
+        "safe:definition_terms:DPO-3110870253d3"
+      ],
+      "scope_qualified": true,
+      "should_answer": true,
+      "subtype": "formula_association"
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "方剂关联",
+      "citation_audit_recommended_next_action": null,
+      "citation_audit_root_cause": null,
+      "citation_from_top_k": true,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-016-P-0014",
+        "safe:main_passages:ZJSHL-CH-016-P-0016",
+        "safe:main_passages:ZJSHL-CH-016-P-0018",
+        "safe:main_passages:ZJSHL-CH-017-P-0061",
+        "full:annotations:ZJSHL-CH-016-P-0015",
+        "full:passages:ZJSHL-CH-016-P-0014",
+        "full:passages:ZJSHL-CH-016-P-0015"
+      ],
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": false,
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-016-P-0014"
+      ],
+      "gold_cited": true,
+      "id": "eval_020",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "",
+      "original_failure_types": [
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "original_primary_failure_type": "expected_answer_mode_mismatch",
+      "original_severity": "warning",
+      "question": "霍乱热多欲饮水用什么方？",
+      "reclassified_failure_types": [
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "expected_answer_mode_mismatch",
+      "reclassified_severity": "warning",
+      "recommended_next_action": "inspect_answer_mode_calibration",
+      "recommended_next_actions": [
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0902",
+        "safe:main_passages:ZJSHL-CH-016-P-0014",
+        "full:passages:ZJSHL-CH-016-P-0014",
+        "formula:FML-c0e2a6a2a401",
+        "full:annotations:ZJSHL-CH-016-P-0015"
+      ],
+      "scope_qualified": false,
+      "should_answer": true,
+      "subtype": "formula_association"
+    },
+    {
+      "answer_mode": "strong",
+      "category": "症候检索",
+      "citation_audit_recommended_next_action": null,
+      "citation_audit_root_cause": null,
+      "citation_from_top_k": true,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-016-P-0002"
+      ],
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": true,
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-016-P-0002"
+      ],
+      "gold_cited": true,
+      "id": "eval_021",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "",
+      "original_failure_types": [],
+      "original_primary_failure_type": null,
+      "original_severity": "ok",
+      "question": "呕吐而利在书中叫什么？",
+      "reclassified_failure_types": [],
+      "reclassified_primary_failure_type": null,
+      "reclassified_severity": "ok",
+      "recommended_next_action": "none",
+      "recommended_next_actions": [],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_top5_record_ids": [
+        "safe:definition_terms:AHV-72cae785c0ac",
+        "safe:chunks:ZJSHL-CK-M-0895",
+        "safe:main_passages:ZJSHL-CH-016-P-0002",
+        "full:passages:ZJSHL-CH-016-P-0002",
+        "full:passages:ZJSHL-CH-010-P-0119"
+      ],
+      "scope_qualified": true,
+      "should_answer": true,
+      "subtype": "symptom_lookup"
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "症候检索",
+      "citation_audit_recommended_next_action": "inspect_secondary_review_citation_policy",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0191",
+        "full:annotations:ZJSHL-CH-008-P-0192",
+        "full:annotations:ZJSHL-CH-008-P-0255",
+        "safe:main_passages:ZJSHL-CH-016-P-0006",
+        "safe:main_passages:ZJSHL-CH-007-P-0188",
+        "full:passages:ZJSHL-CH-008-P-0191",
+        "full:passages:ZJSHL-CH-008-P-0192",
+        "full:ambiguous_passages:ZJSHL-CH-010-P-0048"
+      ],
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": false,
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0191"
+      ],
+      "gold_cited": true,
+      "id": "eval_022",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "original_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "original_primary_failure_type": "citation_not_from_top_k",
+      "original_severity": "fail",
+      "question": "头项强痛而恶寒对应哪段原文？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_top5_record_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0191",
+        "full:passages:ZJSHL-CH-008-P-0191",
+        "safe:definition_terms:AHV-fdb12048d73e",
+        "full:annotations:ZJSHL-CH-008-P-0192",
+        "full:passages:ZJSHL-CH-008-P-0192"
+      ],
+      "scope_qualified": false,
+      "should_answer": true,
+      "subtype": "symptom_lookup"
+    },
+    {
+      "answer_mode": "strong",
+      "category": "症候检索",
+      "citation_audit_recommended_next_action": "fix_answer_assembly_citation_scope",
+      "citation_audit_root_cause": "real_citation_assembly_issue",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0193",
+        "safe:main_passages:ZJSHL-CH-008-P-0229",
+        "safe:main_passages:ZJSHL-CH-008-P-0220"
+      ],
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": true,
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0193"
+      ],
+      "gold_cited": true,
+      "id": "eval_023",
+      "is_runtime_bug": true,
+      "manual_audit_required": false,
+      "notes": "citation audit root_cause=real_citation_assembly_issue reclassifies the original citation_not_from_top_k signal.",
+      "original_failure_types": [
+        "citation_not_from_top_k"
+      ],
+      "original_primary_failure_type": "citation_not_from_top_k",
+      "original_severity": "fail",
+      "question": "发热汗出恶风脉缓名为什么？",
+      "reclassified_failure_types": [
+        "real_citation_assembly_issue"
+      ],
+      "reclassified_primary_failure_type": "real_citation_assembly_issue",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_answer_assembly_citation_scope",
+      "recommended_next_actions": [
+        "fix_answer_assembly_citation_scope"
+      ],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0256",
+        "safe:main_passages:ZJSHL-CH-008-P-0193",
+        "full:passages:ZJSHL-CH-008-P-0193",
+        "full:annotations:ZJSHL-CH-008-P-0194",
+        "safe:chunks:ZJSHL-CK-M-0460"
+      ],
+      "scope_qualified": true,
+      "should_answer": true,
+      "subtype": "symptom_lookup"
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "症候检索",
+      "citation_audit_recommended_next_action": "inspect_secondary_review_citation_policy",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-007-P-0157",
+        "full:annotations:ZJSHL-CH-007-P-0158",
+        "full:annotations:ZJSHL-CH-008-P-0194",
+        "safe:main_passages:ZJSHL-CH-009-P-0303",
+        "safe:main_passages:ZJSHL-CH-007-P-0159",
+        "full:passages:ZJSHL-CH-007-P-0159",
+        "full:passages:ZJSHL-CH-007-P-0158",
+        "full:passages:ZJSHL-CH-007-P-0157",
+        "full:passages:ZJSHL-CH-007-P-0160",
+        "full:passages:ZJSHL-CH-008-P-0193",
+        "full:passages:ZJSHL-CH-008-P-0195",
+        "full:ambiguous_passages:ZJSHL-CH-011-P-0020"
+      ],
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": false,
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-007-P-0157"
+      ],
+      "gold_cited": true,
+      "id": "eval_024",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "original_failure_types": [
+        "citation_not_from_top_k",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "original_primary_failure_type": "citation_not_from_top_k",
+      "original_severity": "fail",
+      "question": "发热无汗反恶寒名为什么？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_top5_record_ids": [
+        "safe:definition_terms:AHV-87d3ca263c08",
+        "safe:main_passages:ZJSHL-CH-007-P-0157",
+        "full:passages:ZJSHL-CH-007-P-0157",
+        "full:annotations:ZJSHL-CH-007-P-0158",
+        "full:passages:ZJSHL-CH-007-P-0158"
+      ],
+      "scope_qualified": false,
+      "should_answer": true,
+      "subtype": "symptom_lookup"
+    },
+    {
+      "answer_mode": "strong",
+      "category": "症候检索",
+      "citation_audit_recommended_next_action": "fix_answer_assembly_citation_scope",
+      "citation_audit_root_cause": "real_citation_assembly_issue",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-011-P-0101",
+        "safe:main_passages:ZJSHL-CH-009-P-0159",
+        "safe:main_passages:ZJSHL-CH-009-P-0135"
+      ],
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "strong",
+      "expected_answer_mode_match": true,
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "safe:main_passages:ZJSHL-CH-007-P-0159"
+      ],
+      "gold_cited": false,
+      "id": "eval_025",
+      "is_runtime_bug": true,
+      "manual_audit_required": false,
+      "notes": "citation audit root_cause=real_citation_assembly_issue reclassifies the original citation_not_from_top_k signal.",
+      "original_failure_types": [
+        "citation_not_from_top_k",
+        "gold_not_cited"
+      ],
+      "original_primary_failure_type": "citation_not_from_top_k",
+      "original_severity": "fail",
+      "question": "发热汗出不恶寒名为什么？",
+      "reclassified_failure_types": [
+        "real_citation_assembly_issue",
+        "gold_not_cited"
+      ],
+      "reclassified_primary_failure_type": "real_citation_assembly_issue",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_answer_assembly_citation_scope",
+      "recommended_next_actions": [
+        "fix_answer_assembly_citation_scope",
+        "fix_citation_mapping_or_answer_assembly"
+      ],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0232",
+        "full:annotations:ZJSHL-CH-008-P-0194",
+        "full:passages:ZJSHL-CH-008-P-0194",
+        "safe:chunks:ZJSHL-CK-M-0365",
+        "safe:main_passages:ZJSHL-CH-009-P-0135"
+      ],
+      "scope_qualified": true,
+      "should_answer": true,
+      "subtype": "symptom_lookup"
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "注文理解",
+      "citation_audit_recommended_next_action": "inspect_secondary_review_citation_policy",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-003-P-0010",
+        "full:annotations:ZJSHL-CH-003-P-0015",
+        "safe:main_passages:ZJSHL-CH-004-P-0216",
+        "full:annotations:ZJSHL-CH-009-P-0302",
+        "safe:main_passages:ZJSHL-CH-003-P-0014",
+        "full:passages:ZJSHL-CH-003-P-0015",
+        "full:passages:ZJSHL-CH-003-P-0014",
+        "full:passages:ZJSHL-CH-003-P-0016",
+        "full:passages:ZJSHL-CH-003-P-0011",
+        "full:passages:ZJSHL-CH-009-P-0303",
+        "full:passages:ZJSHL-CH-003-P-0009",
+        "full:passages:ZJSHL-CH-003-P-0010",
+        "full:passages:ZJSHL-CH-005-P-0002"
+      ],
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": true,
+      "first_hit_rank": null,
+      "gold_chunk_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0011",
+        "full:annotations:ZJSHL-CH-003-P-0016"
+      ],
+      "gold_cited": false,
+      "id": "eval_026",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair. policy warning coexists with a still-valid formal retrieval or gold-citation failure.",
+      "original_failure_types": [
+        "correct_chunk_not_retrieved",
+        "citation_not_from_top_k",
+        "gold_not_cited",
+        "scope_qualifier_missing"
+      ],
+      "original_primary_failure_type": "correct_chunk_not_retrieved",
+      "original_severity": "fail",
+      "question": "成无己如何解释荣气微？",
+      "reclassified_failure_types": [
+        "correct_chunk_not_retrieved",
+        "secondary_review_citation_policy_needs_decision",
+        "gold_not_cited",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "correct_chunk_not_retrieved",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "recommended_next_actions": [
+        "fix_retrieval_or_chunking",
+        "define_secondary_review_citation_policy",
+        "fix_citation_mapping_or_answer_assembly",
+        "consider_answer_template_scope_phrase"
+      ],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": false,
+      "retrieval_top5_record_ids": [
+        "safe:definition_terms:AHV2-850318ee8950",
+        "safe:main_passages:ZJSHL-CH-003-P-0010",
+        "full:passages:ZJSHL-CH-003-P-0010",
+        "safe:main_passages:ZJSHL-CH-004-P-0216",
+        "full:annotations:ZJSHL-CH-003-P-0015"
+      ],
+      "scope_qualified": false,
+      "should_answer": true,
+      "subtype": "commentary_understanding"
+    },
+    {
+      "answer_mode": "strong",
+      "category": "注文理解",
+      "citation_audit_recommended_next_action": "fix_answer_assembly_citation_scope",
+      "citation_audit_root_cause": "real_citation_assembly_issue",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-004-P-0255"
+      ],
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": false,
+      "first_hit_rank": null,
+      "gold_chunk_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0013"
+      ],
+      "gold_cited": false,
+      "id": "eval_027",
+      "is_runtime_bug": true,
+      "manual_audit_required": false,
+      "notes": "citation audit root_cause=real_citation_assembly_issue reclassifies the original citation_not_from_top_k signal.",
+      "original_failure_types": [
+        "correct_chunk_not_retrieved",
+        "citation_not_from_top_k",
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "original_primary_failure_type": "correct_chunk_not_retrieved",
+      "original_severity": "fail",
+      "question": "成无己如何解释卫气衰？",
+      "reclassified_failure_types": [
+        "correct_chunk_not_retrieved",
+        "real_citation_assembly_issue",
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "reclassified_primary_failure_type": "real_citation_assembly_issue",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_answer_assembly_citation_scope",
+      "recommended_next_actions": [
+        "fix_retrieval_or_chunking",
+        "fix_answer_assembly_citation_scope",
+        "fix_citation_mapping_or_answer_assembly",
+        "inspect_answer_mode_calibration"
+      ],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": false,
+      "retrieval_top5_record_ids": [
+        "safe:definition_terms:AHV2-81a12b6da994",
+        "safe:main_passages:ZJSHL-CH-003-P-0012",
+        "safe:main_passages:ZJSHL-CH-004-P-0214",
+        "safe:chunks:ZJSHL-CK-M-0007",
+        "safe:main_passages:ZJSHL-CH-003-P-0014"
+      ],
+      "scope_qualified": true,
+      "should_answer": true,
+      "subtype": "commentary_understanding"
+    },
+    {
+      "answer_mode": "strong",
+      "category": "注文理解",
+      "citation_audit_recommended_next_action": null,
+      "citation_audit_root_cause": null,
+      "citation_from_top_k": true,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-023-P-0046"
+      ],
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": false,
+      "first_hit_rank": 1,
+      "gold_chunk_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0098"
+      ],
+      "gold_cited": false,
+      "id": "eval_028",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "",
+      "original_failure_types": [
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "original_primary_failure_type": "gold_not_cited",
+      "original_severity": "fail",
+      "question": "注文怎样解释清邪中上？",
+      "reclassified_failure_types": [
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "reclassified_primary_failure_type": "gold_not_cited",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_citation_mapping_or_answer_assembly",
+      "recommended_next_actions": [
+        "fix_citation_mapping_or_answer_assembly",
+        "inspect_answer_mode_calibration"
+      ],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_top5_record_ids": [
+        "full:annotations:ZJSHL-CH-003-P-0098",
+        "full:passages:ZJSHL-CH-003-P-0098",
+        "safe:chunks:ZJSHL-CK-M-0989",
+        "safe:main_passages:ZJSHL-CH-023-P-0046",
+        "full:passages:ZJSHL-CH-023-P-0046"
+      ],
+      "scope_qualified": true,
+      "should_answer": true,
+      "subtype": "commentary_understanding"
+    },
+    {
+      "answer_mode": "strong",
+      "category": "注文理解",
+      "citation_audit_recommended_next_action": null,
+      "citation_audit_root_cause": null,
+      "citation_from_top_k": true,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0217"
+      ],
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": false,
+      "first_hit_rank": null,
+      "gold_chunk_ids": [
+        "full:annotations:ZJSHL-CH-008-P-0228"
+      ],
+      "gold_cited": false,
+      "id": "eval_029",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "",
+      "original_failure_types": [
+        "correct_chunk_not_retrieved",
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "original_primary_failure_type": "correct_chunk_not_retrieved",
+      "original_severity": "fail",
+      "question": "注文对桂枝汤不可误用有什么提醒？",
+      "reclassified_failure_types": [
+        "correct_chunk_not_retrieved",
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "reclassified_primary_failure_type": "correct_chunk_not_retrieved",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "recommended_next_actions": [
+        "fix_retrieval_or_chunking",
+        "fix_citation_mapping_or_answer_assembly",
+        "inspect_answer_mode_calibration"
+      ],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": false,
+      "retrieval_top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0292",
+        "formula:FML-1b00cf16ce52",
+        "safe:chunks:ZJSHL-CK-F-0001",
+        "safe:main_passages:ZJSHL-CH-008-P-0217",
+        "safe:chunks:ZJSHL-CK-F-0002"
+      ],
+      "scope_qualified": true,
+      "should_answer": true,
+      "subtype": "commentary_understanding"
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "注文理解",
+      "citation_audit_recommended_next_action": "inspect_secondary_review_citation_policy",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "citation_from_top_k": false,
+      "citation_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0295",
+        "full:annotations:ZJSHL-CH-009-P-0109",
+        "full:annotations:ZJSHL-CH-009-P-0111",
+        "full:passages:ZJSHL-CH-009-P-0294",
+        "full:passages:ZJSHL-CH-009-P-0108",
+        "full:passages:ZJSHL-CH-026-P-0005",
+        "full:passages:ZJSHL-CH-009-P-0296",
+        "full:passages:ZJSHL-CH-009-P-0110",
+        "safe:main_passages:ZJSHL-CH-026-P-0006",
+        "full:passages:ZJSHL-CH-009-P-0109"
+      ],
+      "example_class": "answerable_metric",
+      "expected_answer_mode": "weak_with_review_notice",
+      "expected_answer_mode_match": true,
+      "first_hit_rank": 3,
+      "gold_chunk_ids": [
+        "full:annotations:ZJSHL-CH-009-P-0109"
+      ],
+      "gold_cited": true,
+      "id": "eval_030",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "original_failure_types": [
+        "citation_not_from_top_k",
+        "scope_qualifier_missing"
+      ],
+      "original_primary_failure_type": "citation_not_from_top_k",
+      "original_severity": "fail",
+      "question": "注文如何解释奔豚从何而发？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "consider_answer_template_scope_phrase"
+      ],
+      "refuse_when_should_not_answer": null,
+      "retrieval_hit_at_5": true,
+      "retrieval_top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0461",
+        "safe:main_passages:ZJSHL-CH-009-P-0295",
+        "full:annotations:ZJSHL-CH-009-P-0109",
+        "full:passages:ZJSHL-CH-009-P-0109",
+        "safe:definition_terms:DPO-e3ac03414a67"
+      ],
+      "scope_qualified": false,
+      "should_answer": true,
+      "subtype": "commentary_understanding"
+    },
+    {
+      "answer_mode": "refuse",
+      "category": "超范围拒答",
+      "citation_audit_recommended_next_action": null,
+      "citation_audit_root_cause": null,
+      "citation_from_top_k": null,
+      "citation_ids": [],
+      "example_class": "unanswerable",
+      "expected_answer_mode": "refuse",
+      "expected_answer_mode_match": true,
+      "first_hit_rank": null,
+      "gold_chunk_ids": [],
+      "gold_cited": null,
+      "id": "eval_031",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "unanswerable sample was already refused, so no out_of_scope_not_rejected failure is added.",
+      "original_failure_types": [],
+      "original_primary_failure_type": null,
+      "original_severity": "ok",
+      "question": "白虎是什么意思？",
+      "reclassified_failure_types": [],
+      "reclassified_primary_failure_type": null,
+      "reclassified_severity": "ok",
+      "recommended_next_action": "none",
+      "recommended_next_actions": [],
+      "refuse_when_should_not_answer": true,
+      "retrieval_hit_at_5": false,
+      "retrieval_top5_record_ids": [
+        "safe:chunks:ZJSHL-CK-M-0638",
+        "safe:main_passages:ZJSHL-CH-011-P-0104",
+        "formula:FML-47765c7ee78a",
+        "safe:chunks:ZJSHL-CK-M-0546",
+        "safe:main_passages:ZJSHL-CH-010-P-0128"
+      ],
+      "scope_qualified": true,
+      "should_answer": false,
+      "subtype": "negative_scope"
+    },
+    {
+      "answer_mode": "refuse",
+      "category": "超范围拒答",
+      "citation_audit_recommended_next_action": null,
+      "citation_audit_root_cause": null,
+      "citation_from_top_k": null,
+      "citation_ids": [],
+      "example_class": "unanswerable",
+      "expected_answer_mode": "refuse",
+      "expected_answer_mode_match": true,
+      "first_hit_rank": null,
+      "gold_chunk_ids": [],
+      "gold_cited": null,
+      "id": "eval_032",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "unanswerable sample was already refused, so no out_of_scope_not_rejected failure is added.",
+      "original_failure_types": [],
+      "original_primary_failure_type": null,
+      "original_severity": "ok",
+      "question": "太阳能是什么意思？",
+      "reclassified_failure_types": [],
+      "reclassified_primary_failure_type": null,
+      "reclassified_severity": "ok",
+      "recommended_next_action": "none",
+      "recommended_next_actions": [],
+      "refuse_when_should_not_answer": true,
+      "retrieval_hit_at_5": false,
+      "retrieval_top5_record_ids": [],
+      "scope_qualified": true,
+      "should_answer": false,
+      "subtype": "negative_scope"
+    },
+    {
+      "answer_mode": "refuse",
+      "category": "超范围拒答",
+      "citation_audit_recommended_next_action": null,
+      "citation_audit_root_cause": null,
+      "citation_from_top_k": null,
+      "citation_ids": [],
+      "example_class": "unanswerable",
+      "expected_answer_mode": "refuse",
+      "expected_answer_mode_match": true,
+      "first_hit_rank": null,
+      "gold_chunk_ids": [],
+      "gold_cited": null,
+      "id": "eval_033",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "unanswerable sample was already refused, so no out_of_scope_not_rejected failure is added.",
+      "original_failure_types": [],
+      "original_primary_failure_type": null,
+      "original_severity": "ok",
+      "question": "霍乱疫苗是什么？",
+      "reclassified_failure_types": [],
+      "reclassified_primary_failure_type": null,
+      "reclassified_severity": "ok",
+      "recommended_next_action": "none",
+      "recommended_next_actions": [],
+      "refuse_when_should_not_answer": true,
+      "retrieval_hit_at_5": false,
+      "retrieval_top5_record_ids": [],
+      "scope_qualified": true,
+      "should_answer": false,
+      "subtype": "negative_scope"
+    },
+    {
+      "answer_mode": "refuse",
+      "category": "超范围拒答",
+      "citation_audit_recommended_next_action": null,
+      "citation_audit_root_cause": null,
+      "citation_from_top_k": null,
+      "citation_ids": [],
+      "example_class": "unanswerable",
+      "expected_answer_mode": "refuse",
+      "expected_answer_mode_match": true,
+      "first_hit_rank": null,
+      "gold_chunk_ids": [],
+      "gold_cited": null,
+      "id": "eval_034",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "unanswerable sample was already refused, so no out_of_scope_not_rejected failure is added.",
+      "original_failure_types": [],
+      "original_primary_failure_type": null,
+      "original_severity": "ok",
+      "question": "劳动合同是什么？",
+      "reclassified_failure_types": [],
+      "reclassified_primary_failure_type": null,
+      "reclassified_severity": "ok",
+      "recommended_next_action": "none",
+      "recommended_next_actions": [],
+      "refuse_when_should_not_answer": true,
+      "retrieval_hit_at_5": false,
+      "retrieval_top5_record_ids": [],
+      "scope_qualified": true,
+      "should_answer": false,
+      "subtype": "negative_scope"
+    },
+    {
+      "answer_mode": "refuse",
+      "category": "超范围拒答",
+      "citation_audit_recommended_next_action": null,
+      "citation_audit_root_cause": null,
+      "citation_from_top_k": null,
+      "citation_ids": [],
+      "example_class": "unanswerable",
+      "expected_answer_mode": "refuse",
+      "expected_answer_mode_match": true,
+      "first_hit_rank": null,
+      "gold_chunk_ids": [],
+      "gold_cited": null,
+      "id": "eval_035",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "unanswerable sample was already refused, so no out_of_scope_not_rejected failure is added.",
+      "original_failure_types": [],
+      "original_primary_failure_type": null,
+      "original_severity": "ok",
+      "question": "量子纠缠在书中怎么解释？",
+      "reclassified_failure_types": [],
+      "reclassified_primary_failure_type": null,
+      "reclassified_severity": "ok",
+      "recommended_next_action": "none",
+      "recommended_next_actions": [],
+      "refuse_when_should_not_answer": true,
+      "retrieval_hit_at_5": false,
+      "retrieval_top5_record_ids": [],
+      "scope_qualified": true,
+      "should_answer": false,
+      "subtype": "negative_scope"
+    },
+    {
+      "answer_mode": "refuse",
+      "category": "超范围拒答",
+      "citation_audit_recommended_next_action": null,
+      "citation_audit_root_cause": null,
+      "citation_from_top_k": null,
+      "citation_ids": [],
+      "example_class": "unanswerable",
+      "expected_answer_mode": "refuse",
+      "expected_answer_mode_match": true,
+      "first_hit_rank": null,
+      "gold_chunk_ids": [],
+      "gold_cited": null,
+      "id": "eval_036",
+      "is_runtime_bug": false,
+      "manual_audit_required": false,
+      "notes": "unanswerable sample was already refused, so no out_of_scope_not_rejected failure is added.",
+      "original_failure_types": [],
+      "original_primary_failure_type": null,
+      "original_severity": "ok",
+      "question": "Python 怎么写爬虫？",
+      "reclassified_failure_types": [],
+      "reclassified_primary_failure_type": null,
+      "reclassified_severity": "ok",
+      "recommended_next_action": "none",
+      "recommended_next_actions": [],
+      "refuse_when_should_not_answer": true,
+      "retrieval_hit_at_5": false,
+      "retrieval_top5_record_ids": [],
+      "scope_qualified": true,
+      "should_answer": false,
+      "subtype": "negative_scope"
+    }
+  ],
+  "policy_decision_candidates": [
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "原文定位",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_006",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "太阳之为病的原文是什么？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "术语解释",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_010",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "两阳是什么意思？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "方剂关联",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_016",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "太阳中风鼻鸣乾呕用什么方？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "方剂关联",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_017",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "太阳病项背强几几无汗恶风用什么方？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "方剂关联",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_018",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "伤寒脉浮紧无汗身疼痛用什么方？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "症候检索",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_022",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "头项强痛而恶寒对应哪段原文？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "症候检索",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_024",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "发热无汗反恶寒名为什么？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "expected_answer_mode_mismatch",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "inspect_answer_mode_calibration",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "注文理解",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_026",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair. policy warning coexists with a still-valid formal retrieval or gold-citation failure.",
+      "question": "成无己如何解释荣气微？",
+      "reclassified_failure_types": [
+        "correct_chunk_not_retrieved",
+        "secondary_review_citation_policy_needs_decision",
+        "gold_not_cited",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "correct_chunk_not_retrieved",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "recommended_next_actions": [
+        "fix_retrieval_or_chunking",
+        "define_secondary_review_citation_policy",
+        "fix_citation_mapping_or_answer_assembly",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "注文理解",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_030",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair.",
+      "question": "注文如何解释奔豚从何而发？",
+      "reclassified_failure_types": [
+        "secondary_review_citation_policy_needs_decision",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "secondary_review_citation_policy_needs_decision",
+      "reclassified_severity": "policy_warning",
+      "recommended_next_action": "define_secondary_review_citation_policy",
+      "recommended_next_actions": [
+        "define_secondary_review_citation_policy",
+        "consider_answer_template_scope_phrase"
+      ]
+    }
+  ],
+  "policy_warning_count": 9,
+  "policy_warning_only_count": 8,
+  "reclassified_failure_type_counts": {
+    "correct_chunk_not_retrieved": 4,
+    "expected_answer_mode_mismatch": 10,
+    "gold_not_cited": 5,
+    "manual_audit_required": 5,
+    "real_citation_assembly_issue": 3,
+    "scope_qualifier_missing": 12,
+    "secondary_review_citation_policy_needs_decision": 9,
+    "trace_or_evaluator_equivalence_gap": 2
+  },
+  "reclassified_formal_fail_count": 7,
+  "recommended_next_action_counts": {
+    "consider_answer_template_scope_phrase": 1,
+    "define_secondary_review_citation_policy": 8,
+    "fix_answer_assembly_citation_scope": 3,
+    "fix_citation_mapping_or_answer_assembly": 1,
+    "fix_retrieval_or_chunking": 3,
+    "fix_trace_logging_or_eval_equivalence": 2,
+    "inspect_answer_mode_calibration": 1,
+    "manual_audit_required": 5,
+    "none": 12
+  },
+  "report_scope": {
+    "llm_judge": false,
+    "modifies_runtime": false,
+    "runs_answer_generation": false,
+    "runs_retrieval": false,
+    "source_artifacts_only": true
+  },
+  "retrieval_eval_source": "artifacts/eval/retrieval_eval_v1/retrieval_eval_v1.json",
+  "retrieval_repair_candidates": [
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "术语解释",
+      "citation_audit_root_cause": null,
+      "id": "eval_007",
+      "notes": "",
+      "question": "干呕是什么意思？",
+      "reclassified_failure_types": [
+        "correct_chunk_not_retrieved"
+      ],
+      "reclassified_primary_failure_type": "correct_chunk_not_retrieved",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "recommended_next_actions": [
+        "fix_retrieval_or_chunking"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "注文理解",
+      "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+      "id": "eval_026",
+      "notes": "weak answer cites secondary/review material outside top-k; this is separated as a policy decision before repair. policy warning coexists with a still-valid formal retrieval or gold-citation failure.",
+      "question": "成无己如何解释荣气微？",
+      "reclassified_failure_types": [
+        "correct_chunk_not_retrieved",
+        "secondary_review_citation_policy_needs_decision",
+        "gold_not_cited",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "correct_chunk_not_retrieved",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "recommended_next_actions": [
+        "fix_retrieval_or_chunking",
+        "define_secondary_review_citation_policy",
+        "fix_citation_mapping_or_answer_assembly",
+        "consider_answer_template_scope_phrase"
+      ]
+    },
+    {
+      "answer_mode": "strong",
+      "category": "注文理解",
+      "citation_audit_root_cause": "real_citation_assembly_issue",
+      "id": "eval_027",
+      "notes": "citation audit root_cause=real_citation_assembly_issue reclassifies the original citation_not_from_top_k signal.",
+      "question": "成无己如何解释卫气衰？",
+      "reclassified_failure_types": [
+        "correct_chunk_not_retrieved",
+        "real_citation_assembly_issue",
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "reclassified_primary_failure_type": "real_citation_assembly_issue",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_answer_assembly_citation_scope",
+      "recommended_next_actions": [
+        "fix_retrieval_or_chunking",
+        "fix_answer_assembly_citation_scope",
+        "fix_citation_mapping_or_answer_assembly",
+        "inspect_answer_mode_calibration"
+      ]
+    },
+    {
+      "answer_mode": "strong",
+      "category": "注文理解",
+      "citation_audit_root_cause": null,
+      "id": "eval_029",
+      "notes": "",
+      "question": "注文对桂枝汤不可误用有什么提醒？",
+      "reclassified_failure_types": [
+        "correct_chunk_not_retrieved",
+        "gold_not_cited",
+        "expected_answer_mode_mismatch"
+      ],
+      "reclassified_primary_failure_type": "correct_chunk_not_retrieved",
+      "reclassified_severity": "fail",
+      "recommended_next_action": "fix_retrieval_or_chunking",
+      "recommended_next_actions": [
+        "fix_retrieval_or_chunking",
+        "fix_citation_mapping_or_answer_assembly",
+        "inspect_answer_mode_calibration"
+      ]
+    }
+  ],
+  "run_id": "failure_report_reclassified_after_citation_audit_v1",
+  "runtime_bug_count": 3,
+  "severity_counts": {
+    "diagnostic": 5,
+    "fail": 7,
+    "ok": 12,
+    "policy_warning": 8,
+    "tooling": 2,
+    "warning": 2
+  },
+  "source_artifacts": {
+    "answer_eval_v1": "artifacts/eval/answer_eval_v1/answer_eval_v1.json",
+    "citation_topk_mismatch_audit_v1": "artifacts/eval/citation_topk_mismatch_audit_v1/citation_topk_mismatch_audit_v1.json",
+    "eval_dataset_v1": "data/eval/eval_dataset_v1.csv",
+    "failure_report_v1": "artifacts/eval/failure_report_v1/failure_cases_v1.json",
+    "retrieval_eval_v1": "artifacts/eval/retrieval_eval_v1/retrieval_eval_v1.json"
+  },
+  "source_citation_audit": "artifacts/eval/citation_topk_mismatch_audit_v1/citation_topk_mismatch_audit_v1.json",
+  "source_failure_report": "artifacts/eval/failure_report_v1/failure_cases_v1.json",
+  "source_metric_summary": {
+    "answer_eval_v1": {
+      "answerable_metric_examples": 25,
+      "citation_from_top_k_rate": 0.44,
+      "diagnostic_only_examples": 5,
+      "gold_cited_rate": 0.8,
+      "has_citation_rate": 1.0,
+      "refuse_when_should_not_answer_rate": 1.0,
+      "total_examples": 36,
+      "unanswerable_examples": 6
+    },
+    "citation_topk_mismatch_audit_v1": {
+      "evaluator_or_trace_issue_count": 2,
+      "manual_audit_required_count": 0,
+      "root_cause_counts": {
+        "answer_uses_secondary_or_review_not_in_topk": 9,
+        "real_citation_assembly_issue": 3,
+        "trace_topk_missing_equivalence": 2
+      },
+      "runtime_bug_count": 3,
+      "total_citation_not_from_topk": 14
+    },
+    "failure_report_v1": {
+      "citation_not_from_top_k": 14,
+      "diagnostic_count": 5,
+      "formal_fail_count": 17,
+      "ok_count": 12,
+      "warning_count": 2
+    },
+    "retrieval_eval_v1": {
+      "answerable_metric_examples": 25,
+      "diagnostic_only_examples": 5,
+      "hit_at_1": 0.8,
+      "hit_at_3": 0.84,
+      "hit_at_5": 0.84,
+      "mrr": 0.813333,
+      "recall_at_5": 0.84,
+      "total_examples": 36,
+      "unanswerable_examples": 6
+    }
+  },
+  "source_sha256": {
+    "answer_eval_v1": "24bf4d2bd41f8eb7b38442c70f33f305c54e34a70b706d1f4630808a48826d80",
+    "citation_topk_mismatch_audit_v1": "dba87266892e2bbeb22e54f3233ddcda12e6e84ada7d8b2642f9715d8479ce7a",
+    "eval_dataset_v1": "7775950069ae5855a2627accc2416d7ddfb62a5e0d89458a8414bf840df93a47",
+    "failure_report_v1": "57e95ca045382963263332701bb2486dca56baa0b7bf625f3510963629e93fd7",
+    "retrieval_eval_v1": "a48a3e37547ecee72c16cfaeb4d5d4559d47a5dd269daa366874257d9f239011"
+  },
+  "tooling_count": 2,
+  "tooling_repair_candidates": [
+    {
+      "answer_mode": "strong",
+      "category": "原文定位",
+      "citation_audit_root_cause": "trace_topk_missing_equivalence",
+      "id": "eval_002",
+      "notes": "citation audit root_cause=trace_topk_missing_equivalence reclassifies the original citation_not_from_top_k signal.",
+      "question": "麻黄汤方的条文是什么？",
+      "reclassified_failure_types": [
+        "trace_or_evaluator_equivalence_gap"
+      ],
+      "reclassified_primary_failure_type": "trace_or_evaluator_equivalence_gap",
+      "reclassified_severity": "tooling",
+      "recommended_next_action": "fix_trace_logging_or_eval_equivalence",
+      "recommended_next_actions": [
+        "fix_trace_logging_or_eval_equivalence"
+      ]
+    },
+    {
+      "answer_mode": "weak_with_review_notice",
+      "category": "术语解释",
+      "citation_audit_root_cause": "trace_topk_missing_equivalence",
+      "id": "eval_009",
+      "notes": "citation audit root_cause=trace_topk_missing_equivalence reclassifies the original citation_not_from_top_k signal.",
+      "question": "反是什么意思？",
+      "reclassified_failure_types": [
+        "trace_or_evaluator_equivalence_gap",
+        "scope_qualifier_missing"
+      ],
+      "reclassified_primary_failure_type": "trace_or_evaluator_equivalence_gap",
+      "reclassified_severity": "tooling",
+      "recommended_next_action": "fix_trace_logging_or_eval_equivalence",
+      "recommended_next_actions": [
+        "fix_trace_logging_or_eval_equivalence",
+        "consider_answer_template_scope_phrase"
+      ]
+    }
+  ],
+  "total_examples": 36,
+  "warning_count": 2
+}

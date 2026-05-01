@@ -1,0 +1,41 @@
+{
+  "run_id": "eval_dataset_v1",
+  "dataset_path": "data/eval/eval_dataset_v1.csv",
+  "total_examples": 36,
+  "category_counts": {
+    "原文定位": 6,
+    "方剂关联": 5,
+    "术语解释": 9,
+    "注文理解": 5,
+    "症候检索": 5,
+    "超范围拒答": 6
+  },
+  "should_answer_counts": {
+    "true": 30,
+    "false": 6
+  },
+  "expected_answer_mode_counts": {
+    "refuse": 6,
+    "strong": 16,
+    "weak_with_review_notice": 14
+  },
+  "manual_audit_required_count": 5,
+  "p2_residual_included": true,
+  "missing_required_fields": [],
+  "invalid_category_rows": [],
+  "invalid_should_answer_rows": [],
+  "missing_gold_rows": [],
+  "unknown_gold_id_rows": [],
+  "dataset_valid": true,
+  "dataset_exists": true,
+  "duplicate_id_rows": [],
+  "empty_question_rows": [],
+  "invalid_expected_answer_mode_rows": [],
+  "invalid_refuse_mode_rows": [],
+  "invalid_manual_audit_required_rows": [],
+  "manual_audit_note_rows": [],
+  "invalid_gold_id_format_rows": [],
+  "category_minimum_errors": [],
+  "missing_p2_residual_queries": [],
+  "pass_friendly_guard_errors": []
+}

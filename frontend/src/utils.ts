@@ -97,6 +97,7 @@ const SOURCE_UNIT_LABELS: Record<string, string> = {
 };
 
 const EVIDENCE_REF_RE = /\[(E\d+)\]/g;
+const INTERNAL_RISK_FLAG_RE = /(topic_mismatch_demoted|ledger_mixed_roles|ambiguous_source|review_only|risk_only|trace|debug|audit)/i;
 
 export function cx(...values: Array<string | false | null | undefined>): string {
   return values.filter(Boolean).join(" ");
@@ -286,6 +287,15 @@ export function formatRoleLabel(displayRole: string): string {
   return ROLE_LABELS[displayRole] || displayRole || "未标注";
 }
 
+export function publicRiskFlags(flags: unknown): string[] {
+  if (!Array.isArray(flags)) {
+    return [];
+  }
+  return flags
+    .map((flag) => String(flag || "").trim())
+    .filter((flag) => flag && !INTERNAL_RISK_FLAG_RE.test(flag) && !flag.includes("_"));
+}
+
 export function formatRecordShort(recordId: string): string {
   if (!recordId) {
     return "未标注";
@@ -396,6 +406,11 @@ export function resolveRecordTitle(
   const { prefix = "" } = options;
   const rawTitle = String(record.title || "").trim();
   const snippet = String(record.snippet || "").trim();
+  const explicitTitle = rawTitle.includes(" · ") || /^(方文依据|条文语境|同段前文|同段后文)/.test(rawTitle);
+  if (explicitTitle && !titlesTooSimilar(rawTitle, snippet)) {
+    return prefix ? `${prefix} · ${rawTitle}` : rawTitle;
+  }
+
   const structuredTitle = buildStructuredRecordTitle(record);
   const baseTitle = structuredTitle || rawTitle || formatRecordShort(record.record_id || "");
   let resolvedTitle = baseTitle;

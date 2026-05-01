@@ -40,6 +40,7 @@ import {
   isOverlaySidebarViewport,
   parseAnswerLines,
   persistSidebarCollapsedPreference,
+  publicRiskFlags,
   readSidebarCollapsedPreference,
   resolveRecordTitle,
   validatePayload,
@@ -1252,44 +1253,47 @@ function EvidencePanel(props: {
     <section className={styles.supportPanel} data-tone={props.tone || "default"}>
       <PanelHead title={props.title} hint={props.hint} count={props.items.length} />
       <div className={styles.evidenceList}>
-        {props.items.map((item) => (
-          <article
-            key={`${props.title}-${item.record_id}-${item.eId}`}
-            ref={(node) => {
-              props.evidenceRefs.current[item.eId] = node;
-            }}
-            className={cx(
-              styles.evidenceCard,
-              props.highlightedEvidenceId === item.eId && styles.evidenceCardHighlighted,
-            )}
-            data-evidence-id={item.eId}
-          >
-            <div className={styles.evidenceTop}>
-              <h4>{resolveRecordTitle(item) || item.title || formatRecordShort(item.record_id)}</h4>
-              <span className={styles.evidenceIndex}>{item.eId}</span>
-            </div>
+        {props.items.map((item) => {
+          const visibleFlags = publicRiskFlags(item.risk_flags);
+          return (
+            <article
+              key={`${props.title}-${item.record_id}-${item.eId}`}
+              ref={(node) => {
+                props.evidenceRefs.current[item.eId] = node;
+              }}
+              className={cx(
+                styles.evidenceCard,
+                props.highlightedEvidenceId === item.eId && styles.evidenceCardHighlighted,
+              )}
+              data-evidence-id={item.eId}
+            >
+              <div className={styles.evidenceTop}>
+                <h4>{resolveRecordTitle(item) || item.title || formatRecordShort(item.record_id)}</h4>
+                <span className={styles.evidenceIndex}>{item.eId}</span>
+              </div>
 
-            <div className={styles.evidenceMeta}>
-              <span className={styles.roleChip} data-role={item.display_role}>
-                {formatRoleLabel(item.display_role)}
-              </span>
-              <span className={styles.metaChip}>等级 {item.evidence_level}</span>
-              <span className={styles.metaChip}>{formatSourceLabel(item.record_type)}</span>
-              <span className={styles.metaChip}>记录 {formatRecordShort(item.record_id)}</span>
-              {item.chapter_title ? <span className={styles.metaChip}>{item.chapter_title}</span> : null}
-            </div>
+              <div className={styles.evidenceMeta}>
+                <span className={styles.roleChip} data-role={item.display_role}>
+                  {formatRoleLabel(item.display_role)}
+                </span>
+                <span className={styles.metaChip}>等级 {item.evidence_level}</span>
+                <span className={styles.metaChip}>{formatSourceLabel(item.record_type)}</span>
+                <span className={styles.metaChip}>记录 {formatRecordShort(item.record_id)}</span>
+                {item.chapter_title ? <span className={styles.metaChip}>{item.chapter_title}</span> : null}
+              </div>
 
-            {item.snippet ? <p className={styles.evidenceSnippet}>{item.snippet}</p> : null}
+              {item.snippet ? <p className={styles.evidenceSnippet}>{item.snippet}</p> : null}
 
-            {Array.isArray(item.risk_flags) && item.risk_flags.length > 0 ? (
-              <ul className={styles.riskFlags}>
-                {item.risk_flags.map((flag) => (
-                  <li key={`${item.record_id}-${flag}`}>{flag}</li>
-                ))}
-              </ul>
-            ) : null}
-          </article>
-        ))}
+              {visibleFlags.length > 0 ? (
+                <ul className={styles.riskFlags}>
+                  {visibleFlags.map((flag) => (
+                    <li key={`${item.record_id}-${flag}`}>{flag}</li>
+                  ))}
+                </ul>
+              ) : null}
+            </article>
+          );
+        })}
       </div>
     </section>
   );

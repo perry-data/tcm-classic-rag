@@ -1,0 +1,500 @@
+[
+  {
+    "also_in_next_queue": [
+      "answer_mode_calibration_observations",
+      "scope_phrase_warnings"
+    ],
+    "answer_mode": "weak_with_review_notice",
+    "category": "原文定位",
+    "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+    "citation_ids": [
+      "safe:main_passages:ZJSHL-CH-008-P-0191",
+      "safe:main_passages:ZJSHL-CH-009-P-0202",
+      "safe:main_passages:ZJSHL-CH-008-P-0195",
+      "safe:main_passages:ZJSHL-CH-009-P-0318",
+      "safe:main_passages:ZJSHL-CH-007-P-0157",
+      "full:passages:ZJSHL-CH-008-P-0191"
+    ],
+    "citation_source_slots": [
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "review"
+    ],
+    "has_conservative_language": true,
+    "id": "eval_006",
+    "notes": "weak answer cites secondary/review material with conservative language and traceable slots.",
+    "policy_status": "policy_accepted",
+    "primary_contains_forbidden_full_passage": false,
+    "primary_evidence_ids": [],
+    "question": "太阳之为病的原文是什么？",
+    "recommended_next_action": "none",
+    "review_material_ids": [
+      "full:passages:ZJSHL-CH-008-P-0191"
+    ],
+    "secondary_evidence_ids": [
+      "safe:main_passages:ZJSHL-CH-008-P-0191",
+      "safe:main_passages:ZJSHL-CH-009-P-0202",
+      "safe:main_passages:ZJSHL-CH-008-P-0195",
+      "safe:main_passages:ZJSHL-CH-009-P-0318",
+      "safe:main_passages:ZJSHL-CH-007-P-0157"
+    ],
+    "secondary_review_citation_detected": true,
+    "source_queue": "secondary_review_policy_decisions",
+    "source_slot_traceable": true,
+    "trace_found": true
+  },
+  {
+    "also_in_next_queue": [
+      "scope_phrase_warnings"
+    ],
+    "answer_mode": "weak_with_review_notice",
+    "category": "术语解释",
+    "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+    "citation_ids": [
+      "safe:main_passages:ZJSHL-CH-009-P-0275",
+      "safe:main_passages:ZJSHL-CH-017-P-0049",
+      "safe:main_passages:ZJSHL-CH-017-P-0050",
+      "safe:main_passages:ZJSHL-CH-017-P-0053",
+      "safe:main_passages:ZJSHL-CH-009-P-0161",
+      "safe:main_passages:ZJSHL-CH-009-P-0160",
+      "safe:main_passages:ZJSHL-CH-009-P-0164"
+    ],
+    "citation_source_slots": [
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary"
+    ],
+    "has_conservative_language": true,
+    "id": "eval_010",
+    "notes": "weak answer cites secondary/review material with conservative language and traceable slots.",
+    "policy_status": "policy_accepted",
+    "primary_contains_forbidden_full_passage": false,
+    "primary_evidence_ids": [],
+    "question": "两阳是什么意思？",
+    "recommended_next_action": "none",
+    "review_material_ids": [],
+    "secondary_evidence_ids": [
+      "safe:main_passages:ZJSHL-CH-009-P-0275",
+      "safe:main_passages:ZJSHL-CH-017-P-0049",
+      "safe:main_passages:ZJSHL-CH-017-P-0050",
+      "safe:main_passages:ZJSHL-CH-017-P-0053",
+      "safe:main_passages:ZJSHL-CH-009-P-0161",
+      "safe:main_passages:ZJSHL-CH-009-P-0160",
+      "safe:main_passages:ZJSHL-CH-009-P-0164",
+      "full:passages:ZJSHL-CH-017-P-0049",
+      "full:passages:ZJSHL-CH-017-P-0050",
+      "full:passages:ZJSHL-CH-009-P-0276",
+      "full:passages:ZJSHL-CH-017-P-0051",
+      "full:passages:ZJSHL-CH-017-P-0048",
+      "full:passages:ZJSHL-CH-009-P-0160"
+    ],
+    "secondary_review_citation_detected": true,
+    "source_queue": "secondary_review_policy_decisions",
+    "source_slot_traceable": true,
+    "trace_found": true
+  },
+  {
+    "also_in_next_queue": [
+      "answer_mode_calibration_observations",
+      "scope_phrase_warnings"
+    ],
+    "answer_mode": "weak_with_review_notice",
+    "category": "方剂关联",
+    "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+    "citation_ids": [
+      "safe:main_passages:ZJSHL-CH-008-P-0215",
+      "safe:main_passages:ZJSHL-CH-008-P-0217",
+      "safe:main_passages:ZJSHL-CH-008-P-0219",
+      "safe:main_passages:ZJSHL-CH-008-P-0220",
+      "safe:main_passages:ZJSHL-CH-008-P-0229",
+      "full:passages:ZJSHL-CH-008-P-0215",
+      "full:passages:ZJSHL-CH-007-P-0167"
+    ],
+    "citation_source_slots": [
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "review",
+      "review"
+    ],
+    "has_conservative_language": true,
+    "id": "eval_016",
+    "notes": "weak answer cites secondary/review material with conservative language and traceable slots.",
+    "policy_status": "policy_accepted",
+    "primary_contains_forbidden_full_passage": false,
+    "primary_evidence_ids": [],
+    "question": "太阳中风鼻鸣乾呕用什么方？",
+    "recommended_next_action": "none",
+    "review_material_ids": [
+      "full:passages:ZJSHL-CH-008-P-0215",
+      "full:passages:ZJSHL-CH-007-P-0167"
+    ],
+    "secondary_evidence_ids": [
+      "safe:main_passages:ZJSHL-CH-008-P-0215",
+      "safe:main_passages:ZJSHL-CH-008-P-0217",
+      "safe:main_passages:ZJSHL-CH-008-P-0219",
+      "safe:main_passages:ZJSHL-CH-008-P-0220",
+      "safe:main_passages:ZJSHL-CH-008-P-0229"
+    ],
+    "secondary_review_citation_detected": true,
+    "source_queue": "secondary_review_policy_decisions",
+    "source_slot_traceable": true,
+    "trace_found": true
+  },
+  {
+    "also_in_next_queue": [
+      "answer_mode_calibration_observations",
+      "scope_phrase_warnings"
+    ],
+    "answer_mode": "weak_with_review_notice",
+    "category": "方剂关联",
+    "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+    "citation_ids": [
+      "safe:main_passages:ZJSHL-CH-009-P-0002",
+      "safe:main_passages:ZJSHL-CH-009-P-0004",
+      "safe:main_passages:ZJSHL-CH-009-P-0006",
+      "safe:main_passages:ZJSHL-CH-009-P-0011",
+      "safe:main_passages:ZJSHL-CH-026-P-0001",
+      "full:passages:ZJSHL-CH-009-P-0002",
+      "full:passages:ZJSHL-CH-009-P-0003"
+    ],
+    "citation_source_slots": [
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "review",
+      "review"
+    ],
+    "has_conservative_language": true,
+    "id": "eval_017",
+    "notes": "weak answer cites secondary/review material with conservative language and traceable slots.",
+    "policy_status": "policy_accepted",
+    "primary_contains_forbidden_full_passage": false,
+    "primary_evidence_ids": [],
+    "question": "太阳病项背强几几无汗恶风用什么方？",
+    "recommended_next_action": "none",
+    "review_material_ids": [
+      "full:passages:ZJSHL-CH-009-P-0002",
+      "full:passages:ZJSHL-CH-009-P-0003"
+    ],
+    "secondary_evidence_ids": [
+      "safe:main_passages:ZJSHL-CH-009-P-0002",
+      "safe:main_passages:ZJSHL-CH-009-P-0004",
+      "safe:main_passages:ZJSHL-CH-009-P-0006",
+      "safe:main_passages:ZJSHL-CH-009-P-0011",
+      "safe:main_passages:ZJSHL-CH-026-P-0001"
+    ],
+    "secondary_review_citation_detected": true,
+    "source_queue": "secondary_review_policy_decisions",
+    "source_slot_traceable": true,
+    "trace_found": true
+  },
+  {
+    "also_in_next_queue": [
+      "answer_mode_calibration_observations",
+      "scope_phrase_warnings"
+    ],
+    "answer_mode": "weak_with_review_notice",
+    "category": "方剂关联",
+    "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+    "citation_ids": [
+      "safe:main_passages:ZJSHL-CH-009-P-0022",
+      "safe:main_passages:ZJSHL-CH-009-P-0025",
+      "safe:main_passages:ZJSHL-CH-009-P-0026",
+      "safe:main_passages:ZJSHL-CH-009-P-0030",
+      "safe:main_passages:ZJSHL-CH-009-P-0059",
+      "full:passages:ZJSHL-CH-009-P-0077",
+      "full:passages:ZJSHL-CH-009-P-0078"
+    ],
+    "citation_source_slots": [
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "review",
+      "review"
+    ],
+    "has_conservative_language": true,
+    "id": "eval_018",
+    "notes": "weak answer cites secondary/review material with conservative language and traceable slots.",
+    "policy_status": "policy_accepted",
+    "primary_contains_forbidden_full_passage": false,
+    "primary_evidence_ids": [],
+    "question": "伤寒脉浮紧无汗身疼痛用什么方？",
+    "recommended_next_action": "none",
+    "review_material_ids": [
+      "full:passages:ZJSHL-CH-009-P-0077",
+      "full:passages:ZJSHL-CH-009-P-0078"
+    ],
+    "secondary_evidence_ids": [
+      "safe:main_passages:ZJSHL-CH-009-P-0022",
+      "safe:main_passages:ZJSHL-CH-009-P-0025",
+      "safe:main_passages:ZJSHL-CH-009-P-0026",
+      "safe:main_passages:ZJSHL-CH-009-P-0030",
+      "safe:main_passages:ZJSHL-CH-009-P-0059"
+    ],
+    "secondary_review_citation_detected": true,
+    "source_queue": "secondary_review_policy_decisions",
+    "source_slot_traceable": true,
+    "trace_found": true
+  },
+  {
+    "also_in_next_queue": [
+      "answer_mode_calibration_observations",
+      "scope_phrase_warnings"
+    ],
+    "answer_mode": "weak_with_review_notice",
+    "category": "症候检索",
+    "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+    "citation_ids": [
+      "safe:main_passages:ZJSHL-CH-008-P-0191",
+      "full:annotations:ZJSHL-CH-008-P-0192",
+      "full:annotations:ZJSHL-CH-008-P-0255",
+      "safe:main_passages:ZJSHL-CH-016-P-0006",
+      "safe:main_passages:ZJSHL-CH-007-P-0188",
+      "full:passages:ZJSHL-CH-008-P-0191",
+      "full:passages:ZJSHL-CH-008-P-0192",
+      "full:ambiguous_passages:ZJSHL-CH-010-P-0048"
+    ],
+    "citation_source_slots": [
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "review",
+      "review",
+      "review"
+    ],
+    "has_conservative_language": true,
+    "id": "eval_022",
+    "notes": "weak answer cites secondary/review material with conservative language and traceable slots.",
+    "policy_status": "policy_accepted",
+    "primary_contains_forbidden_full_passage": false,
+    "primary_evidence_ids": [],
+    "question": "头项强痛而恶寒对应哪段原文？",
+    "recommended_next_action": "none",
+    "review_material_ids": [
+      "full:passages:ZJSHL-CH-008-P-0191",
+      "full:passages:ZJSHL-CH-008-P-0192",
+      "full:ambiguous_passages:ZJSHL-CH-010-P-0048"
+    ],
+    "secondary_evidence_ids": [
+      "safe:main_passages:ZJSHL-CH-008-P-0191",
+      "full:annotations:ZJSHL-CH-008-P-0192",
+      "full:annotations:ZJSHL-CH-008-P-0255",
+      "safe:main_passages:ZJSHL-CH-016-P-0006",
+      "safe:main_passages:ZJSHL-CH-007-P-0188"
+    ],
+    "secondary_review_citation_detected": true,
+    "source_queue": "secondary_review_policy_decisions",
+    "source_slot_traceable": true,
+    "trace_found": true
+  },
+  {
+    "also_in_next_queue": [
+      "answer_mode_calibration_observations",
+      "scope_phrase_warnings"
+    ],
+    "answer_mode": "weak_with_review_notice",
+    "category": "症候检索",
+    "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+    "citation_ids": [
+      "safe:main_passages:ZJSHL-CH-007-P-0157",
+      "full:annotations:ZJSHL-CH-007-P-0158",
+      "full:annotations:ZJSHL-CH-008-P-0194",
+      "safe:main_passages:ZJSHL-CH-009-P-0303",
+      "safe:main_passages:ZJSHL-CH-007-P-0159",
+      "full:passages:ZJSHL-CH-007-P-0159",
+      "full:passages:ZJSHL-CH-007-P-0158",
+      "full:passages:ZJSHL-CH-007-P-0157",
+      "full:passages:ZJSHL-CH-007-P-0160",
+      "full:passages:ZJSHL-CH-008-P-0193",
+      "full:passages:ZJSHL-CH-008-P-0195",
+      "full:ambiguous_passages:ZJSHL-CH-011-P-0020"
+    ],
+    "citation_source_slots": [
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "review"
+    ],
+    "has_conservative_language": true,
+    "id": "eval_024",
+    "notes": "weak answer cites secondary/review material with conservative language and traceable slots.",
+    "policy_status": "policy_accepted",
+    "primary_contains_forbidden_full_passage": false,
+    "primary_evidence_ids": [],
+    "question": "发热无汗反恶寒名为什么？",
+    "recommended_next_action": "none",
+    "review_material_ids": [
+      "full:ambiguous_passages:ZJSHL-CH-011-P-0020"
+    ],
+    "secondary_evidence_ids": [
+      "safe:main_passages:ZJSHL-CH-007-P-0157",
+      "full:annotations:ZJSHL-CH-007-P-0158",
+      "full:annotations:ZJSHL-CH-008-P-0194",
+      "safe:main_passages:ZJSHL-CH-009-P-0303",
+      "safe:main_passages:ZJSHL-CH-007-P-0159",
+      "full:passages:ZJSHL-CH-007-P-0159",
+      "full:passages:ZJSHL-CH-007-P-0158",
+      "full:passages:ZJSHL-CH-007-P-0157",
+      "full:passages:ZJSHL-CH-007-P-0160",
+      "full:passages:ZJSHL-CH-008-P-0193",
+      "full:passages:ZJSHL-CH-008-P-0195",
+      "full:passages:ZJSHL-CH-007-P-0156"
+    ],
+    "secondary_review_citation_detected": true,
+    "source_queue": "secondary_review_policy_decisions",
+    "source_slot_traceable": true,
+    "trace_found": true
+  },
+  {
+    "also_in_next_queue": [
+      "retrieval_or_chunking_repairs",
+      "scope_phrase_warnings"
+    ],
+    "answer_mode": "weak_with_review_notice",
+    "category": "注文理解",
+    "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+    "citation_ids": [
+      "safe:main_passages:ZJSHL-CH-003-P-0010",
+      "full:annotations:ZJSHL-CH-003-P-0015",
+      "safe:main_passages:ZJSHL-CH-004-P-0216",
+      "full:annotations:ZJSHL-CH-009-P-0302",
+      "safe:main_passages:ZJSHL-CH-003-P-0014",
+      "full:passages:ZJSHL-CH-003-P-0015",
+      "full:passages:ZJSHL-CH-003-P-0014",
+      "full:passages:ZJSHL-CH-003-P-0016",
+      "full:passages:ZJSHL-CH-003-P-0011",
+      "full:passages:ZJSHL-CH-009-P-0303",
+      "full:passages:ZJSHL-CH-003-P-0009",
+      "full:passages:ZJSHL-CH-003-P-0010",
+      "full:passages:ZJSHL-CH-005-P-0002"
+    ],
+    "citation_source_slots": [
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "review",
+      "review"
+    ],
+    "has_conservative_language": true,
+    "id": "eval_026",
+    "notes": "weak answer cites secondary/review material with conservative language and traceable slots.",
+    "policy_status": "policy_accepted",
+    "primary_contains_forbidden_full_passage": false,
+    "primary_evidence_ids": [],
+    "question": "成无己如何解释荣气微？",
+    "recommended_next_action": "none",
+    "review_material_ids": [
+      "full:passages:ZJSHL-CH-003-P-0010",
+      "full:passages:ZJSHL-CH-005-P-0002"
+    ],
+    "secondary_evidence_ids": [
+      "safe:main_passages:ZJSHL-CH-003-P-0010",
+      "full:annotations:ZJSHL-CH-003-P-0015",
+      "safe:main_passages:ZJSHL-CH-004-P-0216",
+      "full:annotations:ZJSHL-CH-009-P-0302",
+      "safe:main_passages:ZJSHL-CH-003-P-0014",
+      "full:passages:ZJSHL-CH-003-P-0015",
+      "full:passages:ZJSHL-CH-003-P-0014",
+      "full:passages:ZJSHL-CH-003-P-0016",
+      "full:passages:ZJSHL-CH-003-P-0011",
+      "full:passages:ZJSHL-CH-009-P-0303",
+      "full:passages:ZJSHL-CH-003-P-0009",
+      "full:passages:ZJSHL-CH-009-P-0301"
+    ],
+    "secondary_review_citation_detected": true,
+    "source_queue": "secondary_review_policy_decisions",
+    "source_slot_traceable": true,
+    "trace_found": true
+  },
+  {
+    "also_in_next_queue": [
+      "scope_phrase_warnings"
+    ],
+    "answer_mode": "weak_with_review_notice",
+    "category": "注文理解",
+    "citation_audit_root_cause": "answer_uses_secondary_or_review_not_in_topk",
+    "citation_ids": [
+      "safe:main_passages:ZJSHL-CH-009-P-0295",
+      "full:annotations:ZJSHL-CH-009-P-0109",
+      "full:annotations:ZJSHL-CH-009-P-0111",
+      "full:passages:ZJSHL-CH-009-P-0294",
+      "full:passages:ZJSHL-CH-009-P-0108",
+      "full:passages:ZJSHL-CH-026-P-0005",
+      "full:passages:ZJSHL-CH-009-P-0296",
+      "full:passages:ZJSHL-CH-009-P-0110",
+      "safe:main_passages:ZJSHL-CH-026-P-0006",
+      "full:passages:ZJSHL-CH-009-P-0109"
+    ],
+    "citation_source_slots": [
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary",
+      "secondary"
+    ],
+    "has_conservative_language": true,
+    "id": "eval_030",
+    "notes": "weak answer cites secondary/review material with conservative language and traceable slots.",
+    "policy_status": "policy_accepted",
+    "primary_contains_forbidden_full_passage": false,
+    "primary_evidence_ids": [],
+    "question": "注文如何解释奔豚从何而发？",
+    "recommended_next_action": "none",
+    "review_material_ids": [],
+    "secondary_evidence_ids": [
+      "safe:main_passages:ZJSHL-CH-009-P-0295",
+      "full:annotations:ZJSHL-CH-009-P-0109",
+      "full:annotations:ZJSHL-CH-009-P-0111",
+      "full:passages:ZJSHL-CH-009-P-0294",
+      "full:passages:ZJSHL-CH-009-P-0108",
+      "full:passages:ZJSHL-CH-026-P-0005",
+      "full:passages:ZJSHL-CH-009-P-0296",
+      "full:passages:ZJSHL-CH-009-P-0110",
+      "safe:main_passages:ZJSHL-CH-026-P-0006",
+      "full:passages:ZJSHL-CH-009-P-0109",
+      "full:passages:ZJSHL-CH-009-P-0295",
+      "full:passages:ZJSHL-CH-009-P-0112"
+    ],
+    "secondary_review_citation_detected": true,
+    "source_queue": "secondary_review_policy_decisions",
+    "source_slot_traceable": true,
+    "trace_found": true
+  }
+]

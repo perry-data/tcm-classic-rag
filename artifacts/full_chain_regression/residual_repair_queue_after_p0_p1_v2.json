@@ -1,0 +1,147 @@
+{
+  "run_id": "full_chain_regression_after_p0_p1_v2",
+  "generated_at_utc": "2026-04-26T11:47:37.587269+00:00",
+  "source_results": "artifacts/full_chain_regression/full_chain_regression_results_v2.json",
+  "source_delta": "artifacts/full_chain_regression/full_chain_v1_vs_v2_delta.json",
+  "P2_candidates": [
+    {
+      "query_id": "ahv2_canonical_02",
+      "query": "少阴病是什么意思",
+      "query_category": "ahv2_canonical",
+      "failure_types": [
+        "assembler_slot_error"
+      ],
+      "run_modes": [
+        "A_data_plane_baseline",
+        "B_retrieval_rerank",
+        "C_production_like_full_chain"
+      ],
+      "failure_reasons": [
+        "canonical definition primary does not contain expected concept"
+      ],
+      "recommended_next_action": "Manual audit: inspect primary/secondary/review slots and decide whether this is data-layer, rerank, assembler, or LLM work.",
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-014-P-0095",
+        "safe:main_passages:ZJSHL-CH-014-P-0112",
+        "safe:main_passages:ZJSHL-CH-014-P-0045"
+      ],
+      "matched_formula_ids": [],
+      "matched_definition_concept_ids": [
+        "AHV2-9f641a6ecc7d"
+      ],
+      "suitable_for_thesis_limitations_and_future_work": true
+    },
+    {
+      "query_id": "cross_batch_adversarial_10",
+      "query": "半表半里证和过经有什么不同",
+      "query_category": "cross_batch_adversarial",
+      "failure_types": [
+        "answer_mode_calibration_error"
+      ],
+      "run_modes": [
+        "A_data_plane_baseline",
+        "B_retrieval_rerank",
+        "C_production_like_full_chain"
+      ],
+      "failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ],
+      "recommended_next_action": "Manual audit: inspect primary/secondary/review slots and decide whether this is data-layer, rerank, assembler, or LLM work.",
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-010-P-0005"
+      ],
+      "matched_formula_ids": [],
+      "matched_definition_concept_ids": [],
+      "suitable_for_thesis_limitations_and_future_work": true
+    },
+    {
+      "query_id": "cross_batch_adversarial_12",
+      "query": "荣气微和卫气衰有什么区别",
+      "query_category": "cross_batch_adversarial",
+      "failure_types": [
+        "answer_mode_calibration_error"
+      ],
+      "run_modes": [
+        "A_data_plane_baseline",
+        "B_retrieval_rerank",
+        "C_production_like_full_chain"
+      ],
+      "failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ],
+      "recommended_next_action": "Manual audit: inspect primary/secondary/review slots and decide whether this is data-layer, rerank, assembler, or LLM work.",
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-004-P-0255"
+      ],
+      "matched_formula_ids": [],
+      "matched_definition_concept_ids": [],
+      "suitable_for_thesis_limitations_and_future_work": true
+    },
+    {
+      "query_id": "cross_batch_adversarial_15",
+      "query": "霍乱和伤寒有什么区别",
+      "query_category": "cross_batch_adversarial",
+      "failure_types": [
+        "answer_mode_calibration_error"
+      ],
+      "run_modes": [
+        "A_data_plane_baseline",
+        "B_retrieval_rerank",
+        "C_production_like_full_chain"
+      ],
+      "failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ],
+      "recommended_next_action": "Manual audit: inspect primary/secondary/review slots and decide whether this is data-layer, rerank, assembler, or LLM work.",
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-009-P-0320",
+        "safe:main_passages:ZJSHL-CH-009-P-0322"
+      ],
+      "matched_formula_ids": [],
+      "matched_definition_concept_ids": [],
+      "suitable_for_thesis_limitations_and_future_work": true
+    },
+    {
+      "query_id": "cross_batch_adversarial_18",
+      "query": "痓病和太阳病有什么不同",
+      "query_category": "cross_batch_adversarial",
+      "failure_types": [
+        "answer_mode_calibration_error"
+      ],
+      "run_modes": [
+        "A_data_plane_baseline",
+        "B_retrieval_rerank",
+        "C_production_like_full_chain"
+      ],
+      "failure_reasons": [
+        "strong comparison/relationship answer lacks primary coverage for both sides"
+      ],
+      "recommended_next_action": "Manual audit: inspect primary/secondary/review slots and decide whether this is data-layer, rerank, assembler, or LLM work.",
+      "primary_ids": [
+        "safe:main_passages:ZJSHL-CH-008-P-0193",
+        "safe:main_passages:ZJSHL-CH-009-P-0002",
+        "safe:main_passages:ZJSHL-CH-008-P-0220"
+      ],
+      "matched_formula_ids": [],
+      "matched_definition_concept_ids": [],
+      "suitable_for_thesis_limitations_and_future_work": true
+    }
+  ],
+  "P3_observations": [
+    {
+      "observation": "Post-P0/P1 residuals remain bounded to the listed P2 candidate queue.",
+      "failure_type_counts": {
+        "answer_mode_calibration_error": 4,
+        "assembler_slot_error": 1
+      },
+      "recommended_next_action": "Use these as separate future repair rounds or summarize them in the thesis limitations section.",
+      "suitable_for_thesis_limitations_and_future_work": true
+    }
+  ],
+  "new_failure_count": 0,
+  "recommended_next_action": "Continue with a scoped P2 repair round if product correctness is prioritized; otherwise this is usable as a thesis testing baseline with residual limitations documented.",
+  "notes": [
+    "This queue is descriptive only; no AHV3, definition object, alias, learner normalization, prompt, frontend, or API changes were made.",
+    "Raw full passages, ambiguous passages, review-only, and risk-only materials remain prohibited from primary evidence."
+  ]
+}
