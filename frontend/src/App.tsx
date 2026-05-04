@@ -1049,7 +1049,7 @@ function AssistantMessageCardInner(props: {
 
         {primary.length > 0 ? (
           <EvidencePanel
-            title="主依据"
+            title="书内主证据"
             hint={buildSupportingHint(props.payload.answer_mode, "primary")}
             items={primary}
             highlightedEvidenceId={highlightedEvidenceId}
@@ -1064,7 +1064,7 @@ function AssistantMessageCardInner(props: {
 
         {secondary.length > 0 ? (
           <EvidencePanel
-            title="补充依据"
+            title="补充核对材料"
             hint={buildSupportingHint(props.payload.answer_mode, "secondary")}
             items={secondary}
             highlightedEvidenceId={highlightedEvidenceId}
@@ -1074,7 +1074,7 @@ function AssistantMessageCardInner(props: {
 
         {review.length > 0 ? (
           <EvidencePanel
-            title="核对材料"
+            title="讲解或复核材料"
             hint={buildSupportingHint(props.payload.answer_mode, "review")}
             items={review}
             highlightedEvidenceId={highlightedEvidenceId}
@@ -1185,8 +1185,8 @@ function CommentarialCard(props: { item: CommentarialItem }) {
           <h4>{props.item.title}</h4>
         </div>
         <div className={styles.commentarialBadgeList}>
-          <span className={styles.commentarialBadge}>{props.item.anchor_type}</span>
-          {props.item.theme_display_tier ? <span className={styles.commentarialBadge}>{props.item.theme_display_tier}</span> : null}
+          <span className={styles.commentarialBadge}>{formatCommentarialBadge(props.item.anchor_type)}</span>
+          {props.item.theme_display_tier ? <span className={styles.commentarialBadge}>{formatCommentarialBadge(props.item.theme_display_tier)}</span> : null}
         </div>
       </div>
       {props.item.quoted_original_text ? <p className={styles.commentarialQuote}>原文锚点：{props.item.quoted_original_text}</p> : null}
@@ -1214,9 +1214,33 @@ function CommentarialCard(props: { item: CommentarialItem }) {
   );
 }
 
+function formatCommentarialBadge(value: string): string {
+  const labels: Record<string, string> = {
+    formula: "方剂",
+    clause: "条文",
+    disease: "病类",
+    concept: "概念",
+    method: "方法",
+    exact: "精确锚定",
+    theme: "主题关联",
+    multi: "多重关联",
+    excerpt: "摘录材料",
+    main: "重点",
+    supporting: "补充",
+    high: "重点讲解",
+    medium: "延伸讲解",
+    low: "参考材料",
+    tier_1_named_view_ok: "可展示讲解",
+    tier_2_fold_only: "折叠参考",
+    tier_3_meta_learning_only: "学习方法",
+    tier_4_do_not_default_display: "低优先级材料",
+  };
+  return labels[value] || value.replace(/_/g, " ");
+}
+
 function resolveCommentarialHint(section: CommentarialSection): string {
   if (section.view_mode === "comparison_view") {
-    return "该区块只展示名家比较材料，不替代 canonical 主依据。";
+    return "该区块只展示名家比较材料，不替代书内主证据。";
   }
   if (section.view_mode === "meta_learning_view") {
     return "该区块用于学习方法与研读路径提示。";
@@ -1224,7 +1248,7 @@ function resolveCommentarialHint(section: CommentarialSection): string {
   if (section.view_mode === "assistive_view") {
     return "该区块默认折叠，仅作辅助解读。";
   }
-  return "该区块用于点名名家视角展示，仍与 canonical 证据层隔离。";
+  return "该区块用于点名名家视角展示，仍与书内主证据层隔离。";
 }
 
 function PanelHead(props: { title: string; hint: string; count: number }) {

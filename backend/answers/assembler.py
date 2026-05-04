@@ -440,6 +440,113 @@ GENERIC_SELF_MEDICATION_SAFETY_REFUSE_REASON = (
     "个人用药、剂量换算或实际服药安全超出《注解伤寒论》单书研读支持范围。"
 )
 
+MEDICAL_RISK_REFUSE_REASON = (
+    "问题涉及具体人群、症状或用药决策，超出《伤寒论》文本研读支持范围。"
+)
+
+MEDICAL_EMERGENCY_REFUSE_REASON = (
+    "问题涉及急症或当下处置表达，超出《伤寒论》文本研读支持范围。"
+)
+
+MEDICAL_RISK_POPULATION_HINTS = (
+    "儿童",
+    "小儿",
+    "孩子",
+    "小孩",
+    "宝宝",
+    "老人",
+    "老年人",
+    "孕妇",
+    "妊娠",
+    "哺乳",
+    "哺乳期",
+    "产妇",
+    "婴儿",
+    "幼儿",
+)
+
+MEDICAL_RISK_ACUTE_SYMPTOM_HINTS = (
+    "胸闷",
+    "气短",
+    "喘不过气",
+    "喘不上气",
+    "呼吸困难",
+    "昏迷",
+    "出血",
+    "大出血",
+    "剧痛",
+    "剧烈胸痛",
+    "胸痛",
+    "休克",
+    "抽搐",
+    "高热",
+    "高热不退",
+    "发热不退",
+    "意识不清",
+    "急救",
+)
+
+MEDICAL_RISK_DECISION_HINTS = (
+    "我能不能",
+    "我可以",
+    "能不能吃",
+    "能吃吗",
+    "能吃",
+    "可以吃",
+    "能不能喝",
+    "能喝吗",
+    "能喝",
+    "可以喝",
+    "能不能用",
+    "现在能用吗",
+    "可以用",
+    "能用",
+    "可用",
+    "可以服用",
+    "能服用",
+    "怎么服用",
+    "怎么吃",
+    "吃多少",
+    "喝多少",
+    "剂量",
+    "用量",
+    "按体重",
+    "几克",
+    "一天几次",
+    "西药",
+    "一起吃",
+    "同服",
+    "现在怎么办",
+    "现在该怎么办",
+    "该怎么办",
+    "怎么办",
+)
+
+MEDICAL_RISK_FORMULA_OR_MEDICINE_HINTS = (
+    "白虎汤",
+    "大承气汤",
+    "小承气汤",
+    "桂枝汤",
+    "麻黄汤",
+    "柴胡汤",
+    "方剂",
+    "煎服",
+    "服用",
+    "吃",
+    "药",
+    "方",
+    "汤",
+)
+
+MEDICAL_RISK_CURRENT_CARE_HINTS = (
+    "现在怎么办",
+    "现在该怎么办",
+    "该怎么办",
+    "怎么办",
+    "怎么处理",
+    "如何处理",
+)
+
 GENERIC_SELF_MEDICATION_HERB_HINTS = (
     "附子",
     "半夏",
@@ -465,15 +572,22 @@ GENERIC_SELF_MEDICATION_ACTION_HINTS = (
     "服用",
     "能不能用",
     "可不可以用",
+    "可以用",
+    "能用",
     "能直接用",
     "直接用",
     "吃",
     "煎",
     "自己煎",
+    "怎么吃",
+    "吃多少",
+    "喝多少",
     "用药",
     "处方",
     "剂量",
     "克数",
+    "几克",
+    "一天几次",
     "换算",
     "有毒",
     "安全使用",
@@ -486,12 +600,18 @@ GENERIC_SELF_MEDICATION_HARD_SAFETY_HINTS = (
     "服用",
     "能不能用",
     "可不可以用",
+    "可以用",
+    "能用",
     "能直接用",
     "直接用",
     "吃",
     "自己煎",
     "用药",
     "处方",
+    "剂量",
+    "用量",
+    "克数",
+    "换算",
     "有毒",
     "安全使用",
 )
@@ -501,12 +621,16 @@ GENERIC_TEXTUAL_LOOKUP_ALLOW_HINTS = (
     "方文",
     "条文是什么",
     "对应条文",
+    "对应哪些条文",
+    "对应哪条条文",
     "原文是什么",
+    "原文如何表述",
     "组成是什么",
     "由什么组成",
     "有哪些药",
     "药味是什么",
     "煎服法是什么",
+    "煎服法原文",
     "出自哪里",
     "出处",
     "是什么意思",
@@ -514,6 +638,22 @@ GENERIC_TEXTUAL_LOOKUP_ALLOW_HINTS = (
     "如何理解",
     "怎么理解",
 )
+
+COMMENTARIAL_EXACT_PHRASE_QUERY_HINTS = (
+    "成无己如何解释",
+    "成注如何解释",
+    "注文如何解释",
+    "成无己注文",
+)
+
+COMMENTARIAL_EXACT_FALLBACK_TOPICS = {
+    "太阳病": "太阳之为病",
+    "阳明病": "阳明之为病",
+    "少阳病": "少阳之为病",
+    "太阴病": "太阴之为病",
+    "少阴病": "少阴之为病",
+    "厥阴病": "厥阴之为病",
+}
 
 CLASSICAL_DOSAGE_CONTEXT_HINTS = (
     "汉代",
@@ -1018,6 +1158,12 @@ class AnswerAssembler:
                 payload = self._finalize_commentarial_payload(query_text, payload, None)
                 return payload
 
+            medical_risk_refusal = self._detect_medical_risk_refusal(query_text)
+            if medical_risk_refusal is not None:
+                payload = self._assemble_medical_risk_refusal(query_text, medical_risk_refusal)
+                payload = self._finalize_commentarial_payload(query_text, payload, None)
+                return payload
+
             policy_refusal = self._detect_policy_refusal(query_text)
             if policy_refusal is not None:
                 payload = self._assemble_policy_refusal(query_text, policy_refusal)
@@ -1044,6 +1190,11 @@ class AnswerAssembler:
 
             commentarial_plan = self.commentarial_layer.detect_route(query_text)
             if commentarial_plan is not None and commentarial_plan.explicit:
+                exact_anchor_plan = self._detect_commentarial_exact_anchor_query(query_text)
+                if exact_anchor_plan is not None:
+                    payload = self._assemble_commentarial_exact_anchor(query_text, exact_anchor_plan)
+                    payload = self._finalize_commentarial_payload(query_text, payload, commentarial_plan)
+                    return payload
                 payload = self._assemble_standard(self._build_commentarial_shadow_query(query_text, commentarial_plan))
                 payload = self._finalize_commentarial_payload(query_text, payload, commentarial_plan)
                 return payload
@@ -1163,6 +1314,37 @@ class AnswerAssembler:
 
         return None
 
+    def _detect_medical_risk_refusal(self, query_text: str) -> str | None:
+        compact_query = compact_whitespace(query_text)
+        if not compact_query:
+            return None
+        is_plain_textual_lookup = self._is_plain_textual_lookup_query(compact_query)
+
+        has_acute_symptom = self._has_any_hint(compact_query, MEDICAL_RISK_ACUTE_SYMPTOM_HINTS)
+        has_current_care = self._has_any_hint(compact_query, MEDICAL_RISK_CURRENT_CARE_HINTS)
+        has_personal_current_context = compact_query.startswith("我") or self._has_any_hint(
+            compact_query,
+            PERSONAL_HEALTH_CONTEXT_HINTS,
+        )
+        if has_acute_symptom and has_current_care and has_personal_current_context:
+            return MEDICAL_EMERGENCY_REFUSE_REASON
+
+        has_sensitive_population = self._has_any_hint(compact_query, MEDICAL_RISK_POPULATION_HINTS)
+        has_medication_decision = self._has_any_hint(compact_query, MEDICAL_RISK_DECISION_HINTS)
+        has_formula_or_medicine = bool(self._find_formula_mentions(compact_query)) or self._has_any_hint(
+            compact_query,
+            MEDICAL_RISK_FORMULA_OR_MEDICINE_HINTS,
+        )
+        if has_personal_current_context and has_medication_decision and has_formula_or_medicine:
+            return MEDICAL_RISK_REFUSE_REASON
+        if (has_sensitive_population or has_acute_symptom) and has_medication_decision and has_formula_or_medicine:
+            return MEDICAL_RISK_REFUSE_REASON
+
+        if is_plain_textual_lookup:
+            return None
+
+        return None
+
     def _detect_generic_self_medication_safety(self, compact_query: str) -> bool:
         if self._is_plain_textual_lookup_query(compact_query):
             return False
@@ -1188,6 +1370,43 @@ class AnswerAssembler:
     def _has_any_hint(text: str, hints: tuple[str, ...]) -> bool:
         return any(hint in text for hint in hints)
 
+    def _build_medical_risk_answer_text(self) -> str:
+        return (
+            "本系统只支持《伤寒论》文本研读，不判断个人病情或用药安全。"
+            "你的问题涉及具体人群、症状或用药决策，不能由本系统给出服用建议。"
+            "若存在胸闷气短、呼吸困难、剧痛、昏迷、出血等急症表现，请及时就医或联系急救。"
+            "你可以改问：“白虎汤方的原文是什么？”“白虎汤在书中对应哪些条文？”"
+            "“白虎汤煎服法原文如何表述？”"
+            "也可以改问某方的方文、条文、书内语境或某句话的文本含义。"
+        )
+
+    def _medical_risk_followups(self) -> list[str]:
+        return [
+            "白虎汤方的原文是什么？",
+            "白虎汤在书中对应哪些条文？",
+            "白虎汤煎服法原文如何表述？",
+            "某句话的文本含义是什么？",
+        ]
+
+    def _assemble_medical_risk_refusal(self, query_text: str, refuse_reason: str) -> dict[str, Any]:
+        self._emit_progress(
+            "organizing_evidence",
+            "当前问题命中查询前医疗边界硬规则，正在整理拒答原因与研读型改问建议。",
+        )
+        return self._compose_payload(
+            query_text=query_text,
+            answer_mode="refuse",
+            answer_text=self._build_medical_risk_answer_text(),
+            primary=[],
+            secondary=[],
+            review=[],
+            review_notice=None,
+            disclaimer=self._build_disclaimer("refuse", False, False),
+            refuse_reason=refuse_reason,
+            suggested_followup_questions=self._medical_risk_followups(),
+            citations=[],
+        )
+
     def _assemble_policy_refusal(self, query_text: str, refuse_reason: str) -> dict[str, Any]:
         self._emit_progress(
             "organizing_evidence",
@@ -1196,17 +1415,13 @@ class AnswerAssembler:
         return self._compose_payload(
             query_text=query_text,
             answer_mode="refuse",
-            answer_text=self._build_refuse_answer_text(
-                (
-                    "这个问题涉及个人用药、剂量换算或实际服药安全，超出《注解伤寒论》单书研读支持范围"
-                    if refuse_reason == GENERIC_SELF_MEDICATION_SAFETY_REFUSE_REASON
-                    else "这个问题超出了《伤寒论》单书研读支持范围，所以这里不直接回答"
-                ),
-                (
-                    "可以改问该方在书中的方文、对应条文、书内语境，或某句话的文本含义"
-                    if refuse_reason == GENERIC_SELF_MEDICATION_SAFETY_REFUSE_REASON
-                    else "可以改问书中的具体条文、方名，或某一句话在书里是什么意思"
-                ),
+            answer_text=(
+                self._build_medical_risk_answer_text()
+                if refuse_reason == GENERIC_SELF_MEDICATION_SAFETY_REFUSE_REASON
+                else self._build_refuse_answer_text(
+                    "这个问题超出了《伤寒论》单书研读支持范围，所以这里不直接回答",
+                    "可以改问书中的具体条文、方名，或某一句话在书里是什么意思",
+                )
             ),
             primary=[],
             secondary=[],
@@ -1215,7 +1430,7 @@ class AnswerAssembler:
             disclaimer=self._build_disclaimer("refuse", False, False),
             refuse_reason=refuse_reason,
             suggested_followup_questions=(
-                ["某方在书中的方文是什么？", "某方对应哪条条文？", "这句话在书内语境里怎么理解？"]
+                self._medical_risk_followups()
                 if refuse_reason == GENERIC_SELF_MEDICATION_SAFETY_REFUSE_REASON
                 else self._build_followups("refuse")
             ),
@@ -1398,6 +1613,155 @@ class AnswerAssembler:
             if row is not None:
                 rows.append(row)
         return rows
+
+    def _extract_commentarial_exact_phrase(self, query_text: str) -> str | None:
+        compact_query = compact_text(query_text)
+        if not self._has_any_hint(query_text, COMMENTARIAL_EXACT_PHRASE_QUERY_HINTS):
+            return None
+
+        quoted_phrases = re.findall(r"[“\"『「']([^”\"』」']{2,40})[”\"』」']", query_text)
+        for phrase in quoted_phrases:
+            cleaned = compact_whitespace(phrase).strip()
+            if 2 <= len(compact_text(cleaned)) <= 30:
+                return cleaned
+
+        for topic, phrase in COMMENTARIAL_EXACT_FALLBACK_TOPICS.items():
+            if compact_text(topic) in compact_query:
+                return phrase
+        return None
+
+    def _fetch_main_rows_for_exact_phrase(self, phrase: str, *, limit: int = 3) -> list[dict[str, Any]]:
+        pattern = f"%{phrase}%"
+        prefix_pattern = f"{phrase}%"
+        rows = self.engine.conn.execute(
+            """
+            SELECT
+                record_id,
+                passage_id,
+                text AS retrieval_text,
+                chapter_id,
+                chapter_name,
+                source_object,
+                evidence_level,
+                risk_flag
+            FROM records_main_passages
+            WHERE retrieval_allowed = 1
+              AND (text LIKE ? OR normalized_text LIKE ?)
+            ORDER BY
+                CASE WHEN text LIKE ? OR normalized_text LIKE ? THEN 0 ELSE 1 END,
+                chapter_id,
+                passage_order_in_chapter
+            LIMIT ?
+            """,
+            (pattern, pattern, prefix_pattern, prefix_pattern, limit),
+        ).fetchall()
+        return [dict(row) for row in rows]
+
+    def _fetch_annotations_for_main_rows(
+        self,
+        main_rows: list[dict[str, Any]],
+        *,
+        limit: int = 3,
+    ) -> list[dict[str, Any]]:
+        annotations: list[dict[str, Any]] = []
+        seen_ids: set[str] = set()
+        for main_row in main_rows:
+            passage_id = main_row.get("passage_id")
+            if not passage_id:
+                continue
+            rows = self.engine.conn.execute(
+                """
+                SELECT
+                    record_id,
+                    annotation_id,
+                    source_anchor_passage_id,
+                    text AS retrieval_text,
+                    chapter_id,
+                    chapter_name,
+                    source_object,
+                    evidence_level,
+                    risk_flag
+                FROM records_annotations
+                WHERE retrieval_allowed = 1
+                  AND source_anchor_passage_id = ?
+                ORDER BY
+                    linkage_enabled DESC,
+                    chapter_id,
+                    passage_order_in_chapter
+                LIMIT ?
+                """,
+                (passage_id, limit),
+            ).fetchall()
+            for row in rows:
+                row_dict = dict(row)
+                record_id = row_dict["record_id"]
+                if record_id in seen_ids:
+                    continue
+                seen_ids.add(record_id)
+                annotations.append(row_dict)
+                if len(annotations) >= limit:
+                    return annotations
+        return annotations
+
+    def _detect_commentarial_exact_anchor_query(self, query_text: str) -> dict[str, Any] | None:
+        phrase = self._extract_commentarial_exact_phrase(query_text)
+        if not phrase:
+            return None
+        main_rows = self._fetch_main_rows_for_exact_phrase(phrase)
+        if not main_rows:
+            return None
+        annotation_rows = self._fetch_annotations_for_main_rows(main_rows)
+        if not annotation_rows:
+            return None
+        return {
+            "phrase": phrase,
+            "main_rows": main_rows,
+            "annotation_rows": annotation_rows,
+        }
+
+    def _assemble_commentarial_exact_anchor(self, query_text: str, plan: dict[str, Any]) -> dict[str, Any]:
+        phrase = str(plan["phrase"])
+        self._emit_progress(
+            "organizing_evidence",
+            "已按引号内短语定位原文锚点，正在整理对应注文材料。",
+        )
+        primary = [
+            self._build_evidence_item(row, display_role="primary", title_override=f"原文锚点：{phrase}")
+            for row in plan["main_rows"]
+        ]
+        secondary = [
+            self._build_evidence_item(row, display_role="secondary", title_override=f"成无己注文：{phrase}")
+            for row in plan["annotation_rows"]
+        ]
+        primary_snippet = primary[0]["snippet"].rstrip("。；;，, ")
+        secondary_snippet = secondary[0]["snippet"].rstrip("。；;，, ")
+        answer_text = "\n".join(
+            [
+                f"这个问题先按短语“{phrase}”做精确锚定。",
+                f"书内原文锚点是：{primary_snippet}。",
+                f"成无己注文中可直接核对的解释是：{secondary_snippet}。",
+                "因此，这里只能说当前本地库已把该短语对应到这条原文及其相邻注文；若要扩展到整段义理，还需要继续回看前后注文。",
+            ]
+        )
+        citations = self._build_citations("strong", primary[:1], [], []) + self._build_citations(
+            "weak_with_review_notice",
+            [],
+            secondary[:2],
+            [],
+        )
+        return self._compose_payload(
+            query_text=query_text,
+            answer_mode="strong",
+            answer_text=answer_text,
+            primary=primary[:1],
+            secondary=secondary[:2],
+            review=[],
+            review_notice=self._build_review_notice("strong"),
+            disclaimer=self._build_disclaimer("strong", bool(secondary), False),
+            refuse_reason=None,
+            suggested_followup_questions=[],
+            citations=citations,
+        )
 
     def _assemble_p1_conservative_meaning_guard(self, query_text: str, guard: dict[str, Any]) -> dict[str, Any]:
         topic = str(guard["topic"])

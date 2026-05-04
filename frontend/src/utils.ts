@@ -41,7 +41,7 @@ export const MODE_COPY = {
     badge: "等待中",
     title: "等待提问",
     description: "开始发送后，这里会切换到当前回答的结果状态与阅读建议。",
-    hint: "当前会话恢复后，会按 strong / weak / refuse 展示每条 assistant 消息。",
+    hint: "当前会话恢复后，会按证据状态展示每条回答。",
   },
   loading: {
     badge: "处理中",
@@ -50,20 +50,20 @@ export const MODE_COPY = {
     hint: "发送期间会暂时锁定会话切换，避免结果串写到别的历史会话。",
   },
   strong: {
-    badge: "可参考",
-    title: "可直接参考的回答",
-    description: "当前回答优先依据主依据整理，可先读回答，再回看主依据区核对原文。",
-    hint: "阅读顺序建议：回答 -> 主依据 -> 补充依据 -> 回答引用。",
+    badge: "证据较充分",
+    title: "证据较充分回答",
+    description: "当前回答优先依据书内主证据整理，可先读回答，再回看书内主证据核对原文。",
+    hint: "阅读顺序建议：回答 -> 书内主证据 -> 补充核对材料 -> 回答引用。",
   },
   weak_with_review_notice: {
-    badge: "需核对",
-    title: "需核对的回答",
+    badge: "保守回答",
+    title: "保守回答，建议继续核对",
     description: "当前没有足够强的正文证据，回答只提供可核对线索，不能视为确定结论。",
-    hint: "请优先看核对提示，再对照补充依据和核对材料阅读。",
+    hint: "请优先看核对提示，再对照补充核对材料和讲解或复核材料阅读。",
   },
   refuse: {
-    badge: "暂不支持",
-    title: "当前不支持这样回答",
+    badge: "超出边界",
+    title: "超出研读边界",
     description: "这属于正常的业务拒答，不是系统报错。请先看拒答原因，再按改问建议继续追问。",
     hint: "阅读顺序建议：拒答原因 -> 改问建议 -> 重新收窄问题。",
   },
@@ -83,9 +83,9 @@ const SOURCE_LABELS: Record<string, string> = {
 };
 
 const ROLE_LABELS: Record<string, string> = {
-  primary: "主依据",
-  secondary: "补充依据",
-  review: "核对材料",
+  primary: "书内主证据",
+  secondary: "补充核对材料",
+  review: "讲解或复核材料",
 };
 
 const SOURCE_UNIT_LABELS: Record<string, string> = {
@@ -441,12 +441,12 @@ export function buildSupportingHint(
   if (slot === "primary") {
     return answerMode === "strong"
       ? "这些条目直接支撑上方回答，应优先作为正式依据阅读。"
-      : "当前结果没有可直接作为主依据展示的条目。";
+      : "当前结果没有可直接作为书内主证据展示的条目。";
   }
   if (slot === "secondary") {
     return answerMode === "weak_with_review_notice"
       ? "这些条目是当前可先参考的线索，但仍不能替代确定答案。"
-      : "这些条目用于补充理解，不替代主依据。";
+      : "这些条目用于补充理解，不替代书内主证据。";
   }
   if (slot === "review") {
     return answerMode === "weak_with_review_notice"

@@ -232,8 +232,10 @@ def build_attempt_plan(assembler: Any, query_text: str) -> dict[str, Any]:
 def collect_stage_candidates(engine: Any, query_text: str) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     request = engine.build_request(query_text)
     sparse_candidates = engine._collect_sparse_candidates(request)
+    query_vector = engine._encode_query_vector(request)
     dense_chunk_candidates = engine._collect_dense_candidates(
         request,
+        query_vector,
         index=engine.dense_chunks_index,
         meta=engine.dense_chunks_meta,
         top_k=DENSE_CHUNK_TOP_K,
@@ -241,6 +243,7 @@ def collect_stage_candidates(engine: Any, query_text: str) -> tuple[list[dict[st
     )
     dense_main_candidates = engine._collect_dense_candidates(
         request,
+        query_vector,
         index=engine.dense_main_index,
         meta=engine.dense_main_meta,
         top_k=DENSE_MAIN_TOP_K,
@@ -476,6 +479,24 @@ def hit_summary_by_type(results: list[dict[str, Any]], field_name: str) -> dict[
     return by_type
 
 
+def mean_reciprocal_rank(results: list[dict[str, Any]], rank_field: str) -> dict[str, float | int]:
+    evaluable = [result for result in results if item_requires_retrieval_hit(result["source_item"])]
+    denominator = len(evaluable)
+    reciprocal_sum = 0.0
+    hit_count = 0
+    for result in evaluable:
+        rank = result["retrieval_metrics"].get(rank_field)
+        if rank is None:
+            continue
+        hit_count += 1
+        reciprocal_sum += 1.0 / int(rank)
+    return {
+        "evaluable_count": denominator,
+        "hit_count": hit_count,
+        "mrr": round(reciprocal_sum / denominator, 4) if denominator else 0.0,
+    }
+
+
 def build_retrieval_summary(results: list[dict[str, Any]]) -> dict[str, Any]:
     by_type_fused = hit_summary_by_type(results, "fused_hit_at_k")
     by_type_rerank = hit_summary_by_type(results, "rerank_hit_at_k")
@@ -499,6 +520,8 @@ def build_retrieval_summary(results: list[dict[str, Any]]) -> dict[str, Any]:
         "aggregate": {
             "fused_hit_at_k": hit_summary(results, "fused_hit_at_k"),
             "rerank_hit_at_k": hit_summary(results, "rerank_hit_at_k"),
+            "fused_mrr": mean_reciprocal_rank(results, "best_gold_rank_before_rerank"),
+            "rerank_mrr": mean_reciprocal_rank(results, "best_gold_rank_after_rerank"),
         },
         "by_question_type": by_type,
         "rerank_delta_summary": {
@@ -536,11 +559,30 @@ def build_failure_taxonomy_summary(results: list[dict[str, Any]]) -> dict[str, A
 
 def build_summary(results: list[dict[str, Any]]) -> dict[str, Any]:
     base_summary = summarize_results(results)
+    primary_evaluable = [result for result in results if item_requires_retrieval_hit(result["source_item"])]
+    primary_hit_count = sum(
+        1
+        for result in primary_evaluable
+        if any(
+            record_matches_gold(result["source_item"], record_id)
+            for record_id in result["actual_record_ids"].get("primary_evidence", [])
+        )
+    )
+    expected_refusals = [result for result in results if result["expected_mode"] == "refuse"]
+    refusal_pass_count = sum(1 for result in expected_refusals if result["actual_mode"] == "refuse")
     return {
         "total_questions": base_summary["total_questions"],
         "mode_match_count": base_summary["mode_match_count"],
+        "answer_mode_match_count": base_summary["mode_match_count"],
+        "by_question_type": base_summary["by_question_type"],
+        "primary_evidence_evaluable_count": len(primary_evaluable),
+        "primary_evidence_hit_count": primary_hit_count,
         "citation_basic_pass_count": base_summary["citation_check_required"]["basic_pass_count"],
+        "citation_basic_required_count": base_summary["citation_check_required"]["total"],
+        "refusal_expected_count": len(expected_refusals),
+        "refusal_pass_count": refusal_pass_count,
         "failure_count": base_summary["failure_count"],
+        "failure_samples": base_summary["failure_samples"],
         "all_checks_passed": base_summary["all_checks_passed"],
     }
 
@@ -637,20 +679,41 @@ def build_markdown(report: dict[str, Any]) -> str:
         "## 汇总",
         "",
         f"- total_questions: `{summary['total_questions']}`",
-        f"- mode_match_count: `{summary['mode_match_count']}/{summary['total_questions']}`",
-        f"- citation_basic_pass_count: `{summary['citation_basic_pass_count']}`",
+        f"- answer_mode_match_count: `{summary['answer_mode_match_count']}/{summary['total_questions']}`",
+        f"- primary_evidence_hit_count: `{summary['primary_evidence_hit_count']}/{summary['primary_evidence_evaluable_count']}`",
+        f"- citation_basic_pass_count: `{summary['citation_basic_pass_count']}/{summary['citation_basic_required_count']}`",
+        f"- refusal_pass_count: `{summary['refusal_pass_count']}/{summary['refusal_expected_count']}`",
         f"- failure_count: `{summary['failure_count']}`",
         f"- all_checks_passed: `{summary['all_checks_passed']}`",
         "",
-        "## Retrieval Metrics",
+        "### By Question Type",
         "",
-        f"- top_k_values: `{json.dumps(retrieval['top_k_values'], ensure_ascii=False)}`",
-        "",
-        "### Aggregate",
-        "",
-        "| metric | K | hit_count | hit_rate |",
-        "| --- | ---: | ---: | ---: |",
+        "| question_type | total | mode_match | citation_required | citation_basic_pass | failure_count |",
+        "| --- | ---: | ---: | ---: | ---: | ---: |",
     ]
+
+    for question_type, typed in summary["by_question_type"].items():
+        lines.append(
+            f"| `{question_type}` | {typed['total']} | {typed['mode_match_count']} | "
+            f"{typed['citation_check_required_count']} | {typed['citation_basic_pass_count']} | "
+            f"{typed['failure_count']} |"
+        )
+
+    lines.extend(
+        [
+            "",
+            "## Retrieval Metrics",
+            "",
+            f"- top_k_values: `{json.dumps(retrieval['top_k_values'], ensure_ascii=False)}`",
+            f"- fused_mrr: `{retrieval['aggregate']['fused_mrr']['mrr']}`",
+            f"- rerank_mrr: `{retrieval['aggregate']['rerank_mrr']['mrr']}`",
+            "",
+            "### Aggregate",
+            "",
+            "| metric | K | hit_count | hit_rate |",
+            "| --- | ---: | ---: | ---: |",
+        ]
+    )
 
     for stage_name in ("fused_hit_at_k", "rerank_hit_at_k"):
         for top_k in retrieval["top_k_values"]:

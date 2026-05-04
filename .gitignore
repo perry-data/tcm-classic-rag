@@ -56,6 +56,12 @@ frontend/.next/
 # Thesis
 docs/thesis/
 thesis_drafts/
+artifacts/thesis_source_packet_v2/
+thesis_revision_evidence_packet/
+thesis_word_finalization/
 *.docx
 *.pdf
 ~$*.docx
+
+# Local scratch
+tmp/
