@@ -2,9 +2,7 @@
   "schema_name": "zjshl_database_schema_v1_draft",
   "version": "2026-04-03",
   "policy_reference": {
-    "policy_markdown": "docs/data/06_layered_enablement_policy.md",
-    "policy_json": "config/layered_enablement_policy.json",
-    "field_mapping_markdown": "docs/data/layered_field_mapping.md"
+    "policy_json": "config/layered_enablement_policy.json"
   },
   "source_resolution": {
     "safe": {

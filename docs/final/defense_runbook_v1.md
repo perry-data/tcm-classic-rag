@@ -69,4 +69,4 @@ npm run dev
 3. **报错 `FAISS index not found`**:
    - 请务必先运行一次 `scripts/build_dense_index.py`。
 4. **历史会话加载失败**:
-   - 检查 `artifacts/chat_history_v1.db` 文件的读写权限。
+   - 检查 `artifacts/runtime/chat_history_v1.db` 文件的读写权限。

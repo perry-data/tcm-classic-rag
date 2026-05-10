@@ -97,7 +97,7 @@ Docker 不是必须的。对你现在这种“还要边开发边测试”的阶�
 - [PRD_v1.md](docs/final/PRD_v1.md)
 - [technical_design_v1.md](docs/final/technical_design_v1.md)
 - [system_spec_v1.md](docs/final/system_spec_v1.md)
-- [defense_runbook_v1.md](docs/final/defense_runbook_v1.md) (即将生成)
+- [defense_runbook_v1.md](docs/final/defense_runbook_v1.md)
 
 ## 核心特性
 

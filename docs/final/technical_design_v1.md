@@ -89,4 +89,4 @@
 
 ## 6. 维护与维护说明
 
-详见 [defense_runbook_v1.md](docs/final/defense_runbook_v1.md)。
+详见 [defense_runbook_v1.md](defense_runbook_v1.md)。
