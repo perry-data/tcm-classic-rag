@@ -1212,7 +1212,12 @@ def resolve_runtime_paths(args: argparse.Namespace) -> dict[str, Path]:
 
 
 def create_llm_config(args: argparse.Namespace, *, force_enabled: bool | None = None) -> ModelStudioLLMConfig:
-    enabled_override = force_enabled if force_enabled is not None else (False if args.llm_disabled else None)
+    enabled_override = force_enabled
+    if enabled_override is None:
+        if args.llm_disabled:
+            enabled_override = False
+        elif args.llm_enabled:
+            enabled_override = True
     return load_modelstudio_llm_config(
         enabled_override=enabled_override,
         model_override=args.llm_model,
