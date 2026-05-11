@@ -8,7 +8,7 @@ Type=simple
 WorkingDirectory=/opt/tcm-classic-rag
 EnvironmentFile=/opt/tcm-classic-rag/.env
 TimeoutStartSec=300
-ExecStart=/opt/tcm-classic-rag/.venv/bin/python -m backend.api.minimal_api --host 127.0.0.1 --port 8000
+ExecStart=/opt/tcm-classic-rag/.venv/bin/python -m backend.api.minimal_api --host 127.0.0.1 --port 8000 --llm-enabled
 Restart=always
 RestartSec=5
 
